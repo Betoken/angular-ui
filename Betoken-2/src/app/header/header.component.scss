@@ -1,0 +1,179 @@
+header{
+    background-color: #fff;
+    height: 82px;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 90;
+    border-bottom: 1px solid #D1DCDF;
+
+    .phase-wrapper{
+        padding: 15px;
+        .phase-sec{
+            .phase{
+                &.active{
+                    .stage-icon{
+                        background-color: #18DAA3 !important;
+                        border-color: #18DAA3 !important; 
+                    }
+                    .phase-desc{
+                        color: #000000;
+                    }
+                }
+                .stage-icon{
+                    background: #D1DCDF;
+                    border: 1px solid #D1DCDF;
+                    width: 24px;
+                    height: 24px;
+                    border-radius: 100px;
+                    font-size: 12px;
+                    text-align: center;
+                    color: #FFFFFF;
+                }
+                .phase-desc{
+                    color: #8FA9B0;
+                    .phase-title{
+                        font-size: 18px;
+                        margin-bottom: 0px; 
+                        font-family: 'MavenProMedium';
+                    }
+                    .phase-duration{
+                        font-size: 12px;
+                        margin: 0;
+                    }
+                }
+                .phase-connector{ 
+                    width: 50px; 
+                    height: 1px;
+                    background-color: #D1DCDF;
+                }
+
+            }
+
+        }
+    }
+    
+    .button-wrapper{
+        padding: 20px 0px;
+    }
+
+}
+
+@media (max-width: 575.98px) {
+    header{
+        height: inherit !important;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+        .nav-wrapper{
+            .navbar{
+                margin-right: 5px;
+                .navbar-toggler{
+                    color:#FFFF !important; 
+                    border: none  !important;
+        
+                }
+            }
+        }    
+        .phase-sec{
+            text-align: left !important;
+            font-size: 20px !important;
+            .phase{
+                display: none !important;  
+                .phase-connector{
+                    display: none;
+                }
+                &.active{
+                        display: flex !important;
+                        margin: auto !important;
+                     }
+                }
+        }
+        
+    }
+
+    
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+    header{
+        height: inherit !important;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+        .nav-wrapper{
+            .navbar{
+                .navbar-toggler{
+                    color:#FFFF !important; 
+                    border: none  !important;
+    
+            }
+        }
+    }
+        .phase-wrapper{
+            .phase-sec{
+                .phase{
+                    .phase-desc{
+                        .phase-title{         
+                            font-size: 13px !important;
+                        }
+                    }
+                } 
+            }       
+        }
+    
+       }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px)  {  
+
+header{
+    height: inherit !important;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+    .nav-wrapper{
+        .navbar{
+            .navbar-toggler{
+                color:#FFFF !important; 
+                border: none  !important;
+        }
+    }
+    }
+    .phase-wrapper{
+        .phase-sec{
+            .phase{
+                .phase-desc{
+                    .phase-title{         
+                        font-size: 13px !important;
+                    }
+                }
+            } 
+        }       
+    }
+
+   }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) and (max-width: 1199.98px) { 
+    
+    header{
+        height: inherit !important;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+        .navbar{
+            .navbar-toggler{
+                color:#FFFF !important; 
+                border: none  !important;
+    
+            }
+        }
+        .phase-wrapper{
+            .phase-sec{
+                .phase{
+                    .phase-desc{
+                        .phase-title{         
+                            font-size: 12px !important;
+                        }
+                    }
+                } 
+            }       
+        }
+    
+       }
+    
+}

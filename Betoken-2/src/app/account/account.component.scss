@@ -1,0 +1,46 @@
+.account-wrapper{
+    .account-table-sec{
+        .table-responsive{
+            .proposal-table{
+                text-align: left !important;
+                white-space: nowrap !important;
+                thead{
+                    font-size: 16px;
+                    th{
+                        border: none !important;
+                    }
+                }
+                tbody{
+                    font-size: 18px;
+                    td{
+                        border-top: none !important;
+                    }
+                    .identy{
+                        .name{
+                            .abrivation{
+                                font-size: 18px !important ;
+                                color: #000000 !important;
+                                line-height: 1 !important;
+                            }
+                            .expansion{
+                                font-size: 16px !important ;
+                                color: #8FA9B0 !important;
+                            }
+                        }
+                    }
+                    .profit{
+                        .value{
+                            margin-left: 8px;
+                            font-size: 14px !important ;
+                        }
+                    }
+                    
+                }
+            }
+        }
+        .transaction-details-div{
+            border-top: 1px solid #D1DCDF;
+        }
+        
+    }
+}

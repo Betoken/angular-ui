@@ -1,0 +1,13 @@
+.bt-notification-active, .bt-notifications, .bt-telegram-icon, .bt-home-active, .bt-wallet-active, 
+.bt-wallet, .bt-home, .bt-proposal-active, .bt-proposal
+{ display: inline-block; background: url('../images/sprite-icons.png') no-repeat; overflow: hidden; text-indent: -9999px; text-align: left; }
+ 
+.bt-notification-active { background-position: -0px -0px !important; width: 24px !important; height: 24px !important; }
+.bt-notifications { background-position: -0px -24px; width: 24px; height: 24px; }
+.bt-telegram-icon { background-position: -0px -48px; width: 24px; height: 24px; }
+.bt-home-active { background-position: -0px -72px !important; width: 20px !important; height: 20px !important; }
+.bt-wallet-active { background-position: -0px -92px !important; width: 20px !important; height: 20px !important; }
+.bt-wallet { background-position: -0px -112px; width: 20px; height: 20px; }
+.bt-home { background-position: -0px -132px; width: 18px; height: 15px; }
+.bt-proposal-active { background-position: -0px -147px !important; width: 18px !important; height: 18px !important; }
+.bt-proposal { background-position: -0px -165px; width: 18px; height: 18px; }

@@ -1,0 +1,107 @@
+<div class="col-lg-2 side-nav-wrapper" [@toggleMenu]="state">
+  <div class="top-nav">
+
+    <div class="logo pointer" routerLink="/home" >
+        <img src="assets/images/betoken-logo.png" class="header-logo w-100" >
+    </div>
+      
+    <div class="notification-bar pointer mt-3">
+        <div class="bt-notifications notification-icon" (click)="notification = !notification"></div>
+    </div>
+      
+
+  </div>
+
+  <div class="nav-bar">
+    <ul class="app-nav">
+      <li [class.active]="router.url==='/home'">
+        <span class="nav-indication"></span>
+        <a class="d-flex align-items-center" (click)="navigate('/home')">
+        <div class="bt-home ml-3 mr-3" [class.bt-home-active]="router.url==='/home'"></div>
+          Home</a>
+      </li>
+
+      <li [class.active]="router.url==='/account'">
+          <span class="nav-indication"></span>
+          <a class="d-flex align-items-center" (click)="navigate('/account')">
+          <div class="bt-wallet ml-3 mr-3" [class.bt-wallet-active]="router.url==='/account'"></div>
+          Accounts</a>
+      </li>
+
+      <li [class.active]="router.url==='/proposal' || router.url==='/redeem'">
+          <span class="nav-indication"></span>
+          <a class="d-flex align-items-center" (click)="navigate('/redeem')">
+          <div class="bt-proposal ml-3 mr-3" [class.bt-proposal-active]="router.url==='/proposal' || router.url==='/redeem'"></div>
+          Proposal</a>
+      </li>
+    </ul>
+
+    <ul class="support-nav">
+
+      <li> 
+        <a> Get Help </a>
+      </li>
+
+      <li> 
+        <a> Terms of service </a>
+      </li>
+
+      <li>
+
+        <a class="mt-2">
+            Powered By 
+        </a>
+        <img src="assets//images/kybernet-logo.png" class="kybernet-logo">
+
+      </li>
+
+      <li>
+        <a>
+            Copyright © 2018 Betoken
+        </a>
+      </li>
+
+    </ul>
+    
+  </div>
+
+  <div class="sidenav-bg-image">
+    <img src="assets//images/sidenav-bg-pattern.png">
+  </div>
+  
+</div>
+
+<div class="notification-wrapper col-lg-4 offset-lg-2" *ngIf = "notification">
+    <div class="row">
+        <div class="content notification" >
+            <div class="modal-header d-flex align-items-center">
+                <div class="modal-tittle">
+                    Notifications
+                </div>
+                <div class="modal-close">
+                    <button type="button" class="close black-font" (click)="closePopup()">&times;</button>
+                </div>
+            </div>
+            <div class="notification-display">
+              <div class="notification">
+                <p class="info mb-0 black-font">
+                    🚨 Sell your assets to redeem all your KRO staked before cycle’s end. More info.
+                </p>
+                <p class="time mb-0">
+                    1 min ago.
+                </p>
+              </div>
+              <div class="notification">
+                  <p class="info mb-0 black-font">
+                      🚨 Sell your assets to redeem all your KRO staked before cycle’s end. More info.
+                  </p>
+                  <p class="time mb-0">
+                      1 min ago.
+                  </p>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="overlay-popup" [class.active]="notification" (click)="closePopup()"></div>

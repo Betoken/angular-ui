@@ -1,0 +1,39 @@
+@font-face {
+    font-family: 'MavenProRegular';
+    src: url('../fonts/Maven_Pro/MavenProRegular.eot');
+    src: url('../fonts/Maven_Pro/MavenProRegular.eot') format('embedded-opentype'),
+         url('../fonts/Maven_Pro/MavenProRegular.woff2') format('woff2'),
+         url('../fonts/Maven_Pro/MavenProRegular.woff') format('woff'),
+         url('../fonts/Maven_Pro/MavenProRegular.ttf') format('truetype'),
+         url('../fonts/Maven_Pro/MavenProRegular.svg#MavenProRegular') format('svg');
+}
+
+@font-face {
+    font-family: 'MavenProBlack';
+    src: url('../fonts/Maven_Pro/MavenProBlack.eot');
+    src: url('../fonts/Maven_Pro/MavenProBlack.eot') format('embedded-opentype'),
+         url('../fonts/Maven_Pro/MavenProBlack.woff2') format('woff2'),
+         url('../fonts/Maven_Pro/MavenProBlack.woff') format('woff'),
+         url('../fonts/Maven_Pro/MavenProBlack.ttf') format('truetype'),
+         url('../fonts/Maven_Pro/MavenProBlack.svg#MavenProBlack') format('svg');
+}
+
+@font-face {
+    font-family: 'MavenProBold';
+    src: url('../fonts/Maven_Pro//MavenProBold.eot');
+    src: url('../fonts/Maven_Pro//MavenProBold.eot') format('embedded-opentype'),
+         url('../fonts/Maven_Pro//MavenProBold.woff2') format('woff2'),
+         url('../fonts/Maven_Pro//MavenProBold.woff') format('woff'),
+         url('../fonts/Maven_Pro//MavenProBold.ttf') format('truetype'),
+         url('../fonts/Maven_Pro//MavenProBold.svg#MavenProBold') format('svg');
+}
+
+@font-face {
+    font-family: 'MavenProMedium';
+    src: url('../fonts/Maven_Pro//MavenProMedium.eot');
+    src: url('../fonts/Maven_Pro//MavenProMedium.eot') format('embedded-opentype'),
+         url('../fonts/Maven_Pro//MavenProMedium.woff2') format('woff2'),
+         url('../fonts/Maven_Pro//MavenProMedium.woff') format('woff'),
+         url('../fonts/Maven_Pro//MavenProMedium.ttf') format('truetype'),
+         url('../fonts/Maven_Pro//MavenProMedium.svg#MavenProMedium') format('svg');
+}

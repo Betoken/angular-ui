@@ -1,0 +1,174 @@
+.side-nav-wrapper{
+    background-color: #fff;
+    height: 100%;
+    border-right: 1px solid #ccc;
+    padding: 0;
+    position: fixed; 
+    top: 0;
+    z-index: 100;
+    .top-nav{
+        display: flex;
+        padding: 15px;
+        padding-right: 0px !important;
+        margin-bottom: 15px;
+        .logo{
+            .header-logo{ 
+                padding-right: 10px;
+            }
+            &:focus{
+                outline: none !important;
+            }
+        }
+        .notification-bar{
+            .notification-icon{
+               margin-right: 10px !important;
+            }
+        }
+    }
+    .nav-bar{
+        padding:0px;
+        background-color: #FFFFFF !important;
+        ul{
+            padding-left: 0 !important;
+            list-style: none;
+            font-family: 'MavenProMedium';
+            font-size: 18px;
+            border-bottom: 1px solid #ccc;
+            li{
+                padding:10px 5px;
+                cursor: pointer;
+                
+                img{
+                    padding:0 15px ;
+                }
+                span{
+                    padding:0 15px ;
+                }
+            }
+            
+            li:last-child{
+                padding-bottom: 20px;
+            }
+        }
+        .app-nav{
+            li{
+                position: relative;
+                .nav-indication{
+                    display: block;
+                    position: absolute;
+                    width: 4px;
+                    left: 0;
+                    top: 0;
+                    bottom: 0;
+                    right: 0;
+                    padding: 0px !important;
+                }
+                &.active{
+                    color: #000000 !important;;
+                    .nav-indication{
+                        background-color:#1CC886 !important;
+                    }
+                }
+            }
+            
+        }
+
+        .support-nav{
+            font-size: 12px !important;
+            border-bottom: none !important;
+            li{
+                padding:10px 20px;
+                display: flex;
+            }
+        }
+    }
+    .sidenav-bg-image{
+        overflow: hidden;
+        display: flex;
+        align-items: stretch;
+        padding-top: 80px;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        z-index: -1;
+        img{
+            width: 100%;
+        }
+    }
+}
+
+.notification-wrapper{
+    position: fixed;
+    width: 450px;
+    background-color: #ffffff;
+    z-index: 1030;
+    height: 100%;
+    .content{
+        .modal-header{
+                font-family: 'MavenProMedium' !important;
+                font-size: 18px !important;
+                color: #000000;
+                .close{
+                    font-family: 'MavenProBold' !important;
+                    font-size: 28px !important;
+                    opacity: 1 !important;
+                    padding: 0 !important;
+                    margin: 0 !important;
+                }
+        }
+        .notification-display{
+            .notification{
+                padding: 15px;
+                border-bottom: 1px solid #D1DCDF;
+                .info{
+                    font-size: 16px;
+                }
+                .time{
+                    font-size: 14px;
+                }
+            }
+        }
+        }    
+}
+
+.overlay-popup{
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #000000;
+    bottom: 0;
+    right: 0;
+    z-index: 99;
+    opacity: 0;
+    transition: 0.5s;
+    visibility: hidden;
+    &.active{
+        visibility: visible;
+        opacity: 0.3;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .side-nav-wrapper{
+        width: 250px;
+        top: 75px;
+        height: calc(100% - 67px);
+    }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+    .side-nav-wrapper{
+        width: 250px;
+        top: 70px;
+        height: calc(100% - 67px);
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px)  { 
+    .side-nav-wrapper{
+        width: 250px;
+        top: 83px;
+        height: calc(100% - 67px);
+    }
+}

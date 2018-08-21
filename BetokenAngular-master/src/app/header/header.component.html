@@ -1,0 +1,87 @@
+<header class="col-md-12 col-lg-10">
+
+  <div class="row d-flex align-items-center">
+    <div class="col-1 pr-0 nav-wrapper d-lg-none">
+      <nav class="navbar navbar-light p-0">
+        <button class="navbar-toggler p-0" type="button" (click)="toggle()">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </nav>
+    </div>
+    <div class="col-11 col-lg-9 phase-wrapper">
+      <div class="phase-sec d-flex align-items-center">
+        <div class="phase d-flex align-items-center" [class.active]="router.url==='/home'">
+          <div class="stage-icon mr-3 d-flex align-items-center justify-content-center">1</div>
+          <div class="phase-desc">
+            <p class="phase-title">Invest & withdraw
+              <img src="assets//images/info_icon.png">
+            </p>
+            <p class="phase-duration">Time left: 1d 20h 34m 15s</p>
+          </div>
+          <div class="phase-connector"></div>
+        </div>
+        <div class="phase d-flex align-items-center" [class.active]="router.url==='/proposal'">
+          <div class="stage-icon ml-3 mr-3 d-flex align-items-center justify-content-center">2</div>
+          <div class="phase-desc">
+            <p class="phase-title"> Portfolio Proposal
+              <img src="assets//images/info_icon.png">
+            </p>
+            <p class="phase-duration">Time left: 1d 20h 34m 15s</p>
+          </div>
+          <div class="phase-connector"></div>
+        </div>
+        <div class="phase d-flex align-items-center" [class.active]="router.url==='/redeem' || router.url==='/account'">
+          <div class="stage-icon ml-3 mr-3 d-flex align-items-center justify-content-center">3</div>
+          <div class="phase-desc">
+            <p class="phase-title">Redeem Commission
+              <img src="assets//images/info_icon.png">
+            </p>
+            <p class="phase-duration">Time left: 1d 20h 34m 15s</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-3 d-none d-lg-flex justify-content-end" *ngIf="router.url==='/home'">
+        <div class="button-wrapper justify-content-end" *ngIf="btn1">
+          <button class="text-center outline-button mr-3">WITHDRAW</button>
+          <button class="text-center outline-button active" (click)="openModalPopup()">INVEST</button>
+        </div>
+        <div class="button-wrapper text-right justify-content-end" *ngIf="btn2">
+          <button class="text-center outline-button active" (click)="changefundPopup()">NEXT PHASE</button>
+        </div>
+        <div class="button-wrapper text-right justify-content-end" *ngIf="btn3">
+          <button class="text-center outline-button active" routerLink="/proposal">TRADE ASSSETS</button>
+        </div>
+    </div>
+
+    <div class="col-3 d-none d-lg-flex justify-content-end" *ngIf="router.url==='/proposal'">
+      <div class="button-wrapper text-right justify-content-end" *ngIf="tradebtn">
+        <button class="text-center outline-button active" (click)="proposalPopup()">TRADE ASSSETS</button>
+      </div>
+
+      <div class="button-wrapper text-right justify-content-end" *ngIf="nextphasebtn">
+          <button class="text-center outline-button active" (click)="changeproposal()">NEXT PHASE</button>
+      </div>
+
+      <div class="button-wrapper text-right justify-content-end" *ngIf="redeembtn">
+          <button class="text-center outline-button active" routerLink="/redeem">REDEEM COMMISSIONS</button>
+      </div>
+    </div>
+
+    <div class="col-3 d-none d-lg-flex justify-content-end" *ngIf="router.url==='/redeem'">
+      <div class="button-wrapper text-right justify-content-end" *ngIf="!newcyclebtn">
+          <button class="text-center outline-button active" routerLink="/redeem" (click)="redeemPopup()">REDEEM COMMISSIONS</button>
+      </div>
+      <div class="button-wrapper text-right justify-content-end" *ngIf="newcyclebtn">
+          <button class="text-center outline-button active" (click)="redeemPopup()">NEW CYCLE</button>
+      </div>
+    </div>
+
+    <div class="col-3 d-none d-lg-flex justify-content-end" *ngIf="router.url==='/account'">
+      <div class="button-wrapper text-right justify-content-end">
+          <button class="text-center outline-button active" routerLink='/home'>NEW CYCLE</button>
+      </div>
+    </div>
+    
+  </div>
+</header>

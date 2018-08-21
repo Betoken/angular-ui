@@ -1,0 +1,616 @@
+<div class="walkthrough-wrapper" *ngIf="walkthrough">
+        <div class="walkthrough-overlay d-flex active">
+                <div class="walkthrough col-12 col-lg-6 m-auto text-center">
+                        <ngu-carousel  [inputs]="carouselBanner"  (initData)="initDataFn($event)" (onMove)="onmoveFn($event)" class="walkthrough-slide">
+
+                            <ngu-item NguCarouselItem class="bannerStyle">
+                                 <div class="slide">
+                                    <div class="logo col-6 col-lg-8 m-auto">
+                                        <img src="assets/images/betoken-logo.png" class="header-logo w-100" >
+                                    </div>
+                                    <div class="info col-6 col-lg-8 m-auto">
+                                        <p class="text-center mt-5">
+                                                The hedge fund that works for you and empower a true meritocracy.
+                                        </p>
+                                        <img src="assets/images/man-illustration.png" class="mb-3">
+                                    </div>
+                                    <div class="desc col-md-9 col-lg-12 m-auto">
+                                        <p class="text-center m-0">
+                                                1. Invest in Betoken by depositing ETH or ERC20 tokens to buy Betoken's shares, or burn your shares to redeem your money.
+                                                 This 24h phase is open at the beginning of each month to onboard new user. 
+                                        </p>
+                                    </div>
+                                 </div>
+                            </ngu-item>
+
+                            <ngu-item NguCarouselItem class="bannerStyle">
+                                    <div class="slide">
+                                       <div class="logo col-6 col-lg-8 m-auto">
+                                           <img src="assets/images/betoken-logo.png" class="header-logo w-100" >
+                                       </div>
+                                       <div class="info col-6 col-lg-8 m-auto">
+                                           <p class="text-center mt-5">
+                                                   The hedge fund that works for you and empower a true meritocracy.
+                                           </p>
+                                           <img src="assets/images/woman-illustration.png" class="mb-3">
+                                       </div>
+                                       <div class="desc col-md-9 col-lg-12 m-auto">
+                                           <p class="text-center m-0">
+                                                2. You can influence the fund’s portfolio by staking Kairo tokens (KRO) - our control token - to buy & sell cryptoassets during a 27 days period.
+                                                 There is no obligation to make portfolio proposals.
+                                                 You can trust the community to decide for you on what to invest in. Get KRO on these exchanges.
+                                           </p>
+                                       </div>
+                                    </div>
+                            </ngu-item>
+
+                            <ngu-item NguCarouselItem class="bannerStyle">
+                                    <div class="slide">
+                                       <div class="logo col-6 col-lg-8  m-auto">
+                                           <img src="assets/images/betoken-logo.png" class="header-logo w-100" >
+                                       </div>
+                                       <div class="info col-6 col-lg-8 m-auto">
+                                           <p class="text-center mt-5">
+                                                   The hedge fund that works for you and empower a true meritocracy.
+                                           </p>
+                                           <img src="assets/images/cup-illustration.png" class="mb-3">
+                                       </div>
+                                       <div class="desc col-md-9 col-lg-12 m-auto">
+                                           <p class="text-center m-0">
+                                                3. If you staked KRO and turned in profits, you’ll win more Kairo; if you lost the fund's money, you'll lose Kairo.
+                                                   More Kairo means more income and more control over investment decisions.
+                                                   During the last 24h of each investment cycle, redeem your commission based on how much Kairo you have.
+                                           </p>
+                                       </div>
+                                    </div>
+                            </ngu-item>
+                            
+                            <button NguCarouselPrev class='leftRs d-none'>&lt;</button>
+                            <button NguCarouselNext class='rightRs col-1 outline-button active'>Got It</button>
+                            
+                        </ngu-carousel>
+
+                        <div class="slide-button-wrapper m-auto">
+                                <button (click) ="dismiss()" class="dismiss" >DISMISS</button>
+                        </div>
+                </div>
+        </div>
+</div>
+
+
+
+<div class="invest-wrapper header-height col-12 col-lg-10 float-right">
+
+    <div class="row mt-3 mb-3">
+        <div class="alert-window col-12 " *ngIf="investalert">
+            <div class="alert d-flex justify-content-between align-items-center col-12">
+                <p class="m-0">🚨 Invest & Withdraw phase ended. Switch to next phase.</p>
+                <button class="text-center alert-button" (click)="changefund()">NEXT PHASE</button>
+            </div>
+        </div>
+        
+        <div class="alert-window col-12 " *ngIf="changealert">
+            <div class="alert d-flex justify-content-between align-items-center col-12">
+                <p class="m-0">🚨 Influence the fund strategy by trading assets and staking KRO to support
+                    ETH and ERC20 tokens. More info.</p>
+                <button class="text-center alert-button" (click)="hidechangealert()">DISMISS</button>
+            </div>
+        </div>
+
+        <div class="top-sec col-12">
+            <div class="row befund-portfolio-sec mb-2">
+                <div class="col-12 col-lg-12 ">
+                    <div class="sec-header">
+                        <p class="sec-title">Portfolio</p>
+                    </div>
+                    <div class="cards">
+                        <div class="row portfolio-div">
+                            <div class="portfolio col-6 col-md-6 col-lg-3 d-flex align-items-center mb-2">
+                                <div class="portfolio-icon mr-3">
+                                    <img src="assets/images/metamask.png">
+                                </div>
+                                <div class="portfolio-desc">
+                                    <p class="portfolio-title betoken-font m-0">Eth. Mainnet</p>
+                                    <p class="portfolio-value black-font m-0"> 0x5d20...l660 </p>
+                                </div>
+                            </div>
+
+                            <div class="portfolio col-6 col-md-6 col-lg-3 d-flex align-items-center mb-2">
+                                <div class="portfolio-desc">
+                                    <p class="portfolio-title betoken-font m-0">Shares balance
+                                        <img src="assets/images/info_icon.png">
+                                    </p>
+                                    <p class="portfolio-value black-font m-0">0.0000 BTF </p>
+                                </div>
+                            </div>
+
+                            <div class="portfolio col-6 col-md-6 col-lg-3 d-flex align-items-center mb-2">
+                                <div class="portfolio-desc">
+                                    <p class="portfolio-title betoken-font m-0">Kairos balance
+                                        <img src="assets/images/info_icon.png">
+                                    </p>
+                                    <p class="portfolio-value black-font m-0">0.0000 </p>
+                                </div>
+                            </div>
+
+                            <div class="portfolio col-6 col-md-6 col-lg-3 d-flex align-items-center mb-2">
+                                <div class="portfolio-desc">
+                                    <p class="portfolio-title betoken-font m-0">Your monthly P/L
+                                        <img src="assets/images/info_icon.png">
+                                    </p>
+                                    <p class="portfolio-value black-font m-0">0.00 % </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="left-sec col-12 col-lg-8 order-2 order-lg-1">
+            <div class="row befund-statitics-sec">
+                <div class="col-12 col-lg-12 ">
+                    <div class="sec-header">
+                        <p class="sec-title">Betoken fund</p>
+                    </div>
+                    <div class="cards">
+                        <div class="content-header d-flex align-items-center mb-3">
+                            <div class="dot  green mr-2"></div>
+                            <div class="betoken-desc">
+                                <p class="betoken-title betoken-font m-0">Betoken fund share price (BTF)
+                                    <img src="assets/images/info_icon.png"> </p>
+                                <p class="betoken-price black-font m-0"> $ 100.0000 USD</p>
+                            </div>
+                        </div>
+                        <div class="content">
+                            <div [chart]="stock" class="mb-4 befund-share-graph "></div>
+                            <div class="hilights row">
+                                <div class="key col-6 col-sm-6 col-md-4 d-flex align-items-center">
+                                    <div class="mr-3">
+                                        <img src="assets/images/average.png">
+                                    </div>
+                                    <div class="key-hilights">
+                                        <p class="hilight-title betoken-font m-0">Avg. Mo return
+                                            <img src="assets/images/info_icon.png">
+                                        </p>
+                                        <p class="hilight-value black-font m-0"> 38% </p>
+                                    </div>
+                                </div>
+                                <div class="key col-6 col-sm-6 col-md-4 d-flex align-items-center">
+                                    <div class="mr-3">
+                                        <img src="assets/images/return.png">
+                                    </div>
+                                    <div class="key-hilights">
+                                        <p class="hilight-title betoken-font m-0"> Std Mo return
+                                            <img src="assets/images/info_icon.png">
+                                        </p>
+                                        <p class="hilight-value black-font m-0"> 5% </p>
+                                    </div>
+                                </div>
+                                <div class="key col-6 col-sm-6 col-md-4 d-flex align-items-center">
+                                    <div class="mr-3">
+                                        <img src="assets/images/users.png">
+                                    </div>
+                                    <div class="key-hilights">
+                                        <p class="hilight-title betoken-font m-0">Total users
+                                            <img src="assets/images/info_icon.png">
+                                        </p>
+                                        <p class="hilight-value black-font m-0"> 5 </p>
+                                    </div>
+                                </div>
+
+                                <div class="key col-6 col-sm-6 col-md-4 d-flex align-items-center">
+                                    <div class="mr-3">
+                                        <img src="assets/images/account-wallet.png">
+                                    </div>
+                                    <div class="key-hilights">
+                                        <p class="hilight-title betoken-font m-0">AUM (US)
+                                            <img src="assets/images/info_icon.png">
+                                        </p>
+                                        <p class="hilight-value black-font m-0"> 5 </p>
+                                    </div>
+                                </div>
+
+                                <div class="key col-6 col-sm-6 col-md-4 d-flex align-items-center">
+                                    <div class="mr-3">
+                                        <img src="assets/images/kairo-share-icon.png">
+                                    </div>
+                                    <div class="key-hilights">
+                                        <p class="hilight-title betoken-font m-0">Tot. Kairo (USD)
+                                            <img src="assets/images/info_icon.png">
+                                        </p>
+                                        <p class="hilight-value black-font m-0"> 5 </p>
+                                    </div>
+                                </div>
+
+                                <div class="key col-6 col-sm-6 col-md-4 d-flex align-items-center">
+                                    <div class="mr-3">
+                                        <img src="assets/images/betoken-share-icon.png">
+                                    </div>
+                                    <div class="key-hilights">
+                                        <p class="hilight-title betoken-font m-0">Tot. BTF Shares
+                                            <img src="assets/images/info_icon.png">
+                                        </p>
+                                        <p class="hilight-value black-font m-0"> 5 </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row befund-profit-sec">
+                <div class="col-lg-12">
+                    <div class="sec-header">
+                        <p class="sec-title">Betoken fund profit</p>
+                    </div>
+
+                    <div class="cards">
+
+                        <div class="content-header d-flex align-items-center mb-3">
+
+                            <div class="dot green mr-2"></div>
+                            <div class="betoken-desc">
+                                <p class="betoken-title betoken-font m-0">Last investment cycle profit
+                                    <img src="assets/images/info_icon.png"> </p>
+                                <p class="betoken-price black-font m-0"> 83.56 %</p>
+                            </div>
+
+                        </div>
+
+                        <div class="content">
+                            <div [chart]="bar" class="mb-4 befund-profit-graph "></div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="row support mb-5">
+                <div class="email-update-sec col-lg-6 col-md-6 col-sm-12 mb-3">
+
+                    <div class="sec-header">
+                        <p class="sec-title">Receive email updates</p>
+                    </div>
+
+                    <div class="cards">
+
+                        <p class="update-info black-font">
+                            Get updates about the fund status, begining of new investment cycle phases and date to redeem commissions.
+                        </p>
+
+                        <p>
+                            Email address
+                        </p>
+
+                        <input type="email" class="outline-button w-100 mb-3" placeholder="myemail@address.com">
+
+                        <button class="text-center outline-button black-font w-100 mb-3">
+                            GET UPDATED
+                        </button>
+
+                        <div class="update-footer">
+
+                            <p class="black-font">
+                                Join our community on Telegram
+                                <img src="assets/images/telegram-icon.png">
+                            </p>
+
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+                <div class="faq-sec col-lg-6 col-md-6 col-sm-12 mb-3">
+
+                    <div class="sec-header">
+                        <p class="sec-title">FAQ</p>
+                    </div>
+
+                    <div class="faq-sec-content">
+
+                        <accordion class="faq-group">
+                            <accordion-group heading="How to invest in Betoken?">
+                                <p class="ans">It is a long established fact that a reader will be distracted by the readable content of
+                                    a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less
+                                    normal distribution of letters</p>
+                            </accordion-group>
+                            <accordion-group heading="What’s ether (ETH)? Why do I need it to invest in Betoken?">
+                                <p class="ans">It is a long established fact that a reader will be distracted by the readable content of
+                                    a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less
+                                    normal distribution of letters</p>
+                            </accordion-group>
+                            <accordion-group heading="What’s Kairo (KRO)?">
+                                <p class="ans">It is a long established fact that a reader will be distracted by the readable content of
+                                    a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less
+                                    normal distribution of letters</p>
+                            </accordion-group>
+                            <accordion-group heading=" What is gas?">
+                                <p class="ans">It is a long established fact that a reader will be distracted by the readable content of
+                                    a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less
+                                    normal distribution of letters</p>
+                            </accordion-group>
+                            <accordion-group heading="Getting Ether, your digital currency">
+                                <p class="ans">It is a long established fact that a reader will be distracted by the readable content of
+                                    a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less
+                                    normal distribution of letters</p>
+                            </accordion-group>
+                            <accordion-group heading="How to send ETH to MetaMask or my Ledger?">
+                                <p class="ans">It is a long established fact that a reader will be distracted by the readable content of
+                                    a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less
+                                    normal distribution of letters</p>
+                            </accordion-group>
+                        </accordion>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="right-sec col-12 col-lg-4 order-1 order-lg-2">
+            <div class="row profit-history-sec">
+                <div class="col-12 col-md-6 col-lg-12 mb-3">
+                    <div class="sec-header">
+                        <p class="sec-title">Betoken fund profit since
+                            <img src="assets/images/info_icon.png" class="margin-bot-10">
+                        </p>
+                    </div>
+
+                    <div class="cards">
+
+                        <div class="duration d-flex">
+                            <p class="dur-tittle betoken-font">1M Return</p>
+                            <p class="dur-val"> +10 % </p>
+                        </div>
+
+                        <div class="duration d-flex">
+                            <p class="dur-tittle betoken-font">3M Return</p>
+                            <p class="dur-val"> +150 % </p>
+                        </div>
+
+                        <div class="duration d-flex">
+                            <p class="dur-tittle betoken-font">3M Return</p>
+                            <p class="dur-val"> +243 % </p>
+                        </div>
+
+                        <div class="duration d-flex">
+                            <p class="dur-tittle betoken-font">1Year Return</p>
+                            <p class="dur-val"> +1,678 % </p>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-12  col-md-6 col-lg-12">
+                    <div class="sec-header">
+                        <p class="sec-title">Betoken fund details</p>
+                    </div>
+
+                    <div class="cards">
+
+                        <div class="component d-flex">
+                            <p class="component-tittle betoken-font">Creation date</p>
+                            <p class="component-val black-font"> 8. May 2018 16:31 </p>
+                        </div>
+
+                        <div class="component d-flex">
+                            <p class="component-tittle betoken-font">Annualized Sharpe Ratio
+                                <img src="assets/images/info_icon.png">
+                            </p>
+                            <p class="component-val black-font"> 3.44 </p>
+                        </div>
+
+                        <div class="component d-flex">
+                            <p class="component-tittle betoken-font">Management fee
+                                <img src="assets/images/info_icon.png"> </p>
+                            <p class="component-val black-font"> 1.5 % </p>
+                        </div>
+
+                        <div class="component d-flex">
+                            <p class="component-tittle betoken-font">Performance fee
+                                <img src="assets/images/info_icon.png"> </p>
+                            <p class="component-val black-font"> 17.5 % </p>
+                        </div>
+
+                        <div class="component d-flex">
+                            <p class="component-tittle betoken-font"> Minimum Investment</p>
+                            <p class="component-val black-font"> 0 </p>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="investment-modal-wrapper" [@toggleMenu]="state" [class.active]="active">
+    <div class="content investment-phase" *ngIf="!changefundphase">
+        <div class="modal-header d-flex align-items-center">
+            <div class="modal-tittle">
+                Invest in Betoken fund
+            </div>
+            <div class="modal-close">
+                <button type="button" class="close black-font" (click)="closePopup()">&times;</button>
+            </div>
+        </div>
+        <div class="time-wrapper">
+            <p class="m-0">Time left to invest: 1d 20h 34m 15s
+                <img src="assets/images/info_icon.png" title="Time available">
+            </p>
+        </div>
+
+        <div class="main-sec" *ngIf="step1">
+            <p class="m-0 pb-5 black-font">To invest in the fund, you need to buy BTF shares. Choose the amount of shares you want. By buying shares, you’ll
+                also receive KRO token - You can influence the fund’s portfolio by staking Kairo tokens to buy & sell in
+                cryptoassets.
+            </p>
+
+            <p class="m-0">Buy BTF shares </p>
+            <div class="mt-2  mb-3 d-flex align-items-center">
+                <div class="mr-3 position-relative">
+                    <input type="text" class="outline-box" placeholder="1.0000">
+                    <p class="mul-icon">&times;</p>
+                </div>
+                <div>
+                    <p class="m-0 pb-1">Share price in DAI</p>
+                    <p class="m-0 share-price">100.0000</p>
+                </div>
+            </div>
+
+            <p class="m-0">Total to pay </p>
+            <div class="mt-2 mb-3  outline-box w-100 d-flex  align-items-center justify-content-between">
+                <p class="m-0">100.00</p>
+                <select class="border-0 betoken-font">
+                    <option>DAI</option>
+                    <option>USD</option>
+                </select>
+            </div>
+
+            <p class="m-0">Amount of KRO you’ll receive
+                <img src="assets/images/info_icon.png"> </p>
+            <div class="mt-2 outline-box w-100 d-flex  align-items-center justify-content-between">
+                <p class="m-0">100.00</p>
+            </div>
+
+        </div>
+
+        <div class="confirmation-sec m-3" *ngIf="step2">
+            <p class="mb-3">
+                🚨 Confirm your transaction
+            </p>
+            <p class="m-0 pb-4 black-font">
+                Confirm the transaction in the Metamask’s interface to submit it to the Betoken fund contract. It's fine to stick with these
+                defaults gas limit and price.
+            </p>
+            <div class="d-flex justify-content-center mb-4">
+                <img src="assets/images/metamask-big.png" class="pointer " (click)="confirm()">
+            </div>
+            <p class="m-0">
+                Betoken contract address
+            </p>
+            <div class="mt-2 outline-box w-100 d-flex align-items-center justify-content-between bg-white ">
+                <p class="m-0">0x7c9c1d88...20560sace7a4e</p>
+                <img src="assets/images/copy.png" class="pointer ">
+            </div>
+
+        </div>
+
+        <div class="broadcast-sec m-3" *ngIf="step3">
+            <p class="mb-3">
+                🎉 Transaction broadcasted!
+            </p>
+            <p class="m-0 pb-4 black-font">
+                Your transaction is being saved on the Ethereum blockchain. You can check its status on Etherscan.
+            </p>
+            <div class="d-flex justify-content-center mb-5">
+                <img src="assets/images/loader.png" class="pointer ">
+            </div>
+            <p class="m-0">
+                Transaction ID
+            </p>
+            <div class="mt-2 outline-box w-100 d-flex align-items-center justify-content-between bg-white ">
+                <p class="m-0">0xf1af503...456e7c62116caf09</p>
+                <img src="assets/images/export.png" class="pointer ml-1">
+            </div>
+        </div>
+
+        <div class="final-sec m-3" *ngIf="step4">
+            <p class="mb-3">
+                🙌 Done. Check your balances!
+            </p>
+            <p class="m-0 pb-4 black-font">
+                You bought 1 BTF share for ~0.2572 ETH / ~ 100.0000 DAI. And you also got 1 KRO to influence the fund’s portfolio strategy.
+            </p>
+            <div class="d-flex justify-content-center mb-5">
+                <img src="assets/images/finish.png" class="pointer ">
+            </div>
+            <p class="m-0">
+                Transaction ID
+            </p>
+            <div class="mt-2 outline-box w-100 d-flex align-items-center justify-content-between bg-white">
+                <p class="m-0">0xf1af503d...456e7c62116caf09</p>
+                <img src="assets/images/export.png" class="pointer ml-1">
+            </div>
+        </div>
+        <div class="modal-button-wrapper">
+                <button class="text-center outline-button active w-100" (click)="invest()" *ngIf="step1">INVEST</button>
+                <button class="text-center outline-button active w-100" (click)="closePopup()" *ngIf="step4">INVESTMENT COMPLETE</button>
+        </div>
+        
+    </div>
+
+    <div class="content changefund-phase" *ngIf="changefundphase">
+            <div class="modal-header d-flex align-items-center">
+                    <div class="modal-tittle">
+                            Change fund phase
+                    </div>
+                    <div class="modal-close">
+                        <button type="button" class="close black-font" (click)="closePopup()">&times;</button>
+                    </div>
+            </div>
+            <div class="main-sec" *ngIf="changeStep1">
+                    <p class="m-0 pb-5 black-font">This action will be repercuted on all the fund’s participants.
+                         By being the first to operate this action, you’ll be granted 0.01 KRO.
+                    </p>
+            </div>
+            <div class="confirmation-sec m-3" *ngIf="changeStep2">
+                    <p class="mb-3">
+                        🚨 Confirm your transaction
+                    </p>
+                    <p class="m-0 pb-4 black-font">
+                        Confirm the transaction in the Metamask’s interface to submit it to the Betoken fund contract. It's fine to stick with these
+                        defaults gas limit and price.
+                    </p>
+                    <div class="d-flex justify-content-center mb-5">
+                        <img src="assets/images/metamask-big.png" class="pointer " (click)="confirmcchangefund()">
+                    </div>
+        
+            </div>
+            <div class="broadcast-sec m-3" *ngIf="changeStep3">
+                    <p class="mb-3">
+                        🎉 Transaction broadcasted!
+                    </p>
+                    <p class="m-0 pb-4 black-font">
+                        Your transaction is being saved on the Ethereum blockchain. You can check its status on Etherscan.
+                    </p>
+                    <div class="d-flex justify-content-center mb-5">
+                        <img src="assets/images/loader.png" class="pointer ">
+                    </div>
+                    <p class="m-0">
+                        Transaction ID
+                    </p>
+                    <div class="mt-2 outline-box w-100 d-flex align-items-center justify-content-between bg-white ">
+                        <p class="m-0">0xf1af503...456e7c62116caf09</p>
+                        <img src="assets/images/export.png" class="pointer ml-1">
+                    </div>
+            </div>
+            <div class="modal-button-wrapper">
+                    <button class="text-center outline-button active w-100" (click)="changefundstep1()" *ngIf="changeStep1">GO TO NEXT INVESTMENT PHASE</button>
+                    <button class="text-center outline-button active w-100 mt-4" (click)="closePopup()" *ngIf="changeStep3">FUND CHANGED</button>
+            </div>           
+    </div>    
+</div>
+
+
+<div class="col-12 d-none d-lg-none d-flex align-items-center button-wrapper footer-wrapper fixed-bottom justify-content-end bg-white pt-3 pb-3"
+    *ngIf="footerbtn1">
+    <button class="text-center outline-button mr-3">WITHDRAW</button>
+    <!-- <button class="text-center outline-button active" (click)="openModalPopup()">INVEST</button> -->
+    <button class="text-center outline-button active" (click)="investmanul()">INVEST Manual</button>
+</div>
+<div class="col-12 d-none d-lg-none d-flex button-wrapper text-right justify-content-end footer-wrapper fixed-bottom bg-white pt-3 pb-3"
+    *ngIf="footerbtn2">
+    <button class="text-center outline-button active" (click)="changefund()">NEXT PHASE</button>
+</div>
+<div class="col-12 d-none d-lg-none d-flex button-wrapper text-right justify-content-end footer-wrapper fixed-bottom bg-white pt-3 pb-3"
+    *ngIf="footerbtn3">
+    <button class="text-center outline-button active" routerLink="/proposal">TRADE ASSSETS</button>
+</div>
+
+
+<div class="overlay-popup" [class.active]="active" (click)="closePopup()"></div>

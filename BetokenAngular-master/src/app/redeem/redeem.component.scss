@@ -1,0 +1,237 @@
+.redeem-wrapper{
+    .proposal-table-sec{
+        .table-responsive{
+            .proposal-table{
+                text-align: left !important;
+                white-space: nowrap !important;
+                thead{
+                    font-size: 16px;
+                    th{
+                        border: none !important;
+                    }
+                }
+                tbody{
+                    font-size: 18px;
+                    td{
+                        border-top: none !important;
+                    }
+                    .identy{
+                        .name{
+                            .abrivation{
+                                font-size: 18px !important ;
+                                color: #000000 !important;
+                                line-height: 1 !important;
+                            }
+                            .expansion{
+                                font-size: 16px !important ;
+                                color: #8FA9B0 !important;
+                            }
+                        }
+                    }
+                    .profit{
+                        .value{
+                            margin-left: 8px;
+                            font-size: 14px !important ;
+                        }
+                    }
+                    
+                }
+            }
+        }
+        
+    }
+    .history-table-sec{
+        .table-responsive{
+            .history-table{
+                text-align: left !important;
+                white-space: nowrap !important;
+                thead{
+                    font-size: 16px;
+                    th{
+                        border: none !important;
+                    }
+                }
+                tbody{
+                    font-size: 18px;
+                    td{
+                        border-top: none !important;
+                    }
+                    .identy{
+                        .name{
+                            .abrivation{
+                                font-size: 18px !important ;
+                                color: #000000 !important;
+                                line-height: 1 !important;
+                            }
+                            .expansion{
+                                font-size: 16px !important ;
+                                color: #8FA9B0 !important;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+    }
+}
+
+.redeem-modal-wrapper{
+    width: 450px;
+    background-color: #ffffff;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 1030;
+    height: 100%;
+    .content{
+        .modal-header{
+                font-family: 'MavenProMedium' !important;
+                font-size: 18px !important;
+                color: #000000;
+                .close{
+                    font-family: 'MavenProBold' !important;
+                    font-size: 28px !important;
+                    opacity: 1 !important;
+                    padding: 0 !important;
+                    margin: 0 !important;
+                }
+            }
+        .time-wrapper{
+            padding: 18px;
+            border-bottom: 1px solid #e9ecef;
+            font-size: 14px;
+        }
+        .main-sec{
+            padding: 18px;
+            text-align: left;
+            font-size: 16px; 
+            line-height: 1;
+            .mul-icon{
+                font-size: 30px;
+                color: #000000;
+                position: absolute;
+                top:7px;
+                right: -7px;
+                background-color: #ffffff;
+
+            }
+            .share-price{
+                font-size: 20px;
+                color: #000000;
+            }
+
+        }   
+        .confirmation-sec{
+            padding: 15px;
+            background-color: #FFFAEE;
+            border: 1px solid #FFE6BA;
+            border-radius: 4px;
+            text-align: justify;
+            font-size: 16px; 
+            line-height: 1;
+
+        }
+        .broadcast-sec{
+            padding: 15px;
+            background-color: #FFFAEE;
+            border: 1px solid #FFE6BA;
+            border-radius: 4px;
+            text-align: justify;
+            font-size: 16px; 
+            line-height: 1;
+
+        }
+        .final-sec{
+            padding: 15px;
+            background-color: #FFFAEE;
+            border: 1px solid #FFE6BA;
+            border-radius: 4px;
+            text-align: justify;
+            font-size: 16px; 
+            line-height: 1;
+        }
+        .modal-button-wrapper{
+            padding: 18px;
+        }
+    }       
+}
+
+.overlay-popup{
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #000000;
+    bottom: 0;
+    right: 0;
+    z-index: 100;
+    opacity: 0;
+    transition: 0.5s;
+    visibility: hidden;
+    &.active{
+        visibility: visible;
+        opacity: 0.3;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .footer-wrapper{
+        button{
+            width: 50%;
+        }
+    }
+
+    .redeem-modal-wrapper{
+        width: 360px !important;
+        margin: 20px;
+        font-size: 14px !important;
+        top: 0;
+        margin: auto;
+        height: calc(100vh - 40px);
+        bottom: 0;
+        &.active{
+            left: 0;
+        }
+        
+        .content{
+            .main-sec{
+                height: calc(100vh - 190px);
+                overflow-y: scroll;
+            }
+            .confirmation-sec ,.broadcast-sec ,.final-sec{
+                height: calc(100vh - 230px);
+                overflow-y: scroll;
+            }
+            .modal-button-wrapper{
+                padding: 0 !important;
+                button{
+                    border-radius: 0 !important;
+                }
+            }
+        }
+
+    }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+    .redeem-modal-wrapper{
+        .content{
+            .main-sec ,.confirmation-sec ,.broadcast-sec ,.final-sec{
+                height: calc(100vh - 230px);
+                overflow-y: scroll;
+            }
+        }
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px)  { 
+    .redeem-modal-wrapper{
+        .content{
+            .main-sec ,.confirmation-sec ,.broadcast-sec ,.final-sec{
+                height: calc(100vh - 230px);
+                overflow-y: scroll;
+            }
+        }
+    }
+}

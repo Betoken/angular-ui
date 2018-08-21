@@ -1,0 +1,277 @@
+@import url('/assets/css/fonts.css');
+@import url('/assets/css/sprite.css');
+
+/* You can add global styles to this file, and also import other style files */
+
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #8FA9B0;
+  font-family: 'MavenProRegular' !important;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: #8FA9B0;
+  font-family: 'MavenProRegular' !important;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: #8FA9B0;
+  font-family: 'MavenProRegular' !important;
+}
+:-moz-placeholder { /* Firefox 18- */
+  color: #8FA9B0;
+  font-family: 'MavenProRegular' !important;
+}
+
+textarea:focus, input:focus , button:focus ,select:focus {
+  outline: none !important;
+}
+
+
+
+body{
+    background-color: #F2F2F2 !important;
+    font-family: 'MavenProRegular' !important;
+    font-weight: normal !important;
+    color: #8FA9B0 !important;
+    font-size: 16px;
+  }
+  
+  h1,h2,h3,h4,h5,h6,p,span,input,button,select{
+    font-family: 'MavenProRegular' !important;
+    font-weight: normal !important;
+  }
+
+  button{
+    cursor: pointer;
+  }
+
+  a{
+    text-decoration: none !important;
+    color: inherit !important ;
+  }
+
+  a:hover{
+    text-decoration: none !important;
+  }
+  
+  select{
+    cursor: pointer;
+    background-color: #ffffff;
+  }
+
+  iframe{display: none !important;}
+
+  .pointer{
+    cursor: pointer !important;
+  }
+
+  .bg-white{
+    background-color: #FFFFFF !important;
+  }
+
+  .black-font{
+    color: #000000 !important;
+  }
+
+  .betoken-font{
+    color: #8FA9B0;
+  }
+
+.profit-font{
+    color: #1CC886 !important;
+}
+.loss-font{
+   color: #F4406B !important;
+}
+
+  .sidenav-width{
+    padding-left: 230px;
+  }
+
+  .header-height{
+    margin-top: 85px;
+  }
+
+  
+  .cards{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+    background-color: #FFFFFF;
+    padding: 15px;
+  }
+
+  .sec-header{
+    padding: 15px 0;
+  }
+
+  .sec-title{
+    font-family: 'MavenProMedium' !important;
+    font-size: 18px;
+    color: #002B49;
+    margin: 0px !important;
+  }
+
+  .outline-button{
+    font-family: 'MavenProMedium' !important;
+    font-size: 14px;
+    background: #FFFFFF;
+    border: 1px solid #D1DCDF;
+    border-radius: 4px;
+    padding: 10px;
+    line-height: normal;
+    outline: none !important;
+    min-width: 100px;
+}
+.outline-button.active{
+    background-color:  #18DAA3;
+    border-color: #18DAA3;
+    color: #FFFFFF;
+}
+
+.outline-box{
+  border: 1px solid #D1DCDF !important;
+  padding: 15px 10px;
+}
+
+.alert-window{
+  margin-top: 20px;
+  .alert{
+      background-color: #FDA203;
+      padding: 15px;
+      color: #ffffff !important;
+      .alert-button{
+        border: 1px solid #FFFFFF;
+        border-radius: 4px;
+        min-width: 120px;
+        background-color: transparent;
+        color: #ffffff !important;
+        padding: 8px;    
+      }
+  }
+}
+
+
+.dot{
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;;
+}
+
+.green{
+  background-color: #18DAA3;
+}
+
+.purple{
+  background-color: #497391;
+}
+
+.orange{
+  background-color: #F27D33;
+}
+
+.red{
+  background-color: #F4406B;
+}
+
+.footer-wrapper{
+  z-index: 5 !important;
+  box-shadow: 0px 0px 10px rgba(0,0,0,.2) !important;
+}
+
+.faq-sec{
+  .faq-sec-content{
+      .faq-group{
+          .card{
+              background-color: transparent !important;
+              padding: 0 !important;
+              border: none !important;
+              margin-bottom: 20px !important;
+          }
+          .card-header{
+              position: relative;
+              cursor: pointer;
+              padding: 0 !important;
+              margin-bottom: 0 !important;
+              background-color: transparent !important;
+              border-bottom: none !important;
+              display: flex;
+          }
+          .card-header:before{
+            position: absolute;
+            right: 0;
+            top: 0;
+            font-family: 'MavenProRegular' !important;
+            content: '+';
+            font-size: 22px !important;
+            color: #000000 !important;
+            height: 20px;
+            margin: auto;
+          }
+
+          .panel-open .card-header:before {
+            content: "-";
+           }
+
+          .card-body{
+            padding: 0 !important;
+            text-align: justify;
+          }
+          .btn-link{
+            color: #000000 !important;
+            padding: 0 15px 0 0 !important;
+            white-space: inherit !important;
+            text-align: left !important
+            
+          }
+          .btn-link:hover {
+            color:#000000 !important;
+            text-decoration: none !important;
+            background-color: transparent !important;
+            border-color: transparent !important;     
+          }
+          .btn-link:focus {
+            text-decoration: none !important;
+          }
+        }
+  }
+}
+
+.befund-share-graph{
+  .highcharts-range-selector-group{
+    border-bottom: 1px solid #cccccc;
+  }
+  .highcharts-range-selector-buttons>text:first-child{
+    display:none;
+  }
+  .highcharts-credits{
+    display: none;
+  }
+  .highcharts-yaxis-grid>path{display: none;}
+}
+
+.befund-profit-graph{
+  .highcharts-range-selector-group{
+    text-align: center;
+  }
+  .highcharts-range-selector-buttons>text:first-child{
+    display:none;
+  }
+  .highcharts-credits{
+    display: none;
+  }
+  .highcharts-yaxis-grid>path{display: none;}
+
+}
+
+// Extra small devices (portrait phones, less than 576px)
+@media (max-width: 575.98px) {  }
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) and (max-width: 767.98px) {  }
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) and (max-width: 991.98px) {  }
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) and (max-width: 1199.98px) {  }
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {  }

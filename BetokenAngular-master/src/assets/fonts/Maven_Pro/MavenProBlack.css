@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'MavenProBlack';
+    src: url('fonts/MavenProBlack.eot');
+    src: url('fonts/MavenProBlack.eot') format('embedded-opentype'),
+         url('fonts/MavenProBlack.woff2') format('woff2'),
+         url('fonts/MavenProBlack.woff') format('woff'),
+         url('fonts/MavenProBlack.ttf') format('truetype'),
+         url('fonts/MavenProBlack.svg#MavenProBlack') format('svg');
+}

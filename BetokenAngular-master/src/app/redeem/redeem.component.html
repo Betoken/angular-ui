@@ -1,0 +1,252 @@
+<div class="redeem-wrapper header-height col-12 col-lg-10 float-right">
+  <div class="row mb-5">
+      <div class="alert-window col-12 " *ngIf ="redeemalert">
+          <div class="alert d-flex justify-content-between align-items-center col-12">
+              <p class="m-0">🚨 Redeem your commissions before the phase ends. More info.</p>
+              <button class="text-center alert-button" (click)="hidealert()">DISMISS</button>
+          </div>
+      </div>
+      <div class="alert-window col-12 " *ngIf ="newcyclealert">
+            <div class="alert d-flex justify-content-between align-items-center col-12">
+                <p class="m-0">🚨 Redeem commissions phase ended, switch to new cycle.</p>
+                <button class="text-center alert-button" (click)="hidealert()">NEW CYCLE</button>
+            </div>
+        </div>
+      <div class="proposal-table-sec col-12 mt-3">
+          <div class="sec-header">
+              <p class="sec-title">Proposals</p>
+          </div>
+          <div class="cards table-responsive">
+              <p class="m-0 p-3">You redeemed all your staked KRO from your proposals. Good job!</p>
+          </div>  
+      </div>
+      <div class="history-table-sec col-12 mt-3 mb-5">
+        <div class="sec-header">
+            <p class="sec-title">History</p>
+        </div>
+       <div class="cards table-responsive">
+          <table class="table history-table">
+              <thead class="betoken-font">
+                <tr>
+                  <th scope="col">Asset</th>
+                  <th scope="col">Buy price</th>
+                  <th scope="col">Sell price</th>
+                  <th scope="col">KRO P/Loose</th>
+                  <th scope="col">P/Loose</th>
+                  <th scope="col">Details</th>
+                </tr>
+              </thead>
+              <tbody class="black-font">
+                <tr>
+                  <td class="identy">
+                    <div class="d-flex align-items-center">
+                        <div class="dot purple"> </div>
+                        <div class="name ml-3">
+                          <p class="m-0 abrivation">ETH</p>
+                          <p class="m-0 expansion">Ethereum</p>
+                        </div>
+                    </div>
+                  </td>
+                  <td>$ 11.0000</td>
+                  <td>$ 14.0000</td>
+                  <td class="profit-font">+0.2334</td>
+                  <td class="profit-font">+10.2334</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td class="identy">
+                      <div class="d-flex align-items-center">
+                          <div class="dot orange"> </div>
+                          <div class="name ml-3">
+                            <p class="m-0 abrivation">MANA</p>
+                            <p class="m-0 expansion">Decentraland</p>
+                          </div>
+                      </div>
+                  </td>
+                  <td>$ 0.2500</td>
+                  <td>$ 0.1000</td>
+                  <td class="loss-font">-0.5640</td>
+                  <td class="loss-font">-0.0340</td>
+                  <td><img src="assets/images/export.png" class="pointer"></td>
+                </tr>
+                <tr>
+                    <td class="identy">
+                        <div class="d-flex align-items-center">
+                            <div class="dot green"> </div>
+                            <div class="name ml-3">
+                              <p class="m-0 abrivation">KNC</p>
+                              <p class="m-0 expansion">Kyber Network</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td>$ 0.2500</td>
+                    <td>$ 0.1000</td>
+                    <td class="loss-font">-0.5640</td>
+                    <td class="loss-font">-0.0340</td>
+                    <td><img src="assets/images/export.png" class="pointer"></td>
+                </tr>
+                <tr>
+                    <td class="identy">
+                        <div class="d-flex align-items-center">
+                            <div class="dot green"> </div>
+                            <div class="name ml-3">
+                              <p class="m-0 abrivation">KNC</p>
+                              <p class="m-0 expansion">Kyber Network</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td>$ 0.2500</td>
+                    <td>$ 0.1000</td>
+                    <td class="loss-font">-0.5640</td>
+                    <td class="loss-font">-0.0340</td>
+                    <td><img src="assets/images/export.png" class="pointer"></td>
+                </tr>
+                <tr>
+                    <td class="identy">
+                        <div class="d-flex align-items-center">
+                            <div class="dot green"> </div>
+                            <div class="name ml-3">
+                              <p class="m-0 abrivation">KNC</p>
+                              <p class="m-0 expansion">Kyber Network</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td>$ 0.2500</td>
+                    <td>$ 0.1000</td>
+                    <td class="loss-font">-0.5640</td>
+                    <td class="loss-font">-0.0340</td>
+                    <td><img src="assets/images/export.png" class="pointer"></td>
+                </tr>
+                <tr>
+                    <td class="identy">
+                        <div class="d-flex align-items-center">
+                            <div class="dot green"> </div>
+                            <div class="name ml-3">
+                              <p class="m-0 abrivation">KNC</p>
+                              <p class="m-0 expansion">Kyber Network</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td>$ 0.2500</td>
+                    <td>$ 0.1000</td>
+                    <td class="loss-font">-0.5640</td>
+                    <td class="loss-font">-0.0340</td>
+                    <td><img src="assets/images/export.png" class="pointer"></td>
+                </tr>
+              </tbody>
+            </table>
+       </div>
+      </div>
+  </div>
+</div>
+
+<div class="redeem-modal-wrapper" [@toggleRedeem]="state" [class.active]="active">
+    <div class="content redeem-phase">
+        <div class="modal-header d-flex align-items-center">
+            <div class="modal-tittle">
+                Redeem your commissions
+            </div>
+            <div class="modal-close">
+                <button type="button" class="close black-font" (click)="closePopup()">&times;</button>
+            </div>
+        </div>
+        <div class="time-wrapper">
+            <p class="m-0">Time left to invest: 1d 20h 34m 15s
+                <img src="assets/images/info_icon.png" title="Time available">
+            </p>
+        </div>
+
+        <div class="main-sec" *ngIf="step1">
+            <p class="m-0 pb-4 black-font">  The fund was profitables in this investment’s cycle. All KRO holders are able to redeem a commission.
+               You can choose in which token you want to redeem it.</p>
+        
+            <p class="m-0">Redeem with
+                <img src="assets/images/info_icon.png"> </p>
+            <div class="mt-2 mb-4 outline-box w-100 d-flex  align-items-center justify-content-between">
+                <select class="border-0 betoken-font w-100">
+                    <option>ETH - Ethereum ($600.92)</option>
+                    <option>ETH - Ethereum ($600.92)</option>
+                </select>
+            </div>
+            <div>
+                <p class="m-0">Total commission to redeem
+                    <img src="assets/images/info_icon.png"> </p>
+            </div>
+            <div class="mt-2 outline-box w-100 d-flex  align-items-center justify-content-between">
+                <p class="m-0">2.4578</p>
+            </div>
+
+        </div>
+
+        <div class="confirmation-sec m-3" *ngIf="step2">
+            <p class="mb-3">
+                🚨 Confirm your trade for this asset
+            </p>
+            <p class="m-0 pb-4 black-font">
+                Confirm the transaction in the Metamask’s interface to submit it to the Betoken fund contract. 
+                It's fine to stick with these defaults gas limit and price.
+            </p>
+            <div class="d-flex justify-content-center mb-5">
+                <img src="assets/images/metamask-big.png" class="pointer " (click)="confirmredeem()">
+            </div>
+        </div>
+
+        <div class="broadcast-sec m-3" *ngIf="step3">
+            <p class="mb-3">
+                🎉 Transaction broadcasted!
+            </p>
+            <p class="m-0 pb-4 black-font">
+                Your transaction is being saved on the Ethereum blockchain. 
+                You can check its status on Etherscan.
+            </p>
+            <div class="d-flex justify-content-center mb-5">
+                <img src="assets/images/loader.png" class="pointer">
+            </div>
+            <p class="m-0">
+                Transaction ID
+            </p>
+            <div class="mt-2 outline-box w-100 d-flex align-items-center justify-content-between bg-white ">
+                <p class="m-0">0xf1af503...456e7c62116caf09</p>
+                <img src="assets/images/export.png" class="pointer ml-1">
+            </div>
+        </div>
+
+        <div class="final-sec m-3" *ngIf="step4">
+            <p class="mb-3">
+                🙌 Done. Check your balance!
+            </p>
+            <p class="m-0 pb-4 black-font">
+                You redeeemed 2.4568 BTF shares.
+            </p>
+            <div class="d-flex justify-content-center mb-5">
+                <img src="assets/images/finish.png" class="pointer ">
+            </div>
+            <p class="m-0">
+                Transaction ID
+            </p>
+            <div class="mt-2 outline-box w-100 d-flex align-items-center justify-content-between bg-white">
+                <p class="m-0">0xf1af503d...456e7c62116caf09</p>
+                <img src="assets/images/export.png" class="pointer ml-1">
+            </div>
+
+        </div>
+
+        <div class="modal-button-wrapper">
+                <button class="text-center outline-button active w-100" (click)="redeem()" *ngIf= "step1">REDEEM COMMSSIONS</button>
+                <button class="text-center outline-button active w-100" (click)="closePopup()" *ngIf= "step4">REDEEM SUCCESSFUL</button>
+        </div>
+        
+    </div>
+</div>
+
+<div class="overlay-popup" [class.active]="active" (click)="closePopup()"></div>
+
+<div class="col-12 d-none d-lg-none d-flex button-wrapper text-right justify-content-end footer-wrapper fixed-bottom bg-white pt-3 pb-3"
+    *ngIf="footerbtn1">
+    <button class="text-center outline-button active" (click)="redeemPopup()">REDEEM COMMISSION</button>
+</div>
+
+<div class="col-12 d-none d-lg-none d-flex button-wrapper text-right justify-content-end footer-wrapper fixed-bottom bg-white  pt-3 pb-3"
+    *ngIf="footerbtn2">
+    <button class="text-center outline-button active">NEW CYCLE</button>
+</div>

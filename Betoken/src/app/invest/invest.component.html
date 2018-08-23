@@ -111,7 +111,7 @@
                                 </div>
                                 <div class="portfolio-desc">
                                     <p class="portfolio-title betoken-font m-0">Eth. Mainnet</p>
-                                    <p class="portfolio-value black-font m-0"> 0x5d20...l660 </p>
+                                    <p class="portfolio-value black-font m-0"> {{user_address}} </p>
                                 </div>
                             </div>
 
@@ -120,7 +120,7 @@
                                     <p class="portfolio-title betoken-font m-0">Shares balance
                                         <img src="assets/images/info_icon.png">
                                     </p>
-                                    <p class="portfolio-value black-font m-0">0.0000 BTF </p>
+                                    <p class="portfolio-value black-font m-0">{{share_balance}} BTF </p>
                                 </div>
                             </div>
 
@@ -129,7 +129,7 @@
                                     <p class="portfolio-title betoken-font m-0">Kairos balance
                                         <img src="assets/images/info_icon.png">
                                     </p>
-                                    <p class="portfolio-value black-font m-0">0.0000 </p>
+                                    <p class="portfolio-value black-font m-0">{{kairo_balance}} </p>
                                 </div>
                             </div>
 
@@ -138,7 +138,7 @@
                                     <p class="portfolio-title betoken-font m-0">Your monthly P/L
                                         <img src="assets/images/info_icon.png">
                                     </p>
-                                    <p class="portfolio-value black-font m-0">0.00 % </p>
+                                    <p class="portfolio-value black-font m-0">{{monthly_pl}} % </p>
                                 </div>
                             </div>
                         </div>
@@ -453,7 +453,7 @@
             <p class="m-0">Buy BTF shares </p>
             <div class="mt-2  mb-3 d-flex align-items-center">
                 <div class="mr-3 position-relative">
-                    <input type="text" class="outline-box" placeholder="1.0000">
+                    <input type="text" class="outline-box" (keyup)="calculate_bal($event)"  placeholder="1.0000">
                     <p class="mul-icon">&times;</p>
                 </div>
                 <div>
@@ -464,18 +464,18 @@
 
             <p class="m-0">Total to pay </p>
             <div class="mt-2 mb-3  outline-box w-100 d-flex  align-items-center justify-content-between">
-                <p class="m-0">100.00</p>
+                <p class="m-0">{{calculated_balance}}</p>
                 <select class="border-0 betoken-font">
                     <option>DAI</option>
-                    <option>USD</option>
+                    <!-- <option>USD</option> -->
                 </select>
             </div>
 
-            <p class="m-0">Amount of KRO you’ll receive
+            <!-- <p class="m-0">Amount of KRO you’ll receive
                 <img src="assets/images/info_icon.png"> </p>
             <div class="mt-2 outline-box w-100 d-flex  align-items-center justify-content-between">
                 <p class="m-0">100.00</p>
-            </div>
+            </div> -->
 
         </div>
 
@@ -600,8 +600,7 @@
 <div class="col-12 d-none d-lg-none d-flex align-items-center button-wrapper footer-wrapper fixed-bottom justify-content-end bg-white pt-3 pb-3"
     *ngIf="footerbtn1">
     <button class="text-center outline-button mr-3">WITHDRAW</button>
-    <!-- <button class="text-center outline-button active" (click)="openModalPopup()">INVEST</button> -->
-    <button class="text-center outline-button active" (click)="investmanul()">INVEST Manual</button>
+    <button class="text-center outline-button active" (click)="openModalPopup()">INVEST</button>
 </div>
 <div class="col-12 d-none d-lg-none d-flex button-wrapper text-right justify-content-end footer-wrapper fixed-bottom bg-white pt-3 pb-3"
     *ngIf="footerbtn2">

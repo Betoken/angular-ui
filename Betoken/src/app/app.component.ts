@@ -1,6 +1,11 @@
 import { Component, Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs/index';
-import { init } from '../assets/body';
+
+import { } from 'jquery';
+declare var $: any;
+
+import { document_ready } from '../assets/body';
+
 
 @Injectable()
 
@@ -31,12 +36,12 @@ export class AppComponent {
   
   
   constructor() {
-     init(this.start);
+    document_ready(this.start);
   }
 
-  start(flag, errMessage) {
-    console.log(JSON.stringify("flag   "+flag));
-    console.log(JSON.stringify("Error msg   "+errMessage));
+  async  start(errMessage) {
+       alert(errMessage);
+       // do based on error messgae
   }
 
   setToggleMenu(): void {

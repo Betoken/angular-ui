@@ -4,8 +4,9 @@ import { AppComponent } from '../app.component';
 import { StockChart } from 'angular-highcharts';
 import { NguCarousel, NguCarouselStore, NguCarouselService } from '@ngu/carousel';
 
+import { } from 'jquery';
+declare var $: any;
 import { Betoken } from '../../assets/objects/betoken.js';
-
 import {
   networkName,
   userAddress,
@@ -14,7 +15,8 @@ import {
   displayedKairoBalance,
   displayedKairoUnit,
   expected_commission,
-  depositToken
+  sharesBalance,
+  transact_box_events
 } from '../../assets/body';
 
 @Component({
@@ -38,6 +40,12 @@ import {
 export class InvestComponent implements OnInit {
     stock: StockChart;
     bar: StockChart;
+    user_address = "";
+    share_balance = 0.0000;
+    kairo_balance = 0.0000;
+    monthly_pl = 0.00;
+    inputShare = 0.00;
+    calculated_balance = 0.00;
 
     private carouselToken: string;
     public carouselBanner: NguCarousel;
@@ -97,34 +105,23 @@ export class InvestComponent implements OnInit {
         this.footerbtn1 = true;
         this.footerbtn2 = false;
         this.footerbtn3 = false;
-    
     }   
+
+    calculate_bal (event) {
+         this.calculated_balance = event.target.value * 100.0000;
+    }
 
     ngOnInit() {
 
         //------------------------------------
-       // setInterval(() =>{
-            // console.log("Network name =   "+ networkName.get());
-            // console.log("User Address =   "+userAddress.get());
-            // console.log("Inverstment Balance =   "+displayedInvestmentBalance.get().toFormat(18));
-            //  console.log("Inverstment Unit =  "+displayedInvestmentUnit.get());
-            //  console.log("Kairo Balance  = "+displayedKairoBalance.get().toFormat(18));
-            //  console.log("Kairo Balance Unit =   "+displayedKairoUnit.get());
-            // console.log("Expected Comission =   "+ expected_commission()); 
-      //  }, 2000 );
-
       setInterval(() =>{
-        if (networkName !== undefined) {
-            console.log("Network name =   "+ networkName.get());
-            console.log("User Address =   "+userAddress.get());
-            console.log("Inverstment Balance =   "+displayedInvestmentBalance.get().toFormat(18));
-            console.log("Inverstment Unit =  "+displayedInvestmentUnit.get());
-             console.log("Kairo Balance  = "+displayedKairoBalance.get().toFormat(18));
-             console.log("Kairo Balance Unit =   "+displayedKairoUnit.get());
-           // console.log("Expected Comission =   "+ expected_commission()); 
-        }
-
-     }, 20000 );
+          if (userAddress.get() != "0x0"){
+            this.user_address = userAddress.get();
+            this.share_balance = sharesBalance.get();
+            this.kairo_balance = displayedKairoBalance.get().toFormat(18);
+            //this.monthly_pl
+          }
+     }, 1000 ); 
 
          //---------------------------------------
 
@@ -2441,10 +2438,14 @@ export class InvestComponent implements OnInit {
     }
 
     invest() {
-        this.step2 = true;
-        this.step1 = false;
-        this.step3 = false;
-        this.step4 = false;        
+        // transaction completed but no response
+        transact_box_events.deposit_button(this.calculated_balance, 'DAI', (error)=>{
+           alert(error);
+        });
+        // this.step2 = true;
+        // this.step1 = false;
+        // this.step3 = false;
+        // this.step4 = false;        
     }
 
     confirm() {
@@ -2490,11 +2491,13 @@ export class InvestComponent implements OnInit {
 
     investmanul () {
            //--------------
-           console.log("invest");
+        //    console.log("invest");
          
-           this.returnres =  depositToken(20.70,'DAI');
+        //    this.returnres =  depositToken(20.70,'DAI');
 
-           console.log(JSON.stringify(this.returnres));
+        //    console.log(JSON.stringify(this.returnres));
+
+
            //--------------
     }
 }

@@ -37,7 +37,7 @@
                                        <div class="desc col-md-9 col-lg-12 m-auto">
                                            <p class="text-center m-0">
                                                 2. You can influence the fund’s portfolio by staking Kairo tokens (KRO) - our control token - to buy & sell cryptoassets during a 27 days period.
-                                                 There is no obligation to make portfolio proposals.
+                                              There is no obligation to make portfolio proposals.
                                                  You can trust the community to decide for you on what to invest in. Get KRO on these exchanges.
                                            </p>
                                        </div>
@@ -111,7 +111,7 @@
                                 </div>
                                 <div class="portfolio-desc">
                                     <p class="portfolio-title betoken-font m-0">Eth. Mainnet</p>
-                                    <p class="portfolio-value black-font m-0"> {{user_address}} </p>
+                                    <p class="portfolio-value black-font m-0 ellipseDesign" > {{user_address}} </p>
                                 </div>
                             </div>
 
@@ -120,7 +120,7 @@
                                     <p class="portfolio-title betoken-font m-0">Shares balance
                                         <img src="assets/images/info_icon.png">
                                     </p>
-                                    <p class="portfolio-value black-font m-0">{{share_balance}} BTF </p>
+                                    <p class="portfolio-value black-font m-0">{{share_balance.toFixed(5)}} BTF </p>
                                 </div>
                             </div>
 
@@ -129,7 +129,7 @@
                                     <p class="portfolio-title betoken-font m-0">Kairos balance
                                         <img src="assets/images/info_icon.png">
                                     </p>
-                                    <p class="portfolio-value black-font m-0">{{kairo_balance}} </p>
+                                    <p class="portfolio-value black-font m-0 ellipseDesign" >{{kairo_balance}} </p>
                                 </div>
                             </div>
 
@@ -138,7 +138,7 @@
                                     <p class="portfolio-title betoken-font m-0">Your monthly P/L
                                         <img src="assets/images/info_icon.png">
                                     </p>
-                                    <p class="portfolio-value black-font m-0">{{monthly_pl}} % </p>
+                                    <p class="portfolio-value black-font m-0">{{monthly_pl.toFixed(5)}} % </p>
                                 </div>
                             </div>
                         </div>
@@ -146,6 +146,7 @@
                 </div>
             </div>
         </div>
+        
         <div class="left-sec col-12 col-lg-8 order-2 order-lg-1">
             <div class="row befund-statitics-sec">
                 <div class="col-12 col-lg-12 ">
@@ -172,7 +173,7 @@
                                         <p class="hilight-title betoken-font m-0">Avg. Mo return
                                             <img src="assets/images/info_icon.png">
                                         </p>
-                                        <p class="hilight-value black-font m-0"> 38% </p>
+                                        <p class="hilight-value black-font m-0"> {{avgMonthReturn}}% </p>
                                     </div>
                                 </div>
                                 <div class="key col-6 col-sm-6 col-md-4 d-flex align-items-center">
@@ -183,7 +184,7 @@
                                         <p class="hilight-title betoken-font m-0"> Std Mo return
                                             <img src="assets/images/info_icon.png">
                                         </p>
-                                        <p class="hilight-value black-font m-0"> 5% </p>
+                                        <p class="hilight-value black-font m-0"> {{standardMonthReturn}}% </p>
                                     </div>
                                 </div>
                                 <div class="key col-6 col-sm-6 col-md-4 d-flex align-items-center">
@@ -194,7 +195,7 @@
                                         <p class="hilight-title betoken-font m-0">Total users
                                             <img src="assets/images/info_icon.png">
                                         </p>
-                                        <p class="hilight-value black-font m-0"> 5 </p>
+                                        <p class="hilight-value black-font m-0"> {{totalUser}} </p>
                                     </div>
                                 </div>
 
@@ -206,7 +207,7 @@
                                         <p class="hilight-title betoken-font m-0">AUM (US)
                                             <img src="assets/images/info_icon.png">
                                         </p>
-                                        <p class="hilight-value black-font m-0"> 5 </p>
+                                        <p class="hilight-value black-font m-0"> {{AUM}} </p>
                                     </div>
                                 </div>
 
@@ -218,7 +219,7 @@
                                         <p class="hilight-title betoken-font m-0">Tot. Kairo (USD)
                                             <img src="assets/images/info_icon.png">
                                         </p>
-                                        <p class="hilight-value black-font m-0"> 5 </p>
+                                        <p class="hilight-value black-font m-0 ellipseDesign" > {{totalKairo}} </p>
                                     </div>
                                 </div>
 
@@ -230,7 +231,7 @@
                                         <p class="hilight-title betoken-font m-0">Tot. BTF Shares
                                             <img src="assets/images/info_icon.png">
                                         </p>
-                                        <p class="hilight-value black-font m-0"> 5 </p>
+                                        <p class="hilight-value black-font m-0 ellipseDesign" > {{totalBTFShares}} </p>
                                     </div>
                                 </div>
                             </div>
@@ -428,46 +429,122 @@
     </div>
 </div>
 
+
+<!-- extra pages -->
+
 <div class="investment-modal-wrapper" [@toggleMenu]="state" [class.active]="active">
     <div class="content investment-phase" *ngIf="!changefundphase">
         <div class="modal-header d-flex align-items-center">
-            <div class="modal-tittle">
+            <div class="modal-tittle" *ngIf="investflow">
                 Invest in Betoken fund
+            </div>
+            <div class="modal-tittle" *ngIf="withdrawflow">
+                WITHDRAW
             </div>
             <div class="modal-close">
                 <button type="button" class="close black-font" (click)="closePopup()">&times;</button>
             </div>
         </div>
-        <div class="time-wrapper">
-            <p class="m-0">Time left to invest: 1d 20h 34m 15s
+        <div class="time-wrapper" >
+            <p class="m-0" *ngIf="investflow">Time left to invest: {{days}}d {{hours}}h {{minutes}}m {{seconds}}s
                 <img src="assets/images/info_icon.png" title="Time available">
             </p>
+            <p class="m-0" *ngIf="withdrawflow">Time left to withdraw: {{days}}d {{hours}}h {{minutes}}m {{seconds}}s
+                    <img src="assets/images/info_icon.png" title="Time available">
+                </p>
         </div>
 
         <div class="main-sec" *ngIf="step1">
-            <p class="m-0 pb-5 black-font">To invest in the fund, you need to buy BTF shares. Choose the amount of shares you want. By buying shares, you’ll
+            <p class="m-0 pb-5 black-font" *ngIf="investflow">To invest in the fund, you need to buy BTF shares. Choose the amount of shares you want. By buying shares, you’ll
                 also receive KRO token - You can influence the fund’s portfolio by staking Kairo tokens to buy & sell in
                 cryptoassets.
             </p>
 
-            <p class="m-0">Buy BTF shares </p>
+            <p class="m-0" *ngIf="investflow">Buy BTF shares </p>
+            <p class="m-0" *ngIf="withdrawflow">Withdraw BTF shares </p>
             <div class="mt-2  mb-3 d-flex align-items-center">
                 <div class="mr-3 position-relative">
                     <input type="text" class="outline-box" (keyup)="calculate_bal($event)"  placeholder="1.0000">
-                    <p class="mul-icon">&times;</p>
+                    <p *ngIf="investflow" class="mul-icon">&times;</p>
                 </div>
-                <div>
+                <div *ngIf="investflow">
                     <p class="m-0 pb-1">Share price in DAI</p>
                     <p class="m-0 share-price">100.0000</p>
                 </div>
             </div>
 
-            <p class="m-0">Total to pay </p>
+            <p  *ngIf="investflow" class="m-0">Total to pay </p>
             <div class="mt-2 mb-3  outline-box w-100 d-flex  align-items-center justify-content-between">
-                <p class="m-0">{{calculated_balance}}</p>
-                <select class="border-0 betoken-font">
+                <p class="m-0" *ngIf="investflow">{{calculated_balance}}</p>
+                <p class="m-0" *ngIf="withdrawflow">Into Currency:</p>
+                <select id="selectedTokenSymbolid" (change)="updateTokenSymbol($event.target.value)"  class="border-0 betoken-font">
                     <option>DAI</option>
-                    <!-- <option>USD</option> -->
+        
+                    <option>ETH</option>
+                  
+                    <option>ABT</option>
+                  
+                    <option>AE</option>
+                  
+                    <option>APPC</option>
+                  
+                    <option>BAT</option>
+                  
+                    <option>BBO</option>
+                  
+                    <option>BLZ</option>
+                  
+                    <option>ELEC</option>
+                  
+                    <option>ELF</option>
+                  
+                    <option>ENJ</option>
+                  
+                    <option>IOST</option>
+                  
+                    <option>KNC</option>
+                  
+                    <option>LBA</option>
+                  
+                    <option>LINK</option>
+                  
+                    <option>MANA</option>
+                  
+                    <option>MOT</option>
+                  
+                    <option>OMG</option>
+                  
+                    <option>PAL</option>
+                  
+                    <option>POLY</option>
+                  
+                    <option>RCN</option>
+                  
+                    <option>RDN</option>
+                  
+                    <option>REQ</option>
+                  
+                    <option>SNT</option>
+                  
+                    <option>STORM</option>
+                  
+                    <option>ZIL</option>
+                  
+                    <option>COFI</option>
+                  
+                    <option>WINGS</option>
+                  
+                    <option>WABI</option>
+                  
+                    <option>MDS</option>
+                  
+                    <option>LEND</option>
+                  
+                    <option>PAY</option>
+                  
+                    <option>BNT</option>
+                  
+                    <option>TOMO</option>
                 </select>
             </div>
 
@@ -538,7 +615,8 @@
             </div>
         </div>
         <div class="modal-button-wrapper">
-                <button class="text-center outline-button active w-100" (click)="invest()" *ngIf="step1">INVEST</button>
+                <button class="text-center outline-button active w-100" (click)="withdraw()" *ngIf="step1 && withdrawflow">WITHDRAW</button>
+                <button class="text-center outline-button active w-100" (click)="invest()" *ngIf="step1 && investflow">INVEST</button>
                 <button class="text-center outline-button active w-100" (click)="closePopup()" *ngIf="step4">INVESTMENT COMPLETE</button>
         </div>
         
@@ -599,7 +677,7 @@
 
 <div class="col-12 d-none d-lg-none d-flex align-items-center button-wrapper footer-wrapper fixed-bottom justify-content-end bg-white pt-3 pb-3"
     *ngIf="footerbtn1">
-    <button class="text-center outline-button mr-3">WITHDRAW</button>
+    <button class="text-center outline-button mr-3" (click)="openModalPopupW()">WITHDRAW</button>
     <button class="text-center outline-button active" (click)="openModalPopup()">INVEST</button>
 </div>
 <div class="col-12 d-none d-lg-none d-flex button-wrapper text-right justify-content-end footer-wrapper fixed-bottom bg-white pt-3 pb-3"

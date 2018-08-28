@@ -2,6 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {AppComponent} from '../app.component';
 
+import { } from 'jquery';
+declare var $: any;
+import {
+  userAddress, countdown_timer_helpers
+} from '../../assets/body';
+
 
 @Component({
   selector: 'app-header',
@@ -19,6 +25,11 @@ export class HeaderComponent implements OnInit {
   redeembtn : boolean;
 
   newcyclebtn :boolean;
+  days = 0;
+  hours = 0;
+  minutes = 0;
+  seconds = 0;
+  phase = -1;
 
   constructor(private ms: AppComponent, private router: Router ) {
     this.btn1 = true;
@@ -28,7 +39,23 @@ export class HeaderComponent implements OnInit {
     this.nextphasebtn = false;
     this.redeembtn = false;
     this.newcyclebtn = false;
-   }
+
+     
+   setInterval(()=>{
+    if (userAddress.get() != "0x0"){
+      this.updateDates();
+    }
+     }, 1000 );
+  
+  }
+
+    async updateDates() {
+      this.days = countdown_timer_helpers.day();
+      this.hours = countdown_timer_helpers.hour();
+      this.minutes = countdown_timer_helpers.minute();
+      this.seconds = countdown_timer_helpers.second();
+      this.phase = countdown_timer_helpers.phase();
+    }
 
   toggle() {
     this.ms.setToggleMenu();
@@ -36,6 +63,10 @@ export class HeaderComponent implements OnInit {
 
   openModalPopup(){
     this.ms.setPopUp();
+  }
+
+  openModalPopupW(){
+    this.ms.setPopUpW();
   }
 
   changefundPopup(){

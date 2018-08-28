@@ -23,6 +23,7 @@ export class AppComponent {
 
   private subject: Subject<boolean> = new Subject<boolean>();
   private popup: Subject<boolean> = new Subject<boolean>();
+  private popupw: Subject<boolean> = new Subject<boolean>();
   private changefundphase: Subject<boolean> = new Subject<boolean>();
   private proposalphase: Subject<boolean> = new Subject<boolean>();
   private changeproposal: Subject<boolean> = new Subject<boolean>();
@@ -41,6 +42,7 @@ export class AppComponent {
 
   async  start(errMessage) {
        alert(errMessage);
+       location.reload();
        // do based on error messgae
   }
 
@@ -71,6 +73,14 @@ export class AppComponent {
 
   setPopUp() {
     this.popup.next(true);
+  }
+
+  setPopUpW() {
+    this.popupw.next(true);
+  }
+
+  getPopUpW(): Observable<any>{
+    return this.popupw.asObservable();
   }
 
   getPopUp(): Observable<any>{

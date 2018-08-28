@@ -16,7 +16,11 @@ import {
   displayedKairoUnit,
   expected_commission,
   sharesBalance,
-  transact_box_events
+  transact_box_events,
+  decisions_tab_events,
+  sidebar_heplers,
+  stats_tab_helpers,kairoTotalSupply, sharesTotalSupply,
+  countdown_timer_helpers
 } from '../../assets/body';
 
 @Component({
@@ -40,12 +44,28 @@ import {
 export class InvestComponent implements OnInit {
     stock: StockChart;
     bar: StockChart;
-    user_address = "";
+    user_address = "0x0";
     share_balance = 0.0000;
     kairo_balance = 0.0000;
     monthly_pl = 0.00;
     inputShare = 0.00;
     calculated_balance = 0.00;
+    selectedTokenSymbol = 'DAI';
+
+    avgMonthReturn = 0;
+    standardMonthReturn = 0;
+    totalUser = 0;
+    AUM = 0;
+    totalKairo = 0;
+    totalBTFShares = 0;
+
+    days = 0;
+  hours = 0;
+  minutes = 0;
+  seconds = 0;
+  investflow = false;
+  withdrawflow = false;
+
 
     private carouselToken: string;
     public carouselBanner: NguCarousel;
@@ -54,6 +74,9 @@ export class InvestComponent implements OnInit {
     openModalPopup() {
        this.ms.setPopUp();
     }
+    openModalPopupW() {
+        this.ms.setPopUpW();
+     }
 
     walkthrough :boolean;
     step1: boolean;
@@ -79,12 +102,11 @@ export class InvestComponent implements OnInit {
     success: boolean;
     returnres : any;
 
-
-
-
     constructor(private ms: AppComponent, private carousel: NguCarouselService) {
 
-        this.walkthrough =true;
+        if (localStorage.getItem('walkthrough') == null) {
+            this.walkthrough =true;
+        }
         this.state = 'close';
         this.active = false;
 
@@ -111,17 +133,33 @@ export class InvestComponent implements OnInit {
          this.calculated_balance = event.target.value * 100.0000;
     }
 
+    async updateDates() {
+        this.days = countdown_timer_helpers.day();
+        this.hours = countdown_timer_helpers.hour();
+        this.minutes = countdown_timer_helpers.minute();
+        this.seconds = countdown_timer_helpers.second();
+      }
+
     ngOnInit() {
 
         //------------------------------------
       setInterval(() =>{
           if (userAddress.get() != "0x0"){
+
+            // portfolio
             this.user_address = userAddress.get();
             this.share_balance = sharesBalance.get();
             this.kairo_balance = displayedKairoBalance.get().toFormat(18);
             //this.monthly_pl
+
+           //Betoken fund share price
+           this.avgMonthReturn = stats_tab_helpers.avg_roi();
+           this.AUM = stats_tab_helpers.total_funds();
+           this.totalKairo = kairoTotalSupply.get();
+           this.totalBTFShares = sharesTotalSupply.get();
+           this.updateDates();
           }
-     }, 1000 ); 
+     }, 1000 );     
 
          //---------------------------------------
 
@@ -2359,7 +2397,23 @@ export class InvestComponent implements OnInit {
         
 
         this.ms.getPopUp().subscribe((open: boolean) => {
+           this.investflow = true;
+           this.withdrawflow = false;
+            if (open) {
+                this.state = 'open';
+                this.active = true;
+            }
 
+            if (!open) {
+                this.state = 'close';
+                this.active = false;
+            }
+
+        });
+
+        this.ms.getPopUpW().subscribe((open: boolean) => {
+            this.investflow = false;
+            this.withdrawflow = true;
             if (open) {
                 this.state = 'open';
                 this.active = true;
@@ -2413,7 +2467,8 @@ export class InvestComponent implements OnInit {
       }
 
       dismiss(){
-            this.walkthrough=false;
+            this.walkthrough = false;
+            localStorage.setItem('walkthrough', '1');
       }
     
     closePopup() {
@@ -2437,15 +2492,51 @@ export class InvestComponent implements OnInit {
         
     }
 
-    invest() {
-        // transaction completed but no response
-        transact_box_events.deposit_button(this.calculated_balance, 'DAI', (error)=>{
+    async withdraw() {
+        transact_box_events.withdraw_button(this.calculated_balance/100, this.selectedTokenSymbol, (success)=>{
+            console.log(JSON.stringify(success));
+            this.step2 = true;
+            this.step1 = false;
+            this.step3 = false;
+            this.step4 = false; 
+        }, (error)=> {
+          alert(error);
+        });
+    }
+
+    async invest() {
+         transact_box_events.deposit_button(this.calculated_balance, this.selectedTokenSymbol, (success)=>{
+          console.log(JSON.stringify(success));
+          this.step2 = true;
+          this.step1 = false;
+          this.step3 = false;
+          this.step4 = false; 
+        }, (error)=>{
            alert(error);
         });
-        // this.step2 = true;
-        // this.step1 = false;
-        // this.step3 = false;
-        // this.step4 = false;        
+
+        //expected comission 
+        // alert(sidebar_heplers.expected_commission());
+
+        //user Address
+        //alert (sidebar_heplers.user_address());
+
+
+
+        //user Kairo
+        //alert (sidebar_heplers.user_kairo_balance());
+
+        //create New investment
+        // decisions_tab_events.new_investment(this.selectedTokenSymbol, '0.01', (success)=>{
+        //     console.log(JSON.stringify(success));
+        // }, (error)=> {
+        //   alert(error);
+        // });
+
+    }
+
+    updateTokenSymbol(value) {
+        this.selectedTokenSymbol = value;
     }
 
     confirm() {
@@ -2467,6 +2558,7 @@ export class InvestComponent implements OnInit {
         this.changefundphase = true;
         this.investalert = false;
         this.openModalPopup();
+        this.openModalPopupW();
     }
 
     changefundstep1() {
@@ -2487,17 +2579,5 @@ export class InvestComponent implements OnInit {
 
     hidechangealert(){
         this.changealert=false;
-    }
-
-    investmanul () {
-           //--------------
-        //    console.log("invest");
-         
-        //    this.returnres =  depositToken(20.70,'DAI');
-
-        //    console.log(JSON.stringify(this.returnres));
-
-
-           //--------------
     }
 }

@@ -275,6 +275,7 @@ export var Betoken = function(_address) {
     }).on("transactionHash", _onTxHash).on("receipt", _onReceipt);
   };
   self.sellAsset = async function(_proposalId, _onTxHash, _onReceipt) {
+
     await getDefaultAccount();
     return self.contracts.betokenFund.methods.sellInvestmentAsset(_proposalId).send({
       from: web3.eth.defaultAccount

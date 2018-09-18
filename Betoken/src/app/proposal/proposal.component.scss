@@ -32,7 +32,7 @@
                         .value{
                             margin-left: 8px;
                             font-size: 14px !important ;
-                        }
+                        }                      
                     }
                     
                 }
@@ -234,4 +234,10 @@
             }
         }
     }
+}
+
+.overflowDesign {
+    width: 100px;
+    text-overflow: ellipsis;
+    overflow-x: hidden;
 }

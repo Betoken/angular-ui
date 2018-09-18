@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { AppComponent } from '../app.component';
 import { StockChart } from 'angular-highcharts';
 import { NguCarousel, NguCarouselStore, NguCarouselService } from '@ngu/carousel';
+import { Router } from '@angular/router';
 
 import { } from 'jquery';
 declare var $: any;
@@ -102,7 +103,7 @@ export class InvestComponent implements OnInit {
     success: boolean;
     returnres : any;
 
-    constructor(private ms: AppComponent, private carousel: NguCarouselService) {
+    constructor(private ms: AppComponent, private carousel: NguCarouselService, private route: Router) {
 
         if (localStorage.getItem('walkthrough') == null) {
             this.walkthrough =true;
@@ -145,7 +146,6 @@ export class InvestComponent implements OnInit {
         //------------------------------------
       setInterval(() =>{
           if (userAddress.get() != "0x0"){
-
             // portfolio
             this.user_address = userAddress.get();
             this.share_balance = sharesBalance.get();
@@ -2527,11 +2527,11 @@ export class InvestComponent implements OnInit {
         //alert (sidebar_heplers.user_kairo_balance());
 
         //create New investment
-        // decisions_tab_events.new_investment(this.selectedTokenSymbol, '0.01', (success)=>{
-        //     console.log(JSON.stringify(success));
-        // }, (error)=> {
-        //   alert(error);
-        // });
+        decisions_tab_events.new_investment(this.selectedTokenSymbol, '0.01', (success)=>{
+            console.log(JSON.stringify(success));
+        }, (error)=> {
+          alert(error);
+        });
 
     }
 
@@ -2580,4 +2580,12 @@ export class InvestComponent implements OnInit {
     hidechangealert(){
         this.changealert=false;
     }
+
+    makeInvestment(){
+        this.openModalPopup();
+        this.openModalPopupW();
+        this.route.navigate(['/proposal']);
+    }
+
+    
 }

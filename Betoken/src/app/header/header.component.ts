@@ -74,6 +74,7 @@ export class HeaderComponent implements OnInit {
   }
   
   proposalPopup(){
+    this.router.navigate(['/proposal']);
     this.ms.setproposalPopUp();
   }
   

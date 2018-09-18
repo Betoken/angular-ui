@@ -120,6 +120,18 @@ body{
     outline: none !important;
     min-width: 100px;
 }
+.outline-button-disable{
+  font-family: 'MavenProMedium' !important;
+  font-size: 14px;
+  background: #FFFFFF;
+  border: 1px solid #D1DCDF;
+  border-radius: 4px;
+  padding: 10px;
+  line-height: normal;
+  outline: none !important;
+  min-width: 100px;
+  cursor: not-allowed;
+}
 .outline-button.active{
     background-color:  #18DAA3;
     border-color: #18DAA3;

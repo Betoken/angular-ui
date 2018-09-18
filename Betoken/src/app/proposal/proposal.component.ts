@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { AppComponent } from '../app.component';
+import {
+  userAddress, countdown_timer_helpers, displayedKairoBalance, decisions_tab_events, assetSymbolToPrice,
+  decisions_tab_helpers
+} from '../../assets/body';
 
 @Component({
   selector: 'app-proposal',
@@ -22,6 +26,18 @@ import { AppComponent } from '../app.component';
 
 export class ProposalComponent implements OnInit {
 
+    days = 0;
+    hours = 0;
+    minutes = 0;
+    seconds = 0;
+    phase = -1;
+    kairo_balance = 0.0000;
+    selectedTokenSymbol = 'DAI';
+    kairoinput = '';
+    symbolToPrice = '';
+    tableData: any;
+  sellId: any;
+    
     openchangefundModal(){
       this.ms.setproposalPopUp();
     }
@@ -63,6 +79,25 @@ export class ProposalComponent implements OnInit {
     success: boolean;
 
   constructor(private ms: AppComponent) {
+    
+    setInterval(()=>{
+      if (userAddress.get() != "0x0"){
+        this.updateDates();
+        this.kairoBalance();
+        // this.list();
+      }
+       }, 1000 );
+
+       setInterval(()=> {
+        if(userAddress.get()!= "0x0") {
+          this.list();
+        }
+       },15000);
+    
+    
+  
+     
+
     this.state = 'open';
     this.active = true;
 
@@ -93,7 +128,20 @@ export class ProposalComponent implements OnInit {
     this.footerbtn3 = false;
    }
 
+   async updateDates() {
+    this.days = countdown_timer_helpers.day();
+    this.hours = countdown_timer_helpers.hour();
+    this.minutes = countdown_timer_helpers.minute();
+    this.seconds = countdown_timer_helpers.second();
+    this.phase = countdown_timer_helpers.phase();
+  }
+
+  async kairoBalance() {
+    this.kairo_balance = displayedKairoBalance.get().toFormat(18);
+  }
+
   ngOnInit() {
+
     this.ms.getproposalPopUp().subscribe((open: boolean) => {
       
       if (open) {
@@ -133,6 +181,8 @@ export class ProposalComponent implements OnInit {
   closePopup(){
     this.state = 'close';
     this.active = false;
+    this.kairoinput = '';
+    this.selectedTokenSymbol = 'DAI';
     if(this.proposalfund=true){
       this.proposalfund=true;
       this.tradeproposalfund=false;
@@ -166,6 +216,8 @@ export class ProposalComponent implements OnInit {
     this.step3 = false;
     this.step4 = false;
     this.step1 = false;
+    console.log(this.selectedTokenSymbol, this.kairoinput);
+    this.invest();
   }
 
   confirm(){
@@ -191,8 +243,12 @@ export class ProposalComponent implements OnInit {
     this.ms.setNextButton();
   }
 
-  sell(){
+  sell(data){
+    console.log(data);
     this.openchangefundModal();
+    this.sellId = data.id;
+    this.sellInvestment(data.id);
+   
     this.tradeproposalfund=true;
     this.changeproposalfund=false; 
     this.proposalfund = false;
@@ -202,12 +258,14 @@ export class ProposalComponent implements OnInit {
     this.sellStep2=false;
     this.sellStep3=false;
     this.sellStep4=false;
+    
   }
 
   confirmsell(){
     this.sellStep2 = true;
     this.sellStep3 = false;
     this.sellStep1 = false;
+    // this.sellInvestment();
     setTimeout(() => {
       this.sellStep3 = true;
       this.sellalert = true;
@@ -252,4 +310,46 @@ export class ProposalComponent implements OnInit {
     this.ms.setRedeemButton();
   }
 
+  async updateTokenSymbol(event) {
+    let value = event.target.value.trim();
+     this.selectedTokenSymbol = value;
+   // decisions_tab_helpers.selected_token_price(this.selectedTokenSymbol);
+    let price = decisions_tab_helpers.selected_token_price(this.selectedTokenSymbol);
+        console.log(price);
+        // console.log(price.PromiseValue.c[0])
+    //event.target.value =  value+` - (`+decisions_tab_helpers.selected_token_price(this.selectedTokenSymbol)+` )`;
+  }
+
+  async list(){
+   this.tableData = decisions_tab_helpers.investment_list();
+     console.log(this.tableData);
+  }
+
+  async invest() {
+  
+   //create New investment
+   console.log(this.selectedTokenSymbol, this.kairoinput);
+   decisions_tab_events.new_investment(this.selectedTokenSymbol, this.kairoinput, (success)=>{
+       console.log(JSON.stringify(success));
+   }, (error)=> {
+     console.log(error);
+    //  alert(error);
+   });
+
+}
+
+sellInvestment(data) {
+  // alert(JSON.stringify(data))
+  decisions_tab_events.sell_investment(this.sellId,(success)=> {
+    console.log(JSON.stringify(success));
+ 
+  }, (error)=> {
+    alert(error);  
+  });
+}
+
+kairoInput (event) {
+  console.log(event, event.target.value);
+  this.kairoinput = event.target.value ;
+}
 }

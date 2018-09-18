@@ -38,7 +38,34 @@
                     </tr>
                   </thead>
                   <tbody class="black-font">
-                    <tr>
+                        <tr *ngFor = "let data of tableData">
+                                <td class="identy">
+                                  <div class="d-flex align-items-center">
+                                      <div class="dot purple"> </div>
+                                      <div class="name ml-3">
+                                        <p class="m-0 abrivation">{{data.tokenSymbol}}</p>
+                                        <p class="m-0 expansion">Ethereum</p>
+                                      </div>
+                                  </div>
+                                </td>
+                                <td>{{data.stake}}</td>
+                                <td>${{data.buyPrice / (1000000000000000000)}}</td>
+                                <div >
+                                <td>$ {{data.sellPrice.c[0] / (10000)}} </td>
+                                </div>
+                                <td class="profit">
+                                    <span class="diffrence">{{(data.kroChange + data.stake)}}</span> 
+                                    <span class="value profit-font">{{data.kroChange}}</span>
+                                </td>
+                                <td *ngIf = "data.isSold == false">
+                                    <button class="outline-button" (click)="sell(data)">SELL</button>
+                                </td>
+                                <td *ngIf = "data.isSold == true">
+                                    <button class="outline-button-disable" >SOLD</button>
+                                </td>
+                              </tr>
+                              
+                    <!-- <tr>
                       <td class="identy">
                         <div class="d-flex align-items-center">
                             <div class="dot purple"> </div>
@@ -77,7 +104,7 @@
                         <td>
                           <button class="outline-button" (click)="sell()">SELL</button>
                         </td>
-                      </tr>
+                      </tr> -->
                   </tbody>
                 </table>
           </div>  
@@ -149,7 +176,7 @@
             </div>
         </div>
         <div class="time-wrapper">
-            <p class="m-0">Time left to invest: 1d 20h 34m 15s
+            <p class="m-0">Time left to invest: {{days}}d {{hours}}h {{minutes}}m {{seconds}}s
                 <img src="assets/images/info_icon.png" title="Time available">
             </p>
         </div>
@@ -163,19 +190,90 @@
             <p class="m-0">Select an asset
                 <img src="assets/images/info_icon.png"> </p>
             <div class="mt-2 mb-4 outline-box w-100 d-flex  align-items-center justify-content-between">
-                <select class="border-0 betoken-font w-100">
-                    <option>ETH - Ethereum ($600.92)</option>
-                    <option>ETH - Ethereum ($600.92)</option>
+                <select id="selectedTokenSymbolidd"class="border-0 betoken-font w-100" (change)="updateTokenSymbol($event)">
+                    <!-- <option>ETH - Ethereum ($600.92)</option>
+                    <option>ETH - Ethereum ($600.92)</option> -->
+                    <option>DAI</option>
+        
+                    <option>ETH</option>
+                  
+                    <option>ABT</option>
+                  
+                    <option>AE</option>
+                  
+                    <option>APPC </option>
+                  
+                    <option>BAT </option>
+                  
+                    <option>BBO </option>
+                  
+                    <option>BLZ </option>
+                  
+                    <option>ELEC </option>
+                  
+                    <option>ELF </option>
+                  
+                    <option>ENJ </option>
+                  
+                    <option>IOST </option>
+                  
+                    <option>KNC </option>
+                  
+                    <option>LBA </option>
+                  
+                    <option>LINK </option>
+                  
+                    <option>MANA </option>
+                  
+                    <option>MOT </option>
+                  
+                    <option>OMG </option>
+                  
+                    <option>PAL </option>
+                  
+                    <option>POLY </option>
+                  
+                    <option>RCN </option>
+                  
+                    <option>RDN </option>
+                  
+                    <option>REQ </option>
+                  
+                    <option>SNT </option>
+                  
+                    <option>STORM </option>
+                  
+                    <option>ZIL </option>
+                  
+                    <option>COFI </option>
+                  
+                    <option>WINGS </option>
+                  
+                    <option>WABI </option>
+                  
+                    <option>MDS </option>
+                  
+                    <option>LEND </option>
+                  
+                    <option>PAY </option>
+                  
+                    <option>BNT </option>
+                  
+                    <option>TOMO </option>
                 </select>
             </div>
             <div class="d-flex justify-content-between">
-                <p class="m-0">KRO to stake (your balance: 1.0000 KRO)
+                <p class="m-0 ">KRO to stake (your balance: {{kairo_balance}} KRO)
                     <img src="assets/images/info_icon.png"> </p>
                 <p class="m-0">Max</p>
             </div>
-            <div class="mt-2 outline-box w-100 d-flex  align-items-center justify-content-between">
+            <!-- <div class="mt-2 outline-box w-100 d-flex  align-items-center justify-content-between">
                 <p class="m-0">1</p>
-            </div>
+            </div> -->
+            <!-- <div class="mt-2 outline-box w-100 d-flex  align-items-center justify-content-between"> -->
+                <input type="text" class="outline-box" (keyup) = "kairoInput($event)" placeholder="1.0000">
+ 
+            <!-- </div> -->
 
         </div>
 
@@ -217,7 +315,7 @@
                 🙌 Done. Trade registered. Good choice!
             </p>
             <p class="m-0 pb-4 black-font">
-                You staked 0.3 KRO to support ETH.
+                You staked {{kairoinput}} KRO to support {{selectedTokenSymbol}}.
             </p>
             <div class="d-flex justify-content-center mb-5">
                 <img src="assets/images/finish.png" class="pointer ">
@@ -249,7 +347,7 @@
                     </div>
             </div>
             <div class="time-wrapper">
-                <p class="m-0">Time left to invest: 1d 20h 34m 15s
+                <p class="m-0">Time left to invest: {{days}}d {{hours}}h {{minutes}}m {{seconds}}s
                     <img src="assets/images/info_icon.png" title="Time available">
                 </p>
             </div>

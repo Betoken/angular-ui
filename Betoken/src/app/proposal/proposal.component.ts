@@ -5,6 +5,7 @@ import {
   userAddress, countdown_timer_helpers, displayedKairoBalance, decisions_tab_events, assetSymbolToPrice,
   decisions_tab_helpers
 } from '../../assets/body';
+import { promise } from 'protractor';
 
 @Component({
   selector: 'app-proposal',
@@ -84,15 +85,15 @@ export class ProposalComponent implements OnInit {
       if (userAddress.get() != "0x0"){
         this.updateDates();
         this.kairoBalance();
-        // this.list();
+        this.list();
       }
        }, 1000 );
 
-       setInterval(()=> {
-        if(userAddress.get()!= "0x0") {
-          this.list();
-        }
-       },15000);
+      //  setInterval(()=> {
+      //   if(userAddress.get()!= "0x0") {
+      //     this.list();
+      //   }
+      //  },15000);
     
     
   
@@ -315,7 +316,11 @@ export class ProposalComponent implements OnInit {
      this.selectedTokenSymbol = value;
    // decisions_tab_helpers.selected_token_price(this.selectedTokenSymbol);
     let price = decisions_tab_helpers.selected_token_price(this.selectedTokenSymbol);
-        console.log(price);
+    // console.log(price);
+    //     console.log(price, price.PromiseValue.toNumber().c[0]);
+      // let newprice =  decisions_tab_helpers.wei_to_eth(price.BigNumber);
+      // console.log(newprice);
+
         // console.log(price.PromiseValue.c[0])
     //event.target.value =  value+` - (`+decisions_tab_helpers.selected_token_price(this.selectedTokenSymbol)+` )`;
   }
@@ -339,10 +344,9 @@ export class ProposalComponent implements OnInit {
 }
 
 sellInvestment(data) {
-  // alert(JSON.stringify(data))
+  console.log();
   decisions_tab_events.sell_investment(this.sellId,(success)=> {
     console.log(JSON.stringify(success));
- 
   }, (error)=> {
     alert(error);  
   });

@@ -55,6 +55,7 @@ export class HeaderComponent implements OnInit {
       this.minutes = countdown_timer_helpers.minute();
       this.seconds = countdown_timer_helpers.second();
       this.phase = countdown_timer_helpers.phase();
+      this.phase +=1;
     }
 
   toggle() {

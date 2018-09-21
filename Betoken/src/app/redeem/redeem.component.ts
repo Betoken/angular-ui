@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { AppComponent } from '../app.component';
+import {
+    userAddress, countdown_timer_helpers, displayedKairoBalance, decisions_tab_events, assetSymbolToPrice,
+    decisions_tab_helpers, sidebar, sidebar_heplers
+  } from '../../assets/body';
 
 @Component({
   selector: 'app-redeem',
@@ -19,6 +23,9 @@ import { AppComponent } from '../app.component';
 ]
 })
 export class RedeemComponent implements OnInit {
+    redeemvalue: any;
+    redeemcommissionvalue: any;
+    selectedOption = 1;
 
   openredeemModal(){
     this.ms.setredeemPopUp();
@@ -39,7 +46,21 @@ export class RedeemComponent implements OnInit {
   footerbtn1 :boolean;
   footerbtn2 :boolean;
 
+    days = 0;
+    hours = 0;
+    minutes = 0;
+    seconds = 0;
+    phase = -1;
+
   constructor(private ms :AppComponent) { 
+    setInterval(()=>{
+        if (userAddress.get() != "0x0"){
+          this.updateDates();
+          this.redeemcommissionvalue = sidebar_heplers.expected_commission();
+        //   console.log(this.redeemcommissionvalue);
+        }
+         }, 1000 );
+
     this.state = 'open';
     this.active = true;
 
@@ -68,13 +89,26 @@ export class RedeemComponent implements OnInit {
           this.active = false;
       }
   });
+
+  this.redeemcommissionvalue = sidebar_heplers.expected_commission();
+  console.log(this.redeemcommissionvalue);
+  }
+
+  async updateDates() {
+    this.days = countdown_timer_helpers.day();
+    this.hours = countdown_timer_helpers.hour();
+    this.minutes = countdown_timer_helpers.minute();
+    this.seconds = countdown_timer_helpers.second();
+    this.phase = countdown_timer_helpers.phase();
   }
 
 redeem(){
+
     this.step2=true;
     this.step3=false;
     this.step4=false;
     this.step1=false;
+    this.redeemCommission();
   }
   
  confirmredeem(){
@@ -110,6 +144,32 @@ redeem(){
 
 redeemPopup(){
     this.openredeemModal();
+}
+
+redeemCommission() {
+    console.log(this.selectedOption);
+    if(this.selectedOption === 1){
+   this.redeemvalue = sidebar.redeem_commission();
+   console.log(this.redeemvalue);
+    }
+    if(this.selectedOption === 2){
+        this.redeemvalue = sidebar.redeem_commission_in_shares();
+        console.log(this.redeemvalue);
+         }
+}
+
+updateRedeemOption(event){
+    let value = event.target.value.trim();
+    console.log(value);
+    if(value === "DAI - redeem commission"){
+        this.selectedOption = 1;
+        console.log(this.selectedOption)
+    }else {
+        this.selectedOption = 2;
+        console.log(this.selectedOption)
+    }
+    console.log(this.selectedOption)
+    
 }
  
 }

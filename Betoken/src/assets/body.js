@@ -856,36 +856,44 @@ export var sidebar_heplers = {
 // });
 
 // Template.sidebar.events({
-//   "click .kairo_unit_switch": function(event) {
-//     if (event.target.checked) {
-//       if (!kairoTotalSupply.get().isZero()) {
-//         displayedKairoBalance.set(kairoBalance.get().div(kairoTotalSupply.get()).times("100"));
-//       }
-//       return displayedKairoUnit.set("%");
-//     } else {
-//       //Display Kairo
-//       displayedKairoBalance.set(BigNumber(kairoBalance.get().div(1e18)));
-//       return displayedKairoUnit.set("KRO");
-//     }
-//   },
-//   "click .balance_unit_switch": function(event) {
-//     if (event.target.checked) {
-//       //Display BTKS
-//       displayedInvestmentBalance.set(sharesBalance.get().div(1e18));
-//       return displayedInvestmentUnit.set("BTKS");
-//     } else {
-//       if (!sharesTotalSupply.get().isZero()) {
-//         displayedInvestmentBalance.set(sharesBalance.get().div(sharesTotalSupply.get()).mul(totalFunds.get()).div(1e18));
-//       }
-//       return displayedInvestmentUnit.set("DAI");
-//     }
-//   },
-//   "click .redeem_commission": function(event) {
-//     return betoken.redeemCommission(showTransaction, loadUserData);
-//   },
-//   "click .redeem_commission_in_shares": function(event) {
-//     return betoken.redeemCommissionInShares(showTransaction, loadDynamicData);
-//   }
+  export var sidebar = {
+  // "click .kairo_unit_switch": function(event) {
+  //   if (event.target.checked) {
+  //     if (!kairoTotalSupply.get().isZero()) {
+  //       displayedKairoBalance.set(kairoBalance.get().div(kairoTotalSupply.get()).times("100"));
+  //     }
+  //     return displayedKairoUnit.set("%");
+  //   } else {
+  //     //Display Kairo
+  //     displayedKairoBalance.set(BigNumber(kairoBalance.get().div(1e18)));
+  //     return displayedKairoUnit.set("KRO");
+  //   }
+  // },
+  // "click .balance_unit_switch": function(event) {
+  //   if (event.target.checked) {
+  //     //Display BTKS
+  //     displayedInvestmentBalance.set(sharesBalance.get().div(1e18));
+  //     return displayedInvestmentUnit.set("BTKS");
+  //   } else {
+  //     if (!sharesTotalSupply.get().isZero()) {
+  //       displayedInvestmentBalance.set(sharesBalance.get().div(sharesTotalSupply.get()).mul(totalFunds.get()).div(1e18));
+  //     }
+  //     return displayedInvestmentUnit.set("DAI");
+  //   }
+  // },
+  // "click .redeem_commission": function(event) {
+  //   return betoken.redeemCommission(showTransaction, loadUserData);
+  // },
+  "redeem_commission": async function(event) {
+    return betoken.redeemCommission(showTransaction, loadUserData);
+  },
+  // "click .redeem_commission_in_shares": function(event) {
+  //   return betoken.redeemCommissionInShares(showTransaction, loadDynamicData);
+  // }
+  "redeem_commission_in_shares" :async function(event) {
+    return betoken.redeemCommissionInShares(showTransaction, loadDynamicData);
+  }
+}
 // });
 
 // Template.transact_box.onCreated(function() {
@@ -1104,9 +1112,9 @@ export var decisions_tab_helpers = {
 //     }
 //   },
 export var  decisions_tab_events = {
-  "sell_investment": async function(id) {
+  "sell_investment": async function(idd) {
     var id;
-    id = this.id;
+    id = idd;
     if (cyclePhase.get() === 1) {
       return betoken.sellAsset(id, showTransaction, loadDynamicData);
     }

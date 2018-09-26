@@ -109,14 +109,14 @@
                                 <div class="portfolio-icon mr-3">
                                     <img src="assets/images/metamask.png">
                                 </div>
-                                <div class="portfolio-desc">
+                                <div class="portfolio-desc" (click)= "copyToClipBoard(user_address)">
                                     <p class="portfolio-title betoken-font m-0">Eth. Mainnet</p>
                                     <p class="portfolio-value black-font m-0 ellipseDesign" > {{user_address}} </p>
                                 </div>
                             </div>
 
                             <div class="portfolio col-6 col-md-6 col-lg-3 d-flex align-items-center mb-2">
-                                <div class="portfolio-desc">
+                                <div class="portfolio-desc" (click)= "copyToClipBoard(share_balance)">
                                     <p class="portfolio-title betoken-font m-0">Shares balance
                                         <img src="assets/images/info_icon.png">
                                     </p>
@@ -125,7 +125,7 @@
                             </div>
 
                             <div class="portfolio col-6 col-md-6 col-lg-3 d-flex align-items-center mb-2">
-                                <div class="portfolio-desc">
+                                <div class="portfolio-desc" (click)= "copyToClipBoard(kairo_balance)">
                                     <p class="portfolio-title betoken-font m-0">Kairos balance
                                         <img src="assets/images/info_icon.png">
                                     </p>
@@ -134,7 +134,7 @@
                             </div>
 
                             <div class="portfolio col-6 col-md-6 col-lg-3 d-flex align-items-center mb-2">
-                                <div class="portfolio-desc">
+                                <div class="portfolio-desc" (click)= "copyToClipBoard(monthly_pl)">
                                     <p class="portfolio-title betoken-font m-0">Your monthly P/L
                                         <img src="assets/images/info_icon.png">
                                     </p>
@@ -478,7 +478,9 @@
                 <p class="m-0" *ngIf="investflow">{{calculated_balance}}</p>
                 <p class="m-0" *ngIf="withdrawflow">Into Currency:</p>
                 <select id="selectedTokenSymbolid" (change)="updateTokenSymbol($event.target.value)"  class="border-0 betoken-font">
-                    <option>DAI</option>
+                    <option *ngFor = "let token of tokenList" >{{token}} </option>
+
+                    <!-- <option>DAI</option>
         
                     <option>ETH</option>
                   
@@ -544,7 +546,7 @@
                   
                     <option>BNT</option>
                   
-                    <option>TOMO</option>
+                    <option>TOMO</option> -->
                 </select>
             </div>
 

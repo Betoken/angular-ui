@@ -12,37 +12,37 @@
                   <th scope="col">Time</th>
                   <th scope="col">Type</th>
                   <th scope="col">BTF share</th>
-                  <th scope="col">DAI amount</th>
+                  <!-- <th scope="col">DAI amount</th> -->
                   <th scope="col">Details tx</th>
                 </tr>
               </thead>
               <tbody class="black-font">
-                <tr>
-                  <td>March 28, 2018</td>
-                  <td>Withdraw</td>
-                  <td>1.0000</td>
-                  <td>104.0000</td>
+                <tr *ngFor = "let details of transactionTable">
+                  <td>{{details.timestamp}}</td>
+                  <td>{{details.type}}</td>
+                  <td>{{details.amount}}</td>
+                  <!-- <td>104.0000</td> -->
                   <td><img src="assets/images/export.png" class="pointer"></td>
                 </tr>
-                <tr>
+                <!-- <tr>
                   <td>February 2, 2018</td>
                   <td>Invest</td>
                   <td>1.0000</td>
                   <td>100.0000</td>
                   <td></td>
-                </tr>
+                </tr> -->
               </tbody>
           </table>
           <div class="transaction-details-div">
             <p class="mb-1 mt-3">Betoken contract address</p>
             <div class="outline-box d-flex justify-content-between align-items-center">
-              <p class="m-0">0x7287b58335073c9df9ea5cbd865d941086c1d6f4</p>
-              <img src="assets/images/copy.png" class="pointer">
+              <p class="m-0">0x5910d5abd4d5fd58b39957664cd9735cbfe42bf0</p>
+              <img src="assets/images/copy.png" class="pointer" (click)= "copyToClipBoard('0x5910d5abd4d5fd58b39957664cd9735cbfe42bf0')">
             </div>
             <p class="mb-1 mt-3">Kairo (KRO) contract address</p>
             <div class="outline-box d-flex justify-content-between align-items-center">
-              <p class="m-0">0x7287b58335073c9df9ea5cbd865d941086c1d6f4</p>
-              <img src="assets/images/copy.png" class="pointer">
+              <p class="m-0">0xDeB05FE4905EE7662b1230e7c1f29F386E598E66</p>
+              <img src="assets/images/copy.png" class="pointer" (click)= "copyToClipBoard('0xDeB05FE4905EE7662b1230e7c1f29F386E598E66')">
             </div>
           </div>
       </div>  

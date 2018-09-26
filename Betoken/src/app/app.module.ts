@@ -17,6 +17,7 @@ import more from 'highcharts/highcharts-more.src';
 import { ProposalComponent } from './proposal/proposal.component';
 import { RedeemComponent } from './redeem/redeem.component';
 import { AccountComponent } from './account/account.component';
+import { RankingsComponent } from './rankings/rankings.component';
  
 export function highchartsModules() {
   // apply Highcharts Modules to this array
@@ -48,6 +49,11 @@ const routes: Routes = [
   path: 'account',
   component: AccountComponent,
   pathMatch: 'full'
+},
+{
+  path: 'rankings',
+  component: RankingsComponent,
+  pathMatch: 'full'
 }
 
 ];
@@ -61,6 +67,7 @@ const routes: Routes = [
     ProposalComponent,
     RedeemComponent,
     AccountComponent,
+    RankingsComponent,
   ],
   imports: [
      NguCarouselModule,

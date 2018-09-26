@@ -28,12 +28,19 @@
           Accounts</a>
       </li>
 
-      <li [class.active]="router.url==='/proposal' || router.url==='/redeem'">
+      <li [class.active]="router.url==='/proposal'">
           <span class="nav-indication"></span>
-          <a class="d-flex align-items-center" (click)="navigate('/redeem')">
-          <div class="bt-proposal ml-3 mr-3" [class.bt-proposal-active]="router.url==='/proposal' || router.url==='/redeem'"></div>
+          <a class="d-flex align-items-center" (click)="navigate('/proposal')">
+          <div class="bt-proposal ml-3 mr-3" [class.bt-proposal-active]="router.url==='/proposal'"></div>
           Proposal</a>
       </li>
+
+      <li [class.active]="router.url==='/rankings'">
+        <span class="nav-indication"></span>
+        <a class="d-flex align-items-center" (click)="navigate('/rankings')">
+        <div class="bt-proposal ml-3 mr-3" [class.bt-proposal-active]="router.url==='/rankings'"></div>
+        Rankings</a>
+    </li>
     </ul>
 
     <ul class="support-nav">

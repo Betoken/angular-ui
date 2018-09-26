@@ -44,7 +44,7 @@
                                       <div class="dot purple"> </div>
                                       <div class="name ml-3">
                                         <p class="m-0 abrivation">{{data.tokenSymbol}}</p>
-                                        <p class="m-0 expansion">Ethereum</p>
+                                        <!-- <p class="m-0 expansion">Ethereum</p> -->
                                       </div>
                                   </div>
                                 </td>
@@ -109,7 +109,7 @@
                 </table>
           </div>  
         </div>
-        <div class="history-table-sec col-12 mt-3 mb-5">
+        <!-- <div class="history-table-sec col-12 mt-3 mb-5">
         <div class="sec-header">
             <p class="sec-title">History</p>
         </div>
@@ -161,7 +161,7 @@
               </tbody>
             </table>
        </div>
-        </div>
+        </div> -->
   </div>
 </div>
 
@@ -189,13 +189,14 @@
         
             <p class="m-0">Select an asset
                 <img src="assets/images/info_icon.png"> </p>
-            <div class="mt-2 mb-4 outline-box w-100 d-flex  align-items-center justify-content-between">
-                <select id="selectedTokenSymbolidd"class="border-0 betoken-font w-100" (change)="updateTokenSymbol($event)">
+            <div class="mt-2 mb-3 outline-box w-100 d-flex  align-items-center justify-content-between">
+                <select id="selectedTokenSymbolidd"   class="border-0 betoken-font w-100" (change)="updateTokenSymbol($event.target.value)" class="border-0 betoken-font" >
                     <!-- <option>ETH - Ethereum ($600.92)</option>
                     <option>ETH - Ethereum ($600.92)</option> -->
-                    <option>DAI</option>
-        
-                    <option>ETH</option>
+
+                    <option *ngFor = "let token of tokenList" >{{token}} </option>
+
+                    <!-- <option>ETH</option>
                   
                     <option>ABT</option>
                   
@@ -259,8 +260,10 @@
                   
                     <option>BNT </option>
                   
-                    <option>TOMO </option>
+                    <option>TOMO </option> -->
                 </select>
+                <p *ngIf = "tradeAssetval !== undfined">Current Price - {{tradeAssetval}} DAI</p>
+
             </div>
             <div class="d-flex justify-content-between">
                 <p class="m-0 ">KRO to stake (your balance: {{kairo_balance}} KRO)

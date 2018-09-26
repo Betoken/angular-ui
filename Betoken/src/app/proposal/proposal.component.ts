@@ -3,7 +3,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import { AppComponent } from '../app.component';
 import {
   userAddress, countdown_timer_helpers, displayedKairoBalance, decisions_tab_events, assetSymbolToPrice,
-  decisions_tab_helpers
+  decisions_tab_helpers, showTransaction
 } from '../../assets/body';
 import { promise } from 'protractor';
 
@@ -26,6 +26,7 @@ import { promise } from 'protractor';
 })
 
 export class ProposalComponent implements OnInit {
+  tradeAssetval :any;
 
     days = 0;
     hours = 0;
@@ -33,12 +34,13 @@ export class ProposalComponent implements OnInit {
     seconds = 0;
     phase = -1;
     kairo_balance = 0.0000;
-    selectedTokenSymbol = 'DAI';
+    selectedTokenSymbol = 'ETH';
     kairoinput = '';
     symbolToPrice = '';
     tableData: any;
   sellId: any;
-    
+  tokenList: any;
+  // tabActive = false;
     openchangefundModal(){
       this.ms.setproposalPopUp();
     }
@@ -80,21 +82,24 @@ export class ProposalComponent implements OnInit {
     success: boolean;
 
   constructor(private ms: AppComponent) {
-    
+
+    this.updateTokenSymbol(this.selectedTokenSymbol);
+
     setInterval(()=>{
       if (userAddress.get() != "0x0"){
         this.updateDates();
         this.kairoBalance();
         this.list();
+        this.tokensList();
+         
       }
-       }, 1000 );
+       }, 1000);
 
       //  setInterval(()=> {
       //   if(userAddress.get()!= "0x0") {
-      //     this.list();
+      //     this.tokensList();
       //   }
-      //  },15000);
-    
+      //  },5000);
     
   
      
@@ -135,6 +140,10 @@ export class ProposalComponent implements OnInit {
     this.minutes = countdown_timer_helpers.minute();
     this.seconds = countdown_timer_helpers.second();
     this.phase = countdown_timer_helpers.phase();
+    // this.phase -=1;
+    // if(this.phase !== 1) {
+    //   this.active = false;
+    // }
   }
 
   async kairoBalance() {
@@ -183,7 +192,7 @@ export class ProposalComponent implements OnInit {
     this.state = 'close';
     this.active = false;
     this.kairoinput = '';
-    this.selectedTokenSymbol = 'DAI';
+    this.selectedTokenSymbol = 'ETH';
     if(this.proposalfund=true){
       this.proposalfund=true;
       this.tradeproposalfund=false;
@@ -245,7 +254,7 @@ export class ProposalComponent implements OnInit {
   }
 
   sell(data){
-    console.log(data);
+    // console.log(data);
     this.openchangefundModal();
     this.sellId = data.id;
     this.sellInvestment(data.id);
@@ -312,35 +321,54 @@ export class ProposalComponent implements OnInit {
   }
 
   async updateTokenSymbol(event) {
-    let value = event.target.value.trim();
+// alert(event)
+    let value = event;
      this.selectedTokenSymbol = value;
    // decisions_tab_helpers.selected_token_price(this.selectedTokenSymbol);
-    let price = decisions_tab_helpers.selected_token_price(this.selectedTokenSymbol);
-    // console.log(price);
-    //     console.log(price, price.PromiseValue.toNumber().c[0]);
+    let price = await decisions_tab_helpers.selected_token_price(this.selectedTokenSymbol);
+    // console.log(price.toNumber());
+    // event = await value+ ` - ( `+price +`` + `)`;
+    // let pricee = await price.then(function(result) {
+    //   return result+1;
+    // })
+    this.tradeAssetval =price;
+    // alert(' this.tradeAssetval ' +  this.tradeAssetval )
+
+    // console.log( event = value+ ` - ( `+price +`` + ` )`);
+    // console.log(pricee.zone_symbol__value);
+    //      console.log(await price, price.PromiseValue.c);
       // let newprice =  decisions_tab_helpers.wei_to_eth(price.BigNumber);
       // console.log(newprice);
 
         // console.log(price.PromiseValue.c[0])
     //event.target.value =  value+` - (`+decisions_tab_helpers.selected_token_price(this.selectedTokenSymbol)+` )`;
+  return event;
   }
 
   async list(){
    this.tableData = decisions_tab_helpers.investment_list();
-     console.log(this.tableData);
+    //  console.log(this.tableData);
   }
 
   async invest() {
   
    //create New investment
    console.log(this.selectedTokenSymbol, this.kairoinput);
-   decisions_tab_events.new_investment(this.selectedTokenSymbol, this.kairoinput, (success)=>{
-       console.log(JSON.stringify(success));
-   }, (error)=> {
+   await decisions_tab_events.new_investment(this.selectedTokenSymbol, this.kairoinput, (success)=>{
+    let promiseForValue = new Promise(function (fulfill) {
+      fulfill(success);
+      console.log(promiseForValue);
+    });
+        console.log(success.tovalue());
+        // console.log(success.transactionHash);
+      //  console.log(transcationID);
+     
+      }, (error)=> {
      console.log(error);
     //  alert(error);
    });
-
+   let hash = showTransaction.transactionHash.get();
+   console.log(hash);
 }
 
 sellInvestment(data) {
@@ -352,8 +380,13 @@ sellInvestment(data) {
   });
 }
 
+async tokensList(){
+  this.tokenList = decisions_tab_helpers.tokens();
+  // console.log(this.tokenList);
+}
+
 kairoInput (event) {
-  console.log(event, event.target.value);
+  // console.log(event, event.target.value);
   this.kairoinput = event.target.value ;
 }
 }

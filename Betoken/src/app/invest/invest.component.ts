@@ -21,7 +21,7 @@ import {
   decisions_tab_events,
   sidebar_heplers,
   stats_tab_helpers,kairoTotalSupply, sharesTotalSupply,
-  countdown_timer_helpers
+  countdown_timer_helpers, loadStats, decisions_tab_helpers, kairoRanking
 } from '../../assets/body';
 
 @Component({
@@ -70,6 +70,8 @@ export class InvestComponent implements OnInit {
 
     private carouselToken: string;
     public carouselBanner: NguCarousel;
+    tokenList: any;
+    rankingArray= [];
   
 
     openModalPopup() {
@@ -128,6 +130,13 @@ export class InvestComponent implements OnInit {
         this.footerbtn1 = true;
         this.footerbtn2 = false;
         this.footerbtn3 = false;
+        // this.chart();
+        setInterval(()=>{
+            if (userAddress.get() != "0x0"){
+            this.rankingList();   
+            }
+        }, 1000);
+        
     }   
 
     calculate_bal (event) {
@@ -150,6 +159,7 @@ export class InvestComponent implements OnInit {
             this.user_address = userAddress.get();
             this.share_balance = sharesBalance.get();
             this.kairo_balance = displayedKairoBalance.get().toFormat(18);
+            
             //this.monthly_pl
 
            //Betoken fund share price
@@ -158,6 +168,7 @@ export class InvestComponent implements OnInit {
            this.totalKairo = kairoTotalSupply.get();
            this.totalBTFShares = sharesTotalSupply.get();
            this.updateDates();
+        //    this.rankingList();
           }
      }, 1000 );     
 
@@ -2586,6 +2597,29 @@ export class InvestComponent implements OnInit {
         this.openModalPopupW();
         this.route.navigate(['/proposal']);
     }
+
+    // chart() {
+    //    let chart =  loadStats.fundDAIBalance();
+    //     console.log(chart);
+    // }
+
+    async tokensList(){
+        this.tokenList = decisions_tab_helpers.tokens();
+        console.log(this.tokenList);
+      }
+     
+    copyToClipBoard(event) {
+        // console.log(event);
+        alert('copied  '  +event +  '  To ClipBoard');
+      }
+      
+    rankingList() {
+        this.rankingArray =  kairoRanking.get();
+        this.totalUser = this.rankingArray.length;
+        // console.log(this.rankingArray, this.rankingArray.length);
+        
+    }
+      
 
     
 }

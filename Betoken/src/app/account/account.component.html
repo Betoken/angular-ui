@@ -11,7 +11,7 @@
                 <tr>
                   <th scope="col">Time</th>
                   <th scope="col">Type</th>
-                  <th scope="col">BTF share</th>
+                  <th scope="col">Amount</th>
                   <!-- <th scope="col">DAI amount</th> -->
                   <th scope="col">Details tx</th>
                 </tr>
@@ -22,7 +22,7 @@
                   <td>{{details.type}}</td>
                   <td>{{details.amount}}</td>
                   <!-- <td>104.0000</td> -->
-                  <td><img src="assets/images/export.png" class="pointer"></td>
+                  <td><img src="assets/images/export.png" class="pointer" (click) = "linkopen(details.txHash)"></td>
                 </tr>
                 <!-- <tr>
                   <td>February 2, 2018</td>

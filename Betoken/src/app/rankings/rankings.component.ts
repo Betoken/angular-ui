@@ -20,19 +20,19 @@ export class RankingsComponent implements OnInit {
       if (userAddress.get() != "0x0"){
       this.rankingList();   
       this.userRank();   }
-       }, 1000);
+       }, 5000);
   }
 
   ngOnInit() {
   }
-  rankingList() {
-this.rankingArray =  kairoRanking.get();
-// console.log(this.rankingArray);
+ async rankingList() {
+this.rankingArray =  await kairoRanking.get();
+ console.log(this.rankingArray);
   }
   async userRank(){
     this.userRanking = await ranking_tab.user_rank();
     this.userValue = await ranking_tab.user_value();
     this.userAddress = await userAddress.get();
-    // console.log(this.userRanking, this.userValue);
+     console.log(this.userRanking, this.userValue);
   }
 }

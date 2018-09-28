@@ -26,6 +26,7 @@ export class RedeemComponent implements OnInit {
     redeemvalue: any;
     redeemcommissionvalue: any;
     selectedOption = 1;
+    tableData: any;
 
   openredeemModal(){
     this.ms.setredeemPopUp();
@@ -56,6 +57,7 @@ export class RedeemComponent implements OnInit {
     setInterval(()=>{
         if (userAddress.get() != "0x0"){
           this.updateDates();
+          this.list();
           this.redeemcommissionvalue = sidebar_heplers.expected_commission();
         //   console.log(this.redeemcommissionvalue);
         }
@@ -146,14 +148,14 @@ redeemPopup(){
     this.openredeemModal();
 }
 
-redeemCommission() {
+async redeemCommission() {
     console.log(this.selectedOption);
     if(this.selectedOption === 1){
-   this.redeemvalue = sidebar.redeem_commission();
+   this.redeemvalue = await sidebar.redeem_commission();
    console.log(this.redeemvalue);
     }
     if(this.selectedOption === 2){
-        this.redeemvalue = sidebar.redeem_commission_in_shares();
+        this.redeemvalue = await sidebar.redeem_commission_in_shares();
         console.log(this.redeemvalue);
          }
 }
@@ -171,5 +173,10 @@ updateRedeemOption(event){
     console.log(this.selectedOption)
     
 }
+
+async list(){
+    this.tableData = decisions_tab_helpers.investment_list();
+      console.log(this.tableData);
+   }
  
 }

@@ -2,6 +2,8 @@
 export var BETOKEN_ADDR, DEPLOYED_BLOCK, INPUT_ERR, METAMASK_LOCKED_ERR, NO_WEB3_ERR, SEND_TX_ERR, TOKENS, WRONG_NETWORK_ERR, Web3, allowEmergencyWithdraw, assetAddressToSymbol, assetFeeRate, assetSymbolToAddress, assetSymbolToPrice, assetSymbolToPricee, avgROI, betoken, chart, checkKairoAmountError, clock, commissionRate, copyTextToClipboard, countdownDay, countdownHour, countdownMin, countdownSec, cycleNumber, cyclePhase, cycleTotalCommission, daiAddr, displayedInvestmentBalance, displayedInvestmentUnit, displayedKairoBalance, displayedKairoUnit, drawChart, errorMessage, filterTable, fundValue, hasWeb3, historicalTotalCommission, investmentList, isLoadingInvestments, isLoadingPrices, isLoadingRanking, isLoadingRecords, kairoAddr, kairoBalance, kairoRanking, kairoTotalSupply, kyberAddr, lastCommissionRedemption, loadAllData, loadDecisions, loadDynamicData, loadFundData, loadFundMetadata, loadRanking, loadStats, loadTokenPrices, loadUserData, networkName, networkPrefix, newInvestmentSelectedToken, paused, phaseLengths, prevCommission, prevROI, sharesAddr, sharesBalance, sharesTotalSupply, showCountdown, showError, showSuccess, showTransaction, startTimeOfCyclePhase, successMessage, tokenAddresses, tokenFactoryAddr, tokenPrices, totalFunds, transactionHash, transactionHistory, userAddress, web3, wrongNetwork, loadTxHistory, transaction_history ;
 export var receivedROICount;
 export var transcationID;
+export var managerROI;
+export var network_prefix;
 // import "./body.html";
 
 // import "./body.css";
@@ -133,6 +135,8 @@ avgROI = new ReactiveVar(BigNumber(0));
 prevCommission = new ReactiveVar(BigNumber(0));
 
 historicalTotalCommission = new ReactiveVar(BigNumber(0));
+
+managerROI = new ReactiveVar(BigNumber(0));
 
 transactionHistory = new ReactiveVar([]);
 
@@ -346,7 +350,7 @@ loadFundMetadata = async function() {
 };
 
 loadFundData = async function() {
-  receivedROICount = 0;
+ // receivedROICount = 0;
   /*
    * Get fund data
    */
@@ -398,7 +402,8 @@ loadTxHistory = async function() {
         type: _type,
         timestamp: new Date(+data._timestamp * 1e3).toString(),
         token: (await betoken.getTokenSymbol(data._tokenAddress)),
-        amount: BigNumber(data._tokenAmount).div(10 ** (+((await betoken.getTokenDecimals(data._tokenAddress))))).toFormat(4)
+        amount: BigNumber(data._tokenAmount).div(10 ** (+((await betoken.getTokenDecimals(data._tokenAddress))))).toFormat(4),
+        txHash: event.transactionHash
       };
       tmp = transactionHistory.get();
       tmp.push(entry);
@@ -441,7 +446,8 @@ loadTxHistory = async function() {
         type: "Transfer " + (isIn ? "In" : "Out"),
         token: token,
         amount: BigNumber(data._amount).div(1e18).toFormat(4),
-        timestamp: new Date(((await web3.eth.getBlock(_event.blockNumber))).timestamp * 1e3).toString()
+        timestamp: new Date(((await web3.eth.getBlock(_event.blockNumber))).timestamp * 1e3).toString(),
+        txHash: _event.transactionHash
       };
       tmp = transactionHistory.get();
       tmp.push(entry);
@@ -464,7 +470,7 @@ loadTokenPrices = async function() {
 };
 
 loadDecisions = async function() {
-  var handleAllProposals, handleProposal, i, investments;
+  var handleAllProposals, handleProposal, i, investments, totalKROChange, totalStake;
   // Get list of user's investments
   isLoadingInvestments.set(true);
   investments = (await betoken.getInvestments(userAddress.get()));
@@ -490,6 +496,17 @@ loadDecisions = async function() {
     })();
     await Promise.all(handleAllProposals);
     investmentList.set(investments);
+    totalKROChange = investments.map(function(x) {
+      return BigNumber(x.kroChange);
+    }).reduce(function(x, y) {
+      return x.add(y);
+    });
+    totalStake = investments.map(function(x) {
+      return BigNumber(x.stake);
+    }).reduce(function(x, y) {
+      return x.add(y);
+    });
+    managerROI.set(totalKROChange.div(totalStake).mul(100));
   }
   return isLoadingInvestments.set(false);
 };
@@ -516,7 +533,7 @@ loadRanking = async function() {
       var addStake, i;
       addStake = function(i) {
         var currentStakeValue;
-        if (!i.isSold) {
+        if (!i.isSold && +i.cycleNumber === cycleNumber.get()) {
           currentStakeValue = assetSymbolToPrice(assetAddressToSymbol(i.tokenAddress)).mul(1e18).sub(i.buyPrice).div(i.buyPrice).mul(i.stake).add(i.stake);
           return stake = stake.add(currentStakeValue);
         }
@@ -532,6 +549,7 @@ loadRanking = async function() {
       })());
     }).then(async function() {
       return {
+        // format rank object
         rank: 0,
         address: _addr,
         kairoBalance: BigNumber((await betoken.getKairoBalance(_addr))).add(stake).div(1e18).toFixed(18)
@@ -554,7 +572,7 @@ loadRanking = async function() {
 };
 
 loadStats = async function() {
-  var _fundValue, fundDAIBalance, getTokenValue, t;
+  var _fundValue, fundDAIBalance, getTokenValue, t, totalInputFunds, totalOutputFunds;
   _fundValue = BigNumber(0);
   getTokenValue = async function(_token) {
     var balance, value;
@@ -580,8 +598,14 @@ loadStats = async function() {
   historicalTotalCommission.set(BigNumber(0));
   await Promise.all([cycleTotalCommission.set(BigNumber((await betoken.getMappingOrArrayItem("totalCommissionOfCycle", cycleNumber.get())))), prevCommission.set(BigNumber((await betoken.getMappingOrArrayItem("totalCommissionOfCycle", cycleNumber.get() - 1))))]);
   // Get commission and draw ROI chart
-  // chart.data.datasets[0].data = [];
-  // chart.update();
+  
+  // Commented these two lines out cause we haven't implemented the chart part yet. So, the chart val is null as of now
+  //chart.data.datasets[0].data = [];
+  //chart.update();
+
+
+  totalInputFunds = BigNumber(0);
+  totalOutputFunds = BigNumber(0);
   return (await Promise.all([
     betoken.contracts.betokenFund.getPastEvents("TotalCommissionPaid",
     {
@@ -615,22 +639,31 @@ loadStats = async function() {
       for (j = 0, len = events.length; j < len; j++) {
         _event = events[j];
         data = _event.returnValues;
-        ROI = BigNumber(data._afterTotalFunds).minus(data._beforeTotalFunds).div(data._afterTotalFunds).mul(100);
+        ROI = BigNumber(data._afterTotalFunds).minus(data._beforeTotalFunds).div(data._beforeTotalFunds).mul(100);
         // Update chart data
+
+        // Commenting this part out cause we haven't started working on chart yet
         // chart.data.datasets[0].data.push({
         //   x: data._cycleNumber,
         //   y: ROI.toString()
         // });
         // chart.update();
         // Update previous cycle ROI
-        if (+data._cycleNumber === cycleNumber.get() || +data._cycleNumber === cycleNumber.get() - 1) {
+        if (+data._cycleNumber === cycleNumber.get() - 1) {
           prevROI.set(ROI);
         }
         // Update average ROI
-        receivedROICount += 1;
-        results.push(avgROI.set(avgROI.get().add(ROI.minus(avgROI.get()).div(receivedROICount))));
+        totalInputFunds = totalInputFunds.add(data._beforeTotalFunds);
+        results.push(totalOutputFunds = totalOutputFunds.add(data._afterTotalFunds));
       }
       return results;
+    }).then(function() {
+      // Take current cycle's ROI into consideration
+      if (cyclePhase.get() !== 2) {
+        totalInputFunds = totalInputFunds.add(totalFunds.get());
+        totalOutputFunds = totalOutputFunds.add(fundValue.get().mul(1e18));
+      }
+      return avgROI.set(totalOutputFunds.sub(totalInputFunds).div(totalInputFunds).mul(100));
     })
   ]));
 };
@@ -717,18 +750,20 @@ export var document_ready = async function(handledata) {
 // });
 
 // Template.body.helpers({
-//   transaction_hash: function() {
-//     return transactionHash.get();
-//   },
-//   network_prefix: function() {
-//     return networkPrefix.get();
-//   },
-//   error_msg: function() {
-//     return errorMessage.get();
-//   },
-//   success_msg: function() {
-//     return successMessage.get();
-//   }
+  export var body_helpers = {
+  transaction_hash: function() {
+    return transactionHash.get();
+  },
+  network_prefix: async function() {
+    return networkPrefix.get();
+  },
+  error_msg: function() {
+    return errorMessage.get();
+  },
+  success_msg: function() {
+    return successMessage.get();
+  }
+}
 // });
 
 // Template.body.events({
@@ -958,6 +993,9 @@ export var sidebar_heplers = {
   },
   is_loading: function() {
     return isLoadingRecords.get();
+  },
+  network_prefix: function() {
+    return networkPrefix.get();
   }
 }
 // });

@@ -347,7 +347,7 @@ export class ProposalComponent implements OnInit {
 
   async list(){
    this.tableData = decisions_tab_helpers.investment_list();
-    //  console.log(this.tableData);
+      console.log(this.tableData);
   }
 
   async invest() {

@@ -104,8 +104,8 @@ export class ProposalComponent implements OnInit {
   
      
 
-    this.state = 'open';
-    this.active = true;
+    this.state = 'close';
+    this.active = false;
 
     this.step1 = true;
     this.step2 = false;

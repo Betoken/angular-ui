@@ -55,7 +55,7 @@ export class HeaderComponent implements OnInit {
       this.minutes = countdown_timer_helpers.minute();
       this.seconds = countdown_timer_helpers.second();
       this.phase = countdown_timer_helpers.phase();
-      // this.phase -=1;
+      //  this.phase -=1;
     }
 
   toggle() {
@@ -63,10 +63,12 @@ export class HeaderComponent implements OnInit {
   }
 
   openModalPopup(){
+    this.router.navigate(['/home']);
     this.ms.setPopUp();
   }
 
   openModalPopupW(){
+    this.router.navigate(['/home']);
     this.ms.setPopUpW();
   }
 

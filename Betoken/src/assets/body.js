@@ -4,6 +4,7 @@ export var receivedROICount;
 export var transcationID;
 export var managerROI;
 export var network_prefix;
+export var ROIArray;
 // import "./body.html";
 
 // import "./body.css";
@@ -163,6 +164,8 @@ tokenAddresses = new ReactiveVar([]);
 fundValue = new ReactiveVar(BigNumber(0));
 
 newInvestmentSelectedToken = new ReactiveVar(TOKENS[0]);
+
+ROIArray = new ReactiveVar([]);
 
 
 showTransaction = function(_txHash) {
@@ -603,6 +606,7 @@ loadStats = async function() {
   //chart.data.datasets[0].data = [];
   //chart.update();
 
+  ROIArray = [];
 
   totalInputFunds = BigNumber(0);
   totalOutputFunds = BigNumber(0);
@@ -649,6 +653,10 @@ loadStats = async function() {
         // });
         // chart.update();
         // Update previous cycle ROI
+
+        //ROIArray[j] = [Number(data._cycleNumber), ROI.toNumber()];
+        ROIArray.push([Number(data._cycleNumber), ROI.toNumber()]);
+
         if (+data._cycleNumber === cycleNumber.get() - 1) {
           prevROI.set(ROI);
         }

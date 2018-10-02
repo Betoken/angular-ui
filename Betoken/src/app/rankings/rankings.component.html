@@ -1,80 +1,8 @@
-<!-- <div class="proposal-wrapper header-height col-12 col-lg-10 float-right">
-  <div class="row">
-        <div class="alert-window col-12 " *ngIf="sellalert">
-                <div class="alert d-flex justify-content-between align-items-center col-12">
-                    <p class="m-0">🚨 Sell your assets to redeem all your KRO staked before cycle’s end. More info.</p>
-                    <button class="text-center alert-button" (click)="hidealert()">DISMISS</button>
-                </div>
-        </div>
-
-        <div class="alert-window col-12 " *ngIf="nextphasealert">
-                <div class="alert d-flex justify-content-between align-items-center col-12">
-                    <p class="m-0">🚨 Portfolio proposal phase ended. Switch to next phase.</p>
-                    <button class="text-center alert-button" (click)="changeproposal()">NEXT PHASE</button>
-                </div>
-        </div>
-
-        <div class="alert-window col-12 " *ngIf="redeemalert">
-                <div class="alert d-flex justify-content-between align-items-center col-12">
-                    <p class="m-0">🚨 Redeem your commissions before the phase ends. More info.</p>
-                    <button class="text-center alert-button" routerLink="/redeem">REDEEM COMMISSSION</button>
-                </div>
-        </div>
-
-        <div class="proposal-table-sec col-12 mt-3">
-          <div class="sec-header">
-              <p class="sec-title">Managers Ranking List</p>
-          </div>
-          <div class="cards table-responsive">
-              <table class="table proposal-table">
-                  <thead class="betoken-font">
-                    <tr>
-                      <th scope="col">Rank</th> 
-                      <th scope="col">Address</th> 
-                      <th scope="col">Kairo Balance </th> 
-                    </tr>
-                  </thead>
-                  <tr></tr>
-                  <tbody class="black-font">
-                     
-                        <tr >
-                            <td class="identy">
-                              <div class="d-flex align-items-center">                                 
-                                  <div class="name ml-3">                                    
-                                    <p class="m-0 expansion">{{userRanking}}</p>
-                                  </div>
-                              </div>
-                            </td>
-                            <td>{{userAddress}}</td>
-                            <td>{{userValue}}</td>                          
-                          </tr>
-                   </tbody>
-
-                  <tr>All</tr>
-                  <tbody class="black-font">
-                        
-                        <tr *ngFor="let ranking of rankingArray">
-                                <td class="identy">
-                                  <div class="d-flex align-items-center">
-                                     
-                                      <div class="name ml-3">
-                                        <p class="m-0 expansion">{{ranking.rank}}</p>
-                                      </div>
-                                  </div>
-                                </td>
-                                <td>{{ranking.address}}</td>
-                                <td>{{ranking.kairoBalance}}</td>                                
-                        </tr>
-                              
-                 
-  </div>
-</div> -->
-
 <div class="ranking-wrapper header-height col-12 col-lg-10 float-right">
     <div class="row">
           <div class="ranking-table-sec col-12 mt-3">
             <div class="sec-header d-flex justify-content-between align-items-center">
-                <p class="sec-title">Manager's Ranking List</p>
+                <p class="sec-title">Manager Rankings</p>
                 <button class="text-center outline-button mr-3" (click) = "rankingList() && userRank()">REFRESH</button>
             </div>
             <div class="cards table-responsive">
@@ -82,7 +10,7 @@
                     <thead class="betoken-font">
                       <tr>
                         <th scope="col">Rank</th>
-                        <th scope="col">Address</th>
+                        <th scope="col">Manager</th>
                         <th scope="col">Kairo Balance</th>
                       </tr>
                     </thead>
@@ -103,13 +31,8 @@
                       <tr *ngFor="let ranking of rankingArray">
                           <td>{{ranking.rank}}</td>
                           <td>{{ranking.address}}</td>
-                          <td class="betoken-font">{{ranking.kairoBalance}} KRO</td>
+                          <td class="betoken-font">{{ranking.kairoBalance}}</td>
                       </tr>
-  
-                      <!-- <tr class="pointer">
-                          <td colspan="3" class="text-center">Show More</td>
-                      </tr> -->
-  
                     </tbody>
                   </table>
             </div>  

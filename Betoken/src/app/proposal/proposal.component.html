@@ -23,16 +23,16 @@
 
         <div class="proposal-table-sec col-12 mt-3">
           <div class="sec-header">
-              <p class="sec-title">Proposals</p>
+              <p class="sec-title">Investments</p>
           </div>
           <div class="cards table-responsive">
               <table class="table proposal-table">
                   <thead class="betoken-font">
                     <tr>
                       <th scope="col">Asset</th>
-                      <th scope="col">Staked KRO</th>
                       <th scope="col">Buy price</th>
-                      <th scope="col">Curr. price</th>
+                      <th scope="col">Current/Sell price</th>
+                      <th scope="col">Staked KRO</th>
                       <th scope="col">KRO to redeem</th>
                       <th scope="col">Action</th>
                     </tr>
@@ -48,120 +48,24 @@
                                       </div>
                                   </div>
                                 </td>
+                                <td>$ {{data.buyPrice / (1e18)}}</td>
+                                <td>$ {{data.sellPrice.toNumber() / (1e18)}} </td>
                                 <td>{{data.stake}}</td>
-                                <td>$ {{data.buyPrice / (1000000000000000000)}}</td>
-                                <div >
-                                <td>$ {{data.sellPrice.c[0] / (10000)}} </td>
-                                </div>
                                 <td class="profit">
-                                    <span class="diffrence">{{(data.kroChange + data.stake)}}</span> 
+                                    <span class="diffrence">{{data.currValue}}</span> 
                                     <span class="value profit-font">{{data.kroChange}}</span>
                                 </td>
                                 <td *ngIf = "data.isSold == false">
-                                    <button class="outline-button" (click)="sell(data)">SELL</button>
+                                    <button class="outline-button" (click)="sell(data)" style="background-color: #18daa3; color: white">SELL</button>
                                 </td>
                                 <td *ngIf = "data.isSold == true">
-                                    <button class="outline-button-disable" >SOLD</button>
+                                    <button class="outline-button-disable" style="background-color: #f2f2f2">SOLD</button>
                                 </td>
-                              </tr>
-                              
-                    <!-- <tr>
-                      <td class="identy">
-                        <div class="d-flex align-items-center">
-                            <div class="dot purple"> </div>
-                            <div class="name ml-3">
-                              <p class="m-0 abrivation">ETH</p>
-                              <p class="m-0 expansion">Ethereum</p>
-                            </div>
-                        </div>
-                      </td>
-                      <td>0.3000</td>
-                      <td>$ 604.0000</td>
-                      <td>$ 608.0000</td>
-                      <td class="profit">
-                          <span class="diffrence">0.3965</span>
-                          <span class="value profit-font">+0.0965</span>
-                      </td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                        <td class="identy">
-                          <div class="d-flex align-items-center">
-                              <div class="dot orange"> </div>
-                              <div class="name ml-3">
-                                <p class="m-0 abrivation">MANA</p>
-                                <p class="m-0 expansion">Decentraland</p>
-                              </div>
-                          </div>
-                        </td>
-                        <td>0.2500</td>
-                        <td>$ 0.1000</td>
-                        <td>$ 0.1456</td>
-                        <td class="profit">
-                          <span class="diffrence">0.3965</span>
-                          <span class="value profit-font">+0.0965</span>
-                        </td>
-                        <td>
-                          <button class="outline-button" (click)="sell()">SELL</button>
-                        </td>
-                      </tr> -->
+                            </tr>
                   </tbody>
                 </table>
           </div>  
         </div>
-        <!-- <div class="history-table-sec col-12 mt-3 mb-5">
-        <div class="sec-header">
-            <p class="sec-title">History</p>
-        </div>
-       <div class="cards table-responsive">
-          <table class="table history-table">
-              <thead class="betoken-font">
-                <tr>
-                  <th scope="col">Asset</th>
-                  <th scope="col">Buy price</th>
-                  <th scope="col">Sell price</th>
-                  <th scope="col">KRO P/Loose</th>
-                  <th scope="col">P/Loose</th>
-                  <th scope="col">Details</th>
-                </tr>
-              </thead>
-              <tbody class="black-font">
-                <tr>
-                  <td class="identy">
-                    <div class="d-flex align-items-center">
-                        <div class="dot purple"> </div>
-                        <div class="name ml-3">
-                          <p class="m-0 abrivation">ETH</p>
-                          <p class="m-0 expansion">Ethereum</p>
-                        </div>
-                    </div>
-                  </td>
-                  <td>$ 11.0000</td>
-                  <td>$ 14.0000</td>
-                  <td class="profit-font">+0.2334</td>
-                  <td class="profit-font">+10.2334</td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td class="identy">
-                      <div class="d-flex align-items-center">
-                          <div class="dot orange"> </div>
-                          <div class="name ml-3">
-                            <p class="m-0 abrivation">MANA</p>
-                            <p class="m-0 expansion">Decentraland</p>
-                          </div>
-                      </div>
-                  </td>
-                  <td>$ 0.2500</td>
-                  <td>$ 0.1000</td>
-                  <td class="loss-font">-0.5640</td>
-                  <td class="loss-font">-0.0340</td>
-                  <td><img src="assets/images/export.png" class="pointer"></td>
-                  </tr>
-              </tbody>
-            </table>
-       </div>
-        </div> -->
   </div>
 </div>
 
@@ -182,85 +86,16 @@
         </div>
 
         <div class="main-sec" *ngIf="step1">
-            <p class="m-0 pb-4 black-font">Influence the fund strategy by staking KRO to support ETH and ERC20 tokens.</p>
+            <p class="m-0 pb-4 black-font">Stake Kairo tokens to invest in crypto-assets.</p>
 
-            <p class="m-0 pb-4 black-font">  If your investments are profitables when the Betoken’s cycle end, you’ll have more KRO. 
-                That means more gains and more control over the fund’s decisions.</p>
+            <p class="m-0 pb-4 black-font">If the price of the asset goes up, you're rewarded with more Kairo. 
+                More Kairo means more monthly commissions, as well as more money you can use for investing.</p>
         
             <p class="m-0">Select an asset
                 <img src="assets/images/info_icon.png"> </p>
             <div class="mt-2 mb-3 outline-box w-100 d-flex  align-items-center justify-content-between">
                 <select id="selectedTokenSymbolidd"   class="border-0 betoken-font w-100" (change)="updateTokenSymbol($event.target.value)" class="border-0 betoken-font" >
-                    <!-- <option>ETH - Ethereum ($600.92)</option>
-                    <option>ETH - Ethereum ($600.92)</option> -->
-
                     <option *ngFor = "let token of tokenList" >{{token}} </option>
-
-                    <!-- <option>ETH</option>
-                  
-                    <option>ABT</option>
-                  
-                    <option>AE</option>
-                  
-                    <option>APPC </option>
-                  
-                    <option>BAT </option>
-                  
-                    <option>BBO </option>
-                  
-                    <option>BLZ </option>
-                  
-                    <option>ELEC </option>
-                  
-                    <option>ELF </option>
-                  
-                    <option>ENJ </option>
-                  
-                    <option>IOST </option>
-                  
-                    <option>KNC </option>
-                  
-                    <option>LBA </option>
-                  
-                    <option>LINK </option>
-                  
-                    <option>MANA </option>
-                  
-                    <option>MOT </option>
-                  
-                    <option>OMG </option>
-                  
-                    <option>PAL </option>
-                  
-                    <option>POLY </option>
-                  
-                    <option>RCN </option>
-                  
-                    <option>RDN </option>
-                  
-                    <option>REQ </option>
-                  
-                    <option>SNT </option>
-                  
-                    <option>STORM </option>
-                  
-                    <option>ZIL </option>
-                  
-                    <option>COFI </option>
-                  
-                    <option>WINGS </option>
-                  
-                    <option>WABI </option>
-                  
-                    <option>MDS </option>
-                  
-                    <option>LEND </option>
-                  
-                    <option>PAY </option>
-                  
-                    <option>BNT </option>
-                  
-                    <option>TOMO </option> -->
                 </select>
                 <p *ngIf = "tradeAssetval !== undfined">Current Price - {{tradeAssetval}} DAI</p>
 
@@ -270,14 +105,7 @@
                     <img src="assets/images/info_icon.png"> </p>
                 <p class="m-0">Max</p>
             </div>
-            <!-- <div class="mt-2 outline-box w-100 d-flex  align-items-center justify-content-between">
-                <p class="m-0">1</p>
-            </div> -->
-            <!-- <div class="mt-2 outline-box w-100 d-flex  align-items-center justify-content-between"> -->
-                <input type="text" class="outline-box" (keyup) = "kairoInput($event)" placeholder="1.0000">
- 
-            <!-- </div> -->
-
+            <input type="text" class="outline-box" (keyup) = "kairoInput($event)" placeholder="1.0000">
         </div>
 
         <div class="confirmation-sec m-3" *ngIf="step2">
@@ -289,7 +117,7 @@
                 It's fine to stick with these defaults gas limit and price.
             </p>
             <div class="d-flex justify-content-center mb-5">
-                <img src="assets/images/metamask-big.png" class="pointer " (click)="confirm()">
+                <img src="assets/images/metamask-big.png">
             </div>
         </div>
 
@@ -341,88 +169,87 @@
     </div>
 
     <div class="content proposal-trade-phase" *ngIf="tradeproposalfund">
-            <div class="modal-header d-flex align-items-center">
-                    <div class="modal-tittle">
-                        Trade to redeem your KRO
-                    </div>
-                    <div class="modal-close">
-                        <button type="button" class="close black-font" (click)="closePopup()">&times;</button>
-                    </div>
-            </div>
-            <div class="time-wrapper">
-                <p class="m-0">Time left to invest: {{days}}d {{hours}}h {{minutes}}m {{seconds}}s
-                    <img src="assets/images/info_icon.png" title="Time available">
-                </p>
-            </div>
-            <div class="confirmation-sec m-3" *ngIf="sellStep1">
-                    <p class="mb-3">
-                        🚨 Confirm your trade for this asset
-                    </p>
-                    <p class="m-0 pb-4 black-font">
-                        Confirm the transaction in the Metamask’s interface to submit it to the Betoken fund contract.
-                        It's fine to stick with these defaults gas limit and price.
-                    </p>
-                    <div class="d-flex justify-content-center mb-5">
-                        <img src="assets/images/metamask-big.png" class="pointer " (click)="confirmsell()">
-                    </div>
-        
-            </div>
-            <div class="broadcast-sec m-3" *ngIf="sellStep2">
-                    <p class="mb-3">
-                        🎉 Transaction broadcasted!
-                    </p>
-                    <p class="m-0 pb-4 black-font">
-                        Your transaction is being saved on the Ethereum blockchain. 
-                        You can check its status on Etherscan.
-                    </p>
-                    <div class="d-flex justify-content-center mb-5">
-                        <img src="assets/images/loader.png" class="pointer ">
-                    </div>
-                    <p class="m-0">
-                        Transaction ID
-                    </p>
-                    <div class="mt-2 outline-box w-100 d-flex align-items-center justify-content-between bg-white ">
-                        <p class="m-0">0xf1af503...456e7c62116caf09</p>
-                        <img src="assets/images/export.png" class="pointer ml-1">
-                    </div>
-            </div> 
-            <div class="final-sec m-3" *ngIf="sellStep3">
+        <div class="modal-header d-flex align-items-center">
+                <div class="modal-tittle">
+                    Trade to redeem your KRO
+                </div>
+                <div class="modal-close">
+                    <button type="button" class="close black-font" (click)="closePopup()">&times;</button>
+                </div>
+        </div>
+        <div class="time-wrapper">
+            <p class="m-0">Time left to invest: {{days}}d {{hours}}h {{minutes}}m {{seconds}}s
+                <img src="assets/images/info_icon.png" title="Time available">
+            </p>
+        </div>
+        <div class="confirmation-sec m-3" *ngIf="sellStep1">
                 <p class="mb-3">
-                    🙌 Done. Check your balance!
+                    🚨 Confirm your trade for this asset
                 </p>
                 <p class="m-0 pb-4 black-font">
-                    You redeeemed 0.3965 KRO.
+                    Confirm the transaction in the Metamask’s interface to submit it to the Betoken fund contract.
+                    It's fine to stick with these defaults gas limit and price.
                 </p>
-                <div class="d-flex justify-content-center mb-4 mt-4">
-                    <img src="assets/images/finish.png" class="pointer ">
+                <div class="d-flex justify-content-center mb-5">
+                    <img src="assets/images/metamask-big.png" class="pointer " (click)="confirmsell()">
                 </div>
-                <p class="m-0 mt-4">
+    
+        </div>
+        <div class="broadcast-sec m-3" *ngIf="sellStep2">
+                <p class="mb-3">
+                    🎉 Transaction broadcasted!
+                </p>
+                <p class="m-0 pb-4 black-font">
+                    Your transaction is being saved on the Ethereum blockchain. 
+                    You can check its status on Etherscan.
+                </p>
+                <div class="d-flex justify-content-center mb-5">
+                    <img src="assets/images/loader.png" class="pointer ">
+                </div>
+                <p class="m-0">
                     Transaction ID
                 </p>
-                <div class="mt-2 outline-box w-100 d-flex align-items-center justify-content-between bg-white">
-                    <p class="m-0">0xf1af503d...456e7c62116caf09</p>
+                <div class="mt-2 outline-box w-100 d-flex align-items-center justify-content-between bg-white ">
+                    <p class="m-0">0xf1af503...456e7c62116caf09</p>
                     <img src="assets/images/export.png" class="pointer ml-1">
-                </div>    
-            </div>   
-            <div class="modal-button-wrapper">
-                <button class="text-center outline-button active w-100" *ngIf="sellStep3" (click)="newsupport()">TRADE SUCCESSFUL</button>       
+                </div>
+        </div> 
+        <div class="final-sec m-3" *ngIf="sellStep3">
+            <p class="mb-3">
+                🙌 Done. Check your balance!
+            </p>
+            <p class="m-0 pb-4 black-font">
+                You redeeemed 0.3965 KRO.
+            </p>
+            <div class="d-flex justify-content-center mb-4 mt-4">
+                <img src="assets/images/finish.png" class="pointer ">
             </div>
-            
+            <p class="m-0 mt-4">
+                Transaction ID
+            </p>
+            <div class="mt-2 outline-box w-100 d-flex align-items-center justify-content-between bg-white">
+                <p class="m-0">0xf1af503d...456e7c62116caf09</p>
+                <img src="assets/images/export.png" class="pointer ml-1">
+            </div>    
+        </div>   
+        <div class="modal-button-wrapper">
+            <button class="text-center outline-button active w-100" *ngIf="sellStep3" (click)="newsupport()">TRADE SUCCESSFUL</button>       
+        </div>
     </div>    
 
     <div class="content proposal-changefund-phase" *ngIf="changeproposalfund">
             <div class="modal-header d-flex align-items-center">
-                    <div class="modal-tittle">
-                            Change fund phase
-                    </div>
-                    <div class="modal-close">
-                        <button type="button" class="close black-font" (click)="closePopup()">&times;</button>
-                    </div>
+                <div class="modal-tittle">
+                    Change fund phase
+                </div>
+                <div class="modal-close">
+                    <button type="button" class="close black-font" (click)="closePopup()">&times;</button>
+                </div>
             </div>
             <div class="main-sec" *ngIf="changeStep1">
-                    <p class="m-0 pb-5 black-font">This action will be repercuted on all the fund’s participants.
-                         By being the first to operate this action, you’ll be granted 0.01 KRO.
-                    </p>
+                <p class="m-0 pb-5 black-font">This action will be repercuted on all the fund’s participants.
+                        By being the first to operate this action, you’ll be granted 10 KRO.
+                </p>
             </div>
             <div class="confirmation-sec m-3" *ngIf="changeStep2">
                     <p class="mb-3">

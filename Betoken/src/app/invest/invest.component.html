@@ -101,7 +101,7 @@
             <div class="row befund-portfolio-sec mb-2">
                 <div class="col-12 col-lg-12 ">
                     <div class="sec-header">
-                        <p class="sec-title">Portfolio</p>
+                        <p class="sec-title">Your Account</p>
                     </div>
                     <div class="cards">
                         <div class="row portfolio-div">
@@ -111,7 +111,7 @@
                                 </div>
                                 <div class="portfolio-desc" (click)= "copyToClipBoard(user_address)">
                                     <p class="portfolio-title betoken-font m-0">Eth. Mainnet</p>
-                                    <p class="portfolio-value black-font m-0 ellipseDesign" > {{user_address}} </p>
+                                    <p class="portfolio-value black-font m-0 ellipseDesign"> {{user_address}} </p>
                                 </div>
                             </div>
 
@@ -126,7 +126,7 @@
 
                             <div class="portfolio col-6 col-md-6 col-lg-3 d-flex align-items-center mb-2">
                                 <div class="portfolio-desc" (click)= "copyToClipBoard(kairo_balance)">
-                                    <p class="portfolio-title betoken-font m-0">Kairos balance
+                                    <p class="portfolio-title betoken-font m-0">Kairo balance
                                         <img src="assets/images/info_icon.png">
                                     </p>
                                     <p class="portfolio-value black-font m-0 ellipseDesign" >{{kairo_balance}} </p>
@@ -138,7 +138,7 @@
                                     <p class="portfolio-title betoken-font m-0">Your monthly P/L
                                         <img src="assets/images/info_icon.png">
                                     </p>
-                                    <p class="portfolio-value black-font m-0">{{monthly_pl}} % </p>
+                                    <p class="portfolio-value black-font m-0">{{monthly_pl}}%</p>
                                 </div>
                             </div>
                         </div>
@@ -151,15 +151,15 @@
             <div class="row befund-statitics-sec">
                 <div class="col-12 col-lg-12 ">
                     <div class="sec-header">
-                        <p class="sec-title">Betoken fund</p>
+                        <p class="sec-title">Past Performance & Statistics</p>
                     </div>
                     <div class="cards">
                         <div class="content-header d-flex align-items-center mb-3">
                             <div class="dot  green mr-2"></div>
                             <div class="betoken-desc">
-                                <p class="betoken-title betoken-font m-0">Betoken fund share price (BTF)
+                                <p class="betoken-title betoken-font m-0">Betoken Share (BTF) Price
                                     <img src="assets/images/info_icon.png"> </p>
-                                <p class="betoken-price black-font m-0"> $ 100.0000 USD</p>
+                                <p class="betoken-price black-font m-0"> {{sharePrice}} DAI </p>
                             </div>
                         </div>
                         <div class="content">
@@ -170,7 +170,7 @@
                                         <img src="assets/images/average.png">
                                     </div>
                                     <div class="key-hilights">
-                                        <p class="hilight-title betoken-font m-0">Avg. Mo return
+                                        <p class="hilight-title betoken-font m-0">Avg. Monthly return
                                             <img src="assets/images/info_icon.png">
                                         </p>
                                         <p class="hilight-value black-font m-0"> {{avgMonthReturn}}% </p>
@@ -181,7 +181,7 @@
                                         <img src="assets/images/return.png">
                                     </div>
                                     <div class="key-hilights">
-                                        <p class="hilight-title betoken-font m-0"> curr Mo ROI
+                                        <p class="hilight-title betoken-font m-0"> Current Month ROI
                                             <img src="assets/images/info_icon.png">
                                         </p>
                                         <p class="hilight-value black-font m-0"> {{currMoROI}}% </p>
@@ -192,7 +192,7 @@
                                         <img src="assets/images/users.png">
                                     </div>
                                     <div class="key-hilights">
-                                        <p class="hilight-title betoken-font m-0">Total users
+                                        <p class="hilight-title betoken-font m-0">Total Managers
                                             <img src="assets/images/info_icon.png">
                                         </p>
                                         <p class="hilight-value black-font m-0"> {{totalUser}} </p>
@@ -204,7 +204,7 @@
                                         <img src="assets/images/account-wallet.png">
                                     </div>
                                     <div class="key-hilights">
-                                        <p class="hilight-title betoken-font m-0">AUM (US)
+                                        <p class="hilight-title betoken-font m-0">AUM (DAI)
                                             <img src="assets/images/info_icon.png">
                                         </p>
                                         <p class="hilight-value black-font m-0"> {{AUM}} </p>
@@ -216,7 +216,7 @@
                                         <img src="assets/images/kairo-share-icon.png">
                                     </div>
                                     <div class="key-hilights">
-                                        <p class="hilight-title betoken-font m-0">Tot. Kairo (USD)
+                                        <p class="hilight-title betoken-font m-0">Tot. Kairo
                                             <img src="assets/images/info_icon.png">
                                         </p>
                                         <p class="hilight-value black-font m-0 ellipseDesign" > {{totalKairo}} </p>
@@ -228,7 +228,7 @@
                                         <img src="assets/images/betoken-share-icon.png">
                                     </div>
                                     <div class="key-hilights">
-                                        <p class="hilight-title betoken-font m-0">Tot. BTF Shares
+                                        <p class="hilight-title betoken-font m-0">Tot. Betoken Shares
                                             <img src="assets/images/info_icon.png">
                                         </p>
                                         <p class="hilight-value black-font m-0 ellipseDesign" > {{totalBTFShares}} </p>
@@ -239,72 +239,8 @@
                     </div>
                 </div>
             </div>
-            <!-- <div class="row befund-profit-sec">
-                <div class="col-lg-12">
-                    <div class="sec-header">
-                        <p class="sec-title">Betoken fund profit</p>
-                    </div>
-
-                    <div class="cards">
-
-                        <div class="content-header d-flex align-items-center mb-3">
-
-                            <div class="dot green mr-2"></div>
-                            <div class="betoken-desc">
-                                <p class="betoken-title betoken-font m-0">Last investment cycle profit
-                                    <img src="assets/images/info_icon.png"> </p>
-                                <p class="betoken-price black-font m-0"> 83.56 %</p>
-                            </div>
-
-                        </div>
-
-                        <div class="content">
-                            <div [chart]="bar" class="mb-4 befund-profit-graph "></div>
-                        </div>
-
-
-                    </div>
-                </div>
-            </div> -->
             <div class="row support mb-5">
-                <div class="email-update-sec col-lg-6 col-md-6 col-sm-12 mb-3">
-
-                    <div class="sec-header">
-                        <p class="sec-title">Receive email updates</p>
-                    </div>
-
-                    <div class="cards">
-
-                        <p class="update-info black-font">
-                            Get updates about the fund status, begining of new investment cycle phases and date to redeem commissions.
-                        </p>
-
-                        <p>
-                            Email address
-                        </p>
-
-                        <input type="email" class="outline-button w-100 mb-3" placeholder="myemail@address.com">
-
-                        <button class="text-center outline-button black-font w-100 mb-3">
-                            GET UPDATED
-                        </button>
-
-                        <div class="update-footer">
-
-                            <p class="black-font">
-                                Join our community on Telegram
-                                <img src="assets/images/telegram-icon.png">
-                            </p>
-
-
-                        </div>
-
-
-                    </div>
-
-                </div>
-
-                <div class="faq-sec col-lg-6 col-md-6 col-sm-12 mb-3">
+                <div class="faq-sec col-lg-12 col-md-6 col-sm-12 mb-3">
 
                     <div class="sec-header">
                         <p class="sec-title">FAQ</p>
@@ -353,78 +289,70 @@
         </div>
         <div class="right-sec col-12 col-lg-4 order-1 order-lg-2">
             <div class="row profit-history-sec">
-                <div class="col-12 col-md-6 col-lg-12 mb-3">
-                    <div class="sec-header">
-                        <p class="sec-title">Betoken fund profit since
-                            <img src="assets/images/info_icon.png" class="margin-bot-10">
-                        </p>
-                    </div>
-
-                    <div class="cards">
-
-                        <div class="duration d-flex">
-                            <p class="dur-tittle betoken-font">1M Return</p>
-                            <p class="dur-val"> +10 % </p>
-                        </div>
-
-                        <div class="duration d-flex">
-                            <p class="dur-tittle betoken-font">3M Return</p>
-                            <p class="dur-val"> +150 % </p>
-                        </div>
-
-                        <div class="duration d-flex">
-                            <p class="dur-tittle betoken-font">3M Return</p>
-                            <p class="dur-val"> +243 % </p>
-                        </div>
-
-                        <div class="duration d-flex">
-                            <p class="dur-tittle betoken-font">1Year Return</p>
-                            <p class="dur-val"> +1,678 % </p>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="col-12  col-md-6 col-lg-12">
+                <div class="col-12  col-md-6 col-lg-12 mb-3">
                     <div class="sec-header">
                         <p class="sec-title">Betoken fund details</p>
                     </div>
 
                     <div class="cards">
-
-                        <div class="component d-flex">
-                            <p class="component-tittle betoken-font">Creation date</p>
-                            <p class="component-val black-font"> 8. May 2018 16:31 </p>
-                        </div>
-
-                        <div class="component d-flex">
-                            <p class="component-tittle betoken-font">Annualized Sharpe Ratio
-                                <img src="assets/images/info_icon.png">
-                            </p>
-                            <p class="component-val black-font"> 3.44 </p>
-                        </div>
-
                         <div class="component d-flex">
                             <p class="component-tittle betoken-font">Management fee
                                 <img src="assets/images/info_icon.png"> </p>
-                            <p class="component-val black-font"> 1.5 % </p>
+                            <p class="component-val black-font"> 0.1 % </p>
                         </div>
 
                         <div class="component d-flex">
                             <p class="component-tittle betoken-font">Performance fee
                                 <img src="assets/images/info_icon.png"> </p>
-                            <p class="component-val black-font"> 17.5 % </p>
+                            <p class="component-val black-font"> 20 % </p>
                         </div>
 
                         <div class="component d-flex">
-                            <p class="component-tittle betoken-font"> Minimum Investment</p>
-                            <p class="component-val black-font"> 0 </p>
+                            <p class="component-tittle betoken-font">Developer fee
+                                <img src="assets/images/info_icon.png"> </p>
+                            <p class="component-val black-font"> 0.1 % </p>
                         </div>
 
+                        <div class="component d-flex">
+                            <p class="component-tittle betoken-font">Withdrawal fee
+                                <img src="assets/images/info_icon.png"> </p>
+                            <p class="component-val black-font"> 3 % </p>
+                        </div>
+                    </div>
+                </div>
 
+                <div class="email-update-sec col-12 col-md-6 col-lg-12 mb-3">
+                    <div class="sec-header">
+                        <p class="sec-title">Receive email updates</p>
+                    </div>
+
+                    <div class="cards">
+
+                        <p class="update-info black-font">
+                            Get updates about the fund status, begining of new investment cycle phases and date to redeem commissions.
+                        </p>
+
+                        <p>
+                            Email address
+                        </p>
+
+                        <input type="email" class="outline-button w-100 mb-3" placeholder="myemail@address.com">
+
+                        <button class="text-center outline-button black-font w-100 mb-3">
+                            GET UPDATED
+                        </button>
+
+                        <div class="update-footer">
+                            <a target="_blank" href="https://t.me/betokenfund">
+                                <p class="black-font">
+                                    Join our community on Telegram
+                                    <img src="assets/images/telegram-icon.png">
+                                </p>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </div>
@@ -455,7 +383,7 @@
         </div>
 
         <div class="main-sec" *ngIf="step1">
-            <p class="m-0 pb-5 black-font" *ngIf="investflow">To invest in the fund, you need to buy BTF shares. Choose the amount of shares you want. By buying shares, you’ll
+            <p class="m-0 pb-5 black-font" *ngIf="investflow">To invest in the fund, simply buy BTF shares. Choose the amount of shares you want. By buying shares, you’ll
                 also receive KRO token - You can influence the fund’s portfolio by staking Kairo tokens to buy & sell in
                 cryptoassets.
             </p>
@@ -479,83 +407,8 @@
                 <p class="m-0" *ngIf="withdrawflow">Into Currency:</p>
                 <select id="selectedTokenSymbolid" (change)="updateTokenSymbol($event.target.value)"  class="border-0 betoken-font">
                     <option *ngFor = "let token of tokenList" >{{token}} </option>
-
-                    <!-- <option>DAI</option>
-        
-                    <option>ETH</option>
-                  
-                    <option>ABT</option>
-                  
-                    <option>AE</option>
-                  
-                    <option>APPC</option>
-                  
-                    <option>BAT</option>
-                  
-                    <option>BBO</option>
-                  
-                    <option>BLZ</option>
-                  
-                    <option>ELEC</option>
-                  
-                    <option>ELF</option>
-                  
-                    <option>ENJ</option>
-                  
-                    <option>IOST</option>
-                  
-                    <option>KNC</option>
-                  
-                    <option>LBA</option>
-                  
-                    <option>LINK</option>
-                  
-                    <option>MANA</option>
-                  
-                    <option>MOT</option>
-                  
-                    <option>OMG</option>
-                  
-                    <option>PAL</option>
-                  
-                    <option>POLY</option>
-                  
-                    <option>RCN</option>
-                  
-                    <option>RDN</option>
-                  
-                    <option>REQ</option>
-                  
-                    <option>SNT</option>
-                  
-                    <option>STORM</option>
-                  
-                    <option>ZIL</option>
-                  
-                    <option>COFI</option>
-                  
-                    <option>WINGS</option>
-                  
-                    <option>WABI</option>
-                  
-                    <option>MDS</option>
-                  
-                    <option>LEND</option>
-                  
-                    <option>PAY</option>
-                  
-                    <option>BNT</option>
-                  
-                    <option>TOMO</option> -->
                 </select>
             </div>
-
-            <!-- <p class="m-0">Amount of KRO you’ll receive
-                <img src="assets/images/info_icon.png"> </p>
-            <div class="mt-2 outline-box w-100 d-flex  align-items-center justify-content-between">
-                <p class="m-0">100.00</p>
-            </div> -->
-
         </div>
 
         <div class="confirmation-sec m-3" *ngIf="step2">
@@ -627,7 +480,7 @@
     <div class="content changefund-phase" *ngIf="changefundphase">
             <div class="modal-header d-flex align-items-center">
                     <div class="modal-tittle">
-                            Change fund phase
+                        Change fund phase
                     </div>
                     <div class="modal-close">
                         <button type="button" class="close black-font" (click)="closePopup()">&times;</button>

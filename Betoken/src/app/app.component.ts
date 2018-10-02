@@ -28,14 +28,14 @@ export class AppComponent {
   private proposalphase: Subject<boolean> = new Subject<boolean>();
   private changeproposal: Subject<boolean> = new Subject<boolean>();
   private redeemphase: Subject<boolean> = new Subject<boolean>();
- 
+
   private phasebtn1: Subject<boolean> = new Subject<boolean>();
   private tradebtn: Subject<boolean> = new Subject<boolean>();
   private nextbtn: Subject<boolean> = new Subject<boolean>();
   private redeembtn: Subject<boolean> = new Subject<boolean>();
   private newcyclebtn: Subject<boolean> = new Subject<boolean>();
-  
-  
+
+
   constructor() {
     document_ready(this.start);
   }
@@ -62,12 +62,12 @@ export class AppComponent {
     this.subject.next(this.open);
   }
 
-  setchangefundPopUp(){
+  setchangefundPopUp() {
     this.open = !this.open;
     this.changefundphase.next(this.open);
   }
 
-  getchangefundPopUp(): Observable<any>{
+  getchangefundPopUp(): Observable<any> {
     return this.changefundphase.asObservable();
   }
 
@@ -79,79 +79,79 @@ export class AppComponent {
     this.popupw.next(true);
   }
 
-  getPopUpW(): Observable<any>{
+  getPopUpW(): Observable<any> {
     return this.popupw.asObservable();
   }
 
-  getPopUp(): Observable<any>{
+  getPopUp(): Observable<any> {
     return this.popup.asObservable();
   }
 
-  setNextPhaseBtn(){
+  setNextPhaseBtn() {
     this.phasebtn1.next(true);
   }
 
-  getNextPhaseBtn(){
+  getNextPhaseBtn() {
     return this.phasebtn1.asObservable();
-  } 
+  }
 
-  setTradeBtn(){
+  setTradeBtn() {
     this.tradebtn.next(true);
   }
 
-  getTradeBtn(){
+  getTradeBtn() {
     return this.tradebtn.asObservable();
-  } 
+  }
 
-  setproposalPopUp(){
+  setproposalPopUp() {
     this.open = !this.open;
     this.active = false;
     this.proposalphase.next(true);
   }
 
-  getproposalPopUp(): Observable<any>{
+  getproposalPopUp(): Observable<any> {
     return this.proposalphase.asObservable();
   }
 
-  setproposalchange(){
+  setproposalchange() {
     this.open = !this.open;
     this.active = false;
     this.changeproposal.next(true);
   }
 
-  getproposalchange(){
+  getproposalchange() {
     return this.changeproposal.asObservable();
   }
 
-  setNextButton(){
+  setNextButton() {
     this.nextbtn.next(true);
   }
 
-  getNextButton(){
+  getNextButton() {
     return this.nextbtn.asObservable();
   }
 
-  setRedeemButton(){
+  setRedeemButton() {
     this.redeembtn.next(true);
   }
 
-  getRedeemButton(){
+  getRedeemButton() {
     return this.redeembtn.asObservable();
   }
 
-  setredeemPopUp(){
+  setredeemPopUp() {
     this.redeemphase.next(true);
   }
 
-  getredeemPopUp(){
+  getredeemPopUp() {
     return this.redeemphase.asObservable();
   }
 
-  setnewcyclebtn(){
+  setnewcyclebtn() {
     this.newcyclebtn.next(true);
   }
 
-  getnewcyclebtn(){
+  getnewcyclebtn() {
     return this.newcyclebtn.asObservable();
   }
 }

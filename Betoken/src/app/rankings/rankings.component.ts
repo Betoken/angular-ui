@@ -10,29 +10,28 @@ import {
   styleUrls: ['./rankings.component.scss']
 })
 export class RankingsComponent implements OnInit {
-  rankingArray= [];
-  userRanking =[];
+  rankingArray = [];
+  userRanking = [];
   userValue: any;
   userAddress: any;
 
-  constructor() { 
-    setInterval(()=>{
-      if (userAddress.get() != "0x0"){
-      this.rankingList();   
-      this.userRank();   }
-       }, 5000);
+  constructor() {
+    setInterval(() => {
+      if (userAddress.get() !== '0x0') {
+        this.rankingList();
+        this.userRank();
+      }
+    }, 5000);
   }
 
   ngOnInit() {
   }
- async rankingList() {
-this.rankingArray =  await kairoRanking.get();
- console.log(this.rankingArray);
+  async rankingList() {
+    this.rankingArray =  await kairoRanking.get();
   }
-  async userRank(){
+  async userRank() {
     this.userRanking = await ranking_tab.user_rank();
     this.userValue = await ranking_tab.user_value();
     this.userAddress = await userAddress.get();
-     console.log(this.userRanking, this.userValue);
   }
 }

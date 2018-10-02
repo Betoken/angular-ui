@@ -10,27 +10,20 @@
               <thead class="betoken-font">
                 <tr>
                   <th scope="col">Time</th>
+                  <th scope="col">Asset</th>
                   <th scope="col">Type</th>
                   <th scope="col">Amount</th>
-                  <!-- <th scope="col">DAI amount</th> -->
                   <th scope="col">Details tx</th>
                 </tr>
               </thead>
               <tbody class="black-font">
                 <tr *ngFor = "let details of transactionTable">
                   <td>{{details.timestamp}}</td>
+                  <td>{{details.token}}</td>
                   <td>{{details.type}}</td>
                   <td>{{details.amount}}</td>
-                  <!-- <td>104.0000</td> -->
                   <td><img src="assets/images/export.png" class="pointer" (click) = "linkopen(details.txHash)"></td>
                 </tr>
-                <!-- <tr>
-                  <td>February 2, 2018</td>
-                  <td>Invest</td>
-                  <td>1.0000</td>
-                  <td>100.0000</td>
-                  <td></td>
-                </tr> -->
               </tbody>
           </table>
           <div class="transaction-details-div">

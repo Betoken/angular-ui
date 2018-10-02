@@ -5,9 +5,6 @@ export var transcationID;
 export var managerROI;
 export var network_prefix;
 export var ROIArray;
-// import "./body.html";
-
-// import "./body.css";
 
 import "tablesort";
 
@@ -172,27 +169,17 @@ showTransaction = function(_txHash) {
   transactionHash.set(_txHash);
   alert(transactionHash.get());
   transcationID = transactionHash.get();
-  // showtransnext(transactionHash.get());
-  // return transactionHash.get();
- // $("#transaction_sent_modal").modal("show");
 };
-
-
-// function showtransnext (handledata) {
-//   handledata(transactionHash.get());
-// }
 
 
 showError = function(_msg) {
   errorMessage.set(_msg);
   alert(errorMessage.get());
-  //return $("#error_modal").modal("show");
 };
 
 showSuccess = function(_msg) {
   successMessage.set(_msg);
-  alert(errorMsuccessMessageessage.get());
-  //return $("#success_modal").modal("show");
+  alert(successMessage.get());
 };
 
 copyTextToClipboard = function(text) {
@@ -397,7 +384,6 @@ loadTxHistory = async function() {
         _sender: userAddr
       }
     }));
-    results = [];
     for (j = 0, len = events.length; j < len; j++) {
       event = events[j];
       data = event.returnValues;
@@ -410,9 +396,8 @@ loadTxHistory = async function() {
       };
       tmp = transactionHistory.get();
       tmp.push(entry);
-      results.push(transactionHistory.set(tmp));
+      transactionHistory.set(tmp);
     }
-    return results;
   };
   // Get token transfer history
   getTransferHistory = async function(token, isIn) {
@@ -435,7 +420,6 @@ loadTxHistory = async function() {
         from: userAddr
       }
     }));
-    results = [];
     for (j = 0, len = events.length; j < len; j++) {
       _event = events[j];
       if (_event == null) {
@@ -454,13 +438,15 @@ loadTxHistory = async function() {
       };
       tmp = transactionHistory.get();
       tmp.push(entry);
-      results.push(transactionHistory.set(tmp));
+      transactionHistory.set(tmp);
     }
-    return results;
   };
-  await Promise.all([getDepositWithdrawHistory("Deposit"), getDepositWithdrawHistory("Withdraw"), getTransferHistory("KRO", true), getTransferHistory("KRO", false), getTransferHistory("BTKS", true), getTransferHistory("BTKS", false)]);
-  // await Promise.all([getDepositWithdrawHistory("Deposit"), getDepositWithdrawHistory("Withdraw")]);
-
+  await Promise.all([getDepositWithdrawHistory("Deposit"), getDepositWithdrawHistory("Withdraw"), getTransferHistory("BTKS", true), getTransferHistory("BTKS", false)]);
+  var tmp = transactionHistory.get();
+  tmp.sort((x, y) => {
+    return (new Date(x.timestamp)) < (new Date(y.timestamp));
+  })
+  transactionHistory.set(tmp);
   return isLoadingRecords.set(false);
 };
 
@@ -486,7 +472,8 @@ loadDecisions = async function() {
         investments[id].stake = BigNumber(investments[id].stake).div(1e18).toFormat(4);
         investments[id].sellPrice = investments[id].isSold ? BigNumber(investments[id].sellPrice) : assetSymbolToPrice(_symbol).mul(1e18);
         investments[id].ROI = BigNumber(investments[id].sellPrice).sub(investments[id].buyPrice).div(investments[id].buyPrice).mul(100).toFormat(4);
-        return investments[id].kroChange = BigNumber(investments[id].ROI).mul(investments[id].stake).div(100).toFormat(4);
+        investments[id].kroChange = BigNumber(investments[id].ROI).mul(investments[id].stake).div(100).toFormat(4);
+        investments[id].currValue = BigNumber(investments[id].kroChange).add(investments[id].stake).toFormat(4)
       });
     };
     handleAllProposals = (function() {
@@ -581,7 +568,7 @@ loadStats = async function() {
     var balance, value;
     balance = BigNumber((await betoken.getTokenBalance(assetSymbolToAddress(_token), betoken.addrs.betokenFund))).div(BigNumber(10).toPower((await betoken.getTokenDecimals(assetSymbolToAddress(_token)))));
     value = balance.mul(assetSymbolToPrice(_token));
-    return _fundValue = _fundValue.add(value);
+    return _fundValue = _fundValue.add(value.mul(1e18));
   };
   await Promise.all((function() {
     var j, len, results;
@@ -592,8 +579,7 @@ loadStats = async function() {
     }
     return results;
   })());
-  fundDAIBalance = BigNumber((await betoken.getTokenBalance(daiAddr.get(), betoken.addrs.betokenFund)));
-  _fundValue = _fundValue.add(fundDAIBalance.div(1e18));
+  _fundValue = _fundValue.add(totalFunds.get());
   fundValue.set(_fundValue);
   // Get statistics
   prevROI.set(BigNumber(0));
@@ -601,10 +587,6 @@ loadStats = async function() {
   historicalTotalCommission.set(BigNumber(0));
   await Promise.all([cycleTotalCommission.set(BigNumber((await betoken.getMappingOrArrayItem("totalCommissionOfCycle", cycleNumber.get())))), prevCommission.set(BigNumber((await betoken.getMappingOrArrayItem("totalCommissionOfCycle", cycleNumber.get() - 1))))]);
   // Get commission and draw ROI chart
-  
-  // Commented these two lines out cause we haven't implemented the chart part yet. So, the chart val is null as of now
-  //chart.data.datasets[0].data = [];
-  //chart.update();
 
   ROIArray = [];
 
@@ -645,16 +627,6 @@ loadStats = async function() {
         data = _event.returnValues;
         ROI = BigNumber(data._afterTotalFunds).minus(data._beforeTotalFunds).div(data._beforeTotalFunds).mul(100);
         // Update chart data
-
-        // Commenting this part out cause we haven't started working on chart yet
-        // chart.data.datasets[0].data.push({
-        //   x: data._cycleNumber,
-        //   y: ROI.toString()
-        // });
-        // chart.update();
-        // Update previous cycle ROI
-
-        //ROIArray[j] = [Number(data._cycleNumber), ROI.toNumber()];
         ROIArray.push([Number(data._cycleNumber), ROI.toNumber()]);
 
         if (+data._cycleNumber === cycleNumber.get() - 1) {
@@ -669,7 +641,7 @@ loadStats = async function() {
       // Take current cycle's ROI into consideration
       if (cyclePhase.get() !== 2) {
         totalInputFunds = totalInputFunds.add(totalFunds.get());
-        totalOutputFunds = totalOutputFunds.add(fundValue.get().mul(1e18));
+        totalOutputFunds = totalOutputFunds.add(fundValue.get());
       }
       return avgROI.set(totalOutputFunds.sub(totalInputFunds).div(totalInputFunds).mul(100));
     })
@@ -692,27 +664,20 @@ loadDynamicData = async function() {
   ]));
 };
 
-// $("document").ready(async function() {
 export var document_ready = async function(handledata) {
   var net, netID, pre;
-  // $("table").tablesort();
-  // $('a.item').tab();
-  // drawChart();
   if (web3 != null) {
     clock();
     netID = (await web3.eth.net.getId());
     if (netID !== NET_ID) {
       wrongNetwork.set(true);
       handledata(WRONG_NETWORK_ERR);
-     // showError(WRONG_NETWORK_ERR);
       web3 = new Web3(new Web3.providers.HttpProvider("https://rinkeby.infura.io/v3/3057a4979e92452bae6afaabed67a724"));
     } else {
       if (!hasWeb3) {
         handledata(NO_WEB3_ERR);
-       // showError(NO_WEB3_ERR);
       } else if (((await web3.eth.getAccounts())).length === 0) {
         handledata(METAMASK_LOCKED_ERR);
-       // showError(METAMASK_LOCKED_ERR);
       }
     }
     
@@ -746,19 +711,10 @@ export var document_ready = async function(handledata) {
       // refresh every 2 minutes
       return setInterval(loadDynamicData, 2 * 60 * 1000);
     });
-    // return $("#invest_token_type").on("change", function(e) {
-    //   var tokenSymbol;
-    //   tokenSymbol = e.target.value;
-    //   return newInvestmentSelectedToken.set(tokenSymbol);
-    // });
-
-    
   }
  }
-// });
 
-// Template.body.helpers({
-  export var body_helpers = {
+export var body_helpers = {
   transaction_hash: function() {
     return transactionHash.get();
   },
@@ -772,15 +728,7 @@ export var document_ready = async function(handledata) {
     return successMessage.get();
   }
 }
-// });
 
-// Template.body.events({
-//   "click .copyable": function(event) {
-//     return copyTextToClipboard(event.target.innerText);
-//   }
-// });
-
-// Template.top_bar.helpers({
 export var top_bar_helpers = {
   show_countdown: function() {
     return showCountdown.get();
@@ -827,27 +775,7 @@ export var top_bar_helpers = {
     }
   }
 }
-// });
 
-// Template.top_bar.events({
-//   "click .next_phase": function(event) {
-//     var error;
-//     try {
-//       return betoken.nextPhase(showTransaction, loadDynamicData);
-//     } catch (error1) {
-//       error = error1;
-//       return console.log(error);
-//     }
-//   },
-//   "click .emergency_withdraw": function(event) {
-//     return betoken.emergencyWithdraw(showTransaction, loadUserData);
-//   },
-//   "click .info_button": function(event) {
-//     return $("#contract_info_modal").modal("show");
-//   }
-// });
-
-// Template.countdown_timer.helpers({
 export var countdown_timer_helpers = {
   day: function() {
     return countdownDay.get();
@@ -863,19 +791,9 @@ export var countdown_timer_helpers = {
   },
   phase: function() {
     return cyclePhase.get();
-    // switch (cyclePhase.get()) {
-    //   case 0:
-    //     return "Deposit & Withdraw";
-    //   case 1:
-    //     return "Manage Investments";
-    //   case 2:
-    //     return "Redeem Commission";
-    // }
   }
 }
-// });
 
-// Template.sidebar.helpers({
 export var sidebar_heplers = {
   user_address: function() {
     return userAddress.get();
@@ -909,58 +827,18 @@ export var sidebar_heplers = {
     return BigNumber(0).toFormat(18);
   }
 }
-// });
 
-// Template.sidebar.events({
-  export var sidebar = {
-  // "click .kairo_unit_switch": function(event) {
-  //   if (event.target.checked) {
-  //     if (!kairoTotalSupply.get().isZero()) {
-  //       displayedKairoBalance.set(kairoBalance.get().div(kairoTotalSupply.get()).times("100"));
-  //     }
-  //     return displayedKairoUnit.set("%");
-  //   } else {
-  //     //Display Kairo
-  //     displayedKairoBalance.set(BigNumber(kairoBalance.get().div(1e18)));
-  //     return displayedKairoUnit.set("KRO");
-  //   }
-  // },
-  // "click .balance_unit_switch": function(event) {
-  //   if (event.target.checked) {
-  //     //Display BTKS
-  //     displayedInvestmentBalance.set(sharesBalance.get().div(1e18));
-  //     return displayedInvestmentUnit.set("BTKS");
-  //   } else {
-  //     if (!sharesTotalSupply.get().isZero()) {
-  //       displayedInvestmentBalance.set(sharesBalance.get().div(sharesTotalSupply.get()).mul(totalFunds.get()).div(1e18));
-  //     }
-  //     return displayedInvestmentUnit.set("DAI");
-  //   }
-  // },
-  // "click .redeem_commission": function(event) {
-  //   return betoken.redeemCommission(showTransaction, loadUserData);
-  // },
+export var sidebar = {
   "redeem_commission": async function(event) {
     return betoken.redeemCommission(showTransaction, loadUserData);
   },
-  // "click .redeem_commission_in_shares": function(event) {
-  //   return betoken.redeemCommissionInShares(showTransaction, loadDynamicData);
-  // }
+  
   "redeem_commission_in_shares" :async function(event) {
     return betoken.redeemCommissionInShares(showTransaction, loadDynamicData);
   }
 }
-// });
 
-// Template.transact_box.onCreated(function() {
-//   Template.instance().depositInputHasError = new ReactiveVar(false);
-//   Template.instance().withdrawInputHasError = new ReactiveVar(false);
-//   Template.instance().sendTokenAmountInputHasError = new ReactiveVar(false);
-//   return Template.instance().sendTokenRecipientInputHasError = new ReactiveVar(false);
-// });
-
-// Template.transact_box.helpers({
- export var transact_box_helpers = {
+export var transact_box_helpers = {
   is_disabled: function() {
     if (cyclePhase.get() !== 0) {
       return "disabled";
@@ -1006,55 +884,38 @@ export var sidebar_heplers = {
     return networkPrefix.get();
   }
 }
-// });
 
-// Template.transact_box.events({
-  export var transact_box_events = {
+export var transact_box_events = {
   "deposit_button": async function(amt, tokenSymbol, handledataSucess, handledataError) {
     var amount, tokenAddr, tokenSymbol;
     try {
-      // Template.instance().depositInputHasError.set(false);
-      //  amount = BigNumber($("#deposit_input")[0].value);
-      //  tokenSymbol = $("#deposit_token_type")[0].value;
-          amount = BigNumber(amt);
+      amount = BigNumber(amt);
       if (!amount.gt(0)) {
-        // Template.instance().depositInputHasError.set(true);
-        // return;
         handledataError('Amount must be greater than zero.');
         return;
       }
       tokenAddr = (await betoken.tokenSymbolToAddress(tokenSymbol));
-     // return betoken.depositToken(tokenAddr, amount, showTransaction, loadDynamicData);
       handledataSucess(betoken.depositToken(tokenAddr, amount, showTransaction, loadDynamicData));
       return;
     } catch (error1) {
       handledataError(error1);
       return;
-      // return Template.instance().depositInputHasError.set(true);
     }
   },
   "withdraw_button": async function(amt, tokenSymbol, handledataSucess, handledataError) {
     var amount, error, tokenAddr, tokenSymbol;
     try {
-      // Template.instance().withdrawInputHasError.set(false);
-      // amount = BigNumber($("#withdraw_input")[0].value);
-      // tokenSymbol = $("#withdraw_token_type")[0].value;
       amount = BigNumber(amt);
       if (!amount.greaterThan(0)) {
-        // Template.instance().withdrawInputHasError.set(true);
-        // return;
         handledataError('Amount must be greater than zero.');
         return;
       }
       tokenAddr = (await betoken.tokenSymbolToAddress(tokenSymbol));
-     // return betoken.withdrawToken(tokenAddr, amount, showTransaction, loadDynamicData);
      handledataSucess(betoken.withdrawToken(tokenAddr, amount, showTransaction, loadDynamicData));
      return;
     } catch (error1) {
        handledataError(error1);
        return;
-      // error = error1;
-      // return Template.instance().withdrawInputHasError.set(true);
     }
   },
   "click .token_send_button": function(event) {
@@ -1091,11 +952,9 @@ export var sidebar_heplers = {
     }
   }
 }
-//});
 
-// Template.stats_tab.helpers({
 export var stats_tab_helpers = {
-cycle_length: function() {
+  cycle_length: function() {
     if (phaseLengths.get().length > 0) {
       return BigNumber(phaseLengths.get().reduce(function(t, n) {
         return t + n;
@@ -1118,15 +977,13 @@ cycle_length: function() {
     return historicalTotalCommission.get().div(1e18).toFormat(2);
   },
   fund_value: function() {
-    return fundValue.get().toFormat(2);
+    return fundValue.get().div(1e18).toFormat(2);
   },
   cycle_roi: function() {
-    return fundValue.get().sub(totalFunds.get().div(1e18)).div(totalFunds.get().div(1e18)).mul(100).toFormat(4);
+    return fundValue.get().sub(totalFunds.get()).div(totalFunds.get()).mul(100).toFormat(4);
   }
 }
-// });
 
-// Template.decisions_tab.helpers({
 export var decisions_tab_helpers = {
   investment_list: function() {
     return investmentList.get();
@@ -1161,17 +1018,7 @@ export var decisions_tab_helpers = {
     return assetSymbolToPrice(newInvestToken);
   }
 }
-//});
 
-// Template.decisions_tab.events({
-// export var  decisions_tab_events = {
-//   "click .sell_investment": function(event) {
-//     var id;
-//     id = this.id;
-//     if (cyclePhase.get() === 1) {
-//       return betoken.sellAsset(id, showTransaction, loadDynamicData);
-//     }
-//   },
 export var  decisions_tab_events = {
   "sell_investment": async function(idd) {
     var id;
@@ -1181,29 +1028,17 @@ export var  decisions_tab_events = {
     }
   },
   "new_investment": async function(tokenSymbol, amt, handledataSucess, handledataError) {
-    // return $("#new_investment_modal").modal({
-    //   onApprove: async function(e) {
+    
         var address, error, kairoAmountInWeis, tokenSymbol;
         try {
-         // tokenSymbol = $("#invest_token_type")[0].value;
           address = (await betoken.tokenSymbolToAddress(tokenSymbol));
-         // kairoAmountInWeis = BigNumber($("#stake_input_new")[0].value).times("1e18");
           kairoAmountInWeis = BigNumber(amt).times("1e18");
           checkKairoAmountError(kairoAmountInWeis);
           handledataSucess(betoken.createInvestment(address, kairoAmountInWeis, showTransaction, loadUserData));
           return;
-          // showtransnext (function(val) {
-          //   handledatasus (val);
-          // });
-         
-          // handledatasus(showTransaction.transactionHash.get());
         } catch (error1) {
-          // error = error1;
-          // return showError(error.toString() || INPUT_ERR);
           handledataError(error1.toString() || INPUT_ERR);
         }
-  //     }
-  //  }).modal("show");
   },
   "keyup .prompt": function(event) {
     return filterTable(event, "decision_table", 1);
@@ -1213,7 +1048,6 @@ export var  decisions_tab_events = {
     return (await loadDecisions());
   }
 }
-//});
 
 checkKairoAmountError = function(kairoAmountInWeis) {
   if (!kairoAmountInWeis.greaterThan(0)) {
@@ -1224,8 +1058,7 @@ checkKairoAmountError = function(kairoAmountInWeis) {
   }
 };
 
-// Template.ranking_tab.helpers({
-  export var ranking_tab = {
+export var ranking_tab = {
   kairo_ranking: async function() {
     return kairoRanking.get();
   },
@@ -1249,78 +1082,9 @@ checkKairoAmountError = function(kairoAmountInWeis) {
     for (j = 0, len = ref.length; j < len; j++) {
       entry = ref[j];
       if (entry.address === userAddress.get()) {
-        return BigNumber(entry.kairoBalance).toFixed(4);
+        return BigNumber(entry.kairoBalance).toFixed(18);
       }
     }
     return "N/A";
   }
 }
-// });
-
-// Template.ranking_tab.events({
-//   "keyup .prompt": function(event) {
-//     return filterTable(event, "ranking_table", 1);
-//   },
-//   "click .goto_my_rank": function(event) {
-//     var entry, j, len, ref, results;
-//     ref = kairoRanking.get();
-//     results = [];
-//     for (j = 0, len = ref.length; j < len; j++) {
-//       entry = ref[j];
-//       if (entry.address === userAddress.get()) {
-//         results.push($("#ranking_table tr")[entry.rank - 1].scrollIntoView(true));
-//       } else {
-//         results.push(void 0);
-//       }
-//     }
-//     return results;
-//   },
-//   "click .refresh": async function(event) {
-//     await loadTokenPrices();
-//     return (await loadRanking());
-//   }
-// });
-
-// Template.price_tab.helpers({
-//   prices: function() {
-//     return TOKENS.map(function(token) {
-//       return {
-//         token_symbol: token,
-//         price: assetSymbolToPrice(token)
-//       };
-//     });
-//   },
-//   is_loading: function() {
-//     return isLoadingPrices.get();
-//   }
-// });
-
-// Template.price_tab.events({
-//   "keyup .prompt": function(event) {
-//     return filterTable(event, "price_table", 0);
-//   },
-//   "click .refresh": async function(event) {
-//     return (await loadTokenPrices());
-//   }
-// });
-
-filterTable = function(event, tableID, searchID) {
-  var entries, entry, j, len, results, searchInput, searchTarget;
-  searchInput = event.target.value.toLowerCase();
-  entries = $(`#${tableID} tr`);
-  results = [];
-  for (j = 0, len = entries.length; j < len; j++) {
-    entry = entries[j];
-    searchTarget = entry.children[searchID];
-    if (searchTarget) {
-      if (searchTarget.innerText.toLowerCase().indexOf(searchInput) > -1) {
-        results.push(entry.style.display = "");
-      } else {
-        results.push(entry.style.display = "none");
-      }
-    } else {
-      results.push(void 0);
-    }
-  }
-  return results;
-};

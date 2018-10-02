@@ -18,7 +18,7 @@ import { ProposalComponent } from './proposal/proposal.component';
 import { RedeemComponent } from './redeem/redeem.component';
 import { AccountComponent } from './account/account.component';
 import { RankingsComponent } from './rankings/rankings.component';
- 
+
 export function highchartsModules() {
   // apply Highcharts Modules to this array
   return [stock, more];

@@ -20,11 +20,11 @@ export class HeaderComponent implements OnInit {
   btn2: boolean;
   btn3: boolean;
 
-  tradebtn : boolean;
-  nextphasebtn : boolean;
-  redeembtn : boolean;
+  tradebtn: boolean;
+  nextphasebtn: boolean;
+  redeembtn: boolean;
 
-  newcyclebtn :boolean;
+  newcyclebtn: boolean;
   days = 0;
   hours = 0;
   minutes = 0;
@@ -40,13 +40,13 @@ export class HeaderComponent implements OnInit {
     this.redeembtn = false;
     this.newcyclebtn = false;
 
-     
-   setInterval(()=>{
-    if (userAddress.get() != "0x0"){
+
+   setInterval(() => {
+    if (userAddress.get() !== '0x0') {
       this.updateDates();
     }
      }, 1000 );
-  
+
   }
 
     async updateDates() {
@@ -62,30 +62,30 @@ export class HeaderComponent implements OnInit {
     this.ms.setToggleMenu();
   }
 
-  openModalPopup(){
+  openModalPopup() {
     this.router.navigate(['/home']);
     this.ms.setPopUp();
   }
 
-  openModalPopupW(){
+  openModalPopupW() {
     this.router.navigate(['/home']);
     this.ms.setPopUpW();
   }
 
-  changefundPopup(){
+  changefundPopup() {
     this.ms.setchangefundPopUp();
   }
-  
-  proposalPopup(){
+
+  proposalPopup() {
     this.router.navigate(['/proposal']);
     this.ms.setproposalPopUp();
   }
-  
-  changeproposal(){
+
+  changeproposal() {
     this.ms.setproposalchange();
   }
 
-  redeemPopup(){
+  redeemPopup() {
     this.ms.setredeemPopUp();
   }
 
@@ -106,28 +106,28 @@ export class HeaderComponent implements OnInit {
         this.btn3 = true;
         this.btn1 = false;
         this.btn2 = false;
-      } 
+      }
 
     });
 
-    this.ms.getNextButton().subscribe((nextbutton: boolean) =>{
-      if(nextbutton){
+    this.ms.getNextButton().subscribe((nextbutton: boolean) => {
+      if (nextbutton) {
         this.nextphasebtn = true;
         this.tradebtn = false;
         this.redeembtn = false;
       }
     });
 
-    this.ms.getRedeemButton().subscribe((redeembutton :boolean) =>{
-      if(redeembutton){
+    this.ms.getRedeemButton().subscribe((redeembutton: boolean) => {
+      if (redeembutton) {
         this.redeembtn = true;
         this.nextphasebtn = false;
         this.tradebtn = false;
       }
     });
 
-    this.ms.getnewcyclebtn().subscribe((newcyclebutton :boolean) =>{
-      if(newcyclebutton){
+    this.ms.getnewcyclebtn().subscribe((newcyclebutton: boolean) => {
+      if (newcyclebutton) {
         this.newcyclebtn = true;
       }
     });

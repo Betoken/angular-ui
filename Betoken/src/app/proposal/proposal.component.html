@@ -1,5 +1,5 @@
 <div class="proposal-wrapper header-height col-12 col-lg-10 float-right">
-  <div class="row">
+    <div class="row">
         <div class="alert-window col-12 " *ngIf="sellalert">
                 <div class="alert d-flex justify-content-between align-items-center col-12">
                     <p class="m-0">🚨 Sell your assets to redeem all your KRO staked before cycle’s end. More info.</p>
@@ -22,31 +22,31 @@
         </div>
 
         <div class="proposal-table-sec col-12 mt-3">
-          <div class="sec-header">
-              <p class="sec-title">Investments</p>
-          </div>
-          <div class="cards table-responsive">
-              <table class="table proposal-table">
-                  <thead class="betoken-font">
+            <div class="sec-header">
+                <p class="sec-title">Investments</p>
+            </div>
+            <div class="cards table-responsive">
+                <table class="table proposal-table">
+                    <thead class="betoken-font">
                     <tr>
-                      <th scope="col">Asset</th>
-                      <th scope="col">Buy price</th>
-                      <th scope="col">Current/Sell price</th>
-                      <th scope="col">Staked KRO</th>
-                      <th scope="col">KRO to redeem</th>
-                      <th scope="col">Action</th>
+                        <th scope="col">Asset</th>
+                        <th scope="col">Buy price</th>
+                        <th scope="col">Current/Sell price</th>
+                        <th scope="col">Staked KRO</th>
+                        <th scope="col">KRO to redeem</th>
+                        <th scope="col">Action</th>
                     </tr>
-                  </thead>
-                  <tbody class="black-font">
+                </thead>
+                <tbody class="black-font">
                         <tr *ngFor = "let data of tableData">
                                 <td class="identy">
-                                  <div class="d-flex align-items-center">
-                                      <div class="dot purple"> </div>
-                                      <div class="name ml-3">
+                                    <div class="d-flex align-items-center">
+                                        <div class="dot purple"> </div>
+                                        <div class="name ml-3">
                                         <p class="m-0 abrivation">{{data.tokenSymbol}}</p>
                                         <!-- <p class="m-0 expansion">Ethereum</p> -->
-                                      </div>
-                                  </div>
+                                        </div>
+                                    </div>
                                 </td>
                                 <td>$ {{data.buyPrice / (1e18)}}</td>
                                 <td>$ {{data.sellPrice.toNumber() / (1e18)}} </td>
@@ -62,11 +62,11 @@
                                     <button class="outline-button-disable" style="background-color: #f2f2f2">SOLD</button>
                                 </td>
                             </tr>
-                  </tbody>
+                    </tbody>
                 </table>
-          </div>  
+            </div>  
         </div>
-  </div>
+    </div>
 </div>
 
 <div class="proposal-modal-wrapper"  [@toggleProposal]="state" [class.active]="active">

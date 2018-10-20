@@ -4,7 +4,7 @@ export var receivedROICount;
 export var transcationID;
 export var managerROI;
 export var network_prefix;
-export var ROIArray;
+export var ROIArray, ROIArrayLoaded;
 
 import "tablesort";
 
@@ -163,6 +163,8 @@ fundValue = new ReactiveVar(BigNumber(0));
 newInvestmentSelectedToken = new ReactiveVar(TOKENS[0]);
 
 ROIArray = new ReactiveVar([]);
+
+ROIArrayLoaded = new ReactiveVar(false);
 
 
 showTransaction = function(_txHash) {
@@ -636,6 +638,7 @@ loadStats = async function() {
                 totalInputFunds = totalInputFunds.add(data._beforeTotalFunds);
                 results.push(totalOutputFunds = totalOutputFunds.add(data._afterTotalFunds));
             }
+            ROIArrayLoaded = true;
             return results;
         }).then(function() {
             // Take current cycle's ROI into consideration

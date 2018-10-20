@@ -22,7 +22,8 @@ import {
     decisions_tab_events,
     sidebar_heplers,
     stats_tab_helpers, kairoTotalSupply, sharesTotalSupply,
-    countdown_timer_helpers, loadStats, decisions_tab_helpers, kairoRanking, managerROI, fundValue, totalFunds, ROIArray, ROI
+    countdown_timer_helpers, loadStats, decisions_tab_helpers, kairoRanking, managerROI, fundValue, totalFunds, ROIArray, ROI,
+    ROIArrayLoaded, loadDynamicData
 } from '../../assets/body';
 
 @Component({
@@ -170,7 +171,7 @@ export class InvestComponent implements OnInit {
             }
         }, 1000);
 
-        setInterval(() => {
+        setTimeout(() => {
             this.stock = new StockChart({
                 rangeSelector: {
                     selected: 2,
@@ -188,7 +189,7 @@ export class InvestComponent implements OnInit {
                             }
                         }
                     },
-
+    
                     buttons: [],
                 },
                 plotOptions: {
@@ -216,7 +217,81 @@ export class InvestComponent implements OnInit {
                     type: 'areaspline'
                 }]
             });
-        }, 100000);
+            
+    
+            this.carouselBanner = {
+                grid: { xs: 1, sm: 1, md: 1, lg: 1, all: 0 },
+                slide: 1,
+                speed: 400,
+                interval: 400000,
+                point: {visible: true},
+                load: 2,
+                loop: true,
+                touch: true
+            };
+    
+            this.ms.getPopUp().subscribe((open: boolean) => {
+               this.investflow = true;
+               this.withdrawflow = false;
+                if (open) {
+                    this.state = 'open';
+                    this.active = true;
+                }
+    
+                if (!open) {
+                    this.state = 'close';
+                    this.active = false;
+                }
+    
+            });
+        },3000);
+
+        this.stock = new StockChart({
+            rangeSelector: {
+                selected: 2,
+                inputEnabled: false,
+                buttonSpacing: 30,
+                buttonTheme: {
+                    fill: 'none',
+                    stroke: 'none',
+                    style: { color: '#8FA9B0' },
+                    states: {
+                        hover: {},
+                        select: {
+                            fill: 'none',
+                            style: { color: '#00000', fontWeight: 'bold' }
+                        }
+                    }
+                },
+
+                buttons: [],
+            },
+            plotOptions: {
+                areaspline: {
+                    lineColor: '#18DAA3',
+                    lineWidth: 1,
+                    fillColor: '#B9EEE1',
+                },
+            },
+            title: {
+                text: ''
+            },
+            scrollbar: {
+                enabled: false
+            },
+            navigator: {
+                enabled: false
+            },
+            yAxis: {
+                opposite: false
+            },
+            series: [{
+                name: 'Monthly ROI',
+                data: ROIArray,
+                type: 'areaspline'
+            }]
+        });
+        
 
         this.carouselBanner = {
             grid: { xs: 1, sm: 1, md: 1, lg: 1, all: 0 },
@@ -408,5 +483,9 @@ export class InvestComponent implements OnInit {
     rankingList() {
         this.rankingArray =  kairoRanking.get();
         this.totalUser = this.rankingArray.length;
+    }
+
+    async loadChartData() {
+        console.log(ROIArrayLoaded, ROIArray);
     }
 }

@@ -23,7 +23,7 @@ import {
     sidebar_heplers,
     stats_tab_helpers, kairoTotalSupply, sharesTotalSupply,
     countdown_timer_helpers, loadStats, decisions_tab_helpers, kairoRanking, managerROI, fundValue, totalFunds, ROIArray, ROI,
-    ROIArrayLoaded, loadDynamicData
+    ROIArrayLoaded, loadDynamicData, chartHelper
 } from '../../assets/body';
 
 @Component({
@@ -136,7 +136,6 @@ export class InvestComponent implements OnInit {
         setInterval(() => {
             if (userAddress.get() !== '0x0') {
                 this.rankingList();
-                // this.chartdata();
             }
         }, 1000);
     }
@@ -173,53 +172,13 @@ export class InvestComponent implements OnInit {
             }
         }, 1000);
 
-        setTimeout(() => {
-            this.stock = new StockChart({
-                rangeSelector: {
-                    selected: 2,
-                    inputEnabled: false,
-                    buttonSpacing: 30,
-                    buttonTheme: {
-                        fill: 'none',
-                        stroke: 'none',
-                        style: { color: '#8FA9B0' },
-                        states: {
-                            hover: {},
-                            select: {
-                                fill: 'none',
-                                style: { color: '#00000', fontWeight: 'bold' }
-                            }
-                        }
-                    },
-    
-                    buttons: [],
-                },
-                plotOptions: {
-                    areaspline: {
-                        lineColor: '#18DAA3',
-                        lineWidth: 1,
-                        fillColor: '#B9EEE1',
-                    },
-                },
-                title: {
-                    text: 'Betoken Fund\'s ROI Per Cycle'
-                },
-                scrollbar: {
-                    enabled: false
-                },
-                navigator: {
-                    enabled: false
-                },
-                yAxis: {
-                    opposite: false
-                },
-                series: [{
-                    name: 'Monthly ROI',
-                    data: ROIArray,
-                    type: 'areaspline'
-                }]
-            });
-        },5000);
+        // while(ROIArray.curValue.length <= 0) {
+        //     setInterval(()=> {
+        //         console.log(ROIArray, "still Loading");
+        //     },1000)
+        // }
+        
+        // console.log(ROIArray, "LOADEDDDDDDD", ROIArray.curValue.length);
 
         this.stock = new StockChart({
             rangeSelector: {
@@ -459,5 +418,54 @@ export class InvestComponent implements OnInit {
     rankingList() {
         this.rankingArray =  kairoRanking.get();
         this.totalUser = this.rankingArray.length;
+    }
+
+
+    drawChart = () => {
+        this.stock = new StockChart({
+            rangeSelector: {
+                selected: 2,
+                inputEnabled: false,
+                buttonSpacing: 30,
+                buttonTheme: {
+                    fill: 'none',
+                    stroke: 'none',
+                    style: { color: '#8FA9B0' },
+                    states: {
+                        hover: {},
+                        select: {
+                            fill: 'none',
+                            style: { color: '#00000', fontWeight: 'bold' }
+                        }
+                    }
+                },
+
+                buttons: [],
+            },
+            plotOptions: {
+                areaspline: {
+                    lineColor: '#18DAA3',
+                    lineWidth: 1,
+                    fillColor: '#B9EEE1',
+                },
+            },
+            title: {
+                text: 'Betoken Fund\'s ROI Per Cycle'
+            },
+            scrollbar: {
+                enabled: false
+            },
+            navigator: {
+                enabled: false
+            },
+            yAxis: {
+                opposite: false
+            },
+            series: [{
+                name: 'Monthly ROI',
+                data: ROIArray,
+                type: 'areaspline'
+            }]
+        });
     }
 }

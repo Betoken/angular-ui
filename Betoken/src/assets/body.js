@@ -166,7 +166,6 @@ ROIArray = new ReactiveVar([]);
 
 ROIArrayLoaded = new ReactiveVar(false);
 
-
 showTransaction = function(_txHash, pending) {
     transactionHash.set(_txHash);
     pending(transactionHash.get());
@@ -651,7 +650,7 @@ loadStats = async function() {
     ]));
 };
 
-loadAllData = async function() {
+loadAllData = async function(temp) {
     await loadFundMetadata();
     return (await loadDynamicData());
 };

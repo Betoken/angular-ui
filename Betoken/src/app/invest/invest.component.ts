@@ -172,14 +172,6 @@ export class InvestComponent implements OnInit {
             }
         }, 1000);
 
-        // while(ROIArray.curValue.length <= 0) {
-        //     setInterval(()=> {
-        //         console.log(ROIArray, "still Loading");
-        //     },1000)
-        // }
-        
-        // console.log(ROIArray, "LOADEDDDDDDD", ROIArray.curValue.length);
-
         this.stock = new StockChart({
             rangeSelector: {
                 selected: 2,
@@ -221,7 +213,7 @@ export class InvestComponent implements OnInit {
             },
             series: [{
                 name: 'Monthly ROI',
-                data: ROIArray,
+                data: [[1, -5.703924680773118], [2, -1.0713835645268852]],
                 type: 'areaspline'
             }]
         });

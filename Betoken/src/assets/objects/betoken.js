@@ -268,17 +268,23 @@ export var Betoken = function(_address) {
    * @param  {BigNumber} _stakeInWeis the investment amount
    * @return {Promise}               .then(()->)
    */
-  self.createInvestment = async function(_tokenAddress, _stakeInWeis, _onTxHash, _onReceipt) {
+  self.createInvestment = async function(_tokenAddress, _stakeInWeis, _onTxHash, _onReceipt, pending, confirm) {
     await getDefaultAccount();
     return self.contracts.betokenFund.methods.createInvestment(_tokenAddress, _stakeInWeis).send({
       from: web3.eth.defaultAccount
-    }).on("transactionHash", _onTxHash).on("receipt", _onReceipt);
+    }).on("transactionHash", (hash) => {_onTxHash(hash,pending)}).on("receipt", () => {
+        _onReceipt(); 
+        confirm();
+    });
   };
-  self.sellAsset = async function(_proposalId, _onTxHash, _onReceipt) {
+  self.sellAsset = async function(_proposalId, _onTxHash, _onReceipt, pending, confirm) {
     await getDefaultAccount();
     return self.contracts.betokenFund.methods.sellInvestmentAsset(_proposalId).send({
       from: web3.eth.defaultAccount
-    }).on("transactionHash", _onTxHash).on("receipt", _onReceipt);
+    }).on("transactionHash", (hash) => {_onTxHash(hash, pending)}).on("receipt", () => {
+        _onReceipt(); 
+        confirm();
+    });
   };
   /*
   Finalized Phase functions

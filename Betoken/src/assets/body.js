@@ -167,10 +167,10 @@ ROIArray = new ReactiveVar([]);
 ROIArrayLoaded = new ReactiveVar(false);
 
 
-showTransaction = function(_txHash) {
+showTransaction = function(_txHash, pending) {
     transactionHash.set(_txHash);
+    pending(transactionHash.get());
     alert(transactionHash.get());
-    transcationID = transactionHash.get();
 };
 
 
@@ -1023,24 +1023,24 @@ loadDynamicData = async function() {
     }
     
     export var  decisions_tab_events = {
-        "sell_investment": async function(idd) {
+        "sell_investment": async function(idd, pending, confirm) {
             var id;
             id = idd;
             if (cyclePhase.get() === 1) {
-                return betoken.sellAsset(id, showTransaction, loadDynamicData);
+                return betoken.sellAsset(id, showTransaction, loadDynamicData, pending, confirm);
             }
         },
-        "new_investment": async function(tokenSymbol, amt, handledataSucess, handledataError) {
+        "new_investment": async function(tokenSymbol, amt, pending, confirm, handledataSucess, handledataError) {
             
             var address, error, kairoAmountInWeis, tokenSymbol;
             try {
                 address = (await betoken.tokenSymbolToAddress(tokenSymbol));
                 kairoAmountInWeis = BigNumber(amt).times("1e18");
                 checkKairoAmountError(kairoAmountInWeis);
-                handledataSucess(betoken.createInvestment(address, kairoAmountInWeis, showTransaction, loadUserData));
+                handledataSucess(betoken.createInvestment(address, kairoAmountInWeis, showTransaction, loadUserData, pending, confirm));
                 return;
             } catch (error1) {
-                handledataError(error1.toString() || INPUT_ERR);
+                //handledataError(error1.toString() || INPUT_ERR);
             }
         },
         "keyup .prompt": function(event) {

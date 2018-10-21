@@ -200,7 +200,7 @@ export class InvestComponent implements OnInit {
                     },
                 },
                 title: {
-                    text: ''
+                    text: 'Betoken Fund\'s ROI Per Cycle'
                 },
                 scrollbar: {
                     enabled: false
@@ -217,34 +217,7 @@ export class InvestComponent implements OnInit {
                     type: 'areaspline'
                 }]
             });
-            
-    
-            this.carouselBanner = {
-                grid: { xs: 1, sm: 1, md: 1, lg: 1, all: 0 },
-                slide: 1,
-                speed: 400,
-                interval: 400000,
-                point: {visible: true},
-                load: 2,
-                loop: true,
-                touch: true
-            };
-    
-            this.ms.getPopUp().subscribe((open: boolean) => {
-               this.investflow = true;
-               this.withdrawflow = false;
-                if (open) {
-                    this.state = 'open';
-                    this.active = true;
-                }
-    
-                if (!open) {
-                    this.state = 'close';
-                    this.active = false;
-                }
-    
-            });
-        },3000);
+        },5000);
 
         this.stock = new StockChart({
             rangeSelector: {
@@ -483,9 +456,5 @@ export class InvestComponent implements OnInit {
     rankingList() {
         this.rankingArray =  kairoRanking.get();
         this.totalUser = this.rankingArray.length;
-    }
-
-    async loadChartData() {
-        console.log(ROIArrayLoaded, ROIArray);
     }
 }

@@ -3,9 +3,11 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import { AppComponent } from '../app.component';
 import {
     userAddress, countdown_timer_helpers, displayedKairoBalance, decisions_tab_events, assetSymbolToPrice,
-    decisions_tab_helpers, showTransaction
+    decisions_tab_helpers
 } from '../../assets/body';
+
 import { promise } from 'protractor';
+import { type } from 'os';
 
 @Component({
     selector: 'app-proposal',
@@ -71,6 +73,8 @@ export class ProposalComponent implements OnInit {
     tableData: any;
     sellId: any;
     tokenList: any;
+    transactionId: '';
+    kroRedeemed: '';
     openchangefundModal() {
         this.ms.setproposalPopUp();
     }
@@ -215,17 +219,20 @@ export class ProposalComponent implements OnInit {
         this.invest();
     }
     
-    confirm() {
+    pending = (transactionHash) => {
+
+        this.transactionId = transactionHash;
         this.step3 = true;
         this.step4 = false;
         this.step1 = false;
         this.step2 = false;
-        setTimeout(() => {
-            this.step4 = true;
-            this.step1 = false;
-            this.step2 = false;
-            this.step3 = false;
-        }, 1000);
+    }
+
+    confirm =() => {
+        this.step1 = false;
+        this.step2 = false;
+        this.step3 = false;
+        this.step4 = true;
     }
     
     newsupport() {
@@ -239,10 +246,11 @@ export class ProposalComponent implements OnInit {
     }
     
     sell(data) {
-        // console.log(data);
         this.openchangefundModal();
         this.sellId = data.id;
-        this.sellInvestment(data.id);
+        this.kroRedeemed = data.currValue;
+        console.log(typeof(data.currValue));
+        this.sellInvestment();
         
         this.tradeproposalfund = true;
         this.changeproposalfund = false;
@@ -252,25 +260,20 @@ export class ProposalComponent implements OnInit {
         this.sellStep1 = true;
         this.sellStep2 = false;
         this.sellStep3 = false;
-        this.sellStep4 = false;
         
     }
     
-    confirmsell() {
+    pendingSell = (transactionHash) => {
         this.sellStep2 = true;
         this.sellStep3 = false;
         this.sellStep1 = false;
-        // this.sellInvestment();
-        setTimeout(() => {
-            this.sellStep3 = true;
-            this.sellalert = true;
-            this.footerbtn2 = true;
-            this.footerbtn3 = false;
-            this.footerbtn1 = false;
-            this.sellStep1 = false;
-            this.sellStep2 = false;
-            this.ms.setNextButton();
-        }, 1000);
+        this.transactionId = transactionHash;
+    }
+
+    confirmSell = () => {
+        this.sellStep1 = false;
+        this.sellStep2 = false;
+        this.sellStep3 = true;
     }
     
     changeproposal() {
@@ -315,45 +318,27 @@ export class ProposalComponent implements OnInit {
     
     async list() {
         this.tableData = decisions_tab_helpers.investment_list();
-        console.log(this.tableData);
     }
-    
+
     async invest() {
-        // create New investment
-        console.log(this.selectedTokenSymbol, this.kairoinput);
-        await decisions_tab_events.new_investment(this.selectedTokenSymbol, this.kairoinput, (success) => {
-            const promiseForValue = new Promise(function (fulfill) {
-                fulfill(success);
-                console.log(promiseForValue);
-            });
-            console.log(success.tovalue());
-            // console.log(success.transactionHash);
-            //  console.log(transcationID);
-            
-        }, (error) => {
-            console.log(error);
-            //  alert(error);
-        });
-        const hash = showTransaction.transactionHash.get();
-        console.log(hash);
+        decisions_tab_events.new_investment(this.selectedTokenSymbol, this.kairoinput, this.pending, this.confirm);
     }
     
-    sellInvestment(data) {
-        console.log();
-        decisions_tab_events.sell_investment(this.sellId, (success) => {
+    sellInvestment() {
+        decisions_tab_events.sell_investment(this.sellId, this.pendingSell, this.confirmSell, (success) => {
             console.log(JSON.stringify(success));
         }, (error) => {
             alert(error);
         });
+
+        console.log("SSSSSSSSSS")
     }
     
     async tokensList() {
         this.tokenList = decisions_tab_helpers.tokens();
-        // console.log(this.tokenList);
     }
     
     kairoInput (event) {
-        // console.log(event, event.target.value);
         this.kairoinput = event.target.value ;
     }
 }

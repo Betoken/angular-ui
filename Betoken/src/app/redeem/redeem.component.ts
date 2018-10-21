@@ -47,6 +47,8 @@ export class RedeemComponent implements OnInit {
     seconds = 0;
     phase = -1;
 
+    transactionId: '';
+
     openredeemModal() {
         this.ms.setredeemPopUp();
     }
@@ -111,6 +113,21 @@ export class RedeemComponent implements OnInit {
         this.redeemCommission();
     }
 
+    pending = (transactionHash) => {
+        this.transactionId = transactionHash;
+        this.step1 = false;
+        this.step2 = false;
+        this.step3 = true;
+        this.step4 = false;
+    }
+
+    confirm = () => {
+        this.step1 = false;
+        this.step2 = false;
+        this.step3 = false;
+        this.step4 = true;
+    }
+
     confirmredeem() {
         this.step3 = true;
         this.step4 = false;
@@ -149,11 +166,11 @@ export class RedeemComponent implements OnInit {
     async redeemCommission() {
         console.log(this.selectedOption);
         if (this.selectedOption === 1) {
-            this.redeemvalue = await sidebar.redeem_commission();
+            this.redeemvalue = await sidebar.redeem_commission(this.pending, this.confirm);
             console.log(this.redeemvalue);
         }
         if (this.selectedOption === 2) {
-            this.redeemvalue = await sidebar.redeem_commission_in_shares();
+            this.redeemvalue = await sidebar.redeem_commission_in_shares(this.pending, this.confirm);
             console.log(this.redeemvalue);
         }
     }

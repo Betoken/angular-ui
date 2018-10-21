@@ -160,7 +160,7 @@ export var Betoken = function(_address) {
    * @param  {BigNumber} _tokenAmount the deposit token amount
    * @return {Promise}               .then(()->)
    */
-  self.depositToken = async function(_tokenAddr, _tokenAmount, _onTxHash, _onReceipt) {
+  self.depositToken = async function(_tokenAddr, _tokenAmount, _onTxHash, _onReceipt, pending, confirm) {
     var amount, token;
     await getDefaultAccount();
     token = ERC20(_tokenAddr);
@@ -170,7 +170,10 @@ export var Betoken = function(_address) {
     }).on("transactionHash", _onTxHash).on("receipt", _onReceipt);
     return self.contracts.betokenFund.methods.depositToken(_tokenAddr, amount).send({
       from: web3.eth.defaultAccount
-    }).on("transactionHash", _onTxHash).on("receipt", _onReceipt);
+    }).on("transactionHash", (hash) => {_onTxHash(hash, pending)}).on("receipt", () => {
+        _onReceipt();
+        confirm();
+    });
   };
   /**
    * Allows user to withdraw from fund balance
@@ -289,17 +292,23 @@ export var Betoken = function(_address) {
   /*
   Finalized Phase functions
   */
-  self.redeemCommission = async function(_onTxHash, _onReceipt) {
+  self.redeemCommission = async function(_onTxHash, _onReceipt, pending, confirm) {
     await getDefaultAccount();
     return self.contracts.betokenFund.methods.redeemCommission().send({
       from: web3.eth.defaultAccount
-    }).on("transactionHash", _onTxHash).on("receipt", _onReceipt);
+    }).on("transactionHash", (hash) => {_onTxHash(hash, pending)}).on("receipt", () => {
+        _onReceipt();
+        confirm();
+    });
   };
-  self.redeemCommissionInShares = async function(_onTxHash, _onReceipt) {
+  self.redeemCommissionInShares = async function(_onTxHash, _onReceipt, pending, confirm) {
     await getDefaultAccount();
     return self.contracts.betokenFund.methods.redeemCommissionInShares().send({
       from: web3.eth.defaultAccount
-    }).on("transactionHash", _onTxHash).on("receipt", _onReceipt);
+    }).on("transactionHash", (hash) => {_onTxHash(hash, pending)}).on("receipt", () => {
+        _onReceipt(); 
+        confirm();
+    });
   };
   /*
   Object Initialization

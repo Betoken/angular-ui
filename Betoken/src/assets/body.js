@@ -832,12 +832,12 @@ loadDynamicData = async function() {
     }
     
     export var sidebar = {
-        "redeem_commission": async function(event) {
-            return betoken.redeemCommission(showTransaction, loadUserData);
+        "redeem_commission": async function(pending, confrim) {
+            return betoken.redeemCommission(showTransaction, loadUserData, pending, confirm);
         },
         
-        "redeem_commission_in_shares" :async function(event) {
-            return betoken.redeemCommissionInShares(showTransaction, loadDynamicData);
+        "redeem_commission_in_shares" :async function(pending, confirm) {
+            return betoken.redeemCommissionInShares(showTransaction, loadDynamicData, pending, confirm);
         }
     }
     
@@ -889,7 +889,7 @@ loadDynamicData = async function() {
     }
     
     export var transact_box_events = {
-        "deposit_button": async function(amt, tokenSymbol, handledataSucess, handledataError) {
+        "deposit_button": async function(amt, tokenSymbol, pending, confirm, handledataSucess, handledataError) {
             var amount, tokenAddr, tokenSymbol;
             try {
                 amount = BigNumber(amt);
@@ -898,14 +898,14 @@ loadDynamicData = async function() {
                     return;
                 }
                 tokenAddr = (await betoken.tokenSymbolToAddress(tokenSymbol));
-                handledataSucess(betoken.depositToken(tokenAddr, amount, showTransaction, loadDynamicData));
+                handledataSucess(betoken.depositToken(tokenAddr, amount, showTransaction, loadDynamicData, pending, confirm));
                 return;
             } catch (error1) {
                 handledataError(error1);
                 return;
             }
         },
-        "withdraw_button": async function(amt, tokenSymbol, handledataSucess, handledataError) {
+        "withdraw_button": async function(amt, tokenSymbol, pending, confirm, handledataSucess, handledataError) {
             var amount, error, tokenAddr, tokenSymbol;
             try {
                 amount = BigNumber(amt);
@@ -914,7 +914,7 @@ loadDynamicData = async function() {
                     return;
                 }
                 tokenAddr = (await betoken.tokenSymbolToAddress(tokenSymbol));
-                handledataSucess(betoken.withdrawToken(tokenAddr, amount, showTransaction, loadDynamicData));
+                handledataSucess(betoken.withdrawToken(tokenAddr, amount, showTransaction, loadDynamicData, pending, confirm));
                 return;
             } catch (error1) {
                 handledataError(error1);

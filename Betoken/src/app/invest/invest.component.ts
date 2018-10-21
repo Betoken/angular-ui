@@ -99,6 +99,8 @@ export class InvestComponent implements OnInit {
     tokenList: any;
     rankingArray = [];
 
+    transactionId: '';
+
     openModalPopup() {
        this.ms.setPopUp();
     }
@@ -371,8 +373,24 @@ export class InvestComponent implements OnInit {
         }
     }
 
+    pending = (transactionHash) => {
+        this.transactionId = transactionHash;
+        this.step1= false;
+        this.step2 = false;
+        this.step3 = true;
+        this.step4 = false;
+    }
+
+    confirm = () => {
+        this.step1 = false;
+        this.step3 = false;
+        this.step3 = false;
+        this.step4 = true;
+    }
+
+
     async withdraw() {
-        transact_box_events.withdraw_button(this.calculated_balance, this.selectedTokenSymbol, (success) => {
+        transact_box_events.withdraw_button(this.calculated_balance, this.selectedTokenSymbol, this.pending, this.confirm, (success) => {
             this.step2 = true;
             this.step1 = false;
             this.step3 = false;
@@ -383,7 +401,7 @@ export class InvestComponent implements OnInit {
     }
 
     async invest() {
-         transact_box_events.deposit_button(this.calculated_balance, this.selectedTokenSymbol, (success) => {
+         transact_box_events.deposit_button(this.calculated_balance, this.selectedTokenSymbol, this.pending, this.confirm, (success) => {
           this.step2 = true;
           this.step1 = false;
           this.step3 = false;
@@ -395,21 +413,6 @@ export class InvestComponent implements OnInit {
 
     updateTokenSymbol(value) {
         this.selectedTokenSymbol = value;
-    }
-
-    confirm() {
-        this.step3 = true;
-        this.step1 = false;
-        this.step2 = false;
-        this.step4 = false;
-        setTimeout(() => {
-            this.step4 = true;
-            this.investalert = true;
-            this.step1 = false;
-            this.step2 = false;
-            this.step3 = false;
-            this.ms.setNextPhaseBtn();
-        }, 1000);
     }
 
     changefund() {

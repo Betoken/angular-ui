@@ -235,3 +235,9 @@
         }
     }
 }
+
+.overflowDesign {
+    width: 100px;
+    text-overflow: ellipsis;
+    overflow: auto;
+}

@@ -76,7 +76,6 @@
                             <th scope="col">Sell price</th>
                             <th scope="col">Staked KRO</th>
                             <th scope="col">Redeemed KRO</th>
-                            <th scope="col">Details</th>
                         </tr>
                     </thead>
                     <tbody class="black-font">
@@ -95,7 +94,6 @@
                                 <span class="value green-font" *ngIf = "+data.ROI >= 0">{{data.ROI}}%</span>
                                 <span class="value red-font" *ngIf = "0 > +data.ROI">{{data.ROI}}%</span>
                             </td>
-                            <td><img src="assets/images/ic_launch_black_24px.svg" class="pointer"></td>
                         </tr>
                     </tbody>
                 </table>

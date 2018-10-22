@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {
   userAddress, countdown_timer_helpers, displayedKairoBalance, decisions_tab_events, assetSymbolToPrice,
-  decisions_tab_helpers, ranking_tab, kairoRanking, user_rank
+  decisions_tab_helpers, ranking_tab, kairoRanking, user_rank, isLoadingRanking
 } from '../../assets/body';
 
 @Component({
@@ -33,5 +33,9 @@ export class RankingsComponent implements OnInit {
     this.userRanking = await ranking_tab.user_rank();
     this.userValue = await ranking_tab.user_value();
     this.userAddress = await userAddress.get();
+  }
+
+  isLoading() {
+    return isLoadingRanking.get();
   }
 }

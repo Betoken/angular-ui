@@ -557,7 +557,7 @@ loadRanking = async function() {
     // display ranking
     kairoRanking.set(ranking);
     // deactivate loader
-    return isLoadingRanking.set(false);
+    isLoadingRanking.set(false);
 };
 
 loadStats = async function() {
@@ -655,438 +655,440 @@ loadAllData = async function(temp) {
 
 loadDynamicData = async function() {
     await loadFundData();
-    return (await Promise.all([
-        loadUserData().then(loadTxHistory),
-        loadTokenPrices().then(function() {
-            return Promise.all([loadRanking(),
-                loadStats()]);
-            }
+    return await Promise.all(
+        [
+            loadUserData().then(loadTxHistory),
+            loadTokenPrices().then(
+                function() {
+                    return Promise.all([loadRanking(), loadStats()]);
+                }
             )
-        ]));
-    };
-    
-    export var document_ready = async function(handledata) {
-        var net, netID, pre;
-        if (web3 != null) {
-            clock();
-            netID = (await web3.eth.net.getId());
-            if (netID !== NET_ID) {
-                wrongNetwork.set(true);
-                handledata(WRONG_NETWORK_ERR);
-                web3 = new Web3(new Web3.providers.HttpProvider("https://rinkeby.infura.io/v3/3057a4979e92452bae6afaabed67a724"));
-            } else {
-                if (!hasWeb3) {
-                    handledata(NO_WEB3_ERR);
-                } else if (((await web3.eth.getAccounts())).length === 0) {
-                    handledata(METAMASK_LOCKED_ERR);
-                }
-            }
-            
-            // Get Network ID
-            netID = (await web3.eth.net.getId());
-            switch (netID) {
-                case 1:
-                net = "Main Ethereum Network";
-                pre = "Main";
-                break;
-                case 3:
-                net = "Ropsten Testnet";
-                pre = "Ropsten";
-                break;
-                case 4:
-                net = "Rinkeby Testnet";
-                pre = "Rinkeby";
-                break;
-                case 42:
-                net = "Kovan Testnet";
-                pre = "Kovan";
-                break;
-                default:
-                net = "Unknown Network";
-                pre = "Unknown";
-            }
-            networkName.set(net);
-            networkPrefix.set(pre);
-            // Initialize Betoken object and then load data
-            betoken.init().then(loadAllData).then(function() {
-                // refresh every 2 minutes
-                return setInterval(loadDynamicData, 2 * 60 * 1000);
-            });
-        }
-    }
-    
-    export var body_helpers = {
-        transaction_hash: function() {
-            return transactionHash.get();
-        },
-        network_prefix: async function() {
-            return networkPrefix.get();
-        },
-        error_msg: function() {
-            return errorMessage.get();
-        },
-        success_msg: function() {
-            return successMessage.get();
-        }
-    }
-    
-    export var top_bar_helpers = {
-        show_countdown: function() {
-            return showCountdown.get();
-        },
-        paused: function() {
-            return paused.get();
-        },
-        allow_emergency_withdraw: function() {
-            if (allowEmergencyWithdraw.get()) {
-                return "";
-            } else {
-                return "disabled";
-            }
-        },
-        betoken_addr: function() {
-            return BETOKEN_ADDR;
-        },
-        kairo_addr: function() {
-            return kairoAddr.get();
-        },
-        shares_addr: function() {
-            return sharesAddr.get();
-        },
-        kyber_addr: function() {
-            return kyberAddr.get();
-        },
-        dai_addr: function() {
-            return daiAddr.get();
-        },
-        token_factory_addr: function() {
-            return tokenFactoryAddr.get();
-        },
-        network_prefix: function() {
-            return networkPrefix.get();
-        },
-        network_name: function() {
-            return networkName.get();
-        },
-        need_web3: function() {
-            if (userAddress.get() !== "0x0" && hasWeb3 && !wrongNetwork.get()) {
-                return "";
-            } else {
-                return "disabled";
+        ]
+    );
+};
+
+export var document_ready = async function(handledata) {
+    var net, netID, pre;
+    if (web3 != null) {
+        clock();
+        netID = (await web3.eth.net.getId());
+        if (netID !== NET_ID) {
+            wrongNetwork.set(true);
+            handledata(WRONG_NETWORK_ERR);
+            web3 = new Web3(new Web3.providers.HttpProvider("https://rinkeby.infura.io/v3/3057a4979e92452bae6afaabed67a724"));
+        } else {
+            if (!hasWeb3) {
+                handledata(NO_WEB3_ERR);
+            } else if (((await web3.eth.getAccounts())).length === 0) {
+                handledata(METAMASK_LOCKED_ERR);
             }
         }
-    }
-    
-    export var countdown_timer_helpers = {
-        day: function() {
-            return countdownDay.get();
-        },
-        hour: function() {
-            return countdownHour.get();
-        },
-        minute: function() {
-            return countdownMin.get();
-        },
-        second: function() {
-            return countdownSec.get();
-        },
-        phase: function() {
-            return cyclePhase.get();
-        }
-    }
-    
-    export var sidebar_heplers = {
-        user_address: function() {
-            return userAddress.get();
-        },
-        user_balance: function() {
-            return displayedInvestmentBalance.get().toFormat(18);
-        },
-        balance_unit: function() {
-            return displayedInvestmentUnit.get();
-        },
-        user_kairo_balance: function() {
-            return displayedKairoBalance.get().toFormat(18);
-        },
-        kairo_unit: function() {
-            return displayedKairoUnit.get();
-        },
-        can_redeem_commission: function() {
-            return cyclePhase.get() === 2 && lastCommissionRedemption.get() < cycleNumber.get();
-        },
-        expected_commission: function() {
-            var roi;
-            if (kairoTotalSupply.get().greaterThan(0)) {
-                if (cyclePhase.get() === 2) {
-                    // Actual commission that will be redeemed
-                    return kairoBalance.get().div(kairoTotalSupply.get()).mul(cycleTotalCommission.get()).div(1e18).toFormat(18);
-                }
-                // Expected commission based on previous average ROI
-                roi = avgROI.get().gt(0) ? avgROI.get() : BigNumber(0);
-                return kairoBalance.get().div(kairoTotalSupply.get()).mul(totalFunds.get().div(1e18)).mul(roi.div(100).mul(commissionRate.get()).add(assetFeeRate.get().div(1e18))).toFormat(4);
-            }
-            return BigNumber(0).toFormat(4);
-        }
-    }
-    
-    export var sidebar = {
-        "redeem_commission": async function(pending, confrim) {
-            return betoken.redeemCommission(showTransaction, loadUserData, pending, confirm);
-        },
         
-        "redeem_commission_in_shares" :async function(pending, confirm) {
-            return betoken.redeemCommissionInShares(showTransaction, loadDynamicData, pending, confirm);
+        // Get Network ID
+        netID = (await web3.eth.net.getId());
+        switch (netID) {
+            case 1:
+            net = "Main Ethereum Network";
+            pre = "Main";
+            break;
+            case 3:
+            net = "Ropsten Testnet";
+            pre = "Ropsten";
+            break;
+            case 4:
+            net = "Rinkeby Testnet";
+            pre = "Rinkeby";
+            break;
+            case 42:
+            net = "Kovan Testnet";
+            pre = "Kovan";
+            break;
+            default:
+            net = "Unknown Network";
+            pre = "Unknown";
+        }
+        networkName.set(net);
+        networkPrefix.set(pre);
+        // Initialize Betoken object and then load data
+        betoken.init().then(loadAllData).then(function() {
+            // refresh every 2 minutes
+            return setInterval(loadDynamicData, 2 * 60 * 1000);
+        });
+    }
+}
+
+export var body_helpers = {
+    transaction_hash: function() {
+        return transactionHash.get();
+    },
+    network_prefix: async function() {
+        return networkPrefix.get();
+    },
+    error_msg: function() {
+        return errorMessage.get();
+    },
+    success_msg: function() {
+        return successMessage.get();
+    }
+}
+
+export var top_bar_helpers = {
+    show_countdown: function() {
+        return showCountdown.get();
+    },
+    paused: function() {
+        return paused.get();
+    },
+    allow_emergency_withdraw: function() {
+        if (allowEmergencyWithdraw.get()) {
+            return "";
+        } else {
+            return "disabled";
+        }
+    },
+    betoken_addr: function() {
+        return BETOKEN_ADDR;
+    },
+    kairo_addr: function() {
+        return kairoAddr.get();
+    },
+    shares_addr: function() {
+        return sharesAddr.get();
+    },
+    kyber_addr: function() {
+        return kyberAddr.get();
+    },
+    dai_addr: function() {
+        return daiAddr.get();
+    },
+    token_factory_addr: function() {
+        return tokenFactoryAddr.get();
+    },
+    network_prefix: function() {
+        return networkPrefix.get();
+    },
+    network_name: function() {
+        return networkName.get();
+    },
+    need_web3: function() {
+        if (userAddress.get() !== "0x0" && hasWeb3 && !wrongNetwork.get()) {
+            return "";
+        } else {
+            return "disabled";
         }
     }
-    
-    export var transact_box_helpers = {
-        is_disabled: function() {
-            if (cyclePhase.get() !== 0) {
-                return "disabled";
-            }
-        },
-        has_error: function(input_id) {
-            var hasError;
-            hasError = false;
-            switch (input_id) {
-                case 0:
-                hasError = Template.instance().depositInputHasError.get();
-                break;
-                case 1:
-                hasError = Template.instance().withdrawInputHasError.get();
-                break;
-                case 2:
-                hasError = Template.instance().sendTokenAmountInputHasError.get();
-                break;
-                case 3:
-                hasError = Template.instance().sendTokenRecipientInputHasError.get();
-            }
-            if (hasError) {
-                return "error";
-            }
-        },
-        transaction_history: function() {
-            return transactionHistory.get();
-        },
-        tokens: function() {
-            return TOKENS;
-        },
-        need_web3: function() {
-            if (userAddress.get() !== "0x0" && hasWeb3 && !wrongNetwork.get()) {
-                return "";
-            } else {
-                return "disabled";
-            }
-        },
-        is_loading: function() {
-            return isLoadingRecords.get();
-        },
-        network_prefix: function() {
-            return networkPrefix.get();
-        }
+}
+
+export var countdown_timer_helpers = {
+    day: function() {
+        return countdownDay.get();
+    },
+    hour: function() {
+        return countdownHour.get();
+    },
+    minute: function() {
+        return countdownMin.get();
+    },
+    second: function() {
+        return countdownSec.get();
+    },
+    phase: function() {
+        return cyclePhase.get();
     }
+}
+
+export var sidebar_heplers = {
+    user_address: function() {
+        return userAddress.get();
+    },
+    user_balance: function() {
+        return displayedInvestmentBalance.get().toFormat(18);
+    },
+    balance_unit: function() {
+        return displayedInvestmentUnit.get();
+    },
+    user_kairo_balance: function() {
+        return displayedKairoBalance.get().toFormat(18);
+    },
+    kairo_unit: function() {
+        return displayedKairoUnit.get();
+    },
+    can_redeem_commission: function() {
+        return cyclePhase.get() === 2 && lastCommissionRedemption.get() < cycleNumber.get();
+    },
+    expected_commission: function() {
+        var roi;
+        if (kairoTotalSupply.get().greaterThan(0)) {
+            if (cyclePhase.get() === 2) {
+                // Actual commission that will be redeemed
+                return kairoBalance.get().div(kairoTotalSupply.get()).mul(cycleTotalCommission.get()).div(1e18).toFormat(18);
+            }
+            // Expected commission based on previous average ROI
+            roi = avgROI.get().gt(0) ? avgROI.get() : BigNumber(0);
+            return kairoBalance.get().div(kairoTotalSupply.get()).mul(totalFunds.get().div(1e18)).mul(roi.div(100).mul(commissionRate.get()).add(assetFeeRate.get().div(1e18))).toFormat(4);
+        }
+        return BigNumber(0).toFormat(4);
+    }
+}
+
+export var sidebar = {
+    "redeem_commission": async function(pending, confrim) {
+        return betoken.redeemCommission(showTransaction, loadUserData, pending, confirm);
+    },
     
-    export var transact_box_events = {
-        "deposit_button": async function(amt, tokenSymbol, pending, confirm, handledataSucess, handledataError) {
-            var amount, tokenAddr, tokenSymbol;
-            try {
-                amount = BigNumber(amt);
-                if (!amount.gt(0)) {
-                    handledataError('Amount must be greater than zero.');
-                    return;
-                }
-                tokenAddr = (await betoken.tokenSymbolToAddress(tokenSymbol));
-                handledataSucess(betoken.depositToken(tokenAddr, amount, showTransaction, loadDynamicData, pending, confirm));
-                return;
-            } catch (error1) {
-                handledataError(error1);
+    "redeem_commission_in_shares" :async function(pending, confirm) {
+        return betoken.redeemCommissionInShares(showTransaction, loadDynamicData, pending, confirm);
+    }
+}
+
+export var transact_box_helpers = {
+    is_disabled: function() {
+        if (cyclePhase.get() !== 0) {
+            return "disabled";
+        }
+    },
+    has_error: function(input_id) {
+        var hasError;
+        hasError = false;
+        switch (input_id) {
+            case 0:
+            hasError = Template.instance().depositInputHasError.get();
+            break;
+            case 1:
+            hasError = Template.instance().withdrawInputHasError.get();
+            break;
+            case 2:
+            hasError = Template.instance().sendTokenAmountInputHasError.get();
+            break;
+            case 3:
+            hasError = Template.instance().sendTokenRecipientInputHasError.get();
+        }
+        if (hasError) {
+            return "error";
+        }
+    },
+    transaction_history: function() {
+        return transactionHistory.get();
+    },
+    tokens: function() {
+        return TOKENS;
+    },
+    need_web3: function() {
+        if (userAddress.get() !== "0x0" && hasWeb3 && !wrongNetwork.get()) {
+            return "";
+        } else {
+            return "disabled";
+        }
+    },
+    is_loading: function() {
+        return isLoadingRecords.get();
+    },
+    network_prefix: function() {
+        return networkPrefix.get();
+    }
+}
+
+export var transact_box_events = {
+    "deposit_button": async function(amt, tokenSymbol, pending, confirm, handledataSucess, handledataError) {
+        var amount, tokenAddr, tokenSymbol;
+        try {
+            amount = BigNumber(amt);
+            if (!amount.gt(0)) {
+                handledataError('Amount must be greater than zero.');
                 return;
             }
-        },
-        "withdraw_button": async function(amt, tokenSymbol, pending, confirm, handledataSucess, handledataError) {
-            var amount, error, tokenAddr, tokenSymbol;
-            try {
-                amount = BigNumber(amt);
-                if (!amount.greaterThan(0)) {
-                    handledataError('Amount must be greater than zero.');
-                    return;
-                }
-                tokenAddr = (await betoken.tokenSymbolToAddress(tokenSymbol));
-                handledataSucess(betoken.withdrawToken(tokenAddr, amount, showTransaction, loadDynamicData, pending, confirm));
-                return;
-            } catch (error1) {
-                handledataError(error1);
+            tokenAddr = (await betoken.tokenSymbolToAddress(tokenSymbol));
+            handledataSucess(betoken.depositToken(tokenAddr, amount, showTransaction, loadDynamicData, pending, confirm));
+            return;
+        } catch (error1) {
+            handledataError(error1);
+            return;
+        }
+    },
+    "withdraw_button": async function(amt, tokenSymbol, pending, confirm, handledataSucess, handledataError) {
+        var amount, error, tokenAddr, tokenSymbol;
+        try {
+            amount = BigNumber(amt);
+            if (!amount.greaterThan(0)) {
+                handledataError('Amount must be greater than zero.');
                 return;
             }
-        },
-        "click .token_send_button": function(event) {
-            var amount, toAddress, tokenType;
-            try {
-                Template.instance().sendTokenAmountInputHasError.set(false);
-                Template.instance().sendTokenRecipientInputHasError.set(false);
-                amount = BigNumber(web3.utils.toWei($("#send_token_amount_input")[0].value));
-                toAddress = $("#send_token_recipient_input")[0].value;
-                tokenType = $("#send_token_type")[0].value;
-                if (!amount.greaterThan(0)) {
+            tokenAddr = (await betoken.tokenSymbolToAddress(tokenSymbol));
+            handledataSucess(betoken.withdrawToken(tokenAddr, amount, showTransaction, loadDynamicData, pending, confirm));
+            return;
+        } catch (error1) {
+            handledataError(error1);
+            return;
+        }
+    },
+    "click .token_send_button": function(event) {
+        var amount, toAddress, tokenType;
+        try {
+            Template.instance().sendTokenAmountInputHasError.set(false);
+            Template.instance().sendTokenRecipientInputHasError.set(false);
+            amount = BigNumber(web3.utils.toWei($("#send_token_amount_input")[0].value));
+            toAddress = $("#send_token_recipient_input")[0].value;
+            tokenType = $("#send_token_type")[0].value;
+            if (!amount.greaterThan(0)) {
+                Template.instance().sendTokenAmountInputHasError.set(true);
+                return;
+            }
+            if (!web3.utils.isAddress(toAddress)) {
+                Template.instance().sendTokenRecipientInputHasError.set(true);
+                return;
+            }
+            if (tokenType === "KRO") {
+                if (amount.greaterThan(kairoBalance.get())) {
                     Template.instance().sendTokenAmountInputHasError.set(true);
                     return;
                 }
-                if (!web3.utils.isAddress(toAddress)) {
-                    Template.instance().sendTokenRecipientInputHasError.set(true);
+                return betoken.sendKairo(toAddress, amount, showTransaction, loadUserData);
+            } else if (tokenType === "BTKS") {
+                if (amount.greaterThan(sharesBalance.get())) {
+                    Template.instance().sendTokenAmountInputHasError.set(true);
                     return;
                 }
-                if (tokenType === "KRO") {
-                    if (amount.greaterThan(kairoBalance.get())) {
-                        Template.instance().sendTokenAmountInputHasError.set(true);
-                        return;
-                    }
-                    return betoken.sendKairo(toAddress, amount, showTransaction, loadUserData);
-                } else if (tokenType === "BTKS") {
-                    if (amount.greaterThan(sharesBalance.get())) {
-                        Template.instance().sendTokenAmountInputHasError.set(true);
-                        return;
-                    }
-                    return betoken.sendShares(toAddress, amount, showTransaction, loadUserData);
-                }
-            } catch (error1) {
-                return Template.instance().sendTokenAmountInputHasError.set(true);
+                return betoken.sendShares(toAddress, amount, showTransaction, loadUserData);
             }
+        } catch (error1) {
+            return Template.instance().sendTokenAmountInputHasError.set(true);
         }
     }
-    
-    export var stats_tab_helpers = {
-        cycle_length: function() {
-            if (phaseLengths.get().length > 0) {
-                return BigNumber(phaseLengths.get().reduce(function(t, n) {
-                    return t + n;
-                })).div(24 * 60 * 60).toDigits(3);
-            }
-        },
-        total_funds: function() {
-            return totalFunds.get().div(1e18).toFormat(2);
-        },
-        prev_roi: function() {
-            return prevROI.get().toFormat(2);
-        },
-        avg_roi: function() {
-            return avgROI.get().toFormat(2);
-        },
-        prev_commission: function() {
-            return prevCommission.get().div(1e18).toFormat(2);
-        },
-        historical_commission: function() {
-            return historicalTotalCommission.get().div(1e18).toFormat(2);
-        },
-        fund_value: function() {
-            return fundValue.get().div(1e18).toFormat(2);
-        },
-        cycle_roi: function() {
-            return fundValue.get().sub(totalFunds.get()).div(totalFunds.get()).mul(100).toFormat(4);
+}
+
+export var stats_tab_helpers = {
+    cycle_length: function() {
+        if (phaseLengths.get().length > 0) {
+            return BigNumber(phaseLengths.get().reduce(function(t, n) {
+                return t + n;
+            })).div(24 * 60 * 60).toDigits(3);
         }
+    },
+    total_funds: function() {
+        return totalFunds.get().div(1e18).toFormat(2);
+    },
+    prev_roi: function() {
+        return prevROI.get().toFormat(2);
+    },
+    avg_roi: function() {
+        return avgROI.get().toFormat(2);
+    },
+    prev_commission: function() {
+        return prevCommission.get().div(1e18).toFormat(2);
+    },
+    historical_commission: function() {
+        return historicalTotalCommission.get().div(1e18).toFormat(2);
+    },
+    fund_value: function() {
+        return fundValue.get().div(1e18).toFormat(2);
+    },
+    cycle_roi: function() {
+        return fundValue.get().sub(totalFunds.get()).div(totalFunds.get()).mul(100).toFormat(4);
     }
-    
-    export var decisions_tab_helpers = {
-        investment_list: function() {
-            return investmentList.get();
-        },
-        wei_to_eth: function(_weis) {
-            return BigNumber(_weis).div(1e18).toFormat(4);
-        },
-        new_investment_is_disabled: function() {
-            if (cyclePhase.get() === 1) {
-                return "";
-            } else {
-                return "disabled";
-            }
-        },
-        tokens: function() {
-            return TOKENS;
-        },
-        need_web3: function() {
-            if (userAddress.get() !== "0x0" && hasWeb3 && !wrongNetwork.get()) {
-                return "";
-            } else {
-                return "disabled";
-            }
-        },
-        is_loading: function() {
-            return isLoadingInvestments.get();
-        },
-        selected_token: function() {
-            return newInvestmentSelectedToken.get();
-        },
-        selected_token_price: async function(newInvestToken) {
-            return assetSymbolToPrice(newInvestToken);
+}
+
+export var decisions_tab_helpers = {
+    investment_list: function() {
+        return investmentList.get();
+    },
+    wei_to_eth: function(_weis) {
+        return BigNumber(_weis).div(1e18).toFormat(4);
+    },
+    new_investment_is_disabled: function() {
+        if (cyclePhase.get() === 1) {
+            return "";
+        } else {
+            return "disabled";
         }
+    },
+    tokens: function() {
+        return TOKENS;
+    },
+    need_web3: function() {
+        if (userAddress.get() !== "0x0" && hasWeb3 && !wrongNetwork.get()) {
+            return "";
+        } else {
+            return "disabled";
+        }
+    },
+    is_loading: function() {
+        return isLoadingInvestments.get();
+    },
+    selected_token: function() {
+        return newInvestmentSelectedToken.get();
+    },
+    selected_token_price: async function(newInvestToken) {
+        return assetSymbolToPrice(newInvestToken);
     }
-    
-    export var  decisions_tab_events = {
-        "sell_investment": async function(idd, pending, confirm) {
-            var id;
-            id = idd;
-            if (cyclePhase.get() === 1) {
-                return betoken.sellAsset(id, showTransaction, loadDynamicData, pending, confirm);
-            }
-        },
-        "new_investment": async function(tokenSymbol, amt, pending, confirm, handledataSucess, handledataError) {
-            
-            var address, error, kairoAmountInWeis, tokenSymbol;
-            try {
-                address = (await betoken.tokenSymbolToAddress(tokenSymbol));
-                kairoAmountInWeis = BigNumber(amt).times("1e18");
-                checkKairoAmountError(kairoAmountInWeis);
-                betoken.createInvestment(address, kairoAmountInWeis, showTransaction, loadUserData, pending, confirm);
-                return;
-            } catch (error1) {
-                console.log(error1);
-                showError(error1.toString() || INPUT_ERR);
-            }
-        },
-        "keyup .prompt": function(event) {
-            return filterTable(event, "decision_table", 1);
-        },
-        "click .refresh": async function(event) {
-            await loadTokenPrices();
-            return (await loadDecisions());
+}
+
+export var  decisions_tab_events = {
+    "sell_investment": async function(idd, pending, confirm) {
+        var id;
+        id = idd;
+        if (cyclePhase.get() === 1) {
+            return betoken.sellAsset(id, showTransaction, loadDynamicData, pending, confirm);
         }
+    },
+    "new_investment": async function(tokenSymbol, amt, pending, confirm, handledataSucess, handledataError) {
+        
+        var address, error, kairoAmountInWeis, tokenSymbol;
+        try {
+            address = (await betoken.tokenSymbolToAddress(tokenSymbol));
+            kairoAmountInWeis = BigNumber(amt).times("1e18");
+            checkKairoAmountError(kairoAmountInWeis);
+            betoken.createInvestment(address, kairoAmountInWeis, showTransaction, loadUserData, pending, confirm);
+            return;
+        } catch (error1) {
+            console.log(error1);
+            showError(error1.toString() || INPUT_ERR);
+        }
+    },
+    "keyup .prompt": function(event) {
+        return filterTable(event, "decision_table", 1);
+    },
+    "click .refresh": async function(event) {
+        await loadTokenPrices();
+        return (await loadDecisions());
     }
-    
-    checkKairoAmountError = function(kairoAmountInWeis) {
-        if (!kairoAmountInWeis.greaterThan(0)) {
-            throw new Error("Stake amount should be positive.");
-        }
-        if (kairoAmountInWeis.greaterThan(kairoBalance.get())) {
-            throw new Error("You can't stake more Kairos than you have!");
-        }
-    };
-    
-    export var ranking_tab = {
-        kairo_ranking: async function() {
-            return kairoRanking.get();
-        },
-        is_loading: function() {
-            return isLoadingRanking.get();
-        },
-        user_rank: async function() {
-            var entry, j, len, ref;
-            ref = kairoRanking.get();
-            for (j = 0, len = ref.length; j < len; j++) {
-                entry = ref[j];
-                if (entry.address === userAddress.get()) {
-                    return entry.rank;
-                }
-            }
-            return "N/A";
-        },
-        user_value: function() {
-            var entry, j, len, ref;
-            ref = kairoRanking.get();
-            for (j = 0, len = ref.length; j < len; j++) {
-                entry = ref[j];
-                if (entry.address === userAddress.get()) {
-                    return BigNumber(entry.kairoBalance).toFixed(18);
-                }
-            }
-            return "N/A";
-        }
+}
+
+checkKairoAmountError = function(kairoAmountInWeis) {
+    if (!kairoAmountInWeis.greaterThan(0)) {
+        throw new Error("Stake amount should be positive.");
     }
+    if (kairoAmountInWeis.greaterThan(kairoBalance.get())) {
+        throw new Error("You can't stake more Kairos than you have!");
+    }
+};
+
+export var ranking_tab = {
+    kairo_ranking: async function() {
+        return kairoRanking.get();
+    },
+    is_loading: function() {
+        return isLoadingRanking.get();
+    },
+    user_rank: async function() {
+        var entry, j, len, ref;
+        ref = kairoRanking.get();
+        for (j = 0, len = ref.length; j < len; j++) {
+            entry = ref[j];
+            if (entry.address === userAddress.get()) {
+                return entry.rank;
+            }
+        }
+        return "N/A";
+    },
+    user_value: function() {
+        var entry, j, len, ref;
+        ref = kairoRanking.get();
+        for (j = 0, len = ref.length; j < len; j++) {
+            entry = ref[j];
+            if (entry.address === userAddress.get()) {
+                return BigNumber(entry.kairoBalance).toFixed(18);
+            }
+        }
+        return "N/A";
+    }
+}

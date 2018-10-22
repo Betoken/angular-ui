@@ -3,7 +3,10 @@
         <div class="ranking-table-sec col-9 mt-3">
             <div class="sec-header d-flex justify-content-between align-items-center">
                 <p class="sec-title">Manager Rankings</p>
-                <button class="text-center outline-button mr-3" (click) = "rankingList() && userRank()">REFRESH</button>
+                <button class="text-center outline-button mr-3" (click) = "rankingList() && userRank()">
+                    <span *ngIf="isLoading() == false">REFRESH</span>
+                    <span *ngIf="isLoading()">Loading...</span>
+                </button>
             </div>
             <div class="cards table-responsive">
                 <table class="table ranking-table">
@@ -69,7 +72,7 @@
                 <div class="update-footer">
                     <a target="_blank" href="https://t.me/betokenfund">
                         <p class="black-font" style="text-align: center;">
-                            Join our community on Telegram
+                            Join our Telegram community
                             <img src="assets/images/telegram-icon.png">
                         </p>
                     </a>

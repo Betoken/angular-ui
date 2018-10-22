@@ -41,9 +41,9 @@ export class AppComponent {
   }
 
   async  start(errMessage) {
-       alert(errMessage);
-       location.reload();
-       // do based on error messgae
+      alert(errMessage);
+      location.reload();
+      // do based on error messgae
   }
 
   setToggleMenu(): void {

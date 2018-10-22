@@ -96,62 +96,12 @@
                 <button class="text-center alert-button" (click)="hidechangealert()">DISMISS</button>
             </div>
         </div>
-
-        <div class="top-sec col-12">
-            <div class="row befund-portfolio-sec mb-2">
-                <div class="col-12 col-lg-12 ">
-                    <div class="sec-header">
-                        <p class="sec-title">Your Account</p>
-                    </div>
-                    <div class="cards">
-                        <div class="row portfolio-div">
-                            <div class="portfolio col-6 col-md-6 col-lg-3 d-flex align-items-center mb-2">
-                                <div class="portfolio-icon mr-3">
-                                    <img src="assets/images/metamask.png">
-                                </div>
-                                <div class="portfolio-desc" (click)= "copyToClipBoard(user_address)">
-                                    <p class="portfolio-title betoken-font m-0">Eth. Mainnet</p>
-                                    <p class="portfolio-value black-font m-0 ellipseDesign"> {{user_address}} </p>
-                                </div>
-                            </div>
-
-                            <div class="portfolio col-6 col-md-6 col-lg-3 d-flex align-items-center mb-2">
-                                <div class="portfolio-desc" (click)= "copyToClipBoard(share_balance)">
-                                    <p class="portfolio-title betoken-font m-0">Shares balance
-                                        <img src="assets/images/info_icon.png">
-                                    </p>
-                                    <p class="portfolio-value black-font m-0">{{share_balance}} BTF </p>
-                                </div>
-                            </div>
-
-                            <div class="portfolio col-6 col-md-6 col-lg-3 d-flex align-items-center mb-2">
-                                <div class="portfolio-desc" (click)= "copyToClipBoard(kairo_balance)">
-                                    <p class="portfolio-title betoken-font m-0">Kairo balance
-                                        <img src="assets/images/info_icon.png">
-                                    </p>
-                                    <p class="portfolio-value black-font m-0 ellipseDesign" >{{kairo_balance}} </p>
-                                </div>
-                            </div>
-
-                            <div class="portfolio col-6 col-md-6 col-lg-3 d-flex align-items-center mb-2">
-                                <div class="portfolio-desc" (click)= "copyToClipBoard(monthly_pl)">
-                                    <p class="portfolio-title betoken-font m-0">Your monthly P/L
-                                        <img src="assets/images/info_icon.png">
-                                    </p>
-                                    <p class="portfolio-value black-font m-0">{{monthly_pl}}%</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
         
         <div class="left-sec col-12 col-lg-8 order-2 order-lg-1">
             <div class="row befund-statitics-sec">
                 <div class="col-12 col-lg-12 ">
                     <div class="sec-header">
-                        <p class="sec-title">Past Performance & Statistics</p>
+                        <p class="sec-title">Betoken Fund Performance & Statistics</p>
                     </div>
                     <div class="cards">
                         <div class="content-header d-flex align-items-center mb-3">
@@ -176,28 +126,6 @@
                                         <p class="hilight-value black-font m-0"> {{avgMonthReturn}}% </p>
                                     </div>
                                 </div>
-                                <div class="key col-6 col-sm-6 col-md-4 d-flex align-items-center">
-                                    <div class="mr-3">
-                                        <img src="assets/images/return.png">
-                                    </div>
-                                    <div class="key-hilights">
-                                        <p class="hilight-title betoken-font m-0"> Current Month ROI
-                                            <img src="assets/images/info_icon.png">
-                                        </p>
-                                        <p class="hilight-value black-font m-0"> {{currMoROI}}% </p>
-                                    </div>
-                                </div>
-                                <div class="key col-6 col-sm-6 col-md-4 d-flex align-items-center">
-                                    <div class="mr-3">
-                                        <img src="assets/images/users.png">
-                                    </div>
-                                    <div class="key-hilights">
-                                        <p class="hilight-title betoken-font m-0">Total Managers
-                                            <img src="assets/images/info_icon.png">
-                                        </p>
-                                        <p class="hilight-value black-font m-0"> {{totalUser}} </p>
-                                    </div>
-                                </div>
 
                                 <div class="key col-6 col-sm-6 col-md-4 d-flex align-items-center">
                                     <div class="mr-3">
@@ -213,25 +141,13 @@
 
                                 <div class="key col-6 col-sm-6 col-md-4 d-flex align-items-center">
                                     <div class="mr-3">
-                                        <img src="assets/images/kairo-share-icon.png">
+                                        <img src="assets/images/users.png">
                                     </div>
                                     <div class="key-hilights">
-                                        <p class="hilight-title betoken-font m-0">Tot. Kairo
+                                        <p class="hilight-title betoken-font m-0">Total Managers
                                             <img src="assets/images/info_icon.png">
                                         </p>
-                                        <p class="hilight-value black-font m-0 ellipseDesign" > {{totalKairo}} </p>
-                                    </div>
-                                </div>
-
-                                <div class="key col-6 col-sm-6 col-md-4 d-flex align-items-center">
-                                    <div class="mr-3">
-                                        <img src="assets/images/betoken-share-icon.png">
-                                    </div>
-                                    <div class="key-hilights">
-                                        <p class="hilight-title betoken-font m-0">Tot. Betoken Shares
-                                            <img src="assets/images/info_icon.png">
-                                        </p>
-                                        <p class="hilight-value black-font m-0 ellipseDesign" > {{totalBTFShares}} </p>
+                                        <p class="hilight-value black-font m-0"> {{totalUser}} </p>
                                     </div>
                                 </div>
                             </div>
@@ -239,87 +155,9 @@
                     </div>
                 </div>
             </div>
-            <div class="row support mb-5">
-                <div class="faq-sec col-lg-12 col-md-6 col-sm-12 mb-3">
-
-                    <div class="sec-header">
-                        <p class="sec-title">FAQ</p>
-                    </div>
-
-                    <div class="faq-sec-content">
-
-                        <accordion class="faq-group">
-                            <accordion-group heading="How to invest in Betoken?">
-                                <p class="ans">It is a long established fact that a reader will be distracted by the readable content of
-                                    a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less
-                                    normal distribution of letters</p>
-                            </accordion-group>
-                            <accordion-group heading="What’s ether (ETH)? Why do I need it to invest in Betoken?">
-                                <p class="ans">It is a long established fact that a reader will be distracted by the readable content of
-                                    a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less
-                                    normal distribution of letters</p>
-                            </accordion-group>
-                            <accordion-group heading="What’s Kairo (KRO)?">
-                                <p class="ans">It is a long established fact that a reader will be distracted by the readable content of
-                                    a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less
-                                    normal distribution of letters</p>
-                            </accordion-group>
-                            <accordion-group heading=" What is gas?">
-                                <p class="ans">It is a long established fact that a reader will be distracted by the readable content of
-                                    a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less
-                                    normal distribution of letters</p>
-                            </accordion-group>
-                            <accordion-group heading="Getting Ether, your digital currency">
-                                <p class="ans">It is a long established fact that a reader will be distracted by the readable content of
-                                    a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less
-                                    normal distribution of letters</p>
-                            </accordion-group>
-                            <accordion-group heading="How to send ETH to MetaMask or my Ledger?">
-                                <p class="ans">It is a long established fact that a reader will be distracted by the readable content of
-                                    a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less
-                                    normal distribution of letters</p>
-                            </accordion-group>
-                        </accordion>
-
-                    </div>
-
-
-                </div>
-            </div>
         </div>
         <div class="right-sec col-12 col-lg-4 order-1 order-lg-2">
             <div class="row profit-history-sec">
-                <div class="col-12  col-md-6 col-lg-12 mb-3">
-                    <div class="sec-header">
-                        <p class="sec-title">Betoken fund details</p>
-                    </div>
-
-                    <div class="cards">
-                        <div class="component d-flex">
-                            <p class="component-tittle betoken-font">Management fee
-                                <img src="assets/images/info_icon.png"> </p>
-                            <p class="component-val black-font"> 0.1 % </p>
-                        </div>
-
-                        <div class="component d-flex">
-                            <p class="component-tittle betoken-font">Performance fee
-                                <img src="assets/images/info_icon.png"> </p>
-                            <p class="component-val black-font"> 20 % </p>
-                        </div>
-
-                        <div class="component d-flex">
-                            <p class="component-tittle betoken-font">Developer fee
-                                <img src="assets/images/info_icon.png"> </p>
-                            <p class="component-val black-font"> 0.1 % </p>
-                        </div>
-
-                        <div class="component d-flex">
-                            <p class="component-tittle betoken-font">Withdrawal fee
-                                <img src="assets/images/info_icon.png"> </p>
-                            <p class="component-val black-font"> 3 % </p>
-                        </div>
-                    </div>
-                </div>
 
                 <div class="email-update-sec col-12 col-md-6 col-lg-12 mb-3">
                     <div class="sec-header">

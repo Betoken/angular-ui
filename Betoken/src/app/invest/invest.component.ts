@@ -72,9 +72,6 @@ export class InvestComponent implements OnInit {
     stock: StockChart;
     bar: StockChart;
     user_address = '0x0';
-    share_balance = 0.0000;
-    kairo_balance = 0.0000;
-    monthly_pl = 0.00;
     inputShare = 0.00;
     calculated_balance = 0.00;
     selectedTokenSymbol = 'DAI';
@@ -102,7 +99,7 @@ export class InvestComponent implements OnInit {
     transactionId: '';
 
     openModalPopup() {
-       this.ms.setPopUp();
+        this.ms.setPopUp();
     }
     openModalPopupW() {
         this.ms.setPopUpW();
@@ -156,9 +153,6 @@ export class InvestComponent implements OnInit {
             if (userAddress.get() !== '0x0') {
                 // portfolio
                 this.user_address = userAddress.get();
-                this.share_balance = sharesBalance.get().div(1e18).toFormat(5);
-                this.kairo_balance = displayedKairoBalance.get().toFormat(18);
-                this.monthly_pl = managerROI.get().toFormat(5);
 
                 // Betoken fund share price
                 this.avgMonthReturn = stats_tab_helpers.avg_roi();
@@ -217,7 +211,7 @@ export class InvestComponent implements OnInit {
                 type: 'areaspline'
             }]
         });
-        
+
 
         this.carouselBanner = {
             grid: { xs: 1, sm: 1, md: 1, lg: 1, all: 0 },
@@ -231,8 +225,8 @@ export class InvestComponent implements OnInit {
         };
 
         this.ms.getPopUp().subscribe((open: boolean) => {
-           this.investflow = true;
-           this.withdrawflow = false;
+            this.investflow = true;
+            this.withdrawflow = false;
             if (open) {
                 this.state = 'open';
                 this.active = true;
@@ -326,7 +320,7 @@ export class InvestComponent implements OnInit {
 
     pending = (transactionHash) => {
         this.transactionId = transactionHash;
-        this.step1= false;
+        this.step1 = false;
         this.step2 = false;
         this.step3 = true;
         this.step4 = false;
@@ -347,18 +341,18 @@ export class InvestComponent implements OnInit {
             this.step3 = false;
             this.step4 = false;
         }, (error) => {
-          alert(error);
+            alert(error);
         });
     }
 
     async invest() {
-         transact_box_events.deposit_button(this.calculated_balance, this.selectedTokenSymbol, this.pending, this.confirm, (success) => {
-          this.step2 = true;
-          this.step1 = false;
-          this.step3 = false;
-          this.step4 = false;
+        transact_box_events.deposit_button(this.calculated_balance, this.selectedTokenSymbol, this.pending, this.confirm, (success) => {
+            this.step2 = true;
+            this.step1 = false;
+            this.step3 = false;
+            this.step4 = false;
         }, (error) => {
-           alert(error);
+            alert(error);
         });
     }
 

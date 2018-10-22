@@ -1,5 +1,5 @@
-<header class="col-md-12 col-lg-10">
-  
+<header class="col-md-12 col-lg-12">
+
   <div class="row d-flex align-items-center">
     <div class="col-1 pr-0 nav-wrapper d-lg-none">
       <nav class="navbar navbar-light p-0">
@@ -8,58 +8,63 @@
         </button>
       </nav>
     </div>
-    <div class="col-9 col-lg-7 phase-wrapper">
+    <div class="col-2">
+      <div class="logo pointer">
+          <a target="_blank" href="https://betoken.fund">
+              <img src="assets/images/betoken-logo.png" class="header-logo" width="148">
+          </a>
+      </div>
+
+      <div class="notification-bar pointer mt-3">
+          <div class="bt-notifications notification-icon" (click)="notification = !notification"></div>
+      </div>
+    </div>
+    <div class="col-9 col-lg-5 phase-wrapper">
       <div class="row portfolio-div">
-        <div class="portfolio col-6 col-md-6 col-lg-3 d-flex align-items-center mb-2">
+        <div class="portfolio col-6 col-md-6 col-lg-4 d-flex align-items-center">
           <div class="portfolio-desc" (click)= "copyToClipBoard(kairo_balance)">
-            <p class="portfolio-title betoken-font m-0">Kairo balance
-              <img src="assets/images/info_icon.png">
-            </p>
+            <p class="portfolio-title betoken-font m-0">Kairo balance</p>
             <p class="portfolio-value black-font m-0 ellipseDesign" >{{kairo_balance}} </p>
           </div>
         </div>
-        
-        <div class="portfolio col-6 col-md-6 col-lg-3 d-flex align-items-center mb-2">
+
+        <div class="portfolio col-6 col-md-6 col-lg-4 d-flex align-items-center">
           <div class="portfolio-desc" (click)= "copyToClipBoard(monthly_pl)">
-            <p class="portfolio-title betoken-font m-0">Monthly P/L
-              <img src="assets/images/info_icon.png">
-            </p>
+            <p class="portfolio-title betoken-font m-0">Monthly P/L</p>
             <p class="portfolio-value black-font m-0">{{monthly_pl}}%</p>
           </div>
         </div>
-        
-        <div class="portfolio col-6 col-md-6 col-lg-3 d-flex align-items-center mb-2">
+
+        <div class="portfolio col-6 col-md-6 col-lg-4 d-flex align-items-center">
           <div class="portfolio-desc" (click)= "copyToClipBoard(monthly_pl)">
-            <p class="portfolio-title betoken-font m-0">Est. Commission
-              <img src="assets/images/info_icon.png">
-            </p>
+            <p class="portfolio-title betoken-font m-0">Est. Commission</p>
             <p class="portfolio-value black-font m-0">{{expected_commission}} DAI</p>
           </div>
         </div>
       </div>
     </div>
     <div class="col-2 d-none d-lg-flex" *ngIf="phase == 0">
-      <div class="button-wrapper justify-content-end">
+      <div class="justify-content-end">
         <button class="text-center outline-button mr-3" (click)="openModalPopupW()">WITHDRAW</button>
         <button class="text-center outline-button active" (click)="openModalPopup()">INVEST</button>
       </div>
     </div>
-    
+
     <div class="col-2 d-none d-lg-flex" *ngIf="phase == 1">
       <div class="button-wrapper text-right justify-content-end">
         <button class="text-center outline-button active" (click)="proposalPopup()">TRADE ASSSETS</button>
       </div>
     </div>
-    
+
     <div class="col-2 d-none d-lg-flex" *ngIf="phase == 2">
       <div class="button-wrapper text-right justify-content-end">
         <button class="text-center outline-button active" routerLink="/redeem" (click)="redeemPopup()">REDEEM COMMISSION</button>
       </div>
     </div>
-    
-    <div class="col-2 justify-content-end">
+
+    <div class="col-3 justify-content-end">
       <div class="portfolio-desc">
-        <p class="portfolio-title betoken-font m-0">Account</p>
+        <p class="portfolio-title betoken-font m-0"><img class="connected-wallet-logo" src="/assets/images/metamask.png" width="24">Rinkeby</p>
         <p class="black-font m-0" style="text-overflow: ellipsis; overflow: hidden;">{{user_address}}</p>
       </div>
     </div>

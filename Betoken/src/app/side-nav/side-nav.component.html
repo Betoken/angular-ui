@@ -1,23 +1,12 @@
 <div class="col-lg-2 side-nav-wrapper" [@toggleMenu]="state">
-    <div class="top-nav">
-        
-        <div class="logo pointer">
-            <a target="_blank" href="https://betoken.fund">
-                <img src="assets/images/betoken-logo.png" class="header-logo w-100" >
-            </a>
-        </div>
-        
-        <div class="notification-bar pointer mt-3">
-            <div class="bt-notifications notification-icon" (click)="notification = !notification"></div>
-        </div>
 
-    </div>
-    
     <div class="nav-bar">
-        <p style="text-align: center;">
-            Time left to manage: <br>
-            <b>{{days}}d {{hours}}h {{minutes}}m {{seconds}}s</b>
-        </p>
+        <div class="button-wrapper">
+          <button class="text-center outline-button invest">INVEST</button>
+          <button class="text-center outline-button manage active">MANAGE</button>
+        </div>
+        <p class="time-left-title">Time left to manage:</p>
+        <p class="time-left-value">{{days}}d {{hours}}h {{minutes}}m {{seconds}}s</p>
         <ul class="app-nav">
             <li [class.active]="router.url==='/home'">
                 <span class="nav-indication"></span>
@@ -26,8 +15,8 @@
                     Dashboard
                 </a>
             </li>
-            
-            
+
+
             <li [class.active]="router.url==='/proposal'">
                 <span class="nav-indication"></span>
                 <a class="d-flex align-items-center" (click)="navigate('/proposal')">
@@ -35,7 +24,7 @@
                     Invest
                 </a>
             </li>
-            
+
             <li [class.active]="router.url==='/rankings'">
                 <span class="nav-indication"></span>
                 <a class="d-flex align-items-center" (click)="navigate('/rankings')">
@@ -43,8 +32,8 @@
                     Rankings
                 </a>
             </li>
-                
-                
+
+
             <li [class.active]="router.url==='/account'">
                 <span class="nav-indication"></span>
                 <a class="d-flex align-items-center" (click)="navigate('/account')">
@@ -53,32 +42,27 @@
                 </a>
             </li>
         </ul>
-                    
+
         <ul class="support-nav">
-            
-            <li> 
+
+            <li>
                 <a target="_blank" href="https://t.me/betokenfund"> Get Help </a>
             </li>
-            
+
             <li>
                 <a target="_blank" href="https://kyber.network">
-                    <a class="mt-2">
-                        Powered By 
-                    </a>
-                    <img src="assets//images/kybernet-logo.png" class="kybernet-logo">
+                  Powered By <img src="assets//images/kybernet-logo.png" class="p-0" width="64">
                 </a>
             </li>
-            
+
             <li>
-                <a>
-                    Copyright © 2018 Betoken
-                </a>
+              <a target="_blank" href="https://betoken.fund">Learn more</a>
             </li>
-            
+
         </ul>
-                    
+
     </div>
-                    
+
 </div>
 
 <div class="notification-wrapper col-lg-4 offset-lg-2" *ngIf = "notification">

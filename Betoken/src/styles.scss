@@ -1,5 +1,4 @@
 @import url('/assets/css/fonts.css');
-@import url('/assets/css/sprite.css');
 
 /* You can add global styles to this file, and also import other style files */
 
@@ -34,7 +33,7 @@ body{
     color: #8FA9B0 !important;
     font-size: 16px;
   }
-  
+
   h1,h2,h3,h4,h5,h6,p,span,input,button,select{
     font-family: 'MavenProRegular' !important;
     font-weight: normal !important;
@@ -52,7 +51,7 @@ body{
   a:hover{
     text-decoration: none !important;
   }
-  
+
   select{
     cursor: pointer;
     background-color: #ffffff;
@@ -91,7 +90,7 @@ body{
     margin-top: 85px;
   }
 
-  
+
   .cards{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
     background-color: #FFFFFF;
@@ -104,7 +103,7 @@ body{
 
   .sec-title{
     font-family: 'MavenProMedium' !important;
-    font-size: 18px;
+    font-size: 16px;
     color: #002B49;
     margin: 0px !important;
   }
@@ -115,10 +114,10 @@ body{
     background: #FFFFFF;
     border: 1px solid #D1DCDF;
     border-radius: 4px;
-    padding: 10px;
+    padding: 12px;
+    min-height: 36px;
     line-height: normal;
     outline: none !important;
-    min-width: 100px;
 }
 .outline-button-disable{
   font-family: 'MavenProMedium' !important;
@@ -155,7 +154,7 @@ body{
         min-width: 120px;
         background-color: transparent;
         color: #ffffff !important;
-        padding: 8px;    
+        padding: 8px;
       }
   }
 }
@@ -231,13 +230,13 @@ body{
             padding: 0 15px 0 0 !important;
             white-space: inherit !important;
             text-align: left !important
-            
+
           }
           .btn-link:hover {
             color:#000000 !important;
             text-decoration: none !important;
             background-color: transparent !important;
-            border-color: transparent !important;     
+            border-color: transparent !important;
           }
           .btn-link:focus {
             text-decoration: none !important;

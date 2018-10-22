@@ -1,20 +1,36 @@
 header{
     background-color: #fff;
-    height: 82px;
+    height: 64px;
+    padding: 6px 24px 0;
     position: fixed;
     right: 0;
     top: 0;
     z-index: 90;
     border-bottom: 1px solid #D1DCDF;
 
+
+    .logo{
+        .header-logo{
+            padding-right: 10px;
+            margin-top: 12px;
+        }
+        &:focus{
+            outline: none !important;
+        }
+    }
+    .notification-bar{
+        .notification-icon{
+           margin-right: 10px !important;
+        }
+    }
     .phase-wrapper{
-        padding: 15px;
+        padding: 0 24px;
         .phase-sec{
             .phase{
                 &.active{
                     .stage-icon{
                         background-color: #18DAA3 !important;
-                        border-color: #18DAA3 !important; 
+                        border-color: #18DAA3 !important;
                     }
                     .phase-desc{
                         color: #000000;
@@ -34,7 +50,7 @@ header{
                     color: #8FA9B0;
                     .phase-title{
                         font-size: 18px;
-                        margin-bottom: 0px; 
+                        margin-bottom: 0px;
                         font-family: 'MavenProMedium';
                     }
                     .phase-duration{
@@ -42,8 +58,8 @@ header{
                         margin: 0;
                     }
                 }
-                .phase-connector{ 
-                    width: 50px; 
+                .phase-connector{
+                    width: 50px;
                     height: 1px;
                     background-color: #D1DCDF;
                 }
@@ -52,13 +68,24 @@ header{
 
         }
     }
-    
-    .button-wrapper{
-        padding: 20px 0px;
-    }
 
     .outline-button{
         background-color: #002B49;
+        border: none;
+        font-size: 14px;
+    }
+    .connected-wallet-logo{
+      float: left;
+      width: 24px;
+      height:24px;
+      margin-right: 8px;
+      margin-top: 10px;
+    }
+    .portfolio-title{
+      font-size: 14px;
+    }
+    .portfolio-value{
+      font-size: 16px;
     }
 
 }
@@ -71,17 +98,17 @@ header{
             .navbar{
                 margin-right: 5px;
                 .navbar-toggler{
-                    color:#FFFF !important; 
+                    color:#FFFF !important;
                     border: none  !important;
-        
+
                 }
             }
-        }    
+        }
         .phase-sec{
             text-align: left !important;
             font-size: 20px !important;
             .phase{
-                display: none !important;  
+                display: none !important;
                 .phase-connector{
                     display: none;
                 }
@@ -91,10 +118,10 @@ header{
                      }
                 }
         }
-        
+
     }
 
-    
+
 }
 
 @media (min-width: 576px) and (max-width: 767.98px) {
@@ -104,9 +131,9 @@ header{
         .nav-wrapper{
             .navbar{
                 .navbar-toggler{
-                    color:#FFFF !important; 
+                    color:#FFFF !important;
                     border: none  !important;
-    
+
             }
         }
     }
@@ -114,18 +141,18 @@ header{
             .phase-sec{
                 .phase{
                     .phase-desc{
-                        .phase-title{         
+                        .phase-title{
                             font-size: 13px !important;
                         }
                     }
-                } 
-            }       
+                }
+            }
         }
-    
+
        }
 }
 
-@media (min-width: 768px) and (max-width: 991.98px)  {  
+@media (min-width: 768px) and (max-width: 991.98px)  {
 
 header{
     height: inherit !important;
@@ -133,7 +160,7 @@ header{
     .nav-wrapper{
         .navbar{
             .navbar-toggler{
-                color:#FFFF !important; 
+                color:#FFFF !important;
                 border: none  !important;
         }
     }
@@ -142,42 +169,42 @@ header{
         .phase-sec{
             .phase{
                 .phase-desc{
-                    .phase-title{         
+                    .phase-title{
                         font-size: 13px !important;
                     }
                 }
-            } 
-        }       
+            }
+        }
     }
 
    }
 }
 
 // Large devices (desktops, 992px and up)
-@media (min-width: 992px) and (max-width: 1199.98px) { 
-    
+@media (min-width: 992px) and (max-width: 1199.98px) {
+
     header{
         height: inherit !important;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
         .navbar{
             .navbar-toggler{
-                color:#FFFF !important; 
+                color:#FFFF !important;
                 border: none  !important;
-    
+
             }
         }
         .phase-wrapper{
             .phase-sec{
                 .phase{
                     .phase-desc{
-                        .phase-title{         
+                        .phase-title{
                             font-size: 12px !important;
                         }
                     }
-                } 
-            }       
+                }
+            }
         }
-    
+
        }
-    
+
 }

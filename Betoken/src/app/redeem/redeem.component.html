@@ -14,11 +14,11 @@
         </div>
 
         <div class="main-sec" *ngIf="step1">
-            <p class="m-0 pb-4 black-font">  
+            <p class="m-0 pb-4 black-font">
                 The fund was profitables in this investment’s cycle. All KRO holders are able to redeem a commission.
                 You can choose in which token you want to redeem it.
             </p>
-        
+
             <p class="m-0">Redeem with</p>
             <div class="mt-2 mb-4 outline-box w-100 d-flex  align-items-center justify-content-between">
                 <select class="border-0 betoken-font w-100" (change)="updateRedeemOption($event)">
@@ -37,16 +37,16 @@
 
         </div>
 
-        <div class="confirmation-sec m-3" *ngIf="step2">
+        <div class="confirmation-sec" *ngIf="step2">
             <p class="mb-3">
                 🚨 Confirm your trade for this asset
             </p>
             <p class="m-0 pb-4 black-font">
-                Confirm the transaction in the Metamask’s interface to submit it to the Betoken fund contract. 
+                Confirm the transaction in the Metamask’s interface to submit it to the Betoken fund contract.
                 It's fine to stick with these defaults gas limit and price.
             </p>
             <div class="d-flex justify-content-center mb-5">
-                <img src="assets/images/metamask-big.png" class="pointer " (click)="confirmredeem()">
+                <img src="assets/images/metamask-big.png" class="pointer " (click)="confirmredeem()" width="128" height="128">
             </div>
         </div>
 
@@ -55,7 +55,7 @@
                 🎉 Transaction broadcasted!
             </p>
             <p class="m-0 pb-4 black-font">
-                Your transaction is being saved on the Ethereum blockchain. 
+                Your transaction is being saved on the Ethereum blockchain.
                 You can check its status on Etherscan.
             </p>
             <div class="d-flex justify-content-center mb-5">
@@ -98,7 +98,7 @@
                 <button class="text-center outline-button active w-100" (click)="redeem()" *ngIf= "step1">REDEEM COMMSSIONS</button>
                 <button class="text-center outline-button active w-100" (click)="closePopup()" *ngIf= "step4">REDEEM SUCCESSFUL</button>
         </div>
-        
+
     </div>
 </div>
 

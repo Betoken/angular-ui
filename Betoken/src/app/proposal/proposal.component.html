@@ -171,7 +171,7 @@
             KRO to stake • Your Balance: {{kairo_balance}} KRO)
             </p>
             <input type="text" class="outline-box" (keyup) = "kairoInput($event)" placeholder="e.g. 1.0000">
-            <div class="confirmation-sec m-3" *ngIf="step2">
+            <div class="confirmation-sec" *ngIf="step2">
                 <p class="mb-3">
                     🚨 Confirm your trade for this asset
                 </p>
@@ -180,7 +180,7 @@
                     It's fine to stick with these defaults gas limit and price.
                 </p>
                 <div class="d-flex justify-content-center mb-5">
-                    <img src="assets/images/metamask-big.png" width="128">
+                    <img src="assets/images/metamask-big.png" width="128" height="128" width="128">
                 </div>
             </div>
 
@@ -247,7 +247,7 @@
         <div class="time-wrapper">
             <span class="time-left-title">Time left to redeem commission: </span> <span class="time-left-value">{{days}}d {{hours}}h {{minutes}}m {{seconds}}s</span>
         </div>
-        <div class="confirmation-sec m-3" *ngIf="sellStep1">
+        <div class="confirmation-sec" *ngIf="sellStep1">
             <p class="mb-3">
                 🚨 Confirm your transaction
             </p>
@@ -256,7 +256,7 @@
                 It's fine to stick with these defaults gas limit and price.
             </p>
             <div class="d-flex justify-content-center mb-5">
-                <img src="assets/images/metamask-big.png" class="pointer " (click)="confirmsell()">
+                <img src="assets/images/metamask-big.png" class="pointer " (click)="confirmsell()" width="128" height="128">
             </div>
 
         </div>
@@ -269,7 +269,7 @@
                 You can check its status on Etherscan.
             </p>
             <div class="d-flex justify-content-center mb-5">
-                <img src="assets/images/loader.png" class="pointer ">
+                <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
             </div>
             <p class="m-0">
                 Transaction ID
@@ -320,7 +320,7 @@
                 By being the first to operate this action, you’ll be granted 10 KRO.
             </p>
         </div>
-        <div class="confirmation-sec m-3" *ngIf="changeStep2">
+        <div class="confirmation-sec" *ngIf="changeStep2">
             <p class="mb-3">
                 🚨 Confirm your transaction
             </p>
@@ -329,7 +329,7 @@
                 defaults gas limit and price.
             </p>
             <div class="d-flex justify-content-center mb-5">
-                <img src="assets/images/metamask-big.png" class="pointer " (click)="confirmcchangefund()">
+                <img src="assets/images/metamask-big.png" class="pointer " (click)="confirmcchangefund()" width="128" height="128">
             </div>
         </div>
         <div class="broadcast-sec m-3" *ngIf="changeStep3">

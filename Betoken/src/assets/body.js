@@ -22,7 +22,7 @@ import ReactiveVar from "meteor-standalone-reactive-var";
 
 TOKENS = require("./objects/kn_token_symbols.json");
 
-WRONG_NETWORK_ERR = "Please switch to Rinkeby Testnet in order to use Betoken Omen. You can currently view the fund's data, but cannot make any interactions.";
+WRONG_NETWORK_ERR = "Please switch to Rinkeby Testnet in order to use Betoken Omen.";
 
 SEND_TX_ERR = "There was an error during sending your transaction to the Ethereum blockchain. Please check that your inputs are valid and try again later.";
 

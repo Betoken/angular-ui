@@ -156,7 +156,6 @@
             background-color: #FFFAEE;
             border: 1px solid #FFE6BA;
             border-radius: 4px;
-            text-align: justify;
             font-size: 16px;
             line-height: 1;
 
@@ -166,7 +165,6 @@
             background-color: #FFFAEE;
             border: 1px solid #FFE6BA;
             border-radius: 4px;
-            text-align: justify;
             font-size: 16px;
             line-height: 1;
 
@@ -176,12 +174,25 @@
             background-color: #FFFAEE;
             border: 1px solid #FFE6BA;
             border-radius: 4px;
-            text-align: justify;
             font-size: 16px;
             line-height: 1;
         }
         .modal-button-wrapper{
             padding: 18px;
+        }
+        .tx-hash{
+          background-color: white;
+          display: inline-block;
+          width: 80%;
+          border: 1px solid #D1DCDF !important;
+          padding: 15px 10px;
+        }
+        .link-tx-hash{
+          display: inline-block;
+          width: 20%;
+          border: 1px solid #D1DCDF !important;
+          padding: px 10px;
+
         }
     }
 }

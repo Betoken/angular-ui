@@ -39,7 +39,7 @@
         <button class="text-center outline-button active mr-4" (click)="proposalPopup()">TRADE ASSSETS</button>
       </div>
       <div class="button-wrapper" *ngIf="phase == 2">
-        <button class="text-center outline-button active" routerLink="/redeem" (click)="redeemPopup()">REDEEM COMMISSION</button>
+        <button class="text-center outline-button active mr-4" routerLink="/redeem" (click)="redeemPopup()">REDEEM COMMISSION</button>
       </div>
       <div class="portfolio-desc" *ngIf="user_address !== '0x0'">
         <p class="portfolio-title betoken-font m-0"><img class="connected-wallet-logo" src="/assets/images/metamask.png" width="24">{{curr_network}}</p>

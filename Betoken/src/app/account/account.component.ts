@@ -4,7 +4,8 @@ import {
     transactionHistory,
     loadTxHistory,
     networkPrefix,
-    copyToClipBoard
+    copyToClipBoard,
+    isLoadingRecords
 } from '../../assets/body';
 
 
@@ -22,7 +23,7 @@ export class AccountComponent implements OnInit {
             if (userAddress.get() !== '0x0') {
                 this.transactionsDetails();
             }
-        }, 2000 );
+        }, 10000 );
     }
 
     ngOnInit() {
@@ -41,5 +42,9 @@ export class AccountComponent implements OnInit {
 
     linkopen(values) {
         window.open(`https://` + this.transactionNetwork + `etherscan.io/tx/` + values + ``);
+    }
+
+    isLoading() {
+        return isLoadingRecords.get();
     }
 }

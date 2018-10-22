@@ -3,7 +3,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import { AppComponent } from '../app.component';
 import {
     userAddress, countdown_timer_helpers, displayedKairoBalance, decisions_tab_events, assetSymbolToPrice,
-    decisions_tab_helpers, loadUserData
+    decisions_tab_helpers, loadUserData, isLoadingInvestments
 } from '../../assets/body';
 
 @Component({
@@ -67,7 +67,8 @@ export class ProposalComponent implements OnInit {
     selectedTokenSymbol = 'ETH';
     kairoinput = '';
     symbolToPrice = '';
-    tableData: any;
+    activeInvestmentList: any;
+    inactiveInvestmentList: any;
     sellId: any;
     tokenList: any;
     transactionId: '';
@@ -89,7 +90,7 @@ export class ProposalComponent implements OnInit {
                 this.list();
                 this.tokensList();
             }
-        }, 1000);
+        }, 2000);
 
         this.state = 'close';
         this.active = false;
@@ -308,8 +309,9 @@ export class ProposalComponent implements OnInit {
     }
 
     async list() {
-        loadUserData();
-        this.tableData = decisions_tab_helpers.investment_list();
+        await loadUserData();
+        this.activeInvestmentList = decisions_tab_helpers.investment_list().filter((data) => data.isSold === false);
+        this.inactiveInvestmentList = decisions_tab_helpers.investment_list().filter((data) => data.isSold === true);
     }
 
     async invest() {
@@ -330,6 +332,9 @@ export class ProposalComponent implements OnInit {
 
     kairoInput (event) {
         this.kairoinput = event.target.value ;
-        console.log(this.kairoinput);
+    }
+
+    isLoading() {
+        return isLoadingInvestments.get();
     }
 }

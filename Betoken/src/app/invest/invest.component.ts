@@ -376,7 +376,7 @@ export class InvestComponent implements OnInit {
 
         this.stock = new Chart({
             title: {
-                text: 'Betoken fund\'s ROI per month'
+                text: ''
             },
             xAxis: {
                 categories: cycles,

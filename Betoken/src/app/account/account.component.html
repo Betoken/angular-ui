@@ -2,10 +2,13 @@
     <div class="row">
 
         <div class="account-table-sec col-9 mt-3">
-                <div class="sec-header d-flex justify-content-between align-items-center">
-                        <p class="sec-title">Transactions</p>
-                        <button class="text-center outline-button mr-3" (click) = "transactionsDetails()">REFRESH</button>
-                    </div>
+            <div class="sec-header d-flex justify-content-between align-items-center">
+                <p class="sec-title">Transactions</p>
+                <button class="text-center outline-button mr-3" (click) = "transactionsDetails()">
+                    <span *ngIf="isLoading() == false">REFRESH</span>
+                    <span *ngIf="isLoading()">Loading...</span>
+                </button>
+            </div>
             <div class="cards table-responsive">
                 <table class="table proposal-table">
                     <thead class="betoken-font">
@@ -73,7 +76,8 @@
                 <div class="update-footer">
                     <a target="_blank" href="https://t.me/betokenfund">
                         <p class="black-font" style="text-align: center;">
-                            Join our community on Telegram<img src="assets/images/iconmonstr-telegram-4.svg" width="24" class="ml-1">
+                            Join our Telegram community
+                            <img src="assets/images/iconmonstr-telegram-4.svg" width="24" class="ml-1"
                         </p>
                     </a>
                 </div>

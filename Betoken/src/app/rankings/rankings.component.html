@@ -1,9 +1,9 @@
-<div class="ranking-wrapper header-height col-12 col-lg-10 float-right">
+<div class="ranking-wrapper col-12 col-lg-10 float-right">
     <div class="row">
         <div class="ranking-table-sec col-8">
-            <div class="sec-header d-flex justify-content-between align-items-center">
-                <p class="sec-title">Manager Rankings</p>
-                <button class="text-center outline-button mr-3" (click) = "rankingList() && userRank()">
+            <div class="sec-header d-flex justify-content-between align-items-center pb-1">
+                <p class="sec-title">Managers ranking list</p>
+                <button class="text-center outline-button" (click) = "rankingList() && userRank()">
                     <span *ngIf="isLoading() == false">REFRESH</span>
                     <span *ngIf="isLoading()">Loading...</span>
                 </button>
@@ -23,36 +23,36 @@
                         </tr>
                         <tr class="table-seperator">
                             <td>{{userRanking}}</td>
-                            <td>{{userAddress}}</td>
-                            <td class="betoken-font">{{userValue}}</td>
+                            <td class="user-wallet-address">{{userAddress}}</td>
+                            <td class="betoken-font user-kro-balance">{{userValue}}</td>
                         </tr>
-                        
+
                         <tr>
                             <td class="betoken-font">All</td>
                         </tr>
-                        
+
                         <tr *ngFor="let ranking of rankingArray">
                             <td>{{ranking.rank}}</td>
-                            <td>{{ranking.address}}</td>
-                            <td class="betoken-font">{{ranking.kairoBalance}}</td>
+                            <td class="user-wallet-address">{{ranking.address}}</td>
+                            <td class="betoken-font user-kro-balance">{{ranking.kairoBalance}}</td>
                         </tr>
                     </tbody>
                 </table>
-            </div>  
+            </div>
         </div>
 
         <div class="email-update-sec col-4 col-md-3 col-lg-4 mb-3">
             <div class="sec-header">
                 <p class="sec-title">Receive updates</p>
             </div>
-            
+
             <div class="cards">
 
                 <p class="update-info black-font">
-                    Get updates about the fund status, begining of new investment cycle phases and date to redeem commissions.
+                    Get updates about the fund status, beginning of new investment cycle phases and date to redeem commissions.
                 </p>
 
-                
+
                 <p>
                     Email address
                 </p>

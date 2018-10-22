@@ -1039,6 +1039,7 @@ loadDynamicData = async function() {
                 handledataSucess(betoken.createInvestment(address, kairoAmountInWeis, showTransaction, loadUserData, pending, confirm));
                 return;
             } catch (error1) {
+                console.log(error1);
                 //handledataError(error1.toString() || INPUT_ERR);
             }
         },

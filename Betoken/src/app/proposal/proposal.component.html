@@ -24,7 +24,7 @@
         <div class="proposal-table-sec col-8 mt-3">
             <div class="sec-header d-flex justify-content-between align-items-center">
                 <p class="sec-title">Investments</p>
-                <button class="text-center outline-button mr-3" (click) = "tokensList()">REFRESH</button>
+                <button class="text-center outline-button mr-3" (click) = "list()">REFRESH</button>
             </div>
             <div class="cards table-responsive">
                 <table class="table proposal-table">
@@ -144,7 +144,7 @@
                     <img src="assets/images/info_icon.png"> </p>
                 <p class="m-0">Max</p>
             </div>
-            <input type="text" class="outline-box" (keyup) = "kairoInput($event)" placeholder="1.0000">
+            <input type="text" class="outline-box" (keyup) = "kairoInput($event)" placeholder="e.g. 1.0000">
         </div>
 
         <div class="confirmation-sec m-3" *ngIf="step2">
@@ -326,7 +326,7 @@
                     </p>
                     <div class="mt-2 outline-box w-100 d-flex align-items-center justify-content-between bg-white ">
                         <div class = "overflowDesign row">
-                            <p class="m-0">0xf1af503...456e7c62116caf09</p>
+                            <p class="m-0">{{transactionId}}</p>
                             <a href="https://rinkeby.etherscan.io/tx/{{transactionId}}" target="_blank"> <img src="assets/images/export.png" class="pointer ml-1"> </a>
                         </div>
                     </div>

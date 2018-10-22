@@ -308,6 +308,7 @@ export class ProposalComponent implements OnInit {
     }
 
     async list() {
+        loadUserData();
         this.tableData = decisions_tab_helpers.investment_list();
     }
 
@@ -324,11 +325,11 @@ export class ProposalComponent implements OnInit {
     }
 
     async tokensList() {
-        await loadUserData();
         this.tokenList = decisions_tab_helpers.tokens();
     }
 
     kairoInput (event) {
         this.kairoinput = event.target.value ;
+        console.log(this.kairoinput);
     }
 }

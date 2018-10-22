@@ -31,7 +31,6 @@ export class RedeemComponent implements OnInit {
     active: boolean;
 
     redeemalert: boolean;
-    newcyclealert: boolean;
 
     step1: boolean;
     step2: boolean;
@@ -67,7 +66,6 @@ export class RedeemComponent implements OnInit {
         this.active = true;
 
         this.redeemalert = true;
-        this.newcyclealert = false;
 
         this.footerbtn1 = true;
         this.footerbtn2 = false;
@@ -139,7 +137,6 @@ export class RedeemComponent implements OnInit {
             this.step2 = false;
             this.step3 = false;
             this.redeemalert = false;
-            this.newcyclealert = true;
             this.ms.setnewcyclebtn();
             this.footerbtn2 = true;
         }, 1000);
@@ -156,7 +153,6 @@ export class RedeemComponent implements OnInit {
 
     hidealert() {
         this.redeemalert = false;
-        this.newcyclealert = true;
     }
 
     redeemPopup() {

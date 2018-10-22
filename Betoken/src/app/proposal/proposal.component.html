@@ -57,7 +57,7 @@
                                 <span class="value loss-font" *ngIf = "0 > +data.ROI">{{data.ROI}}%</span>
                             </td>
                             <td *ngIf = "data.isSold == false">
-                                <button class="outline-button" (click)="sell(data)" style="background-color: #18daa3; color: white">SELL</button>
+                                <button class="outline-button active" (click)="sell(data)" style="background-color: #18daa3; color: white">SELL</button>
                             </td>
                         </tr>
                     </tbody>

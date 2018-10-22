@@ -13,7 +13,7 @@
                 <table class="table proposal-table">
                     <thead class="betoken-font">
                         <tr>
-                            <th scope="col">Time</th>
+                            <th scope="col" class="pl-0">Time</th>
                             <th scope="col">Asset</th>
                             <th scope="col">Type</th>
                             <th scope="col">Amount</th>
@@ -22,7 +22,7 @@
                     </thead>
                     <tbody class="black-font">
                         <tr *ngFor = "let details of transactionTable">
-                            <td>{{details.timestamp}}</td>
+                            <td class="pl-0">{{details.timestamp}}</td>
                             <td>{{details.token}}</td>
                             <td>{{details.type}}</td>
                             <td>{{details.amount}}</td>
@@ -36,7 +36,7 @@
                         <p class="m-0">0x5910d5abd4d5fd58b39957664cd9735cbfe42bf0</p>
                         <img src="assets/images/ic_content_copy_black_24px.svg" class="pointer" (click)= "copy('0x5910d5abd4d5fd58b39957664cd9735cbfe42bf0')">
                     </div>
-                    <p>Kairo (KRO) contract address</p>
+                    <p class="pt-4">Kairo (KRO) contract address</p>
                     <div class="outline-box d-flex justify-content-between align-items-center">
                         <p class="m-0">0xDeB05FE4905EE7662b1230e7c1f29F386E598E66</p>
                         <img src="assets/images/ic_content_copy_black_24px.svg" class="pointer" (click)= "copy('0xDeB05FE4905EE7662b1230e7c1f29F386E598E66')">

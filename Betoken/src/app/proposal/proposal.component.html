@@ -32,7 +32,7 @@
                 <table class="table proposal-table">
                     <thead class="betoken-font">
                         <tr>
-                            <th scope="col">Asset</th>
+                            <th scope="col" class="pl-0">Asset</th>
                             <th scope="col">Buy price</th>
                             <th scope="col">Current/Sell price</th>
                             <th scope="col">Staked KRO</th>
@@ -42,7 +42,7 @@
                     </thead>
                     <tbody class="black-font">
                         <tr *ngFor = "let data of activeInvestmentList">
-                            <td class="identy">
+                            <td class="identy pl-0">
                                 <div class="d-flex align-items-center">
                                     <p class="m-0 abrivation">{{data.tokenSymbol}}</p>
                                     <!-- <p class="m-0 expansion">Ethereum</p> -->
@@ -71,16 +71,17 @@
                 <table class="table proposal-table">
                     <thead class="betoken-font">
                         <tr>
-                            <th scope="col">Asset</th>
+                            <th scope="col" class="pl-0">Asset</th>
                             <th scope="col">Buy price</th>
                             <th scope="col">Sell price</th>
                             <th scope="col">Staked KRO</th>
                             <th scope="col">Redeemed KRO</th>
+                            <th scope="col">Details</th>
                         </tr>
                     </thead>
                     <tbody class="black-font">
                         <tr *ngFor = "let data of inactiveInvestmentList">
-                            <td class="identy">
+                            <td class="identy pl-0">
                                 <div class="d-flex align-items-center">
                                     <p class="m-0 abrivation">{{data.tokenSymbol}}</p>
                                     <!-- <p class="m-0 expansion">Ethereum</p> -->
@@ -94,6 +95,7 @@
                                 <span class="value green-font" *ngIf = "+data.ROI >= 0">{{data.ROI}}%</span>
                                 <span class="value red-font" *ngIf = "0 > +data.ROI">{{data.ROI}}%</span>
                             </td>
+                            <td><img src="assets/images/ic_launch_black_24px.svg" class="pointer"></td>
                         </tr>
                     </tbody>
                 </table>

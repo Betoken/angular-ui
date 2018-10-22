@@ -81,7 +81,7 @@
 
 <div class="invest-wrapper header-height col-12 col-lg-10 float-right">
 
-    <div class="row mt-3 mb-3">
+    <div class="row mt-3">
         <div class="alert-window col-12 " *ngIf="investalert">
             <div class="alert d-flex justify-content-between align-items-center col-12">
                 <p class="m-0">🚨 Invest & Withdraw phase ended. Switch to next phase.</p>
@@ -161,28 +161,35 @@
 
                 <div class="email-update-sec col-12 col-md-6 col-lg-12 mb-3">
                     <div class="sec-header">
-                        <p class="sec-title">Receive email updates</p>
+                        <p class="sec-title">Receive updates</p>
                     </div>
-
+                    
                     <div class="cards">
 
                         <p class="update-info black-font">
                             Get updates about the fund status, begining of new investment cycle phases and date to redeem commissions.
                         </p>
 
+                        
                         <p>
                             Email address
                         </p>
 
-                        <input type="email" class="outline-button w-100 mb-3" placeholder="myemail@address.com">
-
-                        <button class="text-center outline-button black-font w-100 mb-3">
-                            GET UPDATED
-                        </button>
+                        <form action="https://fund.us17.list-manage.com/subscribe/post?u=9c0647dcb587985ed6121cdf6&amp;id=150e0f091e" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+                            <div class="emailer-box">
+                                <input class="outline-button w-100 mb-3" type="email" value="" name="EMAIL" id="mce-EMAIL" placeholder="myemail@address.com" required>
+                                <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_9c0647dcb587985ed6121cdf6_150e0f091e" tabindex="-1" value=""></div>
+                                <div class="input-group-append">
+                                    <button class="text-center outline-button black-font w-100 mb-3" name="subscribe" id="mc-embedded-subscribe">
+                                        GET UPDATED
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
 
                         <div class="update-footer">
                             <a target="_blank" href="https://t.me/betokenfund">
-                                <p class="black-font">
+                                <p class="black-font" style="text-align: center;">
                                     Join our community on Telegram
                                     <img src="assets/images/telegram-icon.png">
                                 </p>

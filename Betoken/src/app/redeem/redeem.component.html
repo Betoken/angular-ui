@@ -151,28 +151,27 @@
             </div>
         </div>
         <div class="time-wrapper">
-            <p class="m-0">Time left to invest: {{days}}d {{hours}}h {{minutes}}m {{seconds}}s
-                <img src="assets/images/info_icon.png" title="Time available">
+            <p class="m-0">Time left to redeem commission: {{days}}d {{hours}}h {{minutes}}m {{seconds}}s
             </p>
         </div>
 
         <div class="main-sec" *ngIf="step1">
-            <p class="m-0 pb-4 black-font">  The fund was profitables in this investment’s cycle. All KRO holders are able to redeem a commission.
-               You can choose in which token you want to redeem it.</p>
+            <p class="m-0 pb-4 black-font">  
+                The fund was profitables in this investment’s cycle. All KRO holders are able to redeem a commission.
+                You can choose in which token you want to redeem it.
+            </p>
         
-            <p class="m-0">Redeem with
-                <img src="assets/images/info_icon.png"> </p>
+            <p class="m-0">Redeem with</p>
             <div class="mt-2 mb-4 outline-box w-100 d-flex  align-items-center justify-content-between">
                 <select class="border-0 betoken-font w-100" (change)="updateRedeemOption($event)">
-                    <!-- <option>ETH - Ethereum ($600.92)</option>
-                    <option>ETH - Ethereum ($600.92)</option> -->
-                   <option>DAI - redeem commission</option>
+                    <option>DAI - redeem commission</option>
                     <option>BTKS - redeem commission in shares</option>
                 </select>
             </div>
             <div>
-                <p class="m-0">Total commission to redeem
-                    <img src="assets/images/info_icon.png"> </p>
+                <p class="m-0">
+                    Total commission to redeem
+                </p>
             </div>
             <div class="mt-2 outline-box w-100 d-flex  align-items-center justify-content-between">
                 <p class="m-0">{{redeemcommissionvalue}}</p>

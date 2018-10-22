@@ -74,6 +74,7 @@ export class ProposalComponent implements OnInit {
     transactionId: '';
     kroRedeemed: '';
     openchangefundModal() {
+        this.updateTokenSymbol('ETH');
         this.ms.setproposalPopUp();
     }
 
@@ -131,7 +132,7 @@ export class ProposalComponent implements OnInit {
     }
 
     async kairoBalance() {
-        this.kairo_balance = displayedKairoBalance.get().toFormat(18);
+        this.kairo_balance = displayedKairoBalance.get().toFormat(10);
     }
 
     ngOnInit() {

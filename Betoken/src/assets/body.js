@@ -541,7 +541,7 @@ loadRanking = async function() {
                 // format rank object
                 rank: 0,
                 address: _addr,
-                kairoBalance: BigNumber((await betoken.getKairoBalance(_addr))).add(stake).div(1e18).toFixed(18)
+                kairoBalance: BigNumber((await betoken.getKairoBalance(_addr))).add(stake).div(1e18).toFixed(10)
             };
         });
     })));
@@ -1086,7 +1086,7 @@ export var ranking_tab = {
         for (j = 0, len = ref.length; j < len; j++) {
             entry = ref[j];
             if (entry.address === userAddress.get()) {
-                return BigNumber(entry.kairoBalance).toFixed(18);
+                return BigNumber(entry.kairoBalance).toFixed(10);
             }
         }
         return "N/A";

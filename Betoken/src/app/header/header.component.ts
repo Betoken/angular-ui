@@ -5,7 +5,7 @@ import {AppComponent} from '../app.component';
 import { } from 'jquery';
 declare var $: any;
 import {
-  userAddress, countdown_timer_helpers, displayedKairoBalance, managerROI, sidebar_heplers
+  userAddress, countdown_timer_helpers, displayedKairoBalance, managerROI, sidebar_heplers, networkPrefix
 } from '../../assets/body';
 
 
@@ -32,6 +32,7 @@ export class HeaderComponent implements OnInit {
   kairo_balance = 0.0000;
   monthly_pl = 0.00;
   expected_commission = 0.00;
+  curr_network = '';
 
   constructor(private ms: AppComponent, private router: Router ) {
     this.btn1 = true;
@@ -91,8 +92,9 @@ export class HeaderComponent implements OnInit {
         // portfolio
         this.user_address = userAddress.get();
         this.kairo_balance = displayedKairoBalance.get().toFormat(4);
-        this.monthly_pl = managerROI.get().toFormat(5);
+        this.monthly_pl = managerROI.get().toFormat(4);
         this.expected_commission = sidebar_heplers.expected_commission();
+        this.curr_network = networkPrefix.get();
       }
     }, 1000);
     this.ms.getNextPhaseBtn().subscribe((nextbtn: boolean) => {

@@ -687,23 +687,23 @@ loadDynamicData = async function() {
             switch (netID) {
                 case 1:
                 net = "Main Ethereum Network";
-                pre = "";
+                pre = "Main";
                 break;
                 case 3:
                 net = "Ropsten Testnet";
-                pre = "ropsten.";
+                pre = "Ropsten";
                 break;
                 case 4:
                 net = "Rinkeby Testnet";
-                pre = "rinkeby.";
+                pre = "Rinkeby";
                 break;
                 case 42:
                 net = "Kovan Testnet";
-                pre = "kovan.";
+                pre = "Kovan";
                 break;
                 default:
                 net = "Unknown Network";
-                pre = "";
+                pre = "Unknown";
             }
             networkName.set(net);
             networkPrefix.set(pre);
@@ -1035,11 +1035,11 @@ loadDynamicData = async function() {
                 address = (await betoken.tokenSymbolToAddress(tokenSymbol));
                 kairoAmountInWeis = BigNumber(amt).times("1e18");
                 checkKairoAmountError(kairoAmountInWeis);
-                handledataSucess(betoken.createInvestment(address, kairoAmountInWeis, showTransaction, loadUserData, pending, confirm));
+                betoken.createInvestment(address, kairoAmountInWeis, showTransaction, loadUserData, pending, confirm);
                 return;
             } catch (error1) {
                 console.log(error1);
-                //handledataError(error1.toString() || INPUT_ERR);
+                showError(error1.toString() || INPUT_ERR);
             }
         },
         "keyup .prompt": function(event) {

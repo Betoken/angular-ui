@@ -330,6 +330,5 @@ export class ProposalComponent implements OnInit {
 
     kairoInput (event) {
         this.kairoinput = event.target.value ;
-        console.log(this.kairoinput);
     }
 }

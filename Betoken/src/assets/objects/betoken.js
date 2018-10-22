@@ -7,7 +7,6 @@
 var ERC20, Web3, getDefaultAccount;
 
 import BigNumber from "bignumber.js";
-import { userAddress } from "../body.js";
 
 // Import web3
 Web3 = require('web3');
@@ -235,9 +234,6 @@ export var Betoken = function(_address) {
       array = new Array(count);
       getItem = function(id) {
         return self.contracts.betokenFund.methods.userInvestments(_userAddress, id).call().then(function(_item) {
-          if (_userAddress == userAddress.get()) {
-            console.log(_userAddress);
-          }
           return new Promise(function(fullfill, reject) {
             if (typeof _item !== null) {
               array[id] = _item;

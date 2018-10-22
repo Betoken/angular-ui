@@ -183,7 +183,6 @@ ROIArrayLoaded = new ReactiveVar(false);
 showTransaction = function(_txHash, pending) {
     transactionHash.set(_txHash);
     pending(transactionHash.get());
-    alert(transactionHash.get());
 };
 
 

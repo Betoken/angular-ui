@@ -21,7 +21,7 @@
                 </div>
         </div>
 
-        <div class="proposal-table-sec col-8 mt-3">
+        <div class="proposal-table-sec col-9 mt-3">
             <div class="sec-header d-flex justify-content-between align-items-center">
                 <p class="sec-title">Investments</p>
                 <button class="text-center outline-button mr-3" (click) = "list()">REFRESH</button>
@@ -42,11 +42,8 @@
                         <tr *ngFor = "let data of tableData">
                                 <td class="identy">
                                     <div class="d-flex align-items-center">
-                                        <div class="dot purple"> </div>
-                                        <div class="name ml-3">
                                         <p class="m-0 abrivation">{{data.tokenSymbol}}</p>
                                         <!-- <p class="m-0 expansion">Ethereum</p> -->
-                                        </div>
                                     </div>
                                 </td>
                                 <td>$ {{data.buyPrice / (1e18)}}</td>
@@ -68,7 +65,7 @@
             </div>  
         </div>
 
-        <div class="email-update-sec col-4 col-md-4 col-lg-4 mb-3 mt-3">
+        <div class="email-update-sec col-3 col-md-3 col-lg-3 mb-3 mt-4">
             <div class="sec-header">
                 <p class="sec-title">Receive updates</p>
             </div>

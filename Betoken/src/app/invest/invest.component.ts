@@ -1,29 +1,19 @@
 import { Component, OnInit, } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { AppComponent } from '../app.component';
-import { StockChart } from 'angular-highcharts';
+import { Chart } from 'angular-highcharts';
 import { NguCarousel, NguCarouselStore, NguCarouselService } from '@ngu/carousel';
 import { Router } from '@angular/router';
 import { BigNumber } from 'bignumber.js';
 
 import { } from 'jquery';
 declare var $: any;
-import { Betoken } from '../../assets/objects/betoken.js';
+
 import {
-    networkName,
     userAddress,
-    displayedInvestmentBalance,
-    displayedInvestmentUnit,
-    displayedKairoBalance,
-    displayedKairoUnit,
-    expected_commission,
-    sharesBalance,
     transact_box_events,
-    decisions_tab_events,
-    sidebar_heplers,
     stats_tab_helpers, kairoTotalSupply, sharesTotalSupply,
-    countdown_timer_helpers, loadStats, decisions_tab_helpers, kairoRanking, managerROI, fundValue, totalFunds, ROIArray, ROI,
-    ROIArrayLoaded, loadDynamicData, chartHelper
+    countdown_timer_helpers, decisions_tab_helpers, kairoRanking, fundValue, totalFunds, ROIArray,
 } from '../../assets/body';
 
 @Component({
@@ -69,8 +59,8 @@ export class InvestComponent implements OnInit {
     success: boolean;
     returnres: any;
 
-    stock: StockChart;
-    bar: StockChart;
+    stock: Chart;
+    bar: Chart;
     user_address = '0x0';
     inputShare = 0.00;
     calculated_balance = 0.00;
@@ -149,6 +139,7 @@ export class InvestComponent implements OnInit {
     }
 
     ngOnInit() {
+        let hasDrawnChart = false;
         setInterval(() => {
             if (userAddress.get() !== '0x0') {
                 // portfolio
@@ -163,55 +154,14 @@ export class InvestComponent implements OnInit {
                 this.sharePrice = fundValue.get().div(sharesTotalSupply.get()).toFormat(4);
                 this.updateDates();
                 this.rankingList();
+                if (ROIArray.length > 0) {
+                    if (!hasDrawnChart) {
+                        hasDrawnChart = true;
+                        this.drawChart();
+                    }
+                }
             }
         }, 1000);
-
-        this.stock = new StockChart({
-            rangeSelector: {
-                selected: 2,
-                inputEnabled: false,
-                buttonSpacing: 30,
-                buttonTheme: {
-                    fill: 'none',
-                    stroke: 'none',
-                    style: { color: '#8FA9B0' },
-                    states: {
-                        hover: {},
-                        select: {
-                            fill: 'none',
-                            style: { color: '#00000', fontWeight: 'bold' }
-                        }
-                    }
-                },
-
-                buttons: [],
-            },
-            plotOptions: {
-                areaspline: {
-                    lineColor: '#18DAA3',
-                    lineWidth: 1,
-                    fillColor: '#B9EEE1',
-                },
-            },
-            title: {
-                text: 'Betoken Fund\'s ROI Per Cycle'
-            },
-            scrollbar: {
-                enabled: false
-            },
-            navigator: {
-                enabled: false
-            },
-            yAxis: {
-                opposite: false
-            },
-            series: [{
-                name: 'Monthly ROI',
-                data: [[1 * 1000 * 60 * 60 * 24, -5.703924680773118], [2 * 1000 * 3600 * 24, -1.0713835645268852]],
-                type: 'areaspline'
-            }]
-        });
-
 
         this.carouselBanner = {
             grid: { xs: 1, sm: 1, md: 1, lg: 1, all: 0 },
@@ -408,49 +358,47 @@ export class InvestComponent implements OnInit {
 
 
     drawChart = () => {
-        this.stock = new StockChart({
-            rangeSelector: {
-                selected: 2,
-                inputEnabled: false,
-                buttonSpacing: 30,
-                buttonTheme: {
-                    fill: 'none',
-                    stroke: 'none',
-                    style: { color: '#8FA9B0' },
-                    states: {
-                        hover: {},
-                        select: {
-                            fill: 'none',
-                            style: { color: '#00000', fontWeight: 'bold' }
-                        }
-                    }
-                },
+        // Prepare data
+        const cycles = [];
+        const rois = [];
+        for (const data of ROIArray) {
+            cycles.push(data[0]);
+            rois.push({
+                y: data[1],
+                color: data[1] > 0 ? '#18DAA3' : '#F4406B'
+            });
+        }
+        cycles.push(cycles.length + 1);
+        rois.push({
+            y: (new BigNumber(this.currMoROI)).toNumber(),
+            color: (new BigNumber(this.currMoROI)).toNumber() > 0 ? '#18DAA3' : '#F4406B'
+        });
 
-                buttons: [],
-            },
-            plotOptions: {
-                areaspline: {
-                    lineColor: '#18DAA3',
-                    lineWidth: 1,
-                    fillColor: '#B9EEE1',
-                },
-            },
+        this.stock = new Chart({
             title: {
-                text: 'Betoken Fund\'s ROI Per Cycle'
+                text: 'Betoken fund\'s ROI per month'
             },
-            scrollbar: {
-                enabled: false
-            },
-            navigator: {
-                enabled: false
+            xAxis: {
+                categories: cycles,
+                title: {
+                    text: 'Months since fund\'s birth'
+                }
             },
             yAxis: {
-                opposite: false
+                title: {
+                    text: 'ROI / %'
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            legend: {
+                enabled: false
             },
             series: [{
-                name: 'Monthly ROI',
-                data: ROIArray,
-                type: 'areaspline'
+                type: 'column',
+                name: 'ROI',
+                data: rois
             }]
         });
     }

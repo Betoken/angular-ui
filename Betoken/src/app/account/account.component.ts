@@ -27,29 +27,28 @@ import {
 export class AccountComponent implements OnInit {
     transactionTable: any;
     transactionNetwork: any;
-    
-    
+
     constructor() {
-        
         setInterval(() => {
             if (userAddress.get() !== '0x0') {
                 this.transactionsDetails();
             }
         }, 1000 );
     }
-    
+
     ngOnInit() {
     }
     async transactionsDetails() {
+        await loadTxHistory();
         this.transactionTable = transactionHistory.get();
         this.transactionNetwork = networkPrefix.get();
     }
-    
+
     copyToClipBoard(event) {
         // console.log(event);
         alert('Copied  '  + event +  '  to clipBoard');
     }
-    
+
     linkopen(values) {
         window.open(`https://` + this.transactionNetwork + `etherscan.io/tx/` + values + ``);
     }

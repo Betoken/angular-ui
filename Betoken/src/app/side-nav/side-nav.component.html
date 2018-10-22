@@ -14,6 +14,10 @@
     </div>
     
     <div class="nav-bar">
+        <p style="text-align: center;">
+            Time left to manage: <br>
+            <b>{{days}}d {{hours}}h {{minutes}}m {{seconds}}s</b>
+        </p>
         <ul class="app-nav">
             <li [class.active]="router.url==='/home'">
                 <span class="nav-indication"></span>
@@ -54,10 +58,6 @@
             
             <li> 
                 <a target="_blank" href="https://t.me/betokenfund"> Get Help </a>
-            </li>
-            
-            <li> 
-                <a> Terms of service </a>
             </li>
             
             <li>

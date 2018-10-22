@@ -25,10 +25,6 @@ export class HeaderComponent implements OnInit {
   redeembtn: boolean;
 
   newcyclebtn: boolean;
-  days = 0;
-  hours = 0;
-  minutes = 0;
-  seconds = 0;
   phase = -1;
 
   user_address = '0x0';
@@ -46,7 +42,6 @@ export class HeaderComponent implements OnInit {
     this.redeembtn = false;
     this.newcyclebtn = false;
 
-
     setInterval(() => {
       if (userAddress.get() !== '0x0') {
         this.updateDates();
@@ -56,12 +51,7 @@ export class HeaderComponent implements OnInit {
   }
 
   async updateDates() {
-    this.days = countdown_timer_helpers.day();
-    this.hours = countdown_timer_helpers.hour();
-    this.minutes = countdown_timer_helpers.minute();
-    this.seconds = countdown_timer_helpers.second();
     this.phase = countdown_timer_helpers.phase();
-    //  this.phase -=1;
   }
 
   toggle() {

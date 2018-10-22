@@ -3,11 +3,8 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import { AppComponent } from '../app.component';
 import {
     userAddress, countdown_timer_helpers, displayedKairoBalance, decisions_tab_events, assetSymbolToPrice,
-    decisions_tab_helpers, loadDecisions
+    decisions_tab_helpers, loadUserData
 } from '../../assets/body';
-
-import { promise } from 'protractor';
-import { type } from 'os';
 
 @Component({
     selector: 'app-proposal',
@@ -324,11 +321,10 @@ export class ProposalComponent implements OnInit {
         }, (error) => {
             alert(error);
         });
-
-        console.log('SSSSSSSSSS');
     }
 
     async tokensList() {
+        await loadUserData();
         this.tokenList = decisions_tab_helpers.tokens();
     }
 

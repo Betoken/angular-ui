@@ -390,7 +390,7 @@ loadTxHistory = async function() {
             data = event.returnValues;
             entry = {
                 type: _type,
-                timestamp: new Date(+data._timestamp * 1e3).toString(),
+                timestamp: new Date(+data._timestamp * 1e3).toLocaleString(),
                 token: (await betoken.getTokenSymbol(data._tokenAddress)),
                 amount: BigNumber(data._tokenAmount).div(10 ** (+((await betoken.getTokenDecimals(data._tokenAddress))))).toFormat(4),
                 txHash: event.transactionHash
@@ -434,7 +434,7 @@ loadTxHistory = async function() {
                 type: "Transfer " + (isIn ? "In" : "Out"),
                 token: token,
                 amount: BigNumber(data._amount).div(1e18).toFormat(4),
-                timestamp: new Date(((await web3.eth.getBlock(_event.blockNumber))).timestamp * 1e3).toString(),
+                timestamp: new Date(((await web3.eth.getBlock(_event.blockNumber))).timestamp * 1e3).toLocaleString(),
                 txHash: _event.transactionHash
             };
             tmp = transactionHistory.get();

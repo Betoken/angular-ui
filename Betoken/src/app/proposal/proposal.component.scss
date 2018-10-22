@@ -237,7 +237,7 @@
 }
 
 .overflowDesign {
-    width: 100px;
+    width: 100%;
     text-overflow: ellipsis;
-    overflow: auto;
+    overflow: hidden;
 }

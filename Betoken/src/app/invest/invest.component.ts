@@ -194,7 +194,7 @@ export class InvestComponent implements OnInit {
                 },
             },
             title: {
-                text: ''
+                text: 'Betoken Fund\'s ROI Per Cycle'
             },
             scrollbar: {
                 enabled: false
@@ -207,7 +207,7 @@ export class InvestComponent implements OnInit {
             },
             series: [{
                 name: 'Monthly ROI',
-                data: [[1, -5.703924680773118], [2, -1.0713835645268852]],
+                data: [[1 * 1000 * 60 * 60 * 24, -5.703924680773118], [2 * 1000 * 3600 * 24, -1.0713835645268852]],
                 type: 'areaspline'
             }]
         });

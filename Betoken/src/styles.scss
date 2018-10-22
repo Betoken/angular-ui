@@ -70,6 +70,12 @@ body{
   .black-font{
     color: #000000 !important;
   }
+  .green-font{
+    color: #18DAA3 !important;
+  }
+  .red-font{
+    color: #F4406B !important;
+  }
 
   .betoken-font{
     color: #8FA9B0;
@@ -92,9 +98,12 @@ body{
 
 
   .cards{
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
-    background-color: #FFFFFF;
-    padding: 15px;
+    background: #FFFFFF;
+    border: 1px solid #D1DCDF;
+    box-sizing: border-box;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.06);
+    border-radius: 8px;
+    padding: 1.5rem;
   }
 
   .sec-header{
@@ -125,10 +134,10 @@ body{
   background: #FFFFFF;
   border: 1px solid #D1DCDF;
   border-radius: 4px;
-  padding: 10px;
+  padding: 12px;
+  min-height: 36px;
   line-height: normal;
   outline: none !important;
-  min-width: 100px;
   cursor: not-allowed;
 }
 .outline-button.active{

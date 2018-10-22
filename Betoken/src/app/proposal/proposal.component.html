@@ -1,4 +1,4 @@
-<div class="proposal-wrapper header-height col-12 col-lg-10 float-right">
+<div class="proposal-wrapper col-12 col-lg-10 float-right mt-2">
     <div class="row">
         <div class="alert-window col-12 " *ngIf="sellalert">
             <div class="alert d-flex justify-content-between align-items-center col-12">
@@ -20,9 +20,8 @@
                 <button class="text-center alert-button" routerLink="/redeem">REDEEM COMMISSSION</button>
             </div>
         </div>
-        
-        <div class="proposal-table-sec col-9 mt-3">
-            <div class="sec-header d-flex justify-content-between align-items-center">
+        <div class="proposal-table-sec col-9 col-8">
+            <div class="sec-header d-flex justify-content-between align-items-center pb-1">
                 <p class="sec-title">Active Investments</p>
                 <button class="text-center outline-button mr-3" (click) = "list()">
                     <span *ngIf="isLoading() == false">REFRESH</span>
@@ -101,17 +100,18 @@
             </div>
         </div>
         
-        <div class="email-update-sec col-3 col-md-3 col-lg-3 mb-3 mt-4">
-            <div class="sec-header">
+        <div class="email-update-sec col-4 col-md-3 col-lg-4 mb-3">
+
+          <div class="sec-header">
                 <p class="sec-title">Receive updates</p>
             </div>
-            
+
             <div class="cards">
                 
                 <p class="update-info black-font">
                     Get updates about the fund status, begining of new investment cycle phases and date to redeem commissions.
                 </p>
-                
+
                 <p>
                     Email address
                 </p>
@@ -132,7 +132,7 @@
                     <a target="_blank" href="https://t.me/betokenfund">
                         <p class="black-font" style="text-align: center;">
                             Join our Telegram community
-                            <img src="assets/images/telegram-icon.png">
+                            <img src="assets/images/iconmonstr-telegram-4.svg" width="24" class="ml-1">
                         </p>
                     </a>
                 </div>
@@ -158,8 +158,7 @@
         </div>
         
         <div class="main-sec" *ngIf="step1">
-            <p class="m-0 pb-4 black-font">Stake Kairo tokens to invest in crypto-assets.</p>
-            
+            <p class="m-0 pb-4 black-font">Stake Kairo tokens to invest in crypto-assets.</p>   
             <p class="m-0 pb-4 black-font">If the price of the asset goes up, you're rewarded with more Kairo. 
                 More Kairo means more monthly commissions, as well as more money you can use for investing.</p>
                 
@@ -277,7 +276,7 @@
                     🎉 Transaction broadcasted!
                 </p>
                 <p class="m-0 pb-4 black-font">
-                    Your transaction is being saved on the Ethereum blockchain. 
+                    Your transaction is being saved on the Ethereum blockchain.
                     You can check its status on Etherscan.
                 </p>
                 <div class="d-flex justify-content-center mb-5">
@@ -342,8 +341,7 @@
                 </p>
                 <div class="d-flex justify-content-center mb-5">
                     <img src="assets/images/metamask-big.png" class="pointer " (click)="confirmcchangefund()">
-                </div>
-                
+                </div>         
             </div>
             <div class="broadcast-sec m-3" *ngIf="changeStep3">
                 <p class="mb-3">

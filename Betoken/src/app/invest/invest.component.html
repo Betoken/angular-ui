@@ -79,7 +79,7 @@
 
 
 
-<div class="invest-wrapper col-12 col-lg-10 float-right">
+<div class="invest-wrapper col-12 col-lg-10 float-right mt-2">
 
     <div class="row">
         <div class="alert-window col-12 " *ngIf="investalert">
@@ -97,7 +97,7 @@
             </div>
         </div>
 
-        <div class="left-sec col-12 col-lg-9 order-2 order-lg-1">
+        <div class="left-sec col-12 col-lg-8 order-2 order-lg-1">
             <div class="row befund-statitics-sec">
                 <div class="col-12 col-lg-12 ">
                     <div class="sec-header">
@@ -105,47 +105,36 @@
                     </div>
                     <div class="cards">
                         <div class="content-header d-flex align-items-center mb-3">
-                            <div class="dot  green mr-2"></div>
-                            <div class="betoken-desc">
-                                <p class="betoken-price black-font m-0"> Current Month ROI: {{currMoROI}} % </p>
-                            </div>
+                          <div class="betoken-desc">
+                            <p class="betoken-title betoken-font m-0">Asset under management</p>
+                            <p class="betoken-value black-font m-0">{{AUM}}</p>
+                          </div>
+                          <div class="divider-value"></div>
+                          <div class="betoken-desc">
+                            <p class="betoken-title betoken-font m-0">Current investment cycle ROI</p>
+                            <p class="betoken-value green-font m-0">{{currMoROI}}</p>
+                          </div>
                         </div>
                         <div class="content">
-                            <div [chart]="stock" class="mb-4 befund-share-graph "></div>
+                            <div [chart]="stock" class="mb-3 befund-share-graph"></div>
                             <div class="hilights row">
-                                <div class="key col-6 col-sm-6 col-md-4 d-flex align-items-center">
+                                <div class="key col-6 col-sm-6 col-md-5 d-flex align-items-center">
                                     <div class="mr-3">
-                                        <img src="assets/images/average.png">
+                                        <img src="assets/images/average-monthy-roi.svg">
                                     </div>
-                                    <div class="key-hilights">
-                                        <p class="hilight-title betoken-font m-0">Avg. Monthly return
-                                            <img src="assets/images/info_icon.png">
-                                        </p>
-                                        <p class="hilight-value black-font m-0"> {{avgMonthReturn}}% </p>
+                                    <div class="betoken-desc ml-2">
+                                      <p class="betoken-title betoken-font m-0">Avg. Monthly return</p>
+                                      <p class="betoken-value red-font m-0">{{avgMonthReturn}}%</p>
                                     </div>
                                 </div>
 
-                                <div class="key col-6 col-sm-6 col-md-4 d-flex align-items-center">
+                                <div class="key col-6 col-sm-6 col-md-5 d-flex align-items-center">
                                     <div class="mr-3">
-                                        <img src="assets/images/account-wallet.png">
+                                        <img src="assets/images/users.svg">
                                     </div>
-                                    <div class="key-hilights">
-                                        <p class="hilight-title betoken-font m-0">AUM (DAI)
-                                            <img src="assets/images/info_icon.png">
-                                        </p>
-                                        <p class="hilight-value black-font m-0"> {{AUM}} </p>
-                                    </div>
-                                </div>
-
-                                <div class="key col-6 col-sm-6 col-md-4 d-flex align-items-center">
-                                    <div class="mr-3">
-                                        <img src="assets/images/users.png">
-                                    </div>
-                                    <div class="key-hilights">
-                                        <p class="hilight-title betoken-font m-0">Total Managers
-                                            <img src="assets/images/info_icon.png">
-                                        </p>
-                                        <p class="hilight-value black-font m-0"> {{totalUser}} </p>
+                                    <div class="betoken-desc ml-2">
+                                      <p class="betoken-title betoken-font m-0">Total Managers</p>
+                                      <p class="betoken-value black-font m-0">{{totalUser}}</p>
                                     </div>
                                 </div>
                             </div>
@@ -154,7 +143,7 @@
                 </div>
             </div>
         </div>
-        <div class="right-sec col-12 col-lg-3 order-1 order-lg-2">
+        <div class="right-sec col-12 col-lg-4 order-1 order-lg-2">
             <div class="row profit-history-sec">
 
                 <div class="email-update-sec col-12 col-md-6 col-lg-12 mb-3">
@@ -188,8 +177,7 @@
                         <div class="update-footer">
                             <a target="_blank" href="https://t.me/betokenfund">
                                 <p class="black-font" style="text-align: center;">
-                                    Join our Telegram community
-                                    <img src="assets/images/telegram-icon.png">
+                                    <img src="assets/images/iconmonstr-telegram-4.svg" width="24" class="ml-1">
                                 </p>
                             </a>
                         </div>

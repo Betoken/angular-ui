@@ -53,11 +53,11 @@
                             <td>{{data.stake}}</td>
                             <td class="profit">
                                 <span class="diffrence">{{data.currValue}}</span>
-                                <span class="value profit-font" *ngIf = "+data.kroChange >= 0">{{data.kroChange}}</span>
-                                <span class="value loss-font" *ngIf = "0 > +data.kroChange">{{data.kroChange}}</span>
+                                <span class="value green-font" *ngIf = "+data.kroChange >= 0">{{data.kroChange}}</span>
+                                <span class="value red-font" *ngIf = "0 > +data.kroChange">{{data.kroChange}}</span>
                             </td>
                             <td *ngIf = "data.isSold == false">
-                                <button class="outline-button" (click)="sell(data)" style="background-color: #18daa3; color: white">SELL</button>
+                                <button class="outline-button active" (click)="sell(data)" style="background-color: #18daa3; color: white">SELL</button>
                             </td>
                         </tr>
                     </tbody>
@@ -91,8 +91,8 @@
                             <td>{{data.stake}}</td>
                             <td class="profit">
                                 <span class="diffrence">{{data.currValue}}</span>
-                                <span class="value profit-font" *ngIf = "+data.kroChange >= 0">{{data.kroChange}}</span>
-                                <span class="value loss-font" *ngIf = "0 > +data.kroChange">{{data.kroChange}}</span>
+                                <span class="value green-font" *ngIf = "+data.kroChange >= 0">{{data.kroChange}}</span>
+                                <span class="value red-font" *ngIf = "0 > +data.kroChange">{{data.kroChange}}</span>
                             </td>
                         </tr>
                     </tbody>

@@ -2,10 +2,10 @@
 
     <div class="nav-bar">
         <div class="button-wrapper">
-          <button class="text-center outline-button invest">INVEST</button>
-          <button class="text-center outline-button manage active">MANAGE</button>
+            <button class="text-center outline-button invest">INVEST</button>
+            <button class="text-center outline-button manage active">MANAGE</button>
         </div>
-        <p class="time-left-title">Time left to manage:</p>
+        <p class="time-left-title">Time left {{phaseActionText()}}:</p>
         <p class="time-left-value">{{days}}d {{hours}}h {{minutes}}m {{seconds}}s</p>
         <ul class="app-nav">
             <li [class.active]="router.url==='/home'">
@@ -51,12 +51,12 @@
 
             <li>
                 <a target="_blank" href="https://kyber.network">
-                  Powered By <img src="assets//images/kybernet-logo.png" class="p-0" width="64">
+                    Powered By <img src="assets//images/kybernet-logo.png" class="p-0" width="64">
                 </a>
             </li>
 
             <li>
-              <a target="_blank" href="https://betoken.fund">Learn more</a>
+                <a target="_blank" href="https://betoken.fund">Learn more</a>
             </li>
 
         </ul>

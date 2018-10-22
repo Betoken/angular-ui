@@ -2,12 +2,12 @@
 
     <div class="nav-bar">
         <div class="button-wrapper">
-            <button class="text-center outline-button invest">INVEST</button>
-            <button class="text-center outline-button manage active">MANAGE</button>
+            <button class="text-center outline-button invest" [ngClass]="{active: router.url === '/invest'}" (click)="navigate('/invest')">INVEST</button>
+            <button class="text-center outline-button manage" [ngClass]="{active: router.url !== '/invest'}" (click)="navigate('/home')">MANAGE</button>
         </div>
         <p class="time-left-title">Time left {{phaseActionText()}}:</p>
         <p class="time-left-value">{{days}}d {{hours}}h {{minutes}}m {{seconds}}s</p>
-        <ul class="app-nav">
+        <ul class="app-nav" *ngIf="router.url !== '/invest'">
             <li [class.active]="router.url==='/home'">
                 <span class="nav-indication"></span>
                 <a class="d-flex align-items-center" (click)="navigate('/home')">

@@ -18,6 +18,7 @@ import { ProposalComponent } from './proposal/proposal.component';
 import { RedeemComponent } from './redeem/redeem.component';
 import { AccountComponent } from './account/account.component';
 import { RankingsComponent } from './rankings/rankings.component';
+import { InvestorComponent } from './investor/investor.component';
 
 export function highchartsModules() {
   // apply Highcharts Modules to this array
@@ -54,6 +55,11 @@ const routes: Routes = [
   path: 'rankings',
   component: RankingsComponent,
   pathMatch: 'full'
+},
+{
+  path: 'invest',
+  component: InvestorComponent,
+  pathMatch: 'full'
 }
 
 ];
@@ -68,6 +74,7 @@ const routes: Routes = [
     RedeemComponent,
     AccountComponent,
     RankingsComponent,
+    InvestorComponent,
   ],
   imports: [
      NguCarouselModule,

@@ -19,50 +19,38 @@
           <div class="bt-notifications notification-icon" (click)="notification = !notification"></div>
       </div>
     </div>
-    <div class="col-9 col-lg-5 phase-wrapper">
-      <div class="row portfolio-div">
-        <div class="portfolio col-6 col-md-6 col-lg-4 d-flex align-items-center">
-          <div class="portfolio-desc" (click)= "copyToClipBoard(kairo_balance)">
-            <p class="portfolio-title betoken-font m-0">Kairo balance</p>
-            <p class="portfolio-value black-font m-0 ellipseDesign" >{{kairo_balance}} </p>
-          </div>
-        </div>
-
-        <div class="portfolio col-6 col-md-6 col-lg-4 d-flex align-items-center">
-          <div class="portfolio-desc" (click)= "copyToClipBoard(monthly_pl)">
-            <p class="portfolio-title betoken-font m-0">Monthly P/L</p>
-            <p class="portfolio-value black-font m-0">{{monthly_pl}}%</p>
-          </div>
-        </div>
-
-        <div class="portfolio col-6 col-md-6 col-lg-4 d-flex align-items-center">
-          <div class="portfolio-desc" (click)= "copyToClipBoard(monthly_pl)">
-            <p class="portfolio-title betoken-font m-0">Est. Commission</p>
-            <p class="portfolio-value black-font m-0">{{expected_commission}} DAI</p>
-          </div>
-        </div>
+    <div class="col-9 col-lg-4 d-flex align-items-center">
+      <div class="portfolio-desc" (click)= "copyToClipBoard(kairo_balance)">
+        <p class="portfolio-title betoken-font m-0">Kairo balance</p>
+        <p class="portfolio-value black-font m-0 ellipseDesign" >{{kairo_balance}} </p>
+      </div>
+      <div class="portfolio-desc ml-4" (click)= "copyToClipBoard(monthly_pl)">
+        <p class="portfolio-title betoken-font m-0">Monthly P/L</p>
+        <p class="portfolio-value black-font m-0">{{monthly_pl}}%</p>
+      </div>
+      <div class="portfolio-desc ml-4" (click)= "copyToClipBoard(monthly_pl)">
+        <p class="portfolio-title betoken-font m-0">Est. Commission</p>
+        <p class="portfolio-value black-font m-0">{{expected_commission}} DAI</p>
       </div>
     </div>
-    <div class="col-2 d-none d-lg-flex" *ngIf="phase == 0">
-      <div class="justify-content-end">
+
+    <div class="col-6">
+      <div class="button-wrapper" *ngIf="phase == 0">
+        <button class="outline-button basic-button mr-4">DAI</button>
+        <button class="outline-button basic-button d-none mr-4">USD</button>
         <button class="text-center outline-button mr-3" (click)="openModalPopupW()">WITHDRAW</button>
         <button class="text-center outline-button active" (click)="openModalPopup()">INVEST</button>
       </div>
-    </div>
-
-    <div class="col-2 d-none d-lg-flex" *ngIf="phase == 1">
-      <div class="button-wrapper text-right justify-content-end">
-        <button class="text-center outline-button active" (click)="proposalPopup()">TRADE ASSSETS</button>
+      <div class="button-wrapper" *ngIf="phase == 1">
+        <button class="outline-button basic-button mr-4">DAI</button>
+        <button class="outline-button basic-button d-none mr-4">USD</button>
+        <button class="text-center outline-button active mr-4" (click)="proposalPopup()">TRADE ASSSETS</button>
       </div>
-    </div>
-
-    <div class="col-2 d-none d-lg-flex" *ngIf="phase == 2">
-      <div class="button-wrapper text-right justify-content-end">
+      <div class="button-wrapper" *ngIf="phase == 2">
+        <button class="outline-button basic-button mr-4">DAI</button>
+        <button class="outline-button basic-button d-none mr-4">USD</button>
         <button class="text-center outline-button active" routerLink="/redeem" (click)="redeemPopup()">REDEEM COMMISSION</button>
       </div>
-    </div>
-
-    <div class="col-3 justify-content-end">
       <div class="portfolio-desc">
         <p class="portfolio-title betoken-font m-0"><img class="connected-wallet-logo" src="/assets/images/metamask.png" width="24">Rinkeby</p>
         <p class="black-font m-0" style="text-overflow: ellipsis; overflow: hidden;">{{user_address}}</p>

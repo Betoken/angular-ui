@@ -8,22 +8,11 @@
             .cards{
                 .content-header{
                     .betoken-desc{
-                        .betoken-price{
-                            font-size: 20px;
+                        .betoken-title{
+                          font-size: 14px;
                         }
-                    }
-                }
-
-                .content{
-                    .hilights{
-                        .key{
-                            margin-bottom: 20px;
-                            .key-hilights{
-                                padding: 5px 0;
-                                 .hilight-value{
-                                     font-size: 20px;
-                                 }
-                            }
+                        .betoken-value{
+                            font-size: 20px;
                         }
                     }
                 }
@@ -64,7 +53,12 @@
                 }
             }
         }
-
+    .divider-value{
+      width: 42px;
+      height: 0px;
+      border: 1px solid #D1DCDF;
+      transform: rotate(90deg);
+    }
 
     }
 

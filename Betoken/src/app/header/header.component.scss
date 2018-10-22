@@ -69,10 +69,20 @@ header{
         }
     }
 
+    .button-wrapper{
+      float: left;
+      display: inline-block;
+      position: relative;
+    }
     .outline-button{
         background-color: #002B49;
         border: none;
         font-size: 14px;
+    }
+    .basic-button{
+      background-color: #fff;
+      border: 1px solid #D1DCDF;
+      font-size: 14px;
     }
     .connected-wallet-logo{
       float: left;

@@ -1,24 +1,41 @@
 .proposal-wrapper{
+    position: relative;
+    display: block;
+    top: 64px;
     .proposal-table-sec{
+        .sec-header{
+          padding: 7px 0 8px;
+        }
         .table-responsive{
+            margin: 0 0 24px;
             .proposal-table{
                 text-align: left !important;
                 white-space: nowrap !important;
                 thead{
-                    font-size: 16px;
+                    font-size: 14px;
                     th{
                         border: none !important;
+                        font-weight: normal;
                     }
                 }
                 tbody{
-                    font-size: 18px;
                     td{
                         border-top: none !important;
+                        height: 48px;
+                    }
+                    tr{
+                      padding: 14px 0;
+                    }
+                    .current-sell-price{
+                      display: block;
+                      width: 128px;
+                      white-space: nowrap;
+                      overflow: hidden;
+                      text-overflow: ellipsis;
                     }
                     .identy{
                         .name{
                             .abrivation{
-                                font-size: 18px !important ;
                                 color: #000000 !important;
                                 line-height: 1 !important;
                             }
@@ -28,17 +45,10 @@
                             }
                         }
                     }
-                    .profit{
-                        .value{
-                            margin-left: 8px;
-                            font-size: 14px !important ;
-                        }                      
-                    }
-                    
                 }
             }
         }
-        
+
     }
     .history-table-sec{
         .table-responsive{
@@ -56,10 +66,13 @@
                     td{
                         border-top: none !important;
                     }
+                    tr{
+                      font-size: 16px;
+                    }
                     .identy{
                         .name{
                             .abrivation{
-                                font-size: 18px !important ;
+                                font-size: 12px !important ;
                                 color: #000000 !important;
                                 line-height: 1 !important;
                             }
@@ -69,13 +82,13 @@
                             }
                         }
                     }
+
                 }
             }
         }
-        
+
     }
 }
-
 .proposal-modal-wrapper{
     width: 450px;
     background-color: #ffffff;
@@ -105,7 +118,7 @@
         .main-sec{
             padding: 18px;
             text-align: left;
-            font-size: 16px; 
+            font-size: 16px;
             line-height: 1;
             .mul-icon{
                 font-size: 30px;
@@ -121,14 +134,14 @@
                 color: #000000;
             }
 
-        }   
+        }
         .confirmation-sec{
             padding: 15px;
             background-color: #FFFAEE;
             border: 1px solid #FFE6BA;
             border-radius: 4px;
             text-align: justify;
-            font-size: 16px; 
+            font-size: 16px;
             line-height: 1;
 
         }
@@ -138,7 +151,7 @@
             border: 1px solid #FFE6BA;
             border-radius: 4px;
             text-align: justify;
-            font-size: 16px; 
+            font-size: 16px;
             line-height: 1;
 
         }
@@ -148,13 +161,13 @@
             border: 1px solid #FFE6BA;
             border-radius: 4px;
             text-align: justify;
-            font-size: 16px; 
+            font-size: 16px;
             line-height: 1;
         }
         .modal-button-wrapper{
             padding: 18px;
         }
-    }       
+    }
 }
 
 .overlay-popup{
@@ -193,7 +206,7 @@
         &.active{
             left: 0;
         }
-        
+
         .content{
             .main-sec{
                 height: calc(100vh - 190px);
@@ -225,7 +238,7 @@
     }
 }
 
-@media (min-width: 768px) and (max-width: 991.98px)  { 
+@media (min-width: 768px) and (max-width: 991.98px)  {
     .proposal-modal-wrapper{
         .content{
             .main-sec ,.confirmation-sec ,.broadcast-sec ,.final-sec{

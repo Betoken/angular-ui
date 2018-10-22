@@ -1,4 +1,4 @@
-<div class="proposal-wrapper header-height col-12 col-lg-10 float-right">
+<div class="proposal-wrapper col-12 col-lg-10 float-right mt-2">
     <div class="row">
         <div class="alert-window col-12 " *ngIf="sellalert">
                 <div class="alert d-flex justify-content-between align-items-center col-12">
@@ -21,20 +21,20 @@
                 </div>
         </div>
 
-        <div class="proposal-table-sec col-9 mt-3">
-            <div class="sec-header d-flex justify-content-between align-items-center">
+        <div class="proposal-table-sec col-8">
+            <div class="sec-header d-flex justify-content-between align-items-center pb-1">
                 <p class="sec-title">Investments</p>
-                <button class="text-center outline-button mr-3" (click) = "list()">REFRESH</button>
+                <button class="text-center outline-button" (click) = "list()">REFRESH</button>
             </div>
             <div class="cards table-responsive">
                 <table class="table proposal-table">
                     <thead class="betoken-font">
                     <tr>
                         <th scope="col">Asset</th>
-                        <th scope="col">Buy price</th>
-                        <th scope="col">Current/Sell price</th>
                         <th scope="col">Staked KRO</th>
-                        <th scope="col">KRO to redeem</th>
+                        <th scope="col">Buy price</th>
+                        <th scope="col">Curr./Sell price</th>
+                        <th scope="col">KRO to redeem (ROI)</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -46,12 +46,12 @@
                                         <!-- <p class="m-0 expansion">Ethereum</p> -->
                                     </div>
                                 </td>
-                                <td>$ {{data.buyPrice / (1e18)}}</td>
-                                <td>$ {{data.sellPrice.toNumber() / (1e18)}} </td>
                                 <td>{{data.stake}}</td>
-                                <td class="profit">
-                                    <span class="diffrence">{{data.currValue}}</span> 
-                                    <span class="value profit-font">{{data.kroChange}}</span>
+                                <td>$ {{data.buyPrice / (1e18)}}</td>
+                                <td class="current-sell-price">{{data.sellPrice.toNumber() / (1e18)}} </td>
+                                <td>
+                                    <span class="diffrence">{{data.currValue}}</span><br>
+                                    <span class="green-font">{{data.kroChange}}</span>
                                 </td>
                                 <td *ngIf = "data.isSold == false">
                                     <button class="outline-button" (click)="sell(data)" style="background-color: #18daa3; color: white">SELL</button>
@@ -62,20 +62,20 @@
                             </tr>
                     </tbody>
                 </table>
-            </div>  
+            </div>
         </div>
 
-        <div class="email-update-sec col-3 col-md-3 col-lg-3 mb-3 mt-4">
+        <div class="email-update-sec col-4 col-md-3 col-lg-4 mb-3">
             <div class="sec-header">
                 <p class="sec-title">Receive updates</p>
             </div>
-            
+
             <div class="cards">
 
                 <p class="update-info black-font">
                     Get updates about the fund status, begining of new investment cycle phases and date to redeem commissions.
                 </p>
-                
+
                 <p>
                     Email address
                 </p>
@@ -95,8 +95,7 @@
                 <div class="update-footer">
                     <a target="_blank" href="https://t.me/betokenfund">
                         <p class="black-font" style="text-align: center;">
-                            Join our community on Telegram
-                            <img src="assets/images/telegram-icon.png">
+                            Join our community on Telegram<img src="assets/images/iconmonstr-telegram-4.svg" width="24" class="ml-1">
                         </p>
                     </a>
                 </div>
@@ -124,9 +123,9 @@
         <div class="main-sec" *ngIf="step1">
             <p class="m-0 pb-4 black-font">Stake Kairo tokens to invest in crypto-assets.</p>
 
-            <p class="m-0 pb-4 black-font">If the price of the asset goes up, you're rewarded with more Kairo. 
+            <p class="m-0 pb-4 black-font">If the price of the asset goes up, you're rewarded with more Kairo.
                 More Kairo means more monthly commissions, as well as more money you can use for investing.</p>
-        
+
             <p class="m-0">Select an asset
                 <img src="assets/images/info_icon.png"> </p>
             <div class="mt-2 mb-3 outline-box w-100 d-flex  align-items-center justify-content-between">
@@ -149,7 +148,7 @@
                 🚨 Confirm your trade for this asset
             </p>
             <p class="m-0 pb-4 black-font">
-                Confirm the transaction in the Metamask’s interface to submit it to the Betoken fund contract. 
+                Confirm the transaction in the Metamask’s interface to submit it to the Betoken fund contract.
                 It's fine to stick with these defaults gas limit and price.
             </p>
             <div class="d-flex justify-content-center mb-5">
@@ -162,7 +161,7 @@
                 🎉 Transaction broadcasted!
             </p>
             <p class="m-0 pb-4 black-font">
-                Your transaction is being saved on the Ethereum blockchain. 
+                Your transaction is being saved on the Ethereum blockchain.
                 You can check its status on Etherscan.
             </p>
             <div class="d-flex justify-content-center mb-5">
@@ -205,7 +204,7 @@
                 <button class="text-center outline-button active w-100" (click)="support()" *ngIf= "step1">SUPPORT</button>
                 <button class="text-center outline-button active w-100" (click)="closePopup()" *ngIf= "step4">MAKE A NEW SUPPORT</button>
         </div>
-        
+
     </div>
 
     <div class="content proposal-trade-phase" *ngIf="tradeproposalfund">
@@ -233,14 +232,14 @@
                 <div class="d-flex justify-content-center mb-5">
                     <img src="assets/images/metamask-big.png" class="pointer " (click)="confirmsell()">
                 </div>
-    
+
         </div>
         <div class="broadcast-sec m-3" *ngIf="sellStep2">
                 <p class="mb-3">
                     🎉 Transaction broadcasted!
                 </p>
                 <p class="m-0 pb-4 black-font">
-                    Your transaction is being saved on the Ethereum blockchain. 
+                    Your transaction is being saved on the Ethereum blockchain.
                     You can check its status on Etherscan.
                 </p>
                 <div class="d-flex justify-content-center mb-5">
@@ -255,7 +254,7 @@
                         <a href="https://rinkeby.etherscan.io/tx/{{transactionId}}" target="_blank"> <img src="assets/images/export.png" class="pointer ml-1"> </a>
                     </div>
                 </div>
-        </div> 
+        </div>
         <div class="final-sec m-3" *ngIf="sellStep3">
             <p class="mb-3">
                 🙌 Done. Check your balance!
@@ -274,12 +273,12 @@
                     <p class="m-0">{{transactionId}}</p>
                     <a href="https://rinkeby.etherscan.io/tx/{{transactionId}}" target="_blank"> <img src="assets/images/export.png" class="pointer ml-1"> </a>
                 </div>
-            </div>    
-        </div>   
-        <div class="modal-button-wrapper">
-            <button class="text-center outline-button active w-100" *ngIf="sellStep3" (click)="newsupport()">TRADE SUCCESSFUL</button>       
+            </div>
         </div>
-    </div>    
+        <div class="modal-button-wrapper">
+            <button class="text-center outline-button active w-100" *ngIf="sellStep3" (click)="newsupport()">TRADE SUCCESSFUL</button>
+        </div>
+    </div>
 
     <div class="content proposal-changefund-phase" *ngIf="changeproposalfund">
             <div class="modal-header d-flex align-items-center">
@@ -306,7 +305,7 @@
                     <div class="d-flex justify-content-center mb-5">
                         <img src="assets/images/metamask-big.png" class="pointer " (click)="confirmcchangefund()">
                     </div>
-        
+
             </div>
             <div class="broadcast-sec m-3" *ngIf="changeStep3">
                     <p class="mb-3">
@@ -331,7 +330,7 @@
             <div class="modal-button-wrapper">
                     <button class="text-center outline-button active w-100" (click)="changefundstep1()" *ngIf="changeStep1">GO TO NEXT INVESTMENT PHASE</button>
                     <button class="text-center outline-button active w-100 mt-4" (click)="finalchangefund()" *ngIf="changeStep3">FUND CHANGED</button>
-            </div>           
+            </div>
     </div>
 </div>
 

@@ -185,183 +185,183 @@
                 </div>
             </div>
         </div>
-    </div>
+</div>
 
 
-    <!-- extra pages -->
+<!-- extra pages -->
 
-    <div class="investment-modal-wrapper" [@toggleMenu]="state" [class.active]="active">
-        <div class="content investment-phase" *ngIf="!changefundphase">
-            <div class="modal-header d-flex align-items-center">
-                <div class="modal-tittle" *ngIf="investflow">
-                    Invest in Betoken fund
-                </div>
-                <div class="modal-tittle" *ngIf="withdrawflow">
-                    WITHDRAW
-                </div>
-                <div class="modal-close">
-                    <button type="button" class="close black-font" (click)="closePopup()">&times;</button>
-                </div>
+<div class="investment-modal-wrapper" [@toggleMenu]="state" [class.active]="active">
+    <div class="content investment-phase" *ngIf="!changefundphase">
+        <div class="modal-header d-flex align-items-center">
+            <div class="modal-tittle" *ngIf="investflow">
+                Invest in Betoken fund
             </div>
-            <div class="time-wrapper" >
-                <p class="m-0" *ngIf="investflow">Time left to invest: {{days}}d {{hours}}h {{minutes}}m {{seconds}}s
-                    <img src="assets/images/info_icon.png" title="Time available">
-                </p>
-                <p class="m-0" *ngIf="withdrawflow">Time left to withdraw: {{days}}d {{hours}}h {{minutes}}m {{seconds}}s
-                    <img src="assets/images/info_icon.png" title="Time available">
-                </p>
+            <div class="modal-tittle" *ngIf="withdrawflow">
+                WITHDRAW
             </div>
+            <div class="modal-close">
+                <button type="button" class="close black-font" (click)="closePopup()">&times;</button>
+            </div>
+        </div>
+        <div class="time-wrapper" >
+            <p class="m-0" *ngIf="investflow">Time left to invest: {{days}}d {{hours}}h {{minutes}}m {{seconds}}s
+                <img src="assets/images/info_icon.png" title="Time available">
+            </p>
+            <p class="m-0" *ngIf="withdrawflow">Time left to withdraw: {{days}}d {{hours}}h {{minutes}}m {{seconds}}s
+                <img src="assets/images/info_icon.png" title="Time available">
+            </p>
+        </div>
 
-            <div class="main-sec" *ngIf="step1">
-                <p class="m-0 pb-5 black-font" *ngIf="investflow">To invest in the fund, simply buy BTF shares. Choose the amount of shares you want. By buying shares, you’ll
-                    also receive KRO token - You can influence the fund’s portfolio by staking Kairo tokens to buy & sell in
-                    cryptoassets.
-                </p>
+        <div class="main-sec" *ngIf="step1">
+            <p class="m-0 pb-5 black-font" *ngIf="investflow">To invest in the fund, simply buy BTF shares. Choose the amount of shares you want. By buying shares, you’ll
+                also receive KRO token - You can influence the fund’s portfolio by staking Kairo tokens to buy & sell in
+                cryptoassets.
+            </p>
 
-                <p class="m-0" *ngIf="investflow">Buy BTF shares </p>
-                <p class="m-0" *ngIf="withdrawflow">Withdraw BTF shares </p>
-                <div class="mt-2  mb-3 d-flex align-items-center">
-                    <div class="mr-3 position-relative">
-                        <input type="text" class="outline-box" (keyup)="calculate_bal($event)"  placeholder="1.0000">
-                        <p *ngIf="investflow" class="mul-icon">&times;</p>
-                    </div>
-                    <div *ngIf="investflow">
-                        <p class="m-0 pb-1">Share price in DAI</p>
-                        <p class="m-0 share-price">100.0000</p>
-                    </div>
+            <p class="m-0" *ngIf="investflow">Buy BTF shares </p>
+            <p class="m-0" *ngIf="withdrawflow">Withdraw BTF shares </p>
+            <div class="mt-2  mb-3 d-flex align-items-center">
+                <div class="mr-3 position-relative">
+                    <input type="text" class="outline-box" (keyup)="calculate_bal($event)"  placeholder="1.0000">
+                    <p *ngIf="investflow" class="mul-icon">&times;</p>
                 </div>
-
-                <p  *ngIf="investflow" class="m-0">Total to pay </p>
-                <div class="mt-2 mb-3  outline-box w-100 d-flex  align-items-center justify-content-between">
-                    <p class="m-0" *ngIf="investflow">{{calculated_balance}}</p>
-                    <p class="m-0" *ngIf="withdrawflow">Into Currency:</p>
-                    <select id="selectedTokenSymbolid" (change)="updateTokenSymbol($event.target.value)"  class="border-0 betoken-font">
-                        <option *ngFor = "let token of tokenList" >{{token}} </option>
-                    </select>
+                <div *ngIf="investflow">
+                    <p class="m-0 pb-1">Share price in DAI</p>
+                    <p class="m-0 share-price">100.0000</p>
                 </div>
             </div>
 
-            <div class="confirmation-sec m-3" *ngIf="step2">
-                <p class="mb-3">
-                    🚨 Confirm your transaction
-                </p>
-                <p class="m-0 pb-4 black-font">
-                    Confirm the transaction in the Metamask’s interface to submit it to the Betoken fund contract. It's fine to stick with these
-                    defaults gas limit and price.
-                </p>
-                <div class="d-flex justify-content-center mb-4">
-                    <img src="assets/images/metamask-big.png" class="pointer " (click)="confirm()">
-                </div>
-                <p class="m-0">
-                    Betoken contract address
-                </p>
-                <div class="mt-2 outline-box w-100 d-flex align-items-center justify-content-between bg-white ">
-                    <p class="m-0">0x7c9c1d88...20560sace7a4e</p>
-                    <img src="assets/images/copy.png" class="pointer ">
-                </div>
-
+            <p  *ngIf="investflow" class="m-0">Total to pay </p>
+            <div class="mt-2 mb-3  outline-box w-100 d-flex  align-items-center justify-content-between">
+                <p class="m-0" *ngIf="investflow">{{calculated_balance}}</p>
+                <p class="m-0" *ngIf="withdrawflow">Into Currency:</p>
+                <select id="selectedTokenSymbolid" (change)="updateTokenSymbol($event.target.value)"  class="border-0 betoken-font">
+                    <option *ngFor = "let token of tokenList" >{{token}} </option>
+                </select>
             </div>
+        </div>
 
-            <div class="broadcast-sec m-3" *ngIf="step3">
-                <p class="mb-3">
-                    🎉 Transaction broadcasted!
-                </p>
-                <p class="m-0 pb-4 black-font">
-                    Your transaction is being saved on the Ethereum blockchain. You can check its status on Etherscan.
-                </p>
-                <div class="d-flex justify-content-center mb-5">
-                    <img src="assets/images/loader.png" class="pointer ">
-                </div>
-                <p class="m-0">
-                    Transaction ID
-                </p>
-                <div class="mt-2 outline-box w-100 d-flex align-items-center justify-content-between bg-white ">
-                    <p class="m-0">{{transactionId}}</p>
-                    <img src="assets/images/export.png" class="pointer ml-1">
-                </div>
+        <div class="confirmation-sec m-3" *ngIf="step2">
+            <p class="mb-3">
+                🚨 Confirm your transaction
+            </p>
+            <p class="m-0 pb-4 black-font">
+                Confirm the transaction in the Metamask’s interface to submit it to the Betoken fund contract. It's fine to stick with these
+                defaults gas limit and price.
+            </p>
+            <div class="d-flex justify-content-center mb-4">
+                <img src="assets/images/metamask-big.png" class="pointer " (click)="confirm()">
             </div>
-
-            <div class="final-sec m-3" *ngIf="step4">
-                <p class="mb-3">
-                    🙌 Done. Check your balances!
-                </p>
-                <p class="m-0 pb-4 black-font">
-                    You bought 1 BTF share for ~0.2572 ETH / ~ 100.0000 DAI. And you also got 1 KRO to influence the fund’s portfolio strategy.
-                </p>
-                <div class="d-flex justify-content-center mb-5">
-                    <img src="assets/images/finish.png" class="pointer ">
-                </div>
-                <p class="m-0">
-                    Transaction ID
-                </p>
-                <div class="mt-2 outline-box w-100 d-flex align-items-center justify-content-between bg-white">
-                    <p class="m-0">{{transactionId}}</p>
-                    <img src="assets/images/export.png" class="pointer ml-1">
-                </div>
-            </div>
-            <div class="modal-button-wrapper">
-                <button class="text-center outline-button active w-100" (click)="withdraw()" *ngIf="step1 && withdrawflow">WITHDRAW</button>
-                <button class="text-center outline-button active w-100" (click)="invest()" *ngIf="step1 && investflow">INVEST</button>
-                <button class="text-center outline-button active w-100" (click)="closePopup()" *ngIf="step4">INVESTMENT COMPLETE</button>
+            <p class="m-0">
+                Betoken contract address
+            </p>
+            <div class="mt-2 outline-box w-100 d-flex align-items-center justify-content-between bg-white ">
+                <p class="m-0">0x7c9c1d88...20560sace7a4e</p>
+                <img src="assets/images/copy.png" class="pointer ">
             </div>
 
         </div>
 
-        <div class="content changefund-phase" *ngIf="changefundphase">
-            <div class="modal-header d-flex align-items-center">
-                <div class="modal-tittle">
-                    Change fund phase
-                </div>
-                <div class="modal-close">
-                    <button type="button" class="close black-font" (click)="closePopup()">&times;</button>
-                </div>
+        <div class="broadcast-sec m-3" *ngIf="step3">
+            <p class="mb-3">
+                🎉 Transaction broadcasted!
+            </p>
+            <p class="m-0 pb-4 black-font">
+                Your transaction is being saved on the Ethereum blockchain. You can check its status on Etherscan.
+            </p>
+            <div class="d-flex justify-content-center mb-5">
+                <img src="assets/images/loader.png" class="pointer ">
             </div>
-            <div class="main-sec" *ngIf="changeStep1">
-                <p class="m-0 pb-5 black-font">This action will be repercuted on all the fund’s participants.
-                    By being the first to operate this action, you’ll be granted 0.01 KRO.
-                </p>
-            </div>
-            <div class="confirmation-sec m-3" *ngIf="changeStep2">
-                <p class="mb-3">
-                    🚨 Confirm your transaction
-                </p>
-                <p class="m-0 pb-4 black-font">
-                    Confirm the transaction in the Metamask’s interface to submit it to the Betoken fund contract. It's fine to stick with these
-                    defaults gas limit and price.
-                </p>
-                <div class="d-flex justify-content-center mb-5">
-                    <img src="assets/images/metamask-big.png" class="pointer " (click)="confirmcchangefund()">
-                </div>
-
-            </div>
-            <div class="broadcast-sec m-3" *ngIf="changeStep3">
-                <p class="mb-3">
-                    🎉 Transaction broadcasted!
-                </p>
-                <p class="m-0 pb-4 black-font">
-                    Your transaction is being saved on the Ethereum blockchain. You can check its status on Etherscan.
-                </p>
-                <div class="d-flex justify-content-center mb-5">
-                    <img src="assets/images/loader.png" class="pointer ">
-                </div>
-                <p class="m-0">
-                    Transaction ID
-                </p>
-                <div class="mt-2 outline-box w-100 d-flex align-items-center justify-content-between bg-white ">
-                    <p class="m-0">{{transactionId}}</p>
-                    <img src="assets/images/export.png" class="pointer ml-1">
-                </div>
-            </div>
-            <div class="modal-button-wrapper">
-                <button class="text-center outline-button active w-100" (click)="changefundstep1()" *ngIf="changeStep1">GO TO NEXT INVESTMENT PHASE</button>
-                <button class="text-center outline-button active w-100 mt-4" (click)="closePopup()" *ngIf="changeStep3">FUND CHANGED</button>
+            <p class="m-0">
+                Transaction ID
+            </p>
+            <div class="mt-2 outline-box w-100 d-flex align-items-center justify-content-between bg-white ">
+                <p class="m-0">{{transactionId}}</p>
+                <img src="assets/images/export.png" class="pointer ml-1">
             </div>
         </div>
+
+        <div class="final-sec m-3" *ngIf="step4">
+            <p class="mb-3">
+                🙌 Done. Check your balances!
+            </p>
+            <p class="m-0 pb-4 black-font">
+                You bought 1 BTF share for ~0.2572 ETH / ~ 100.0000 DAI. And you also got 1 KRO to influence the fund’s portfolio strategy.
+            </p>
+            <div class="d-flex justify-content-center mb-5">
+                <img src="assets/images/finish.png" class="pointer ">
+            </div>
+            <p class="m-0">
+                Transaction ID
+            </p>
+            <div class="mt-2 outline-box w-100 d-flex align-items-center justify-content-between bg-white">
+                <p class="m-0">{{transactionId}}</p>
+                <img src="assets/images/export.png" class="pointer ml-1">
+            </div>
+        </div>
+        <div class="modal-button-wrapper">
+            <button class="text-center outline-button active w-100" (click)="withdraw()" *ngIf="step1 && withdrawflow">WITHDRAW</button>
+            <button class="text-center outline-button active w-100" (click)="invest()" *ngIf="step1 && investflow">INVEST</button>
+            <button class="text-center outline-button active w-100" (click)="closePopup()" *ngIf="step4">INVESTMENT COMPLETE</button>
+        </div>
+
     </div>
 
+    <div class="content changefund-phase" *ngIf="changefundphase">
+        <div class="modal-header d-flex align-items-center">
+            <div class="modal-tittle">
+                Change fund phase
+            </div>
+            <div class="modal-close">
+                <button type="button" class="close black-font" (click)="closePopup()">&times;</button>
+            </div>
+        </div>
+        <div class="main-sec" *ngIf="changeStep1">
+            <p class="m-0 pb-5 black-font">This action will be repercuted on all the fund’s participants.
+                By being the first to operate this action, you’ll be granted 0.01 KRO.
+            </p>
+        </div>
+        <div class="confirmation-sec m-3" *ngIf="changeStep2">
+            <p class="mb-3">
+                🚨 Confirm your transaction
+            </p>
+            <p class="m-0 pb-4 black-font">
+                Confirm the transaction in the Metamask’s interface to submit it to the Betoken fund contract. It's fine to stick with these
+                defaults gas limit and price.
+            </p>
+            <div class="d-flex justify-content-center mb-5">
+                <img src="assets/images/metamask-big.png" class="pointer " (click)="confirmcchangefund()">
+            </div>
 
-    <div class="col-12 d-none d-lg-none d-flex align-items-center button-wrapper footer-wrapper fixed-bottom justify-content-end bg-white pt-3 pb-3"
-    *ngIf="footerbtn1">
+        </div>
+        <div class="broadcast-sec m-3" *ngIf="changeStep3">
+            <p class="mb-3">
+                🎉 Transaction broadcasted!
+            </p>
+            <p class="m-0 pb-4 black-font">
+                Your transaction is being saved on the Ethereum blockchain. You can check its status on Etherscan.
+            </p>
+            <div class="d-flex justify-content-center mb-5">
+                <img src="assets/images/loader.png" class="pointer ">
+            </div>
+            <p class="m-0">
+                Transaction ID
+            </p>
+            <div class="mt-2 outline-box w-100 d-flex align-items-center justify-content-between bg-white ">
+                <p class="m-0">{{transactionId}}</p>
+                <img src="assets/images/export.png" class="pointer ml-1">
+            </div>
+        </div>
+        <div class="modal-button-wrapper">
+            <button class="text-center outline-button active w-100" (click)="changefundstep1()" *ngIf="changeStep1">GO TO NEXT INVESTMENT PHASE</button>
+            <button class="text-center outline-button active w-100 mt-4" (click)="closePopup()" *ngIf="changeStep3">FUND CHANGED</button>
+        </div>
+    </div>
+</div>
+
+
+<div class="col-12 d-none d-lg-none d-flex align-items-center button-wrapper footer-wrapper fixed-bottom justify-content-end bg-white pt-3 pb-3"
+*ngIf="footerbtn1">
     <button class="text-center outline-button mr-3" (click)="openModalPopupW()">WITHDRAW</button>
     <button class="text-center outline-button active" (click)="openModalPopup()">INVEST</button>
 </div>

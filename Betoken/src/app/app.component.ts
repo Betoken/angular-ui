@@ -37,7 +37,9 @@ export class AppComponent {
 
 
   constructor() {
-    document_ready(this.start);
+    setTimeout(() => {
+      document_ready(this.start);
+    }, 500);
   }
 
   async  start(errMessage) {

@@ -5,7 +5,7 @@ import {AppComponent} from '../app.component';
 import { } from 'jquery';
 declare var $: any;
 import {
-  userAddress, countdown_timer_helpers
+  userAddress, countdown_timer_helpers, displayedKairoBalance, managerROI, sidebar_heplers
 } from '../../assets/body';
 
 
@@ -31,6 +31,12 @@ export class HeaderComponent implements OnInit {
   seconds = 0;
   phase = -1;
 
+  user_address = '0x0';
+  share_balance = 0.0000;
+  kairo_balance = 0.0000;
+  monthly_pl = 0.00;
+  expected_commission = 0.00;
+
   constructor(private ms: AppComponent, private router: Router ) {
     this.btn1 = true;
     this.btn2 = false;
@@ -41,22 +47,22 @@ export class HeaderComponent implements OnInit {
     this.newcyclebtn = false;
 
 
-   setInterval(() => {
-    if (userAddress.get() !== '0x0') {
-      this.updateDates();
-    }
-     }, 1000 );
+    setInterval(() => {
+      if (userAddress.get() !== '0x0') {
+        this.updateDates();
+      }
+    }, 1000 );
 
   }
 
-    async updateDates() {
-      this.days = countdown_timer_helpers.day();
-      this.hours = countdown_timer_helpers.hour();
-      this.minutes = countdown_timer_helpers.minute();
-      this.seconds = countdown_timer_helpers.second();
-      this.phase = countdown_timer_helpers.phase();
-      //  this.phase -=1;
-    }
+  async updateDates() {
+    this.days = countdown_timer_helpers.day();
+    this.hours = countdown_timer_helpers.hour();
+    this.minutes = countdown_timer_helpers.minute();
+    this.seconds = countdown_timer_helpers.second();
+    this.phase = countdown_timer_helpers.phase();
+    //  this.phase -=1;
+  }
 
   toggle() {
     this.ms.setToggleMenu();
@@ -90,6 +96,15 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
+    setInterval(() => {
+      if (userAddress.get() !== '0x0') {
+        // portfolio
+        this.user_address = userAddress.get();
+        this.kairo_balance = displayedKairoBalance.get().toFormat(4);
+        this.monthly_pl = managerROI.get().toFormat(5);
+        this.expected_commission = sidebar_heplers.expected_commission();
+      }
+    }, 1000);
     this.ms.getNextPhaseBtn().subscribe((nextbtn: boolean) => {
 
       if (nextbtn) {

@@ -36,19 +36,13 @@
 
     <div class="col-6">
       <div class="button-wrapper" *ngIf="phase == 0">
-        <button class="outline-button basic-button mr-4">DAI</button>
-        <button class="outline-button basic-button d-none mr-4">USD</button>
         <button class="text-center outline-button mr-3" (click)="openModalPopupW()">WITHDRAW</button>
         <button class="text-center outline-button active" (click)="openModalPopup()">INVEST</button>
       </div>
       <div class="button-wrapper" *ngIf="phase == 1">
-        <button class="outline-button basic-button mr-4">DAI</button>
-        <button class="outline-button basic-button d-none mr-4">USD</button>
         <button class="text-center outline-button active mr-4" (click)="proposalPopup()">TRADE ASSSETS</button>
       </div>
       <div class="button-wrapper" *ngIf="phase == 2">
-        <button class="outline-button basic-button mr-4">DAI</button>
-        <button class="outline-button basic-button d-none mr-4">USD</button>
         <button class="text-center outline-button active" routerLink="/redeem" (click)="redeemPopup()">REDEEM COMMISSION</button>
       </div>
       <div class="portfolio-desc">

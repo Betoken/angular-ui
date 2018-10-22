@@ -41,7 +41,7 @@ export class AccountComponent implements OnInit {
     }
 
     linkopen(values) {
-        window.open(`https://` + this.transactionNetwork + `etherscan.io/tx/` + values + ``);
+        window.open(`https://` + this.transactionNetwork + `.etherscan.io/tx/` + values + ``);
     }
 
     isLoading() {

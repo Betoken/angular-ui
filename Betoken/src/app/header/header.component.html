@@ -19,7 +19,7 @@
           <div class="bt-notifications notification-icon" (click)="notification = !notification"></div>
       </div>
     </div>
-    <div class="col-9 col-lg-4 d-flex align-items-center">
+    <div class="col-9 col-lg-6 d-flex align-items-center">
       <div class="portfolio-desc" (click)= "copyToClipBoard(kairo_balance)">
         <p class="portfolio-title betoken-font m-0">Kairo balance</p>
         <p class="portfolio-value black-font m-0 ellipseDesign" >{{kairo_balance}} </p>
@@ -34,7 +34,7 @@
       </div>
     </div>
 
-    <div class="col-6">
+    <div class="col-4">
       <div class="button-wrapper" *ngIf="phase == 0">
         <button class="text-center outline-button mr-3" (click)="openModalPopupW()">WITHDRAW</button>
         <button class="text-center outline-button active" (click)="openModalPopup()">INVEST</button>

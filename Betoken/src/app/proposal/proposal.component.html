@@ -6,14 +6,14 @@
                 <button class="text-center alert-button" (click)="hidealert()">DISMISS</button>
             </div>
         </div>
-        
+
         <div class="alert-window col-12 " *ngIf="nextphasealert">
             <div class="alert d-flex justify-content-between align-items-center col-12">
                 <p class="m-0">🚨 Portfolio proposal phase ended. Switch to next phase.</p>
                 <button class="text-center alert-button" (click)="changeproposal()">NEXT PHASE</button>
             </div>
         </div>
-        
+
         <div class="alert-window col-12" *ngIf="redeemalert">
             <div class="alert d-flex justify-content-between align-items-center col-12">
                 <p class="m-0">🚨 Redeem your commissions before the phase ends. More info.</p>
@@ -48,8 +48,8 @@
                                     <!-- <p class="m-0 expansion">Ethereum</p> -->
                                 </div>
                             </td>
-                            <td>$ {{data.buyPrice / (1e18)}}</td>
-                            <td class="current-sell-price">$ {{data.sellPrice.toNumber() / (1e18)}} </td>
+                            <td>{{data.buyPrice / (1e18)}} DAI</td>
+                            <td class="current-sell-price">{{data.sellPrice.toNumber() / (1e18)}} DAI</td>
                             <td>{{data.stake}}</td>
                             <td class="profit">
                                 <span class="diffrence">{{data.currValue}}</span>
@@ -63,7 +63,7 @@
                     </tbody>
                 </table>
             </div>
-            
+
             <div class="sec-header d-flex justify-content-between align-items-center">
                 <p class="sec-title">Inactive Investments</p>
             </div>
@@ -87,8 +87,8 @@
                                     <!-- <p class="m-0 expansion">Ethereum</p> -->
                                 </div>
                             </td>
-                            <td>$ {{data.buyPrice / (1e18)}}</td>
-                            <td class="current-sell-price">$ {{data.sellPrice.toNumber() / (1e18)}} </td>
+                            <td>{{data.buyPrice / (1e18)}} DAI</td>
+                            <td class="current-sell-price">{{data.sellPrice.toNumber() / (1e18)}} DAI</td>
                             <td>{{data.stake}}</td>
                             <td class="profit">
                                 <span class="diffrence">{{data.currValue}}</span>
@@ -101,23 +101,23 @@
                 </table>
             </div>
         </div>
-        
+
         <div class="email-update-sec col-4 col-md-3 col-lg-4 mb-3">
-            
+
             <div class="sec-header">
                 <p class="sec-title">Receive updates</p>
             </div>
-            
+
             <div class="cards">
-                
+
                 <p class="update-info black-font">
                     Get updates about the fund status, beginning of new investment cycle phases and date to redeem commissions.
                 </p>
-                
+
                 <p>
                     Email address
                 </p>
-                
+
                 <form action="https://fund.us17.list-manage.com/subscribe/post?u=9c0647dcb587985ed6121cdf6&amp;id=150e0f091e" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
                     <div class="emailer-box">
                         <input class="outline-button w-100 mb-3" type="email" value="" name="EMAIL" id="mce-EMAIL" placeholder="myemail@address.com" required>
@@ -129,7 +129,7 @@
                         </div>
                     </div>
                 </form>
-                
+
                 <div class="update-footer">
                     <a target="_blank" href="https://t.me/betokenfund">
                         <p class="black-font" style="text-align: center;">
@@ -150,35 +150,29 @@
                 Trade assets
             </div>
             <div class="modal-close">
-                <button type="button" class="close black-font" (click)="closePopup()">&times;</button>
+              <button type="button" class="close" (click)="closePopup()"><img src="/assets/images/ic_close_black_24px.svg" width="24"></button>
             </div>
         </div>
         <div class="time-wrapper">
-            <p class="m-0">Time left to invest: {{days}}d {{hours}}h {{minutes}}m {{seconds}}s
-            </p>
+            <span class="time-left-title">Time left to invest: </span> <span class="time-left-value">{{days}}d {{hours}}h {{minutes}}m {{seconds}}s</span>
         </div>
-        
+
         <div class="main-sec" *ngIf="step1">
             <p class="m-0 pb-4 black-font">Stake Kairo tokens to invest in crypto-assets.</p>
             <p class="m-0 pb-4 black-font">If the price of the asset goes up, you're rewarded with more Kairo.
                 More Kairo means more monthly commissions, as well as more money you can use for investing.</p>
-                
-            <p class="m-0">Select an asset
-            </p>
+
+            <p>Select an asset</p>
             <div class="mt-2 mb-3 outline-box w-100 d-flex  align-items-center justify-content-between">
                 <select id="selectedTokenSymbolidd"   class="border-0 betoken-font w-100" (change)="updateTokenSymbol($event.target.value)" class="border-0 betoken-font" >
                     <option *ngFor = "let token of tokenList" >{{token}} </option>
                 </select>
-                <p *ngIf = "tradeAssetval !== undfined">Current Price - {{tradeAssetval}} DAI</p>
-                
+                <span class="token-price"*ngIf = "tradeAssetval !== undfined">Current Price • {{tradeAssetval}} DAI</span>
             </div>
-            <div class="d-flex justify-content-between">
-                <p class="m-0 ">
-                    KRO to stake (you have {{kairo_balance}} KRO)
-                </p>
-                <input type="text" class="outline-box" (keyup) = "kairoInput($event)" placeholder="e.g. 1.0000">
-            </div>
-            
+            <p class="mt-4">
+            KRO to stake • Your Balance: {{kairo_balance}} KRO)
+            </p>
+            <input type="text" class="outline-box" (keyup) = "kairoInput($event)" placeholder="e.g. 1.0000">
             <div class="confirmation-sec m-3" *ngIf="step2">
                 <p class="mb-3">
                     🚨 Confirm your trade for this asset
@@ -188,10 +182,10 @@
                     It's fine to stick with these defaults gas limit and price.
                 </p>
                 <div class="d-flex justify-content-center mb-5">
-                    <img src="assets/images/metamask-big.png">
+                    <img src="assets/images/metamask-big.png" width="128">
                 </div>
             </div>
-            
+
             <div class="broadcast-sec m-3" *ngIf="step3">
                 <p class="mb-3">
                     🎉 Transaction broadcasted!
@@ -201,7 +195,7 @@
                     You can check its status on Etherscan.
                 </p>
                 <div class="d-flex justify-content-center mb-5">
-                    <img src="assets/images/loader.png" class="pointer ">
+                    <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
                 </div>
                 <p class="m-0">
                     Transaction ID
@@ -213,7 +207,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="final-sec m-3" *ngIf="step4">
                 <p class="mb-3">
                     🙌 Done. Trade registered. Good choice!
@@ -233,14 +227,14 @@
                         <a href="https://rinkeby.etherscan.io/tx/{{transactionId}}" target="_blank"> <img src="assets/images/export.png" class="pointer ml-1"> </a>
                     </div>
                 </div>
-                
+
             </div>
-            
+
             <div class="modal-button-wrapper">
                 <button class="text-center outline-button active w-100" (click)="support()" *ngIf= "step1">INVEST</button>
                 <button class="text-center outline-button active w-100" (click)="closePopup()" *ngIf= "step4">MAKE A NEW INVESTMENT</button>
             </div>
-                
+
         </div>
     </div>
     <div class="content proposal-trade-phase" *ngIf="tradeproposalfund">
@@ -249,12 +243,11 @@
                 Redeem your KRO
             </div>
             <div class="modal-close">
-                <button type="button" class="close black-font" (click)="closePopup()">&times;</button>
+              <button type="button" class="close" (click)="closePopup()"><img src="/assets/images/ic_close_black_24px.svg" width="24"></button>
             </div>
         </div>
         <div class="time-wrapper">
-            <p class="m-0">Time left to redeem commission: {{days}}d {{hours}}h {{minutes}}m {{seconds}}s
-            </p>
+            <span class="time-left-title">Time left to redeem commission: </span> <span class="time-left-value">{{days}}d {{hours}}h {{minutes}}m {{seconds}}s</span>
         </div>
         <div class="confirmation-sec m-3" *ngIf="sellStep1">
             <p class="mb-3">
@@ -267,7 +260,7 @@
             <div class="d-flex justify-content-center mb-5">
                 <img src="assets/images/metamask-big.png" class="pointer " (click)="confirmsell()">
             </div>
-            
+
         </div>
         <div class="broadcast-sec m-3" *ngIf="sellStep2">
             <p class="mb-3">
@@ -314,14 +307,14 @@
             <button class="text-center outline-button active w-100" *ngIf="sellStep3" (click)="newsupport()">TRADE SUCCESSFUL</button>
         </div>
     </div>
-    
+
     <div class="content proposal-changefund-phase" *ngIf="changeproposalfund">
         <div class="modal-header d-flex align-items-center">
             <div class="modal-tittle">
                 Change fund phase
             </div>
             <div class="modal-close">
-                <button type="button" class="close black-font" (click)="closePopup()">&times;</button>
+              <button type="button" class="close" (click)="closePopup()"><img src="/assets/images/ic_close_black_24px.svg" width="24"></button>
             </div>
         </div>
         <div class="main-sec" *ngIf="changeStep1">

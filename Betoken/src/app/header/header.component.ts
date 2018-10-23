@@ -86,6 +86,10 @@ export class HeaderComponent implements OnInit {
     this.ms.setredeemPopUp();
   }
 
+  checkRouterURL(route) {
+    return this.router.url === route;
+  }
+
   ngOnInit() {
     setInterval(() => {
       if (userAddress.get() !== '0x0') {

@@ -106,4 +106,8 @@ export class SideNavComponent implements OnInit {
         return 'to redeem commission';
     }
   }
+
+  checkRouterURL(route) {
+    return this.router.url === route;
+  }
 }

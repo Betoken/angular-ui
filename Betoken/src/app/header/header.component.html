@@ -43,9 +43,9 @@
           <button class="text-center outline-button active mr-4" routerLink="/redeem" (click)="redeemPopup()">REDEEM COMMISSION</button>
         </div>
       </div>
-      
+
       <div class="portfolio-desc" *ngIf="user_address !== '0x0'">
-        <p class="portfolio-title betoken-font m-0"><img class="connected-wallet-logo" src="/assets/images/metamask.png" width="24">{{curr_network}}</p>
+        <p class="portfolio-title betoken-font m-0"><img class="connected-wallet-logo" src="assets/images/metamask.png" width="24">{{curr_network}}</p>
         <p class="black-font m-0" style="text-overflow: ellipsis; overflow: hidden;">{{user_address}}</p>
       </div>
     </div>

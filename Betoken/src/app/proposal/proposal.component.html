@@ -148,7 +148,7 @@
                 Invest in assets
             </div>
             <div class="modal-close">
-                <button type="button" class="close" (click)="closePopup()"><img src="/assets/images/ic_close_black_24px.svg" width="24"></button>
+                <button type="button" class="close" (click)="closePopup()"><img src="assets/images/ic_close_black_24px.svg" width="24"></button>
             </div>
         </div>
         <div class="time-wrapper">
@@ -172,7 +172,7 @@
             </p>
             <input type="text" class="outline-box" (keyup) = "kairoInput($event)" placeholder="e.g. 1.0000">
         </div>
-        
+
         <div class="confirmation-sec" *ngIf="step2">
             <p class="mb-3">
                 🚨 Confirm your trade for this asset
@@ -221,11 +221,9 @@
             <p class="m-0">
                 Transaction ID
             </p>
-            <div class="mt-2 outline-box w-100 d-flex align-items-center justify-content-between bg-white">
-                <div class="overflowDesign row">
-                    <p class="m-0">{{transactionId}}</p>
-                    <a href="https://rinkeby.etherscan.io/tx/{{transactionId}}" target="_blank"> <img src="assets/images/export.png" class="pointer ml-1"> </a>
-                </div>
+            <div class="mt-2 w-100 d-flex align-items-center justify-content-between">
+              <input class="tx-hash" type="text" name="" value="{{transactionId}}">
+              <a class="link-tx-hash" href="https://rinkeby.etherscan.io/tx/{{transactionId}}" target="_blank"> <img src="assets/images/ic_launch_black_24px.svg" class="pointer ml-2"> </a>
             </div>
 
         </div>
@@ -243,7 +241,7 @@
                 Redeem your KRO
             </div>
             <div class="modal-close">
-              <button type="button" class="close" (click)="closePopup()"><img src="/assets/images/ic_close_black_24px.svg" width="24"></button>
+              <button type="button" class="close" (click)="closePopup()"><img src="assets/images/ic_close_black_24px.svg" width="24"></button>
             </div>
         </div>
         <div class="time-wrapper">
@@ -296,11 +294,9 @@
             <p class="m-0 mt-4">
                 Transaction ID
             </p>
-            <div class="mt-2 outline-box w-100 d-flex align-items-center justify-content-between bg-white">
-                <div class = "overflowDesign row">
-                    <p class="m-0">{{transactionId}}</p>
-                    <a href="https://rinkeby.etherscan.io/tx/{{transactionId}}" target="_blank"> <img src="assets/images/export.png" class="pointer ml-1"> </a>
-                </div>
+            <div class="mt-2 w-100 d-flex align-items-center justify-content-between">
+              <input class="tx-hash" type="text" name="" value="{{transactionId}}">
+              <a class="link-tx-hash" href="https://rinkeby.etherscan.io/tx/{{transactionId}}" target="_blank"> <img src="assets/images/ic_launch_black_24px.svg" class="pointer ml-2"> </a>
             </div>
         </div>
         <div class="modal-button-wrapper">
@@ -314,7 +310,7 @@
                 Change fund phase
             </div>
             <div class="modal-close">
-              <button type="button" class="close" (click)="closePopup()"><img src="/assets/images/ic_close_black_24px.svg" width="24"></button>
+              <button type="button" class="close" (click)="closePopup()"><img src="assets/images/ic_close_black_24px.svg" width="24"></button>
             </div>
         </div>
         <div class="main-sec" *ngIf="changeStep1">

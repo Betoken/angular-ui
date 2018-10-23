@@ -148,7 +148,7 @@
                 Invest in assets
             </div>
             <div class="modal-close">
-              <button type="button" class="close" (click)="closePopup()"><img src="/assets/images/ic_close_black_24px.svg" width="24"></button>
+                <button type="button" class="close" (click)="closePopup()"><img src="/assets/images/ic_close_black_24px.svg" width="24"></button>
             </div>
         </div>
         <div class="time-wrapper">
@@ -168,21 +168,22 @@
                 <span class="token-price"*ngIf = "tradeAssetval !== undfined">Current Price • {{tradeAssetval}} DAI</span>
             </div>
             <p class="mt-4">
-            KRO to stake • Your Balance: {{kairo_balance}} KRO)
+                KRO to stake • Your Balance: {{kairo_balance}} KRO)
             </p>
             <input type="text" class="outline-box" (keyup) = "kairoInput($event)" placeholder="e.g. 1.0000">
-            <div class="confirmation-sec" *ngIf="step2">
-                <p class="mb-3">
-                    🚨 Confirm your trade for this asset
-                </p>
-                <p class="m-0 pb-4 black-font">
-                    Confirm the transaction in the Metamask’s interface to submit it to the Betoken fund contract.
-                    It's fine to stick with these defaults gas limit and price.
-                </p>
-                <div class="d-flex justify-content-center mb-5">
-                    <img src="assets/images/metamask-big.png" width="128" height="128" width="128">
-                </div>
+        </div>
+        <div class="confirmation-sec" *ngIf="step2">
+            <p class="mb-3">
+                🚨 Confirm your trade for this asset
+            </p>
+            <p class="m-0 pb-4 black-font">
+                Confirm the transaction in the Metamask’s interface to submit it to the Betoken fund contract.
+                It's fine to stick with these defaults gas limit and price.
+            </p>
+            <div class="d-flex justify-content-center mb-5">
+                <img src="assets/images/metamask-big.png" width="128" height="128" width="128">
             </div>
+        </div>
 
             <div class="broadcast-sec m-3" *ngIf="step3">
                 <p class="mb-3">
@@ -205,36 +206,37 @@
 
                 </div>
             </div>
+        </div>
 
-            <div class="final-sec m-3" *ngIf="step4">
-                <p class="mb-3">
-                    🙌 Done. Trade registered. Good choice!
-                </p>
-                <p class="m-0 pb-4 black-font">
-                    You staked {{kairoinput}} KRO to support {{selectedTokenSymbol}}.
-                </p>
-                <div class="d-flex justify-content-center mb-5">
-                    <img src="assets/images/finish.png" class="pointer ">
-                </div>
-                <p class="m-0">
-                    Transaction ID
-                </p>
-                <div class="mt-2 outline-box w-100 d-flex align-items-center justify-content-between bg-white">
-                    <div class="overflowDesign row">
-                        <p class="m-0">{{transactionId}}</p>
-                        <a href="https://rinkeby.etherscan.io/tx/{{transactionId}}" target="_blank"> <img src="assets/images/export.png" class="pointer ml-1"> </a>
-                    </div>
-                </div>
-
+        <div class="final-sec m-3" *ngIf="step4">
+            <p class="mb-3">
+                🙌 Done. Trade registered. Good choice!
+            </p>
+            <p class="m-0 pb-4 black-font">
+                You staked {{kairoinput}} KRO to support {{selectedTokenSymbol}}.
+            </p>
+            <div class="d-flex justify-content-center mb-5">
+                <img src="assets/images/finish.png" class="pointer ">
             </div>
-
-            <div class="modal-button-wrapper">
-                <button class="text-center outline-button active w-100" (click)="support()" *ngIf= "step1">INVEST</button>
-                <button class="text-center outline-button active w-100" (click)="closePopup()" *ngIf= "step4">MAKE A NEW INVESTMENT</button>
+            <p class="m-0">
+                Transaction ID
+            </p>
+            <div class="mt-2 outline-box w-100 d-flex align-items-center justify-content-between bg-white">
+                <div class="overflowDesign row">
+                    <p class="m-0">{{transactionId}}</p>
+                    <a href="https://rinkeby.etherscan.io/tx/{{transactionId}}" target="_blank"> <img src="assets/images/export.png" class="pointer ml-1"> </a>
+                </div>
             </div>
 
         </div>
+
+        <div class="modal-button-wrapper">
+            <button class="text-center outline-button active w-100" (click)="support()" *ngIf= "step1">INVEST</button>
+            <button class="text-center outline-button active w-100" (click)="closePopup()" *ngIf= "step4">MAKE A NEW INVESTMENT</button>
+        </div>
+
     </div>
+
     <div class="content proposal-trade-phase" *ngIf="tradeproposalfund">
         <div class="modal-header d-flex align-items-center">
             <div class="modal-tittle">
@@ -357,16 +359,16 @@
             <button class="text-center outline-button active w-100 mt-4" (click)="finalchangefund()" *ngIf="changeStep3">FUND CHANGED</button>
         </div>
     </div>
-    <div class="col-12 d-none d-lg-none d-flex button-wrapper text-right justify-content-end footer-wrapper fixed-bottom bg-white pt-3 pb-3"
-        *ngIf="footerbtn1">
-        <button class="text-center outline-button active" (click)="proposalPopup()">TRADE ASSSETS</button>
-    </div>
-    <div class="col-12 d-none d-lg-none d-flex button-wrapper text-right justify-content-end footer-wrapper fixed-bottom bg-white pt-3 pb-3"
-    *ngIf="footerbtn2">
-        <button class="text-center outline-button active" (click)="changeproposalPopup()">NEXT PHASE</button>
-    </div>
-    <div class="col-12 d-none d-lg-none d-flex button-wrapper text-right justify-content-end footer-wrapper fixed-bottom bg-white pt-3 pb-3" *ngIf="footerbtn3">
-        <button class="text-center outline-button active" routerLink="/redeem">REDEEM COMMISSION</button>
-    </div>
 </div>
 <div class="overlay-popup" [class.active]="active" (click)="closePopup()"></div>
+<div class="col-12 d-none d-lg-none d-flex button-wrapper text-right justify-content-end footer-wrapper fixed-bottom bg-white pt-3 pb-3"
+    *ngIf="footerbtn1">
+    <button class="text-center outline-button active" (click)="proposalPopup()">TRADE ASSSETS</button>
+</div>
+<div class="col-12 d-none d-lg-none d-flex button-wrapper text-right justify-content-end footer-wrapper fixed-bottom bg-white pt-3 pb-3"
+*ngIf="footerbtn2">
+    <button class="text-center outline-button active" (click)="changeproposalPopup()">NEXT PHASE</button>
+</div>
+<div class="col-12 d-none d-lg-none d-flex button-wrapper text-right justify-content-end footer-wrapper fixed-bottom bg-white pt-3 pb-3" *ngIf="footerbtn3">
+    <button class="text-center outline-button active" routerLink="/redeem">REDEEM COMMISSION</button>
+</div>

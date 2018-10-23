@@ -1,84 +1,3 @@
-<div class="walkthrough-wrapper" *ngIf="walkthrough">
-    <div class="walkthrough-overlay d-flex active">
-        <div class="walkthrough col-12 col-lg-6 m-auto text-center">
-            <ngu-carousel  [inputs]="carouselBanner"  (initData)="initDataFn($event)" (onMove)="onmoveFn($event)" class="walkthrough-slide">
-
-                <ngu-item NguCarouselItem class="bannerStyle">
-                    <div class="slide">
-                        <div class="logo col-6 col-lg-8 m-auto">
-                            <img src="assets/images/betoken-logo.png" class="header-logo w-100" >
-                        </div>
-                        <div class="info col-6 col-lg-8 m-auto">
-                            <p class="text-center mt-5">
-                                The hedge fund that works for you and empower a true meritocracy.
-                            </p>
-                            <img src="assets/images/man-illustration.png" class="mb-3">
-                        </div>
-                        <div class="desc col-md-9 col-lg-12 m-auto">
-                            <p class="text-center m-0">
-                                1. Invest in Betoken by depositing ETH or ERC20 tokens to buy Betoken's shares, or burn your shares to redeem your money.
-                                This 24h phase is open at the beginning of each month to onboard new user.
-                            </p>
-                        </div>
-                    </div>
-                </ngu-item>
-
-                <ngu-item NguCarouselItem class="bannerStyle">
-                    <div class="slide">
-                        <div class="logo col-6 col-lg-8 m-auto">
-                            <img src="assets/images/betoken-logo.png" class="header-logo w-100" >
-                        </div>
-                        <div class="info col-6 col-lg-8 m-auto">
-                            <p class="text-center mt-5">
-                                The hedge fund that works for you and empower a true meritocracy.
-                            </p>
-                            <img src="assets/images/woman-illustration.png" class="mb-3">
-                        </div>
-                        <div class="desc col-md-9 col-lg-12 m-auto">
-                            <p class="text-center m-0">
-                                2. You can influence the fund’s portfolio by staking Kairo tokens (KRO) - our control token - to buy & sell cryptoassets during a 27 days period.
-                                There is no obligation to make portfolio proposals.
-                                You can trust the community to decide for you on what to invest in. Get KRO on these exchanges.
-                            </p>
-                        </div>
-                    </div>
-                </ngu-item>
-
-                <ngu-item NguCarouselItem class="bannerStyle">
-                    <div class="slide">
-                        <div class="logo col-6 col-lg-8  m-auto">
-                            <img src="assets/images/betoken-logo.png" class="header-logo w-100" >
-                        </div>
-                        <div class="info col-6 col-lg-8 m-auto">
-                            <p class="text-center mt-5">
-                                The hedge fund that works for you and empower a true meritocracy.
-                            </p>
-                            <img src="assets/images/cup-illustration.png" class="mb-3">
-                        </div>
-                        <div class="desc col-md-9 col-lg-12 m-auto">
-                            <p class="text-center m-0">
-                                3. If you staked KRO and turned in profits, you’ll win more Kairo; if you lost the fund's money, you'll lose Kairo.
-                                More Kairo means more income and more control over investment decisions.
-                                During the last 24h of each investment cycle, redeem your commission based on how much Kairo you have.
-                            </p>
-                        </div>
-                    </div>
-                </ngu-item>
-
-                <button NguCarouselPrev class='leftRs d-none'>&lt;</button>
-                <button NguCarouselNext class='rightRs col-1 outline-button active'>Got It</button>
-
-            </ngu-carousel>
-
-            <div class="slide-button-wrapper m-auto">
-                <button (click) ="dismiss()" class="dismiss" >DISMISS</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
 <div class="invest-wrapper col-12 col-lg-10 float-right mt-2">
     <div class="row">
         <div class="alert-window col-12 " *ngIf="investalert">
@@ -176,6 +95,7 @@
                             <div class="update-footer">
                                 <a target="_blank" href="https://t.me/betokenfund">
                                     <p class="black-font" style="text-align: center;">
+                                        Join our Telegram community
                                         <img src="assets/images/iconmonstr-telegram-4.svg" width="24" class="ml-1">
                                     </p>
                                 </a>

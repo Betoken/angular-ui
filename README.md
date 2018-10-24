@@ -1,2 +1,1 @@
-# angular-ui
-Betoken's Angular based dapp - still in development
+Betoken's next gen UI

@@ -238,14 +238,14 @@
     <div class="content proposal-trade-phase" *ngIf="tradeproposalfund">
         <div class="modal-header d-flex align-items-center">
             <div class="modal-tittle">
-                Redeem your KRO
+                Sell Your Assets
             </div>
             <div class="modal-close">
               <button type="button" class="close" (click)="closePopup()"><img src="assets/images/ic_close_black_24px.svg" width="24"></button>
             </div>
         </div>
         <div class="time-wrapper">
-            <span class="time-left-title">Time left to redeem commission: </span> <span class="time-left-value">{{days}}d {{hours}}h {{minutes}}m {{seconds}}s</span>
+            <span class="time-left-title">Time left to sell assets: </span> <span class="time-left-value">{{days}}d {{hours}}h {{minutes}}m {{seconds}}s</span>
         </div>
         <div class="confirmation-sec" *ngIf="sellStep1">
             <p class="mb-3">

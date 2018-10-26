@@ -82,16 +82,28 @@ export class ProposalComponent implements OnInit {
 
     constructor(private ms: AppComponent) {
 
-        this.updateTokenSymbol(this.selectedTokenSymbol);
+        // this.updateTokenSymbol(this.selectedTokenSymbol);
 
-        setInterval(() => {
-            if (userAddress.get() !== '0x0') {
-                this.updateDates();
-                this.kairoBalance();
-                this.list();
-                this.tokensList();
-            }
-        }, 2000);
+        // setInterval(() => {
+        //     if (userAddress.get() !== '0x0') {
+        //         this.updateDates();
+        //         this.kairoBalance();
+        //         this.tokensList();
+        //     }
+        // }, 1000);
+
+        // setInterval(() => {
+        //     if (userAddress.get() !== '0x0') {
+        //         this.list();
+        //     }
+        // }, 1000 * 60 * 2);
+
+        // setTimeout(() => {
+        //     if (userAddress.get() !== '0x0') {
+        //         this.list();
+        //     }
+        // }, 1000 * 5);
+
 
         this.state = 'close';
         this.active = false;
@@ -160,6 +172,28 @@ export class ProposalComponent implements OnInit {
                 this.active = false;
             }
         });
+
+        this.updateTokenSymbol(this.selectedTokenSymbol);
+
+        setInterval(() => {
+            if (userAddress.get() !== '0x0') {
+                this.updateDates();
+                this.kairoBalance();
+                this.tokensList();
+            }
+        }, 1000);
+
+        setInterval(() => {
+            if (userAddress.get() !== '0x0') {
+                this.list();
+            }
+        }, 1000 * 60 * 2);
+
+        setTimeout(() => {
+            if (userAddress.get() !== '0x0') {
+                this.list();
+            }
+        }, 1000 * 5);
 
     }
 
@@ -264,9 +298,11 @@ export class ProposalComponent implements OnInit {
     }
 
     confirmSell = () => {
-        this.sellStep1 = false;
-        this.sellStep2 = false;
-        this.sellStep3 = true;
+        if (this.sellStep2 === true) {
+            this.sellStep1 = false;
+            this.sellStep2 = false;
+            this.sellStep3 = true;
+        }
     }
 
     changeproposal() {
@@ -320,11 +356,7 @@ export class ProposalComponent implements OnInit {
     }
 
     sellInvestment() {
-        decisions_tab_events.sell_investment(this.sellId, this.pendingSell, this.confirmSell, (success) => {
-            console.log(JSON.stringify(success));
-        }, (error) => {
-            alert(error);
-        });
+        decisions_tab_events.sell_investment(this.sellId, this.pendingSell, this.confirmSell);
     }
 
     async tokensList() {

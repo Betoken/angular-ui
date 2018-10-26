@@ -5,7 +5,7 @@
             <button class="text-center outline-button invest" [ngClass]="{active: checkRouterURL('/invest') === true}" (click)="navigate('/invest')">INVEST</button>
             <button class="text-center outline-button manage" [ngClass]="{active: checkRouterURL('/invest') === false}" (click)="navigate('/home')">MANAGE</button>
         </div>
-        
+
         <ul class="app-nav" *ngIf="checkRouterURL('/invest') === false">
             <p class="time-left-title">Time left {{phaseActionText()}}:</p>
             <p class="time-left-value">{{days}}d {{hours}}h {{minutes}}m {{seconds}}s</p>
@@ -47,17 +47,12 @@
         <ul class="support-nav">
 
             <li>
-                <a target="_blank" href="https://t.me/betokenfund"> Get Help </a>
+                <a class="mr-2" target="_blank" href="https://t.me/betokenfund">Get Help</a>&bull;<a class="ml-2" target="_blank" href="https://betoken.fund">Home</a>
             </li>
-
             <li>
                 <a target="_blank" href="https://kyber.network">
                     Powered By <img src="assets//images/kybernet-logo.png" class="p-0" width="64">
                 </a>
-            </li>
-
-            <li>
-                <a target="_blank" href="https://betoken.fund">Learn more</a>
             </li>
 
         </ul>

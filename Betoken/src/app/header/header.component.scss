@@ -1,6 +1,9 @@
 .preheader-container{
   min-height: 48px;
   background-color: #22C88A;
+  position: fixed;
+  width: 100%;
+  z-index: 90;
 }
 .preheader-content{
   position: relative;

@@ -4,8 +4,8 @@ import { Observable, Subject } from 'rxjs/index';
 import { } from 'jquery';
 declare var $: any;
 
-import { document_ready } from '../assets/body';
-
+import { Betoken } from '../betokenjs/betoken-obj';
+import { loadAllData } from '../betokenjs/data-controller';
 
 @Injectable()
 
@@ -37,12 +37,18 @@ export class AppComponent {
 
 
   constructor() {
-    setTimeout(() => {
-      document_ready(this.start);
-    }, 500);
+    const betoken = new Betoken();
+    betoken.init().then(() => {
+      const checkReady = setInterval(() => {
+        if (betoken.isReady()) {
+          loadAllData();
+          clearInterval(checkReady);
+        }
+      }, 100);
+    });
   }
 
-  async  start(errMessage) {
+  async start(errMessage) {
       alert(errMessage);
       location.reload();
       // do based on error messgae

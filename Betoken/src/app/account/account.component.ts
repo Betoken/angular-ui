@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {
-    userAddress,
-    transactionHistory,
-    loadTxHistory,
-    networkPrefix,
-    copyToClipBoard,
-    isLoadingRecords
-} from '../../assets/body';
+    user,
+    network
+} from '../../betokenjs/helpers';
+import {
+    isLoadingRecords,
+    loadTxHistory
+} from '../../betokenjs/data-controller';
 
 
 @Component({
@@ -19,25 +19,16 @@ export class AccountComponent implements OnInit {
     transactionNetwork: any;
 
     constructor() {
-        setInterval(() => {
-            if (userAddress.get() !== '0x0') {
-                this.transactionsDetails();
-            }
-        }, 10000 );
     }
 
     ngOnInit() {
-    }
-    async transactionsDetails() {
-        await loadTxHistory();
-        this.transactionTable = transactionHistory.get();
-        this.transactionNetwork = networkPrefix.get();
+        // this.loadData();
     }
 
-    copy(event) {
-        // console.log(event);
-        console.log(event);
-        alert('Copied  '  + event +  '  to clipBoard');
+    async loadData() {
+        await loadTxHistory();
+        this.transactionTable = user.transaction_history();
+        this.transactionNetwork = network.network_prefix();
     }
 
     linkopen(values) {

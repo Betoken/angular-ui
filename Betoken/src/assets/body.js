@@ -14,8 +14,6 @@ import {
     NET_ID
 } from "./objects/betoken.js";
 
-import Chart from "chart.js";
-
 import BigNumber from "bignumber.js";
 
 import ReactiveVar from "meteor-standalone-reactive-var";
@@ -252,58 +250,6 @@ clock = function() {
             return showCountdown.set(false);
         }
     }, 1000);
-};
-
-drawChart = function() {
-    return chart = new Chart($("#ROIChart"), {
-        type: "line",
-        data: {
-            datasets: [
-                {
-                    label: "ROI Per Cycle",
-                    backgroundColor: "#b9eee1",
-                    borderColor: "#1fdaa6",
-                    data: []
-                }
-            ]
-        },
-        options: {
-            scales: {
-                xAxes: [
-                    {
-                        type: "linear",
-                        position: "bottom",
-                        scaleLabel: {
-                            display: true,
-                            labelString: "Investment Cycle"
-                        },
-                        ticks: {
-                            stepSize: 1
-                        },
-                        gridLines: {
-                            display: false
-                        }
-                    }
-                ],
-                yAxes: [
-                    {
-                        type: "linear",
-                        position: "left",
-                        scaleLabel: {
-                            display: true,
-                            labelString: "Percent"
-                        },
-                        ticks: {
-                            beginAtZero: true
-                        },
-                        gridLines: {
-                            display: false
-                        }
-                    }
-                ]
-            }
-        }
-    });
 };
 
 assetSymbolToPrice = function(_symbol) {

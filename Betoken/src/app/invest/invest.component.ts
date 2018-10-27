@@ -58,7 +58,6 @@ export class InvestComponent implements OnInit {
 
     stock: Chart;
     bar: Chart;
-    user_address = '0x0';
     inputShare = 0.00;
     calculated_balance = 0.00;
     selectedTokenSymbol = 'DAI';
@@ -133,7 +132,6 @@ export class InvestComponent implements OnInit {
     ngOnInit() {
         let hasDrawnChart = false;
         setInterval(() => {
-            this.user_address = user.address();
             this.avgMonthReturn = stats.avg_roi().toFormat(2);
             this.currMoROI = stats.cycle_roi().toFormat(4);
             this.AUM = stats.fund_value().toFormat(2);

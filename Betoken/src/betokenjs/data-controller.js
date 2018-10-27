@@ -28,7 +28,7 @@ export var assetFeeRate = new ReactiveVar(BigNumber(0));
 
 // fund stats
 export var fundValue = new ReactiveVar(BigNumber(0));
-export var prevROI = new ReactiveVar(BigNumber(0));
+export var currROI = new ReactiveVar(BigNumber(0));
 export var avgROI = new ReactiveVar(BigNumber(0));
 export var prevCommission = new ReactiveVar(BigNumber(0));
 export var historicalTotalCommission = new ReactiveVar(BigNumber(0));
@@ -375,7 +375,7 @@ export const loadStats = async () => {
     var rois = [];
     var totalInputFunds = BigNumber(0);
     var totalOutputFunds = BigNumber(0);
-    prevROI.set(BigNumber(0));
+    currROI.set(BigNumber(0));
     avgROI.set(BigNumber(0));
     historicalTotalCommission.set(BigNumber(0));
     return Promise.all([
@@ -409,8 +409,8 @@ export const loadStats = async () => {
                 // Update chart data
                 rois.push([+data._cycleNumber, ROI.toNumber()]);
                 
-                if (+data._cycleNumber === cycleNumber.get() - 1) {
-                    prevROI.set(ROI);
+                if (+data._cycleNumber === cycleNumber.get()) {
+                    currROI.set(ROI);
                 }
 
                 // Update average ROI

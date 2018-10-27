@@ -87,12 +87,11 @@ export const stats = {
         }
     },
     total_funds: () => Data.totalFunds.get(),
-    prev_roi: () => Data.prevROI.get(),
     avg_roi: () => Data.avgROI.get(),
     fund_value: () => Data.fundValue.get(),
     cycle_roi: () => {
         if (Data.cyclePhase.get() === 2) {
-            return BigNumber(0);
+            return Data.currROI.get();
         }
         return Data.fundValue.get().sub(Data.totalFunds.get()).div(Data.totalFunds.get()).mul(100)
     },

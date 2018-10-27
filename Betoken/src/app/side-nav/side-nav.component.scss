@@ -204,6 +204,12 @@
     }
 }
 
+.powered-kyber{
+  position: fixed;
+  z-index: 2;
+  bottom: 8px;
+}
+
 @media (max-width: 575.98px) {
     .side-nav-wrapper{
         width: 250px;

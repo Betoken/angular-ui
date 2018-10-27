@@ -15,7 +15,9 @@
 
         <div class="main-sec" *ngIf="step1">
             <p class="m-0 pb-4 black-font">
-                As a Betoken fund manager, you're entitled to a commission payout every month, the amount of which is based upon your performance. <br>
+                As a Betoken fund manager, you're entitled to a commission payout every month, the amount of which is based upon your performance.
+            </p>
+            <p class="m-0 pb-4 black-font">
                 You may choose to redeem your commission in DAI Stablecoin or in Betoken Shares.
             </p>
 
@@ -46,7 +48,7 @@
                 It's fine to stick with these defaults gas limit and price.
             </p>
             <div class="d-flex justify-content-center mb-5">
-                <img src="assets/images/metamask-big.png" class="pointer " (click)="confirmredeem()" width="128" height="128">
+                <img src="assets/images/metamask-big.png" width="128" height="128">
             </div>
         </div>
 
@@ -59,7 +61,7 @@
                 You can check its status on Etherscan.
             </p>
             <div class="d-flex justify-content-center mb-5">
-                <img src="assets/images/loader.png" class="pointer">
+                <img src="assets/images/loader.png">
             </div>
             <p>
                 Transaction ID
@@ -77,10 +79,10 @@
                 🙌 Done. Check your balance!
             </p>
             <p class="m-0 pb-4 black-font">
-                You redeeemed {{redeemcommissionvalue}} BTF shares.
+                You redeeemed {{redeemcommissionvalue}} DAI (or equivalent Betoken Shares).
             </p>
             <div class="d-flex justify-content-center mb-5">
-                <img src="assets/images/finish.png" class="pointer ">
+                <img src="assets/images/finish.png">
             </div>
             <p class="m-0">
                 Transaction ID

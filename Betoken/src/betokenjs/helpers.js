@@ -179,10 +179,10 @@ export const manager_actions = {
         }
     },
     redeem_commission: async function (pending, confirm) {
-        return betoken.redeemCommission(showTransaction, loadUserData, pending, confirm);
+        return betoken.redeemCommission(pending, confirm);
     },
 
     redeem_commission_in_shares: async function (pending, confirm) {
-        return betoken.redeemCommissionInShares(showTransaction, loadDynamicData, pending, confirm);
+        return betoken.redeemCommissionInShares(pending, confirm);
     }
 }

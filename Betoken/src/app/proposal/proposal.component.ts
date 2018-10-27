@@ -78,35 +78,10 @@ export class ProposalComponent implements OnInit {
 
 
     constructor(private ms: AppComponent) {
-
-        // this.updateTokenSymbol(this.selectedTokenSymbol);
-
-        // setInterval(() => {
-        //     if (userAddress.get() !== '0x0') {
-        //         this.updateDates();
-        //         this.kairoBalance();
-        //         this.tokensList();
-        //     }
-        // }, 1000);
-
-        // setInterval(() => {
-        //     if (userAddress.get() !== '0x0') {
-        //         this.list();
-        //     }
-        // }, 1000 * 60 * 2);
-
-        // setTimeout(() => {
-        //     if (userAddress.get() !== '0x0') {
-        //         this.list();
-        //     }
-        // }, 1000 * 5);
-
         setInterval(() => {
-            if (user.address() !== '0x0') {
-                this.updateDates();
-                this.refreshDisplay();
-                this.tokenList = tokens.token_list();
-            }
+            this.updateDates();
+            this.refreshDisplay();
+            this.tokenList = tokens.token_list();
         }, 100);
 
         this.state = 'close';
@@ -240,6 +215,7 @@ export class ProposalComponent implements OnInit {
         this.step2 = false;
         this.step3 = false;
         this.step4 = true;
+        this.refresh();
     }
 
     newsupport() {

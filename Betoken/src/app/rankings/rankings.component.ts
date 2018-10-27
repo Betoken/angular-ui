@@ -17,9 +17,7 @@ export class RankingsComponent implements OnInit {
 
   ngOnInit() {
     setInterval(() => {
-      if (user.address() !== '0x0') {
-        this.refreshDisplay();
-      }
+      this.refreshDisplay();
     }, 100);
   }
 

@@ -1,7 +1,6 @@
 // imports
 import BigNumber from "bignumber.js";
 const Data = require("./data-controller");
-import { ROIArray, TOKENS, tokenPrices, userAddress, avgROI, fundValue, totalFunds } from "./data-controller";
 
 // constants
 const WRONG_NETWORK_ERR = "Please switch to Rinkeby Testnet in order to use Betoken Omen.";
@@ -40,7 +39,7 @@ export const user = {
     share_balance: () => Data.investmentBalance.get(),
     kairo_balance: () => Data.kairoBalance.get(),
     monthly_roi: () => Data.managerROI.get(),
-    can_redeem_commission: () => Data.cyclePhase.get() === 2 && Data.lastCommissionRedemption.get() < Data.cycleNumber.get(),
+    can_redeem_commission: () => betoken.hasWeb3 && Data.cyclePhase.get() === 2 && Data.lastCommissionRedemption.get() < Data.cycleNumber.get(),
     expected_commission: function () {
         if (Data.kairoTotalSupply.get().greaterThan(0)) {
             if (Data.cyclePhase.get() === 2) {
@@ -102,7 +101,7 @@ export const stats = {
 }
 
 export const tokens = {
-    token_list: () => TOKENS,
+    token_list: () => Data.TOKENS,
     token_prices: () => Data.tokenPrices.get(),
     asset_symbol_to_price: (_symbol) => Data.assetSymbolToPrice(_symbol)
 }

@@ -133,18 +133,16 @@ export class InvestComponent implements OnInit {
     ngOnInit() {
         let hasDrawnChart = false;
         setInterval(() => {
-            if (user.address() !== '0x0') {
-                this.user_address = user.address();
-                this.avgMonthReturn = stats.avg_roi().toFormat(2);
-                this.currMoROI = stats.cycle_roi().toFormat(4);
-                this.AUM = stats.fund_value().toFormat(2);
-                this.updateDates();
-                this.rankingList();
-                if (stats.raw_roi_data().length > 0) {
-                    if (!hasDrawnChart) {
-                        hasDrawnChart = true;
-                        this.drawChart();
-                    }
+            this.user_address = user.address();
+            this.avgMonthReturn = stats.avg_roi().toFormat(2);
+            this.currMoROI = stats.cycle_roi().toFormat(4);
+            this.AUM = stats.fund_value().toFormat(2);
+            this.updateDates();
+            this.rankingList();
+            if (stats.raw_roi_data().length > 0) {
+                if (!hasDrawnChart) {
+                    hasDrawnChart = true;
+                    this.drawChart();
                 }
             }
         }, 100);

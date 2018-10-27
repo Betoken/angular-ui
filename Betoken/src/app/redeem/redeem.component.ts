@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { AppComponent } from '../app.component';
-import { user, timer, manager_actions } from '../../betokenjs/helpers';
+import { user, timer, manager_actions, refresh_actions } from '../../betokenjs/helpers';
 
 @Component({
     selector: 'app-redeem',
@@ -66,10 +66,8 @@ export class RedeemComponent implements OnInit {
 
     ngOnInit() {
         setInterval(() => {
-            if (user.address() !== '0x0') {
-                this.updateDates();
-                this.redeemcommissionvalue = user.expected_commission();
-            }
+            this.updateDates();
+            this.redeemcommissionvalue = user.expected_commission();
         }, 100 );
 
         this.ms.getredeemPopUp().subscribe((open: boolean) => {
@@ -115,6 +113,7 @@ export class RedeemComponent implements OnInit {
         this.step2 = false;
         this.step3 = false;
         this.step4 = true;
+        refresh_actions.records();
     }
 
     confirmredeem() {

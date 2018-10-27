@@ -1,13 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {
     user,
-    network
+    network,
+    loading,
+    refresh_actions
 } from '../../betokenjs/helpers';
-import {
-    isLoadingRecords,
-    loadTxHistory
-} from '../../betokenjs/data-controller';
-import { load } from '@angular/core/src/render3/instructions';
 
 
 @Component({
@@ -35,11 +32,15 @@ export class AccountComponent implements OnInit {
         this.transactionNetwork = network.network_prefix();
     }
 
+    refresh() {
+        refresh_actions.records();
+    }
+
     linkopen(values) {
         window.open(`https://` + this.transactionNetwork + `.etherscan.io/tx/` + values + ``);
     }
 
     isLoading() {
-        return isLoadingRecords.get();
+        return loading.records();
     }
 }

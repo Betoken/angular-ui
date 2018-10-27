@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { AppComponent } from '../app.component';
-import {user, timer, manager_actions, loading, tokens} from '../../betokenjs/helpers';
+import { user, timer, manager_actions, loading, tokens, refresh_actions } from '../../betokenjs/helpers';
 
 @Component({
     selector: 'app-proposal',
@@ -293,20 +293,24 @@ export class ProposalComponent implements OnInit {
         this.ms.setRedeemButton();
     }
 
-    async updateTokenSymbol(event) {
+    updateTokenSymbol(event) {
         const value = event;
         this.selectedTokenSymbol = value;
-        const price = await tokens.asset_symbol_to_price(this.selectedTokenSymbol);
+        const price = tokens.asset_symbol_to_price(this.selectedTokenSymbol);
         this.tradeAssetval = price;
         return event;
     }
 
-    async refreshDisplay() {
+    refreshDisplay() {
         this.activeInvestmentList = user.investment_list().filter((data) => data.isSold === false);
         this.inactiveInvestmentList = user.investment_list().filter((data) => data.isSold === true);
     }
 
-    async invest() {
+    refresh() {
+        refresh_actions.investments();
+    }
+
+    invest() {
         manager_actions.new_investment(this.selectedTokenSymbol, this.kairoinput, this.pending, this.confirm);
     }
 

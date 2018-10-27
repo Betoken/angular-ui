@@ -33,6 +33,7 @@ export class HeaderComponent implements OnInit {
   monthly_pl = 0.00;
   expected_commission = 0.00;
   curr_network = '';
+  can_redeem_commission = true;
 
   constructor(private ms: AppComponent, private router: Router ) {
     this.btn1 = true;
@@ -47,12 +48,13 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     setInterval(() => {
       if (user.address() !== '0x0') {
-        // portfolio
         this.user_address = user.address();
         this.kairo_balance = user.kairo_balance().toFormat(4);
         this.monthly_pl = user.monthly_roi().toFormat(4);
         this.expected_commission = user.expected_commission().toFormat(18);
         this.curr_network = network.network_prefix();
+        this.updateDates();
+        this.can_redeem_commission = user.can_redeem_commission();
       }
     }, 100);
 

@@ -278,7 +278,7 @@ export const loadTxHistory = async () => {
     };
     await Promise.all([getDepositWithdrawHistory("Deposit"), getDepositWithdrawHistory("Withdraw"), getTransferHistory("BTKS", true), getTransferHistory("BTKS", false)]);
     var tmp = transactionHistory.get();
-    tmp.sort((x, y) => new Date(x.timestamp) < new Date(y.timestamp));
+    tmp.sort((x, y) => new Date(y.timestamp) - new Date(x.timestamp));
     transactionHistory.set(tmp);
     isLoadingRecords.set(false);
 };
@@ -296,7 +296,8 @@ export const loadTokenPrices = async () => {
 export const loadRanking = async () => {
     // activate loader
     isLoadingRanking.set(true);
-
+    kairoRanking.set([]);
+    
     // load NewUser events to get list of users
     var events = await betoken.contracts.BetokenFund.getPastEvents("NewUser", {
         fromBlock: DEPLOYED_BLOCK

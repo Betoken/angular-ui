@@ -23,7 +23,7 @@
         <div class="proposal-table-sec col-8">
             <div class="sec-header d-flex justify-content-between align-items-center pb-1">
                 <p class="sec-title">Active Investments</p>
-                <button class="text-center outline-button" (click) = "refreshDisplay()">
+                <button class="text-center outline-button" (click) = "refresh()">
                     <span *ngIf="isLoading() == false">REFRESH</span>
                     <span *ngIf="isLoading()">Loading...</span>
                 </button>

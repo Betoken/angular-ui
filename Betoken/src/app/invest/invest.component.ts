@@ -10,7 +10,7 @@ import { } from 'jquery';
 declare var $: any;
 
 import {
-    user, timer, stats, investor_actions, tokens, loading
+    user, timer, stats, investor_actions, tokens
 } from '../../betokenjs/helpers';
 
 @Component({
@@ -134,10 +134,7 @@ export class InvestComponent implements OnInit {
         let hasDrawnChart = false;
         setInterval(() => {
             if (user.address() !== '0x0') {
-                // portfolio
                 this.user_address = user.address();
-
-                // Betoken fund share price
                 this.avgMonthReturn = stats.avg_roi().toFormat(2);
                 this.currMoROI = stats.cycle_roi().toFormat(4);
                 this.AUM = stats.fund_value().toFormat(2);
@@ -348,11 +345,14 @@ export class InvestComponent implements OnInit {
                 color: data[1] > 0 ? '#18DAA3' : '#F4406B'
             });
         }
-        cycles.push(cycles.length + 1);
-        rois.push({
-            y: (new BigNumber(this.currMoROI)).toNumber(),
-            color: (new BigNumber(this.currMoROI)).toNumber() > 0 ? '#18DAA3' : '#F4406B'
-        });
+        if (timer.phase() !== 2) {
+            cycles.push(cycles.length + 1);
+            rois.push({
+                y: (new BigNumber(this.currMoROI)).toNumber(),
+                color: (new BigNumber(this.currMoROI)).toNumber() > 0 ? '#18DAA3' : '#F4406B'
+            });
+        }
+
 
         this.stock = new Chart({
             title: {

@@ -21,13 +21,13 @@ const checkKairoAmountError = (kairoAmountInWeis) => {
 };
 
 // exports
-export var network = {
+export const network = {
     network_prefix: () => Data.networkPrefix.get(),
     network_name: () => Data.networkName.get(),
     has_web3: () => betoken.hasWeb3
 };
 
-export var timer = {
+export const timer = {
     day: () => Data.countdownDay.get(),
     hour: () => Data.countdownHour.get(),
     minute: () => Data.countdownMin.get(),
@@ -35,7 +35,7 @@ export var timer = {
     phase: () => Data.cyclePhase.get()
 }
 
-export var user = {
+export const user = {
     address: () => Data.userAddress.get(),
     share_balance: () => Data.investmentBalance.get(),
     kairo_balance: () => Data.kairoBalance.get(),
@@ -79,7 +79,7 @@ export var user = {
     }
 }
 
-export var stats = {
+export const stats = {
     cycle_length: () => {
         if (Data.phaseLengths.get().length > 0) {
             return BigNumber(Data.phaseLengths.get().reduce(function (t, n) {
@@ -91,25 +91,42 @@ export var stats = {
     prev_roi: () => Data.prevROI.get(),
     avg_roi: () => Data.avgROI.get(),
     fund_value: () => Data.fundValue.get(),
-    cycle_roi: () => Data.fundValue.get().sub(Data.totalFunds.get()).div(Data.totalFunds.get()).mul(100),
+    cycle_roi: () => {
+        if (Data.cyclePhase.get() === 2) {
+            return BigNumber(0);
+        }
+        return Data.fundValue.get().sub(Data.totalFunds.get()).div(Data.totalFunds.get()).mul(100)
+    },
     raw_roi_data: () => Data.ROIArray.get(),
     ranking: () => Data.kairoRanking.get()
 }
 
-export var tokens = {
+export const tokens = {
     token_list: () => TOKENS,
     token_prices: () => Data.tokenPrices.get(),
     asset_symbol_to_price: (_symbol) => Data.assetSymbolToPrice(_symbol)
 }
 
-export var loading = {
+export const loading = {
     investments: () => Data.isLoadingInvestments.get(),
     ranking: () => Data.isLoadingRanking.get(),
     records: () => Data.isLoadingRecords.get(),
     prices: () => Data.isLoadingPrices.get()
 }
 
-export var investor_actions = {
+export const refresh_actions = {
+    investments: () => {
+        Data.loadUserData();
+    },
+    ranking: () => {
+        Data.loadTokenPrices().then(Data.loadRanking);
+    },
+    records: () => {
+        Data.loadUserData().then(Data.loadTxHistory);
+    }
+}
+
+export const investor_actions = {
     deposit_button: async function (amt, tokenSymbol, pending, confirm, handledataSuccess, handledataError) {
         var amount, tokenAddr, tokenSymbol;
         try {
@@ -144,7 +161,7 @@ export var investor_actions = {
     }
 }
 
-export var manager_actions = {
+export const manager_actions = {
     sell_investment: async function (id, pending, confirm) {
         if (Data.cyclePhase.get() === 1) {
             return betoken.sellAsset(id, pending, confirm);

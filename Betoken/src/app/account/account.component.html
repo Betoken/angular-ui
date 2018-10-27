@@ -3,8 +3,8 @@
 
         <div class="account-table-sec col-8">
             <div class="sec-header d-flex justify-content-between align-items-center pb-1">
-                <p class="sec-title">Commissions transactions</p>
-                <button class="text-center outline-button" (click) = "refreshDisplay()">
+                <p class="sec-title">Transaction History</p>
+                <button class="text-center outline-button" (click) = "refresh()">
                     <span *ngIf="isLoading() == false">REFRESH</span>
                     <span *ngIf="isLoading()">Loading...</span>
                 </button>

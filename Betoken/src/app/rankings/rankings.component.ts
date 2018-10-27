@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { user, stats, loading } from '../../betokenjs/helpers';
+import { user, stats, loading, refresh_actions } from '../../betokenjs/helpers';
 
 @Component({
   selector: 'app-rankings',
@@ -28,6 +28,10 @@ export class RankingsComponent implements OnInit {
     this.userRanking = user.rank();
     this.userValue = user.portfolio_value();
     this.userAddress = user.address();
+  }
+
+  refresh() {
+    refresh_actions.ranking();
   }
 
   isLoading() {

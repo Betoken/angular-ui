@@ -5,8 +5,8 @@ import {AppComponent} from '../app.component';
 import { } from 'jquery';
 declare var $: any;
 import {
-  userAddress, countdown_timer_helpers, displayedKairoBalance, managerROI, sidebar_heplers, networkPrefix
-} from '../../assets/body';
+  user, timer, network
+} from '../../betokenjs/helpers';
 
 
 @Component({
@@ -33,6 +33,7 @@ export class HeaderComponent implements OnInit {
   monthly_pl = 0.00;
   expected_commission = 0.00;
   curr_network = '';
+  can_redeem_commission = true;
 
   constructor(private ms: AppComponent, private router: Router ) {
     this.btn1 = true;
@@ -42,65 +43,21 @@ export class HeaderComponent implements OnInit {
     this.nextphasebtn = false;
     this.redeembtn = false;
     this.newcyclebtn = false;
-
-    setInterval(() => {
-      if (userAddress.get() !== '0x0') {
-        this.updateDates();
-      }
-    }, 1000 );
-
-  }
-
-  async updateDates() {
-    this.phase = countdown_timer_helpers.phase();
-  }
-
-  toggle() {
-    this.ms.setToggleMenu();
-  }
-
-  openModalPopup() {
-    this.router.navigate(['/home']);
-    this.ms.setPopUp();
-  }
-
-  openModalPopupW() {
-    this.router.navigate(['/home']);
-    this.ms.setPopUpW();
-  }
-
-  changefundPopup() {
-    this.ms.setchangefundPopUp();
-  }
-
-  proposalPopup() {
-    this.router.navigate(['/proposal']);
-    this.ms.setproposalPopUp();
-  }
-
-  changeproposal() {
-    this.ms.setproposalchange();
-  }
-
-  redeemPopup() {
-    this.ms.setredeemPopUp();
-  }
-
-  checkRouterURL(route) {
-    return this.router.url === route;
   }
 
   ngOnInit() {
     setInterval(() => {
-      if (userAddress.get() !== '0x0') {
-        // portfolio
-        this.user_address = userAddress.get();
-        this.kairo_balance = displayedKairoBalance.get().toFormat(4);
-        this.monthly_pl = managerROI.get().toFormat(4);
-        this.expected_commission = sidebar_heplers.expected_commission();
-        this.curr_network = networkPrefix.get();
+      if (user.address() !== '0x0') {
+        this.user_address = user.address();
+        this.kairo_balance = user.kairo_balance().toFormat(4);
+        this.monthly_pl = user.monthly_roi().toFormat(4);
+        this.expected_commission = user.expected_commission().toFormat(18);
+        this.curr_network = network.network_prefix();
+        this.updateDates();
+        this.can_redeem_commission = user.can_redeem_commission();
       }
-    }, 1000);
+    }, 100);
+
     this.ms.getNextPhaseBtn().subscribe((nextbtn: boolean) => {
 
       if (nextbtn) {
@@ -142,6 +99,45 @@ export class HeaderComponent implements OnInit {
         this.newcyclebtn = true;
       }
     });
+  }
+
+  async updateDates() {
+    this.phase = timer.phase();
+  }
+
+  toggle() {
+    this.ms.setToggleMenu();
+  }
+
+  openModalPopup() {
+    this.router.navigate(['/home']);
+    this.ms.setPopUp();
+  }
+
+  openModalPopupW() {
+    this.router.navigate(['/home']);
+    this.ms.setPopUpW();
+  }
+
+  changefundPopup() {
+    this.ms.setchangefundPopUp();
+  }
+
+  proposalPopup() {
+    this.router.navigate(['/proposal']);
+    this.ms.setproposalPopUp();
+  }
+
+  changeproposal() {
+    this.ms.setproposalchange();
+  }
+
+  redeemPopup() {
+    this.ms.setredeemPopUp();
+  }
+
+  checkRouterURL(route) {
+    return this.router.url === route;
   }
 
 }

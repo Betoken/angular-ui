@@ -102,7 +102,7 @@
     </div>
 </div>
 
-<div class="overlay-popup" [class.active]="active" (click)="closePopup()"></div>
+<div class="overlay-popup" routerLink="/home" [class.active]="active" (click)="closePopup()"></div>
 
 <div class="col-12 d-none d-lg-none d-flex button-wrapper text-right justify-content-end footer-wrapper fixed-bottom bg-white pt-3 pb-3"
     *ngIf="footerbtn1">

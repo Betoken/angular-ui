@@ -10,11 +10,8 @@ import { } from 'jquery';
 declare var $: any;
 
 import {
-    userAddress,
-    transact_box_events,
-    stats_tab_helpers, kairoTotalSupply, sharesTotalSupply,
-    countdown_timer_helpers, decisions_tab_helpers, kairoRanking, fundValue, totalFunds, ROIArray,
-} from '../../assets/body';
+    user, timer, stats, investor_actions, tokens
+} from '../../betokenjs/helpers';
 
 @Component({
     selector: 'app-invest',
@@ -120,11 +117,6 @@ export class InvestComponent implements OnInit {
         this.footerbtn1 = true;
         this.footerbtn2 = false;
         this.footerbtn3 = false;
-        setInterval(() => {
-            if (userAddress.get() !== '0x0') {
-                this.rankingList();
-            }
-        }, 1000);
     }
 
     calculate_bal (event) {
@@ -132,36 +124,30 @@ export class InvestComponent implements OnInit {
     }
 
     async updateDates() {
-        this.days = countdown_timer_helpers.day();
-        this.hours = countdown_timer_helpers.hour();
-        this.minutes = countdown_timer_helpers.minute();
-        this.seconds = countdown_timer_helpers.second();
+        this.days = timer.day;
+        this.hours = timer.hour;
+        this.minutes = timer.minute;
+        this.seconds = timer.second;
     }
 
     ngOnInit() {
         let hasDrawnChart = false;
         setInterval(() => {
-            if (userAddress.get() !== '0x0') {
-                // portfolio
-                this.user_address = userAddress.get();
-
-                // Betoken fund share price
-                this.avgMonthReturn = stats_tab_helpers.avg_roi();
-                this.currMoROI = fundValue.get().sub(totalFunds.get()).div(totalFunds.get()).mul(100).toFormat(4);
-                this.AUM = fundValue.get().div(1e18).toFormat(2);
-                this.totalKairo = kairoTotalSupply.get().div(1e18).toFormat(2);
-                this.totalBTFShares = sharesTotalSupply.get().div(1e18).toFormat(2);
-                this.sharePrice = fundValue.get().div(sharesTotalSupply.get()).toFormat(4);
+            if (user.address() !== '0x0') {
+                this.user_address = user.address();
+                this.avgMonthReturn = stats.avg_roi().toFormat(2);
+                this.currMoROI = stats.cycle_roi().toFormat(4);
+                this.AUM = stats.fund_value().toFormat(2);
                 this.updateDates();
                 this.rankingList();
-                if (ROIArray.length > 0) {
+                if (stats.raw_roi_data().length > 0) {
                     if (!hasDrawnChart) {
                         hasDrawnChart = true;
                         this.drawChart();
                     }
                 }
             }
-        }, 1000);
+        }, 100);
 
         this.carouselBanner = {
             grid: { xs: 1, sm: 1, md: 1, lg: 1, all: 0 },
@@ -243,11 +229,6 @@ export class InvestComponent implements OnInit {
         }
     }
 
-    dismiss() {
-        this.walkthrough = false;
-        localStorage.setItem('walkthrough', '1');
-    }
-
     closePopup() {
         this.state = 'close';
         this.active = false;
@@ -285,7 +266,7 @@ export class InvestComponent implements OnInit {
 
 
     async withdraw() {
-        transact_box_events.withdraw_button(this.calculated_balance, this.selectedTokenSymbol, this.pending, this.confirm, (success) => {
+        investor_actions.withdraw_button(this.calculated_balance, this.selectedTokenSymbol, this.pending, this.confirm, (success) => {
             this.step2 = true;
             this.step1 = false;
             this.step3 = false;
@@ -296,7 +277,7 @@ export class InvestComponent implements OnInit {
     }
 
     async invest() {
-        transact_box_events.deposit_button(this.calculated_balance, this.selectedTokenSymbol, this.pending, this.confirm, (success) => {
+        investor_actions.deposit_button(this.calculated_balance, this.selectedTokenSymbol, this.pending, this.confirm, (success) => {
             this.step2 = true;
             this.step1 = false;
             this.step3 = false;
@@ -344,15 +325,11 @@ export class InvestComponent implements OnInit {
     }
 
     async tokensList() {
-        this.tokenList = decisions_tab_helpers.tokens();
-    }
-
-    copyToClipBoard(event) {
-        alert('Copied  '  + event +  '  to clipBoard');
+        this.tokenList = tokens.token_list();
     }
 
     rankingList() {
-        this.rankingArray =  kairoRanking.get();
+        this.rankingArray =  stats.ranking();
         this.totalUser = this.rankingArray.length;
     }
 
@@ -361,18 +338,21 @@ export class InvestComponent implements OnInit {
         // Prepare data
         const cycles = [];
         const rois = [];
-        for (const data of ROIArray) {
+        for (const data of stats.raw_roi_data()) {
             cycles.push(data[0]);
             rois.push({
                 y: data[1],
                 color: data[1] > 0 ? '#18DAA3' : '#F4406B'
             });
         }
-        cycles.push(cycles.length + 1);
-        rois.push({
-            y: (new BigNumber(this.currMoROI)).toNumber(),
-            color: (new BigNumber(this.currMoROI)).toNumber() > 0 ? '#18DAA3' : '#F4406B'
-        });
+        if (timer.phase() !== 2) {
+            cycles.push(cycles.length + 1);
+            rois.push({
+                y: (new BigNumber(this.currMoROI)).toNumber(),
+                color: (new BigNumber(this.currMoROI)).toNumber() > 0 ? '#18DAA3' : '#F4406B'
+            });
+        }
+
 
         this.stock = new Chart({
             title: {

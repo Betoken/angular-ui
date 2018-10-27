@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  userAddress, countdown_timer_helpers, displayedKairoBalance, decisions_tab_events, assetSymbolToPrice,
-  decisions_tab_helpers, ranking_tab, kairoRanking, user_rank, isLoadingRanking
-} from '../../assets/body';
+import { user, stats, loading, refresh_actions } from '../../betokenjs/helpers';
 
 @Component({
   selector: 'app-rankings',
@@ -16,26 +13,28 @@ export class RankingsComponent implements OnInit {
   userAddress: any;
 
   constructor() {
-    setInterval(() => {
-      if (userAddress.get() !== '0x0') {
-        this.rankingList();
-        this.userRank();
-      }
-    }, 5000);
   }
 
   ngOnInit() {
+    setInterval(() => {
+      if (user.address() !== '0x0') {
+        this.refreshDisplay();
+      }
+    }, 100);
   }
-  async rankingList() {
-    this.rankingArray =  await kairoRanking.get();
+
+  refreshDisplay() {
+    this.rankingArray = stats.ranking();
+    this.userRanking = user.rank();
+    this.userValue = user.portfolio_value();
+    this.userAddress = user.address();
   }
-  async userRank() {
-    this.userRanking = await ranking_tab.user_rank();
-    this.userValue = await ranking_tab.user_value();
-    this.userAddress = await userAddress.get();
+
+  refresh() {
+    refresh_actions.ranking();
   }
 
   isLoading() {
-    return isLoadingRanking.get();
+    return loading.ranking();
   }
 }

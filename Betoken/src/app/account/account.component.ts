@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {
-    userAddress,
-    transactionHistory,
-    loadTxHistory,
-    networkPrefix,
-    copyToClipBoard,
-    isLoadingRecords
-} from '../../assets/body';
+    user,
+    network,
+    loading,
+    refresh_actions
+} from '../../betokenjs/helpers';
 
 
 @Component({
@@ -15,29 +13,27 @@ import {
     styleUrls: ['./account.component.scss']
 })
 export class AccountComponent implements OnInit {
-    transactionTable: any;
-    transactionNetwork: any;
+    transactionTable: Array<Object>;
+    transactionNetwork: String;
 
     constructor() {
-        setInterval(() => {
-            if (userAddress.get() !== '0x0') {
-                this.transactionsDetails();
-            }
-        }, 10000 );
     }
 
     ngOnInit() {
-    }
-    async transactionsDetails() {
-        await loadTxHistory();
-        this.transactionTable = transactionHistory.get();
-        this.transactionNetwork = networkPrefix.get();
+        setInterval(() => {
+            // using this.loadData directly as arg for setInterval() DOES NOT WORK!
+            // I've tried, trust me
+            this.refreshDisplay();
+        }, 100);
     }
 
-    copy(event) {
-        // console.log(event);
-        console.log(event);
-        alert('Copied  '  + event +  '  to clipBoard');
+    refreshDisplay() {
+        this.transactionTable = user.transaction_history();
+        this.transactionNetwork = network.network_prefix();
+    }
+
+    refresh() {
+        refresh_actions.records();
     }
 
     linkopen(values) {
@@ -45,6 +41,6 @@ export class AccountComponent implements OnInit {
     }
 
     isLoading() {
-        return isLoadingRecords.get();
+        return loading.records();
     }
 }

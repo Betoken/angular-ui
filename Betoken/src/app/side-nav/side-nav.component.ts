@@ -3,9 +3,7 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { AppComponent } from '../app.component';
-import {
-  userAddress, countdown_timer_helpers
-} from '../../assets/body';
+import { user, timer } from '../../betokenjs/helpers';
 @Component({
   selector: 'app-side-nav',
   templateUrl: './side-nav.component.html',
@@ -43,12 +41,6 @@ export class SideNavComponent implements OnInit {
     }
 
     this.notification = false;
-
-    setInterval(() => {
-      if (userAddress.get() !== '0x0') {
-        this.updateDates();
-      }
-    }, 1000 );
   }
 
   @HostListener('window:resize', ['$event'])
@@ -61,6 +53,9 @@ export class SideNavComponent implements OnInit {
   }
 
   ngOnInit() {
+    setInterval(() => {
+      this.refreshDisplay();
+    }, 1000 );
 
     this.ms.getToggleMenu().subscribe((open: boolean) => {
 
@@ -87,12 +82,12 @@ export class SideNavComponent implements OnInit {
     this.router.navigateByUrl(page);
   }
 
-  async updateDates() {
-    this.days = countdown_timer_helpers.day();
-    this.hours = countdown_timer_helpers.hour();
-    this.minutes = countdown_timer_helpers.minute();
-    this.seconds = countdown_timer_helpers.second();
-    this.phase = countdown_timer_helpers.phase();
+  refreshDisplay() {
+    this.days = timer.day();
+    this.hours = timer.hour();
+    this.minutes = timer.minute();
+    this.seconds = timer.second();
+    this.phase = timer.phase();
     //  this.phase -=1;
   }
 

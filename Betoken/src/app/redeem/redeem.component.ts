@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { AppComponent } from '../app.component';
-import {
-    userAddress, countdown_timer_helpers, displayedKairoBalance, decisions_tab_events, assetSymbolToPrice,
-    decisions_tab_helpers, sidebar, sidebar_heplers
-} from '../../assets/body';
+import { user, timer, manager_actions } from '../../betokenjs/helpers';
 
 @Component({
     selector: 'app-redeem',
@@ -53,15 +50,6 @@ export class RedeemComponent implements OnInit {
     }
 
     constructor(private ms: AppComponent) {
-        setInterval(() => {
-            if (userAddress.get() !== '0x0') {
-                this.updateDates();
-                this.list();
-                this.redeemcommissionvalue = sidebar_heplers.expected_commission();
-                //   console.log(this.redeemcommissionvalue);
-            }
-        }, 1000 );
-
         this.state = 'open';
         this.active = true;
 
@@ -77,6 +65,13 @@ export class RedeemComponent implements OnInit {
     }
 
     ngOnInit() {
+        setInterval(() => {
+            if (user.address() !== '0x0') {
+                this.updateDates();
+                this.redeemcommissionvalue = user.expected_commission();
+            }
+        }, 100 );
+
         this.ms.getredeemPopUp().subscribe((open: boolean) => {
 
             if (open) {
@@ -89,21 +84,17 @@ export class RedeemComponent implements OnInit {
                 this.active = false;
             }
         });
-
-        this.redeemcommissionvalue = sidebar_heplers.expected_commission();
-        console.log(this.redeemcommissionvalue);
     }
 
     async updateDates() {
-        this.days = countdown_timer_helpers.day();
-        this.hours = countdown_timer_helpers.hour();
-        this.minutes = countdown_timer_helpers.minute();
-        this.seconds = countdown_timer_helpers.second();
-        this.phase = countdown_timer_helpers.phase();
+        this.days = timer.day();
+        this.hours = timer.hour();
+        this.minutes = timer.minute();
+        this.seconds = timer.second();
+        this.phase = timer.phase();
     }
 
     redeem() {
-
         this.step2 = true;
         this.step3 = false;
         this.step4 = false;
@@ -160,34 +151,20 @@ export class RedeemComponent implements OnInit {
     }
 
     async redeemCommission() {
-        console.log(this.selectedOption);
         if (this.selectedOption === 1) {
-            this.redeemvalue = await sidebar.redeem_commission(this.pending, this.confirm);
-            console.log(this.redeemvalue);
+            this.redeemvalue = await manager_actions.redeem_commission(this.pending, this.confirm);
         }
         if (this.selectedOption === 2) {
-            this.redeemvalue = await sidebar.redeem_commission_in_shares(this.pending, this.confirm);
-            console.log(this.redeemvalue);
+            this.redeemvalue = await manager_actions.redeem_commission_in_shares(this.pending, this.confirm);
         }
     }
 
     updateRedeemOption(event) {
         const value = event.target.value.trim();
-        console.log(value);
         if (value === 'DAI - redeem commission') {
             this.selectedOption = 1;
-            console.log(this.selectedOption);
         } else {
             this.selectedOption = 2;
-            console.log(this.selectedOption);
         }
-        console.log(this.selectedOption);
-
     }
-
-    async list() {
-        this.tableData = decisions_tab_helpers.investment_list();
-        console.log(this.tableData);
-    }
-
 }

@@ -43,7 +43,7 @@
         <div class="button-wrapper" *ngIf="phase == 1">
           <button class="text-center outline-button active mr-4" (click)="proposalPopup()">TRADE ASSSETS</button>
         </div>
-        <div class="button-wrapper" *ngIf="phase == 2">
+        <div class="button-wrapper" *ngIf="phase == 2 && can_redeem_commission">
           <button class="text-center outline-button active mr-4" routerLink="/redeem" (click)="redeemPopup()">REDEEM COMMISSION</button>
         </div>
       </div>

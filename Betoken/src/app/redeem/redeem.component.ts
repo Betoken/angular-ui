@@ -67,7 +67,7 @@ export class RedeemComponent implements OnInit {
     ngOnInit() {
         setInterval(() => {
             this.updateDates();
-            this.redeemcommissionvalue = user.expected_commission();
+            this.redeemcommissionvalue = user.expected_commission().toFormat(18);
         }, 100 );
 
         this.ms.getredeemPopUp().subscribe((open: boolean) => {
@@ -160,7 +160,7 @@ export class RedeemComponent implements OnInit {
 
     updateRedeemOption(event) {
         const value = event.target.value.trim();
-        if (value === 'DAI - redeem commission') {
+        if (value === 'DAI Stablecoin') {
             this.selectedOption = 1;
         } else {
             this.selectedOption = 2;

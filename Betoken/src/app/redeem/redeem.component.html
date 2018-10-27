@@ -15,15 +15,14 @@
 
         <div class="main-sec" *ngIf="step1">
             <p class="m-0 pb-4 black-font">
-                The fund was profitables in this investment’s cycle. All KRO holders are able to redeem a commission.
-                You can choose in which token you want to redeem it.
+                As a Betoken fund manager, you're entitled to a commission payout every month, the amount of which is based upon your performance. You may choose to redeem your commission in DAI Stablecoin or in Betoken Shares.
             </p>
 
-            <p class="m-0">Redeem with</p>
+            <p class="m-0">Redeem commission in</p>
             <div class="mt-2 mb-4 outline-box w-100 d-flex  align-items-center justify-content-between">
                 <select class="border-0 betoken-font w-100" (change)="updateRedeemOption($event)">
-                    <option>DAI - redeem commission</option>
-                    <option>BTKS - redeem commission in shares</option>
+                    <option>DAI Stablecoin</option>
+                    <option>Betoken Shares</option>
                 </select>
             </div>
             <div>

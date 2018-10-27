@@ -1,14 +1,34 @@
+.preheader-container{
+  min-height: 48px;
+  background-color: #22C88A;
+  position: fixed;
+  width: 100%;
+  z-index: 90;
+}
+.preheader-content{
+  position: relative;
+  margin: 0 auto;
+  max-width: 540px;
+  padding: 0 24px;
+  text-align: center;
+}
+.preheader-content p{
+  margin-bottom: 0;
+  line-height: 48px;
+  color: white;
+}
+.preheader-content a{
+  color:#002B49;
+}
 header{
     background-color: #fff;
     height: 64px;
     padding: 6px 24px 0;
     position: fixed;
     right: 0;
-    top: 0;
+    top: 48px;
     z-index: 90;
     border-bottom: 1px solid #D1DCDF;
-
-
     .logo{
         .header-logo{
             padding-right: 10px;

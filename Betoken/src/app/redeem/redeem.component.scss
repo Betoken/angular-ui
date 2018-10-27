@@ -1,4 +1,7 @@
 .redeem-wrapper{
+  position: relative;
+  display: block;
+  top: 112px;
     .proposal-table-sec{
         .table-responsive{
             .proposal-table{
@@ -34,11 +37,11 @@
                             font-size: 14px !important ;
                         }
                     }
-                    
+
                 }
             }
         }
-        
+
     }
     .history-table-sec{
         .table-responsive{
@@ -72,7 +75,7 @@
                 }
             }
         }
-        
+
     }
 }
 
@@ -105,7 +108,7 @@
         .main-sec{
             padding: 18px;
             text-align: left;
-            font-size: 16px; 
+            font-size: 16px;
             line-height: 1;
             .mul-icon{
                 font-size: 30px;
@@ -121,14 +124,14 @@
                 color: #000000;
             }
 
-        }   
+        }
         .confirmation-sec{
             padding: 15px;
             background-color: #FFFAEE;
             border: 1px solid #FFE6BA;
             border-radius: 4px;
             text-align: justify;
-            font-size: 16px; 
+            font-size: 16px;
             line-height: 1;
 
         }
@@ -138,7 +141,7 @@
             border: 1px solid #FFE6BA;
             border-radius: 4px;
             text-align: justify;
-            font-size: 16px; 
+            font-size: 16px;
             line-height: 1;
 
         }
@@ -148,13 +151,13 @@
             border: 1px solid #FFE6BA;
             border-radius: 4px;
             text-align: justify;
-            font-size: 16px; 
+            font-size: 16px;
             line-height: 1;
         }
         .modal-button-wrapper{
             padding: 18px;
         }
-    }       
+    }
 }
 
 .overlay-popup{
@@ -193,7 +196,7 @@
         &.active{
             left: 0;
         }
-        
+
         .content{
             .main-sec{
                 height: calc(100vh - 190px);
@@ -225,7 +228,7 @@
     }
 }
 
-@media (min-width: 768px) and (max-width: 991.98px)  { 
+@media (min-width: 768px) and (max-width: 991.98px)  {
     .redeem-modal-wrapper{
         .content{
             .main-sec ,.confirmation-sec ,.broadcast-sec ,.final-sec{

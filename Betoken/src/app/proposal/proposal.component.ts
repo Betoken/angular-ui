@@ -79,7 +79,27 @@ export class ProposalComponent implements OnInit {
 
     constructor(private ms: AppComponent) {
 
-        this.updateTokenSymbol(this.selectedTokenSymbol);
+        // this.updateTokenSymbol(this.selectedTokenSymbol);
+
+        // setInterval(() => {
+        //     if (userAddress.get() !== '0x0') {
+        //         this.updateDates();
+        //         this.kairoBalance();
+        //         this.tokensList();
+        //     }
+        // }, 1000);
+
+        // setInterval(() => {
+        //     if (userAddress.get() !== '0x0') {
+        //         this.list();
+        //     }
+        // }, 1000 * 60 * 2);
+
+        // setTimeout(() => {
+        //     if (userAddress.get() !== '0x0') {
+        //         this.list();
+        //     }
+        // }, 1000 * 5);
 
         setInterval(() => {
             if (user.address() !== '0x0') {
@@ -153,6 +173,7 @@ export class ProposalComponent implements OnInit {
             }
         });
 
+        this.updateTokenSymbol(this.selectedTokenSymbol);
     }
 
     proposalPopup() {
@@ -256,9 +277,11 @@ export class ProposalComponent implements OnInit {
     }
 
     confirmSell = () => {
-        this.sellStep1 = false;
-        this.sellStep2 = false;
-        this.sellStep3 = true;
+        if (this.sellStep2 === true) {
+            this.sellStep1 = false;
+            this.sellStep2 = false;
+            this.sellStep3 = true;
+        }
     }
 
     changeproposal() {

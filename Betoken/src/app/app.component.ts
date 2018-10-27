@@ -5,7 +5,7 @@ import { } from 'jquery';
 declare var $: any;
 
 import { Betoken } from '../betokenjs/betoken-obj';
-import { loadAllData } from '../betokenjs/data-controller';
+import { loadAllData, loadDynamicData } from '../betokenjs/data-controller';
 
 @Injectable()
 
@@ -38,7 +38,9 @@ export class AppComponent {
 
   constructor() {
     const betoken = new Betoken();
-    betoken.init().then(loadAllData);
+    betoken.init().then(loadAllData).then(() => {
+      setInterval(loadDynamicData, 120 * 1000); // refresh everything every 2 minutes
+    });
   }
 
   async start(errMessage) {

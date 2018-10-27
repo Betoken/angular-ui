@@ -63,15 +63,15 @@ export var networkName = new ReactiveVar("");
 export var networkPrefix = new ReactiveVar("");
 
 // helpers
-const assetSymbolToPrice = function(_symbol) {
+export const assetSymbolToPrice = function(_symbol) {
     return tokenPrices.get()[TOKENS.indexOf(_symbol)];
 };
 
-const assetAddressToSymbol = function(_addr) {
+export const assetAddressToSymbol = function(_addr) {
     return TOKENS[tokenAddresses.get().indexOf(_addr)];
 };
 
-const assetSymbolToAddress = function(_symbol) {
+export const assetSymbolToAddress = function(_symbol) {
     return tokenAddresses.get()[TOKENS.indexOf(_symbol)];
 };
 
@@ -322,7 +322,7 @@ export const loadRanking = async () => {
                 // format rank object
                 rank: 0,
                 address: _addr,
-                kairoBalance: BigNumber(await betoken.getKairoBalance(_addr)).add(stake).toFixed(10)
+                kairoBalance: BigNumber(await betoken.getKairoBalance(_addr)).div(PRECISION).add(stake).toFixed(10)
             };
         });
     }));
@@ -358,7 +358,6 @@ export const loadStats = async () => {
             .div(BigNumber(10).toPower(await betoken.getTokenDecimals(assetSymbolToAddress(_token))));
         var value = balance.mul(assetSymbolToPrice(_token));
         _fundValue = _fundValue.add(value);
-        //console.log(_fundValue.toNumber())
     };
     const getAllTokenValues = () => {
         var result = [];

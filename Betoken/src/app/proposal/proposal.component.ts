@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { AppComponent } from '../app.component';
-import {
-    userAddress, countdown_timer_helpers, displayedKairoBalance, decisions_tab_events, assetSymbolToPrice,
-    decisions_tab_helpers, loadUserData, isLoadingInvestments
-} from '../../assets/body';
+import {user, timer, manager_actions, loading, tokens} from '../../betokenjs/helpers';
 
 @Component({
     selector: 'app-proposal',
@@ -85,13 +82,12 @@ export class ProposalComponent implements OnInit {
         this.updateTokenSymbol(this.selectedTokenSymbol);
 
         setInterval(() => {
-            if (userAddress.get() !== '0x0') {
+            if (user.address() !== '0x0') {
                 this.updateDates();
-                this.kairoBalance();
-                this.list();
-                this.tokensList();
+                this.refreshDisplay();
+                this.tokenList = tokens.token_list();
             }
-        }, 2000);
+        }, 100);
 
         this.state = 'close';
         this.active = false;
@@ -124,15 +120,11 @@ export class ProposalComponent implements OnInit {
     }
 
     async updateDates() {
-        this.days = countdown_timer_helpers.day();
-        this.hours = countdown_timer_helpers.hour();
-        this.minutes = countdown_timer_helpers.minute();
-        this.seconds = countdown_timer_helpers.second();
-        this.phase = countdown_timer_helpers.phase();
-    }
-
-    async kairoBalance() {
-        this.kairo_balance = displayedKairoBalance.get().toFormat(10);
+        this.days = timer.day();
+        this.hours = timer.hour();
+        this.minutes = timer.minute();
+        this.seconds = timer.second();
+        this.phase = timer.phase();
     }
 
     ngOnInit() {
@@ -304,31 +296,26 @@ export class ProposalComponent implements OnInit {
     async updateTokenSymbol(event) {
         const value = event;
         this.selectedTokenSymbol = value;
-        const price = await decisions_tab_helpers.selected_token_price(this.selectedTokenSymbol);
+        const price = await tokens.asset_symbol_to_price(this.selectedTokenSymbol);
         this.tradeAssetval = price;
         return event;
     }
 
-    async list() {
-        await loadUserData();
-        this.activeInvestmentList = decisions_tab_helpers.investment_list().filter((data) => data.isSold === false);
-        this.inactiveInvestmentList = decisions_tab_helpers.investment_list().filter((data) => data.isSold === true);
+    async refreshDisplay() {
+        this.activeInvestmentList = user.investment_list().filter((data) => data.isSold === false);
+        this.inactiveInvestmentList = user.investment_list().filter((data) => data.isSold === true);
     }
 
     async invest() {
-        decisions_tab_events.new_investment(this.selectedTokenSymbol, this.kairoinput, this.pending, this.confirm);
+        manager_actions.new_investment(this.selectedTokenSymbol, this.kairoinput, this.pending, this.confirm);
     }
 
     sellInvestment() {
-        decisions_tab_events.sell_investment(this.sellId, this.pendingSell, this.confirmSell, (success) => {
+        manager_actions.sell_investment(this.sellId, this.pendingSell, this.confirmSell, (success) => {
             console.log(JSON.stringify(success));
         }, (error) => {
             alert(error);
         });
-    }
-
-    async tokensList() {
-        this.tokenList = decisions_tab_helpers.tokens();
     }
 
     kairoInput (event) {
@@ -336,6 +323,6 @@ export class ProposalComponent implements OnInit {
     }
 
     isLoading() {
-        return isLoadingInvestments.get();
+        return loading.investments();
     }
 }

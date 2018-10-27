@@ -150,7 +150,7 @@ export class InvestComponent implements OnInit {
                     }
                 }
             }
-        }, 1000);
+        }, 100);
 
         this.carouselBanner = {
             grid: { xs: 1, sm: 1, md: 1, lg: 1, all: 0 },

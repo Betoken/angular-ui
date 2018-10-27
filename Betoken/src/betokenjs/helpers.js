@@ -39,23 +39,23 @@ export var user = {
     address: () => Data.userAddress.get(),
     share_balance: () => Data.investmentBalance.get(),
     kairo_balance: () => Data.kairoBalance.get(),
+    monthly_roi: () => Data.managerROI.get(),
     can_redeem_commission: () => Data.cyclePhase.get() === 2 && Data.lastCommissionRedemption.get() < Data.cycleNumber.get(),
     expected_commission: function () {
-        var roi;
         if (Data.kairoTotalSupply.get().greaterThan(0)) {
             if (Data.cyclePhase.get() === 2) {
                 // Actual commission that will be redeemed
-                return Data.kairoBalance.get().div(Data.kairoTotalSupply.get()).mul(Data.cycleTotalCommission.get()).toFormat(18);
+                return Data.kairoBalance.get().div(Data.kairoTotalSupply.get()).mul(Data.cycleTotalCommission.get());
             }
             // Expected commission based on previous average ROI
-            roi = Data.avgROI.get().gt(0) ? Data.avgROI.get() : BigNumber(0);
-            return Data.kairoBalance.get().div(Data.kairoTotalSupply.get()).mul(Data.totalFunds.get()).mul(Data.roi.div(100).mul(Data.commissionRate.get()).add(Data.assetFeeRate.get()));
+            var roi = Data.avgROI.get().gt(0) ? Data.avgROI.get() : BigNumber(0);
+            return Data.kairoBalance.get().div(Data.kairoTotalSupply.get()).mul(Data.totalFunds.get()).mul(roi.div(100).mul(Data.commissionRate.get()).add(Data.assetFeeRate.get()));
         }
         return BigNumber(0);
     },
     transaction_history: () => Data.transactionHistory.get(),
     investment_list: () => Data.investmentList.get(),
-    rank: async function () {
+    rank: () => {
         var entry, j, len, ref;
         ref = Data.kairoRanking.get();
         for (j = 0, len = ref.length; j < len; j++) {
@@ -66,7 +66,7 @@ export var user = {
         }
         return "N/A";
     },
-    portfolio_value: function () {
+    portfolio_value: () => {
         var entry, j, len, ref;
         ref = Data.kairoRanking.get();
         for (j = 0, len = ref.length; j < len; j++) {
@@ -98,12 +98,13 @@ export var stats = {
 
 export var tokens = {
     token_list: () => TOKENS,
-    token_prices: () => Data.tokenPrices.get()
+    token_prices: () => Data.tokenPrices.get(),
+    asset_symbol_to_price: (_symbol) => Data.assetSymbolToPrice(_symbol)
 }
 
 export var loading = {
     investments: () => Data.isLoadingInvestments.get(),
-    rankings: () => Data.isLoadingRanking.get(),
+    ranking: () => Data.isLoadingRanking.get(),
     records: () => Data.isLoadingRecords.get(),
     prices: () => Data.isLoadingPrices.get()
 }

@@ -27,7 +27,7 @@ export class AccountComponent implements OnInit {
             // using this.loadData directly as arg for setInterval() DOES NOT WORK!
             // I've tried, trust me
             this.refreshDisplay();
-        }, 1000);
+        }, 100);
     }
 
     refreshDisplay() {

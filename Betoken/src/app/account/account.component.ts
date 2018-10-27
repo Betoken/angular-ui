@@ -7,6 +7,7 @@ import {
     isLoadingRecords,
     loadTxHistory
 } from '../../betokenjs/data-controller';
+import { load } from '@angular/core/src/render3/instructions';
 
 
 @Component({
@@ -15,18 +16,21 @@ import {
     styleUrls: ['./account.component.scss']
 })
 export class AccountComponent implements OnInit {
-    transactionTable: any;
-    transactionNetwork: any;
+    transactionTable: Array<Object>;
+    transactionNetwork: String;
 
     constructor() {
     }
 
     ngOnInit() {
-        // this.loadData();
+        setInterval(() => {
+            // using this.loadData directly as arg for setInterval() DOES NOT WORK!
+            // I've tried, trust me
+            this.refreshDisplay();
+        }, 1000);
     }
 
-    async loadData() {
-        await loadTxHistory();
+    refreshDisplay() {
         this.transactionTable = user.transaction_history();
         this.transactionNetwork = network.network_prefix();
     }

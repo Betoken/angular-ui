@@ -38,14 +38,7 @@ export class AppComponent {
 
   constructor() {
     const betoken = new Betoken();
-    betoken.init().then(() => {
-      const checkReady = setInterval(() => {
-        if (betoken.isReady()) {
-          loadAllData();
-          clearInterval(checkReady);
-        }
-      }, 100);
-    });
+    betoken.init().then(loadAllData);
   }
 
   async start(errMessage) {

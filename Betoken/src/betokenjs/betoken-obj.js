@@ -1,6 +1,5 @@
 // imports
 import BigNumber from "bignumber.js";
-import { Drizzle, generateStore } from 'drizzle'
 const Web3 = require('web3');
 
 // constants
@@ -10,23 +9,13 @@ export const NET_ID = 4; // Rinkeby
 
 // helpers
 export var getDefaultAccount = async () => {
-    web3.eth.defaultAccount = ((await web3.eth.getAccounts()))[0];
+    web3.eth.defaultAccount = (await web3.eth.getAccounts())[0];
 };
 
 export var ERC20 = function(_tokenAddr) {
-    if (typeof self.drizzle.contracts[_tokenAddr] !== "undefined") {
-        // check if contract already added
-        return self.drizzle.contracts[_tokenAddr];
-    }
     // add new token contract
     var erc20ABI = require("./abi/ERC20.json");
-    var contractConfig = {
-        contractName: _tokenAddr,
-        web3Contract: new web3.eth.Contract(erc20ABI, _tokenAddr)
-    };
-    var events = [];
-    self.drizzle.addContract({contractConfig, events});
-    return self.drizzle.contracts[_tokenAddr];
+    return new web3.eth.Contract(erc20ABI, _tokenAddr);
 };
 
 // Betoken abstraction
@@ -37,86 +26,53 @@ export var Betoken = function() {
     // Instance vars
     var self;
     self = this;
-    self.drizzle = null;
+    self.contracts = {
+        BetokenFund: null,
+        Kairo: null,
+        Shares: null,
+        TokenFactory: null,
+        Kyber: null
+    };
     self.hasWeb3 = false;
-
+    
     /*
-        Object Initialization
+    Object Initialization
     */
     self.init = async () => {
         // initialize web3
         await self.loadWeb3();
-
+        
         // Initialize BetokenFund contract
         var betokenFundABI = require("./abi/BetokenFund.json");
         var BetokenFund = new web3.eth.Contract(betokenFundABI, BETOKEN_ADDR);
+        self.contracts.BetokenFund = BetokenFund;
 
-        // initialize drizzle
-        const drizzleOptions = {
-            contracts: [
-                {
-                    contractName: "BetokenFund",
-                    web3Contract: BetokenFund
-                }
-            ],
-            events: {
-                BetokenFund: ['ROI', 'Deposit', 'Withdraw', 'NewUser']
-            }
-        };
-        
         var minimeABI = require("./abi/MiniMeToken.json");
-
+        
         await Promise.all([
             BetokenFund.methods.controlTokenAddr().call().then(function(_addr) {
                 // Initialize Kairo contract
-                var Kairo = new web3.eth.Contract(minimeABI, _addr);
-                var contractConfig = {
-                    contractName: "Kairo",
-                    web3Contract: Kairo
-                };
-                var events = ['Transfer'];
-                drizzleOptions.contracts.push(contractConfig);
-                drizzleOptions.events.Kairo = events;
+                self.contracts.Kairo = new web3.eth.Contract(minimeABI, _addr);
             }),
             BetokenFund.methods.shareTokenAddr().call().then(function(_addr) {
                 // Initialize Shares contract
-                var Shares = new web3.eth.Contract(minimeABI, _addr);
-                var contractConfig = {
-                    contractName: "Shares",
-                    web3Contract: Shares
-                };
-                var events = ['Transfer'];
-                drizzleOptions.contracts.push(contractConfig);
-                drizzleOptions.events.Shares = events;
+                self.contracts.Shares = new web3.eth.Contract(minimeABI, _addr);
             }),
             BetokenFund.methods.tokenFactoryAddr().call().then(function(_addr) {
                 // Initialize TestTokenFactory contract
                 var factoryABI = require("./abi/TestTokenFactory.json");
-                var TokenFactory = new web3.eth.Contract(factoryABI, _addr);
-                var contractConfig = {
-                    contractName: "TokenFactory",
-                    web3Contract: TokenFactory
-                };
-                drizzleOptions.contracts.push(contractConfig);
+                self.contracts.TokenFactory = new web3.eth.Contract(factoryABI, _addr);
             }),
             BetokenFund.methods.kyberAddr().call().then(function(_addr) {
                 // Initialize TestKyberNetwork contract
                 var knABI = require("./abi/TestKyberNetwork.json");
-                var Kyber = new web3.eth.Contract(knABI, _addr);
-                var contractConfig = {
-                    contractName: "Kyber",
-                    web3Contract: Kyber
-                };
-                drizzleOptions.contracts.push(contractConfig);
+                self.contracts.Kyber = new web3.eth.Contract(knABI, _addr);
             })
         ]);
-
-        const drizzleStore = generateStore(drizzleOptions);
-        self.drizzle = new Drizzle(drizzleOptions, drizzleStore);
-
+        
         window.betoken = self;
     };
-
+    
     self.loadWeb3 = async () => {
         self.hasWeb3 = false;
         if (typeof window.ethereum !== 'undefined') {
@@ -135,154 +91,143 @@ export var Betoken = function() {
             window.web3 = new Web3(new Web3.providers.HttpProvider("https://rinkeby.infura.io/v3/3057a4979e92452bae6afaabed67a724"));
         }
     }
-
+    
     /*
-        Getters
+    Getters
     */
-
-    self.isReady = () => {
-        if (typeof window.betoken == "undefined") { return false; }
-        var state = self.drizzle.store.getState();
-        return state.drizzleStatus.initialized;
-    }
-
+    
     /**
     * Gets a primitive variable in BetokenFund
     * @param  {String} _varName the name of the primitive variable
-    * @return {Var} the variable's value
+    * @return {Promise}          .then((_value)->)
     */
     self.getPrimitiveVar = function(_varName) {
-        var state = self.drizzle.store.getState();
-        const dataKey = self.drizzle.contracts.BetokenFund.methods[_varName].cacheCall();
-        return state.contracts.BetokenFund[_varName][dataKey].value;
+        return self.contracts.BetokenFund.methods[_varName]().call();
     };
-
+    
     /**
     * Calls a mapping or an array in BetokenFund
     * @param  {String} _name name of the mapping/array
     * @param  {Any} _input       the input
-    * @return {Var}  the return value
+    * @return {Promise}              .then((_value)->)
     */
     self.getMappingOrArrayItem = function(_name, _input) {
-        var state = self.drizzle.store.getState();
-        const dataKey = self.drizzle.contracts.BetokenFund.methods[_name].cacheCall(_input);
-        return state.contracts.BetokenFund.methods[_name][dataKey].value;
+        return self.contracts.BetokenFund.methods[_name](_input).call();
     };
-
+    
     /**
     * Calls a double mapping in BetokenFund
     * @param  {String} _mappingName name of the mapping
     * @param  {Any} _input1      the first input
     * @param  {Any} _input2      the second input
-    * @return {Var}  the return value
+    * @return {Promise}              .then((_value)->)
     */
     self.getDoubleMapping = function(_mappingName, _input1, _input2) {
-        var state = self.drizzle.store.getState();
-        const dataKey = self.drizzle.contracts.BetokenFund.methods[_mappingName].cacheCall(_input1, _input2);
-        return state.contracts.BetokenFund.methods[_mappingName][dataKey].value;
+        return self.contracts.BetokenFund.methods[_mappingName](_input1, _input2).call();
     };
-
+    
     self.getTokenSymbol = function(_tokenAddr) {
         _tokenAddr = web3.utils.toHex(_tokenAddr);
         if (_tokenAddr === ETH_TOKEN_ADDRESS) {
-            return "ETH";
+            return Promise.resolve().then(function() {
+                return "ETH";
+            });
         }
-        const token = ERC20(_tokenAddr);
-        var state = drizzle.store.getState();
-        const dataKey = token.methods.symbol.cacheCall();
-        return state.contracts[_tokenAddr].methods.symbol[dataKey].value;
+        return ERC20(_tokenAddr).methods.symbol().call();
     };
-
+    
     self.getTokenDecimals = function(_tokenAddr) {
         _tokenAddr = web3.utils.toHex(_tokenAddr);
         if (_tokenAddr === ETH_TOKEN_ADDRESS) {
-            return 18;
+            return Promise.resolve().then(function() {
+                return 18;
+            });
         }
-        const token = ERC20(_tokenAddr);
-        
-        var state = drizzle.store.getState();
-        const dataKey = token.methods.decimals.cacheCall();
-        return state.contracts[_tokenAddr].methods.decimals[dataKey].value;
+        return ERC20(_tokenAddr).methods.decimals().call();
     };
-
+    
     // Uses TestTokenFactory to obtain a token's address from its symbol
     self.tokenSymbolToAddress = function(_symbol) {
         var symbolHash = web3.utils.soliditySha3(_symbol);
-
-        var state = drizzle.store.getState();
-        const dataKey = self.drizzle.contracts.TokenFactory.methods.createdTokens.cacheCall(symbolHash);
-        return state.contracts.TokenFactory.methods.createdTokens[dataKey].value;
+        return self.contracts.TokenFactory.methods.createdTokens(symbolHash).call();
     };
-
+    
     self.getTokenPrice = async function(_symbol) {
-        var addr = self.tokenSymbolToAddress(_symbol);
-        var state = drizzle.store.getState();
-        const dataKey = self.drizzle.contracts.Kyber.methods.priceInDAI.cacheCall(addr);
-        return state.contracts.Kyber.methods.priceInDAI[dataKey].value;
+        var addr = await self.tokenSymbolToAddress(_symbol);
+        return self.contracts.Kyber.methods.priceInDAI(addr).call();
     };
-
+    
     self.getTokenBalance = function(_tokenAddr, _addr) {
-        const token = ERC20(_tokenAddr);
-        var state = drizzle.store.getState();
-        const dataKey = token.methods.balanceOf.cacheCall(_addr);
-        return state.contracts[_tokenAddr].methods.balanceOf[dataKey].value;
+        return ERC20(_tokenAddr).methods.balanceOf(_addr).call();
     };
-
+    
     /**
     * Gets the Kairo balance of an address
-    * @param  {String} _addr the address whose balance we're getting
-    * @return {Var}  the return value
+    * @param  {String} _address the address whose balance we're getting
+    * @return {Promise}          .then((_value)->)
     */
-    self.getKairoBalance = (_addr) => {
-        var state = drizzle.store.getState();
-        const dataKey = self.drizzle.contracts.Kairo.methods.balanceOf.cacheCall(_addr);
-        return state.contracts.Kairo.methods.balanceOf[dataKey].value;
+    self.getKairoBalance = function(_address) {
+        return self.contracts.Kairo.methods.balanceOf(_address).call();
     };
-
-    self.getKairoTotalSupply = () => {
-        var state = drizzle.store.getState();
-        const dataKey = self.drizzle.contracts.Kairo.methods.totalSupply.cacheCall();
-        return state.contracts.Kairo.methods.totalSupply[dataKey].value;
+    
+    self.getKairoTotalSupply = function() {
+        return self.contracts.Kairo.methods.totalSupply().call();
     };
-
+    
     /**
     * Gets the Share balance of an address
     * @param  {String} _address the address whose balance we're getting
-    * @return {Var}  the return value
+    * @return {Promise}          .then((_value)->)
     */
     self.getShareBalance = function(_address) {
-        var state = drizzle.store.getState();
-        const dataKey = self.drizzle.contracts.Shares.methods.balanceOf.cacheCall(_addr);
-        return state.contracts.Shares.methods.balanceOf[dataKey].value;
-        return self.drizzle.contracts.Shares.methods.balanceOf(_address).call();
+        return self.contracts.Shares.methods.balanceOf(_address).call();
     };
-
-    self.getShareTotalSupply = () => {
-        var state = drizzle.store.getState();
-        const dataKey = self.drizzle.contracts.Shares.methods.totalSupply.cacheCall();
-        return state.contracts.Shares.methods.totalSupply[dataKey].value;
+    
+    self.getShareTotalSupply = function() {
+        return self.contracts.Shares.methods.totalSupply().call();
     };
-
+    
     /**
     * Gets the array of investments
     * @return {Promise} .then((investments) ->)
     */
     self.getInvestments = function(_userAddress) {
         var array = [];
-
-        const investmentsCount = self.getMappingOrArrayItem("investmentsCount", _userAddress);
-        if (investmentsCount === 0) { return array; }
-
-        for (var i = 0; i < investmentsCount; i++) {
-            array.push(self.getDoubleMapping("userInvestments", _userAddress, id));
-        }
-
-        return array;
+        return self.getMappingOrArrayItem("investmentsCount", _userAddress).then((_count) => {
+            var getAllItems, getItem, id;
+            var count = +_count;
+            if (count === 0) {
+                return [];
+            }
+            array = new Array(count);
+            getItem = (id) => {
+                return self.getDoubleMapping("userInvestments", _userAddress, id).then((_item) => {
+                    return new Promise((fullfill, reject) => {
+                        if (typeof _item !== null) {
+                            array[id] = _item;
+                            fullfill();
+                        } else {
+                            reject();
+                        }
+                    });
+                });
+            };
+            getAllItems = () => {
+                var results = [];
+                for (var i = 0; i < count; i++) {
+                    results.push(getItem(i));
+                }
+                return results;
+            };
+            return Promise.all(getAllItems());
+        }).then(function() {
+            return array;
+        });
     };
-
-
+    
+    
     /*
-        Phase handler
+    Phase handler
     */
     /**
     * Ends the current phase
@@ -290,14 +235,14 @@ export var Betoken = function() {
     */
     self.nextPhase = async function(_onTxHash, _onReceipt) {
         await getDefaultAccount();
-        return self.drizzle.contracts.BetokenFund.methods.nextPhase().send({
+        return self.contracts.BetokenFund.methods.nextPhase().send({
             from: web3.eth.defaultAccount
         }).on("transactionHash", _onTxHash).on("receipt", _onReceipt);
     };
-
-
+    
+    
     /*
-        Invest & Withdraw phase functions
+    Invest & Withdraw phase functions
     */
     /**
     * Allows user to deposit into the fund
@@ -310,19 +255,19 @@ export var Betoken = function() {
         var token = ERC20(_tokenAddr);
         var amount = BigNumber(_tokenAmount).mul(BigNumber(10).toPower(self.getTokenDecimals(_tokenAddr)));
         
-        token.methods.approve(self.drizzle.contracts.BetokenFund.address, 0).send({
+        token.methods.approve(self.contracts.BetokenFund.options.address, 0).send({
             from: web3.eth.defaultAccount
         });
-
-        token.methods.approve(self.drizzle.contracts.BetokenFund.address, amount).send({
+        
+        token.methods.approve(self.contracts.BetokenFund.options.address, amount).send({
             from: web3.eth.defaultAccount
         });
-
-        return self.drizzle.contracts.BetokenFund.methods.depositToken(_tokenAddr, amount).send({
+        
+        return self.contracts.BetokenFund.methods.depositToken(_tokenAddr, amount).send({
             from: web3.eth.defaultAccount
         }).on("transactionHash", _onTxHash).on("receipt", _onReceipt);
     };
-
+    
     /**
     * Allows user to withdraw from fund balance
     * @param  {String} _tokenAddr the token address
@@ -332,22 +277,22 @@ export var Betoken = function() {
     self.withdrawToken = async function(_tokenAddr, _amountInDAI, _onTxHash, _onReceipt) {
         await getDefaultAccount();
         var amount = BigNumber(_amountInDAI).mul(1e18);
-        return self.drizzle.contracts.BetokenFund.methods.withdrawToken(_tokenAddr, amount).send({
+        return self.contracts.BetokenFund.methods.withdrawToken(_tokenAddr, amount).send({
             from: web3.eth.defaultAccount
         }).on("transactionHash", _onTxHash).on("receipt", _onReceipt);
     };
-
+    
     /**
     * Withdraws all of user's balance in cases of emergency
     * @return {Promise}           .then(()->)
     */
     self.emergencyWithdraw = async function(_onTxHash, _onReceipt) {
         await getDefaultAccount();
-        return self.drizzle.contracts.BetokenFund.methods.emergencyWithdraw().send({
+        return self.contracts.BetokenFund.methods.emergencyWithdraw().send({
             from: web3.eth.defaultAccount
         }).on("transactionHash", _onTxHash).on("receipt", _onReceipt);
     };
-
+    
     /**
     * Sends Kairo to another address
     * @param  {String} _to           the recipient address
@@ -356,11 +301,11 @@ export var Betoken = function() {
     */
     self.sendKairo = async function(_to, _amountInWeis, _onTxHash, _onReceipt) {
         await getDefaultAccount();
-        return self.drizzle.contracts.Kairo.methods.transfer(_to, _amountInWeis).send({
+        return self.contracts.Kairo.methods.transfer(_to, _amountInWeis).send({
             from: web3.eth.defaultAccount
         }).on("transactionHash", _onTxHash).on("receipt", _onReceipt);
     };
-
+    
     /**
     * Sends Shares to another address
     * @param  {String} _to           the recipient address
@@ -369,14 +314,14 @@ export var Betoken = function() {
     */
     self.sendShares = async function(_to, _amountInWeis, _onTxHash, _onReceipt) {
         await getDefaultAccount();
-        return self.drizzle.contracts.Shares.methods.transfer(_to, _amountInWeis).send({
+        return self.contracts.Shares.methods.transfer(_to, _amountInWeis).send({
             from: web3.eth.defaultAccount
         }).on("transactionHash", _onTxHash).on("receipt", _onReceipt);
     };
-
-
+    
+    
     /*
-        Decision Making phase functions
+    Decision Making phase functions
     */
     
     /**
@@ -387,35 +332,35 @@ export var Betoken = function() {
     */
     self.createInvestment = async function(_tokenAddress, _stakeInWeis, _onTxHash, _onReceipt) {
         await getDefaultAccount();
-        return self.drizzle.contracts.BetokenFund.methods.createInvestment(_tokenAddress, _stakeInWeis).send({
+        return self.contracts.BetokenFund.methods.createInvestment(_tokenAddress, _stakeInWeis).send({
             from: web3.eth.defaultAccount
         }).on("transactionHash", _onTxHash).on("receipt", _onReceipt);
     };
-
+    
     self.sellAsset = async function(_proposalId, _onTxHash, _onReceipt) {
         await getDefaultAccount();
-        return self.drizzle.contracts.BetokenFund.methods.sellInvestmentAsset(_proposalId).send({
+        return self.contracts.BetokenFund.methods.sellInvestmentAsset(_proposalId).send({
             from: web3.eth.defaultAccount
         }).on("transactionHash", _onTxHash).on("receipt", _onReceipt);
     };
-
-
+    
+    
     /*
-        Redeem Commission phase functions
+    Redeem Commission phase functions
     */
     self.redeemCommission = async function(_onTxHash, _onReceipt) {
         await getDefaultAccount();
-        return self.drizzle.contracts.BetokenFund.methods.redeemCommission().send({
+        return self.contracts.BetokenFund.methods.redeemCommission().send({
             from: web3.eth.defaultAccount
         }).on("transactionHash", _onTxHash).on("receipt", _onReceipt);
     };
-
+    
     self.redeemCommissionInShares = async function(_onTxHash, _onReceipt, pending, confirm) {
         await getDefaultAccount();
-        return self.drizzle.contracts.BetokenFund.methods.redeemCommissionInShares().send({
+        return self.contracts.BetokenFund.methods.redeemCommissionInShares().send({
             from: web3.eth.defaultAccount
         }).on("transactionHash", _onTxHash).on("receipt", _onReceipt);
     };
-
+    
     return self;
 };

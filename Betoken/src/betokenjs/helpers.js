@@ -1,7 +1,7 @@
 // imports
 import BigNumber from "bignumber.js";
-import "./data-controller";
-import { ROIArray, TOKENS, tokenPrices, userAddress } from "./data-controller";
+const Data = require("./data-controller");
+import { ROIArray, TOKENS, tokenPrices, userAddress, avgROI, fundValue, totalFunds } from "./data-controller";
 
 // constants
 const WRONG_NETWORK_ERR = "Please switch to Rinkeby Testnet in order to use Betoken Omen.";
@@ -22,45 +22,45 @@ const checkKairoAmountError = (kairoAmountInWeis) => {
 
 // exports
 export var network = {
-    network_prefix: () => networkPrefix.get(),
-    network_name: () => networkName.get(),
+    network_prefix: () => Data.networkPrefix.get(),
+    network_name: () => Data.networkName.get(),
     has_web3: () => betoken.hasWeb3
 };
 
 export var timer = {
-    day: () => countdownDay.get(),
-    hour: () => countdownHour.get(),
-    minute: () => countdownMin.get(),
-    second: () => countdownSec.get(),
-    phase: () => cyclePhase.get()
+    day: () => Data.countdownDay.get(),
+    hour: () => Data.countdownHour.get(),
+    minute: () => Data.countdownMin.get(),
+    second: () => Data.countdownSec.get(),
+    phase: () => Data.cyclePhase.get()
 }
 
 export var user = {
-    address: () => userAddress.get(),
-    share_balance: () => investmentBalance.get(),
-    kairo_balance: () => kairoBalance.get(),
-    can_redeem_commission: () => cyclePhase.get() === 2 && lastCommissionRedemption.get() < cycleNumber.get(),
+    address: () => Data.userAddress.get(),
+    share_balance: () => Data.investmentBalance.get(),
+    kairo_balance: () => Data.kairoBalance.get(),
+    can_redeem_commission: () => Data.cyclePhase.get() === 2 && Data.lastCommissionRedemption.get() < Data.cycleNumber.get(),
     expected_commission: function () {
         var roi;
-        if (kairoTotalSupply.get().greaterThan(0)) {
-            if (cyclePhase.get() === 2) {
+        if (Data.kairoTotalSupply.get().greaterThan(0)) {
+            if (Data.cyclePhase.get() === 2) {
                 // Actual commission that will be redeemed
-                return kairoBalance.get().div(kairoTotalSupply.get()).mul(cycleTotalCommission.get()).toFormat(18);
+                return Data.kairoBalance.get().div(Data.kairoTotalSupply.get()).mul(Data.cycleTotalCommission.get()).toFormat(18);
             }
             // Expected commission based on previous average ROI
-            roi = avgROI.get().gt(0) ? avgROI.get() : BigNumber(0);
-            return kairoBalance.get().div(kairoTotalSupply.get()).mul(totalFunds.get()).mul(roi.div(100).mul(commissionRate.get()).add(assetFeeRate.get()));
+            roi = Data.avgROI.get().gt(0) ? Data.avgROI.get() : BigNumber(0);
+            return Data.kairoBalance.get().div(Data.kairoTotalSupply.get()).mul(Data.totalFunds.get()).mul(Data.roi.div(100).mul(Data.commissionRate.get()).add(Data.assetFeeRate.get()));
         }
         return BigNumber(0);
     },
-    transaction_history: () => transactionHistory.get(),
-    investment_list: () => investmentList.get(),
+    transaction_history: () => Data.transactionHistory.get(),
+    investment_list: () => Data.investmentList.get(),
     rank: async function () {
         var entry, j, len, ref;
-        ref = kairoRanking.get();
+        ref = Data.kairoRanking.get();
         for (j = 0, len = ref.length; j < len; j++) {
             entry = ref[j];
-            if (entry.address === userAddress.get()) {
+            if (entry.address === Data.userAddress.get()) {
                 return entry.rank;
             }
         }
@@ -68,10 +68,10 @@ export var user = {
     },
     portfolio_value: function () {
         var entry, j, len, ref;
-        ref = kairoRanking.get();
+        ref = Data.kairoRanking.get();
         for (j = 0, len = ref.length; j < len; j++) {
             entry = ref[j];
-            if (entry.address === userAddress.get()) {
+            if (entry.address === Data.userAddress.get()) {
                 return BigNumber(entry.kairoBalance).toFixed(10);
             }
         }
@@ -80,25 +80,32 @@ export var user = {
 }
 
 export var stats = {
-    cycle_length: function () {
-        if (phaseLengths.get().length > 0) {
-            return BigNumber(phaseLengths.get().reduce(function (t, n) {
+    cycle_length: () => {
+        if (Data.phaseLengths.get().length > 0) {
+            return BigNumber(Data.phaseLengths.get().reduce(function (t, n) {
                 return t + n;
             })).div(24 * 60 * 60).toDigits(3);
         }
     },
-    total_funds: () => totalFunds.get(),
-    prev_roi: () => prevROI.get(),
-    avg_roi: () => avgROI.get(),
-    fund_value: () => fundValue.get(),
-    cycle_roi: () => fundValue.get().sub(totalFunds.get()).div(totalFunds.get()).mul(100),
-    raw_roi_data: () => ROIArray.get(),
-    ranking: () => kairoRanking.get()
+    total_funds: () => Data.totalFunds.get(),
+    prev_roi: () => Data.prevROI.get(),
+    avg_roi: () => Data.avgROI.get(),
+    fund_value: () => Data.fundValue.get(),
+    cycle_roi: () => Data.fundValue.get().sub(Data.totalFunds.get()).div(Data.totalFunds.get()).mul(100),
+    raw_roi_data: () => Data.ROIArray.get(),
+    ranking: () => Data.kairoRanking.get()
 }
 
 export var tokens = {
     token_list: () => TOKENS,
-    token_prices: () => tokenPrices.get()
+    token_prices: () => Data.tokenPrices.get()
+}
+
+export var loading = {
+    investments: () => Data.isLoadingInvestments.get(),
+    rankings: () => Data.isLoadingRanking.get(),
+    records: () => Data.isLoadingRecords.get(),
+    prices: () => Data.isLoadingPrices.get()
 }
 
 export var investor_actions = {
@@ -138,7 +145,7 @@ export var investor_actions = {
 
 export var manager_actions = {
     sell_investment: async function (id, pending, confirm) {
-        if (cyclePhase.get() === 1) {
+        if (Data.cyclePhase.get() === 1) {
             return betoken.sellAsset(id, pending, confirm);
         }
     },

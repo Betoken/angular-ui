@@ -4,7 +4,7 @@
         <div class="account-table-sec col-8">
             <div class="sec-header d-flex justify-content-between align-items-center pb-1">
                 <p class="sec-title">Commissions transactions</p>
-                <button class="text-center outline-button" (click) = "loadData()">
+                <button class="text-center outline-button" (click) = "refreshDisplay()">
                     <span *ngIf="isLoading() == false">REFRESH</span>
                     <span *ngIf="isLoading()">Loading...</span>
                 </button>
@@ -21,7 +21,7 @@
                         </tr>
                     </thead>
                     <tbody class="black-font">
-                        <tr *ngFor = "let details of transactionTable">
+                        <tr *ngFor="let details of transactionTable">
                             <td class="pl-0">{{details.timestamp}}</td>
                             <td>{{details.token}}</td>
                             <td>{{details.type}}</td>

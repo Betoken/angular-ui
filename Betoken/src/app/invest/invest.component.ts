@@ -10,7 +10,7 @@ import { } from 'jquery';
 declare var $: any;
 
 import {
-    user, timer, stats, investor_actions, tokens
+    user, timer, stats, investor_actions, tokens, loading
 } from '../../betokenjs/helpers';
 
 @Component({
@@ -138,7 +138,7 @@ export class InvestComponent implements OnInit {
                 this.user_address = user.address();
 
                 // Betoken fund share price
-                this.avgMonthReturn = stats.avg_roi();
+                this.avgMonthReturn = stats.avg_roi().toFormat(2);
                 this.currMoROI = stats.cycle_roi().toFormat(4);
                 this.AUM = stats.fund_value().toFormat(2);
                 this.updateDates();

@@ -30,7 +30,7 @@
                                 <div class="divider-value"></div>
                                 <div class="betoken-desc">
                                     <p class="betoken-title betoken-font m-0">Current investment cycle ROI</p>
-                                    <p class="betoken-value green-font m-0">{{currMoROI}}%</p>
+                                    <p class="betoken-value m-0" [ngClass]="{'green-font': +currMoROI >= 0, 'red-font': 0 > +currMoROI}">{{currMoROI}}%</p>
                                 </div>
                             </div>
                             <div class="content">

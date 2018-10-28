@@ -330,7 +330,8 @@ export const loadRanking = async () => {
 
     // sort entries
     ranking.sort((a, b) => BigNumber(b.kairoBalance).sub(a.kairoBalance).toNumber());
-
+    ranking = ranking.filter((x) => +x.kairoBalance > 0);
+    
     // give ranks
     ranking = ranking.map((_entry, _id) => {
         _entry.rank = _id + 1;

@@ -18,6 +18,7 @@ export var investmentList = new ReactiveVar([]);
 export var lastCommissionRedemption = new ReactiveVar(0);
 export var managerROI = new ReactiveVar(BigNumber(0));
 export var transactionHistory = new ReactiveVar([]);
+export var portfolioValue = new ReactiveVar(BigNumber(0));
 
 // fund metadata
 export var kairoTotalSupply = new ReactiveVar(BigNumber(0));
@@ -174,6 +175,7 @@ export const loadUserData = async () => {
             // Get list of user's investments
             isLoadingInvestments.set(true);
             var investments = await betoken.getInvestments(userAddr);
+            var stake = BigNumber(0);
             if (investments.length > 0) {
                 const handleProposal = (id) => {
                     return betoken.getTokenSymbol(investments[id].tokenAddress).then(function(_symbol) {
@@ -186,6 +188,12 @@ export const loadUserData = async () => {
                         investments[id].ROI = BigNumber(investments[id].sellPrice).sub(investments[id].buyPrice).div(investments[id].buyPrice).mul(100);
                         investments[id].kroChange = BigNumber(investments[id].ROI).mul(investments[id].stake).div(100);
                         investments[id].currValue = BigNumber(investments[id].kroChange).add(investments[id].stake);
+
+                        if (!investments[id].isSold && +investments[id].cycleNumber === cycleNumber.get()) {
+                            var currentStakeValue = assetSymbolToPrice(assetAddressToSymbol(investments[id].tokenAddress))
+                                .sub(investments[id].buyPrice).div(investments[id].buyPrice).mul(investments[id].stake).add(investments[id].stake);
+                            stake = stake.add(currentStakeValue);
+                        }
                     });
                 };
                 const handleAllProposals = () => {
@@ -201,8 +209,9 @@ export const loadUserData = async () => {
                 var totalStake = investments.map((x) => BigNumber(x.stake)).reduce((x, y) => x.add(y));
                 managerROI.set(totalKROChange.div(totalStake).mul(100));
             }
-            isLoadingInvestments.set(false)
+            isLoadingInvestments.set(false);
         }
+        portfolioValue.set(stake.add(kairoBalance.get()));
     }
 };
 
@@ -331,7 +340,7 @@ export const loadRanking = async () => {
     // sort entries
     ranking.sort((a, b) => BigNumber(b.kairoBalance).sub(a.kairoBalance).toNumber());
     ranking = ranking.filter((x) => +x.kairoBalance > 0);
-    
+
     // give ranks
     ranking = ranking.map((_entry, _id) => {
         _entry.rank = _id + 1;

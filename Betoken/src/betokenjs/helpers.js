@@ -55,17 +55,7 @@ export const user = {
         }
         return "N/A";
     },
-    portfolio_value: () => {
-        var entry, j, len, ref;
-        ref = Data.kairoRanking.get();
-        for (j = 0, len = ref.length; j < len; j++) {
-            entry = ref[j];
-            if (entry.address === Data.userAddress.get()) {
-                return BigNumber(entry.kairoBalance).toFixed(10);
-            }
-        }
-        return "N/A";
-    }
+    portfolio_value: () => Data.portfolioValue.get()
 }
 
 export const stats = {

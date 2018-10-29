@@ -70,6 +70,8 @@ export class ProposalComponent implements OnInit {
     tokenList: any;
     transactionId: '';
     kroRedeemed: '';
+
+
     openchangefundModal() {
         this.updateTokenSymbol('ETH');
         this.ms.setproposalPopUp();
@@ -78,12 +80,6 @@ export class ProposalComponent implements OnInit {
 
 
     constructor(private ms: AppComponent) {
-        setInterval(() => {
-            this.updateDates();
-            this.refreshDisplay();
-            this.tokenList = tokens.token_list();
-        }, 100);
-
         this.state = 'close';
         this.active = false;
 
@@ -123,6 +119,12 @@ export class ProposalComponent implements OnInit {
     }
 
     ngOnInit() {
+        setInterval(() => {
+            this.updateDates();
+            this.refreshDisplay();
+            this.tokenList = tokens.token_list();
+        }, 100);
+
         this.ms.getproposalPopUp().subscribe((open: boolean) => {
 
             if (open) {
@@ -303,6 +305,7 @@ export class ProposalComponent implements OnInit {
     refreshDisplay() {
         this.activeInvestmentList = user.investment_list().filter((data) => data.isSold === false);
         this.inactiveInvestmentList = user.investment_list().filter((data) => data.isSold === true);
+        this.kairo_balance = user.kairo_balance().toFormat(10);
     }
 
     refresh() {

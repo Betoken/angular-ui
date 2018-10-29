@@ -42,7 +42,7 @@
                                         </div>
                                         <div class="betoken-desc ml-2">
                                             <p class="betoken-title betoken-font m-0">Avg. Monthly return</p>
-                                            <p class="betoken-value red-font m-0">{{avgMonthReturn}}%</p>
+                                            <p class="betoken-value m-0" [ngClass]="{'green-font': +avgMonthReturn >= 0, 'red-font': 0 > +avgMonthReturn}">{{avgMonthReturn}}%</p>
                                         </div>
                                     </div>
 

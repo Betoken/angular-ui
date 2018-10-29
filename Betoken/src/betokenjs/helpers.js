@@ -94,7 +94,7 @@ export const loading = {
 
 export const refresh_actions = {
     investments: () => {
-        Data.loadUserData();
+        Data.loadTokenPrices().then(Data.loadUserData);
     },
     ranking: () => {
         Data.loadTokenPrices().then(Data.loadRanking);

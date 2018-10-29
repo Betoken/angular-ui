@@ -332,7 +332,7 @@ export const loadRanking = async () => {
                 // format rank object
                 rank: 0,
                 address: _addr,
-                kairoBalance: BigNumber(await betoken.getKairoBalance(_addr)).div(PRECISION).add(stake).toFixed(10)
+                kairoBalance: BigNumber(await betoken.getKairoBalance(_addr)).div(PRECISION).add(stake).toFormat(18)
             };
         });
     }));
@@ -444,12 +444,11 @@ export const loadAllData = async function() {
 };
 
 export const loadDynamicData = async () => {
-    return loadFundData().then(() => Promise.all(
+    return loadFundData().then(loadTokenPrices).then(() => Promise.all(
         [
             loadUserData().then(loadTxHistory),
-            loadTokenPrices().then(
-                () => Promise.all([loadRanking(), loadStats()])
-            )
+            loadRanking(),
+            loadStats()
         ]
     ));
 };

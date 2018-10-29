@@ -9,16 +9,6 @@ const INPUT_ERR = "There was an error in your input. Please fix it and try again
 const NO_WEB3_ERR = "Betoken can only be used in a Web3 enabled browser. Please install <a target=\"_blank\" href=\"https://metamask.io/\">MetaMask</a> or switch to another browser that supports Web3. You can currently view the fund's data, but cannot make any interactions.";
 const METAMASK_LOCKED_ERR = "Your browser seems to be Web3 enabled, but you need to unlock your account to interact with Betoken.";
 
-// helpers
-const checkKairoAmountError = (kairoAmountInWeis) => {
-    if (!kairoAmountInWeis.gt(0)) {
-        throw new Error("Stake amount should be positive.");
-    }
-    if (kairoAmountInWeis.gt(kairoBalance.get())) {
-        throw new Error("You can't stake more Kairos than you have!");
-    }
-};
-
 // exports
 export const network = {
     network_prefix: () => Data.networkPrefix.get(),
@@ -170,12 +160,10 @@ export const manager_actions = {
         try {
             address = (await betoken.tokenSymbolToAddress(tokenSymbol));
             kairoAmountInWeis = BigNumber(amt).times("1e18");
-            checkKairoAmountError(kairoAmountInWeis);
             betoken.createInvestment(address, kairoAmountInWeis, pending, confirm);
             return;
         } catch (error1) {
             console.log(error1);
-            showError(error1.toString() || INPUT_ERR);
         }
     },
     redeem_commission: async function (pending, confirm) {

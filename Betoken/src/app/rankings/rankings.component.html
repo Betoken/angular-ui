@@ -15,6 +15,7 @@
                             <th scope="col">Rank</th>
                             <th scope="col">Manager</th>
                             <th scope="col">Kairo Balance</th>
+                            <th scope="col">Monthly P/L</th>
                         </tr>
                     </thead>
                     <tbody class="black-font">
@@ -25,6 +26,7 @@
                             <td>{{userRanking}}</td>
                             <td class="user-wallet-address">{{userAddress}}</td>
                             <td class="betoken-font user-kro-balance">{{userValue}}</td>
+                            <td [ngClass]="{'green-font': +userROI >= 0, 'red-font': 0 > +userROI}">{{userROI}}%</td>
                         </tr>
 
                         <tr>
@@ -35,6 +37,7 @@
                             <td>{{ranking.rank}}</td>
                             <td class="user-wallet-address">{{ranking.address}}</td>
                             <td class="betoken-font user-kro-balance">{{ranking.kairoBalance}}</td>
+                            <td [ngClass]="{'green-font': +ranking.cycleROI >= 0, 'red-font': 0 > +ranking.cycleROI}">{{ranking.cycleROI}}%</td>
                         </tr>
                     </tbody>
                 </table>

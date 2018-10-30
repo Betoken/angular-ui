@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { user, stats, loading, refresh_actions } from '../../betokenjs/helpers';
+import BigNumber from 'bignumber.js';
 
 @Component({
   selector: 'app-rankings',
@@ -10,7 +11,8 @@ export class RankingsComponent implements OnInit {
   rankingArray = [];
   userRanking = [];
   userValue: any;
-  userAddress: any;
+  userAddress: String;
+  userROI: any;
 
   constructor() {
   }
@@ -24,8 +26,9 @@ export class RankingsComponent implements OnInit {
   refreshDisplay() {
     this.rankingArray = stats.ranking();
     this.userRanking = user.rank();
-    this.userValue = user.portfolio_value();
+    this.userValue = user.portfolio_value().toFormat(18);
     this.userAddress = user.address();
+    this.userROI = user.monthly_roi().toFormat(4);
   }
 
   refresh() {

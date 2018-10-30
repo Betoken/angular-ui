@@ -7,6 +7,7 @@ import BigNumber from "bignumber.js";
 const PRECISION = 1e18;
 export const TOKENS = require("./kn_token_symbols.json");
 const DEPLOYED_BLOCK = 2721413;
+const DAI_ADDR = "0x6f2d6ff85efca691aad23d549771160a12f0a0fc";
 
 // instance variables
 // user info
@@ -320,6 +321,8 @@ export const loadRanking = async () => {
     var ranking = await Promise.all(addresses.map((_addr) => {
         var stake = BigNumber(0);
         return betoken.getInvestments(_addr).then(async (investments) => {
+            var totalKROChange = BigNumber(0);
+            var totalStake = BigNumber(0);
             for (var i = 0; i < investments.length; i++) {
                 var inv = investments[i];
                 if (!inv.isSold && +inv.cycleNumber === cycleNumber.get()) {
@@ -327,12 +330,25 @@ export const loadRanking = async () => {
                         .sub(inv.buyPrice).div(inv.buyPrice).mul(inv.stake).add(inv.stake);
                     stake = stake.add(currentStakeValue);
                 }
+                if (+inv.cycleNumber === cycleNumber.get()) {
+                    var _symbol = await betoken.getTokenSymbol(inv.tokenAddress);
+                    var _stake = BigNumber(inv.stake).div(PRECISION);
+                    var _buyPrice = BigNumber(inv.buyPrice).div(PRECISION);
+                    var _sellPrice = inv.isSold ? BigNumber(inv.sellPrice).div(PRECISION) : assetSymbolToPrice(_symbol);
+                    var _ROI = BigNumber(_sellPrice).sub(_buyPrice).div(_buyPrice);
+                    var _kroChange = BigNumber(_ROI).mul(_stake);
+
+                    totalKROChange = totalKROChange.add(_kroChange);
+                    totalStake = totalStake.add(_stake);
+                }
             }
+
             return {
                 // format rank object
                 rank: 0,
                 address: _addr,
-                kairoBalance: BigNumber(await betoken.getKairoBalance(_addr)).div(PRECISION).add(stake).toFormat(18)
+                kairoBalance: BigNumber(await betoken.getKairoBalance(_addr)).div(PRECISION).add(stake).toFormat(18),
+                cycleROI: totalStake.isZero() ? BigNumber(0).toFormat(4) : totalKROChange.div(totalStake).mul(100).toFormat(4)
             };
         });
     }));
@@ -378,8 +394,11 @@ export const loadStats = async () => {
         return result;
     }
     await Promise.all(getAllTokenValues());
-    _fundValue = _fundValue.add(totalFunds.get());
+    var totalDAI = BigNumber(await betoken.getTokenBalance(DAI_ADDR, betoken.contracts.BetokenFund.options.address)).sub(await betoken.getPrimitiveVar("totalCommissionLeft")).div(PRECISION);
+    _fundValue = _fundValue.add(totalDAI);
     fundValue.set(_fundValue);
+    console.log(fundValue.get().toNumber());
+    console.log(totalDAI.toNumber());
 
     // get stats
     var rois = [];

@@ -26,7 +26,7 @@ export class RankingsComponent implements OnInit {
   refreshDisplay() {
     this.rankingArray = stats.ranking();
     this.userRanking = user.rank();
-    this.userValue = user.portfolio_value().toFormat(18);
+    this.userValue = user.portfolio_value().toFormat(10);
     this.userAddress = user.address();
     this.userROI = user.monthly_roi().toFormat(4);
   }

@@ -397,8 +397,6 @@ export const loadStats = async () => {
     var totalDAI = BigNumber(await betoken.getTokenBalance(DAI_ADDR, betoken.contracts.BetokenFund.options.address)).sub(await betoken.getPrimitiveVar("totalCommissionLeft")).div(PRECISION);
     _fundValue = _fundValue.add(totalDAI);
     fundValue.set(_fundValue);
-    console.log(fundValue.get().toNumber());
-    console.log(totalDAI.toNumber());
 
     // get stats
     var rois = [];

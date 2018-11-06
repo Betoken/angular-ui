@@ -178,6 +178,7 @@ export const loadUserData = async () => {
             var investments = await betoken.getInvestments(userAddr);
             var stake = BigNumber(0);
             if (investments.length > 0) {
+                investments = investments.filter((x) => +x.cycleNumber == cycleNumber.get());
                 const handleProposal = (id) => {
                     return betoken.getTokenSymbol(investments[id].tokenAddress).then(function(_symbol) {
                         investments[id].id = id;

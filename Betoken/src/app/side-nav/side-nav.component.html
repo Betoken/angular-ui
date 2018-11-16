@@ -26,6 +26,14 @@
                 </a>
             </li>
 
+            <li [class.active]="router.url==='/market'">
+                <span class="nav-indication"></span>
+                <a class="d-flex align-items-center" (click)="navigate('/market')">
+                    <div class="bt-market ml-3 mr-3" [class.bt-market-active]="router.url==='/market'"></div>
+                    Market
+                </a>
+            </li>
+
             <li [class.active]="router.url==='/rankings'">
                 <span class="nav-indication"></span>
                 <a class="d-flex align-items-center" (click)="navigate('/rankings')">
@@ -48,11 +56,6 @@
 
             <li>
                 <a class="mr-2" target="_blank" href="https://t.me/betokenfund">Get Help</a>&bull;<a class="ml-2" target="_blank" href="https://betoken.fund">Home</a>
-            </li>
-            <li class="powered-kyber">
-                <a target="_blank" href="https://kyber.network">
-                    Powered By <img src="assets//images/kybernet-logo.png" class="p-0" width="64">
-                </a>
             </li>
 
         </ul>

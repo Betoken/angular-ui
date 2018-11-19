@@ -165,10 +165,10 @@
                 </select>
             </div>
             <div class="token-price"*ngIf = "tradeAssetval !== undfined">
-              <p>Current Price: <b>{{tradeAssetval}} DAI</b></p>
+                <p>Current Price: <b>{{tradeAssetval}} DAI</b></p>
             </div>
             <div>
-                <p>24h change: <span class="value red-font">-4.3443%</span></p>
+                <p>24h change: <span [ngClass]="{'green-font': +getTokenDailyPriceChange(selectedTokenSymbol) >= 0, 'red-font': 0 > +getTokenDailyPriceChange(selectedTokenSymbol)}">{{getTokenDailyPriceChange(selectedTokenSymbol)}}%</span></p>
             </div>
             <hr>
             <p class="mt-4">

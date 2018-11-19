@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { AppComponent } from '../app.component';
 import { user, timer, manager_actions, loading, tokens, refresh_actions } from '../../betokenjs/helpers';
+import BigNumber from 'bignumber.js';
+import { isUndefined } from 'util';
 
 @Component({
     selector: 'app-proposal',
@@ -76,7 +78,6 @@ export class ProposalComponent implements OnInit {
         this.updateTokenSymbol('ETH');
         this.ms.setproposalPopUp();
     }
-
 
 
     constructor(private ms: AppComponent) {
@@ -300,6 +301,14 @@ export class ProposalComponent implements OnInit {
         const price = tokens.asset_symbol_to_price(this.selectedTokenSymbol);
         this.tradeAssetval = price;
         return event;
+    }
+
+    getTokenDailyPriceChange(token) {
+        let result = tokens.asset_symbol_to_daily_price_change(token);
+        if (isUndefined(result)) {
+            result = new BigNumber(0);
+        }
+        return result.toFormat(4);
     }
 
     refreshDisplay() {

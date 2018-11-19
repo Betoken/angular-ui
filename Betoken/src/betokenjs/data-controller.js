@@ -2,6 +2,7 @@
 import { getDefaultAccount } from './betoken-obj';
 import ReactiveVar from "meteor-standalone-reactive-var";
 import BigNumber from "bignumber.js";
+import https from "https";
 
 // constants
 const PRECISION = 1e18;
@@ -53,6 +54,9 @@ export var kairoRanking = new ReactiveVar([]);
 // token data
 export var tokenPrices = new ReactiveVar([]);
 export var tokenAddresses = new ReactiveVar([]);
+export var tokenDailyPriceChanges = new ReactiveVar([]);
+export var tokenWeeklyPriceChanges = new ReactiveVar([]);
+export var tokenMonthlyPriceChanges = new ReactiveVar([]);
 
 // loading indicator
 export var isLoadingRanking = new ReactiveVar(true);
@@ -75,6 +79,18 @@ export const assetAddressToSymbol = function(_addr) {
 
 export const assetSymbolToAddress = function(_symbol) {
     return tokenAddresses.get()[TOKENS.indexOf(_symbol)];
+};
+
+export const assetSymbolToDailyPriceChange = function(_symbol) {
+    return tokenDailyPriceChanges.get()[TOKENS.indexOf(_symbol)];
+};
+
+export const assetSymbolToWeeklyPriceChange = function(_symbol) {
+    return tokenWeeklyPriceChanges.get()[TOKENS.indexOf(_symbol)];
+};
+
+export const assetSymbolToMonthlyPriceChange = function(_symbol) {
+    return tokenMonthlyPriceChanges.get()[TOKENS.indexOf(_symbol)];
 };
 
 const clock = () => {
@@ -296,13 +312,58 @@ export const loadTxHistory = async () => {
 
 export const loadTokenPrices = async () => {
     isLoadingPrices.set(true);
+
     tokenPrices.set(await Promise.all(TOKENS.map(async (_token) => {
         return betoken.getTokenPrice(_token).then((_price) => {
             return BigNumber(_price).div(PRECISION);
         });
     })));
+
+    loadPriceChanges(1).then((changes) => {
+        tokenDailyPriceChanges.set(changes);
+    });
+    loadPriceChanges(7).then((changes) => {
+        tokenWeeklyPriceChanges.set(changes);
+    });
+    loadPriceChanges(30).then((changes) => {
+        tokenMonthlyPriceChanges.set(changes);
+    });
+    
     isLoadingPrices.set(false);
 };
+
+const loadPriceChanges = async (_daysInPast) => {
+    var i = 0;
+    var result = [];
+    while (i < TOKENS.length) {
+        var tokens = [];
+        while (i < TOKENS.length && tokens.join().length + TOKENS[i].length + 1 <= 30) {
+            tokens.push(TOKENS[i]);
+            i++;
+        }
+
+        const apiStr = `https://min-api.cryptocompare.com/data/pricehistorical?fsym=DAI&tsyms=${tokens.join()}&ts=${Math.floor(Date.now() / 1000 - 86400 * _daysInPast)}`;
+        const data = await (new Promise((resolve, reject) => {
+            https.get(apiStr, (res) => {
+                var rawData = "";
+                res.on("data", (chunk) => {
+                    rawData += chunk;
+                });
+                res.on("end", () => {
+                    var parsedData = JSON.parse(rawData);
+                    resolve(parsedData);
+                });
+            }).on("error", reject);
+        }));
+
+        for (var t in tokens) {
+            const _token = tokens[t];
+            const pastPrice = BigNumber(1).div(data.DAI[_token]);
+            result.push(assetSymbolToPrice(_token).sub(pastPrice).div(pastPrice).mul(100));
+        }
+    }
+    return result;
+}
 
 export const loadRanking = async () => {
     // activate loader

@@ -1,25 +1,5 @@
 <div class="market-wrapper col-12 col-lg-10 float-right mt-2">
     <div class="row">
-        <div class="alert-window col-12 " *ngIf="sellalert">
-            <div class="alert d-flex justify-content-between align-items-center col-12">
-                <p class="m-0">🚨 Sell your assets to redeem all your KRO staked before cycle’s end. More info.</p>
-                <button class="text-center alert-button" (click)="hidealert()">DISMISS</button>
-            </div>
-        </div>
-
-        <div class="alert-window col-12 " *ngIf="nextphasealert">
-            <div class="alert d-flex justify-content-between align-items-center col-12">
-                <p class="m-0">🚨 Portfolio proposal phase ended. Switch to next phase.</p>
-                <button class="text-center alert-button" (click)="changeproposal()">NEXT PHASE</button>
-            </div>
-        </div>
-
-        <div class="alert-window col-12" *ngIf="redeemalert">
-            <div class="alert d-flex justify-content-between align-items-center col-12">
-                <p class="m-0">🚨 Redeem your commissions before the phase ends. More info.</p>
-                <button class="text-center alert-button" routerLink="/redeem">REDEEM COMMISSSION</button>
-            </div>
-        </div>
         <div class="proposal-table-sec col-8">
             <div class="sec-header d-flex justify-content-between align-items-center pb-1">
                 <p class="sec-title">Market</p>
@@ -34,18 +14,22 @@
                         <tr>
                             <th scope="col" class="pl-0">Asset</th>
                             <th scope="col">Price</th>
-                            <th scope="col">24h change</th>
+                            <th scope="col">24h Change</th>
+                            <th scope="col">7d Change</th>
+                            <th scope="col">30d Change</th>
                         </tr>
                     </thead>
                     <tbody class="black-font">
-                        <tr>
+                        <tr *ngFor="let token of tokenList">
                             <td class="identy pl-0">
                                 <div class="d-flex align-items-center">
-                                    <p class="m-0 abrivation">ETH - Ethereum</p><!-- IDEA: Token ticker and token name -->
+                                    <p class="m-0 abrivation">{{token}}</p>
                                 </div>
                             </td>
-                            <td>200.000000 DAI</td><!-- 6 decimals max -->
-                            <td><span class="red-font">-4.3443%</span></td><!-- IDEA: green or red according to price change / 4 decimals max. -->
+                            <td>{{getTokenPrice(token)}} DAI</td>
+                            <td [ngClass]="{'green-font': +getTokenDailyPriceChange(token) >= 0, 'red-font': 0 > +getTokenDailyPriceChange(token)}">{{getTokenDailyPriceChange(token)}}%</td>
+                            <td [ngClass]="{'green-font': +getTokenWeeklyPriceChange(token) >= 0, 'red-font': 0 > +getTokenWeeklyPriceChange(token)}">{{getTokenWeeklyPriceChange(token)}}%</td>
+                            <td [ngClass]="{'green-font': +getTokenMonthlyPriceChange(token) >= 0, 'red-font': 0 > +getTokenMonthlyPriceChange(token)}">{{getTokenMonthlyPriceChange(token)}}%</td>
                         </tr>
                     </tbody>
                 </table>

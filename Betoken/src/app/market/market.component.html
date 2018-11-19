@@ -1,43 +1,35 @@
-<div class="ranking-wrapper col-12 col-lg-10 float-right">
+<div class="market-wrapper col-12 col-lg-10 float-right mt-2">
     <div class="row">
-        <div class="ranking-table-sec col-8">
+        <div class="proposal-table-sec col-8">
             <div class="sec-header d-flex justify-content-between align-items-center pb-1">
-                <p class="sec-title">Manager Rankings</p>
+                <p class="sec-title">Market</p>
                 <button class="text-center outline-button" (click) = "refresh()">
                     <span *ngIf="isLoading() == false">REFRESH</span>
                     <span *ngIf="isLoading()">Loading...</span>
                 </button>
             </div>
             <div class="cards table-responsive">
-                <table class="table ranking-table">
+                <table class="table proposal-table">
                     <thead class="betoken-font">
                         <tr>
-                            <th scope="col">Rank</th>
-                            <th scope="col">Manager</th>
-                            <th scope="col">Kairo Balance</th>
-                            <th scope="col">Monthly P/L</th>
+                            <th scope="col" class="pl-0">Asset</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">24h Change</th>
+                            <th scope="col">7d Change</th>
+                            <th scope="col">30d Change</th>
                         </tr>
                     </thead>
                     <tbody class="black-font">
-                        <tr>
-                            <td class="betoken-font">You</td>
-                        </tr>
-                        <tr class="table-seperator">
-                            <td>{{userRanking}}</td>
-                            <td class="user-wallet-address">{{userAddress}}</td>
-                            <td class="betoken-font user-kro-balance">{{userValue}}</td>
-                            <td [ngClass]="{'green-font': +userROI >= 0, 'red-font': 0 > +userROI}">{{userROI}}%</td>
-                        </tr>
-
-                        <tr>
-                            <td class="betoken-font">All</td>
-                        </tr>
-
-                        <tr *ngFor="let ranking of rankingArray">
-                            <td>{{ranking.rank}}</td>
-                            <td class="user-wallet-address">{{ranking.address}}</td>
-                            <td class="betoken-font user-kro-balance">{{ranking.kairoBalance}}</td>
-                            <td [ngClass]="{'green-font': +ranking.cycleROI >= 0, 'red-font': 0 > +ranking.cycleROI}">{{ranking.cycleROI}}%</td>
+                        <tr *ngFor="let token of tokenList">
+                            <td class="identy pl-0">
+                                <div class="d-flex align-items-center">
+                                    <p class="m-0 abrivation">{{token}}</p>
+                                </div>
+                            </td>
+                            <td>{{getTokenPrice(token)}} DAI</td>
+                            <td [ngClass]="{'green-font': +getTokenDailyPriceChange(token) >= 0, 'red-font': 0 > +getTokenDailyPriceChange(token)}">{{getTokenDailyPriceChange(token)}}%</td>
+                            <td [ngClass]="{'green-font': +getTokenWeeklyPriceChange(token) >= 0, 'red-font': 0 > +getTokenWeeklyPriceChange(token)}">{{getTokenWeeklyPriceChange(token)}}%</td>
+                            <td [ngClass]="{'green-font': +getTokenMonthlyPriceChange(token) >= 0, 'red-font': 0 > +getTokenMonthlyPriceChange(token)}">{{getTokenMonthlyPriceChange(token)}}%</td>
                         </tr>
                     </tbody>
                 </table>
@@ -45,6 +37,7 @@
         </div>
 
         <div class="email-update-sec col-4 col-md-3 col-lg-4 mb-3">
+
             <div class="sec-header">
                 <p class="sec-title">Receive updates</p>
             </div>
@@ -54,7 +47,6 @@
                 <p class="update-info black-font">
                     Get updates about the fund status, beginning of new investment cycle phases and date to redeem commissions.
                 </p>
-
 
                 <p>
                     Email address
@@ -76,13 +68,11 @@
                     <a target="_blank" href="https://t.me/betokenfund">
                         <p class="black-font" style="text-align: center;">
                             Join our Telegram community
-                            <img src="assets/images/telegram-icon.png">
+                            <img src="assets/images/iconmonstr-telegram-4.svg" width="24" class="ml-1">
                         </p>
                     </a>
                 </div>
             </div>
-
         </div>
-
     </div>
 </div>

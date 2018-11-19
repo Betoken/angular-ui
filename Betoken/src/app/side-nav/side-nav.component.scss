@@ -86,6 +86,17 @@
                 .bt-proposal.bt-proposal-active{
                   background-image: url(/assets/images/ic_data_usage_black_24px.svg);
                 }
+                .bt-market{
+                  background-image: url(/assets/images/baseline-timeline-24px-grey.svg);
+                  background-position: center;
+                  background-repeat: no-repeat;
+                  display: block;
+                  width: 24px;
+                  height: 24px;
+                }
+                .bt-market.bt-market-active{
+                  background-image: url(/assets/images/baseline-timeline-24px-black.svg);
+                }
                 .bt-rank{
                   background-image: url(/assets/images/iconmonstr-medal-2-grey.svg);
                   background-position: center;
@@ -204,11 +215,6 @@
     }
 }
 
-.powered-kyber{
-  position: fixed;
-  z-index: 2;
-  bottom: 8px;
-}
 
 @media (max-width: 575.98px) {
     .side-nav-wrapper{

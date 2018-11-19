@@ -82,6 +82,9 @@ export const stats = {
 export const tokens = {
     token_list: () => Data.TOKENS,
     token_prices: () => Data.tokenPrices.get(),
+    asset_symbol_to_daily_price_change: (_symbol) => Data.assetSymbolToDailyPriceChange(_symbol),
+    asset_symbol_to_weekly_price_change: (_symbol) => Data.assetSymbolToWeeklyPriceChange(_symbol),
+    asset_symbol_to_monthly_price_change: (_symbol) => Data.assetSymbolToMonthlyPriceChange(_symbol),
     asset_symbol_to_price: (_symbol) => Data.assetSymbolToPrice(_symbol)
 }
 
@@ -101,6 +104,9 @@ export const refresh_actions = {
     },
     records: () => {
         Data.loadUserData().then(Data.loadTxHistory);
+    },
+    prices: () => {
+        Data.loadTokenPrices();
     }
 }
 

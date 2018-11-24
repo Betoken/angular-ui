@@ -4,10 +4,11 @@
     top: 112px;
     .proposal-table-sec{
         .sec-header{
-          padding: 7px 0 8px;
+          padding: 6px 0;
         }
         .table-responsive{
             margin: 0 0 24px;
+            .table{margin-bottom: 0;}
             .proposal-table{
                 text-align: left !important;
                 white-space: nowrap !important;
@@ -94,6 +95,46 @@
     }
 }
 .proposal-modal-wrapper{
+    .spinner {
+        width: 40px;
+        height: 40px;
+        position: relative;
+        margin: 8px auto;
+    }
+
+    .double-bounce1, .double-bounce2 {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background-color: #22C88A;
+        opacity: 0.6;
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
+        animation: sk-bounce 2.0s infinite ease-in-out;
+    }
+
+    .double-bounce2 {
+        -webkit-animation-delay: -1.0s;
+        animation-delay: -1.0s;
+    }
+
+    @-webkit-keyframes sk-bounce {
+        0%, 100% { -webkit-transform: scale(0.0) }
+        50% { -webkit-transform: scale(1.0) }
+    }
+
+    @keyframes sk-bounce {
+        0%, 100% {
+            transform: scale(0.0);
+            -webkit-transform: scale(0.0);
+        } 50% {
+            transform: scale(1.0);
+            -webkit-transform: scale(1.0);
+        }
+    }
     width: 450px;
     background-color: #ffffff;
     position: fixed;
@@ -135,6 +176,12 @@
             text-align: left;
             font-size: 16px;
             line-height: 1;
+            overflow: auto;
+            height: 69vh;
+            overflow-x: hidden;
+            .trading-view{
+              height: 287px;
+            }
             .mul-icon{
                 font-size: 30px;
                 color: #000000;
@@ -155,7 +202,6 @@
               display: block;
               width: 100%;
             }
-
         }
         .confirmation-sec{
             padding: 24px;
@@ -190,14 +236,13 @@
         .tx-hash{
           background-color: white;
           display: inline-block;
-          width: 80%;
+          width: 90%;
           border: 1px solid #D1DCDF !important;
           padding: 15px 10px;
         }
         .link-tx-hash{
           display: inline-block;
-          width: 20%;
-          padding: px 10px;
+          width: 10%;
 
         }
     }
@@ -248,41 +293,6 @@
             .confirmation-sec ,.broadcast-sec ,.final-sec{
                 height: calc(100vh - 230px);
                 overflow-y: scroll;
-                .lds-ring {
-                  display: inline-block;
-                  position: relative;
-                  width: 64px;
-                  height: 64px;
-                }
-                .lds-ring div {
-                  box-sizing: border-box;
-                  display: block;
-                  position: absolute;
-                  width: 51px;
-                  height: 51px;
-                  margin: 6px;
-                  border: 6px solid #FDA203;
-                  border-radius: 50%;
-                  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-                  border-color: #FDA203 transparent transparent transparent;
-                }
-                .lds-ring div:nth-child(1) {
-                  animation-delay: -0.45s;
-                }
-                .lds-ring div:nth-child(2) {
-                  animation-delay: -0.3s;
-                }
-                .lds-ring div:nth-child(3) {
-                  animation-delay: -0.15s;
-                }
-                @keyframes lds-ring {
-                  0% {
-                    transform: rotate(0deg);
-                  }
-                  100% {
-                    transform: rotate(360deg);
-                  }
-                }
             }
             .modal-button-wrapper{
                 padding: 0 !important;

@@ -1,110 +1,113 @@
-<div class="invest-wrapper col-12 col-lg-10 float-right mt-2">
+<div class="invest-wrapper col-12 col-lg-10 float-right">
     <div class="row">
-        <div class="alert-window col-12 " *ngIf="investalert">
-            <div class="alert d-flex justify-content-between align-items-center col-12">
+        <div class="alert-window">
+            <div class="alert bg-primary text-white d-flex justify-content-between align-items-center col-12">
+                <p class="m-0">You are on the wrong network. Please switch to Rinkeby Ethereum testnet.</p>
+            </div>
+        </div>
+        <div class="alert-window" *ngIf="investalert">
+            <div class="alert bg-warning d-flex justify-content-between align-items-center col-12">
                 <p class="m-0">🚨 Invest & Withdraw phase ended. Switch to next phase.</p>
-                <button class="text-center alert-button" (click)="changefund()">NEXT PHASE</button>
+                <button class="btn btn-link text-center alert-button" (click)="changefund()">NEXT PHASE</button>
             </div>
         </div>
-
-        <div class="alert-window col-12 " *ngIf="changealert">
-            <div class="alert d-flex justify-content-between align-items-center col-12">
+        <div class="alert-window" *ngIf="changealert">
+            <div class="alert bg-warning d-flex justify-content-between align-items-center col-12">
                 <p class="m-0">🚨 Influence the fund strategy by trading assets and staking KRO to support
-                    ETH and ERC20 tokens.</p>
-                    <button class="text-center alert-button" (click)="hidechangealert()">DISMISS</button>
-                </div>
+                ETH and ERC20 tokens.</p>
+                <button class="btn btn-link text-center alert-button" (click)="hidechangealert()">DISMISS</button>
             </div>
-
-            <div class="left-sec col-12 col-lg-8 order-2 order-lg-1">
-                <div class="row befund-statitics-sec">
-                    <div class="col-12 col-lg-12 ">
-                        <div class="sec-header">
-                            <p class="sec-title">Betoken Fund Performance & Statistics</p>
-                        </div>
-                        <div class="cards">
-                            <div class="content-header d-flex align-items-center mb-3">
-                                <div class="betoken-desc">
-                                    <p class="betoken-title betoken-font m-0">Asset under management (DAI)</p>
-                                    <p class="betoken-value black-font m-0">{{AUM}}</p>
-                                </div>
-                                <div class="divider-value"></div>
-                                <div class="betoken-desc">
-                                    <p class="betoken-title betoken-font m-0">Current investment cycle ROI</p>
-                                    <p class="betoken-value m-0" [ngClass]="{'green-font': +currMoROI >= 0, 'red-font': 0 > +currMoROI}">{{currMoROI}}%</p>
-                                </div>
-                            </div>
-                            <div class="content">
-                                <div [chart]="stock" class="mb-3 befund-share-graph"></div>
-                                <div class="hilights row">
-                                    <div class="key col-6 col-sm-6 col-md-5 d-flex align-items-center">
-                                        <div class="mr-3">
-                                            <img src="assets/images/average-monthy-roi.svg">
-                                        </div>
-                                        <div class="betoken-desc ml-2">
-                                            <p class="betoken-title betoken-font m-0">Avg. Monthly return</p>
-                                            <p class="betoken-value m-0" [ngClass]="{'green-font': +avgMonthReturn >= 0, 'red-font': 0 > +avgMonthReturn}">{{avgMonthReturn}}%</p>
-                                        </div>
-                                    </div>
-
-                                    <div class="key col-6 col-sm-6 col-md-5 d-flex align-items-center">
-                                        <div class="mr-3">
-                                            <img src="assets/images/users.svg">
-                                        </div>
-                                        <div class="betoken-desc ml-2">
-                                            <p class="betoken-title betoken-font m-0">Total Managers</p>
-                                            <p class="betoken-value black-font m-0">{{totalUser}}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+        </div>
+        <div class="left-sec col-12 col-lg-8 order-2 order-lg-1">
+            <div class="row befund-statitics-sec">
+                <div class="col-12 col-lg-12 ">
+                    <div class="sec-header">
+                        <p class="sec-title">Betoken Fund Performance & Statistics</p>
                     </div>
-                </div>
-            </div>
-            <div class="right-sec col-12 col-lg-4 order-1 order-lg-2">
-                <div class="row profit-history-sec">
-
-                    <div class="email-update-sec col-12 col-md-6 col-lg-12 mb-3">
-                        <div class="sec-header">
-                            <p class="sec-title">Receive updates</p>
+                    <div class="cards">
+                        <div class="content-header d-flex align-items-center mb-3">
+                            <div class="betoken-desc">
+                                <p class="betoken-title betoken-font m-0">Asset under management (DAI)</p>
+                                <p class="betoken-value black-font m-0">{{AUM}}</p>
+                            </div>
+                            <div class="divider-value"></div>
+                            <div class="betoken-desc">
+                                <p class="betoken-title betoken-font m-0">Current investment cycle ROI</p>
+                                <p class="betoken-value m-0" [ngClass]="{'green-font': +currMoROI >= 0, 'red-font': 0 > +currMoROI}">{{currMoROI}}%</p>
+                            </div>
                         </div>
-
-                        <div class="cards">
-
-                            <p class="update-info black-font">
-                                Get updates about the fund status, beginning of new investment cycle phases and date to redeem commissions.
-                            </p>
-
-
-                            <p>
-                                Email address
-                            </p>
-
-                            <form action="https://fund.us17.list-manage.com/subscribe/post?u=9c0647dcb587985ed6121cdf6&amp;id=150e0f091e" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-                                <div class="emailer-box">
-                                    <input class="outline-button w-100 mb-3" type="email" value="" name="EMAIL" id="mce-EMAIL" placeholder="myemail@address.com" required>
-                                    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_9c0647dcb587985ed6121cdf6_150e0f091e" tabindex="-1" value=""></div>
-                                    <div class="input-group-append">
-                                        <button class="text-center outline-button black-font w-100 mb-3" name="subscribe" id="mc-embedded-subscribe">
-                                            GET UPDATED
-                                        </button>
+                        <div class="content">
+                            <div [chart]="stock" class="mb-3 befund-share-graph"></div>
+                            <div class="hilights row">
+                                <div class="key col-6 col-sm-6 col-md-5 d-flex align-items-center">
+                                    <div class="mr-3">
+                                        <img src="assets/images/average-monthy-roi.svg">
+                                    </div>
+                                    <div class="betoken-desc ml-2">
+                                        <p class="betoken-title betoken-font m-0">Avg. Monthly return</p>
+                                        <p class="betoken-value m-0" [ngClass]="{'green-font': +avgMonthReturn >= 0, 'red-font': 0 > +avgMonthReturn}">{{avgMonthReturn}}%</p>
                                     </div>
                                 </div>
-                            </form>
 
-                            <div class="update-footer">
-                                <a target="_blank" href="https://t.me/betokenfund">
-                                    <p class="black-font" style="text-align: center;">
-                                        Join our Telegram community
-                                        <img src="assets/images/iconmonstr-telegram-4.svg" width="24" class="ml-1">
-                                    </p>
-                                </a>
+                                <div class="key col-6 col-sm-6 col-md-5 d-flex align-items-center">
+                                    <div class="mr-3">
+                                        <img src="assets/images/users.svg">
+                                    </div>
+                                    <div class="betoken-desc ml-2">
+                                        <p class="betoken-title betoken-font m-0">Total Managers</p>
+                                        <p class="betoken-value black-font m-0">{{totalUser}}</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="right-sec col-12 col-lg-4 order-1 order-lg-2">
+            <div class="row profit-history-sec">
+
+                <div class="email-update-sec col-12 col-md-6 col-lg-12 mb-3">
+                    <div class="sec-header">
+                        <p class="sec-title">Receive updates</p>
+                    </div>
+
+                    <div class="cards">
+
+                        <p class="update-info black-font">
+                            Get updates about the fund status, beginning of new investment cycle phases and date to redeem commissions.
+                        </p>
+
+
+                        <p>
+                            Email address
+                        </p>
+
+                        <form action="https://fund.us17.list-manage.com/subscribe/post?u=9c0647dcb587985ed6121cdf6&amp;id=150e0f091e" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+                            <div class="emailer-box">
+                                <input class="outline-button w-100 mb-3" type="email" value="" name="EMAIL" id="mce-EMAIL" placeholder="myemail@address.com" required>
+                                <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_9c0647dcb587985ed6121cdf6_150e0f091e" tabindex="-1" value=""></div>
+                                <div class="input-group-append">
+                                    <button class="text-center outline-button black-font w-100 mb-3" name="subscribe" id="mc-embedded-subscribe">
+                                        GET UPDATED
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+
+                        <div class="update-footer">
+                            <a target="_blank" href="https://t.me/betokenfund">
+                                <p class="black-font" style="text-align: center;">
+                                    Join our Telegram community
+                                    <img src="assets/images/iconmonstr-telegram-4.svg" width="24" class="ml-1">
+                                </p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 

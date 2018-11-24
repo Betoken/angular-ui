@@ -1,6 +1,6 @@
 <div class="preheader-container">
   <div class="preheader-content">
-    <p>Participate in our Initial Account Offering — <a href="https://betoken.fund/iao/" target="_blank">BUY KRO TOKEN</a></p>
+    <p>Become a fund manager by participating in our Initial Account Offering — <a href="https://betoken.fund/iao/" target="_blank">GET STARTED</a></p>
   </div>
 </div>
 <header class="col-md-12 col-lg-12">
@@ -48,9 +48,11 @@
         </div>
       </div>
 
-      <div class="portfolio-desc" *ngIf="user_address !== '0x0'">
-        <p class="portfolio-title betoken-font m-0"><img class="connected-wallet-logo" src="assets/images/metamask.png" width="24">{{curr_network}}</p>
-        <p class="black-font m-0" style="text-overflow: ellipsis; overflow: hidden;">{{user_address}}</p>
+      <div class="connected-user-wallet-address" *ngIf="user_address !== '0x0'">
+        {{user_address}}
+      </div>
+      <div class="connected-user-wallet-address" *ngIf="user_address == '0x0'">
+        Connect to Metamask 👆
       </div>
     </div>
   </div>

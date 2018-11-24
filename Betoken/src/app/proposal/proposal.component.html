@@ -1,27 +1,27 @@
-<div class="proposal-wrapper col-12 col-lg-10 float-right mt-2">
+<div class="proposal-wrapper col-12 col-lg-10 float-right">
     <div class="row">
-        <div class="alert-window col-12 " *ngIf="sellalert">
-            <div class="alert d-flex justify-content-between align-items-center col-12">
-                <p class="m-0">🚨 Sell your assets to redeem all your KRO staked before cycle’s end. More info.</p>
-                <button class="text-center alert-button" (click)="hidealert()">DISMISS</button>
+        <div class="alert-window" *ngIf="sellalert">
+            <div class="alert bg-warning d-flex justify-content-between align-items-center col-12">
+                <p class="m-0">🚨 Sell your assets to redeem all your KRO staked before cycle’s end. <a class="text-white" href="https://medium.com/betoken/the-ultimate-guide-to-betoken-omen-39adfe204296" target="_blank">More info</a>.</p>
+                <button class="btn btn-link text-center alert-button" (click)="hidealert()">DISMISS</button>
             </div>
         </div>
 
-        <div class="alert-window col-12 " *ngIf="nextphasealert">
-            <div class="alert d-flex justify-content-between align-items-center col-12">
+        <div class="alert-window" *ngIf="nextphasealert">
+            <div class="alert bg-warning d-flex justify-content-between align-items-center col-12">
                 <p class="m-0">🚨 Portfolio proposal phase ended. Switch to next phase.</p>
-                <button class="text-center alert-button" (click)="changeproposal()">NEXT PHASE</button>
+                <button class="btn btn-link text-center alert-button" (click)="changeproposal()">NEXT PHASE</button>
             </div>
         </div>
 
-        <div class="alert-window col-12" *ngIf="redeemalert">
-            <div class="alert d-flex justify-content-between align-items-center col-12">
-                <p class="m-0">🚨 Redeem your commissions before the phase ends. More info.</p>
-                <button class="text-center alert-button" routerLink="/redeem">REDEEM COMMISSSION</button>
+        <div class="alert-window" *ngIf="redeemalert">
+            <div class="alert bg-warning d-flex justify-content-between align-items-center col-12">
+                <p class="m-0">🚨 Redeem your commissions before the phase ends. <a class="text-white" href="https://medium.com/betoken/the-ultimate-guide-to-betoken-omen-39adfe204296" target="_blank">More info</a>.</p>
+                <button class="btn btn-link text-center alert-button" routerLink="/redeem">REDEEM COMMISSSION</button>
             </div>
         </div>
         <div class="proposal-table-sec col-8">
-            <div class="sec-header d-flex justify-content-between align-items-center pb-1">
+            <div class="sec-header d-flex justify-content-between align-items-center">
                 <p class="sec-title">Active Investments</p>
                 <button class="text-center outline-button" (click) = "refresh()">
                     <span *ngIf="isLoading() == false">REFRESH</span>
@@ -47,7 +47,7 @@
                                     <p class="m-0 abrivation">{{data.tokenSymbol}}</p>
                                 </div>
                             </td>
-                            <td>{{data.buyPrice.toFormat(4)}} DAI</td>
+                            <td class="pl-0">{{data.buyPrice.toFormat(4)}} DAI</td>
                             <td class="current-sell-price">{{data.sellPrice.toFormat(4)}} DAI</td>
                             <td>{{data.stake.toFormat(4)}}</td>
                             <td class="profit">
@@ -99,7 +99,6 @@
         </div>
 
         <div class="email-update-sec col-4 col-md-3 col-lg-4 mb-3">
-
             <div class="sec-header">
                 <p class="sec-title">Receive updates</p>
             </div>
@@ -164,8 +163,31 @@
                     <option *ngFor = "let token of tokenList" >{{token}} </option>
                 </select>
             </div>
+            <div class="trading-view">
+                <!-- TradingView Widget BEGIN -->
+                <div class="tradingview-widget-container">
+                  <div class="tradingview-widget-container__widget"></div>
+                  <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/BINANCE-ETHUSD/" rel="noopener" target="_blank"><span class="blue-text">ETHUSD Rates</span></a> by TradingView</div>
+                  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
+                  {
+                  "symbol": "BINANCE:ETHUSD",
+                  "width": "383",
+                  "height": "287",
+                  "locale": "en",
+                  "dateRange": "1m",
+                  "colorTheme": "light",
+                  "trendLineColor": "#37a6ef",
+                  "underLineColor": "#e3f2fd",
+                  "isTransparent": false,
+                  "autosize": false,
+                  "largeChartUrl": ""
+                }
+                  </script>
+                </div>
+                <!-- TradingView Widget END -->
+            </div>
             <div class="token-price"*ngIf = "tradeAssetval !== undfined">
-                <p>Current Price: <b>{{tradeAssetval}} DAI</b></p>
+                <p>Current Price on Kyber Network: <b>{{tradeAssetval}} DAI</b></p>
             </div>
             <div>
                 <p>24h change: <span [ngClass]="{'green-font': +getTokenDailyPriceChange(selectedTokenSymbol) >= 0, 'red-font': 0 > +getTokenDailyPriceChange(selectedTokenSymbol)}">{{getTokenDailyPriceChange(selectedTokenSymbol)}}%</span></p>
@@ -174,7 +196,7 @@
             <p class="mt-4">
                 KRO to stake • Your Balance: {{kairo_balance}} KRO
             </p>
-            <input type="text" class="outline-box" (keyup) = "kairoInput($event)" placeholder="e.g. 1.0000">
+            <input type="text" class="outline-box w-100 d-flex" (keyup) = "kairoInput($event)" placeholder="e.g. 1.0000">
         </div>
 
         <div class="confirmation-sec" *ngIf="step2">
@@ -199,16 +221,17 @@
                 You can check its status on Etherscan.
             </p>
             <div class="d-flex justify-content-center mb-5">
-                <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+              <div class="spinner">
+                  <div class="double-bounce1"></div>
+                  <div class="double-bounce2"></div>
+              </div>
             </div>
             <p>
                 Transaction ID
             </p>
             <div class="mt-2 w-100 d-flex align-items-center justify-content-between">
-
                 <input class="tx-hash" type="text" name="" value="{{transactionId}}">
                 <a class="link-tx-hash" href="https://rinkeby.etherscan.io/tx/{{transactionId}}" target="_blank"> <img src="assets/images/ic_launch_black_24px.svg" class="pointer ml-2"> </a>
-
             </div>
         </div>
 
@@ -273,7 +296,10 @@
                 You can check its status on Etherscan.
             </p>
             <div class="d-flex justify-content-center mb-5">
-                <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+              <div class="spinner">
+                  <div class="double-bounce1"></div>
+                  <div class="double-bounce2"></div>
+              </div>
             </div>
             <p>
                 Transaction ID
@@ -292,7 +318,7 @@
             <p class="m-0 pb-4 black-font">
                 You redeeemed {{kroRedeemed}} KRO.
             </p>
-            <div class="d-flex justify-content-center mb-4 mt-4">
+            <div class="d-flex justify-content-center mb-4">
                 <img src="assets/images/finish.png" class="pointer ">
             </div>
             <p class="m-0 mt-4">

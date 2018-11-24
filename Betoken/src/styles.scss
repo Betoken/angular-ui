@@ -145,23 +145,21 @@ body{
 }
 
 .alert-window{
-  margin-top: 20px;
+  width: 100%;
   .alert{
-      background-color: #FDA203;
-      padding: 15px;
+      min-height: 48px;
+      padding: 0 24px;
+      margin-bottom: 0;
       color: #ffffff !important;
+      border-radius: 0;
+      border: 0;
       .alert-button{
-        border: 1px solid #FFFFFF;
-        border-radius: 4px;
-        min-width: 120px;
+        padding: 0 8px;
         background-color: transparent;
         color: #ffffff !important;
-        padding: 8px;
       }
   }
 }
-
-
 .dot{
   height: 15px;
   width: 15px;

@@ -168,6 +168,29 @@
                     <option *ngFor = "let token of tokenList" >{{token}} </option>
                 </select>
             </div>
+            <div class="trading-view">
+                <!-- TradingView Widget BEGIN -->
+                <div class="tradingview-widget-container">
+                  <div class="tradingview-widget-container__widget"></div>
+                  <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/BINANCE-ETHUSD/" rel="noopener" target="_blank"><span class="blue-text">ETHUSD Rates</span></a> by TradingView</div>
+                  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
+                  {
+                  "symbol": "BINANCE:ETHUSD",
+                  "width": "383",
+                  "height": "287",
+                  "locale": "en",
+                  "dateRange": "1m",
+                  "colorTheme": "light",
+                  "trendLineColor": "#37a6ef",
+                  "underLineColor": "#e3f2fd",
+                  "isTransparent": false,
+                  "autosize": false,
+                  "largeChartUrl": ""
+                }
+                  </script>
+                </div>
+                <!-- TradingView Widget END -->
+            </div>
             <div class="token-price"*ngIf = "tradeAssetval !== undfined">
                 <p>Current Price on Kyber Network: <b>{{tradeAssetval}} DAI</b></p>
             </div>

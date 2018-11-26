@@ -305,10 +305,8 @@
                 Transaction ID
             </p>
             <div class="mt-2 w-100 d-flex align-items-center justify-content-between">
-
               <input class="tx-hash" type="text" name="" value="{{transactionId}}">
               <a class="link-tx-hash" href="https://rinkeby.etherscan.io/tx/{{transactionId}}" target="_blank"> <img src="assets/images/ic_launch_black_24px.svg" class="pointer ml-2"> </a>
-
             </div>
         </div>
         <div class="final-sec m-3" *ngIf="sellStep3">
@@ -368,16 +366,17 @@
                 Your transaction is being saved on the Ethereum blockchain. You can check its status on Etherscan.
             </p>
             <div class="d-flex justify-content-center mb-5">
-                <img src="assets/images/loader.png" class="pointer ">
+              <div class="spinner">
+                  <div class="double-bounce1"></div>
+                  <div class="double-bounce2"></div>
+              </div>
             </div>
             <p>
                 Transaction ID
             </p>
             <div class="mt-2 w-100 d-flex align-items-center justify-content-between">
-
               <input class="tx-hash" type="text" name="" value="{{transactionId}}">
               <a class="link-tx-hash" href="https://rinkeby.etherscan.io/tx/{{transactionId}}" target="_blank"> <img src="assets/images/ic_launch_black_24px.svg" class="pointer ml-2"> </a>
-
             </div>
         </div>
         <div class="modal-button-wrapper">

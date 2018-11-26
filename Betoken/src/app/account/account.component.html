@@ -1,8 +1,13 @@
 <div class="account-wrapper col-12 col-lg-10 float-right">
     <div class="row">
+        <div class="alert-window">
+            <div class="alert bg-primary text-white d-flex justify-content-between align-items-center col-12">
+                <p class="m-0">You are on the wrong network. Please switch to Rinkeby Ethereum testnet.</p>
+            </div>
+        </div>
         <div class="alert-window" *ngIf="sellalert">
             <div class="alert bg-warning d-flex justify-content-between align-items-center col-12">
-                <p class="m-0">🚨 Sell your assets to redeem all your KRO staked before cycle’s end. <a class="text-white" href="https://medium.com/betoken/the-ultimate-guide-to-betoken-omen-39adfe204296" target="_blank">More info</a>.</p>
+                <p class="m-0">🚨 Sell your assets to redeem all your KRO staked before cycle’s end. <a href="https://medium.com/betoken/the-ultimate-guide-to-betoken-omen-39adfe204296" target="_blank">More info</a>.</p>
                 <button class="btn btn-link text-center alert-button" (click)="hidealert()">DISMISS</button>
             </div>
         </div>
@@ -16,7 +21,7 @@
 
         <div class="alert-window" *ngIf="redeemalert">
             <div class="alert bg-warning d-flex justify-content-between align-items-center col-12">
-                <p class="m-0">🚨 Redeem your commissions before the phase ends. <a class="text-white" href="https://medium.com/betoken/the-ultimate-guide-to-betoken-omen-39adfe204296" target="_blank">More info</a>.</p>
+                <p class="m-0">🚨 Redeem your commissions before the phase ends. <a href="https://medium.com/betoken/the-ultimate-guide-to-betoken-omen-39adfe204296" target="_blank">More info</a>.</p>
                 <button class="btn btn-link text-center alert-button" routerLink="/redeem">REDEEM COMMISSSION</button>
             </div>
         </div>

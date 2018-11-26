@@ -159,6 +159,17 @@ body{
         color: #ffffff !important;
       }
   }
+  .alert.bg-primary{
+    background-color: rgb(194, 217, 255)!important;
+    color: rgb(56, 132, 255)!important;
+  }
+  .alert.bg-warning{
+    background-color: #ffe1a0!important;
+    color: #d39100!important;
+    a, button{
+      color: #d39100!important;
+    }
+  }
 }
 .dot{
   height: 15px;

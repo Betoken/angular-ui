@@ -23,7 +23,7 @@
           <div class="bt-notifications notification-icon"></div>
       </div>
     </div>
-    <div class="col-9 col-lg-6 d-flex align-items-center" *ngIf="checkRouterURL('/invest') === false">
+    <div class="col-9 col-lg-5 d-flex align-items-center" *ngIf="checkRouterURL('/invest') === false">
       <div class="portfolio-desc">
         <p class="portfolio-title betoken-font m-0">Kairo balance</p>
         <p class="portfolio-value black-font m-0 ellipseDesign" >{{kairo_balance}} KRO</p>
@@ -38,21 +38,12 @@
       </div>
     </div>
 
-    <div class="col-4">
+    <div class="col-5 text-right">
       <div *ngIf="checkRouterURL('/invest') === false">
-        <div class="button-wrapper" *ngIf="phase == 1">
-          <button class="text-center outline-button active mr-4" (click)="proposalPopup()">TRADE ASSSETS</button>
-        </div>
-        <div class="button-wrapper" *ngIf="phase == 2 && can_redeem_commission">
-          <button class="text-center outline-button active mr-4" routerLink="/redeem" (click)="redeemPopup()">REDEEM COMMISSION</button>
-        </div>
-      </div>
-
-      <div class="connected-user-wallet-address" *ngIf="user_address !== '0x0'">
-        {{user_address}}
-      </div>
-      <div class="connected-user-wallet-address" *ngIf="user_address == '0x0'">
-        Connect to Metamask 👆
+        <button class="btn active mr-4" (click)="proposalPopup()" *ngIf="phase == 1">TRADE ASSSETS</button>
+        <button class="btn active mr-4" routerLink="/redeem" (click)="redeemPopup()" *ngIf="phase == 2 && can_redeem_commission">REDEEM COMMISSION</button>
+        <button class="btn btn-outline-secondary text-secondary bg-transparent connected-user-wallet-address" *ngIf="user_address !== '0x0'">🦊 {{user_address}}</button>
+        <button class="btn btn-outline-secondary text-secondary bg-white connected-user-wallet-address" *ngIf="user_address == '0x0'">🦊 CONNECT METAMASK</button>
       </div>
     </div>
   </div>

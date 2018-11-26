@@ -29,6 +29,11 @@ header{
     top: 48px;
     z-index: 90;
     border-bottom: 1px solid #D1DCDF;
+    .btn.active{
+      background-color: #002B49;
+      color: white;
+      font-weight: bolder;
+    }
     .logo{
         .header-logo{
             padding-right: 10px;
@@ -111,18 +116,10 @@ header{
       font-size: 16px;
     }
     .connected-user-wallet-address{
-      float: right;
       width: auto;
       max-width: 230px;
-      background-color: white;
-      border: 1px solid #D1DCDF;
-      display: inline-block;
-      padding: 0 12px;
       text-overflow: ellipsis;
       overflow: hidden;
-      height: 40px;
-      border-radius: 4px;
-      line-height: 36px;
     }
 
 }

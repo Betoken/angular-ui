@@ -22,7 +22,7 @@
         </div>
         <div class="account-table-sec col-8">
             <div class="sec-header d-flex justify-content-between align-items-center">
-                <p class="sec-title">Transaction History</p>
+                <p class="sec-title">Commissions history</p>
                 <button class="text-center outline-button" (click) = "refresh()">
                     <span *ngIf="isLoading() == false">REFRESH</span>
                     <span *ngIf="isLoading()">Loading...</span>
@@ -34,7 +34,6 @@
                         <tr>
                             <th scope="col" class="pl-0">Time</th>
                             <th scope="col">Asset</th>
-                            <th scope="col">Type</th>
                             <th scope="col">Amount</th>
                             <th scope="col">Details tx</th>
                         </tr>
@@ -43,7 +42,6 @@
                         <tr *ngFor="let details of transactionTable">
                             <td class="pl-0">{{details.timestamp}}</td>
                             <td>{{details.token}}</td>
-                            <td>{{details.type}}</td>
                             <td>{{details.amount}}</td>
                             <td><img src="assets/images/ic_launch_black_24px.svg" class="pointer" (click) = "linkopen(details.txHash)"></td>
                         </tr>

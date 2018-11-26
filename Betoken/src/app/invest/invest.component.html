@@ -5,10 +5,10 @@
                 <p class="m-0">You are on the wrong network. Please switch to Rinkeby Ethereum testnet.</p>
             </div>
         </div>
-        <div class="alert-window" *ngIf="investalert">
+        <div class="alert-window" *ngIf="changealert">
             <div class="alert bg-warning d-flex justify-content-between align-items-center col-12">
-                <p class="m-0">🚨 Invest & Withdraw phase ended. Switch to next phase.</p>
-                <button class="btn btn-link text-center alert-button" (click)="changefund()">NEXT PHASE</button>
+                <p class="m-0">🚨 Current phase has ended.</p>
+                <button class="btn btn-link text-center alert-button" (click)="hidechangealert()">DISMISS</button>
             </div>
         </div>
         <div class="alert-window" *ngIf="changealert">
@@ -240,8 +240,8 @@
             </div>
         </div>
         <div class="main-sec" *ngIf="changeStep1">
-            <p class="m-0 pb-5 black-font">This action will be repercuted on all the fund’s participants.
-                By being the first to operate this action, you’ll be granted 0.01 KRO.
+            <p class="m-0 pb-5 black-font">This action will be affect on all of the fund’s participants.
+                By being the first to do this, you’ll win 10 KRO.
             </p>
         </div>
         <div class="confirmation-sec m-3" *ngIf="changeStep2">
@@ -253,7 +253,7 @@
                 defaults gas limit and price.
             </p>
             <div class="d-flex justify-content-center mb-5">
-                <img src="assets/images/metamask-big.png" class="pointer " (click)="confirmcchangefund()">
+                <img src="assets/images/metamask-big.png">
             </div>
 
         </div>
@@ -265,7 +265,7 @@
                 Your transaction is being saved on the Ethereum blockchain. You can check its status on Etherscan.
             </p>
             <div class="d-flex justify-content-center mb-5">
-                <img src="assets/images/loader.png" class="pointer ">
+                <img src="assets/images/loader.png">
             </div>
             <p class="m-0">
                 Transaction ID
@@ -276,18 +276,12 @@
             </div>
         </div>
         <div class="modal-button-wrapper">
-            <button class="text-center outline-button active w-100" (click)="changefundstep1()" *ngIf="changeStep1">GO TO NEXT INVESTMENT PHASE</button>
+            <button class="text-center outline-button active w-100" (click)="changefundstep1()" *ngIf="changeStep1">INITIATE</button>
             <button class="text-center outline-button active w-100 mt-4" (click)="closePopup()" *ngIf="changeStep3">FUND CHANGED</button>
         </div>
     </div>
 </div>
 
-
-<div class="col-12 d-none d-lg-none d-flex align-items-center button-wrapper footer-wrapper fixed-bottom justify-content-end bg-white pt-3 pb-3"
-*ngIf="footerbtn1">
-    <button class="text-center outline-button mr-3" (click)="openModalPopupW()">WITHDRAW</button>
-    <button class="text-center outline-button active" (click)="openModalPopup()">INVEST</button>
-</div>
 <div class="col-12 d-none d-lg-none d-flex button-wrapper text-right justify-content-end footer-wrapper fixed-bottom bg-white pt-3 pb-3"
 *ngIf="footerbtn2">
 <button class="text-center outline-button active" (click)="changefund()">NEXT PHASE</button>

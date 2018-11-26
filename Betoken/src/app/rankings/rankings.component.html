@@ -14,8 +14,8 @@
 
         <div class="alert-window" *ngIf="nextphasealert">
             <div class="alert bg-warning d-flex justify-content-between align-items-center col-12">
-                <p class="m-0">🚨 Portfolio proposal phase ended. Switch to next phase.</p>
-                <button class="btn btn-link text-center alert-button" (click)="changeproposal()">NEXT PHASE</button>
+                <p class="m-0">🚨 Current phase has ended.</p>
+                <button class="btn btn-link text-center alert-button" (click)="hidechangealert()">DISMISS</button>
             </div>
         </div>
 

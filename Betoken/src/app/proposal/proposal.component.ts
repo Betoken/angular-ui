@@ -79,6 +79,14 @@ export class ProposalComponent implements OnInit {
         this.ms.setproposalPopUp();
     }
 
+    errorMsg = '';
+    user_address = '0x0';
+    can_redeem_commission = true;
+
+    showError = (msg) => {
+        this.errorMsg = msg;
+    }
+
 
     constructor(private ms: AppComponent) {
         this.state = 'close';
@@ -124,6 +132,13 @@ export class ProposalComponent implements OnInit {
             this.updateDates();
             this.refreshDisplay();
             this.tokenList = tokens.token_list();
+
+            setTimeout(() => {
+                // this.errorMsg = error_notifications.error_msg;
+                this.user_address = user.address(this.showError);
+                this.can_redeem_commission = user.can_redeem_commission(this.showError);
+              }, 1000);
+
         }, 100);
 
         this.ms.getproposalPopUp().subscribe((open: boolean) => {
@@ -322,7 +337,7 @@ export class ProposalComponent implements OnInit {
     }
 
     invest() {
-        manager_actions.new_investment(this.selectedTokenSymbol, this.kairoinput, this.pending, this.confirm);
+        manager_actions.new_investment(this.selectedTokenSymbol, this.kairoinput, this.pending, this.confirm, this.showError);
     }
 
     sellInvestment() {
@@ -330,7 +345,7 @@ export class ProposalComponent implements OnInit {
             console.log(JSON.stringify(success));
         }, (error) => {
             alert(error);
-        });
+        }, this.showError);
     }
 
     kairoInput (event) {

@@ -25,11 +25,24 @@ export const timer = {
 }
 
 export const user = {
-    address: () => Data.userAddress.get(),
+    address: (errorFunc) => {
+        let user_address = Data.userAddress.get();
+        if (user_address === null) {
+            errorFunc(METAMASK_LOCKED_ERR);
+        }
+        return user_address;
+    },
     share_balance: () => Data.investmentBalance.get(),
     kairo_balance: () => Data.kairoBalance.get(),
     monthly_roi: () => Data.managerROI.get(),
-    can_redeem_commission: () => betoken.hasWeb3 && Data.cyclePhase.get() === 2 && Data.lastCommissionRedemption.get() < Data.cycleNumber.get(),
+    can_redeem_commission: (errorFunc) => {
+        try {
+            betoken.hasWeb3 && Data.cyclePhase.get() === 2 && Data.lastCommissionRedemption.get() < Data.cycleNumber.get();
+        }
+        catch(err) {
+            errorFunc(WRONG_NETWORK_ERR);
+        }
+    },
     expected_commission: function () {
         if (Data.kairoTotalSupply.get().greaterThan(0)) {
             if (Data.cyclePhase.get() === 2) {
@@ -146,12 +159,16 @@ export const investor_actions = {
 }
 
 export const manager_actions = {
-    sell_investment: async function (id, pending, confirm) {
-        if (Data.cyclePhase.get() === 1) {
-            return betoken.sellAsset(id, pending, confirm);
+    sell_investment: async function (id, pending, confirm, errorFunc) {
+        try {
+            if (Data.cyclePhase.get() === 1) {
+                return betoken.sellAsset(id, pending, confirm);
+            }
+        } catch(error) {
+            errorFunc(SEND_TX_ERR);
         }
     },
-    new_investment: async function (tokenSymbol, amt, pending, confirm) {
+    new_investment: async function (tokenSymbol, amt, pending, confirm, errorFunc) {
         var address, error, kairoAmountInWeis, tokenSymbol;
         try {
             address = (await betoken.tokenSymbolToAddress(tokenSymbol));
@@ -159,14 +176,22 @@ export const manager_actions = {
             betoken.createInvestment(address, kairoAmountInWeis, pending, confirm);
             return;
         } catch (error1) {
-            console.log(error1);
+            errorFunc(SEND_TX_ERR);
         }
     },
-    redeem_commission: async function (pending, confirm) {
-        return betoken.redeemCommission(pending, confirm);
+    redeem_commission: async function (pending, confirm, errorFunc) {
+        try {
+            return betoken.redeemCommission(pending, confirm);
+        } catch(error) {
+            errorFunc(SEND_TX_ERR);
+        }
     },
 
-    redeem_commission_in_shares: async function (pending, confirm) {
-        return betoken.redeemCommissionInShares(pending, confirm);
+    redeem_commission_in_shares: async function (pending, confirm, errorFunc) {
+        try {
+            return betoken.redeemCommissionInShares(pending, confirm);
+        } catch (error) {
+            errorFunc(SEND_TX_ERR);
+        }
     }
 }

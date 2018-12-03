@@ -1,8 +1,8 @@
 <div class="proposal-wrapper col-12 col-lg-10 float-right">
     <div class="row">
-        <div class="alert-window">
+        <div class="alert-window" *ngIf="errorMsg !== '' ">
             <div class="alert bg-primary text-white d-flex justify-content-between align-items-center col-12">
-                <p class="m-0">You are on the wrong network. Please switch to Rinkeby Ethereum testnet.</p>
+                <p class="m-0">{{errorMsg}}</p>
             </div>
         </div>
         <div class="alert-window" *ngIf="sellalert">

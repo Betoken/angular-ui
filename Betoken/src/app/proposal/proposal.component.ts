@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, Renderer2, ViewChild} from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { AppComponent } from '../app.component';
-import { user, timer, manager_actions, loading, tokens, refresh_actions } from '../../betokenjs/helpers';
+import { user, timer, manager_actions, loading, tokens, refresh_actions, network } from '../../betokenjs/helpers';
 import BigNumber from 'bignumber.js';
 import { isUndefined } from 'util';
+import {DomSanitizer} from "@angular/platform-browser";
 
 @Component({
     selector: 'app-proposal',
@@ -24,6 +25,7 @@ import { isUndefined } from 'util';
 })
 
 export class ProposalComponent implements OnInit {
+
     state: string;
     active: boolean;
 
@@ -88,7 +90,8 @@ export class ProposalComponent implements OnInit {
     }
 
 
-    constructor(private ms: AppComponent) {
+    constructor(private ms: AppComponent, private elementRef: ElementRef,private renderer:Renderer2) {
+
         this.state = 'close';
         this.active = false;
 
@@ -128,24 +131,35 @@ export class ProposalComponent implements OnInit {
     }
 
     ngOnInit() {
+
+        const s = document.createElement("script");
+        s.type = "text/javascript";
+        s.async = true;
+        s.innerHTML = '{"symbol": "BINANCE:ETHUSD","width": "383","height": "287","class":"peter","locale": "en","dateRange": "1m","colorTheme": "light","trendLineColor": "#37a6ef","underLineColor": "#e3f2fd","isTransparent": false,"autosize": false,"largeChartUrl": ""}';
+        s.src = "https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js";
+
+
         setInterval(() => {
             this.updateDates();
             this.refreshDisplay();
             this.tokenList = tokens.token_list();
 
             setTimeout(() => {
-                // this.errorMsg = error_notifications.error_msg;
                 this.user_address = user.address(this.showError);
                 this.can_redeem_commission = user.can_redeem_commission(this.showError);
               }, 1000);
 
+            s.innerHTML = '{"symbol": "BINANCE:' + "" + this.selectedTokenSymbol + 'USD","width": "383","height": "287","class":"peter","locale": "en","dateRange": "1m","colorTheme": "light","trendLineColor": "#37a6ef","underLineColor": "#e3f2fd","isTransparent": false,"autosize": false,"largeChartUrl": ""}';
+
         }, 100);
+
 
         this.ms.getproposalPopUp().subscribe((open: boolean) => {
 
             if (open) {
                 this.state = 'open';
                 this.active = true;
+                this.elementRef.nativeElement.querySelector('#chartview').appendChild(s);
             }
 
             if (!open) {

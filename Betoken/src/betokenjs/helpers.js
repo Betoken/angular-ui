@@ -11,7 +11,9 @@ const METAMASK_LOCKED_ERR = "Your browser seems to be Web3 enabled, but you need
 
 // exports
 export const network = {
-    network_prefix: () => Data.networkPrefix.get(),
+    network_prefix: () => {
+        return Data.networkPrefix.get();
+    },
     network_name: () => Data.networkName.get(),
     has_web3: () => betoken.hasWeb3
 };
@@ -27,7 +29,7 @@ export const timer = {
 export const user = {
     address: (errorFunc) => {
         let user_address = Data.userAddress.get();
-        if (user_address === null) {
+        if (user_address === "0x0") {
             errorFunc(METAMASK_LOCKED_ERR);
         }
         return user_address;

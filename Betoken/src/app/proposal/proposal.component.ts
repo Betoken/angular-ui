@@ -1,7 +1,7 @@
 import {Component, ElementRef, OnInit, Renderer2, ViewChild} from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { AppComponent } from '../app.component';
-import { user, timer, manager_actions, loading, tokens, refresh_actions, network } from '../../betokenjs/helpers';
+import { user, timer, manager_actions, loading, tokens, refresh_actions} from '../../betokenjs/helpers';
 import BigNumber from 'bignumber.js';
 import { isUndefined } from 'util';
 import {DomSanitizer} from "@angular/platform-browser";

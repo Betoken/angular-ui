@@ -178,7 +178,8 @@ export const manager_actions = {
             betoken.createInvestment(address, kairoAmountInWeis, pending, confirm);
             return;
         } catch (error1) {
-            errorFunc(SEND_TX_ERR);
+            // errorFunc(SEND_TX_ERR);
+            error_msg = SEND_TX_ERR;
         }
     },
     redeem_commission: async function (pending, confirm, errorFunc) {
@@ -196,4 +197,7 @@ export const manager_actions = {
             errorFunc(SEND_TX_ERR);
         }
     }
-}
+}   
+
+
+

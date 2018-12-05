@@ -35,12 +35,6 @@ export class HeaderComponent implements OnInit {
   curr_network = '';
   can_redeem_commission = true;
 
-  errorMsg = '';
-
-  showError = (msg) => {
-    this.errorMsg = msg;
-  }
-
   constructor(private ms: AppComponent, private router: Router ) {
     this.btn1 = true;
     this.btn2 = false;
@@ -53,18 +47,13 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     setInterval(() => {
-    //   this.user_address = user.address();
       this.kairo_balance = user.portfolio_value().toFormat(10);
       this.monthly_pl = user.monthly_roi().toFormat(4);
       this.expected_commission = user.expected_commission().toFormat(4);
       this.curr_network = network.network_prefix();
-      this.updateDates();
-    //   this.can_redeem_commission = user.can_redeem_commission();
-
-      setTimeout(() => {
-        this.user_address = user.address(this.showError);
-        this.can_redeem_commission = user.can_redeem_commission(this.showError);
-      }, 1000);
+      this.updateDates();    
+      this.user_address = user.address();
+      this.can_redeem_commission = user.can_redeem_commission();
     }, 100);
 
     this.ms.getNextPhaseBtn().subscribe((nextbtn: boolean) => {

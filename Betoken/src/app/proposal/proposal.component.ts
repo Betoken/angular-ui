@@ -1,7 +1,7 @@
 import {Component, ElementRef, OnInit, Renderer2, ViewChild} from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { AppComponent } from '../app.component';
-import { user, timer, manager_actions, loading, tokens, refresh_actions} from '../../betokenjs/helpers';
+import { user, timer, manager_actions, loading, tokens, refresh_actions, error_notifications} from '../../betokenjs/helpers';
 import BigNumber from 'bignumber.js';
 import { isUndefined } from 'util';
 import {DomSanitizer} from "@angular/platform-browser";
@@ -83,12 +83,6 @@ export class ProposalComponent implements OnInit {
 
     errorMsg = '';
     user_address = '0x0';
-    can_redeem_commission = true;
-
-    showError = (msg) => {
-        this.errorMsg = msg;
-    }
-
 
     constructor(private ms: AppComponent, private elementRef: ElementRef,private renderer:Renderer2) {
 
@@ -143,11 +137,12 @@ export class ProposalComponent implements OnInit {
             this.updateDates();
             this.refreshDisplay();
             this.tokenList = tokens.token_list();
+            this.user_address = user.address();
 
             setTimeout(() => {
-                this.user_address = user.address(this.showError);
-                this.can_redeem_commission = user.can_redeem_commission(this.showError);
-              }, 1000);
+                error_notifications.check_dependency();
+                this.errorMsg = error_notifications.get_error_msg();
+            }, 1000);
 
             s.innerHTML = '{"symbol": "BINANCE:' + "" + this.selectedTokenSymbol + 'USD","width": "383","height": "287","class":"peter","locale": "en","dateRange": "1m","colorTheme": "light","trendLineColor": "#37a6ef","underLineColor": "#e3f2fd","isTransparent": false,"autosize": false,"largeChartUrl": ""}';
 
@@ -351,7 +346,7 @@ export class ProposalComponent implements OnInit {
     }
 
     invest() {
-        manager_actions.new_investment(this.selectedTokenSymbol, this.kairoinput, this.pending, this.confirm, this.showError);
+        manager_actions.new_investment(this.selectedTokenSymbol, this.kairoinput, this.pending, this.confirm);
     }
 
     sellInvestment() {
@@ -359,7 +354,7 @@ export class ProposalComponent implements OnInit {
             console.log(JSON.stringify(success));
         }, (error) => {
             alert(error);
-        }, this.showError);
+        });
     }
 
     kairoInput (event) {

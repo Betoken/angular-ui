@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { tokens, loading, refresh_actions } from '../../betokenjs/helpers';
+import { tokens, loading, refresh_actions, error_notifications } from '../../betokenjs/helpers';
 import BigNumber from 'bignumber.js';
 import { isUndefined } from 'util';
 
@@ -11,12 +11,17 @@ import { isUndefined } from 'util';
 export class MarketComponent implements OnInit {
 
   tokenList: any;
+  errorMsg = '';
 
   constructor() { }
 
   ngOnInit() {
     setInterval(() => {
       this.refreshDisplay();
+      setTimeout(() => {
+        error_notifications.check_dependency();
+        this.errorMsg = error_notifications.get_error_msg();
+      }, 1000);
     }, 100);
   }
 

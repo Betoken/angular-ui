@@ -8,15 +8,34 @@ const SEND_TX_ERR = "There was an error during sending your transaction to the E
 const INPUT_ERR = "There was an error in your input. Please fix it and try again.";
 const NO_WEB3_ERR = "Betoken can only be used in a Web3 enabled browser. Please install <a target=\"_blank\" href=\"https://metamask.io/\">MetaMask</a> or switch to another browser that supports Web3. You can currently view the fund's data, but cannot make any interactions.";
 const METAMASK_LOCKED_ERR = "Your browser seems to be Web3 enabled, but you need to unlock your account to interact with Betoken.";
+const DEPENDENCY_ERR = "Check if you are on a web3 enabled browser, on the rinkeby testnet and connected to Metamsk";
+
+var error_msg = "";
 
 // exports
-export const network = {
-    network_prefix: () => {
-        return Data.networkPrefix.get();
+
+export const error_notifications = {
+    get_error_msg: () => error_msg,
+    set_error_msg: (msg) => {
+        error_msg = msg;
     },
+    check_dependency: () => {
+        if (typeof betoken === "undefined") {
+            error_notifications.set_error_msg(DEPENDENCY_ERR);
+        }
+        else {
+            if (network.has_web3() === false) {
+                error_notifications.set_error_msg(NO_WEB3_ERR);
+            }
+        }
+    }
+}
+
+export const network = {
+    network_prefix: () => Data.networkPrefix.get(),
     network_name: () => Data.networkName.get(),
     has_web3: () => betoken.hasWeb3
-};
+}
 
 export const timer = {
     day: () => Data.countdownDay.get(),
@@ -27,24 +46,11 @@ export const timer = {
 }
 
 export const user = {
-    address: (errorFunc) => {
-        let user_address = Data.userAddress.get();
-        if (user_address === "0x0") {
-            errorFunc(METAMASK_LOCKED_ERR);
-        }
-        return user_address;
-    },
+    address: () => Data.userAddress.get(),
     share_balance: () => Data.investmentBalance.get(),
     kairo_balance: () => Data.kairoBalance.get(),
     monthly_roi: () => Data.managerROI.get(),
-    can_redeem_commission: (errorFunc) => {
-        try {
-            betoken.hasWeb3 && Data.cyclePhase.get() === 2 && Data.lastCommissionRedemption.get() < Data.cycleNumber.get();
-        }
-        catch(err) {
-            errorFunc(WRONG_NETWORK_ERR);
-        }
-    },
+    can_redeem_commission: () => betoken.hasWeb3 && Data.cyclePhase.get() === 2 && Data.lastCommissionRedemption.get() < Data.cycleNumber.get(),
     expected_commission: function () {
         if (Data.kairoTotalSupply.get().greaterThan(0)) {
             if (Data.cyclePhase.get() === 2) {
@@ -161,16 +167,16 @@ export const investor_actions = {
 }
 
 export const manager_actions = {
-    sell_investment: async function (id, pending, confirm, errorFunc) {
+    sell_investment: async function (id, pending, confirm) {
         try {
             if (Data.cyclePhase.get() === 1) {
                 return betoken.sellAsset(id, pending, confirm);
             }
         } catch(error) {
-            errorFunc(SEND_TX_ERR);
+            error_notifications.set_error_msg(SEND_TX_ERR);
         }
     },
-    new_investment: async function (tokenSymbol, amt, pending, confirm, errorFunc) {
+    new_investment: async function (tokenSymbol, amt, pending, confirm) {
         var address, error, kairoAmountInWeis, tokenSymbol;
         try {
             address = (await betoken.tokenSymbolToAddress(tokenSymbol));
@@ -178,23 +184,22 @@ export const manager_actions = {
             betoken.createInvestment(address, kairoAmountInWeis, pending, confirm);
             return;
         } catch (error1) {
-            // errorFunc(SEND_TX_ERR);
-            error_msg = SEND_TX_ERR;
+            error_notifications.set_error_msg(SEND_TX_ERR);
         }
     },
-    redeem_commission: async function (pending, confirm, errorFunc) {
+    redeem_commission: async function (pending, confirm) {
         try {
             return betoken.redeemCommission(pending, confirm);
         } catch(error) {
-            errorFunc(SEND_TX_ERR);
+            error_notifications.set_error_msg(SEND_TX_ERR);
         }
     },
 
-    redeem_commission_in_shares: async function (pending, confirm, errorFunc) {
+    redeem_commission_in_shares: async function (pending, confirm) {
         try {
             return betoken.redeemCommissionInShares(pending, confirm);
         } catch (error) {
-            errorFunc(SEND_TX_ERR);
+            error_notifications.set_error_msg(SEND_TX_ERR);
         }
     }
 }   

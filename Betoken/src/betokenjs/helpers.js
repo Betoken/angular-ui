@@ -8,7 +8,7 @@ const SEND_TX_ERR = "There was an error during sending your transaction to the E
 const INPUT_ERR = "There was an error in your input. Please fix it and try again.";
 const NO_WEB3_ERR = "Betoken can only be used in a Web3 enabled browser. Please install <a target=\"_blank\" href=\"https://metamask.io/\">MetaMask</a> or switch to another browser that supports Web3. You can currently view the fund's data, but cannot make any interactions.";
 const METAMASK_LOCKED_ERR = "Your browser seems to be Web3 enabled, but you need to unlock your account to interact with Betoken.";
-const DEPENDENCY_ERR = "Check if you are on a web3 enabled browser, on the rinkeby testnet and connected to Metamsk";
+const DEPENDENCY_ERR = "Check if you are on a web3 enabled browser, on the rinkeby testnet and connected to Metamask";
 
 var error_msg = "";
 
@@ -178,13 +178,18 @@ export const manager_actions = {
     },
     new_investment: async function (tokenSymbol, amt, pending, confirm) {
         var address, error, kairoAmountInWeis, tokenSymbol;
-        try {
-            address = (await betoken.tokenSymbolToAddress(tokenSymbol));
-            kairoAmountInWeis = BigNumber(amt).times("1e18");
-            betoken.createInvestment(address, kairoAmountInWeis, pending, confirm);
-            return;
-        } catch (error1) {
-            error_notifications.set_error_msg(SEND_TX_ERR);
+        if (amt > user.kairo_balance()) {
+            error_notifications.set_error_msg(INPUT_ERR);
+        }
+        else {
+            try {
+                address = (await betoken.tokenSymbolToAddress(tokenSymbol));
+                kairoAmountInWeis = BigNumber(amt).times("1e18"); 
+                betoken.createInvestment(address, kairoAmountInWeis, pending, confirm);
+                return;
+            } catch (error) {
+                error_notifications.set_error_msg(SEND_TX_ERR);
+            }
         }
     },
     redeem_commission: async function (pending, confirm) {

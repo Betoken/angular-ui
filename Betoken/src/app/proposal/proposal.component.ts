@@ -143,7 +143,6 @@ export class ProposalComponent implements OnInit {
                 error_notifications.check_dependency();
                 this.errorMsg = error_notifications.get_error_msg();
             }, 1000);
-
             s.innerHTML = '{"symbol": "BINANCE:' + "" + this.selectedTokenSymbol + 'USD","width": "383","height": "287","class":"peter","locale": "en","dateRange": "1m","colorTheme": "light","trendLineColor": "#37a6ef","underLineColor": "#e3f2fd","isTransparent": false,"autosize": false,"largeChartUrl": ""}';
 
         }, 100);

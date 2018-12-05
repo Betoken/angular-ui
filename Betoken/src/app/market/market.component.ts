@@ -20,9 +20,8 @@ export class MarketComponent implements OnInit {
     setInterval(() => {
       this.refreshDisplay();
       setTimeout(() => {
-        error_notifications.check_dependency();
-        this.errorMsg = error_notifications.get_error_msg();
-      }, 1000);
+        this.updateErrorMsg();
+      }, 2000);
     }, 100);
   }
 
@@ -68,5 +67,10 @@ export class MarketComponent implements OnInit {
 
   isLoading() {
     return loading.prices();
+  }
+  
+  updateErrorMsg() {
+    error_notifications.check_dependency();
+    this.errorMsg = error_notifications.get_error_msg();
   }
 }

@@ -28,9 +28,8 @@ export class AccountComponent implements OnInit {
             // I've tried, trust me
             this.refreshDisplay();
             setTimeout(() => {
-                error_notifications.check_dependency();
-                this.errorMsg = error_notifications.get_error_msg();
-            }, 1000);
+                this.updateErrorMsg();
+            }, 2000);
         }, 100);
     }
 
@@ -49,5 +48,10 @@ export class AccountComponent implements OnInit {
 
     isLoading() {
         return loading.records();
+    }
+
+    updateErrorMsg() {
+        error_notifications.check_dependency();
+        this.errorMsg = error_notifications.get_error_msg();
     }
 }

@@ -77,7 +77,7 @@ export class ProposalComponent implements OnInit {
     tokenList: any;
     transactionId: '';
     kroRedeemed: '';
-    s = document.createElement("script");
+    graphWidget = document.createElement("script");
 
 
     openchangefundModal() {
@@ -130,10 +130,7 @@ export class ProposalComponent implements OnInit {
 
     ngOnInit() {
 
-        this.s.type = "text/javascript";
-        this.s.async = true;
-        this.s.innerHTML = '{"symbol": "BINANCE:ETHUSD","width": "383","height": "287","class":"peter","locale": "en","dateRange": "1m","colorTheme": "light","trendLineColor": "#37a6ef","underLineColor": "#e3f2fd","isTransparent": false,"autosize": false,"largeChartUrl": ""}';
-        this.s.src = "https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js";
+        this.createWidget();
         error_notifications.set_error_msg("");
 
 
@@ -144,9 +141,8 @@ export class ProposalComponent implements OnInit {
             this.user_address = user.address();
 
             setTimeout(() => {
-                error_notifications.check_dependency();
-                this.errorMsg = error_notifications.get_error_msg();
-            }, 1000);
+                this.updateErrorMsg();
+            }, 2000);
             
       
         }, 100);
@@ -157,7 +153,7 @@ export class ProposalComponent implements OnInit {
             if (open) {
                 this.state = 'open';
                 this.active = true;
-                this.elementRef.nativeElement.querySelector('#chartview').appendChild(this.s);
+                this.elementRef.nativeElement.querySelector('#chartview').appendChild(this.graphWidget);
             }
 
             if (!open) {
@@ -327,10 +323,9 @@ export class ProposalComponent implements OnInit {
         this.selectedTokenSymbol = value;
         const price = tokens.asset_symbol_to_price(this.selectedTokenSymbol);
         this.tradeAssetval = price;
-        this.s.innerHTML = 
-        '{"symbol": "BINANCE:' + "" + this.selectedTokenSymbol + 'USD","width": "383","height": "287","class":"peter","locale": "en","dateRange": "1m","colorTheme": "light","trendLineColor": "#37a6ef","underLineColor": "#e3f2fd","isTransparent": false,"autosize": false,"largeChartUrl": ""}';
+        this.graphWidget.innerHTML = '{"symbol": "BINANCE:' + "" + this.selectedTokenSymbol + 'USD","width": "383","height": "287","class":"peter","locale": "en","dateRange": "1m","colorTheme": "light","trendLineColor": "#37a6ef","underLineColor": "#e3f2fd","isTransparent": false,"autosize": false,"largeChartUrl": ""}';
         $('#chartview').html('');
-        $('#chartview').append(this.s);
+        $('#chartview').append(this.graphWidget);
         return event;
     }
 
@@ -370,5 +365,17 @@ export class ProposalComponent implements OnInit {
 
     isLoading() {
         return loading.investments();
+    }
+
+    createWidget() {
+        this.graphWidget.type = "text/javascript";
+        this.graphWidget.async = true;
+        this.graphWidget.innerHTML = '{"symbol": "BINANCE:ETHUSD","width": "383","height": "287","class":"peter","locale": "en","dateRange": "1m","colorTheme": "light","trendLineColor": "#37a6ef","underLineColor": "#e3f2fd","isTransparent": false,"autosize": false,"largeChartUrl": ""}';
+        this.graphWidget.src = "https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js";
+    }
+
+    updateErrorMsg() {
+        error_notifications.check_dependency();
+        this.errorMsg = error_notifications.get_error_msg();
     }
 }

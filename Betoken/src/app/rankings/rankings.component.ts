@@ -23,9 +23,8 @@ export class RankingsComponent implements OnInit {
     setInterval(() => {
       this.refreshDisplay();
       setTimeout(() => {
-        error_notifications.check_dependency();
-        this.errorMsg = error_notifications.get_error_msg();
-      }, 1000);
+        this.updateErrorMsg();
+      }, 2000);
     }, 100);
   }
 
@@ -43,5 +42,10 @@ export class RankingsComponent implements OnInit {
 
   isLoading() {
     return loading.ranking();
+  }
+
+  updateErrorMsg() {
+    error_notifications.check_dependency();
+    this.errorMsg = error_notifications.get_error_msg();
   }
 }

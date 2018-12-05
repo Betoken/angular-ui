@@ -146,9 +146,8 @@ export class InvestComponent implements OnInit {
                 }
             }
             setTimeout(() => {
-                error_notifications.check_dependency();
-                this.errorMsg = error_notifications.get_error_msg();
-            }, 1000);
+                this.updateErrorMsg();
+            }, 2000);
         }, 100);
 
         this.carouselBanner = {
@@ -383,5 +382,10 @@ export class InvestComponent implements OnInit {
                 data: rois
             }]
         });
+    }
+
+    updateErrorMsg() {
+        error_notifications.check_dependency();
+        this.errorMsg = error_notifications.get_error_msg();
     }
 }

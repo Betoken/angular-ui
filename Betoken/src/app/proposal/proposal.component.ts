@@ -6,6 +6,9 @@ import BigNumber from 'bignumber.js';
 import { isUndefined } from 'util';
 import {DomSanitizer} from "@angular/platform-browser";
 
+declare var jquery:any;
+declare var $ :any;
+
 @Component({
     selector: 'app-proposal',
     templateUrl: './proposal.component.html',
@@ -74,6 +77,7 @@ export class ProposalComponent implements OnInit {
     tokenList: any;
     transactionId: '';
     kroRedeemed: '';
+    s = document.createElement("script");
 
 
     openchangefundModal() {
@@ -126,11 +130,10 @@ export class ProposalComponent implements OnInit {
 
     ngOnInit() {
 
-        const s = document.createElement("script");
-        s.type = "text/javascript";
-        s.async = true;
-        s.innerHTML = '{"symbol": "BINANCE:ETHUSD","width": "383","height": "287","class":"peter","locale": "en","dateRange": "1m","colorTheme": "light","trendLineColor": "#37a6ef","underLineColor": "#e3f2fd","isTransparent": false,"autosize": false,"largeChartUrl": ""}';
-        s.src = "https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js";
+        this.s.type = "text/javascript";
+        this.s.async = true;
+        this.s.innerHTML = '{"symbol": "BINANCE:ETHUSD","width": "383","height": "287","class":"peter","locale": "en","dateRange": "1m","colorTheme": "light","trendLineColor": "#37a6ef","underLineColor": "#e3f2fd","isTransparent": false,"autosize": false,"largeChartUrl": ""}';
+        this.s.src = "https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js";
         error_notifications.set_error_msg("");
 
 
@@ -144,8 +147,8 @@ export class ProposalComponent implements OnInit {
                 error_notifications.check_dependency();
                 this.errorMsg = error_notifications.get_error_msg();
             }, 1000);
-            s.innerHTML = '{"symbol": "BINANCE:' + "" + this.selectedTokenSymbol + 'USD","width": "383","height": "287","class":"peter","locale": "en","dateRange": "1m","colorTheme": "light","trendLineColor": "#37a6ef","underLineColor": "#e3f2fd","isTransparent": false,"autosize": false,"largeChartUrl": ""}';
-
+            
+      
         }, 100);
 
 
@@ -154,7 +157,7 @@ export class ProposalComponent implements OnInit {
             if (open) {
                 this.state = 'open';
                 this.active = true;
-                this.elementRef.nativeElement.querySelector('#chartview').appendChild(s);
+                this.elementRef.nativeElement.querySelector('#chartview').appendChild(this.s);
             }
 
             if (!open) {
@@ -324,6 +327,10 @@ export class ProposalComponent implements OnInit {
         this.selectedTokenSymbol = value;
         const price = tokens.asset_symbol_to_price(this.selectedTokenSymbol);
         this.tradeAssetval = price;
+        this.s.innerHTML = 
+        '{"symbol": "BINANCE:' + "" + this.selectedTokenSymbol + 'USD","width": "383","height": "287","class":"peter","locale": "en","dateRange": "1m","colorTheme": "light","trendLineColor": "#37a6ef","underLineColor": "#e3f2fd","isTransparent": false,"autosize": false,"largeChartUrl": ""}';
+        $('#chartview').html('');
+        $('#chartview').append(this.s);
         return event;
     }
 

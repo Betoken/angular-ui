@@ -16,6 +16,7 @@ export class MarketComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    error_notifications.set_error_msg("");
     setInterval(() => {
       this.refreshDisplay();
       setTimeout(() => {

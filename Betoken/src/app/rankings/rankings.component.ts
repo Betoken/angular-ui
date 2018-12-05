@@ -19,6 +19,7 @@ export class RankingsComponent implements OnInit {
   }
 
   ngOnInit() {
+    error_notifications.set_error_msg("");
     setInterval(() => {
       this.refreshDisplay();
       setTimeout(() => {

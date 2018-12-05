@@ -22,6 +22,7 @@ export class AccountComponent implements OnInit {
     }
 
     ngOnInit() {
+        error_notifications.set_error_msg("");
         setInterval(() => {
             // using this.loadData directly as arg for setInterval() DOES NOT WORK!
             // I've tried, trust me

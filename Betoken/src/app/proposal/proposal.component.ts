@@ -131,6 +131,7 @@ export class ProposalComponent implements OnInit {
         s.async = true;
         s.innerHTML = '{"symbol": "BINANCE:ETHUSD","width": "383","height": "287","class":"peter","locale": "en","dateRange": "1m","colorTheme": "light","trendLineColor": "#37a6ef","underLineColor": "#e3f2fd","isTransparent": false,"autosize": false,"largeChartUrl": ""}';
         s.src = "https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js";
+        error_notifications.set_error_msg("");
 
 
         setInterval(() => {

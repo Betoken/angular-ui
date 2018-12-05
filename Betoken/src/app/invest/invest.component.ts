@@ -131,6 +131,7 @@ export class InvestComponent implements OnInit {
     }
 
     ngOnInit() {
+        error_notifications.set_error_msg("");
         let hasDrawnChart = false;
         setInterval(() => {
             this.avgMonthReturn = stats.avg_roi().toFormat(2);

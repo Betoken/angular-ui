@@ -60,7 +60,7 @@
                                 <span class="value green-font" *ngIf = "+data.ROI >= 0">{{data.ROI.toFormat(4)}}%</span>
                                 <span class="value red-font" *ngIf = "0 > +data.ROI">{{data.ROI.toFormat(4)}}%</span>
                             </td>
-                            <td *ngIf = "data.isSold == false">
+                            <td class="pt-1" *ngIf = "data.isSold == false">
                                 <button class="outline-button active" (click)="sell(data)" style="background-color: #18daa3; color: white">SELL</button>
                             </td>
                         </tr>
@@ -161,34 +161,48 @@
             <p class="m-0 pb-4 black-font">Stake Kairo tokens to invest in crypto-assets.</p>
             <p class="m-0 pb-4 black-font">If the price of the asset goes up, you're rewarded with more Kairo.
                 More Kairo means more monthly commissions, as well as more money you can use for investing.</p>
-
-            <p>Select an asset</p>
-            <div class="mt-2 mb-3 outline-box w-100 d-flex  align-items-center justify-content-between">
-                <select id="selectedTokenSymbolidd"   class="border-0 betoken-font w-100" (change)="updateTokenSymbol($event.target.value)" class="border-0 betoken-font" >
-                    <option *ngFor = "let token of tokenList" >{{token}} </option>
-                </select>
-            </div>
-            <div class="trading-view">
-
-                <!-- TradingView Widget BEGIN -->
-                <div class="tradingview-widget-container">
-                  <div class="tradingview-widget-container__widget"></div>
-                  <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/BINANCE-{{selectedTokenSymbol}}USD/" rel="noopener" target="_blank"><span class="blue-text"> {{selectedTokenSymbol}}USD Rates</span></a> by TradingView</div>
-<div id="chartview"></div>
+            <div class="row">
+              <div class="col">
+                <p>Select an asset</p>
+                <div class="outline-box w-100 d-flex align-items-center justify-content-between">
+                    <select id="selectedTokenSymbolidd" class="border-0 betoken-font w-100" (change)="updateTokenSymbol($event.target.value)" class="border-0 betoken-font" >
+                        <option *ngFor = "let token of tokenList" >{{token}} </option>
+                    </select>
                 </div>
-                <!-- TradingView Widget END -->
-            </div>
-            <div class="token-price"*ngIf = "tradeAssetval !== undfined">
-                <p>Current Price on Kyber Network: <b>{{tradeAssetval}} DAI</b></p>
-            </div>
-            <div>
-                <p>24h change: <span [ngClass]="{'green-font': +getTokenDailyPriceChange(selectedTokenSymbol) >= 0, 'red-font': 0 > +getTokenDailyPriceChange(selectedTokenSymbol)}">{{getTokenDailyPriceChange(selectedTokenSymbol)}}%</span></p>
+              </div>
+              <div class="col">
+                <p>KRO to stake</p>
+                <input type="text" class="outline-box w-100 d-flex" (keyup) = "kairoInput($event)" placeholder="e.g. 1.0000">
+              </div>
             </div>
             <hr>
-            <p class="mt-4">
-                KRO to stake • Your Balance: {{kairo_balance}} KRO
-            </p>
-            <input type="text" class="outline-box w-100 d-flex" (keyup) = "kairoInput($event)" placeholder="e.g. 1.0000">
+            <div>
+                <p>Your balance: {{kairo_balance}} KRO</p>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col">
+                <div class="token-price" *ngIf = "tradeAssetval !== undfined">
+                    <p class="m-0">Current Price: <br><b>{{tradeAssetval}} DAI</b></p>
+                </div>
+              </div>
+              <div class="col">
+                <div>
+                    <p class="m-0">24h change: <br><span [ngClass]="{'green-font': +getTokenDailyPriceChange(selectedTokenSymbol) >= 0, 'red-font': 0 > +getTokenDailyPriceChange(selectedTokenSymbol)}">{{getTokenDailyPriceChange(selectedTokenSymbol)}}%</span></p>
+                </div>
+              </div>
+            </div>
+            <hr>
+            <p>Monthly market trend:</p>
+            <div class="trading-view">
+              <!-- TradingView Widget BEGIN -->
+              <div class="tradingview-widget-container">
+                <div class="tradingview-widget-container__widget"></div>
+                <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/BINANCE-{{selectedTokenSymbol}}USD/" rel="noopener" target="_blank"><span class="blue-text"> {{selectedTokenSymbol}}USD Rates</span></a> by TradingView</div>
+                <div id="chartview"></div>
+              </div>
+              <!-- TradingView Widget END -->
+            </div>
         </div>
 
         <div class="confirmation-sec" *ngIf="step2">
@@ -212,7 +226,7 @@
                 Your transaction is being saved on the Ethereum blockchain.
                 You can check its status on Etherscan.
             </p>
-            <div class="d-flex justify-content-center mb-5">
+            <div class="d-flex justify-content-center mb-3">
               <div class="spinner">
                   <div class="double-bounce1"></div>
                   <div class="double-bounce2"></div>
@@ -287,7 +301,7 @@
                 Your transaction is being saved on the Ethereum blockchain.
                 You can check its status on Etherscan.
             </p>
-            <div class="d-flex justify-content-center mb-5">
+            <div class="d-flex justify-content-center mb-3">
               <div class="spinner">
                   <div class="double-bounce1"></div>
                   <div class="double-bounce2"></div>
@@ -357,7 +371,7 @@
             <p class="m-0 pb-4 black-font">
                 Your transaction is being saved on the Ethereum blockchain. You can check its status on Etherscan.
             </p>
-            <div class="d-flex justify-content-center mb-5">
+            <div class="d-flex justify-content-center mb-3">
               <div class="spinner">
                   <div class="double-bounce1"></div>
                   <div class="double-bounce2"></div>

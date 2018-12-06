@@ -421,7 +421,6 @@ export class ProposalComponent implements OnInit {
         this.graphWidget.innerHTML = '{"symbol": "BINANCE:' + "" + this.selectedTokenSymbol + 'USD","width": "383","height": "287","class":"peter","locale": "en","dateRange": "1m","colorTheme": "light","trendLineColor": "#37a6ef","underLineColor": "#e3f2fd","isTransparent": false,"autosize": false,"largeChartUrl": ""}';
         $('#chartview').html('');
         $('#chartview').append(this.graphWidget);
-        console.log($('#chartview'));
     }
 
     updateErrorMsg() {

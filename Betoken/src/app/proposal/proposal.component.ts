@@ -78,6 +78,39 @@ export class ProposalComponent implements OnInit {
     transactionId: '';
     kroRedeemed: '';
     graphWidget = document.createElement("script");
+    showWidget = true;
+    dailyPriceChange = 0;
+    widget_tokens = [
+        "ETH",
+        "AE",
+        "APPC",
+        "BAT",
+        "BLZ",
+        "BNB",
+        "BNT",
+        "DAT",
+        "ELF",
+        "ENJ",
+        "KNC",
+        "LEND",
+        "LINK",
+        "MANA",
+        "OMG",
+        "PAY",
+        "POLY",
+        "QKC",
+        "RCN",
+        "RDN",
+        "REP",
+        "REQ",
+        "SNT",
+        "STORM",
+        "WABI",
+        "WINGS",
+        "ZIL",
+        "ZRX"
+      ]
+      
 
 
     openchangefundModal() {
@@ -323,9 +356,7 @@ export class ProposalComponent implements OnInit {
         this.selectedTokenSymbol = value;
         const price = tokens.asset_symbol_to_price(this.selectedTokenSymbol);
         this.tradeAssetval = price;
-        this.graphWidget.innerHTML = '{"symbol": "BINANCE:' + "" + this.selectedTokenSymbol + 'USD","width": "383","height": "287","class":"peter","locale": "en","dateRange": "1m","colorTheme": "light","trendLineColor": "#37a6ef","underLineColor": "#e3f2fd","isTransparent": false,"autosize": false,"largeChartUrl": ""}';
-        $('#chartview').html('');
-        $('#chartview').append(this.graphWidget);
+        this.getTokenInfo();
         return event;
     }
 
@@ -367,11 +398,30 @@ export class ProposalComponent implements OnInit {
         return loading.investments();
     }
 
+    getTokenInfo() {
+        if (this.widget_tokens.indexOf(this.selectedTokenSymbol) >= 0) {
+            this.showWidget = true;
+            this.updateWidget();
+        }
+        else {
+            this.showWidget = false;
+            this.dailyPriceChange = this.getTokenDailyPriceChange(this.selectedTokenSymbol);
+        }
+
+    }
+
     createWidget() {
         this.graphWidget.type = "text/javascript";
         this.graphWidget.async = true;
         this.graphWidget.innerHTML = '{"symbol": "BINANCE:ETHUSD","width": "383","height": "287","class":"peter","locale": "en","dateRange": "1m","colorTheme": "light","trendLineColor": "#37a6ef","underLineColor": "#e3f2fd","isTransparent": false,"autosize": false,"largeChartUrl": ""}';
         this.graphWidget.src = "https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js";
+    }
+
+    updateWidget() {
+        this.graphWidget.innerHTML = '{"symbol": "BINANCE:' + "" + this.selectedTokenSymbol + 'USD","width": "383","height": "287","class":"peter","locale": "en","dateRange": "1m","colorTheme": "light","trendLineColor": "#37a6ef","underLineColor": "#e3f2fd","isTransparent": false,"autosize": false,"largeChartUrl": ""}';
+        $('#chartview').html('');
+        $('#chartview').append(this.graphWidget);
+        console.log($('#chartview'));
     }
 
     updateErrorMsg() {

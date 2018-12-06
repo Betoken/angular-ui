@@ -190,21 +190,23 @@
                 </div>
               </div>
               <div class="col">
-                <div>
-                    <p class="m-0">24h change: <br><span [ngClass]="{'green-font': +getTokenDailyPriceChange(selectedTokenSymbol) >= 0, 'red-font': 0 > +getTokenDailyPriceChange(selectedTokenSymbol)}">{{getTokenDailyPriceChange(selectedTokenSymbol)}}%</span></p>
+                <div *ngIf="showWidget === false">
+                    <p class="m-0">24h change: <br><span [ngClass]="{'green-font': +getTokenDailyPriceChange(selectedTokenSymbol) >= 0, 'red-font': 0 > +getTokenDailyPriceChange(selectedTokenSymbol)}">{{dailyPriceChange}}%</span></p>
                 </div>
               </div>
             </div>
             <hr>
-            <p>Monthly market trend:</p>
-            <div class="trading-view">
-              <!-- TradingView Widget BEGIN -->
-              <div class="tradingview-widget-container">
-                <div class="tradingview-widget-container__widget"></div>
-                <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/BINANCE-{{selectedTokenSymbol}}USD/" rel="noopener" target="_blank"><span class="blue-text"> {{selectedTokenSymbol}}USD Rates</span></a> by TradingView</div>
-                <div id="chartview"></div>
-              </div>
-              <!-- TradingView Widget END -->
+            <div *ngIf="showWidget === true">
+                <p>Monthly market trend:</p>
+                <div class="trading-view">
+                <!-- TradingView Widget BEGIN -->
+                <div class="tradingview-widget-container">
+                    <div class="tradingview-widget-container__widget"></div>
+                    <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/BINANCE-{{selectedTokenSymbol}}USD/" rel="noopener" target="_blank"><span class="blue-text"> {{selectedTokenSymbol}}USD Rates</span></a> by TradingView</div>
+                    <div id="chartview"></div>
+                </div>
+                <!-- TradingView Widget END -->
+                </div>
             </div>
         </div>
 

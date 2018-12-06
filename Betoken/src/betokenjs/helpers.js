@@ -178,6 +178,7 @@ export const manager_actions = {
     },
     new_investment: async function (tokenSymbol, amt, pending, confirm) {
         var address, error, kairoAmountInWeis, tokenSymbol;
+
         if (amt > user.kairo_balance()) {
             error_notifications.set_error_msg(INPUT_ERR);
         }

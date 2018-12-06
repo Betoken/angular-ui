@@ -6,9 +6,9 @@ const Data = require("./data-controller");
 const WRONG_NETWORK_ERR = "Please switch to Rinkeby Testnet in order to use Betoken Omen.";
 const SEND_TX_ERR = "There was an error during sending your transaction to the Ethereum blockchain. Please check that your inputs are valid and try again later.";
 const INPUT_ERR = "There was an error in your input. Please fix it and try again.";
-const NO_WEB3_ERR = "Betoken can only be used in a Web3 enabled browser. Please install <a target=\"_blank\" href=\"https://metamask.io/\">MetaMask</a> or switch to another browser that supports Web3. You can currently view the fund's data, but cannot make any interactions.";
+const NO_WEB3_ERR = "Betoken can only be used in a Web3 enabled browser. Please install MetaMask or switch to another browser that supports Web3. You can currently view the fund's data, but cannot make any interactions.";
 const METAMASK_LOCKED_ERR = "Your browser seems to be Web3 enabled, but you need to unlock your account to interact with Betoken.";
-const DEPENDENCY_ERR = "Check if you are on a web3 enabled browser, on the rinkeby testnet and connected to Metamask";
+const DEPENDENCY_ERR = "Failed to connect to the Ethereum blockchain. Check if you are using a Web3 enabled browser, on the Rinkeby Testnet, and unlocked your wallet";
 
 var error_msg = "";
 
@@ -26,6 +26,8 @@ export const error_notifications = {
         else {
             if (network.has_web3() === false) {
                 error_notifications.set_error_msg(NO_WEB3_ERR);
+            } else {
+                error_notifications.set_error_msg('');
             }
         }
     }

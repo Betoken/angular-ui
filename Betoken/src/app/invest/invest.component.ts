@@ -145,9 +145,7 @@ export class InvestComponent implements OnInit {
                     this.drawChart();
                 }
             }
-            setTimeout(() => {
-                this.updateErrorMsg();
-            }, 2000);
+            this.updateErrorMsg();
         }, 100);
 
         this.carouselBanner = {

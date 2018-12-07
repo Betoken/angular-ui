@@ -186,18 +186,13 @@ export const manager_actions = {
     new_investment: async function (tokenSymbol, amt, pending, confirm) {
         var address, error, kairoAmountInWeis, tokenSymbol;
 
-        if (amt > user.kairo_balance()) {
-            error_notifications.set_error_msg(INPUT_ERR);
-        }
-        else {
-            try {
-                address = (await betoken.tokenSymbolToAddress(tokenSymbol));
-                kairoAmountInWeis = BigNumber(amt).times("1e18"); 
-                betoken.createInvestment(address, kairoAmountInWeis, pending, confirm);
-                return;
-            } catch (error) {
-                error_notifications.set_error_msg(SEND_TX_ERR);
-            }
+        try {
+            address = (await betoken.tokenSymbolToAddress(tokenSymbol));
+            kairoAmountInWeis = BigNumber(amt).times("1e18"); 
+            betoken.createInvestment(address, kairoAmountInWeis, pending, confirm);
+            return;
+        } catch (error) {
+            error_notifications.set_error_msg(SEND_TX_ERR);
         }
     },
     redeem_commission: async function (pending, confirm) {

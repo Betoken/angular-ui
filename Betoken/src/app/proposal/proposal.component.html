@@ -183,14 +183,14 @@
                 <p>Your available balance: <span class="text-dark">{{kairo_balance}} KRO</span></p>
             </div>
             <hr>
-            <div class="row">
+            <div class="row" *ngIf="showWidget === false">
               <div class="col">
                 <div class="token-price" *ngIf = "tradeAssetval !== undfined">
                     <p class="m-0">Current Price: <br><span class="text-dark">{{tradeAssetval}} DAI</span></p>
                 </div>
               </div>
               <div class="col">
-                <div *ngIf="showWidget === false">
+                <div>
                     <p class="m-0">24h change: <br><span [ngClass]="{'green-font': +getTokenDailyPriceChange(selectedTokenSymbol) >= 0, 'red-font': 0 > +getTokenDailyPriceChange(selectedTokenSymbol)}">{{dailyPriceChange}}%</span></p>
                 </div>
               </div>

@@ -88,7 +88,6 @@ export class ProposalComponent implements OnInit {
         "BLZ",
         "BNB",
         "BNT",
-        "DAT",
         "ELF",
         "ENJ",
         "KNC",

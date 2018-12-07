@@ -182,7 +182,7 @@
             <div>
                 <p>Your available balance: <span class="text-dark">{{kairo_balance}} KRO</span></p>
             </div>
-            <hr>
+            <hr *ngIf="showWidget === false">
             <div class="row" *ngIf="showWidget === false">
               <div class="col">
                 <div class="token-price" *ngIf = "tradeAssetval !== undfined">
@@ -195,7 +195,7 @@
                 </div>
               </div>
             </div>
-            <hr>
+            <hr *ngIf="showWidget === true">
             <div *ngIf="showWidget === true">
                 <p>Monthly market trend:</p>
                 <div class="trading-view">

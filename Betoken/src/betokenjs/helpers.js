@@ -8,8 +8,7 @@ const SEND_TX_ERR = "There was an error during sending your transaction to the E
 const INPUT_ERR = "There was an error in your input. Please fix it and try again.";
 const NO_WEB3_ERR = "Betoken can only be used in a Web3 enabled browser. Please install MetaMask or switch to another browser that supports Web3. You can currently view the fund's data, but cannot make any interactions.";
 const METAMASK_LOCKED_ERR = "Your browser seems to be Web3 enabled, but you need to unlock your account to interact with Betoken.";
-const DEPENDENCY_ERR = "Failed to connect to the Ethereum blockchain. Check if you are using a Web3 enabled browser, on the Rinkeby Testnet, and unlocked your wallet";
-
+const DEPENDENCY_ERR = "Please enable MetaMask or visit this page in a Web3 browser to interact with Betoken on Rinkeby Testnet."
 var error_msg = "";
 
 // exports

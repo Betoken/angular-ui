@@ -1,0 +1,46 @@
+.ranking-wrapper{
+    position: relative;
+    display: block;
+    top: 112px;
+    .ranking-table-sec{
+        .sec-header{
+          padding: 6px 0;
+        }
+        .table-responsive{
+            margin: 0 0 24px;
+            .ranking-table{
+                text-align: left !important;
+                white-space: nowrap !important;
+                thead{
+                    font-size: 14px;
+                    th{
+                        border: none !important;
+                        font-weight: normal;
+                    }
+                }
+                tbody{
+                    td{
+                        border-top: none !important;
+                        height: 48px;
+                    }
+                    tr{
+                      padding: 14px 0;
+                    }
+                    .user-wallet-address{
+                      display: inline-block;
+                      width: 300px;
+                      white-space: nowrap;
+                      overflow: hidden;
+                      text-overflow: ellipsis;
+                    }
+                    .user-kro-balance{
+                    }
+                }
+                .table-seperator{
+                    border-bottom: 1px solid #d1dcdf;
+                }
+            }
+        }
+
+    }
+}

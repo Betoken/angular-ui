@@ -1,0 +1,50 @@
+<div class="preheader-container">
+  <div class="preheader-content">
+    <p>Join our Initial Account Offering to get referral bonus — <a href="https://betoken.fund/iao/" target="_blank">GET STARTED</a></p>
+  </div>
+</div>
+<header class="col-md-12 col-lg-12">
+  <div class="row d-flex align-items-center">
+    <div class="col-1 pr-0 nav-wrapper d-lg-none">
+      <nav class="navbar navbar-light p-0">
+        <button class="navbar-toggler p-0" type="button" (click)="toggle()">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </nav>
+    </div>
+    <div class="col-2">
+      <div class="logo pointer">
+          <a target="_blank" href="https://betoken.fund">
+              <img src="assets/images/betoken-logo.png" class="header-logo" width="148">
+          </a>
+      </div>
+
+      <div class="notification-bar pointer mt-3">
+          <div class="bt-notifications notification-icon"></div>
+      </div>
+    </div>
+    <div class="col-9 col-lg-5 d-flex align-items-center" *ngIf="checkRouterURL('/invest') === false">
+      <div class="portfolio-desc">
+        <p class="portfolio-title betoken-font m-0">Kairo balance</p>
+        <p class="portfolio-value black-font m-0 ellipseDesign" >{{kairo_balance}} KRO</p>
+      </div>
+      <div class="portfolio-desc ml-4">
+        <p class="portfolio-title betoken-font m-0">Monthly P/L</p>
+        <p class="portfolio-value m-0" [ngClass]="{'green-font': +monthly_pl >= 0, 'red-font': 0 > +monthly_pl}">{{monthly_pl}}%</p>
+      </div>
+      <div class="portfolio-desc ml-4">
+        <p class="portfolio-title betoken-font m-0">Est. Commission</p>
+        <p class="portfolio-value black-font m-0">{{expected_commission}} DAI</p>
+      </div>
+    </div>
+
+    <div class="col-5 text-right">
+      <div *ngIf="checkRouterURL('/invest') === false">
+        <button class="btn active mr-4" (click)="proposalPopup()" *ngIf="phase == 1">TRADE ASSSETS</button>
+        <button class="btn active mr-4" routerLink="/redeem" (click)="redeemPopup()" *ngIf="phase == 2 && can_redeem_commission">REDEEM COMMISSION</button>
+        <button class="btn btn-outline-secondary text-secondary bg-transparent connected-user-wallet-address" *ngIf="user_address !== '0x0'">🦊 {{user_address}}</button>
+        <button class="btn btn-outline-secondary text-secondary bg-white connected-user-wallet-address" *ngIf="user_address == '0x0'">No Account</button>
+      </div>
+    </div>
+  </div>
+</header>

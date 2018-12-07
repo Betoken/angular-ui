@@ -25,7 +25,7 @@
             <div class="mt-2 mb-4 outline-box w-100 d-flex  align-items-center justify-content-between">
                 <select class="border-0 betoken-font w-100" (change)="updateRedeemOption($event)">
                     <option>DAI Stablecoin</option>
-                    <option>Betoken Shares</option>
+                    <option>BTKS Betoken Shares</option>
                 </select>
             </div>
             <div>
@@ -33,7 +33,7 @@
                     Total commission value
                 </p>
             </div>
-            <div class="mt-2 outline-box w-100 d-flex  align-items-center justify-content-between">
+            <div class="mt-2 outline-box w-100 d-flex align-items-center justify-content-between">
                 <p class="m-0">{{redeemcommissionvalue}} DAI</p>
             </div>
 
@@ -61,16 +61,17 @@
                 You can check its status on Etherscan.
             </p>
             <div class="d-flex justify-content-center mb-5">
-                <img src="assets/images/loader.png">
+              <div class="spinner">
+                  <div class="double-bounce1"></div>
+                  <div class="double-bounce2"></div>
+              </div>
             </div>
             <p>
                 Transaction ID
             </p>
             <div class="mt-2 outline-box w-100 d-flex align-items-center justify-content-between">
-
               <input class="tx-hash" type="text" name="" value="{{transactionId}}">
               <a class="link-tx-hash" href="https://rinkeby.etherscan.io/tx/{{transactionId}}" target="_blank"> <img src="assets/images/ic_launch_black_24px.svg" class="pointer ml-2"> </a>
-
             </div>
         </div>
 
@@ -88,17 +89,15 @@
                 Transaction ID
             </p>
             <div class="mt-2 outline-box w-100 d-flex align-items-center justify-content-between bg-white">
-                    <div clas = "overflowDesign">
-                        <p class="m-0">{{transactionId}}</p>
-                        <a href="https://rinkeby.etherscan.io/tx/{{transactionId}}" target="_blank"> <img src="assets/images/export.png" class="pointer ml-1"> </a>
-                    </div>
+                <div class="overflowDesign">
+                    <p class="m-0">{{transactionId}}</p>
+                    <a href="https://rinkeby.etherscan.io/tx/{{transactionId}}" target="_blank"> <img src="assets/images/export.png" class="pointer ml-1"> </a>
+                </div>
             </div>
-
         </div>
-
         <div class="modal-button-wrapper">
-                <button class="text-center outline-button active w-100" (click)="redeem()" *ngIf= "step1">REDEEM COMMSSIONS</button>
-                <button class="text-center outline-button active w-100" (click)="closePopup()" *ngIf= "step4">REDEEM SUCCESSFUL</button>
+            <button class="text-center outline-button active w-100" (click)="redeem()" *ngIf= "step1">REDEEM COMMSSIONS</button>
+            <button class="text-center outline-button active w-100" (click)="closePopup()" *ngIf= "step4">CLOSE PANEL</button>
         </div>
 
     </div>

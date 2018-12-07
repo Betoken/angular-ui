@@ -1,9 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, Renderer2, ViewChild} from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { AppComponent } from '../app.component';
-import { user, timer, manager_actions, loading, tokens, refresh_actions } from '../../betokenjs/helpers';
+import { user, timer, manager_actions, loading, tokens, refresh_actions, error_notifications} from '../../betokenjs/helpers';
 import BigNumber from 'bignumber.js';
 import { isUndefined } from 'util';
+import {DomSanitizer} from "@angular/platform-browser";
+
+declare var jquery:any;
+declare var $ :any;
 
 @Component({
     selector: 'app-proposal',
@@ -24,6 +28,7 @@ import { isUndefined } from 'util';
 })
 
 export class ProposalComponent implements OnInit {
+
     state: string;
     active: boolean;
 
@@ -72,6 +77,39 @@ export class ProposalComponent implements OnInit {
     tokenList: any;
     transactionId: '';
     kroRedeemed: '';
+    graphWidget = document.createElement("script");
+    showWidget = true;
+    dailyPriceChange = 0;
+    widget_tokens = [
+        "ETH",
+        "AE",
+        "APPC",
+        "BAT",
+        "BLZ",
+        "BNB",
+        "BNT",
+        "ELF",
+        "ENJ",
+        "KNC",
+        "LEND",
+        "LINK",
+        "MANA",
+        "OMG",
+        "PAY",
+        "POLY",
+        "QKC",
+        "RCN",
+        "RDN",
+        "REP",
+        "REQ",
+        "SNT",
+        "STORM",
+        "WABI",
+        "WINGS",
+        "ZIL",
+        "ZRX"
+      ]
+      
 
 
     openchangefundModal() {
@@ -79,8 +117,11 @@ export class ProposalComponent implements OnInit {
         this.ms.setproposalPopUp();
     }
 
+    errorMsg = '';
+    user_address = '0x0';
 
-    constructor(private ms: AppComponent) {
+    constructor(private ms: AppComponent, private elementRef: ElementRef,private renderer:Renderer2) {
+
         this.state = 'close';
         this.active = false;
 
@@ -120,17 +161,26 @@ export class ProposalComponent implements OnInit {
     }
 
     ngOnInit() {
+
+        this.createWidget();
+        error_notifications.set_error_msg("");
+
+
         setInterval(() => {
             this.updateDates();
             this.refreshDisplay();
             this.tokenList = tokens.token_list();
+            this.user_address = user.address();
+            this.updateErrorMsg();
         }, 100);
+
 
         this.ms.getproposalPopUp().subscribe((open: boolean) => {
 
             if (open) {
                 this.state = 'open';
                 this.active = true;
+                this.elementRef.nativeElement.querySelector('#chartview').appendChild(this.graphWidget);
             }
 
             if (!open) {
@@ -300,6 +350,7 @@ export class ProposalComponent implements OnInit {
         this.selectedTokenSymbol = value;
         const price = tokens.asset_symbol_to_price(this.selectedTokenSymbol);
         this.tradeAssetval = price;
+        this.getTokenInfo();
         return event;
     }
 
@@ -339,5 +390,43 @@ export class ProposalComponent implements OnInit {
 
     isLoading() {
         return loading.investments();
+    }
+
+    getTokenInfo() {
+        if (this.widget_tokens.indexOf(this.selectedTokenSymbol) >= 0) {
+            this.showWidget = true;
+            this.updateWidget();
+        }
+        else {
+            this.showWidget = false;
+            this.dailyPriceChange = this.getTokenDailyPriceChange(this.selectedTokenSymbol);
+        }
+
+    }
+
+    createWidget() {
+        try {
+            this.graphWidget.type = "text/javascript";
+            this.graphWidget.async = true;
+            this.graphWidget.innerHTML = '{"symbol": "BINANCE:ETHUSD","width": "383","height": "287","class":"peter","locale": "en","dateRange": "1m","colorTheme": "light","trendLineColor": "#37a6ef","underLineColor": "#e3f2fd","isTransparent": false,"autosize": false,"largeChartUrl": ""}';
+            this.graphWidget.src = "https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js";
+        }
+        catch(error) {
+        }
+    }
+
+    updateWidget() {
+        try {
+            this.graphWidget.innerHTML = '{"symbol": "BINANCE:' + "" + this.selectedTokenSymbol + 'USD","width": "383","height": "287","class":"peter","locale": "en","dateRange": "1m","colorTheme": "light","trendLineColor": "#37a6ef","underLineColor": "#e3f2fd","isTransparent": false,"autosize": false,"largeChartUrl": ""}';
+            $('#chartview').html('');
+            $('#chartview').append(this.graphWidget);
+        }
+        catch(error){
+        }
+    }
+
+    updateErrorMsg() {
+        error_notifications.check_dependency();
+        this.errorMsg = error_notifications.get_error_msg();
     }
 }

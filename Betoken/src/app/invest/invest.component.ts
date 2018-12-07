@@ -10,7 +10,7 @@ import { } from 'jquery';
 declare var $: any;
 
 import {
-    user, timer, stats, investor_actions, tokens
+    user, timer, stats, investor_actions, tokens, error_notifications
 } from '../../betokenjs/helpers';
 
 @Component({
@@ -83,6 +83,7 @@ export class InvestComponent implements OnInit {
     rankingArray = [];
 
     transactionId: '';
+    errorMsg = '';
 
     openModalPopup() {
         this.ms.setPopUp();
@@ -130,6 +131,7 @@ export class InvestComponent implements OnInit {
     }
 
     ngOnInit() {
+        error_notifications.set_error_msg("");
         let hasDrawnChart = false;
         setInterval(() => {
             this.avgMonthReturn = stats.avg_roi().toFormat(2);
@@ -143,6 +145,7 @@ export class InvestComponent implements OnInit {
                     this.drawChart();
                 }
             }
+            this.updateErrorMsg();
         }, 100);
 
         this.carouselBanner = {
@@ -377,5 +380,10 @@ export class InvestComponent implements OnInit {
                 data: rois
             }]
         });
+    }
+
+    updateErrorMsg() {
+        error_notifications.check_dependency();
+        this.errorMsg = error_notifications.get_error_msg();
     }
 }

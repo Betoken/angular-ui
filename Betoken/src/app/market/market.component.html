@@ -1,7 +1,32 @@
-<div class="market-wrapper col-12 col-lg-10 float-right mt-2">
-    <div class="row">
+<div class="market-wrapper col-12 col-lg-10 float-right">
+      <div class="row">
+        <div class="alert-window" *ngIf="errorMsg !== '' ">
+            <div class="alert bg-primary d-flex justify-content-between align-items-center col-12">
+                <p class="m-0">{{errorMsg}}</p>
+            </div>
+        </div>
+        <div class="alert-window" *ngIf="sellalert">
+            <div class="alert bg-warning d-flex justify-content-between align-items-center col-12">
+                <p class="m-0">🚨 Sell your assets to redeem all your KRO staked before cycle’s end. <a href="https://medium.com/betoken/the-ultimate-guide-to-betoken-omen-39adfe204296" target="_blank">More info</a>.</p>
+                <button class="btn btn-link text-center alert-button" (click)="hidealert()">DISMISS</button>
+            </div>
+        </div>
+
+        <div class="alert-window" *ngIf="nextphasealert">
+            <div class="alert bg-warning d-flex justify-content-between align-items-center col-12">
+                <p class="m-0">🚨 Current phase has ended.</p>
+                <button class="btn btn-link text-center alert-button" (click)="hidechangealert()">DISMISS</button>
+            </div>
+        </div>
+
+        <div class="alert-window" *ngIf="redeemalert">
+            <div class="alert bg-warning d-flex justify-content-between align-items-center col-12">
+                <p class="m-0">🚨 Redeem your commissions before the phase ends. <a href="https://medium.com/betoken/the-ultimate-guide-to-betoken-omen-39adfe204296" target="_blank">More info</a>.</p>
+                <button class="btn btn-link text-center alert-button" routerLink="/redeem">REDEEM COMMISSSION</button>
+            </div>
+        </div>
         <div class="proposal-table-sec col-8">
-            <div class="sec-header d-flex justify-content-between align-items-center pb-1">
+            <div class="sec-header d-flex justify-content-between align-items-center">
                 <p class="sec-title">Market</p>
                 <button class="text-center outline-button" (click) = "refresh()">
                     <span *ngIf="isLoading() == false">REFRESH</span>
@@ -37,21 +62,24 @@
         </div>
 
         <div class="email-update-sec col-4 col-md-3 col-lg-4 mb-3">
-
+            <!-- how to use betoken start -->
+            <div class="sec-header">
+                <p class="sec-title">How to join Betoken Beta?</p>
+            </div>
+            <div class="alert-window">
+                <div class="alert bg-primary py-3 cards rounded" role="alert">
+                  <a class="alert-link" href="https://betoken.fund/iao/" target="_blank">Create a manager account</a> by participating in our Initial Account Offering (IAO). You will receive Kairo --- Betoken's utility token necessary for managing the fund. Testnet Kairo will be credited at the end of each investment cycle (check the timer in the sidebar). 
+                </div>
+            </div>
+            <!-- how to use betoken END -->
             <div class="sec-header">
                 <p class="sec-title">Receive updates</p>
             </div>
-
             <div class="cards">
-
                 <p class="update-info black-font">
                     Get updates about the fund status, beginning of new investment cycle phases and date to redeem commissions.
                 </p>
-
-                <p>
-                    Email address
-                </p>
-
+                <p>Email address</p>
                 <form action="https://fund.us17.list-manage.com/subscribe/post?u=9c0647dcb587985ed6121cdf6&amp;id=150e0f091e" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
                     <div class="emailer-box">
                         <input class="outline-button w-100 mb-3" type="email" value="" name="EMAIL" id="mce-EMAIL" placeholder="myemail@address.com" required>
@@ -63,7 +91,6 @@
                         </div>
                     </div>
                 </form>
-
                 <div class="update-footer">
                     <a target="_blank" href="https://t.me/betokenfund">
                         <p class="black-font" style="text-align: center;">

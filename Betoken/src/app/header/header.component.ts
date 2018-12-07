@@ -47,12 +47,12 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     setInterval(() => {
-      this.user_address = user.address();
       this.kairo_balance = user.portfolio_value().toFormat(10);
       this.monthly_pl = user.monthly_roi().toFormat(4);
       this.expected_commission = user.expected_commission().toFormat(4);
       this.curr_network = network.network_prefix();
-      this.updateDates();
+      this.updateDates();    
+      this.user_address = user.address();
       this.can_redeem_commission = user.can_redeem_commission();
     }, 100);
 

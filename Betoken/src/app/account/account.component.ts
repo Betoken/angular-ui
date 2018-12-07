@@ -3,7 +3,8 @@ import {
     user,
     network,
     loading,
-    refresh_actions
+    refresh_actions,
+    error_notifications
 } from '../../betokenjs/helpers';
 
 
@@ -16,14 +17,17 @@ export class AccountComponent implements OnInit {
     transactionTable: Array<Object>;
     transactionNetwork: String;
 
+    errorMsg = '';
     constructor() {
     }
 
     ngOnInit() {
+        error_notifications.set_error_msg("");
         setInterval(() => {
             // using this.loadData directly as arg for setInterval() DOES NOT WORK!
             // I've tried, trust me
             this.refreshDisplay();
+            this.updateErrorMsg();
         }, 100);
     }
 
@@ -42,5 +46,10 @@ export class AccountComponent implements OnInit {
 
     isLoading() {
         return loading.records();
+    }
+
+    updateErrorMsg() {
+        error_notifications.check_dependency();
+        this.errorMsg = error_notifications.get_error_msg();
     }
 }

@@ -5,26 +5,6 @@
                 <p class="m-0">{{errorMsg}}</p>
             </div>
         </div>
-        <div class="alert-window" *ngIf="sellalert">
-            <div class="alert bg-warning d-flex justify-content-between align-items-center col-12">
-                <p class="m-0">🚨 Sell your assets to redeem all your KRO staked before cycle’s end. <a href="https://medium.com/betoken/the-ultimate-guide-to-betoken-omen-39adfe204296" target="_blank">More info</a>.</p>
-                <button class="btn btn-link text-center alert-button" (click)="hidealert()">DISMISS</button>
-            </div>
-        </div>
-
-        <div class="alert-window" *ngIf="nextphasealert">
-            <div class="alert bg-warning d-flex justify-content-between align-items-center col-12">
-                <p class="m-0">🚨 Current phase has ended.</p>
-                <button class="btn btn-link text-center alert-button" (click)="hidechangealert()">DISMISS</button>
-            </div>
-        </div>
-
-        <div class="alert-window" *ngIf="redeemalert">
-            <div class="alert bg-warning d-flex justify-content-between align-items-center col-12">
-                <p class="m-0">🚨 Redeem your commissions before the phase ends. <a href="https://medium.com/betoken/the-ultimate-guide-to-betoken-omen-39adfe204296" target="_blank">More info</a>.</p>
-                <button class="btn btn-link text-center alert-button" routerLink="/redeem">REDEEM COMMISSSION</button>
-            </div>
-        </div>
         <div class="ranking-table-sec col-8">
             <div class="sec-header d-flex justify-content-between align-items-center">
                 <p class="sec-title">Manager Rankings</p>

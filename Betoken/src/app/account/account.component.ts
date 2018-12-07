@@ -27,9 +27,7 @@ export class AccountComponent implements OnInit {
             // using this.loadData directly as arg for setInterval() DOES NOT WORK!
             // I've tried, trust me
             this.refreshDisplay();
-            setTimeout(() => {
-                this.updateErrorMsg();
-            }, 2000);
+            this.updateErrorMsg();
         }, 100);
     }
 

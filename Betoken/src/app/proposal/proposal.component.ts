@@ -171,12 +171,7 @@ export class ProposalComponent implements OnInit {
             this.refreshDisplay();
             this.tokenList = tokens.token_list();
             this.user_address = user.address();
-
-            setTimeout(() => {
-                this.updateErrorMsg();
-            }, 2000);
-            
-      
+            this.updateErrorMsg();
         }, 100);
 
 

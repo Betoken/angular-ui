@@ -28,6 +28,7 @@
         <div class="proposal-table-sec col-8">
             <div class="sec-header d-flex justify-content-between align-items-center">
                 <p class="sec-title">Active Investments</p>
+                <input id="search-box" (keyup)="filterTable($event,'investment-table',0)">
                 <button class="text-center outline-button" (click) = "refresh()">
                     <span *ngIf="isLoading() == false">REFRESH</span>
                     <span *ngIf="isLoading()">Loading...</span>
@@ -45,7 +46,7 @@
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
-                    <tbody class="black-font">
+                    <tbody class="black-font" id="investment-table">
                         <tr *ngFor = "let data of activeInvestmentList">
                             <td class="identy pl-0">
                                 <div class="d-flex align-items-center">
@@ -70,6 +71,7 @@
 
             <div class="sec-header d-flex justify-content-between align-items-center">
                 <p class="sec-title">Past Investments</p>
+                <input id="search-box" (keyup)="filterTable($event,'past-investment-table',0)">
             </div>
             <div class="cards table-responsive">
                 <table class="table proposal-table">
@@ -82,7 +84,7 @@
                             <th scope="col">Redeemed KRO</th>
                         </tr>
                     </thead>
-                    <tbody class="black-font">
+                    <tbody class="black-font" id="past-investment-table">
                         <tr *ngFor = "let data of inactiveInvestmentList">
                             <td class="identy pl-0">
                                 <div class="d-flex align-items-center">

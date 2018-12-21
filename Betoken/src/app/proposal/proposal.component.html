@@ -28,10 +28,13 @@
         <div class="proposal-table-sec col-8">
             <div class="sec-header d-flex justify-content-between align-items-center">
                 <p class="sec-title">Active Investments</p>
-                <button class="text-center outline-button" (click) = "refresh()">
-                    <span *ngIf="isLoading() == false">REFRESH</span>
-                    <span *ngIf="isLoading()">Loading...</span>
-                </button>
+                <div class="d-flex justify-content-end">
+                  <input class="outline-box w-50 mr-3" id="search-box" (keyup)="filterTable($event,'investment-table',0)" placeholder="Search for asset...">
+                  <button class="text-center outline-button" (click) = "refresh()">
+                      <span *ngIf="isLoading() == false">REFRESH</span>
+                      <span *ngIf="isLoading()">Loading...</span>
+                  </button>
+                </div>
             </div>
             <div class="cards table-responsive">
                 <table class="table proposal-table">
@@ -45,7 +48,7 @@
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
-                    <tbody class="black-font">
+                    <tbody class="black-font" id="investment-table">
                         <tr *ngFor = "let data of activeInvestmentList">
                             <td class="identy pl-0">
                                 <div class="d-flex align-items-center">
@@ -70,6 +73,7 @@
 
             <div class="sec-header d-flex justify-content-between align-items-center">
                 <p class="sec-title">Past Investments</p>
+                <input class="outline-box w-25" id="search-box" (keyup)="filterTable($event,'past-investment-table',0)" placeholder="Search for asset...">
             </div>
             <div class="cards table-responsive">
                 <table class="table proposal-table">
@@ -82,7 +86,7 @@
                             <th scope="col">Redeemed KRO</th>
                         </tr>
                     </thead>
-                    <tbody class="black-font">
+                    <tbody class="black-font" id="past-investment-table">
                         <tr *ngFor = "let data of inactiveInvestmentList">
                             <td class="identy pl-0">
                                 <div class="d-flex align-items-center">
@@ -110,7 +114,7 @@
             </div>
             <div class="alert-window">
                 <div class="alert bg-primary py-3 cards rounded" role="alert">
-                  <a class="alert-link" href="https://betoken.fund/iao/" target="_blank">Create a manager account</a> by participating in our Initial Account Offering (IAO). You will receive Kairo --- Betoken's utility token necessary for managing the fund. Testnet Kairo will be credited at the end of each investment cycle (check the timer in the sidebar). 
+                  <a class="alert-link" href="https://betoken.fund/iao/" target="_blank">Create a manager account</a> by participating in our Initial Account Offering (IAO). You will receive Kairo --- Betoken's utility token necessary for managing the fund. Testnet Kairo will be credited at the end of each investment cycle (check the timer in the sidebar).
                 </div>
             </div>
             <!-- how to use betoken END -->

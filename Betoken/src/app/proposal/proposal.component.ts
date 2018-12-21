@@ -429,4 +429,19 @@ export class ProposalComponent implements OnInit {
         error_notifications.check_dependency();
         this.errorMsg = error_notifications.get_error_msg();
     }
+
+    filterTable = (event, tableID, searchID) => {
+        let searchInput = event.target.value.toLowerCase();
+        let entries = $(`#${tableID} tr`);
+        for (let i = 0; i < entries.length; i++) {
+            let entry = entries[i];
+            let searchTarget = entry.children[searchID];
+            if (searchTarget) {
+                if (searchTarget.innerText.toLowerCase().indexOf(searchInput) > -1)
+                    entry.style.display = "";
+                else
+                    entry.style.display = "none";
+            }    
+        }     
+    }
 }

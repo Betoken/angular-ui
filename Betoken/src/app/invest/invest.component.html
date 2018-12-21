@@ -38,27 +38,46 @@
                         </div>
                         <div class="content">
                             <div [chart]="stock" class="mb-3 befund-share-graph"></div>
-                            <div class="hilights row">
-                                <div class="key col-6 col-sm-6 col-md-5 d-flex align-items-center">
-                                    <div class="mr-3">
-                                        <img src="assets/images/average-monthy-roi.svg">
-                                    </div>
-                                    <div class="betoken-desc ml-2">
-                                        <p class="betoken-title betoken-font m-0">Avg. Monthly return</p>
-                                        <p class="betoken-value m-0" [ngClass]="{'green-font': +avgMonthReturn >= 0, 'red-font': 0 > +avgMonthReturn}">{{avgMonthReturn}}%</p>
-                                    </div>
+                            <div class="row mb-4">
+                                <div class="key col-6 d-flex align-items-center">
+                                  <div class="mr-3">
+                                      <img src="assets/images/average-monthy-roi.svg">
+                                  </div>
+                                  <div class="betoken-desc">
+                                    <p class="betoken-title betoken-font m-0">ROI (Since Inception)</p>
+                                    <p class="betoken-value black-font m-0" [ngClass]="{'green-font': +avgMonthReturn >= 0, 'red-font': 0 > +avgMonthReturn}">{{avgMonthReturn}}%</p>
+                                  </div>
                                 </div>
-
-                                <div class="key col-6 col-sm-6 col-md-5 d-flex align-items-center">
-                                    <div class="mr-3">
-                                        <img src="assets/images/users.svg">
-                                    </div>
-                                    <div class="betoken-desc ml-2">
-                                        <p class="betoken-title betoken-font m-0">Total Managers</p>
-                                        <p class="betoken-value black-font m-0">{{totalUser}}</p>
-                                    </div>
+                                <div class="key col-6 d-flex align-items-center">
+                                  <div class="mr-3">
+                                      <img src="assets/images/ic_sharpe_ratio.svg">
+                                  </div>
+                                  <div class="betoken-desc">
+                                    <p class="betoken-title betoken-font m-0">Sharpe Ratio <a href="#" data-toggle="tooltip" data-placement="top" title="Tooltip on top"><img class="ml-1 mx-auto" src="assets/images/outline-info-24px.svg" width="16"></a></p>
+                                    <p class="betoken-value black-font m-0"><span class="sharpe-ratio">Loading... </span></p>
+                                  </div>
                                 </div>
-                            </div>
+                              </div>
+                              <div class="row mb-4">
+                                <div class="key col-6 d-flex align-items-center">
+                                  <div class="mr-3">
+                                      <img src="assets/images/ic_standard_deviation.svg">
+                                  </div>
+                                  <div class="betoken-desc">
+                                    <p class="betoken-title betoken-font m-0">Standard Deviation <a href="#" data-toggle="tooltip" data-placement="top" title="Tooltip on top"><img class="ml-1 mx-auto" src="assets/images/outline-info-24px.svg" width="16"></a></p>
+                                    <p class="betoken-value black-font m-0"><span class="std">Loading... </span>%</p>
+                                  </div>
+                                </div>
+                                <div class="key col-6 d-flex align-items-center">
+                                  <div class="mr-3">
+                                      <img src="assets/images/users.svg">
+                                  </div>
+                                  <div class="betoken-desc ml-2">
+                                      <p class="betoken-title betoken-font m-0">Total Managers</p>
+                                      <p class="betoken-value black-font m-0">{{totalUser}}</p>
+                                  </div>
+                                </div>
+                              </div>
                         </div>
                     </div>
                 </div>
@@ -74,7 +93,7 @@
                     </div>
                     <div class="alert-window">
                         <div class="alert bg-primary py-3 cards rounded" role="alert">
-                          <a class="alert-link" href="https://betoken.fund/iao/" target="_blank">Create a manager account</a> by participating in our Initial Account Offering (IAO). You will receive Kairo --- Betoken's utility token necessary for managing the fund. Testnet Kairo will be credited at the end of each investment cycle (check the timer in the sidebar). 
+                          <a class="alert-link" href="https://betoken.fund/iao/" target="_blank">Create a manager account</a> by participating in our Initial Account Offering (IAO). You will receive Kairo --- Betoken's utility token necessary for managing the fund. Testnet Kairo will be credited at the end of each investment cycle (check the timer in the sidebar).
                         </div>
                     </div>
                     <!-- how to use betoken END -->

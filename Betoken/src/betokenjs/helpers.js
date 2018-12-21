@@ -59,14 +59,14 @@ export const user = {
         }
     },
     expected_commission: function () {
-        if (Data.kairoTotalSupply.get().greaterThan(0)) {
+        if (Data.kairoTotalSupply.get().gt(0)) {
             if (Data.cyclePhase.get() === 2) {
                 // Actual commission that will be redeemed
-                return Data.kairoBalance.get().div(Data.kairoTotalSupply.get()).mul(Data.cycleTotalCommission.get());
+                return Data.kairoBalance.get().div(Data.kairoTotalSupply.get()).times(Data.cycleTotalCommission.get());
             }
             // Expected commission based on previous average ROI
             var roi = Data.avgROI.get().gt(0) ? Data.avgROI.get() : BigNumber(0);
-            return Data.kairoBalance.get().div(Data.kairoTotalSupply.get()).mul(Data.totalFunds.get()).mul(roi.div(100).mul(Data.commissionRate.get()).add(Data.assetFeeRate.get()));
+            return Data.kairoBalance.get().div(Data.kairoTotalSupply.get()).times(Data.totalFunds.get()).times(roi.div(100).times(Data.commissionRate.get()).plus(Data.assetFeeRate.get()));
         }
         return BigNumber(0);
     },
@@ -101,7 +101,7 @@ export const stats = {
         if (Data.cyclePhase.get() === 2) {
             return Data.currROI.get();
         }
-        return Data.fundValue.get().sub(Data.totalFunds.get()).div(Data.totalFunds.get()).mul(100)
+        return Data.fundValue.get().minus(Data.totalFunds.get()).div(Data.totalFunds.get()).times(100)
     },
     raw_roi_data: () => Data.ROIArray.get(),
     ranking: () => Data.kairoRanking.get()
@@ -159,7 +159,7 @@ export const investor_actions = {
         var amount, error, tokenAddr, tokenSymbol;
         try {
             amount = BigNumber(amt);
-            if (!amount.greaterThan(0)) {
+            if (!amount.gt(0)) {
                 handledataError('Amount must be greater than zero.');
                 return;
             }

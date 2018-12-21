@@ -180,7 +180,7 @@ export const loadUserData = async () => {
             // Get shares balance
             sharesBalance.set(BigNumber((await betoken.getShareBalance(userAddr))));
             if (!sharesTotalSupply.get().isZero()) {
-                investmentBalance.set(sharesBalance.get().div(sharesTotalSupply.get()).mul(totalFunds.get()));
+                investmentBalance.set(sharesBalance.get().div(sharesTotalSupply.get()).times(totalFunds.get()));
             }
 
             // Get user's Kairo balance
@@ -199,18 +199,18 @@ export const loadUserData = async () => {
                     return betoken.getTokenSymbol(investments[id].tokenAddress).then(function(_symbol) {
                         investments[id].id = id;
                         investments[id].tokenSymbol = _symbol;
-                        investments[id].investment = BigNumber(investments[id].stake).div(kairoTotalSupply.get()).mul(totalFunds.get()).div(PRECISION);
+                        investments[id].investment = BigNumber(investments[id].stake).div(kairoTotalSupply.get()).times(totalFunds.get()).div(PRECISION);
                         investments[id].stake = BigNumber(investments[id].stake).div(PRECISION);
                         investments[id].buyPrice = BigNumber(investments[id].buyPrice).div(PRECISION);
                         investments[id].sellPrice = investments[id].isSold ? BigNumber(investments[id].sellPrice).div(PRECISION) : assetSymbolToPrice(_symbol);
-                        investments[id].ROI = BigNumber(investments[id].sellPrice).sub(investments[id].buyPrice).div(investments[id].buyPrice).mul(100);
-                        investments[id].kroChange = BigNumber(investments[id].ROI).mul(investments[id].stake).div(100);
-                        investments[id].currValue = BigNumber(investments[id].kroChange).add(investments[id].stake);
+                        investments[id].ROI = BigNumber(investments[id].sellPrice).minus(investments[id].buyPrice).div(investments[id].buyPrice).times(100);
+                        investments[id].kroChange = BigNumber(investments[id].ROI).times(investments[id].stake).div(100);
+                        investments[id].currValue = BigNumber(investments[id].kroChange).plus(investments[id].stake);
 
                         if (!investments[id].isSold && +investments[id].cycleNumber === cycleNumber.get()) {
                             var currentStakeValue = assetSymbolToPrice(assetAddressToSymbol(investments[id].tokenAddress))
-                                .sub(investments[id].buyPrice).div(investments[id].buyPrice).mul(investments[id].stake).add(investments[id].stake);
-                            stake = stake.add(currentStakeValue);
+                                .minus(investments[id].buyPrice).div(investments[id].buyPrice).times(investments[id].stake).plus(investments[id].stake);
+                            stake = stake.plus(currentStakeValue);
                         }
                     });
                 };
@@ -223,13 +223,13 @@ export const loadUserData = async () => {
                 };
                 await Promise.all(handleAllProposals());
                 investmentList.set(investments);
-                var totalKROChange = investments.map((x) => BigNumber(x.kroChange)).reduce((x, y) => x.add(y));
-                var totalStake = investments.map((x) => BigNumber(x.stake)).reduce((x, y) => x.add(y));
-                managerROI.set(totalKROChange.div(totalStake).mul(100));
+                var totalKROChange = investments.map((x) => BigNumber(x.kroChange)).reduce((x, y) => x.plus(y));
+                var totalStake = investments.map((x) => BigNumber(x.stake)).reduce((x, y) => x.plus(y));
+                managerROI.set(totalKROChange.div(totalStake).times(100));
             }
             isLoadingInvestments.set(false);
         }
-        portfolioValue.set(stake.add(kairoBalance.get()));
+        portfolioValue.set(stake.plus(kairoBalance.get()));
     }
 };
 
@@ -359,7 +359,7 @@ const loadPriceChanges = async (_daysInPast) => {
         for (var t in tokens) {
             const _token = tokens[t];
             const pastPrice = BigNumber(1).div(data.DAI[_token]);
-            result.push(assetSymbolToPrice(_token).sub(pastPrice).div(pastPrice).mul(100));
+            result.push(assetSymbolToPrice(_token).minus(pastPrice).div(pastPrice).times(100));
         }
     }
     return result;
@@ -389,19 +389,19 @@ export const loadRanking = async () => {
                 var inv = investments[i];
                 if (!inv.isSold && +inv.cycleNumber === cycleNumber.get()) {
                     var currentStakeValue = assetSymbolToPrice(assetAddressToSymbol(inv.tokenAddress))
-                        .sub(inv.buyPrice).div(inv.buyPrice).mul(inv.stake).add(inv.stake);
-                    stake = stake.add(currentStakeValue);
+                        .minus(inv.buyPrice).div(inv.buyPrice).times(inv.stake).plus(inv.stake);
+                    stake = stake.plus(currentStakeValue);
                 }
                 if (+inv.cycleNumber === cycleNumber.get()) {
                     var _symbol = await betoken.getTokenSymbol(inv.tokenAddress);
                     var _stake = BigNumber(inv.stake).div(PRECISION);
                     var _buyPrice = BigNumber(inv.buyPrice).div(PRECISION);
                     var _sellPrice = inv.isSold ? BigNumber(inv.sellPrice).div(PRECISION) : assetSymbolToPrice(_symbol);
-                    var _ROI = BigNumber(_sellPrice).sub(_buyPrice).div(_buyPrice);
-                    var _kroChange = BigNumber(_ROI).mul(_stake);
+                    var _ROI = BigNumber(_sellPrice).minus(_buyPrice).div(_buyPrice);
+                    var _kroChange = BigNumber(_ROI).times(_stake);
 
-                    totalKROChange = totalKROChange.add(_kroChange);
-                    totalStake = totalStake.add(_stake);
+                    totalKROChange = totalKROChange.plus(_kroChange);
+                    totalStake = totalStake.plus(_stake);
                 }
             }
 
@@ -409,14 +409,14 @@ export const loadRanking = async () => {
                 // format rank object
                 rank: 0,
                 address: _addr,
-                kairoBalance: BigNumber(await betoken.getKairoBalance(_addr)).div(PRECISION).add(stake).toFormat(10),
-                cycleROI: totalStake.isZero() ? BigNumber(0).toFormat(4) : totalKROChange.div(totalStake).mul(100).toFormat(4)
+                kairoBalance: BigNumber(await betoken.getKairoBalance(_addr)).div(PRECISION).plus(stake).toFormat(10),
+                cycleROI: totalStake.isZero() ? BigNumber(0).toFormat(4) : totalKROChange.div(totalStake).times(100).toFormat(4)
             };
         });
     }));
 
     // sort entries
-    ranking.sort((a, b) => BigNumber(b.kairoBalance).sub(a.kairoBalance).toNumber());
+    ranking.sort((a, b) => BigNumber(b.kairoBalance).minus(a.kairoBalance).toNumber());
     ranking = ranking.filter((x) => +x.kairoBalance > 0);
 
     // give ranks
@@ -444,9 +444,9 @@ export const loadStats = async () => {
     const getTokenValue = async (i) => {
         var _token = TOKENS[i];
         var balance = BigNumber(await betoken.getTokenBalance(assetSymbolToAddress(_token), betoken.contracts.BetokenFund.options.address))
-            .div(BigNumber(10).toPower(await betoken.getTokenDecimals(assetSymbolToAddress(_token))));
-        var value = balance.mul(assetSymbolToPrice(_token));
-        _fundValue = _fundValue.add(value);
+            .div(BigNumber(10).pow(await betoken.getTokenDecimals(assetSymbolToAddress(_token))));
+        var value = balance.times(assetSymbolToPrice(_token));
+        _fundValue = _fundValue.plus(value);
     };
     const getAllTokenValues = () => {
         var result = [];
@@ -456,8 +456,8 @@ export const loadStats = async () => {
         return result;
     }
     await Promise.all(getAllTokenValues());
-    var totalDAI = BigNumber(await betoken.getTokenBalance(DAI_ADDR, betoken.contracts.BetokenFund.options.address)).sub(await betoken.getPrimitiveVar("totalCommissionLeft")).div(PRECISION);
-    _fundValue = _fundValue.add(totalDAI);
+    var totalDAI = BigNumber(await betoken.getTokenBalance(DAI_ADDR, betoken.contracts.BetokenFund.options.address)).minus(await betoken.getPrimitiveVar("totalCommissionLeft")).div(PRECISION);
+    _fundValue = _fundValue.plus(totalDAI);
     fundValue.set(_fundValue);
 
     // get stats
@@ -479,7 +479,7 @@ export const loadStats = async () => {
             for (j = 0, len = events.length; j < len; j++) {
                 _event = events[j];
                 commission = BigNumber(_event.returnValues._totalCommissionInDAI).div(PRECISION);
-                historicalTotalCommission.set(historicalTotalCommission.get().add(commission));
+                historicalTotalCommission.set(historicalTotalCommission.get().plus(commission));
             }
         }),*/
         betoken.contracts.BetokenFund.getPastEvents("ROI",
@@ -494,7 +494,7 @@ export const loadStats = async () => {
             for (j = 0, len = events.length; j < len; j++) {
                 _event = events[j];
                 data = _event.returnValues;
-                ROI = BigNumber(data._afterTotalFunds).minus(data._beforeTotalFunds).div(data._beforeTotalFunds).mul(100);
+                ROI = BigNumber(data._afterTotalFunds).minus(data._beforeTotalFunds).div(data._beforeTotalFunds).times(100);
                 // Update chart data
                 rois.push([+data._cycleNumber, ROI.toNumber()]);
                 
@@ -503,17 +503,17 @@ export const loadStats = async () => {
                 }
 
                 // Update average ROI
-                totalInputFunds = totalInputFunds.add(BigNumber(data._beforeTotalFunds).div(PRECISION));
-                totalOutputFunds = totalOutputFunds.add(BigNumber(data._afterTotalFunds).div(PRECISION));
+                totalInputFunds = totalInputFunds.plus(BigNumber(data._beforeTotalFunds).div(PRECISION));
+                totalOutputFunds = totalOutputFunds.plus(BigNumber(data._afterTotalFunds).div(PRECISION));
             }
             ROIArray.set(rois);
         }).then(() => {
             // Take current cycle's ROI into consideration
             if (cyclePhase.get() !== 2) {
-                totalInputFunds = totalInputFunds.add(totalFunds.get());
-                totalOutputFunds = totalOutputFunds.add(fundValue.get());
+                totalInputFunds = totalInputFunds.plus(totalFunds.get());
+                totalOutputFunds = totalOutputFunds.plus(fundValue.get());
             }
-            avgROI.set(totalOutputFunds.sub(totalInputFunds).div(totalInputFunds).mul(100));
+            avgROI.set(totalOutputFunds.minus(totalInputFunds).div(totalInputFunds).times(100));
         })
     ]);
 };

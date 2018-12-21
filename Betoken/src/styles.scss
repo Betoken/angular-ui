@@ -117,7 +117,7 @@ body{
     border: 1px solid #D1DCDF;
     border-radius: 4px;
     padding: 12px;
-    min-height: 36px;
+    min-height: 42px;
     line-height: normal;
     outline: none !important;
 }
@@ -128,7 +128,7 @@ body{
   border: 1px solid #D1DCDF;
   border-radius: 4px;
   padding: 12px;
-  min-height: 36px;
+  min-height: 42px;
   line-height: normal;
   outline: none !important;
   cursor: not-allowed;
@@ -141,9 +141,9 @@ body{
 
 .outline-box{
   border: 1px solid #D1DCDF !important;
-  padding: 15px 10px;
-  border-radius: 8px;
-  max-height: 48px;
+  padding: 0 12px;
+  border-radius: 4px;
+  min-height: 42px;
 }
 
 .alert-window{

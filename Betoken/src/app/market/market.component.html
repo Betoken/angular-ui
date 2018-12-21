@@ -9,7 +9,7 @@
             <div class="sec-header d-flex justify-content-between align-items-center">
                 <p class="sec-title">Market</p>
                 <div class="d-flex justify-content-end">
-                  <input class="outline-box w-50 mr-3" id="search-box" (keyup)="filterTable($event,'market-table',0)" placeholder="Search for token">
+                  <input class="outline-box w-50 mr-3" id="search-box" (keyup)="filterTable($event,'market-table',0)" placeholder="Search for asset...">
                   <button class="text-center outline-button" (click) = "refresh()">
                       <span *ngIf="isLoading() == false">REFRESH</span>
                       <span *ngIf="isLoading()">Loading...</span>

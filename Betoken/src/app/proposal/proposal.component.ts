@@ -165,7 +165,6 @@ export class ProposalComponent implements OnInit {
         this.createWidget();
         error_notifications.set_error_msg("");
 
-
         setInterval(() => {
             this.updateDates();
             this.refreshDisplay();
@@ -255,20 +254,23 @@ export class ProposalComponent implements OnInit {
     }
 
     pending = (transactionHash) => {
-
-        this.transactionId = transactionHash;
-        this.step3 = true;
-        this.step4 = false;
-        this.step1 = false;
-        this.step2 = false;
+        if (this.step1 === false) {
+            this.transactionId = transactionHash;
+            this.step3 = true;
+            this.step4 = false;
+            this.step1 = false;
+            this.step2 = false;
+        }
     }
 
     confirm = () => {
-        this.step1 = false;
-        this.step2 = false;
-        this.step3 = false;
-        this.step4 = true;
-        this.refresh();
+        if (this.step1 === false) {
+            this.step1 = false;
+            this.step2 = false;
+            this.step3 = false;
+            this.step4 = true;
+            this.refresh();
+        }
     }
 
     newsupport() {

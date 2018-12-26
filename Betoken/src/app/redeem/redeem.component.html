@@ -97,7 +97,7 @@
         </div>
         <div class="modal-button-wrapper">
             <button class="text-center outline-button active w-100" (click)="redeem()" *ngIf= "step1">REDEEM COMMSSIONS</button>
-            <button class="text-center outline-button active w-100" (click)="closePopup()" *ngIf= "step4">CLOSE PANEL</button>
+            <button class="text-center outline-button active w-100" routerLink="/home" (click)="closePopup()" *ngIf= "step4">CLOSE PANEL</button>
         </div>
 
     </div>

@@ -52,11 +52,7 @@ export const user = {
     kairo_balance: () => Data.kairoBalance.get(),
     monthly_roi: () => Data.managerROI.get(),
     can_redeem_commission: () => {
-        try {
-            betoken.hasWeb3 && Data.cyclePhase.get() === 2 && Data.lastCommissionRedemption.get() < Data.cycleNumber.get();
-        }
-        catch (error) {
-        }
+        return betoken.hasWeb3 && Data.cyclePhase.get() === 2 && Data.lastCommissionRedemption.get() < Data.cycleNumber.get();
     },
     expected_commission: function () {
         if (Data.kairoTotalSupply.get().greaterThan(0)) {

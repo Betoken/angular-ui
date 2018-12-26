@@ -253,7 +253,7 @@ export var Betoken = function() {
     self.depositToken = async function(_tokenAddr, _tokenAmount, _onTxHash, _onReceipt) {
         await getDefaultAccount();
         var token = ERC20(_tokenAddr);
-        var amount = BigNumber(_tokenAmount).mul(BigNumber(10).toPower(self.getTokenDecimals(_tokenAddr)));
+        var amount = BigNumber(_tokenAmount).times(BigNumber(10).pow(self.getTokenDecimals(_tokenAddr)));
         
         token.methods.approve(self.contracts.BetokenFund.options.address, 0).send({
             from: web3.eth.defaultAccount
@@ -276,7 +276,7 @@ export var Betoken = function() {
     */
     self.withdrawToken = async function(_tokenAddr, _amountInDAI, _onTxHash, _onReceipt) {
         await getDefaultAccount();
-        var amount = BigNumber(_amountInDAI).mul(1e18);
+        var amount = BigNumber(_amountInDAI).times(1e18);
         return self.contracts.BetokenFund.methods.withdrawToken(_tokenAddr, amount).send({
             from: web3.eth.defaultAccount
         }).on("transactionHash", _onTxHash).on("receipt", _onReceipt);

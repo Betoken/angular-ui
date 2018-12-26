@@ -69,6 +69,8 @@ export class InvestComponent implements OnInit {
     AUM = 0;
     totalKairo = 0;
     totalBTFShares = 0;
+    sharpeRatio = 0;
+    standardDeviation = 0;
 
     days = 0;
     hours = 0;
@@ -344,7 +346,7 @@ export class InvestComponent implements OnInit {
                 color: data[1] > 0 ? '#18DAA3' : '#F4406B'
             });
         }
-        if (timer.phase() !== 2) {
+        if (timer.phase() === 1) {
             cycles.push(cycles.length + 1);
             rois.push({
                 y: (new BigNumber(this.currMoROI)).toNumber(),
@@ -380,6 +382,34 @@ export class InvestComponent implements OnInit {
                 data: rois
             }]
         });
+
+        // calculate more stats for Betoken
+        let BONDS_MONTHLY_INTEREST = 2.4662697e-3 // 3% annual interest rate
+        let NUM_DECIMALS = 4;
+        let calcMean = function(list) {
+            return list.reduce(function(accumulator, curr) {
+            return new BigNumber(accumulator).plus(curr);
+            }).div(list.length);
+        };
+        let calcSampleStd = function(list) {
+            var mean, sampleStd, sampleVar;
+            mean = calcMean(list);
+            sampleVar = list.reduce(function(accumulator, curr) {
+            return new BigNumber(accumulator).plus(new BigNumber(curr - mean).pow(2));
+            }, 0).div(list.length - 1);
+            return sampleStd = sampleVar.sqrt();
+        };
+        // Sharpe Ratio (against BTC, since inception)
+        let betokenROIList = rois.map((x) => new BigNumber(x.y));
+        let meanExcessReturn = calcMean(betokenROIList).minus(BONDS_MONTHLY_INTEREST);
+        let excessReturnList = [];
+        for (let i = 0; i < betokenROIList.length; i++) {
+            excessReturnList[i] = betokenROIList[i].minus(BONDS_MONTHLY_INTEREST);
+        }
+        let excessReturnStd = calcSampleStd(excessReturnList);
+        
+        this.sharpeRatio = meanExcessReturn.div(excessReturnStd).dp(NUM_DECIMALS);
+        this.standardDeviation = calcSampleStd(betokenROIList).dp(NUM_DECIMALS);
     }
 
     updateErrorMsg() {

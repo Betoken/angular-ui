@@ -408,8 +408,8 @@ export class InvestComponent implements OnInit {
         }
         let excessReturnStd = calcSampleStd(excessReturnList);
         
-        this.sharpeRatio = meanExcessReturn.div(excessReturnStd);
-        this.standardDeviation = calcSampleStd(betokenROIList);
+        this.sharpeRatio = meanExcessReturn.div(excessReturnStd).dp(NUM_DECIMALS);
+        this.standardDeviation = calcSampleStd(betokenROIList).dp(NUM_DECIMALS);
     }
 
     updateErrorMsg() {

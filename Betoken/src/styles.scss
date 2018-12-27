@@ -100,7 +100,8 @@ body{
   }
 
   .sec-header{
-    padding: 15px 0;
+    min-height: 48px;
+    line-height: 48px
   }
 
   .sec-title{
@@ -110,6 +111,10 @@ body{
     margin: 0px !important;
   }
 
+.btn-outline-secondary{
+  border: 1px solid #D1DCDF!important;
+  border-radius: 4px;
+}
   .outline-button{
     font-family: 'MavenProMedium' !important;
     font-size: 14px;

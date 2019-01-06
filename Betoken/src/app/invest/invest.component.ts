@@ -315,7 +315,7 @@ export class InvestComponent implements OnInit {
         this.ms.setTradeBtn();
     }
 
-    hidechangealert() {
+    hideNextPhaseAlert() {
         this.changealert = false;
     }
 

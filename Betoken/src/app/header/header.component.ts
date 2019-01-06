@@ -123,11 +123,11 @@ export class HeaderComponent implements OnInit {
 
   proposalPopup() {
     this.router.navigate(['/proposal']);
-    this.ms.setproposalPopUp();
+    this.ms.setProposalPopup();
   }
 
-  changeproposal() {
-    this.ms.setproposalchange();
+  nextPhase() {
+    this.ms.setProposalChange();
   }
 
   redeemPopup() {

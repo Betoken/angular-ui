@@ -8,14 +8,14 @@
         <div class="alert-window" *ngIf="changealert">
             <div class="alert bg-warning d-flex justify-content-between align-items-center col-12">
                 <p class="m-0">🚨 Current phase has ended.</p>
-                <button class="btn btn-link text-center alert-button" (click)="hidechangealert()">DISMISS</button>
+                <button class="btn btn-link text-center alert-button" (click)="hideNextPhaseAlert()">DISMISS</button>
             </div>
         </div>
         <div class="alert-window" *ngIf="changealert">
             <div class="alert bg-warning d-flex justify-content-between align-items-center col-12">
                 <p class="m-0">🚨 Influence the fund strategy by trading assets and staking KRO to support
                 ETH and ERC20 tokens.</p>
-                <button class="btn btn-link text-center alert-button" (click)="hidechangealert()">DISMISS</button>
+                <button class="btn btn-link text-center alert-button" (click)="hideNextPhaseAlert()">DISMISS</button>
             </div>
         </div>
         <div class="left-sec col-12 col-lg-8 order-2 order-lg-1">
@@ -194,7 +194,7 @@
                 defaults gas limit and price.
             </p>
             <div class="d-flex justify-content-center mb-4">
-                <img src="assets/images/metamask-big.png" class="pointer " (click)="confirm()">
+                <img src="assets/images/metamask-big.png" (click)="confirm()">
             </div>
             <p class="m-0">
                 Betoken contract address
@@ -214,7 +214,7 @@
                 Your transaction is being saved on the Ethereum blockchain. You can check its status on Etherscan.
             </p>
             <div class="d-flex justify-content-center mb-5">
-                <img src="assets/images/loader.png" class="pointer ">
+                <img src="assets/images/loader.png">
             </div>
             <p class="m-0">
                 Transaction ID
@@ -233,7 +233,7 @@
                 You bought 1 BTF share for ~0.2572 ETH / ~ 100.0000 DAI. And you also got 1 KRO to influence the fund’s portfolio strategy.
             </p>
             <div class="d-flex justify-content-center mb-5">
-                <img src="assets/images/finish.png" class="pointer ">
+                <img src="assets/images/finish.png">
             </div>
             <p class="m-0">
                 Transaction ID

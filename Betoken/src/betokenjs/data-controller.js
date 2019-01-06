@@ -194,7 +194,6 @@ export const loadUserData = async () => {
             var investments = await betoken.getInvestments(userAddr);
             var stake = BigNumber(0);
             if (investments.length > 0) {
-                investments = investments.filter((x) => +x.cycleNumber == cycleNumber.get());
                 const handleProposal = (id) => {
                     return betoken.getTokenSymbol(investments[id].tokenAddress).then(function(_symbol) {
                         investments[id].id = id;
@@ -222,6 +221,7 @@ export const loadUserData = async () => {
                     return results;
                 };
                 await Promise.all(handleAllProposals());
+                investments = investments.filter((x) => +x.cycleNumber == cycleNumber.get());
                 investmentList.set(investments);
                 var totalKROChange = investments.map((x) => BigNumber(x.kroChange)).reduce((x, y) => x.plus(y));
                 var totalStake = investments.map((x) => BigNumber(x.stake)).reduce((x, y) => x.plus(y));

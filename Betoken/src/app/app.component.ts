@@ -26,7 +26,7 @@ export class AppComponent {
   private popupw: Subject<boolean> = new Subject<boolean>();
   private changefundphase: Subject<boolean> = new Subject<boolean>();
   private proposalphase: Subject<boolean> = new Subject<boolean>();
-  private changeproposal: Subject<boolean> = new Subject<boolean>();
+  private nextPhase: Subject<boolean> = new Subject<boolean>();
   private redeemphase: Subject<boolean> = new Subject<boolean>();
 
   private phasebtn1: Subject<boolean> = new Subject<boolean>();
@@ -106,24 +106,24 @@ export class AppComponent {
     return this.tradebtn.asObservable();
   }
 
-  setproposalPopUp() {
+  setProposalPopup() {
     this.open = !this.open;
     this.active = false;
     this.proposalphase.next(true);
   }
 
-  getproposalPopUp(): Observable<any> {
+  getProposalPopup(): Observable<any> {
     return this.proposalphase.asObservable();
   }
 
-  setproposalchange() {
+  setProposalChange() {
     this.open = !this.open;
     this.active = false;
-    this.changeproposal.next(true);
+    this.nextPhase.next(true);
   }
 
-  getproposalchange() {
-    return this.changeproposal.asObservable();
+  getProposalChange() {
+    return this.nextPhase.asObservable();
   }
 
   setNextButton() {

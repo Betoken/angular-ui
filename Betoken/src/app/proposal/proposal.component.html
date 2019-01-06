@@ -8,14 +8,14 @@
         <div class="alert-window" *ngIf="sellalert">
             <div class="alert bg-warning d-flex justify-content-between align-items-center col-12">
                 <p class="m-0">🚨 Sell your assets to redeem all your KRO staked before cycle’s end. <a href="https://medium.com/betoken/the-ultimate-guide-to-betoken-omen-39adfe204296" target="_blank">More info</a>.</p>
-                <button class="btn btn-link text-center alert-button" (click)="hidealert()">DISMISS</button>
+                <button class="btn btn-link text-center alert-button" (click)="hideAlert()">DISMISS</button>
             </div>
         </div>
 
         <div class="alert-window" *ngIf="nextphasealert">
             <div class="alert bg-warning d-flex justify-content-between align-items-center col-12">
                 <p class="m-0">🚨 Current phase has ended.</p>
-                <button class="btn btn-link text-center alert-button" (click)="hidechangealert()">DISMISS</button>
+                <button class="btn btn-link text-center alert-button" (click)="hideNextPhaseAlert()">DISMISS</button>
             </div>
         </div>
 
@@ -151,7 +151,7 @@
 </div>
 
 <div class="proposal-modal-wrapper"  [@toggleProposal]="state" [class.active]="active">
-    <div class="content proposal-phase" *ngIf="proposalfund">
+    <div class="content proposal-phase" *ngIf="showCreateInvestmentPopup">
         <div class="modal-header d-flex align-items-center">
             <div class="modal-tittle">
                 Invest in assets
@@ -164,7 +164,7 @@
             <span class="time-left-title">Time left to invest: </span> <span class="time-left-value">{{days}}d {{hours}}h {{minutes}}m {{seconds}}s</span>
         </div>
 
-        <div class="main-sec" *ngIf="step1">
+        <div class="main-sec" *ngIf="createInvestmentPopupStep === 0">
             <p class="m-0 pb-4 black-font">Stake Kairo tokens to invest in crypto-assets.</p>
             <p class="m-0 pb-4 black-font">If the price of the asset goes up, you're rewarded with more Kairo.
                 More Kairo means more monthly commissions, as well as more money you can use for investing.</p>
@@ -172,7 +172,7 @@
               <div class="col">
                 <p>Select an asset</p>
                 <div class="outline-box w-100 d-flex align-items-center justify-content-between">
-                    <select id="selectedTokenSymbolidd" class="border-0 betoken-font w-100" (change)="updateTokenSymbol($event.target.value)" class="border-0 betoken-font" >
+                    <select id="selectedTokenSymbolidd" class="border-0 betoken-font w-100" (change)="updateDisplayedTokenInfo($event.target.value)" class="border-0 betoken-font" >
                         <option *ngFor = "let token of tokenList" >{{token}} </option>
                     </select>
                 </div>
@@ -214,7 +214,7 @@
             </div>
         </div>
 
-        <div class="confirmation-sec" *ngIf="step2">
+        <div class="confirmation-sec" *ngIf="createInvestmentPopupStep === 1">
             <p class="mb-3">
                 🚨 Confirm your trade for this asset
             </p>
@@ -227,7 +227,7 @@
             </div>
         </div>
 
-        <div class="broadcast-sec m-3" *ngIf="step3">
+        <div class="broadcast-sec m-3" *ngIf="createInvestmentPopupStep === 2">
             <p class="mb-3">
                 🎉 Transaction broadcasted!
             </p>
@@ -250,7 +250,7 @@
             </div>
         </div>
 
-        <div class="final-sec m-3" *ngIf="step4">
+        <div class="final-sec m-3" *ngIf="createInvestmentPopupStep === 3">
             <p class="mb-3">
                 🙌 Done. Trade registered. Good choice!
             </p>
@@ -258,7 +258,7 @@
                 You staked {{kairoinput}} KRO to support {{selectedTokenSymbol}}.
             </p>
             <div class="d-flex justify-content-center mb-5">
-                <img src="assets/images/finish.png" class="pointer ">
+                <img src="assets/images/finish.png">
             </div>
             <p class="m-0">
                 Transaction ID
@@ -271,13 +271,13 @@
         </div>
 
         <div class="modal-button-wrapper">
-            <button class="text-center outline-button active w-100" (click)="support()" *ngIf= "step1">INVEST</button>
-            <button class="text-center outline-button active w-100" (click)="closePopup()" *ngIf= "step4">MAKE A NEW INVESTMENT</button>
+            <button class="text-center outline-button active w-100" (click)="createInvestment()" *ngIf= "createInvestmentPopupStep === 0">INVEST</button>
+            <button class="text-center outline-button active w-100" (click)="closePopup()" *ngIf= "createInvestmentPopupStep === 3">MAKE A NEW INVESTMENT</button>
         </div>
 
     </div>
 
-    <div class="content proposal-trade-phase" *ngIf="tradeproposalfund">
+    <div class="content proposal-trade-phase" *ngIf="showSellInvestmentPopup">
         <div class="modal-header d-flex align-items-center">
             <div class="modal-tittle">
                 Sell Your Assets
@@ -289,7 +289,7 @@
         <div class="time-wrapper">
             <span class="time-left-title">Time left to sell assets: </span> <span class="time-left-value">{{days}}d {{hours}}h {{minutes}}m {{seconds}}s</span>
         </div>
-        <div class="confirmation-sec" *ngIf="sellStep1">
+        <div class="confirmation-sec" *ngIf="sellInvestmentPopupStep === 0">
             <p class="mb-3">
                 🚨 Confirm your transaction
             </p>
@@ -298,11 +298,11 @@
                 It's fine to stick with these defaults gas limit and price.
             </p>
             <div class="d-flex justify-content-center mb-5">
-                <img src="assets/images/metamask-big.png" class="pointer " (click)="confirmsell()" width="128" height="128">
+                <img src="assets/images/metamask-big.png" width="128" height="128">
             </div>
 
         </div>
-        <div class="broadcast-sec m-3" *ngIf="sellStep2">
+        <div class="broadcast-sec m-3" *ngIf="sellInvestmentPopupStep === 1">
             <p class="mb-3">
                 🎉 Transaction broadcasted!
             </p>
@@ -324,7 +324,7 @@
               <a class="link-tx-hash" href="https://rinkeby.etherscan.io/tx/{{transactionId}}" target="_blank"> <img src="assets/images/ic_launch_black_24px.svg" class="pointer ml-2"> </a>
             </div>
         </div>
-        <div class="final-sec m-3" *ngIf="sellStep3">
+        <div class="final-sec m-3" *ngIf="sellInvestmentPopupStep === 2">
             <p class="mb-3">
                 🙌 Done. Check your balance!
             </p>
@@ -332,7 +332,7 @@
                 You redeeemed {{kroRedeemed}} KRO.
             </p>
             <div class="d-flex justify-content-center mb-4">
-                <img src="assets/images/finish.png" class="pointer ">
+                <img src="assets/images/finish.png">
             </div>
             <p class="m-0 mt-4">
                 Transaction ID
@@ -343,11 +343,11 @@
             </div>
         </div>
         <div class="modal-button-wrapper">
-            <button class="text-center outline-button active w-100" *ngIf="sellStep3" (click)="newsupport()">TRADE SUCCESSFUL</button>
+            <button class="text-center outline-button active w-100" *ngIf="sellInvestmentPopupStep === 2" (click)="closePopup()">TRADE SUCCESSFUL</button>
         </div>
     </div>
 
-    <div class="content proposal-changefund-phase" *ngIf="changeproposalfund">
+    <div class="content proposal-changefund-phase" *ngIf="showNextPhasePopup">
         <div class="modal-header d-flex align-items-center">
             <div class="modal-tittle">
                 Change fund phase
@@ -356,12 +356,12 @@
               <button type="button" class="close" (click)="closePopup()"><img src="assets/images/ic_close_black_24px.svg" width="24"></button>
             </div>
         </div>
-        <div class="main-sec" *ngIf="changeStep1">
+        <div class="main-sec" *ngIf="nextPhasePopupStep === 0">
             <p class="m-0 pb-5 black-font">This action will be repercuted on all the fund’s participants.
                 By being the first to operate this action, you’ll be granted 10 KRO.
             </p>
         </div>
-        <div class="confirmation-sec" *ngIf="changeStep2">
+        <div class="confirmation-sec" *ngIf="nextPhasePopupStep === 1">
             <p class="mb-3">
                 🚨 Confirm your transaction
             </p>
@@ -370,10 +370,10 @@
                 defaults gas limit and price.
             </p>
             <div class="d-flex justify-content-center mb-5">
-                <img src="assets/images/metamask-big.png" class="pointer " (click)="confirmcchangefund()" width="128" height="128">
+                <img src="assets/images/metamask-big.png" width="128" height="128">
             </div>
         </div>
-        <div class="broadcast-sec m-3" *ngIf="changeStep3">
+        <div class="broadcast-sec m-3" *ngIf="nextPhasePopupStep === 2">
             <p class="mb-3">
                 🎉 Transaction broadcasted!
             </p>
@@ -395,8 +395,8 @@
             </div>
         </div>
         <div class="modal-button-wrapper">
-            <button class="text-center outline-button active w-100" (click)="changefundstep1()" *ngIf="changeStep1">GO TO NEXT INVESTMENT PHASE</button>
-            <button class="text-center outline-button active w-100 mt-4" (click)="finalchangefund()" *ngIf="changeStep3">FUND CHANGED</button>
+            <button class="text-center outline-button active w-100" (click)="changefundstep1()" *ngIf="nextPhasePopupStep === 0">GO TO NEXT INVESTMENT PHASE</button>
+            <button class="text-center outline-button active w-100 mt-4" (click)="closePopup()" *ngIf="nextPhasePopupStep === 2">DONE</button>
         </div>
     </div>
 </div>
@@ -407,7 +407,7 @@
 </div>
 <div class="col-12 d-none d-lg-none d-flex button-wrapper text-right justify-content-end footer-wrapper fixed-bottom bg-white pt-3 pb-3"
 *ngIf="footerbtn2">
-    <button class="text-center outline-button active" (click)="changeproposalPopup()">NEXT PHASE</button>
+    <button class="text-center outline-button active" (click)="nextPhasePopup()">NEXT PHASE</button>
 </div>
 <div class="col-12 d-none d-lg-none d-flex button-wrapper text-right justify-content-end footer-wrapper fixed-bottom bg-white pt-3 pb-3" *ngIf="footerbtn3">
     <button class="text-center outline-button active" routerLink="/redeem">REDEEM COMMISSION</button>

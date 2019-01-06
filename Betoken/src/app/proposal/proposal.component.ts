@@ -32,24 +32,13 @@ export class ProposalComponent implements OnInit {
     state: string;
     active: boolean;
 
-    proposalfund: boolean;
-    changeproposalfund: boolean;
-    tradeproposalfund: boolean;
+    showCreateInvestmentPopup: boolean;
+    showNextPhasePopup: boolean;
+    showSellInvestmentPopup: boolean;
 
-    step1: boolean;
-    step2: boolean;
-    step3: boolean;
-    step4: boolean;
-
-    sellStep1: boolean;
-    sellStep2: boolean;
-    sellStep3: boolean;
-    sellStep4: boolean;
-
-    changeStep1: boolean;
-    changeStep2: boolean;
-    changeStep3: boolean;
-    changeStep4: boolean;
+    createInvestmentPopupStep: number;
+    sellInvestmentPopupStep: number;
+    nextPhasePopupStep: number;
 
     sellalert: boolean;
     nextphasealert: boolean;
@@ -108,74 +97,42 @@ export class ProposalComponent implements OnInit {
         "WINGS",
         "ZIL",
         "ZRX"
-      ]
-      
-
-
-    openchangefundModal() {
-        this.updateTokenSymbol('ETH');
-        this.ms.setproposalPopUp();
-    }
+    ];
 
     errorMsg = '';
     user_address = '0x0';
 
     constructor(private ms: AppComponent, private elementRef: ElementRef,private renderer:Renderer2) {
-
         this.state = 'close';
         this.active = false;
-
-        this.step1 = true;
-        this.step2 = false;
-        this.step3 = false;
 
         this.sellalert = false;
         this.nextphasealert = false;
         this.redeemalert = false;
 
-        this.proposalfund = true;
-        this.changeproposalfund = false;
-        this.tradeproposalfund = false;
+        this.showCreateInvestmentPopup = true;
+        this.showNextPhasePopup = false;
+        this.showSellInvestmentPopup = false;
 
-        this.sellStep1 = true;
-        this.sellStep2 = false;
-        this.sellStep3 = false;
-        this.sellStep4 = false;
-
-        this.changeStep1 = true;
-        this.changeStep2 = false;
-        this.changeStep3 = false;
-        this.changeStep4 = false;
+        this.createInvestmentPopupStep = 0;
+        this.sellInvestmentPopupStep = 0;
+        this.nextPhasePopupStep = 0;
 
         this.footerbtn1 = true;
         this.footerbtn2 = false;
         this.footerbtn3 = false;
     }
 
-    async updateDates() {
-        this.days = timer.day();
-        this.hours = timer.hour();
-        this.minutes = timer.minute();
-        this.seconds = timer.second();
-        this.phase = timer.phase();
-    }
-
     ngOnInit() {
-
         this.createWidget();
         error_notifications.set_error_msg("");
 
         setInterval(() => {
-            this.updateDates();
             this.refreshDisplay();
-            this.tokenList = tokens.token_list();
-            this.user_address = user.address();
-            this.updateErrorMsg();
         }, 100);
 
 
-        this.ms.getproposalPopUp().subscribe((open: boolean) => {
-
+        this.ms.getProposalPopup().subscribe((open: boolean) => {
             if (open) {
                 this.state = 'open';
                 this.active = true;
@@ -188,10 +145,9 @@ export class ProposalComponent implements OnInit {
             }
         });
 
-        this.ms.getproposalchange().subscribe((open: boolean) => {
-
+        this.ms.getProposalChange().subscribe((open: boolean) => {
             if (open) {
-                this.changeproposal();
+                this.nextPhasePopup();
             }
 
             if (!open) {
@@ -200,16 +156,23 @@ export class ProposalComponent implements OnInit {
             }
         });
 
-        this.updateTokenSymbol(this.selectedTokenSymbol);
+        this.updateDisplayedTokenInfo(this.selectedTokenSymbol);
     }
+
+    // Popup triggers
 
     proposalPopup() {
-        this.ms.setproposalPopUp();
+        this.ms.setProposalPopup();
     }
 
-    changeproposalPopup() {
+    nextPhasePopup() {
+        this.proposalPopup();
         this.sellalert = false;
-        this.changeproposal();
+        this.showNextPhasePopup = true;
+        this.showSellInvestmentPopup = false;
+        this.showCreateInvestmentPopup = false;
+        this.nextPhasePopupStep = 0;
+        this.nextphasealert = false;
     }
 
     closePopup() {
@@ -217,177 +180,108 @@ export class ProposalComponent implements OnInit {
         this.active = false;
         this.kairoinput = '';
         this.selectedTokenSymbol = 'ETH';
-        if (this.proposalfund = true) {
-            this.proposalfund = true;
-            this.tradeproposalfund = false;
-            this.changeproposalfund = false;
-            this.step1 = true;
-            this.step2 = false;
-            this.step3 = false;
-            this.step4 = false;
-        } else if (this.tradeproposalfund = true) {
-            this.tradeproposalfund = true;
-            this.proposalfund = false;
-            this.changeproposalfund = false;
-            this.sellStep1 = true;
-            this.sellStep2 = false;
-            this.sellStep3 = false;
-            this.sellStep4 = false;
-        } else if (this.changeproposalfund = true) {
-            this.changeproposalfund = true;
-            this.proposalfund = false;
-            this.tradeproposalfund = false;
-            this.changeStep1 = true;
-            this.changeStep2 = false;
-            this.changeStep3 = false;
-            this.changeStep4 = false;
-        }
 
+        this.createInvestmentPopupStep = 0;
+        this.sellInvestmentPopupStep = 0;
+        this.nextPhasePopupStep = 0;
+
+        this.showCreateInvestmentPopup = true;
+        this.showSellInvestmentPopup = false;
+        this.showNextPhasePopup = false;
     }
 
-    support() {
-        this.step2 = true;
-        this.step3 = false;
-        this.step4 = false;
-        this.step1 = false;
-        this.invest();
-    }
-
-    pending = (transactionHash) => {
-        if (this.step1 === false) {
-            this.transactionId = transactionHash;
-            this.step3 = true;
-            this.step4 = false;
-            this.step1 = false;
-            this.step2 = false;
-        }
-    }
-
-    confirm = () => {
-        if (this.step1 === false) {
-            this.step1 = false;
-            this.step2 = false;
-            this.step3 = false;
-            this.step4 = true;
-            this.refresh();
-        }
-    }
-
-    newsupport() {
-        this.closePopup();
-    }
-
-    hidealert() {
+    hideAlert() {
         this.sellalert = false;
         this.nextphasealert = true;
         this.ms.setNextButton();
     }
 
-    sell(data) {
-        this.openchangefundModal();
-        this.sellId = data.id;
-        this.kroRedeemed = data.currValue;
-        this.sellInvestment();
-
-        this.tradeproposalfund = true;
-        this.changeproposalfund = false;
-        this.proposalfund = false;
-        this.redeemalert = false;
-        this.nextphasealert = false;
-        this.sellStep1 = true;
-        this.sellStep2 = false;
-        this.sellStep3 = false;
-
-    }
-
-    pendingSell = (transactionHash) => {
-        this.sellStep2 = true;
-        this.sellStep3 = false;
-        this.sellStep1 = false;
-        this.transactionId = transactionHash;
-    }
-
-    confirmSell = () => {
-        if (this.sellStep2 === true) {
-            this.sellStep1 = false;
-            this.sellStep2 = false;
-            this.sellStep3 = true;
-        }
-    }
-
-    changeproposal() {
-        this.openchangefundModal();
-        this.changeproposalfund = true;
-        this.tradeproposalfund = false;
-        this.proposalfund = false;
-        this.changeStep1 = true;
-        this.changeStep2 = false;
-        this.changeStep3 = false;
-        this.nextphasealert = false;
-    }
+    // Next phase
 
     changefundstep1() {
-        this.changeStep2 = true;
-        this.changeStep3 = false;
-        this.changeStep1 = false;
+        this.nextPhasePopupStep = 1;
     }
 
-    confirmcchangefund() {
-        this.changeStep3 = true;
-        this.changeStep1 = false;
-        this.changeStep2 = false;
-        this.footerbtn3 = true;
-        this.footerbtn1 = false;
-        this.footerbtn2 = false;
-    }
-
-    finalchangefund() {
-        this.closePopup();
-        this.redeemalert = true;
-        this.ms.setRedeemButton();
-    }
-
-    updateTokenSymbol(event) {
-        const value = event;
-        this.selectedTokenSymbol = value;
-        const price = tokens.asset_symbol_to_price(this.selectedTokenSymbol);
-        this.tradeAssetval = price;
-        this.getTokenInfo();
-        return event;
-    }
-
-    getTokenDailyPriceChange(token) {
-        let result = tokens.asset_symbol_to_daily_price_change(token);
-        if (isUndefined(result)) {
-            result = new BigNumber(0);
-        }
-        return result.toFormat(4);
-    }
+    // Refresh info
 
     refreshDisplay() {
         this.activeInvestmentList = user.investment_list().filter((data) => data.isSold === false);
         this.inactiveInvestmentList = user.investment_list().filter((data) => data.isSold === true);
         this.kairo_balance = user.kairo_balance().toFormat(10);
+        this.tokenList = tokens.token_list();
+        this.user_address = user.address();
+        this.updateErrorMsg();
+        this.updateDates();
     }
 
     refresh() {
         refresh_actions.investments();
     }
 
-    invest() {
-        manager_actions.new_investment(this.selectedTokenSymbol, this.kairoinput, this.pending, this.confirm);
+    async updateDates() {
+        this.days = timer.day();
+        this.hours = timer.hour();
+        this.minutes = timer.minute();
+        this.seconds = timer.second();
+        this.phase = timer.phase();
     }
 
-    sellInvestment() {
-        manager_actions.sell_investment(this.sellId, this.pendingSell, this.confirmSell, (success) => {
-            console.log(JSON.stringify(success));
-        }, (error) => {
+    // Create investment
+
+    createInvestment() {
+        this.createInvestmentPopupStep = 1;
+
+        let pending = (transactionHash) => {
+            if (this.createInvestmentPopupStep !== 0) {
+                this.transactionId = transactionHash;
+                this.createInvestmentPopupStep = 2;
+            }
+        }
+    
+        let confirm = () => {
+            if (this.createInvestmentPopupStep !== 0) {
+                this.createInvestmentPopupStep = 3;
+                this.refresh();
+            }
+        }
+        manager_actions.new_investment(this.selectedTokenSymbol, this.kairoinput, pending, confirm);
+    }
+
+    // Sell investment
+
+    sell(data) {
+        this.showSellInvestmentPopup = true;
+        this.showNextPhasePopup = false;
+        this.showCreateInvestmentPopup = false;
+        this.sellInvestmentPopupStep = 0;
+
+        this.proposalPopup();
+        this.sellId = data.id;
+        this.kroRedeemed = data.currValue;
+
+        this.redeemalert = false;
+        this.nextphasealert = false;
+
+        let pendingSell = (transactionHash) => {
+            this.sellInvestmentPopupStep = 1;
+            this.transactionId = transactionHash;
+        }
+    
+        let confirmSell = () => {
+            if (this.sellInvestmentPopupStep === 1) {
+                this.sellInvestmentPopupStep = 2;
+            }
+        }
+
+        manager_actions.sell_investment(this.sellId, pendingSell, confirmSell, (success) => {}, (error) => {
             alert(error);
         });
     }
 
+    // UI helpers
+    
     kairoInput (event) {
-        this.kairoinput = event.target.value ;
+        this.kairoinput = event.target.value;
     }
 
     isLoading() {
@@ -445,5 +339,20 @@ export class ProposalComponent implements OnInit {
                     entry.style.display = "none";
             }    
         }     
+    }
+
+    updateDisplayedTokenInfo(token) {
+        this.selectedTokenSymbol = token;
+        const price = tokens.asset_symbol_to_price(this.selectedTokenSymbol);
+        this.tradeAssetval = price;
+        this.getTokenInfo();
+    }
+
+    getTokenDailyPriceChange(token) {
+        let result = tokens.asset_symbol_to_daily_price_change(token);
+        if (isUndefined(result)) {
+            result = new BigNumber(0);
+        }
+        return result.toFormat(4);
     }
 }

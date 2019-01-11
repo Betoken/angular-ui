@@ -7,7 +7,6 @@ import { user, timer } from '../../betokenjs/helpers';
 @Component({
   selector: 'app-side-nav',
   templateUrl: './side-nav.component.html',
-  styleUrls: ['./side-nav.component.scss'],
   animations: [
     trigger('toggleMenu', [
       state('open', style({

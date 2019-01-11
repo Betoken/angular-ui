@@ -12,7 +12,6 @@ declare var $ :any;
 @Component({
     selector: 'app-proposal',
     templateUrl: './proposal.component.html',
-    styleUrls: ['./proposal.component.scss'],
     animations: [
         trigger('toggleProposal', [
             state('open', style({
@@ -237,7 +236,7 @@ export class ProposalComponent implements OnInit {
                 this.createInvestmentPopupStep = 2;
             }
         }
-    
+
         let confirm = () => {
             if (this.createInvestmentPopupStep !== 0) {
                 this.createInvestmentPopupStep = 3;
@@ -266,7 +265,7 @@ export class ProposalComponent implements OnInit {
             this.sellInvestmentPopupStep = 1;
             this.transactionId = transactionHash;
         }
-    
+
         let confirmSell = () => {
             if (this.sellInvestmentPopupStep === 1) {
                 this.sellInvestmentPopupStep = 2;
@@ -279,7 +278,7 @@ export class ProposalComponent implements OnInit {
     }
 
     // UI helpers
-    
+
     kairoInput (event) {
         this.kairoinput = event.target.value;
     }
@@ -337,8 +336,8 @@ export class ProposalComponent implements OnInit {
                     entry.style.display = "";
                 else
                     entry.style.display = "none";
-            }    
-        }     
+            }
+        }
     }
 
     updateDisplayedTokenInfo(token) {

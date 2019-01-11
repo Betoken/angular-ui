@@ -11,8 +11,7 @@ import {
 
 @Component({
   selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  templateUrl: './header.component.html'
 })
 export class HeaderComponent implements OnInit {
 
@@ -51,7 +50,7 @@ export class HeaderComponent implements OnInit {
       this.monthly_pl = user.monthly_roi().toFormat(4);
       this.expected_commission = user.expected_commission().toFormat(4);
       this.curr_network = network.network_prefix();
-      this.updateDates();    
+      this.updateDates();
       this.user_address = user.address();
       this.can_redeem_commission = user.can_redeem_commission();
     }, 100);

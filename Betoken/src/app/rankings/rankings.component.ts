@@ -4,8 +4,7 @@ import BigNumber from 'bignumber.js';
 
 @Component({
     selector: 'app-rankings',
-    templateUrl: './rankings.component.html',
-    styleUrls: ['./rankings.component.scss']
+    templateUrl: './rankings.component.html'
 })
 export class RankingsComponent implements OnInit {
     rankingArray = [];

@@ -8,8 +8,7 @@ declare var $ :any;
 
 @Component({
     selector: 'app-market',
-    templateUrl: './market.component.html',
-    styleUrls: ['./market.component.scss']
+    templateUrl: './market.component.html'
 })
 export class MarketComponent implements OnInit {
 
@@ -86,7 +85,7 @@ export class MarketComponent implements OnInit {
                     entry.style.display = "";
                 else
                     entry.style.display = "none";
-            }    
-        }     
+            }
+        }
     }
 }

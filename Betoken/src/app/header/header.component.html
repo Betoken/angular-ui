@@ -1,3 +1,43 @@
+<nav class="navbar navbar-expand-md navbar-light d-none d-md-flex" id="topbar">
+  <div class="container-fluid">
+
+    <div class="navbar-text p-0">
+      <h6 class="header-pretitle text-muted mb-1 time-left-title">
+        {{phaseActionText()}}
+      </h6>
+      <h4 class="header-title text-secondary time-left-value">
+        {{days}}d {{hours}}h {{minutes}}m {{seconds}}s
+      </h4>
+    </div>
+
+    <!-- User -->
+    <div class="navbar-user">
+      <div class="mr-4 d-none d-md-flex">
+        <!-- Toggle -->
+        <a class="text-muted" data-toggle="modal" href="#modalEmailUpdates">
+          <span class="icon active">
+            <i class="fe fe-bell"></i>
+          </span>
+        </a>
+
+      </div>
+      <!-- cta -->
+      <button class="btn btn-success mr-4" type="button" data-toggle="modal" href="#modalBuy">Trade Assets</button>
+      <button class="btn btn-white text-truncate" style="width: 12rem;">0xAfD5f60aA8eb4F488eAA0eF98c1C5B0645D9A0A0</button>
+
+    </div>
+
+  </div>
+</nav>
+
+<!-- PREHADER
+================================================== -->
+<div class="alert alert-warning rounded-0 mb-0">
+  Please enable <strong>MetaMask</strong> or visit this page in a <strong>Web3 browser</strong> to interact with Betoken on Rinkeby Testnet.
+</div>
+
+<!-- Angular stuff
+
 <div class="preheader-container">
   <div class="preheader-content">
     <p>Join our Initial Account Offering to get referral bonus — <a href="https://betoken.fund/iao/" target="_blank">GET STARTED</a></p>
@@ -48,3 +88,4 @@
     </div>
   </div>
 </header>
+-->

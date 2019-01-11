@@ -1,3 +1,227 @@
+<!-- HEADER -->
+<div class="header">
+  <div class="container-fluid">
+    <!-- Body -->
+    <div class="header-body">
+      <div class="alert alert-primary alert-dismissible fade show d-flex d-md-none" role="alert">
+        <a class="text-white" data-toggle="modal" href="#modalReferral">
+          <strong>Invite friends</strong>, earn Kairo
+        </a>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="row align-items-end">
+        <div class="col">
+
+          <!-- Pretitle -->
+          <h6 class="header-pretitle">
+            Overview
+          </h6>
+
+          <!-- Title -->
+          <h1 class="header-title">
+            Market
+          </h1>
+
+        </div>
+        <div class="col-auto d-none d-md-flex">
+
+          <!-- Button -->
+          <button class="btn btn-primary mt-3 mt-md-0" data-toggle="modal" href="#modalReferral">
+            Invite friends, earn Kairo
+          </button>
+
+        </div>
+      </div> <!-- / .row -->
+    </div> <!-- / .header-body -->
+
+  </div>
+</div> <!-- / .header -->
+
+<!-- CARDS -->
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <!-- Card -->
+      <div class="card" data-toggle="lists" data-lists-values='["asset", "asset-price", "24h-change", "7d-change", "1m-change"]'>
+        <div class="card-header">
+          <div class="row align-items-center">
+            <div class="col">
+
+              <!-- Title -->
+              <h4 class="card-header-title">
+                Prices & trends
+              </h4>
+
+            </div>
+            <div class="col-auto">
+
+              <!-- Link -->
+              <button class="btn btn-sm btn-white" type="button" name="button"><i class="fe fe-refresh-cw"></i></button>
+
+            </div>
+          </div> <!-- / .row -->
+        </div>
+        <div class="card-header">
+          <div class="row">
+            <div class="col-12">
+
+              <!-- Form -->
+              <form>
+                <div class="input-group input-group-flush input-group-merge">
+                  <input type="search" class="form-control form-control-prepended search" placeholder="Search">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      <span class="fe fe-search"></span>
+                    </div>
+                  </div>
+                </div>
+              </form>
+
+            </div>
+          </div> <!-- / .row -->
+        </div>
+        <div class="table-responsive">
+          <table class="table table-sm table-nowrap card-table">
+            <thead>
+              <tr>
+                <th>
+                  <a href="#" class="text-muted sort" data-sort="asset">
+                    Asset
+                  </a>
+                </th>
+                <th>
+                  <a href="#" class="text-muted sort" data-sort="asset-price">
+                    Price $DAI
+                  </a>
+                </th>
+                <th>
+                  <a href="#" class="text-muted sort" data-sort="24h-change">
+                    24h Change
+                  </a>
+                </th>
+                <th>
+                  <a href="#" class="text-muted sort" data-sort="7d-change">
+                    7d change
+                  </a>
+                </th>
+                <th>
+                  <a href="#" class="text-muted sort" data-sort="1m-change">
+                    1m change
+                  </a>
+                </th>
+              </tr>
+            </thead>
+            <tbody class="list">
+              <tr>
+                <td class="asset py-auto">
+                  <!-- Avatar -->
+                  <span class="avatar avatar-xs align-middle">
+                    <img src="assets/img/icons/eth.svg" alt="Ethereum logo" class="avatar-img rounded-circle">
+                  </span>
+                  <span class="align-middle ml-2">
+                    ETH • <small class="text-muted small">Ethereum</small>
+                  </span>
+                </td>
+                <td class="asset-price align-middle">
+                  154.1900
+                </td>
+                <td class="24h-change align-middle">
+                  <!-- Badge -->
+                  <span class="badge badge-soft-success">
+                    +3.5321%
+                  </span>
+                </td>
+                <td class="7d-change align-middle">
+                  <!-- Badge -->
+                  <span class="badge badge-soft-success">
+                    +7.5232%
+                  </span>
+                </td>
+                <td class="1m-change align-middle">
+                  <!-- Badge -->
+                  <span class="badge badge-soft-danger">
+                    -50.5023%
+                  </span>
+                </td>
+              </tr>
+              <tr>
+                <td class="asset py-auto">
+                  <!-- Avatar -->
+                  <span class="avatar avatar-xs align-middle">
+                    <img src="assets/img/icons/eth.svg" alt="Ethereum logo" class="avatar-img rounded-circle">
+                  </span>
+                  <span class="align-middle ml-2">
+                    BAT • <small class="text-muted small">Basic Attention Token</small>
+                  </span>
+                </td>
+                <td class="asset-price align-middle">
+                  0.1900
+                </td>
+                <td class="24h-change align-middle">
+                  <!-- Badge -->
+                  <span class="badge badge-soft-danger">
+                    -3.5321%
+                  </span>
+                </td>
+                <td class="7d-change align-middle">
+                  <!-- Badge -->
+                  <span class="badge badge-soft-success">
+                    +7.5232%
+                  </span>
+                </td>
+                <td class="1m-change align-middle">
+                  <!-- Badge -->
+                  <span class="badge badge-soft-success">
+                    +50.5023%
+                  </span>
+                </td>
+              </tr>
+              <tr>
+                <td class="asset py-auto">
+                  <!-- Avatar -->
+                  <span class="avatar avatar-xs align-middle">
+                    <img src="assets/img/icons/eth.svg" alt="Ethereum logo" class="avatar-img rounded-circle">
+                  </span>
+                  <span class="align-middle ml-2">
+                    ZIL • <small class="text-muted small">Zilica</small>
+                  </span>
+                </td>
+                <td class="asset-price align-middle">
+                  0.0400
+                </td>
+                <td class="24h-change align-middle">
+                  <!-- Badge -->
+                  <span class="badge badge-soft-success">
+                    +3.5321%
+                  </span>
+                </td>
+                <td class="7d-change align-middle">
+                  <!-- Badge -->
+                  <span class="badge badge-soft-success">
+                    +7.5232%
+                  </span>
+                </td>
+                <td class="1m-change align-middle">
+                  <!-- Badge -->
+                  <span class="badge badge-soft-danger">
+                    -7.5023%
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div> <!-- / .row -->
+</div>
+
+
+
+<!-- Angular stuff
+
 <div class="market-wrapper col-12 col-lg-10 float-right">
       <div class="row">
         <div class="alert-window" *ngIf="errorMsg !== '' ">
@@ -45,7 +269,7 @@
         </div>
 
         <div class="email-update-sec col-4 col-md-3 col-lg-4 mb-3">
-            <!-- how to use betoken start -->
+            <!-- how to use betoken start
             <div class="sec-header">
                 <p class="sec-title">How to join Betoken Beta?</p>
             </div>
@@ -54,7 +278,7 @@
                   <a class="alert-link" href="https://betoken.fund/iao/" target="_blank">Create a manager account</a> by participating in our Initial Account Offering (IAO). You will receive Kairo --- Betoken's utility token necessary for managing the fund. Testnet Kairo will be credited at the end of each investment cycle (check the timer in the sidebar).
                 </div>
             </div>
-            <!-- how to use betoken END -->
+            <!-- how to use betoken END
             <div class="sec-header">
                 <p class="sec-title">Receive updates</p>
             </div>
@@ -86,3 +310,4 @@
         </div>
     </div>
 </div>
+-->

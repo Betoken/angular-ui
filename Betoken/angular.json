@@ -27,10 +27,33 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss",
-	      "node_modules/bootstrap/dist/css/bootstrap.min.css"
+              "src/assets/scss/theme.scss"
             ],
-            "scripts": []
+            "scripts": [
+                "node_modules/jquery/dist/jquery.min.js",
+                "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+                "node_modules/chart.js/dist/Chart.min.js",
+                "src/assets/libs/chart.js/Chart.extension.js",
+                "node_modules/highlightjs/highlight.pack.min.js",
+                "node_modules/flatpickr/dist/flatpickr.min.js",
+                "node_modules/jquery-mask-plugin/dist/jquery.mask.min.js",
+                "node_modules/list.js/dist/list.min.js",
+                "node_modules/quill/dist/quill.min.js",
+                "node_modules/dropzone/dist/min/dropzone.min.js",
+                "node_modules/select2/dist/js/select2.min.js",
+                "src/assets/js/charts.js",
+                "src/assets/js/dashkit.js",
+                "src/assets/js/dropdowns.js",
+                "src/assets/js/dropzone.js",
+                "src/assets/js/flatpickr.js",
+                "src/assets/js/highlight.js",
+                "src/assets/js/list.js",
+                "src/assets/js/navbar.js",
+                "src/assets/js/popover.js",
+                "src/assets/js/quill.js",
+                "src/assets/js/select2.js",
+                "src/assets/js/tooltip.js"
+            ]
           },
           "configurations": {
             "production": {

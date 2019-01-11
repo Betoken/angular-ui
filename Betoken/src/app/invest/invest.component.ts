@@ -16,7 +16,6 @@ import {
 @Component({
     selector: 'app-invest',
     templateUrl: './invest.component.html',
-    styleUrls: ['./invest.component.scss'],
     animations: [
         trigger('toggleMenu', [
             state('open', style({
@@ -407,7 +406,7 @@ export class InvestComponent implements OnInit {
             excessReturnList[i] = betokenROIList[i].minus(BONDS_MONTHLY_INTEREST);
         }
         let excessReturnStd = calcSampleStd(excessReturnList);
-        
+
         this.sharpeRatio = meanExcessReturn.div(excessReturnStd).dp(NUM_DECIMALS);
         this.standardDeviation = calcSampleStd(betokenROIList).dp(NUM_DECIMALS);
     }

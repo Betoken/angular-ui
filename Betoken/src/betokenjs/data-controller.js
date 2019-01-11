@@ -409,7 +409,7 @@ export const loadRanking = async () => {
                 // format rank object
                 rank: 0,
                 address: _addr,
-                kairoBalance: BigNumber(await betoken.getKairoBalance(_addr)).div(PRECISION).plus(stake).toFormat(10),
+                kairoBalance: BigNumber(await betoken.getKairoBalance(_addr)).div(PRECISION).plus(stake).toFixed(10),
                 cycleROI: totalStake.isZero() ? BigNumber(0).toFormat(4) : totalKROChange.div(totalStake).times(100).toFormat(4)
             };
         });
@@ -417,7 +417,7 @@ export const loadRanking = async () => {
 
     // sort entries
     ranking.sort((a, b) => BigNumber(b.kairoBalance).minus(a.kairoBalance).toNumber());
-    ranking = ranking.filter((x) => +x.kairoBalance > 0);
+    ranking = ranking.filter((x) => BigNumber(x.kairoBalance).gt(0));
 
     // give ranks
     ranking = ranking.map((_entry, _id) => {

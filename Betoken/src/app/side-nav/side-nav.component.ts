@@ -3,7 +3,6 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { AppComponent } from '../app.component';
-import { user, timer } from '../../betokenjs/helpers';
 @Component({
   selector: 'app-side-nav',
   templateUrl: './side-nav.component.html',
@@ -24,12 +23,6 @@ export class SideNavComponent implements OnInit {
 
   state: any;
   notification: boolean;
-
-  days = 0;
-  hours = 0;
-  minutes = 0;
-  seconds = 0;
-  phase = -1;
 
   constructor(private ms: AppComponent , private router: Router) {
 
@@ -52,10 +45,6 @@ export class SideNavComponent implements OnInit {
   }
 
   ngOnInit() {
-    setInterval(() => {
-      this.refreshDisplay();
-    }, 1000 );
-
     this.ms.getToggleMenu().subscribe((open: boolean) => {
 
       if (open) {
@@ -79,26 +68,6 @@ export class SideNavComponent implements OnInit {
   navigate(page) {
     this.notification = false;
     this.router.navigateByUrl(page);
-  }
-
-  refreshDisplay() {
-    this.days = timer.day();
-    this.hours = timer.hour();
-    this.minutes = timer.minute();
-    this.seconds = timer.second();
-    this.phase = timer.phase();
-    //  this.phase -=1;
-  }
-
-  phaseActionText() {
-    switch (this.phase) {
-      case 0:
-        return 'until managing begins';
-      case 1:
-        return 'to manage';
-      case 2:
-        return 'to redeem commission';
-    }
   }
 
   checkRouterURL(route) {

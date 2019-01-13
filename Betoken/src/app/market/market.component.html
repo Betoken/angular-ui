@@ -70,7 +70,7 @@
               <!-- Form -->
               <form>
                 <div class="input-group input-group-flush input-group-merge">
-                  <input type="search" class="form-control form-control-prepended search" placeholder="Search">
+                  <input type="search" class="form-control form-control-prepended search" (keyup)="filterTable($event,'market-table',0)" placeholder="Search">
                   <div class="input-group-prepend">
                     <div class="input-group-text">
                       <span class="fe fe-search"></span>
@@ -87,126 +87,57 @@
             <thead>
               <tr>
                 <th>
-                  <a href="#" class="text-muted sort" data-sort="asset">
+                  <a href="#/market" class="text-muted sort" data-sort="asset">
                     Asset
                   </a>
                 </th>
                 <th>
-                  <a href="#" class="text-muted sort" data-sort="asset-price">
-                    Price $DAI
+                  <a href="#/market" class="text-muted sort" data-sort="asset-price">
+                    Price/$DAI
                   </a>
                 </th>
                 <th>
-                  <a href="#" class="text-muted sort" data-sort="24h-change">
+                  <a href="#/market" class="text-muted sort" data-sort="24h-change">
                     24h Change
                   </a>
                 </th>
                 <th>
-                  <a href="#" class="text-muted sort" data-sort="7d-change">
+                  <a href="#/market" class="text-muted sort" data-sort="7d-change">
                     7d change
                   </a>
                 </th>
                 <th>
-                  <a href="#" class="text-muted sort" data-sort="1m-change">
+                  <a href="#/market" class="text-muted sort" data-sort="1m-change">
                     1m change
                   </a>
                 </th>
               </tr>
             </thead>
-            <tbody class="list">
-              <tr>
+            <tbody class="list" id="market-table">
+              <tr *ngFor="let token of tokenList">
                 <td class="asset py-auto">
                   <!-- Avatar -->
                   <span class="avatar avatar-xs align-middle">
                     <img src="assets/img/icons/eth.svg" alt="Ethereum logo" class="avatar-img rounded-circle">
                   </span>
                   <span class="align-middle ml-2">
-                    ETH • <small class="text-muted small">Ethereum</small>
+                    {{token}}
                   </span>
                 </td>
-                <td class="asset-price align-middle">
-                  154.1900
-                </td>
+                <td class="asset-price align-middle">{{getTokenPrice(token)}}</td>
                 <td class="24h-change align-middle">
-                  <!-- Badge -->
-                  <span class="badge badge-soft-success">
-                    +3.5321%
+                  <span class="badge" [ngClass]="{'badge-soft-success': +getTokenDailyPriceChange(token) >= 0, 'badge-soft-danger': 0 > +getTokenDailyPriceChange(token)}">
+                    {{getTokenDailyPriceChange(token)}}%
                   </span>
                 </td>
                 <td class="7d-change align-middle">
-                  <!-- Badge -->
-                  <span class="badge badge-soft-success">
-                    +7.5232%
+                  <span class="badge" [ngClass]="{'badge-soft-success': +getTokenWeeklyPriceChange(token) >= 0, 'badge-soft-danger': 0 > +getTokenWeeklyPriceChange(token)}">
+                    {{getTokenWeeklyPriceChange(token)}}%
                   </span>
                 </td>
                 <td class="1m-change align-middle">
-                  <!-- Badge -->
-                  <span class="badge badge-soft-danger">
-                    -50.5023%
-                  </span>
-                </td>
-              </tr>
-              <tr>
-                <td class="asset py-auto">
-                  <!-- Avatar -->
-                  <span class="avatar avatar-xs align-middle">
-                    <img src="assets/img/icons/eth.svg" alt="Ethereum logo" class="avatar-img rounded-circle">
-                  </span>
-                  <span class="align-middle ml-2">
-                    BAT • <small class="text-muted small">Basic Attention Token</small>
-                  </span>
-                </td>
-                <td class="asset-price align-middle">
-                  0.1900
-                </td>
-                <td class="24h-change align-middle">
-                  <!-- Badge -->
-                  <span class="badge badge-soft-danger">
-                    -3.5321%
-                  </span>
-                </td>
-                <td class="7d-change align-middle">
-                  <!-- Badge -->
-                  <span class="badge badge-soft-success">
-                    +7.5232%
-                  </span>
-                </td>
-                <td class="1m-change align-middle">
-                  <!-- Badge -->
-                  <span class="badge badge-soft-success">
-                    +50.5023%
-                  </span>
-                </td>
-              </tr>
-              <tr>
-                <td class="asset py-auto">
-                  <!-- Avatar -->
-                  <span class="avatar avatar-xs align-middle">
-                    <img src="assets/img/icons/eth.svg" alt="Ethereum logo" class="avatar-img rounded-circle">
-                  </span>
-                  <span class="align-middle ml-2">
-                    ZIL • <small class="text-muted small">Zilica</small>
-                  </span>
-                </td>
-                <td class="asset-price align-middle">
-                  0.0400
-                </td>
-                <td class="24h-change align-middle">
-                  <!-- Badge -->
-                  <span class="badge badge-soft-success">
-                    +3.5321%
-                  </span>
-                </td>
-                <td class="7d-change align-middle">
-                  <!-- Badge -->
-                  <span class="badge badge-soft-success">
-                    +7.5232%
-                  </span>
-                </td>
-                <td class="1m-change align-middle">
-                  <!-- Badge -->
-                  <span class="badge badge-soft-danger">
-                    -7.5023%
+                  <span class="badge" [ngClass]="{'badge-soft-success': +getTokenMonthlyPriceChange(token) >= 0, 'badge-soft-danger': 0 > +getTokenMonthlyPriceChange(token)}">
+                    {{getTokenMonthlyPriceChange(token)}}%
                   </span>
                 </td>
               </tr>

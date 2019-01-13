@@ -5,7 +5,7 @@ import {AppComponent} from '../app.component';
 import { } from 'jquery';
 declare var $: any;
 import {
-  user, timer, network
+  user, timer, network, error_notifications
 } from '../../betokenjs/helpers';
 
 
@@ -24,6 +24,11 @@ export class HeaderComponent implements OnInit {
   redeembtn: boolean;
 
   newcyclebtn: boolean;
+
+  days = 0;
+  hours = 0;
+  minutes = 0;
+  seconds = 0;
   phase = -1;
 
   user_address = '0x0';
@@ -33,6 +38,8 @@ export class HeaderComponent implements OnInit {
   expected_commission = 0.00;
   curr_network = '';
   can_redeem_commission = true;
+
+  errorMsg = '';
 
   constructor(private ms: AppComponent, private router: Router ) {
     this.btn1 = true;
@@ -46,13 +53,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     setInterval(() => {
-      this.kairo_balance = user.portfolio_value().toFormat(10);
-      this.monthly_pl = user.monthly_roi().toFormat(4);
-      this.expected_commission = user.expected_commission().toFormat(4);
-      this.curr_network = network.network_prefix();
-      this.updateDates();
-      this.user_address = user.address();
-      this.can_redeem_commission = user.can_redeem_commission();
+      this.refreshDisplay();
     }, 100);
 
     this.ms.getNextPhaseBtn().subscribe((nextbtn: boolean) => {
@@ -98,8 +99,33 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  async updateDates() {
+  refreshDisplay() {
+    this.days = timer.day();
+    this.hours = timer.hour();
+    this.minutes = timer.minute();
+    this.seconds = timer.second();
     this.phase = timer.phase();
+
+    this.kairo_balance = user.portfolio_value().toFormat(10);
+    this.monthly_pl = user.monthly_roi().toFormat(4);
+    this.expected_commission = user.expected_commission().toFormat(4);
+    this.curr_network = network.network_prefix();
+    this.user_address = user.address();
+    this.can_redeem_commission = user.can_redeem_commission();
+
+    error_notifications.check_dependency();
+    this.errorMsg = error_notifications.get_error_msg();
+  }
+
+  phaseActionText() {
+    switch (this.phase) {
+      case 0:
+        return 'until managing begins';
+      case 1:
+        return 'to manage';
+      case 2:
+        return 'to redeem commission';
+    }
   }
 
   toggle() {

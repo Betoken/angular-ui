@@ -3,7 +3,7 @@
 
     <div class="navbar-text p-0">
       <h6 class="header-pretitle text-muted mb-1 time-left-title">
-        {{phaseActionText()}}
+        Time left {{phaseActionText()}}
       </h6>
       <h4 class="header-title text-secondary time-left-value">
         {{days}}d {{hours}}h {{minutes}}m {{seconds}}s
@@ -22,19 +22,24 @@
 
       </div>
       <!-- cta -->
-      <button class="btn btn-success mr-4" type="button" data-toggle="modal" href="#modalBuy">Trade Assets</button>
-      <button class="btn btn-white text-truncate" style="width: 12rem;">0xAfD5f60aA8eb4F488eAA0eF98c1C5B0645D9A0A0</button>
-
+      <div *ngIf="checkRouterURL('/invest') === false">
+        <button class="btn btn-success mr-4" (click)="proposalPopup()" *ngIf="phase == 1">Make Investments</button>
+        <button class="btn btn-success mr-4" routerLink="/redeem" (click)="redeemPopup()" *ngIf="phase == 2 && can_redeem_commission">Redeem Commission</button>
+        <button class="btn btn-white text-truncate" style="width: 12rem;" *ngIf="user_address !== '0x0'">🦊 {{user_address}}</button>
+        <button class="btn btn-white text-truncate" style="width: 12rem;" *ngIf="user_address == '0x0'">No Account</button>
+      </div>
     </div>
-
   </div>
 </nav>
 
 <!-- PREHADER
 ================================================== -->
-<div class="alert alert-warning rounded-0 mb-0">
-  Please enable <strong>MetaMask</strong> or visit this page in a <strong>Web3 browser</strong> to interact with Betoken on Rinkeby Testnet.
+<div *ngIf="errorMsg !== '' ">
+  <div class="alert alert-warning rounded-0 mb-0">
+    {{errorMsg}}
+  </div>
 </div>
+
 
 <!-- Angular stuff
 

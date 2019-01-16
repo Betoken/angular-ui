@@ -35,12 +35,22 @@ export class CommissionsComponent implements OnInit {
         refresh_actions.records();
     }
 
-    linkopen(values) {
-        window.open(`https://` + this.transactionNetwork + `.etherscan.io/tx/` + values + ``);
-    }
-
     isLoading() {
         return loading.records();
     }
 
+    filterTable = (event, tableID, searchID) => {
+        let searchInput = event.target.value.toLowerCase();
+        let entries = $(`#${tableID} tr`);
+        for (let i = 0; i < entries.length; i++) {
+            let entry = entries[i];
+            let searchTarget = entry.children[searchID];
+            if (searchTarget) {
+                if (searchTarget.innerText.toLowerCase().indexOf(searchInput) > -1)
+                    entry.style.display = "";
+                else
+                    entry.style.display = "none";
+            }
+        }
+    }
 }

@@ -25,8 +25,8 @@
       <div *ngIf="checkRouterURL('/invest') === false">
         <button class="btn btn-success mr-4" (click)="proposalPopup()" *ngIf="phase == 1">Make Investments</button>
         <button class="btn btn-success mr-4" routerLink="/redeem" (click)="redeemPopup()" *ngIf="phase == 2 && can_redeem_commission">Redeem Commission</button>
-        <button class="btn btn-white text-truncate" style="width: 12rem;" *ngIf="user_address !== '0x0'">🦊 {{user_address}}</button>
-        <button class="btn btn-white text-truncate" style="width: 12rem;" *ngIf="user_address == '0x0'">No Account</button>
+        <button class="btn btn-white text-truncate" style="width: 12rem;" *ngIf="user_address !== '0x0'"><span class="text-success">●</span> {{user_address}}</button>
+        <button class="btn btn-white text-truncate" style="width: 12rem;" *ngIf="user_address == '0x0'"><span class="text-danger">●</span> No Account</button>
       </div>
     </div>
   </div>

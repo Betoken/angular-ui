@@ -1,7 +1,7 @@
 import {Component, ElementRef, OnInit, Renderer2, ViewChild} from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { AppComponent } from '../app.component';
-import { user, timer, manager_actions, loading, tokens, refresh_actions, error_notifications} from '../../betokenjs/helpers';
+import { user, timer, manager_actions, loading, tokens, refresh_actions} from '../../betokenjs/helpers';
 import BigNumber from 'bignumber.js';
 import { isUndefined } from 'util';
 import {DomSanitizer} from "@angular/platform-browser";
@@ -98,7 +98,6 @@ export class ProposalComponent implements OnInit {
         "ZRX"
     ];
 
-    errorMsg = '';
     user_address = '0x0';
 
     constructor(private ms: AppComponent, private elementRef: ElementRef,private renderer:Renderer2) {
@@ -124,7 +123,6 @@ export class ProposalComponent implements OnInit {
 
     ngOnInit() {
         this.createWidget();
-        error_notifications.set_error_msg("");
 
         setInterval(() => {
             this.refreshDisplay();
@@ -209,7 +207,6 @@ export class ProposalComponent implements OnInit {
         this.kairo_balance = user.kairo_balance().toFormat(10);
         this.tokenList = tokens.token_list();
         this.user_address = user.address();
-        this.updateErrorMsg();
         this.updateDates();
     }
 
@@ -318,11 +315,6 @@ export class ProposalComponent implements OnInit {
         }
         catch(error){
         }
-    }
-
-    updateErrorMsg() {
-        error_notifications.check_dependency();
-        this.errorMsg = error_notifications.get_error_msg();
     }
 
     filterTable = (event, tableID, searchID) => {

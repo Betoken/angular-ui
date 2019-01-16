@@ -57,8 +57,8 @@
             </div>
             <div class="col-auto">
 
-              <!-- Link -->
-              <button class="btn btn-sm btn-white" type="button" name="button"><i class="fe fe-refresh-cw"></i></button>
+              <!-- Refresh -->
+              <button class="btn btn-sm btn-white" type="button" name="button" (click) = "refresh()"><i class="fe fe-refresh-cw" *ngIf="isLoading() == false"></i><i class="fe fe-refresh-cw" *ngIf="isLoading()"></i></button>
 
             </div>
           </div> <!-- / .row -->
@@ -87,27 +87,27 @@
             <thead>
               <tr>
                 <th>
-                  <a href="#/market" class="text-muted sort" data-sort="asset">
+                  <a href="#/market/#" class="text-muted sort" data-sort="asset">
                     Asset
                   </a>
                 </th>
                 <th>
-                  <a href="#/market" class="text-muted sort" data-sort="asset-price">
+                  <a href="#/market/#" class="text-muted sort" data-sort="asset-price">
                     Price/$DAI
                   </a>
                 </th>
                 <th>
-                  <a href="#/market" class="text-muted sort" data-sort="24h-change">
+                  <a href="#/market/#" class="text-muted sort" data-sort="24h-change">
                     24h Change
                   </a>
                 </th>
                 <th>
-                  <a href="#/market" class="text-muted sort" data-sort="7d-change">
+                  <a href="#/market/#" class="text-muted sort" data-sort="7d-change">
                     7d change
                   </a>
                 </th>
                 <th>
-                  <a href="#/market" class="text-muted sort" data-sort="1m-change">
+                  <a href="#/market/#" class="text-muted sort" data-sort="1m-change">
                     1m change
                   </a>
                 </th>
@@ -126,17 +126,17 @@
                 </td>
                 <td class="asset-price align-middle">{{getTokenPrice(token)}}</td>
                 <td class="24h-change align-middle">
-                  <span class="badge" [ngClass]="{'badge-soft-success': +getTokenDailyPriceChange(token) >= 0, 'badge-soft-danger': 0 > +getTokenDailyPriceChange(token)}">
+                  <span class="badge badge-xl" [ngClass]="{'badge-soft-success': +getTokenDailyPriceChange(token) >= 0, 'badge-soft-danger': 0 > +getTokenDailyPriceChange(token)}">
                     {{getTokenDailyPriceChange(token)}}%
                   </span>
                 </td>
                 <td class="7d-change align-middle">
-                  <span class="badge" [ngClass]="{'badge-soft-success': +getTokenWeeklyPriceChange(token) >= 0, 'badge-soft-danger': 0 > +getTokenWeeklyPriceChange(token)}">
+                  <span class="badge badge-xl" [ngClass]="{'badge-soft-success': +getTokenWeeklyPriceChange(token) >= 0, 'badge-soft-danger': 0 > +getTokenWeeklyPriceChange(token)}">
                     {{getTokenWeeklyPriceChange(token)}}%
                   </span>
                 </td>
                 <td class="1m-change align-middle">
-                  <span class="badge" [ngClass]="{'badge-soft-success': +getTokenMonthlyPriceChange(token) >= 0, 'badge-soft-danger': 0 > +getTokenMonthlyPriceChange(token)}">
+                  <span class="badge badge-xl" [ngClass]="{'badge-soft-success': +getTokenMonthlyPriceChange(token) >= 0, 'badge-soft-danger': 0 > +getTokenMonthlyPriceChange(token)}">
                     {{getTokenMonthlyPriceChange(token)}}%
                   </span>
                 </td>
@@ -151,8 +151,8 @@
 
 
 
-<!-- Angular stuff
 
+<!--
 <div class="market-wrapper col-12 col-lg-10 float-right">
       <div class="row">
         <div class="alert-window" *ngIf="errorMsg !== '' ">

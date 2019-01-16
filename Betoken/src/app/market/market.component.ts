@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { tokens, loading, refresh_actions, error_notifications } from '../../betokenjs/helpers';
+import { tokens, loading, refresh_actions } from '../../betokenjs/helpers';
 import BigNumber from 'bignumber.js';
 import { isUndefined } from 'util';
 
@@ -13,15 +13,12 @@ declare var $ :any;
 export class MarketComponent implements OnInit {
 
     tokenList: any;
-    errorMsg = '';
 
     constructor() { }
 
     ngOnInit() {
-        error_notifications.set_error_msg("");
         setInterval(() => {
             this.refreshDisplay();
-            this.updateErrorMsg();
         }, 100);
     }
 
@@ -67,11 +64,6 @@ export class MarketComponent implements OnInit {
 
     isLoading() {
         return loading.prices();
-    }
-
-    updateErrorMsg() {
-        error_notifications.check_dependency();
-        this.errorMsg = error_notifications.get_error_msg();
     }
 
     filterTable = (event, tableID, searchID) => {

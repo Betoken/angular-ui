@@ -184,7 +184,7 @@ export const manager_actions = {
 
         try {
             address = (await betoken.tokenSymbolToAddress(tokenSymbol));
-            kairoAmountInWeis = BigNumber(amt).times("1e18"); 
+            kairoAmountInWeis = BigNumber(amt).times("1e18");
             betoken.createInvestment(address, kairoAmountInWeis, pending, confirm);
             return;
         } catch (error) {
@@ -206,7 +206,4 @@ export const manager_actions = {
             error_notifications.set_error_msg(SEND_TX_ERR);
         }
     }
-}   
-
-
-
+}

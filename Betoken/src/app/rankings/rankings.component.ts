@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { user, stats, loading, refresh_actions, error_notifications } from '../../betokenjs/helpers';
+import { user, stats, loading, refresh_actions } from '../../betokenjs/helpers';
 import BigNumber from 'bignumber.js';
 
 @Component({
@@ -12,16 +12,13 @@ export class RankingsComponent implements OnInit {
     userValue: any;
     userAddress: String;
     userROI: any;
-    errorMsg = "";
 
     constructor() {
     }
 
     ngOnInit() {
-        error_notifications.set_error_msg("");
         setInterval(() => {
             this.refreshDisplay();
-            this.updateErrorMsg();
         }, 100);
     }
 
@@ -41,8 +38,4 @@ export class RankingsComponent implements OnInit {
         return loading.ranking();
     }
 
-    updateErrorMsg() {
-        error_notifications.check_dependency();
-        this.errorMsg = error_notifications.get_error_msg();
-    }
 }

@@ -52,8 +52,10 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
+    error_notifications.set_error_msg("");
     setInterval(() => {
-      this.refreshDisplay();
+        this.updateErrorMsg();
+        this.refreshDisplay();
     }, 100);
 
     this.ms.getNextPhaseBtn().subscribe((nextbtn: boolean) => {
@@ -161,6 +163,11 @@ export class HeaderComponent implements OnInit {
 
   checkRouterURL(route) {
     return this.router.url === route;
+  }
+  
+  updateErrorMsg() {
+      error_notifications.check_dependency();
+      this.errorMsg = error_notifications.get_error_msg();
   }
 
 }

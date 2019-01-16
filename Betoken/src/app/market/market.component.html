@@ -58,7 +58,7 @@
             <div class="col-auto">
 
               <!-- Refresh -->
-              <button class="btn btn-sm btn-white" type="button" name="button" (click) = "refresh()"><i class="fe fe-refresh-cw" *ngIf="isLoading() == false"></i><i class="fe fe-refresh-cw" *ngIf="isLoading()"></i></button>
+              <button class="btn btn-sm btn-white" type="button" name="button" (click) = "refresh()"><i class="fe fe-refresh-cw align-middle" *ngIf="isLoading() == false"></i><div class="loader loader-sm loader-secondary my-1" *ngIf="isLoading()"></div></button>
 
             </div>
           </div> <!-- / .row -->

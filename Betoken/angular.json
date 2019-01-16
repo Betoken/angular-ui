@@ -27,7 +27,12 @@
               "src/assets"
             ],
             "styles": [
-              "src/assets/scss/theme.scss"
+              "src/assets/scss/theme.scss",
+              "src/assets/fonts/feather/feather.css",
+              "node_modules/highlight.js/styles/vs2015.css",
+              "node_modules/quill/dist/quill.core.css",
+              "node_modules/select2/dist/css/select2.min.css",
+              "node_modules/flatpickr/dist/flatpickr.min.css"
             ],
             "scripts": [
                 "node_modules/jquery/dist/jquery.min.js",

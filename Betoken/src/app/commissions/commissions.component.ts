@@ -9,9 +9,9 @@ import {
 
 @Component({
     selector: 'app-account',
-    templateUrl: './account.component.html'
+    templateUrl: './commissions.component.html'
 })
-export class AccountComponent implements OnInit {
+export class CommissionsComponent implements OnInit {
     transactionTable: Array<Object>;
     transactionNetwork: String;
 

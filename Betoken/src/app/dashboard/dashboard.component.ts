@@ -15,7 +15,7 @@ import {
 
 @Component({
     selector: 'app-invest',
-    templateUrl: './invest.component.html',
+    templateUrl: './dashboard.component.html',
     animations: [
         trigger('toggleMenu', [
             state('open', style({
@@ -30,7 +30,7 @@ import {
     ]
 })
 
-export class InvestComponent implements OnInit {
+export class DashboardComponent implements OnInit {
     walkthrough: boolean;
     step1: boolean;
     step2: boolean;

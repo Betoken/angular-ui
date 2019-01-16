@@ -11,7 +11,7 @@ declare var $ :any;
 
 @Component({
     selector: 'app-proposal',
-    templateUrl: './proposal.component.html',
+    templateUrl: './investments.component.html',
     animations: [
         trigger('toggleProposal', [
             state('open', style({
@@ -26,7 +26,7 @@ declare var $ :any;
     ]
 })
 
-export class ProposalComponent implements OnInit {
+export class InvestmentsComponent implements OnInit {
 
     state: string;
     active: boolean;

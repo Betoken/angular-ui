@@ -10,13 +10,13 @@ import { NguCarouselModule } from '@ngu/carousel';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
-import { InvestComponent } from './invest/invest.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { ChartModule, HIGHCHARTS_MODULES } from 'angular-highcharts';
 import stock from 'highcharts/modules/stock.src';
 import more from 'highcharts/highcharts-more.src';
-import { ProposalComponent } from './proposal/proposal.component';
+import { InvestmentsComponent } from './investments/investments.component';
 import { RedeemComponent } from './redeem/redeem.component';
-import { AccountComponent } from './account/account.component';
+import { CommissionsComponent } from './commissions/commissions.component';
 import { RankingsComponent } from './rankings/rankings.component';
 import { InvestorComponent } from './investor/investor.component';
 import { MarketComponent } from './market/market.component';
@@ -29,17 +29,17 @@ export function highchartsModules() {
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/home',
+    redirectTo: '/dashboard',
     pathMatch: 'full'
 },
   {
-    path: 'home',
-    component: InvestComponent,
+    path: 'dashboard',
+    component: DashboardComponent,
     pathMatch: 'full'
 },
 {
-  path: 'proposal',
-  component: ProposalComponent,
+  path: 'investments',
+  component: InvestmentsComponent,
   pathMatch: 'full'
 },
 {
@@ -48,8 +48,8 @@ const routes: Routes = [
   pathMatch: 'full'
 },
 {
-  path: 'account',
-  component: AccountComponent,
+  path: 'commissions',
+  component: CommissionsComponent,
   pathMatch: 'full'
 },
 {
@@ -75,10 +75,10 @@ const routes: Routes = [
     AppComponent,
     HeaderComponent,
     SideNavComponent,
-    InvestComponent,
-    ProposalComponent,
+    DashboardComponent,
+    InvestmentsComponent,
     RedeemComponent,
-    AccountComponent,
+    CommissionsComponent,
     RankingsComponent,
     InvestorComponent,
     MarketComponent,

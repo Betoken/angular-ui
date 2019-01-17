@@ -50,6 +50,10 @@ export class InvestmentsComponent implements OnInit {
     success: boolean;
     tradeAssetval: any;
 
+    portfolioValueInDAI = '';
+    currentStake = '';
+    currentStakeProportion = '';
+
     userValue: any;
     days = 0;
     hours = 0;
@@ -213,6 +217,9 @@ export class InvestmentsComponent implements OnInit {
         this.tokenList = tokens.token_list();
         this.user_address = user.address();
         this.userValue = user.portfolio_value().toFormat(4);
+        this.portfolioValueInDAI = user.portfolio_value_in_dai().toFormat(4);
+        this.currentStake = user.current_stake().toFormat(4);
+        $('#current_stake_progressbar').css('width', user.current_stake().div(user.portfolio_value()).times(100).toString() + '%');
         this.updateDates();
     }
 

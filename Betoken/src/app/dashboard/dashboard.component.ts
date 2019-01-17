@@ -73,6 +73,8 @@ export class DashboardComponent implements OnInit {
     sortinoRatio = 0;
     standardDeviation = 0;
 
+    portfolioValueInDAI = '';
+
     hasDrawnChart = false;
 
     days = 0;
@@ -207,6 +209,7 @@ export class DashboardComponent implements OnInit {
         this.currMoROI = stats.cycle_roi().toFormat(4);
         this.AUM = stats.fund_value().toFormat(2);
         this.userRanking = user.rank();
+        this.portfolioValueInDAI = user.portfolio_value_in_dai().toFormat(4);
         this.updateDates();
         this.rankingList();
         if (stats.raw_roi_data().length > 0 && !this.hasDrawnChart) {

@@ -21,6 +21,7 @@ export var lastCommissionRedemption = new ReactiveVar(0);
 export var managerROI = new ReactiveVar(BigNumber(0));
 export var transactionHistory = new ReactiveVar([]);
 export var portfolioValue = new ReactiveVar(BigNumber(0));
+export var currentStake = new ReactiveVar(BigNumber(0));
 
 // fund metadata
 export var kairoTotalSupply = new ReactiveVar(BigNumber(0));
@@ -223,9 +224,12 @@ export const loadUserData = async () => {
                 await Promise.all(handleAllProposals());
                 investments = investments.filter((x) => +x.cycleNumber == cycleNumber.get());
                 investmentList.set(investments);
+
                 var totalKROChange = investments.map((x) => BigNumber(x.kroChange)).reduce((x, y) => x.plus(y));
-                var totalStake = investments.map((x) => BigNumber(x.stake)).reduce((x, y) => x.plus(y));
+                var totalStake = investments.map((x) => BigNumber(x.stake)).reduce((x, y) => x.plus(y), BigNumber(0));
+                var totalCurrentStake = investments.filter((x) => x.isSold == false).reduce((x, y) => x.plus(y), BigNumber(0));
                 managerROI.set(totalKROChange.div(totalStake).times(100));
+                currentStake.set(totalCurrentStake);
             }
             isLoadingInvestments.set(false);
         }

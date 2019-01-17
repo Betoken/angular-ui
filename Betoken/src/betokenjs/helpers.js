@@ -81,7 +81,11 @@ export const user = {
         }
         return "N/A";
     },
-    portfolio_value: () => Data.portfolioValue.get()
+    portfolio_value: () => Data.portfolioValue.get(),
+    portfolio_value_in_dai: () => {
+        return Data.portfolioValue.get().times(Data.fundValue.get()).div(Data.kairoTotalSupply.get());
+    },
+    current_stake: () => Data.currentStake.get()
 }
 
 export const stats = {

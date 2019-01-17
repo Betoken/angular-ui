@@ -55,7 +55,7 @@
 
             <!-- Heading -->
             <span class="h2 mb-0">
-              N/A
+              {{portfolioValueInDAI}}
             </span>
 
           </div>
@@ -118,7 +118,7 @@
 
                 <!-- Heading -->
                 <span class="h2 mr-2 mb-0">
-                  N/A%
+                  {{currentStake}}
                 </span>
 
               </div>
@@ -126,7 +126,7 @@
 
                 <!-- Progress -->
                 <div class="progress progress-sm">
-                  <div class="progress-bar" role="progressbar" style="width: 85%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
+                  <div class="progress-bar" role="progressbar" id="current_stake_progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
 
               </div>
@@ -151,7 +151,7 @@
 
             <!-- Title -->
             <h6 class="card-title text-uppercase text-muted mb-2">
-              Your Mo. Est. Commission
+              Your Estimated Commission This Month
             </h6>
 
             <!-- Heading -->

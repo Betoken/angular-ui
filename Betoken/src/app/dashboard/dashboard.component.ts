@@ -5,6 +5,7 @@ import { NguCarousel, NguCarouselStore, NguCarouselService } from '@ngu/carousel
 import { Router } from '@angular/router';
 import { BigNumber } from 'bignumber.js';
 import { Chart } from 'chart.js';
+//import { Chart } from '../../assets/js/charts.js';
 
 import { } from 'jquery';
 declare var $: any;

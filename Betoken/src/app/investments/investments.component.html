@@ -535,7 +535,7 @@
                   <span class="text-secondary">{{tradeAssetval}} DAI</span>
                   <br>
 
-                  <span class="badge badge-xl" [ngClass]="{'badge-soft-success': +getTokenDailyPriceChange(selectedTokenSymbol) >= 0, 'badge-soft-danger': 0 > +getTokenDailyPriceChange(selectedTokenSymbol)}">{{dailyPriceChange}}%</span>
+                  <span class="badge badge-xl" [ngClass]="{'badge-soft-success': +getTokenDailyPriceChange(token) >= 0, 'badge-soft-danger': 0 > +getTokenDailyPriceChange(token)}">{{getTokenDailyPriceChange(token)}}%</span>
 
                 </div>
               </div>

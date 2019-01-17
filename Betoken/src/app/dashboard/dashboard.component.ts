@@ -205,12 +205,12 @@ export class DashboardComponent implements OnInit {
     refreshDisplay() {
         this.kairo_balance = user.portfolio_value().toFormat(4);
         this.monthly_pl = user.monthly_roi().toFormat(4);
-        this.expected_commission = user.expected_commission().toFormat(4);
+        this.expected_commission = user.expected_commission().toFormat(2);
         this.avgMonthReturn = stats.avg_roi().toFormat(2);
         this.currMoROI = stats.cycle_roi().toFormat(4);
         this.AUM = stats.fund_value().toFormat(2);
         this.userRanking = user.rank();
-        this.portfolioValueInDAI = user.portfolio_value_in_dai().toFormat(4);
+        this.portfolioValueInDAI = user.portfolio_value_in_dai().toFormat(2);
         this.updateDates();
         this.rankingList();
         if (stats.raw_roi_data().length > 0 && !this.hasDrawnChart) {

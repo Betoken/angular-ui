@@ -5,7 +5,7 @@ import { user, timer, manager_actions, refresh_actions } from '../../betokenjs/h
 
 @Component({
     selector: 'app-redeem',
-    templateUrl: './redeem.component.html'
+    templateUrl: './redeem.component.html',
     animations: [
         trigger('toggleRedeem', [
             state('open', style({

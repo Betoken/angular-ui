@@ -1,10 +1,10 @@
 import { Component, OnInit, } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { AppComponent } from '../app.component';
-import { Chart } from 'angular-highcharts';
 import { NguCarousel, NguCarouselStore, NguCarouselService } from '@ngu/carousel';
 import { Router } from '@angular/router';
 import { BigNumber } from 'bignumber.js';
+import { Chart } from 'chart.js';
 
 import { } from 'jquery';
 declare var $: any;
@@ -56,8 +56,6 @@ export class DashboardComponent implements OnInit {
     success: boolean;
     returnres: any;
 
-    stock: Chart;
-    bar: Chart;
     inputShare = 0.00;
     calculated_balance = 0.00;
     selectedTokenSymbol = 'DAI';
@@ -72,8 +70,10 @@ export class DashboardComponent implements OnInit {
     AUM = 0;
     totalKairo = 0;
     totalBTFShares = 0;
-    sharpeRatio = 0;
+    sortinoRatio = 0;
     standardDeviation = 0;
+
+    hasDrawnChart = false;
 
     days = 0;
     hours = 0;
@@ -135,19 +135,8 @@ export class DashboardComponent implements OnInit {
     }
 
     ngOnInit() {
-        let hasDrawnChart = false;
         setInterval(() => {
-            this.avgMonthReturn = stats.avg_roi().toFormat(2);
-            this.currMoROI = stats.cycle_roi().toFormat(4);
-            this.AUM = stats.fund_value().toFormat(2);
-            this.updateDates();
-            this.rankingList();
-            if (stats.raw_roi_data().length > 0) {
-                if (!hasDrawnChart) {
-                    hasDrawnChart = true;
-                    this.drawChart();
-                }
-            }
+            this.refreshDisplay();
         }, 100);
 
         this.carouselBanner = {
@@ -208,6 +197,22 @@ export class DashboardComponent implements OnInit {
                 this.active = false;
             }
         });
+    }
+
+    refreshDisplay() {
+        this.kairo_balance = user.portfolio_value().toFormat(10);
+        this.monthly_pl = user.monthly_roi().toFormat(4);
+        this.expected_commission = user.expected_commission().toFormat(4);
+        this.avgMonthReturn = stats.avg_roi().toFormat(2);
+        this.currMoROI = stats.cycle_roi().toFormat(4);
+        this.AUM = stats.fund_value().toFormat(2);
+        this.userRanking = user.rank();
+        this.updateDates();
+        this.rankingList();
+        if (stats.raw_roi_data().length > 0 && !this.hasDrawnChart) {
+            this.hasDrawnChart = true;
+            this.drawChart();
+        }
     }
 
 
@@ -334,64 +339,22 @@ export class DashboardComponent implements OnInit {
         this.totalUser = this.rankingArray.length;
     }
 
-    refreshDisplay() {
-      this.kairo_balance = user.portfolio_value().toFormat(10);
-      this.monthly_pl = user.monthly_roi().toFormat(4);
-      this.expected_commission = user.expected_commission().toFormat(4);
-      this.userRanking = user.rank();
-    }
-
     drawChart = () => {
-        // Prepare data
-        const cycles = [];
-        const rois = [];
-        for (const data of stats.raw_roi_data()) {
-            cycles.push(data[0]);
-            rois.push({
-                y: data[1],
-                color: data[1] > 0 ? '#18DAA3' : '#F4406B'
-            });
-        }
-        if (timer.phase() === 1) {
-            cycles.push(cycles.length + 1);
-            rois.push({
-                y: (new BigNumber(this.currMoROI)).toNumber(),
-                color: (new BigNumber(this.currMoROI)).toNumber() > 0 ? '#18DAA3' : '#F4406B'
-            });
-        }
-
-
-        this.stock = new Chart({
-            title: {
-                text: ''
-            },
-            xAxis: {
-                categories: cycles,
-                title: {
-                    text: 'Months since fund\'s birth'
-                }
-            },
-            yAxis: {
-                title: {
-                    text: 'ROI / %'
-                }
-            },
-            credits: {
-                enabled: false
-            },
-            legend: {
-                enabled: false
-            },
-            series: [{
-                type: 'column',
-                name: 'ROI',
-                data: rois
-            }]
-        });
-
-        // calculate more stats for Betoken
         let BONDS_MONTHLY_INTEREST = 2.4662697e-3 // 3% annual interest rate
         let NUM_DECIMALS = 4;
+        let betokenROIList = stats.raw_roi_data();
+
+        const convertToCumulative = (list) => {
+            var tmp = new BigNumber(1);
+            var tmpArray = [new BigNumber(0)];
+            for (let roi of list) {
+                tmp = new BigNumber(roi).div(100).plus(1).times(tmp);
+                tmpArray.push(tmp.times(100).minus(100).dp(NUM_DECIMALS));
+            }
+            return tmpArray;
+        }
+
+        // calculate stats for Betoken
         let calcMean = function(list) {
             return list.reduce(function(accumulator, curr) {
             return new BigNumber(accumulator).plus(curr);
@@ -405,17 +368,134 @@ export class DashboardComponent implements OnInit {
             }, 0).div(list.length - 1);
             return sampleStd = sampleVar.sqrt();
         };
-        // Sharpe Ratio (against BTC, since inception)
-        let betokenROIList = rois.map((x) => new BigNumber(x.y));
-        let meanExcessReturn = calcMean(betokenROIList).minus(BONDS_MONTHLY_INTEREST);
-        let excessReturnList = [];
-        for (let i = 0; i < betokenROIList.length; i++) {
-            excessReturnList[i] = betokenROIList[i].minus(BONDS_MONTHLY_INTEREST);
+        let calcDownsideStd = (list, minAcceptableRate) => {
+            let sampleVar = list.reduce(
+                (accumulator, curr) => (new BigNumber(accumulator)).plus(new BigNumber(BigNumber.min(curr - minAcceptableRate, 0)).pow(2))
+                , 0).div(list.length - 1);
+            let sampleStd = sampleVar.sqrt();
+            return sampleStd;
         }
-        let excessReturnStd = calcSampleStd(excessReturnList);
 
-        this.sharpeRatio = meanExcessReturn.div(excessReturnStd).dp(NUM_DECIMALS);
+        // Sortino Ratio (against bonds, since inception)
+        let meanExcessReturn = calcMean(betokenROIList).minus(BONDS_MONTHLY_INTEREST);
+        let excessReturnStd = calcDownsideStd(betokenROIList, BONDS_MONTHLY_INTEREST);
+        this.sortinoRatio = meanExcessReturn.div(excessReturnStd).dp(NUM_DECIMALS);
+
+        // Get cumulative data & calc std
+        betokenROIList = convertToCumulative(betokenROIList);
         this.standardDeviation = calcSampleStd(betokenROIList).dp(NUM_DECIMALS);
-    }
 
+        // Compute timestamps
+        let phase = timer.phase();
+        let now = Math.floor(new Date().getTime() / 1000);
+        let phaseStart = timer.phase_start_time();
+        let phaseLengths = timer.phase_lengths();
+        let timestamps = new Array(betokenROIList.length - 1);
+        switch (phase) {
+            case 0:
+                // invest & withdraw phase
+                // use last cycle's data
+                timestamps[timestamps.length - 1] = {
+                    end: phaseStart - phaseLengths[2],
+                    start: phaseStart - phaseLengths[2] - phaseLengths[1]
+                }
+                break;
+            case 1:
+                // manage phase
+                // use current data
+                timestamps[timestamps.length - 1] = {
+                    end: now,
+                    start: phaseStart
+                }
+                break;
+            case 2:
+                // redeem commission phase
+                // use data from manage phase
+                timestamps[timestamps.length - 1] = {
+                    end: phaseStart,
+                    start: phaseStart - phaseLengths[1]
+                }
+                break;
+        }
+        for (let i = timestamps.length - 2; i >= 0; i--) {
+            timestamps[i] = {
+                start: 0,
+                end: 0
+            }
+            timestamps[i].end = timestamps[i+1].start - phaseLengths[0] - phaseLengths[2];
+            timestamps[i].start = timestamps[i].end - phaseLengths[1];
+        }
+
+        let MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+        var timestampStrs = [];
+        for (var i = 0; i < timestamps.length; i++) {
+            timestampStrs.push(new Date(timestamps[i].start * 1e3).toLocaleDateString());
+        }
+        timestampStrs.push(new Date(timestamps[timestamps.length - 1].end * 1e3).toLocaleDateString());
+
+        var xLabels = [];
+        for (var i = 0; i < timestamps.length; i++) {
+            var date = new Date(timestamps[i].start * 1e3);
+            var formattedString = `${MONTHS[date.getMonth()]} ${date.getFullYear()}`;
+            xLabels.push(formattedString);
+        }
+        xLabels.push("Now");
+
+        // draw chart
+        var ctx = document.getElementById("roi-chart");
+        var performanceChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: xLabels,
+                datasets: [
+                    {
+                        label: 'Betoken',
+                        borderColor: '#22c88a',
+                        backgroundColor: 'rgba(185, 238, 225, 0.5)',
+                        fill: true,
+                        data: betokenROIList
+                    }
+                ]
+            },
+            options: {
+                maintainAspectRatio: false,
+                scales: {
+                    xAxes: [{
+                        gridLines: {
+                            display: false
+                        }
+                    }],
+                    yAxes: [{
+                        gridLines: {
+                            display: true
+                        },
+                        ticks: {
+                            callback: function(value, index, values) {
+                                return value + '%';
+                            }
+                        }
+                    }]
+                },
+                title: {
+                    display: true,
+                    text: 'Monthly Return On Investment Comparison'
+                },
+                tooltips: {
+                    enabled: true,
+                    mode: 'index',
+					intersect: false,
+                    displayColors: true,
+                    callbacks: {
+                        label: function(tooltipItems, data) { 
+                            return tooltipItems.yLabel + '%';
+                        },
+                        title: function(tooltipItems, data) { 
+                            return timestampStrs[tooltipItems[0].index];
+                        }
+                    }
+                }
+            }
+        });
+    }
 }

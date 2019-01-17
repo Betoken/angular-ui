@@ -43,7 +43,9 @@ export const timer = {
     hour: () => Data.countdownHour.get(),
     minute: () => Data.countdownMin.get(),
     second: () => Data.countdownSec.get(),
-    phase: () => Data.cyclePhase.get()
+    phase: () => Data.cyclePhase.get(),
+    phase_start_time: () => Data.startTimeOfCyclePhase.get(),
+    phase_lengths: () => Data.phaseLengths.get()
 }
 
 export const user = {
@@ -61,7 +63,7 @@ export const user = {
                 return Data.kairoBalance.get().div(Data.kairoTotalSupply.get()).times(Data.cycleTotalCommission.get());
             }
             // Expected commission based on previous average ROI
-            var roi = Data.avgROI.get().gt(0) ? Data.avgROI.get() : BigNumber(0);
+            var roi = stats.cycle_roi().gt(0) ? stats.cycle_roi() : BigNumber(0);
             return Data.kairoBalance.get().div(Data.kairoTotalSupply.get()).times(Data.totalFunds.get()).times(roi.div(100).times(Data.commissionRate.get()).plus(Data.assetFeeRate.get()));
         }
         return BigNumber(0);

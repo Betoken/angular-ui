@@ -6,7 +6,8 @@ import {
     refresh_actions
 } from '../../betokenjs/helpers';
 
-
+import { } from 'jquery';
+declare var $: any;
 @Component({
     selector: 'app-account',
     templateUrl: './commissions.component.html'

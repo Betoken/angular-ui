@@ -409,7 +409,7 @@ export const loadRanking = async () => {
                 // format rank object
                 rank: 0,
                 address: _addr,
-                kairoBalance: BigNumber(await betoken.getKairoBalance(_addr)).div(PRECISION).plus(stake).toFormat(10),
+                kairoBalance: BigNumber(await betoken.getKairoBalance(_addr)).div(PRECISION).plus(stake).toFixed(10),
                 cycleROI: totalStake.isZero() ? BigNumber(0).toFormat(4) : totalKROChange.div(totalStake).times(100).toFormat(4)
             };
         });
@@ -467,22 +467,7 @@ export const loadStats = async () => {
     currROI.set(BigNumber(0));
     avgROI.set(BigNumber(0));
     historicalTotalCommission.set(BigNumber(0));
-    return Promise.all([
-        /*betoken.contracts.BetokenFund.getPastEvents("TotalCommissionPaid",
-        {
-            fromBlock: DEPLOYED_BLOCK
-        }).then(function(events) {
-            var _event,
-            commission,
-            j,
-            len;
-            for (j = 0, len = events.length; j < len; j++) {
-                _event = events[j];
-                commission = BigNumber(_event.returnValues._totalCommissionInDAI).div(PRECISION);
-                historicalTotalCommission.set(historicalTotalCommission.get().plus(commission));
-            }
-        }),*/
-        betoken.contracts.BetokenFund.getPastEvents("ROI",
+    return betoken.contracts.BetokenFund.getPastEvents("ROI",
         {
             fromBlock: DEPLOYED_BLOCK
         }).then(function(events) {
@@ -496,26 +481,31 @@ export const loadStats = async () => {
                 data = _event.returnValues;
                 ROI = BigNumber(data._afterTotalFunds).minus(data._beforeTotalFunds).div(data._beforeTotalFunds).times(100);
                 // Update chart data
-                rois.push([+data._cycleNumber, ROI.toNumber()]);
+                rois.push(ROI.toNumber());
                 
                 if (+data._cycleNumber === cycleNumber.get()) {
                     currROI.set(ROI);
                 }
-
-                // Update average ROI
-                totalInputFunds = totalInputFunds.plus(BigNumber(data._beforeTotalFunds).div(PRECISION));
-                totalOutputFunds = totalOutputFunds.plus(BigNumber(data._afterTotalFunds).div(PRECISION));
             }
-            ROIArray.set(rois);
         }).then(() => {
             // Take current cycle's ROI into consideration
-            if (cyclePhase.get() !== 2) {
-                totalInputFunds = totalInputFunds.plus(totalFunds.get());
-                totalOutputFunds = totalOutputFunds.plus(fundValue.get());
+            if (cyclePhase.get() === 1) {
+                rois.push(fundValue.get().minus(totalFunds.get()).div(totalFunds.get()).times(100));
             }
-            avgROI.set(totalOutputFunds.minus(totalInputFunds).div(totalInputFunds).times(100));
-        })
-    ]);
+            ROIArray.set(rois);
+            const convertToCumulative = (list) => {
+                var tmp = BigNumber(1);
+                var tmpArray = [BigNumber(0)];
+                for (let roi of list) {
+                    tmp = BigNumber(roi).div(100).plus(1).times(tmp);
+                    tmpArray.push(tmp.times(100).minus(100));
+                }
+                return tmpArray;
+            }
+            
+            let cumulative = convertToCumulative(rois);
+            avgROI.set(cumulative[cumulative.length - 1]);
+        });
 };
 
 export const loadAllData = async function() {

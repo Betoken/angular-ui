@@ -399,21 +399,20 @@
 
 
 <!-- Buy modal -->
-<div class="modal fade fixed-right" id="modalBuy" tabindex="-1" role="dialog" aria-labelledby="modalbuy" aria-hidden="true" [@toggleProposal]="state" [class.active]="active">
+<div class="modal fade fixed-right" id="modalBuy" tabindex="-1" role="dialog" aria-labelledby="modalbuy" aria-hidden="true">
   <div class="modal-dialog modal-dialog-vertical bg-white" role="document">
     <div class="modal-content" data-toggle="lists" data-lists-values="[&quot;name&quot;]">
       <div class="card-header">
         <div class="row align-items-center">
           <div class="col">
-            <!-- Select Asset title
+            <!-- Select Asset title -->
             <h4 class="card-header-title" *ngIf="createInvestmentPopupStep === 0">
               Select An Asset
             </h4>
-            <!-- Selected Asset title
+            <!-- Selected Asset title -->
             <h4 class="card-header-title" *ngIf="createInvestmentPopupStep === 1">
               Buy {{selectedTokenSymbol}}
             </h4>
-            -->
             <!-- Confirm asset investment title
             <h4 class="card-header-title" *ngIf="createInvestmentPopupStep === 2">
               Confirm Investment
@@ -441,7 +440,7 @@
           </div>
         </div> <!-- / .row -->
       </div>
-      <!-- Search in list assets
+      <!-- Search in list assets -->
       <div class="card-header" *ngIf="createInvestmentPopupStep === 0">
         <form>
           <div class="input-group input-group-flush input-group-merge">
@@ -454,7 +453,6 @@
           </div>
         </form>
       </div>
-      -->
       <div class="modal-body">
         <!-- Asset logo
         <div class="row justify-content-center mb-4" *ngIf="createInvestmentPopupStep === 1">
@@ -508,7 +506,7 @@
           </div>
         </div>
         -->
-        <!-- List assets
+        <!-- List assets -->
         <ul class="list-group list-group-flush list my--3" *ngIf="createInvestmentPopupStep === 0">
 
           <li class="list-group-item px-0" *ngFor = "let token of tokenList">
@@ -546,7 +544,6 @@
           </li>
 
         </ul>
-        -->
         <!-- Confirm investment body
         <p class="text-center text-muted mb-5" *ngIf="createInvestmentPopupStep === 2">
           Confirm the transaction in your wallet’s interface to save it on the Ethereum blockchain. It's fine to stick with these defaults gas limit and price.
@@ -591,7 +588,7 @@
         </form>
         -->
       </div>
-      <!-- Continue button for step 1
+      <!-- Continue button for step 1 -->
       <div class="modal-footer border-0" *ngIf="createInvestmentPopupStep === 1">
         <button type="submit" class="btn btn-block btn-success mt-auto" aria-label="Invest">
           Continue

@@ -506,43 +506,135 @@
           </div>
         </div>
         -->
-        <!-- List assets -->
-        <ul class="list-group list-group-flush list my--3" *ngIf="createInvestmentPopupStep === 0">
+        <!-- List Short assets -->
 
-          <li class="list-group-item px-0" *ngFor = "let token of tokenList">
-            <a href="#">
-              <div class="row align-items-center">
-                <div class="col-auto">
+        <ul class="list-group list-group-flush list" *ngIf="createInvestmentPopupStep === 0">
+            <li class="list-group-item px-0 text-secondary border-bottom-0">
+                <h6 class="header-pretitle border-0">
+                  Short Assets <span class="badge badge-soft-primary ml-auto">Soon</span>
+                </h6>
+            </li>
+            <li class="list-group-item px-0">
+                <a>
+                  <div class="row align-items-center">
+                    <div class="col-auto">
 
-                  <span class="avatar avatar-sm">
-                    <img src="assets/img/icons/eth.svg" alt="Ethereum logo" class="avatar-img rounded-circle">
-                  </span>
+                      <span class="avatar avatar-sm">
+                        <img src="assets/img/icons/eth.svg" alt="Ethereum logo" class="avatar-img rounded-circle">
+                      </span>
 
-                </div>
-                <div class="col ml--2">
+                    </div>
+                    <div class="col ml--2">
 
-                  <h4 class="mb-1 text-dark name">
-                    {{token}}
-                  </h4>
+                      <h4 class="mb-1 text-dark name">
+                        sETH
+                      </h4>
 
-                  <p class="small text-secondary mb-0">
-                    Ethereum
-                  </p>
+                      <p class="small text-secondary mb-0">
+                        Short Ethereum
+                      </p>
 
-                </div>
-                <div class="col-auto text-right">
+                    </div>
+                    <div class="col-auto text-right">
 
-                  <span class="text-secondary">{{tradeAssetval}} DAI</span>
-                  <br>
+                        <h6 class="header-pretitle">
+                          Leveraged
+                        </h6>
 
-                  <span class="badge badge-xl" [ngClass]="{'badge-soft-success': +getTokenDailyPriceChange(token) >= 0, 'badge-soft-danger': 0 > +getTokenDailyPriceChange(token)}">{{getTokenDailyPriceChange(token)}}%</span>
+                        <h4 class="header-title text-dark">
+                          1.5x
+                        </h4>
 
-                </div>
-              </div>
+                    </div>
+                  </div>
 
-            </a>
-          </li>
+                </a>
+            </li>
+        </ul>
+        <!-- List Leveraged assets -->
+        <ul class="list-group list-group-flush list mt-4" *ngIf="createInvestmentPopupStep === 0">
+            <li class="list-group-item px-0 text-secondary border-bottom-0 border-top-0">
+                <h6 class="header-pretitle border-0">
+                  Leveraged Assets <span class="badge badge-soft-primary ml-auto">Soon</span>
+                </h6>
+            </li>
+            <li class="list-group-item px-0">
+                <a>
+                  <div class="row align-items-center">
+                    <div class="col-auto">
 
+                      <span class="avatar avatar-sm">
+                        <img src="assets/img/icons/eth.svg" alt="Ethereum logo" class="avatar-img rounded-circle">
+                      </span>
+
+                    </div>
+                    <div class="col ml--2">
+
+                      <h4 class="mb-1 text-dark name">
+                        LETH
+                      </h4>
+
+                      <p class="small text-secondary mb-0">
+                        Leveraged Ethereum
+                      </p>
+
+                    </div>
+                    <div class="col-auto text-right">
+
+                        <h6 class="header-pretitle">
+                          Leveraged
+                        </h6>
+
+                        <h4 class="header-title text-dark">
+                          1.5x
+                        </h4>
+
+                    </div>
+                  </div>
+
+                </a>
+            </li>
+        </ul>
+        <!-- List Market assets -->
+        <ul class="list-group list-group-flush list mt-4" *ngIf="createInvestmentPopupStep === 0">
+            <li class="list-group-item px-0 text-secondary border-bottom-0 border-top-0">
+                <h6 class="header-pretitle border-0">
+                  Market Assets
+                </h6>
+            </li>
+            <li class="list-group-item px-0" *ngFor = "let token of tokenList">
+                <a href="#">
+                  <div class="row align-items-center">
+                    <div class="col-auto">
+
+                      <span class="avatar avatar-sm">
+                        <img src="assets/img/icons/eth.svg" alt="Ethereum logo" class="avatar-img rounded-circle">
+                      </span>
+
+                    </div>
+                    <div class="col ml--2">
+
+                      <h4 class="mb-1 text-dark name">
+                        {{token}}
+                      </h4>
+
+                      <p class="small text-secondary mb-0">
+                        Ethereum
+                      </p>
+
+                    </div>
+                    <div class="col-auto text-right">
+
+                      <span class="text-secondary">0.0000 DAI</span>
+                      <br>
+
+                      <span class="badge badge-xl" [ngClass]="{'badge-soft-success': +getTokenDailyPriceChange(token) >= 0, 'badge-soft-danger': 0 > +getTokenDailyPriceChange(token)}">{{getTokenDailyPriceChange(token)}}%</span>
+
+                    </div>
+                  </div>
+
+                </a>
+            </li>
         </ul>
         <!-- Confirm investment body
         <p class="text-center text-muted mb-5" *ngIf="createInvestmentPopupStep === 2">

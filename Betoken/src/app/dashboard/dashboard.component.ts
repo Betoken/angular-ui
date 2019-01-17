@@ -203,7 +203,7 @@ export class DashboardComponent implements OnInit {
     }
 
     refreshDisplay() {
-        this.kairo_balance = user.portfolio_value().toFormat(10);
+        this.kairo_balance = user.portfolio_value().toFormat(4);
         this.monthly_pl = user.monthly_roi().toFormat(4);
         this.expected_commission = user.expected_commission().toFormat(4);
         this.avgMonthReturn = stats.avg_roi().toFormat(2);
@@ -490,10 +490,10 @@ export class DashboardComponent implements OnInit {
 					intersect: false,
                     displayColors: true,
                     callbacks: {
-                        label: function(tooltipItems, data) { 
+                        label: function(tooltipItems, data) {
                             return tooltipItems.yLabel + '%';
                         },
-                        title: function(tooltipItems, data) { 
+                        title: function(tooltipItems, data) {
                             return timestampStrs[tooltipItems[0].index];
                         }
                     }

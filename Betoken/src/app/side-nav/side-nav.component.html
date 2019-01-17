@@ -18,63 +18,11 @@
       <!-- notification -->
       <div class="navbar-toggler">
         <!-- Toggle -->
-        <a href="#" class="text-muted" data-toggle="collapse" data-target="#sidebarCollapseNotif" aria-controls="sidebarCollapseNotif" aria-expanded="false" aria-label="Toggle navigation">
+        <a href="#" class="text-muted" data-toggle="modal" href="#modalEmailUpdates">
           <span class="icon active">
             <i class="fe fe-bell"></i>
           </span>
         </a>
-      </div>
-      <!-- Collapse -->
-      <div class="collapse" id="sidebarCollapseNotif">
-        <div class="header text-center">
-          <div class="header-body">
-
-            <h6 class="header-pretitle">
-              Betoken Fund Updates
-            </h6>
-
-            <h1 class="header-title">
-              Get notified by email
-            </h1>
-
-          </div>
-        </div>
-        <!-- Text -->
-        <p class="text-center text-secondary">
-          Be the first to know about new investment and management phases and when to redeem manager's commissions 👇.
-        </p>
-        <form action="https://fund.us17.list-manage.com/subscribe/post?u=9c0647dcb587985ed6121cdf6&amp;id=150e0f091e" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate col-auto col-md-6 mx-auto mb-5" target="_blank" novalidate>
-          <div class="justify-content-center">
-            <div class="input-group input-group-lg">
-              <input class="form-control bg-white" type="email" value="" name="EMAIL" id="mce-EMAIL" placeholder="myemail@address.com" required>
-              <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_9c0647dcb587985ed6121cdf6_150e0f091e" tabindex="-1" value=""></div>
-              <div class="input-group-append bg-black">
-                <button class="btn btn-dark btn-lg btn-block" name="subscribe" id="mc-embedded-subscribe">
-                    <span class="fe fe-send"></span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </form>
-        <div class="row justify-content-center">
-          <div class="col-auto mb-5">
-            <a href="https://t.me/" class="btn btn-rounded-circle btn-white mr-3">
-              <img class="mx-auto" src="assets/img/icons/telegram.svg" alt="telegram logo" height="20">
-            </a>
-            <a href="https://twitter.com/" class="btn btn-rounded-circle btn-white mr-3">
-              <img class="mx-auto" src="assets/img/icons/twitter.svg" alt="twitter logo" height="20">
-            </a>
-            <a href="https://medium.com/" class="btn btn-rounded-circle btn-white mr-3">
-              <img class="mx-auto" src="assets/img/icons/medium.svg" alt="medium logo" height="20">
-            </a>
-            <a href="https://github.com/" class="btn btn-rounded-circle btn-white">
-              <img class="mx-auto" src="assets/img/icons/github.svg" alt="medium logo" height="20">
-            </a>
-          </div>
-        </div>
-        <p class="text-center text-secondary">
-          Contact us at <a class="text-secondary" href="mailto:team@weswap.io?subject=Hey">team@weswap.io</a>
-        </p>
       </div>
 
       <!-- Collapse -->
@@ -176,9 +124,10 @@
     </div>
   </nav>
 
-  <nav class="navbar fixed-bottom d-md-none">
+  <nav class="navbar fixed-bottom d-md-none" *ngIf="checkRouterURL('/invest') === false">
     <div class="container px-0">
-      <button class="btn btn-success btn-block" type="button" data-toggle="modal" href="#modalBuy">Trade Assets</button>
+      <button class="btn btn-success btn-block" (click)="proposalPopup()">Make Investments</button>
+      <button class="btn btn-success btn-block" routerLink="/redeem" (click)="redeemPopup()" *ngIf="phase == 2 && can_redeem_commission">Redeem Commission</button>
     </div>
   </nav>
 

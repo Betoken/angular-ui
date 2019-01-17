@@ -23,6 +23,10 @@ export class HeaderComponent implements OnInit {
   nextphasebtn: boolean;
   redeembtn: boolean;
 
+  sellalert: boolean;
+  nextphasealert: boolean;
+  redeemalert: boolean;
+
   newcyclebtn: boolean;
 
   days = 0;
@@ -49,6 +53,9 @@ export class HeaderComponent implements OnInit {
     this.nextphasebtn = false;
     this.redeembtn = false;
     this.newcyclebtn = false;
+    this.sellalert = false;
+    this.nextphasealert = false;
+    this.redeemalert = false;
   }
 
   ngOnInit() {
@@ -164,7 +171,7 @@ export class HeaderComponent implements OnInit {
   checkRouterURL(route) {
     return this.router.url === route;
   }
-  
+
   updateErrorMsg() {
       error_notifications.check_dependency();
       this.errorMsg = error_notifications.get_error_msg();

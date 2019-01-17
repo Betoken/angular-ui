@@ -1,509 +1,296 @@
 <!-- HEADER -->
 <div class="header bg-dark pb-5">
-<div class="container-fluid">
+    <div class="container-fluid">
 
-  <!-- Body -->
-  <div class="header-body">
-    <div class="alert alert-primary alert-dismissible fade show d-flex d-md-none" role="alert">
-      <a class="text-white" data-toggle="modal" href="#modalReferral">
-        <strong>Invite friends</strong>, earn Kairo
-      </a>
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="row justify-content-end d-none d-md-flex">
-      <div class="col-auto">
+      <!-- Body -->
+      <div class="header-body">
+        <div class="alert alert-primary alert-dismissible fade show d-flex d-md-none" role="alert">
+          <a class="text-white" data-toggle="modal" href="#modalReferral">
+            <strong>Invite friends</strong>, earn Kairo
+          </a>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="row justify-content-end d-none d-md-flex">
+          <div class="col-auto">
 
-        <!-- Button -->
-        <a class="btn btn-primary mt-3 mt-md-0" data-toggle="modal" href="#modalReferral">
-          Invite friends, earn Kairo
-        </a>
+            <!-- Button -->
+            <a class="btn btn-primary mt-3 mt-md-0" data-toggle="modal" href="#modalReferral">
+              Invite friends, earn Kairo
+            </a>
+
+          </div>
+        </div>
+        <div class="row align-items-end">
+          <div class="col">
+
+            <!-- Pretitle -->
+            <h6 class="header-pretitle text-secondary">
+              Overview
+            </h6>
+
+            <!-- Title -->
+            <h1 class="header-title text-white">
+              Betoken Returns
+            </h1>
+
+          </div>
+          <div class="col-auto">
+
+            <!-- Nav -->
+            <ul class="nav nav-tabs header-tabs">
+              <li class="nav-item" data-toggle="chart" data-target="#headerChart" data-update='{"data":{"datasets":[{"data":[0,10,5,15,10,20,15,25,20,30,25,40]}]}}' data-prefix="$" data-suffix="k">
+                <a href="#" class="nav-link active" data-toggle="tab">
+                  <h6 class="header-pretitle text-secondary">
+                    ROI (1 Mo)
+                  </h6>
+                  <h3 class="text-white mb-0">
+                    {{currMoROI}}%
+                  </h3>
+                </a>
+              </li>
+              <li class="nav-item" data-toggle="chart" data-target="#headerChart" data-update='{"data":{"datasets":[{"data":[50,75, 35,25,55,87,67,53,25,80,87,45]}]}}' data-prefix="" data-suffix="k">
+                <a href="#" class="nav-link" data-toggle="tab">
+                  <h6 class="header-pretitle text-secondary">
+                    ROI Since Inception
+                  </h6>
+                  <h3 class="text-white mb-0">
+                    {{avgMonthReturn}}%
+                  </h3>
+                </a>
+              </li>
+            </ul>
+
+          </div>
+        </div> <!-- / .row -->
+      </div> <!-- / .header-body -->
+
+      <!-- Footer -->
+      <div class="header-footer">
+
+        <!-- Chart -->
+        <div class="chart">
+          <canvas id="headerChart" class="chart-canvas"></canvas>
+        </div>
 
       </div>
+
     </div>
-    <div class="row align-items-end">
-      <div class="col">
-
-        <!-- Pretitle -->
-        <h6 class="header-pretitle text-secondary">
-          Overview
-        </h6>
-
-        <!-- Title -->
-        <h1 class="header-title text-white">
-          Betoken Returns
-        </h1>
-
-      </div>
-      <div class="col-auto">
-
-        <!-- Nav -->
-        <ul class="nav nav-tabs header-tabs">
-          <li class="nav-item" data-toggle="chart" data-target="#headerChart" data-update='{"data":{"datasets":[{"data":[0,10,5,15,10,20,15,25,20,30,25,40]}]}}' data-prefix="$" data-suffix="k">
-            <a href="#" class="nav-link active" data-toggle="tab">
-              <h6 class="header-pretitle text-secondary">
-                Mo. Return
-              </h6>
-              <h3 class="text-white mb-0">
-                1.2232%
-              </h3>
-            </a>
-          </li>
-          <li class="nav-item" data-toggle="chart" data-target="#headerChart" data-update='{"data":{"datasets":[{"data":[50,75, 35,25,55,87,67,53,25,80,87,45]}]}}' data-prefix="" data-suffix="k">
-            <a href="#" class="nav-link" data-toggle="tab">
-              <h6 class="header-pretitle text-secondary">
-                Sortino Ratio
-              </h6>
-              <h3 class="text-white mb-0">
-                -0.3467
-              </h3>
-            </a>
-          </li>
-          <li class="nav-item" data-toggle="chart" data-target="#headerChart" data-update='{"data":{"datasets":[{"data":[40,57,25,50,57,32,46,28,59,34,52,48]}]}}' data-prefix="" data-suffix="%">
-            <a href="#" class="nav-link" data-toggle="tab">
-              <h6 class="header-pretitle text-secondary">
-                Std. Dev.
-              </h6>
-              <h3 class="text-white mb-0">
-                12.0188%
-              </h3>
-            </a>
-          </li>
-        </ul>
-
-      </div>
-    </div> <!-- / .row -->
-  </div> <!-- / .header-body -->
-
-  <!-- Footer -->
-  <div class="header-footer">
-
-    <!-- Chart -->
-    <div class="chart">
-      <canvas id="headerChart" class="chart-canvas"></canvas>
-    </div>
-
-  </div>
-
-</div>
 </div> <!-- / .header -->
 
 <!-- CARDS -->
 <div class="container-fluid mt--6">
-<div class="card-deck mb-5">
-  <!-- Card -->
-  <div class="card" data-toggle="tooltip" data-html="true" title="Assets Under Management. The amount of money managed by Betoken managers community.">
-    <div class="card-body">
-      <div class="row align-items-center">
-        <div class="col">
+    <div class="card-deck mb-0 mb-md-4">
+      <!-- Card -->
+      <div class="card" data-toggle="tooltip" data-html="true" title="Assets Under Management. The amount of money managed by Betoken managers community.">
+        <div class="card-body">
+          <div class="row align-items-center">
+            <div class="col">
 
-          <!-- Title -->
-          <h6 class="card-title text-uppercase text-muted mb-2">
-            Betoken AUM
-          </h6>
+              <!-- Title -->
+              <h6 class="card-title text-uppercase text-muted mb-2">
+                Betoken AUM
+              </h6>
 
-          <!-- Heading -->
-          <span class="h2 mb-0">
-            8,189,905.48
-          </span>
+              <!-- Heading -->
+              <span class="h2 mb-0">
+                {{AUM}}
+              </span>
 
-        </div>
-        <div class="col-auto">
+            </div>
+            <div class="col-auto">
 
-          <!-- Icon -->
-          <span class="h2 text-muted mb-0">DAI</span>
+              <!-- Icon -->
+              <span class="h2 text-muted mb-0">DAI</span>
 
-        </div>
-      </div> <!-- / .row -->
-
-    </div>
-  </div>
-  <!-- Card -->
-  <div class="card" data-toggle="tooltip" data-html="true" title="The more Kairo you own, the more money you will manage, the more commission you will receive. You will be able to earn Kairo by making profitable investments for the Betoken fund.">
-    <div class="card-body">
-      <div class="row align-items-center">
-        <div class="col">
-
-          <!-- Title -->
-          <h6 class="card-title text-uppercase text-muted mb-2">
-            YOUR AVAILABLE KRO
-          </h6>
-
-          <!-- Heading -->
-          <span class="h2 mb-0">
-            56.9982 KRO
-          </span>
-
-          <!-- Badge -->
-          <span class="badge badge-soft-success">
-            +3.5%
-          </span>
+            </div>
+          </div> <!-- / .row -->
 
         </div>
-        <div class="col-auto">
+      </div>
+      <!-- Card -->
+      <div class="card" data-toggle="tooltip" data-html="true" title="Sharpe ratio 'is a way to examine the performance of an investment by adjusting for its risk.' (Wikipedia) The risk-free rate used here is 3% per year, an approximation of the US 10Y treasury bond's interest rate.">
+        <div class="card-body">
+          <div class="row align-items-center">
+            <div class="col">
 
-          <!-- Icon -->
-          <span class="h2 fe fe-zap text-muted mb-0"></span>
+              <!-- Title -->
+              <h6 class="card-title text-uppercase text-muted mb-2">
+                Sortino Ratio
+              </h6>
 
-        </div>
-      </div> <!-- / .row -->
+              <!-- Heading -->
+              <span class="h2 mb-0">
+                {{sharpeRatio}}
+              </span>
 
-    </div>
-  </div>
-  <!-- Card -->
-  <div class="card" data-toggle="tooltip" data-html="true" title="<strong>20%</strong> of Betoken's profits (if any) is set aside as commission and distributed among Kairo holders proportional to the amount they hold. <strong>0.1%</strong> is also set aside and distributed among Kairo holders. <strong>3%</strong> is charged whenever a limited partner (aka investor) withdraws his funds, and distributed among Kairo holders.">
-    <div class="card-body">
-      <div class="row align-items-center">
-        <div class="col">
-
-          <!-- Title -->
-          <h6 class="card-title text-uppercase text-muted mb-2">
-            Your Mo. Est. Commission
-          </h6>
-
-          <!-- Heading -->
-          <span class="h2 mb-0">
-            143.1970
-          </span>
+            </div>
+          </div> <!-- / .row -->
 
         </div>
-        <div class="col-auto">
+      </div>
+      <!-- Card -->
+      <div class="card" data-toggle="tooltip" data-html="true" title="Tooltip">
+        <div class="card-body">
+          <div class="row align-items-center">
+            <div class="col">
 
-          <!-- Icon -->
-          <span class="h2 text-muted mb-0">DAI</span>
+              <!-- Title -->
+              <h6 class="card-title text-uppercase text-muted mb-2">
+                Return / Max Drawdown (RoMaD)
+              </h6>
+
+              <!-- Heading -->
+              <span class="h2 mb-0">
+                2
+              </span>
+
+            </div>
+          </div> <!-- / .row -->
 
         </div>
-      </div> <!-- / .row -->
+      </div>
+      <!-- Card -->
+      <div class="card" data-toggle="tooltip" data-html="true" title="Standard deviation represents the volatility of an asset. The number shown here is the sample standard deviation of Betoken's monthly ROI.">
+        <div class="card-body">
+          <div class="row align-items-center">
+            <div class="col">
 
-    </div>
-  </div>
-  <!-- Card -->
-  <div class="card">
-    <a href="ranking.html" title="Compare your ranking">
+              <!-- Title -->
+              <h6 class="card-title text-uppercase text-muted mb-2">
+                Standard Deviation
+              </h6>
+
+              <!-- Heading -->
+              <span class="h2 mb-0">
+                {{standardDeviation}}
+              </span>
+
+            </div>
+          </div> <!-- / .row -->
+
+        </div>
+      </div>
+    </div> <!-- / .row -->
+    <div class="card-deck mb-5">
+    <!-- Card -->
+    <div class="card" data-toggle="tooltip" data-html="true" title="Amount of Betoken's AUM you manage. The more Kairo you own, the more money you will manage.">
       <div class="card-body">
         <div class="row align-items-center">
           <div class="col">
 
             <!-- Title -->
             <h6 class="card-title text-uppercase text-muted mb-2">
-              Your Ranking
+              Your Portfolio Value
             </h6>
 
             <!-- Heading -->
             <span class="h2 mb-0">
-              12/56
+              N/A
             </span>
 
           </div>
           <div class="col-auto">
 
             <!-- Icon -->
-            <span class="h2 fe fe-users text-muted mb-0"></span>
+            <span class="h2 text-muted mb-0">DAI</span>
 
           </div>
         </div> <!-- / .row -->
 
-      </div>
-
-    </a>
-  </div>
-</div> <!-- / .row -->
-<div class="row">
-  <div class="col-12">
-    <!-- Card -->
-    <div class="card" data-toggle="lists" data-lists-values='["asset", "buy-price", "current-price", "staked-kro", "redeem-kro"]'>
-      <div class="card-header">
-        <div class="row align-items-center">
-          <div class="col">
-
-            <!-- Title -->
-            <h4 class="card-header-title">
-              Your Lastest Investments
-            </h4>
-
-          </div>
-          <div class="col-auto">
-
-            <!-- Link -->
-            <a href="investments.html" class="small">View all</a>
-
-          </div>
-        </div> <!-- / .row -->
-      </div>
-      <div class="card-header">
-        <div class="row">
-          <div class="col-12">
-
-            <!-- Form -->
-            <form>
-              <div class="input-group input-group-flush input-group-merge">
-                <input type="search" class="form-control form-control-prepended search" placeholder="Search">
-                <div class="input-group-prepend">
-                  <div class="input-group-text">
-                    <span class="fe fe-search"></span>
-                  </div>
-                </div>
-              </div>
-            </form>
-
-          </div>
-        </div> <!-- / .row -->
-      </div>
-      <div class="table-responsive">
-        <table class="table table-sm table-nowrap card-table">
-          <thead>
-            <tr>
-              <th>
-                <a href="#" class="text-muted sort" data-sort="asset">
-                  Asset
-                </a>
-              </th>
-              <th>
-                <a href="#" class="text-muted sort" data-sort="buy-price">
-                  Buy Price
-                </a>
-              </th>
-              <th>
-                <a href="#" class="text-muted sort" data-sort="current-price">
-                  Current Price
-                </a>
-              </th>
-              <th>
-                <a href="#" class="text-muted sort" data-sort="staked-kro">
-                  Staked KRO
-                </a>
-              </th>
-              <th>
-                <a href="#" class="text-muted sort" data-sort="redeem-kro">
-                  KRO To Redeem
-                </a>
-              </th>
-            </tr>
-          </thead>
-          <tbody class="list">
-            <tr>
-              <td class="asset py-auto">
-                <!-- Avatar -->
-                <span class="avatar avatar-xs align-middle">
-                  <img src="assets/img/icons/eth.svg" alt="Ethereum logo" class="avatar-img rounded-circle">
-                </span>
-                <span class="align-middle ml-2">
-                  ETH • <small class="text-muted small">Ethereum</small>
-                </span>
-              </td>
-              <td class="buy-price align-middle">
-                154.1900 DAI
-              </td>
-              <td class="current-price align-middle">
-                157.1900 DAI
-              </td>
-              <td class="staked-kro align-middle">
-                1.1202 KRO
-              </td>
-              <td class="redeem-kro align-middle">
-                1.2343 KRO
-                <!-- Badge -->
-                <span class="badge badge-soft-success">
-                  +3.5%
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <td class="asset py-auto">
-                <!-- Avatar -->
-                <span class="avatar avatar-xs align-middle">
-                  <img src="assets/img/icons/eth.svg" alt="Ethereum logo" class="avatar-img rounded-circle">
-                </span>
-                <span class="align-middle ml-2">
-                  ETH • <small class="text-muted small">Ethereum</small>
-                </span>
-              </td>
-              <td class="buy-price align-middle">
-                154.1900 DAI
-              </td>
-              <td class="current-price align-middle">
-                157.1900 DAI
-              </td>
-              <td class="staked-kro align-middle">
-                1.1202 KRO
-              </td>
-              <td class="redeem-kro align-middle">
-                1.2343 KRO
-                <!-- Badge -->
-                <span class="badge badge-soft-success">
-                  +3.5%
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <td class="asset py-auto">
-                <!-- Avatar -->
-                <span class="avatar avatar-xs align-middle">
-                  <img src="assets/img/icons/eth.svg" alt="Ethereum logo" class="avatar-img rounded-circle">
-                </span>
-                <span class="align-middle ml-2">
-                  ETH • <small class="text-muted small">Ethereum</small>
-                </span>
-              </td>
-              <td class="buy-price align-middle">
-                154.1900 DAI
-              </td>
-              <td class="current-price align-middle">
-                157.1900 DAI
-              </td>
-              <td class="staked-kro align-middle">
-                1.1202 KRO
-              </td>
-              <td class="redeem-kro align-middle">
-                1.2343 KRO
-                <!-- Badge -->
-                <span class="badge badge-soft-success">
-                  +3.5%
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <td class="asset py-auto">
-                <!-- Avatar -->
-                <span class="avatar avatar-xs align-middle">
-                  <img src="assets/img/icons/eth.svg" alt="Ethereum logo" class="avatar-img rounded-circle">
-                </span>
-                <span class="align-middle ml-2">
-                  ETH • <small class="text-muted small">Ethereum</small>
-                </span>
-              </td>
-              <td class="buy-price align-middle">
-                152.1900 DAI
-              </td>
-              <td class="current-price align-middle">
-                1,007.1900 DAI
-              </td>
-              <td class="staked-kro align-middle">
-                1.1202 KRO
-              </td>
-              <td class="redeem-kro align-middle">
-                1.1245 KRO
-                <!-- Badge -->
-                <span class="badge badge-soft-success">
-                  +1,800.5345%
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <td class="asset py-auto">
-                <!-- Avatar -->
-                <span class="avatar avatar-xs align-middle">
-                  <img src="assets/img/icons/eth.svg" alt="Ethereum logo" class="avatar-img rounded-circle">
-                </span>
-                <span class="align-middle ml-2">
-                  ETH • <small class="text-muted small">Ethereum</small>
-                </span>
-              </td>
-              <td class="buy-price align-middle">
-                154.1900 DAI
-              </td>
-              <td class="current-price align-middle">
-                157.1900 DAI
-              </td>
-              <td class="staked-kro align-middle">
-                1.1202 KRO
-              </td>
-              <td class="redeem-kro align-middle">
-                1.2343 KRO
-                <!-- Badge -->
-                <span class="badge badge-soft-success">
-                  +3.5%
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <td class="asset py-auto">
-                <!-- Avatar -->
-                <span class="avatar avatar-xs align-middle">
-                  <img src="assets/img/icons/eth.svg" alt="Ethereum logo" class="avatar-img rounded-circle">
-                </span>
-                <span class="align-middle ml-2">
-                  ETH • <small class="text-muted small">Ethereum</small>
-                </span>
-              </td>
-              <td class="buy-price align-middle">
-                154.1900 DAI
-              </td>
-              <td class="current-price align-middle">
-                157.1900 DAI
-              </td>
-              <td class="staked-kro align-middle">
-                1.1202 KRO
-              </td>
-              <td class="redeem-kro align-middle">
-                1.2343 KRO
-                <!-- Badge -->
-                <span class="badge badge-soft-danger">
-                  -3.5%
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <td class="asset py-auto">
-                <!-- Avatar -->
-                <span class="avatar avatar-xs align-middle">
-                  <img src="assets/img/icons/eth.svg" alt="Ethereum logo" class="avatar-img rounded-circle">
-                </span>
-                <span class="align-middle ml-2">
-                  ETH • <small class="text-muted small">Ethereum</small>
-                </span>
-              </td>
-              <td class="buy-price align-middle">
-                154.1900 DAI
-              </td>
-              <td class="current-price align-middle">
-                157.1900 DAI
-              </td>
-              <td class="staked-kro align-middle">
-                1.1202 KRO
-              </td>
-              <td class="redeem-kro align-middle">
-                1.2343 KRO
-                <!-- Badge -->
-                <span class="badge badge-soft-success">
-                  +3.5%
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <td class="asset py-auto">
-                <!-- Avatar -->
-                <span class="avatar avatar-xs align-middle">
-                  <img src="assets/img/icons/eth.svg" alt="Ethereum logo" class="avatar-img rounded-circle">
-                </span>
-                <span class="align-middle ml-2">
-                  ETH • <small class="text-muted small">Ethereum</small>
-                </span>
-              </td>
-              <td class="buy-price align-middle">
-                154.1900 DAI
-              </td>
-              <td class="current-price align-middle">
-                157.1900 DAI
-              </td>
-              <td class="staked-kro align-middle">
-                1.1202 KRO
-              </td>
-              <td class="redeem-kro align-middle">
-                1.2343 KRO
-                <!-- Badge -->
-                <span class="badge badge-soft-success">
-                  +3.5%
-                </span>
-              </td>
-            </tr>
-          </tbody>
-        </table>
       </div>
     </div>
-  </div>
-</div> <!-- / .row -->
+      <!-- Card -->
+      <div class="card" data-toggle="tooltip" data-html="true" title="The more Kairo you own, the more money you will manage, the more commission you will receive. You will be able to earn Kairo by making profitable investments for the Betoken fund.">
+        <div class="card-body">
+          <div class="row align-items-center">
+            <div class="col">
+
+              <!-- Title -->
+              <h6 class="card-title text-uppercase text-muted mb-2">
+                Your KRO Balance
+              </h6>
+
+              <!-- Heading -->
+              <span class="h2 mb-0">
+                {{kairo_balance}}
+              </span>
+
+              <!-- Badge -->
+              <span class="badge" [ngClass]="{'badge-soft-success': +monthly_pl >= 0, 'badge-soft-danger': 0 > +monthly_pl}">
+                {{monthly_pl}}%
+              </span>
+
+            </div>
+            <div class="col-auto">
+
+              <!-- Icon -->
+              <span class="h2 fe fe-zap text-muted mb-0"></span>
+
+            </div>
+          </div> <!-- / .row -->
+
+        </div>
+      </div>
+      <!-- Card -->
+      <div class="card" data-toggle="tooltip" data-html="true" title="<strong>20%</strong> of Betoken's profits (if any) is set aside as commission and distributed among Kairo holders proportional to the amount they hold. <strong>0.1%</strong> is also set aside and distributed among Kairo holders. <strong>3%</strong> is charged whenever a limited partner (aka investor) withdraws his funds, and distributed among Kairo holders.">
+        <div class="card-body">
+          <div class="row align-items-center">
+            <div class="col">
+
+              <!-- Title -->
+              <h6 class="card-title text-uppercase text-muted mb-2">
+                Your Mo. Est. Commission
+              </h6>
+
+              <!-- Heading -->
+              <span class="h2 mb-0">
+                {{expected_commission}}
+              </span>
+
+            </div>
+            <div class="col-auto">
+
+              <!-- Icon -->
+              <span class="h2 text-muted mb-0">DAI</span>
+
+            </div>
+          </div> <!-- / .row -->
+
+        </div>
+      </div>
+      <!-- Card -->
+      <div class="card">
+        <a href="ranking.html" title="Compare your ranking">
+          <div class="card-body">
+            <div class="row align-items-center">
+              <div class="col">
+
+                <!-- Title -->
+                <h6 class="card-title text-uppercase text-muted mb-2">
+                  Your Ranking
+                </h6>
+
+                <!-- Heading -->
+                <span class="h2 mb-0 text-dark">
+                  {{userRanking}}
+                </span>
+
+              </div>
+              <div class="col-auto">
+
+                <!-- Icon -->
+                <span class="h2 fe fe-users text-muted mb-0"></span>
+
+              </div>
+            </div> <!-- / .row -->
+
+          </div>
+
+        </a>
+      </div>
+    </div> <!-- / .row -->
 </div>
 <!--
 <div class="invest-wrapper col-12 col-lg-10 float-right">

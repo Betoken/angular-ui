@@ -10,7 +10,7 @@ import { } from 'jquery';
 declare var $: any;
 
 import {
-    user, timer, stats, investor_actions, tokens
+    user, timer, stats, investor_actions, manager_actions, tokens, refresh_actions
 } from '../../betokenjs/helpers';
 
 @Component({
@@ -31,6 +31,7 @@ import {
 })
 
 export class DashboardComponent implements OnInit {
+    userRanking = [];
     walkthrough: boolean;
     step1: boolean;
     step2: boolean;
@@ -61,6 +62,9 @@ export class DashboardComponent implements OnInit {
     calculated_balance = 0.00;
     selectedTokenSymbol = 'DAI';
 
+    kairo_balance = 0.0000;
+    monthly_pl = 0.00;
+    expected_commission = 0.00;
     sharePrice = 0;
     avgMonthReturn = 0;
     currMoROI = 0;
@@ -330,6 +334,12 @@ export class DashboardComponent implements OnInit {
         this.totalUser = this.rankingArray.length;
     }
 
+    refreshDisplay() {
+      this.kairo_balance = user.portfolio_value().toFormat(10);
+      this.monthly_pl = user.monthly_roi().toFormat(4);
+      this.expected_commission = user.expected_commission().toFormat(4);
+      this.userRanking = user.rank();
+    }
 
     drawChart = () => {
         // Prepare data

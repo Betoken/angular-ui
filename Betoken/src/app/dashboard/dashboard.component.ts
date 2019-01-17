@@ -481,8 +481,7 @@ export class DashboardComponent implements OnInit {
                     }]
                 },
                 title: {
-                    display: true,
-                    text: 'Monthly Return On Investment Comparison'
+                    display: false
                 },
                 tooltips: {
                     enabled: true,
@@ -497,6 +496,9 @@ export class DashboardComponent implements OnInit {
                             return timestampStrs[tooltipItems[0].index];
                         }
                     }
+                },
+                legend: {
+                    display: false
                 }
             }
         });

@@ -50,6 +50,7 @@ export class InvestmentsComponent implements OnInit {
     success: boolean;
     tradeAssetval: any;
 
+    userValue: any;
     days = 0;
     hours = 0;
     minutes = 0;
@@ -211,6 +212,7 @@ export class InvestmentsComponent implements OnInit {
         this.monthly_pl = user.monthly_roi().toFormat(4);
         this.tokenList = tokens.token_list();
         this.user_address = user.address();
+        this.userValue = user.portfolio_value().toFormat(4);
         this.updateDates();
     }
 

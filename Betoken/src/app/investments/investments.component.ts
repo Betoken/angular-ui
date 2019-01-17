@@ -55,7 +55,9 @@ export class InvestmentsComponent implements OnInit {
     minutes = 0;
     seconds = 0;
     phase = -1;
+    expected_commission = 0.00;
     kairo_balance = 0.0000;
+    monthly_pl = 0.00;
     selectedTokenSymbol = 'ETH';
     kairoinput = '';
     symbolToPrice = '';
@@ -204,7 +206,9 @@ export class InvestmentsComponent implements OnInit {
     refreshDisplay() {
         this.activeInvestmentList = user.investment_list().filter((data) => data.isSold === false);
         this.inactiveInvestmentList = user.investment_list().filter((data) => data.isSold === true);
-        this.kairo_balance = user.kairo_balance().toFormat(10);
+        this.expected_commission = user.expected_commission().toFormat(4);
+        this.kairo_balance = user.kairo_balance().toFormat(6);
+        this.monthly_pl = user.monthly_roi().toFormat(4);
         this.tokenList = tokens.token_list();
         this.user_address = user.address();
         this.updateDates();

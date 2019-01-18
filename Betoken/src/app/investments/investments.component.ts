@@ -72,6 +72,7 @@ export class InvestmentsComponent implements OnInit {
         $('#modalSell').on('hidden.bs.modal', () => {
             this.resetModals();
         });
+        $('[data-toggle="tooltip"]').tooltip();
     }
 
     resetModals() {

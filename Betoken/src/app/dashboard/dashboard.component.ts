@@ -93,17 +93,20 @@ export class DashboardComponent implements OnInit {
         setInterval(() => {
             this.refreshDisplay();
         }, 100);
+        $('[data-toggle="tooltip"]').tooltip();
     }
 
     refreshDisplay() {
-        this.kairo_balance = user.portfolio_value().toFormat(4);
-        this.monthly_pl = user.monthly_roi().toFormat(4);
-        this.expected_commission = user.expected_commission().toFormat(2);
-        this.avgMonthReturn = stats.avg_roi().toFormat(2);
-        this.currMoROI = stats.cycle_roi().toFormat(4);
-        this.AUM = stats.fund_value().toFormat(2);
+        const NUM_DECIMALS = 4;
+        
+        this.kairo_balance = user.portfolio_value().toFormat(NUM_DECIMALS);
+        this.monthly_pl = user.monthly_roi().toFormat(NUM_DECIMALS);
+        this.expected_commission = user.expected_commission().toFormat(NUM_DECIMALS);
+        this.avgMonthReturn = stats.avg_roi().toFormat(NUM_DECIMALS);
+        this.currMoROI = stats.cycle_roi().toFormat(NUM_DECIMALS);
+        this.AUM = stats.fund_value().toFormat(NUM_DECIMALS);
         this.userRanking = user.rank();
-        this.portfolioValueInDAI = user.portfolio_value_in_dai().toFormat(2);
+        this.portfolioValueInDAI = user.portfolio_value_in_dai().toFormat(NUM_DECIMALS);
         this.updateDates();
         this.rankingList();
         if (stats.raw_roi_data().length > 0 && !this.hasDrawnChart) {

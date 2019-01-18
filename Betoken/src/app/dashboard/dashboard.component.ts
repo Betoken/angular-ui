@@ -100,14 +100,6 @@ export class DashboardComponent implements OnInit {
     }
 
     constructor(private ms: AppComponent, private carousel: NguCarouselService, private route: Router) {
-
-        if (localStorage.getItem('walkthrough') == null) {
-            this.walkthrough = true;
-        }
-        this.state = 'close';
-        this.active = false;
-
-
         this.step1 = true;
         this.step2 = false;
         this.step3 = false;

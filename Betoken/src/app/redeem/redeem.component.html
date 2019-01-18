@@ -23,18 +23,18 @@
       </div>
       <div class="modal-body">
         <!-- commissions amount -->
-        <div class="row" *ngIf="step1">
+        <div class="row" *ngIf="step === 0">
           <div class="col">
             <h6 class="header-pretitle text-secondary">
-              Monthly commissions in $DAI
+              This month's commission
             </h6>
             <h3 class="display-3 text-dark mb-0">
-              {{redeemcommissionvalue}}
+              {{commissionAmount}} DAI
             </h3>
           </div>
         </div>
         <!-- Do you know section step 1 -->
-        <div class="card bg-light border mt-4 mb-0" *ngIf="step1">
+        <div class="card bg-light border mt-4 mb-0" *ngIf="step === 0">
           <div class="card-body">
 
             <h4 class="mb-2">
@@ -49,12 +49,12 @@
         </div>
 
         <!-- Confirm redeem body -->
-        <p class="text-center text-muted mb-5" *ngIf="step2">
+        <p class="text-center text-muted mb-5" *ngIf="step === 1">
           Confirm the transaction in your wallet’s interface to save it on the Ethereum blockchain. It's fine to stick with these defaults gas limit and price.
         </p>
         <!-- Processing redeem body -->
-        <div class="py-5 is-loading is-loading-lg" *ngIf="step3"></div>
-        <p class="text-center text-muted mb-5" *ngIf="step3">
+        <div class="py-5 is-loading is-loading-lg" *ngIf="step === 2"></div>
+        <p class="text-center text-muted mb-5" *ngIf="step === 2">
           Your commissions is being saved on the Ethereum blockchain.
         </p>
         <hr *ngIf="step3">
@@ -70,14 +70,14 @@
           </div>
         </form>
         <!-- Redeem confirmed body -->
-        <p class="h1 text-center" *ngIf="step4">
+        <p class="h1 text-center" *ngIf="step === 3">
           <i class="fe fe-check-circle text-success"></i>
         </p>
-        <p class="text-center text-muted mb-5" *ngIf="step4">
-         You redeemed <span class="text-secondary">{{redeemcommissionvalue}}</span> $DAI (or equivalent Betoken Shares.
+        <p class="text-center text-muted mb-5" *ngIf="step === 3">
+         You redeeemed <span class="text-secondary">{{commissionAmount}}</span> $DAI (or equivalent Betoken Shares).
         </p>
-        <hr *ngIf="step4">
-        <form *ngIf="step4">
+        <hr *ngIf="step === 3">
+        <form *ngIf="step === 3">
           <div class="form-group">
             <label for="exampleFormControlInput1">Transaction ID</label>
             <div class="input-group mb-3">
@@ -90,15 +90,15 @@
         </form>
       </div>
       <!-- Redeem button for step 1 -->
-      <div class="modal-footer border-0" *ngIf="step1">
+      <div class="modal-footer border-0" *ngIf="step === 0">
           <div class="row">
               <div class="col mb-2">
-                  <button type="submit" class="btn btn-success btn-lg btn-block" aria-label="Redeem in BTKS" (click)="redeem()" >
+                  <button type="submit" class="btn btn-success btn-lg btn-block" aria-label="Redeem in BTKS" (click)="redeemCommission(1)" >
                     Redeem in $BTKS
                   </button>
               </div>
               <div class="col">
-                  <button type="submit" class="btn btn-white btn-lg btn-block" aria-label="Redeem in DAI" (click)="redeem()" >
+                  <button type="submit" class="btn btn-white btn-lg btn-block" aria-label="Redeem in DAI" (click)="redeemCommission(0)" >
                     Redeem in $DAI
                   </button>
               </div>
@@ -106,7 +106,7 @@
       </div>
 
       <!-- close button -->
-      <div class="modal-footer border-0" *ngIf="step4">
+      <div class="modal-footer border-0" *ngIf="step === 3">
         <button type="submit" class="btn btn-block btn-white mt-auto" data-dismiss="modal" aria-label="Close">
           Close
         </button>
@@ -155,7 +155,7 @@
                 </p>
             </div>
             <div class="mt-2 outline-box w-100 d-flex align-items-center justify-content-between">
-                <p class="m-0">{{redeemcommissionvalue}} DAI</p>
+                <p class="m-0">{{commissionAmount}} DAI</p>
             </div>
 
         </div>
@@ -201,7 +201,7 @@
                 🙌 Done. Check your balance!
             </p>
             <p class="m-0 pb-4 black-font">
-                You redeeemed {{redeemcommissionvalue}} DAI (or equivalent Betoken Shares).
+                You redeeemed {{commissionAmount}} DAI (or equivalent Betoken Shares).
             </p>
             <div class="d-flex justify-content-center mb-5">
                 <img src="assets/images/finish.png">

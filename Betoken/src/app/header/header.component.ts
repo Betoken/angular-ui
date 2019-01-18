@@ -69,48 +69,6 @@ export class HeaderComponent implements OnInit {
         this.updateErrorMsg();
         this.refreshDisplay();
     }, 100);
-
-    this.ms.getNextPhaseBtn().subscribe((nextbtn: boolean) => {
-
-      if (nextbtn) {
-        this.btn2 = true;
-        this.btn1 = false;
-        this.btn3 = false;
-      }
-
-    });
-
-    this.ms.getTradeBtn().subscribe((tradebtn: boolean) => {
-
-      if (tradebtn) {
-        this.btn3 = true;
-        this.btn1 = false;
-        this.btn2 = false;
-      }
-
-    });
-
-    this.ms.getNextButton().subscribe((nextbutton: boolean) => {
-      if (nextbutton) {
-        this.nextphasebtn = true;
-        this.tradebtn = false;
-        this.redeembtn = false;
-      }
-    });
-
-    this.ms.getRedeemButton().subscribe((redeembutton: boolean) => {
-      if (redeembutton) {
-        this.redeembtn = true;
-        this.nextphasebtn = false;
-        this.tradebtn = false;
-      }
-    });
-
-    this.ms.getnewcyclebtn().subscribe((newcyclebutton: boolean) => {
-      if (newcyclebutton) {
-        this.newcyclebtn = true;
-      }
-    });
   }
 
   refreshDisplay() {
@@ -139,37 +97,6 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  toggle() {
-    this.ms.setToggleMenu();
-  }
-
-  openModalPopup() {
-    this.router.navigate(['/home']);
-    this.ms.setPopUp();
-  }
-
-  openModalPopupW() {
-    this.router.navigate(['/home']);
-    this.ms.setPopUpW();
-  }
-
-  changefundPopup() {
-    this.ms.setchangefundPopUp();
-  }
-
-  proposalPopup() {
-    this.router.navigate(['/proposal']);
-    this.ms.setProposalPopup();
-  }
-
-  nextPhase() {
-    this.ms.setProposalChange();
-  }
-
-  redeemPopup() {
-    this.ms.setredeemPopUp();
-  }
-
   checkRouterURL(route) {
     return this.router.url === route;
   }
@@ -178,5 +105,4 @@ export class HeaderComponent implements OnInit {
       error_notifications.check_dependency();
       this.errorMsg = error_notifications.get_error_msg();
   }
-
 }

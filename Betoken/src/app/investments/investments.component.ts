@@ -4,7 +4,6 @@ import { AppComponent } from '../app.component';
 import { user, timer, manager_actions, loading, tokens, refresh_actions} from '../../betokenjs/helpers';
 import BigNumber from 'bignumber.js';
 import { isUndefined } from 'util';
-import {DomSanitizer} from "@angular/platform-browser";
 
 declare var jquery:any;
 declare var $ :any;
@@ -27,25 +26,9 @@ declare var $ :any;
 })
 
 export class InvestmentsComponent implements OnInit {
-
-    state: string;
-    active: boolean;
-
-    showCreateInvestmentPopup: boolean;
-    showNextPhasePopup: boolean;
-    showSellInvestmentPopup: boolean;
-
     createInvestmentPopupStep: number;
     sellInvestmentPopupStep: number;
     nextPhasePopupStep: number;
-
-    sellalert: boolean;
-    nextphasealert: boolean;
-    redeemalert: boolean;
-
-    footerbtn1: boolean;
-    footerbtn2: boolean;
-    footerbtn3: boolean;
 
     success: boolean;
     tradeAssetval: any;
@@ -65,122 +48,30 @@ export class InvestmentsComponent implements OnInit {
     monthly_pl = 0.00;
     selectedTokenSymbol = 'ETH';
     stakeAmount = '';
-    symbolToPrice = '';
     activeInvestmentList: any;
     inactiveInvestmentList: any;
     sellId: any;
     tokenList: any;
     transactionId: '';
     kroRedeemed: '';
-    graphWidget = document.createElement("script");
-    showWidget = true;
     dailyPriceChange = 0;
-    widget_tokens = [
-        "ETH",
-        "AE",
-        "APPC",
-        "BAT",
-        "BLZ",
-        "BNB",
-        "BNT",
-        "ELF",
-        "ENJ",
-        "KNC",
-        "LEND",
-        "LINK",
-        "MANA",
-        "OMG",
-        "PAY",
-        "POLY",
-        "QKC",
-        "RCN",
-        "RDN",
-        "REP",
-        "REQ",
-        "SNT",
-        "STORM",
-        "WABI",
-        "WINGS",
-        "ZIL",
-        "ZRX"
-    ];
-
-    user_address = '0x0';
 
     constructor(private ms: AppComponent, private elementRef: ElementRef,private renderer:Renderer2) {
-        this.state = 'close';
-        this.active = false;
-
-        this.sellalert = false;
-        this.nextphasealert = false;
-        this.redeemalert = false;
-
-        this.showCreateInvestmentPopup = true;
-        this.showNextPhasePopup = false;
-        this.showSellInvestmentPopup = false;
-
         this.createInvestmentPopupStep = 0;
         this.sellInvestmentPopupStep = 0;
         this.nextPhasePopupStep = 0;
-
-        this.footerbtn1 = true;
-        this.footerbtn2 = false;
-        this.footerbtn3 = false;
     }
 
     ngOnInit() {
-        this.createWidget();
-
         setInterval(() => {
             this.refreshDisplay();
         }, 100);
-
-
-        this.ms.getProposalPopup().subscribe((open: boolean) => {
-            if (open) {
-                this.state = 'open';
-                this.active = true;
-                this.elementRef.nativeElement.querySelector('#chartview').appendChild(this.graphWidget);
-            }
-
-            if (!open) {
-                this.state = 'close';
-                this.active = false;
-            }
-        });
-
-        this.ms.getProposalChange().subscribe((open: boolean) => {
-            if (open) {
-                this.nextPhasePopup();
-            }
-
-            if (!open) {
-                this.state = 'close';
-                this.active = false;
-            }
-        });
         $('#modalBuy').on('hidden.bs.modal', () => {
             this.resetModals();
         });
         $('#modalSell').on('hidden.bs.modal', () => {
             this.resetModals();
         });
-    }
-
-    // Popup triggers
-
-    proposalPopup() {
-        this.ms.setProposalPopup();
-    }
-
-    nextPhasePopup() {
-        this.proposalPopup();
-        this.sellalert = false;
-        this.showNextPhasePopup = true;
-        this.showSellInvestmentPopup = false;
-        this.showCreateInvestmentPopup = false;
-        this.nextPhasePopupStep = 0;
-        this.nextphasealert = false;
     }
 
     resetModals() {
@@ -199,7 +90,6 @@ export class InvestmentsComponent implements OnInit {
         this.kairo_balance = user.kairo_balance().toFormat(6);
         this.monthly_pl = user.monthly_roi().toFormat(4);
         this.tokenList = tokens.token_list();
-        this.user_address = user.address();
         this.userValue = user.portfolio_value().toFormat(4);
         this.portfolioValueInDAI = user.portfolio_value_in_dai().toFormat(2);
         this.currentStake = user.current_stake().toFormat(4);
@@ -267,38 +157,6 @@ export class InvestmentsComponent implements OnInit {
 
     isLoading() {
         return loading.investments();
-    }
-
-    createWidget() {
-        try {
-            this.graphWidget.type = "text/javascript";
-            this.graphWidget.async = true;
-            this.graphWidget.innerHTML = '{"symbol": "BINANCE:ETHUSD","width": "383","height": "287","class":"peter","locale": "en","dateRange": "1m","colorTheme": "light","trendLineColor": "#37a6ef","underLineColor": "#e3f2fd","isTransparent": false,"autosize": false,"largeChartUrl": ""}';
-            this.graphWidget.src = "https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js";
-        }
-        catch(error) {
-        }
-    }
-
-    updateWidget() {
-        try {
-            this.graphWidget.innerHTML = '{"symbol": "BINANCE:' + "" + this.selectedTokenSymbol + 'USD","width": "383","height": "287","class":"peter","locale": "en","dateRange": "1m","colorTheme": "light","trendLineColor": "#37a6ef","underLineColor": "#e3f2fd","isTransparent": false,"autosize": false,"largeChartUrl": ""}';
-            $('#chartview').html('');
-            $('#chartview').append(this.graphWidget);
-        }
-        catch(error){
-        }
-    }
-
-    updateDisplayedTokenInfo(token) {
-        if (this.widget_tokens.indexOf(token) >= 0) {
-            this.showWidget = true;
-            this.updateWidget();
-        }
-        else {
-            this.showWidget = false;
-            this.dailyPriceChange = this.getTokenDailyPriceChange(token);
-        }
     }
 
     getTokenDailyPriceChange(token) {

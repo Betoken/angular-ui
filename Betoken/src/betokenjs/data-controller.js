@@ -227,7 +227,7 @@ export const loadUserData = async () => {
 
                 var totalKROChange = investments.map((x) => BigNumber(x.kroChange)).reduce((x, y) => x.plus(y));
                 var totalStake = investments.map((x) => BigNumber(x.stake)).reduce((x, y) => x.plus(y), BigNumber(0));
-                var totalCurrentStake = investments.filter((x) => x.isSold == false).reduce((x, y) => x.plus(y), BigNumber(0));
+                var totalCurrentStake = investments.filter((x) => x.isSold == false).map((x) => BigNumber(x.stake)).reduce((x, y) => x.plus(y), BigNumber(0));
                 managerROI.set(totalKROChange.div(totalStake).times(100));
                 currentStake.set(totalCurrentStake);
             }

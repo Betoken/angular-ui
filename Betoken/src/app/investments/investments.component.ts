@@ -64,7 +64,7 @@ export class InvestmentsComponent implements OnInit {
     kairo_balance = 0.0000;
     monthly_pl = 0.00;
     selectedTokenSymbol = 'ETH';
-    kairoinput = '';
+    stakeAmount = '';
     symbolToPrice = '';
     activeInvestmentList: any;
     inactiveInvestmentList: any;
@@ -180,30 +180,10 @@ export class InvestmentsComponent implements OnInit {
     }
 
     closePopup() {
-        this.state = 'close';
-        this.active = false;
-        this.kairoinput = '';
-        this.selectedTokenSymbol = 'ETH';
-
+        this.stakeAmount = '';
         this.createInvestmentPopupStep = 0;
         this.sellInvestmentPopupStep = 0;
         this.nextPhasePopupStep = 0;
-
-        this.showCreateInvestmentPopup = true;
-        this.showSellInvestmentPopup = false;
-        this.showNextPhasePopup = false;
-    }
-
-    hideAlert() {
-        this.sellalert = false;
-        this.nextphasealert = true;
-        this.ms.setNextButton();
-    }
-
-    // Next phase
-
-    changefundstep1() {
-        this.nextPhasePopupStep = 1;
     }
 
     // Refresh info
@@ -219,7 +199,7 @@ export class InvestmentsComponent implements OnInit {
         this.userValue = user.portfolio_value().toFormat(4);
         this.portfolioValueInDAI = user.portfolio_value_in_dai().toFormat(4);
         this.currentStake = user.current_stake().toFormat(4);
-        $('#current_stake_progressbar').css('width', user.current_stake().div(user.portfolio_value()).times(100).toString() + '%');
+        this.currentStakeProportion = user.current_stake().div(user.portfolio_value()).times(100).toFixed(4);
         this.updateDates();
     }
 
@@ -238,22 +218,23 @@ export class InvestmentsComponent implements OnInit {
     // Create investment
 
     createInvestment() {
-        this.createInvestmentPopupStep = 1;
+        this.stakeAmount = $('#kairo-input').val();
+        this.createInvestmentPopupStep = 2;
 
         let pending = (transactionHash) => {
             if (this.createInvestmentPopupStep !== 0) {
                 this.transactionId = transactionHash;
-                this.createInvestmentPopupStep = 2;
+                this.createInvestmentPopupStep = 3;
             }
         }
 
         let confirm = () => {
             if (this.createInvestmentPopupStep !== 0) {
-                this.createInvestmentPopupStep = 3;
+                this.createInvestmentPopupStep = 4;
                 this.refresh();
             }
         }
-        manager_actions.new_investment(this.selectedTokenSymbol, this.kairoinput, pending, confirm);
+        manager_actions.new_investment(this.selectedTokenSymbol, this.stakeAmount, pending, confirm);
     }
 
     // Sell investment
@@ -289,24 +270,8 @@ export class InvestmentsComponent implements OnInit {
 
     // UI helpers
 
-    kairoInput (event) {
-        this.kairoinput = event.target.value;
-    }
-
     isLoading() {
         return loading.investments();
-    }
-
-    getTokenInfo() {
-        if (this.widget_tokens.indexOf(this.selectedTokenSymbol) >= 0) {
-            this.showWidget = true;
-            this.updateWidget();
-        }
-        else {
-            this.showWidget = false;
-            this.dailyPriceChange = this.getTokenDailyPriceChange(this.selectedTokenSymbol);
-        }
-
     }
 
     createWidget() {
@@ -330,6 +295,25 @@ export class InvestmentsComponent implements OnInit {
         }
     }
 
+    updateDisplayedTokenInfo(token) {
+        if (this.widget_tokens.indexOf(token) >= 0) {
+            this.showWidget = true;
+            this.updateWidget();
+        }
+        else {
+            this.showWidget = false;
+            this.dailyPriceChange = this.getTokenDailyPriceChange(token);
+        }
+    }
+
+    getTokenDailyPriceChange(token) {
+        let result = tokens.asset_symbol_to_daily_price_change(token);
+        if (isUndefined(result)) {
+            result = new BigNumber(0);
+        }
+        return result.toFormat(4);
+    }
+
     filterTable = (event, tableID, searchID) => {
         let searchInput = event.target.value.toLowerCase();
         let entries = $(`#${tableID} tr`);
@@ -345,18 +329,7 @@ export class InvestmentsComponent implements OnInit {
         }
     }
 
-    updateDisplayedTokenInfo(token) {
-        this.selectedTokenSymbol = token;
-        const price = tokens.asset_symbol_to_price(this.selectedTokenSymbol);
-        this.tradeAssetval = price;
-        this.getTokenInfo();
-    }
-
-    getTokenDailyPriceChange(token) {
-        let result = tokens.asset_symbol_to_daily_price_change(token);
-        if (isUndefined(result)) {
-            result = new BigNumber(0);
-        }
-        return result.toFormat(4);
+    assetSymbolToPrice(symbol) {
+        return tokens.asset_symbol_to_price(symbol);
     }
 }

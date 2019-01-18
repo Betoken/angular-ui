@@ -1,7 +1,7 @@
 <!-- NAVIGATION
 ================================================== -->
 
-  <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light" id="sidebar">
+  <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light py-1" id="sidebar">
     <div class="container-fluid">
 
       <!-- Toggler -->
@@ -19,7 +19,7 @@
       <div class="navbar-toggler">
         <!-- Toggle -->
         <a href="#" class="text-muted" data-toggle="modal" href="#modalEmailUpdates">
-          <span class="icon active">
+          <span class="icon active mt-3">
             <i class="fe fe-bell"></i>
           </span>
         </a>
@@ -130,106 +130,3 @@
       <button class="btn btn-success btn-block" routerLink="/redeem" (click)="redeemPopup()" *ngIf="phase == 2 && can_redeem_commission">Redeem Commission</button>
     </div>
   </nav>
-
-<!-- Angular stuff
-<div class="col-lg-2 side-nav-wrapper" [@toggleMenu]="state">
-
-    <div class="nav-bar">
-        <div class="button-wrapper">
-            <button class="text-center outline-button invest" [ngClass]="{active: checkRouterURL('/invest') === true}" (click)="navigate('/invest')">INVEST</button>
-            <button class="text-center outline-button manage" [ngClass]="{active: checkRouterURL('/invest') === false}" (click)="navigate('/home')">MANAGE</button>
-        </div>
-
-        <ul class="app-nav" *ngIf="checkRouterURL('/invest') === false">
-            <p class="time-left-title">Time left {{phaseActionText()}}:</p>
-            <p class="time-left-value">{{days}}d {{hours}}h {{minutes}}m {{seconds}}s</p>
-            <li [class.active]="router.url==='/home'">
-                <span class="nav-indication"></span>
-                <a class="d-flex align-items-center" (click)="navigate('/home')">
-                    <div class="bt-home ml-3 mr-3" [class.bt-home-active]="router.url==='/home'"></div>
-                    Dashboard
-                </a>
-            </li>
-
-
-            <li [class.active]="router.url==='/proposal'">
-                <span class="nav-indication"></span>
-                <a class="d-flex align-items-center" (click)="navigate('/proposal')">
-                    <div class="bt-proposal ml-3 mr-3" [class.bt-proposal-active]="router.url==='/proposal'"></div>
-                    My Investments
-                </a>
-            </li>
-
-            <li [class.active]="router.url==='/market'">
-                <span class="nav-indication"></span>
-                <a class="d-flex align-items-center" (click)="navigate('/market')">
-                    <div class="bt-market ml-3 mr-3" [class.bt-market-active]="router.url==='/market'"></div>
-                    Market
-                </a>
-            </li>
-
-            <li [class.active]="router.url==='/rankings'">
-                <span class="nav-indication"></span>
-                <a class="d-flex align-items-center" (click)="navigate('/rankings')">
-                    <div class="bt-rank ml-3 mr-3" [class.bt-rank-active]="router.url==='/rankings'"></div>
-                    Rankings
-                </a>
-            </li>
-
-
-            <li [class.active]="router.url==='/account'">
-                <span class="nav-indication"></span>
-                <a class="d-flex align-items-center" (click)="navigate('/account')">
-                    <div class="bt-wallet ml-3 mr-3" [class.bt-wallet-active]="router.url==='/account'"></div>
-                    Transaction History
-                </a>
-            </li>
-        </ul>
-
-        <ul class="support-nav">
-
-            <li>
-                <a class="mr-2" target="_blank" href="https://betoken.gitbook.io/betoken/" title="Get help">FAQ</a>&bull;<a class="ml-2" target="_blank" href="https://betoken.fund">Home</a>
-            </li>
-
-        </ul>
-
-    </div>
-
-</div>
-
-<div class="notification-wrapper col-lg-4 offset-lg-2" *ngIf = "notification">
-    <div class="row">
-        <div class="content notification" >
-            <div class="modal-header d-flex align-items-center">
-                <div class="modal-tittle">
-                    Notifications
-                </div>
-                <div class="modal-close">
-                    <button type="button" class="close black-font" (click)="closePopup()">&times;</button>
-                </div>
-            </div>
-            <div class="notification-display">
-                <div class="notification">
-                    <p class="info mb-0 black-font">
-                        🚨 Sell your assets to redeem all your KRO staked before cycle’s end. More info.
-                    </p>
-                    <p class="time mb-0">
-                        1 min ago.
-                    </p>
-                </div>
-                <div class="notification">
-                    <p class="info mb-0 black-font">
-                        🚨 Sell your assets to redeem all your KRO staked before cycle’s end. More info.
-                    </p>
-                    <p class="time mb-0">
-                        1 min ago.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="overlay-popup" [class.active]="notification" (click)="closePopup()"></div>
--->

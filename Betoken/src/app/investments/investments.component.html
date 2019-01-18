@@ -84,13 +84,14 @@
             <span class="h2 mb-0">
               {{userValue}}
             </span>
+            <!-- Badge -->
+            <span class="badge" [ngClass]="{'badge-soft-success': +monthly_pl >= 0, 'badge-soft-danger': 0 > +monthly_pl}">
+              {{monthly_pl}}%
+            </span>
 
           </div>
           <div class="col-auto">
-              <!-- Badge -->
-              <span class="badge mb-2 d-block" [ngClass]="{'badge-soft-success': +monthly_pl >= 0, 'badge-soft-danger': 0 > +monthly_pl}">
-                {{monthly_pl}}%
-              </span>
+
               <!-- Icon -->
               <span class="h2 fe fe-zap text-muted mb-0"></span>
 

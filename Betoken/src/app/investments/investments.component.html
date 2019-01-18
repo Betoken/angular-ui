@@ -591,11 +591,11 @@
 
         <!-- Asset price -->
         <div class="row" *ngIf="createInvestmentPopupStep === 1">
-          <div class="col">
+          <div class="col-7">
             <h6 class="header-pretitle text-secondary">
               Current Price in $DAI
             </h6>
-            <h3 class="text-dark mb-0">
+            <h3 class="text-dark mb-0 text-truncate">
               {{assetSymbolToPrice(selectedTokenSymbol)}}
             </h3>
           </div>

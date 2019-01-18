@@ -37,12 +37,19 @@ export class HeaderComponent implements OnInit {
 
   user_address = '0x0';
   share_balance = 0.0000;
-  
+
   curr_network = '';
   can_redeem_commission = true;
 
   errorMsg = '';
 
+  /* To copy Text from Textbox */
+ copyInputMessage(inputElement){
+   inputElement.select();
+   document.execCommand('copy');
+   inputElement.setSelectionRange(0, 0);
+ }
+ 
   constructor(private ms: AppComponent, private router: Router ) {
     this.btn1 = true;
     this.btn2 = false;

@@ -182,6 +182,21 @@ export class InvestmentsComponent implements OnInit {
         }
     }
 
+    filterList = (event, listID, searchID) => {
+        let searchInput = event.target.value.toLowerCase();
+        let entries = $(`#${listID} li`);
+        for (let i = 1; i < entries.length; i++) { // skip first item (titles etc.)
+            let entry = entries[i];
+            let searchTarget = entry.children[searchID];
+            if (searchTarget) {
+                if (searchTarget.innerText.toLowerCase().indexOf(searchInput) > -1)
+                    entry.style.display = "";
+                else
+                    entry.style.display = "none";
+            }
+        }
+    }
+
     assetSymbolToPrice(symbol) {
         return tokens.asset_symbol_to_price(symbol);
     }

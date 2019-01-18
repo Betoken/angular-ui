@@ -191,13 +191,13 @@ export class InvestmentsComponent implements OnInit {
     refreshDisplay() {
         this.activeInvestmentList = user.investment_list().filter((data) => data.isSold === false);
         this.inactiveInvestmentList = user.investment_list().filter((data) => data.isSold === true);
-        this.expected_commission = user.expected_commission().toFormat(4);
+        this.expected_commission = user.expected_commission().toFormat(2);
         this.kairo_balance = user.kairo_balance().toFormat(6);
         this.monthly_pl = user.monthly_roi().toFormat(4);
         this.tokenList = tokens.token_list();
         this.user_address = user.address();
         this.userValue = user.portfolio_value().toFormat(4);
-        this.portfolioValueInDAI = user.portfolio_value_in_dai().toFormat(4);
+        this.portfolioValueInDAI = user.portfolio_value_in_dai().toFormat(2);
         this.currentStake = user.current_stake().toFormat(4);
         this.currentStakeProportion = user.current_stake().div(user.portfolio_value()).times(100).toFixed(4);
         this.updateDates();

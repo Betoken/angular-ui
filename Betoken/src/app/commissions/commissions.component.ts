@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {
     user,
-    network,
     loading,
     refresh_actions
 } from '../../betokenjs/helpers';
@@ -13,8 +12,7 @@ declare var $: any;
     templateUrl: './commissions.component.html'
 })
 export class CommissionsComponent implements OnInit {
-    transactionTable: Array<Object>;
-    transactionNetwork: String;
+    commissionHistory: Array<Object>;
 
     constructor() {
     }
@@ -28,8 +26,7 @@ export class CommissionsComponent implements OnInit {
     }
 
     refreshDisplay() {
-        this.transactionTable = user.transaction_history();
-        this.transactionNetwork = network.network_prefix();
+        this.commissionHistory = user.commission_history();
     }
 
     refresh() {
@@ -38,20 +35,5 @@ export class CommissionsComponent implements OnInit {
 
     isLoading() {
         return loading.records();
-    }
-
-    filterTable = (event, tableID, searchID) => {
-        let searchInput = event.target.value.toLowerCase();
-        let entries = $(`#${tableID} tr`);
-        for (let i = 0; i < entries.length; i++) {
-            let entry = entries[i];
-            let searchTarget = entry.children[searchID];
-            if (searchTarget) {
-                if (searchTarget.innerText.toLowerCase().indexOf(searchInput) > -1)
-                    entry.style.display = "";
-                else
-                    entry.style.display = "none";
-            }
-        }
     }
 }

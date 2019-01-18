@@ -68,7 +68,7 @@ export const user = {
         }
         return BigNumber(0);
     },
-    transaction_history: () => Data.transactionHistory.get(),
+    commission_history: () => Data.commissionHistory.get(),
     investment_list: () => Data.investmentList.get(),
     rank: () => {
         var entry, j, len, ref;

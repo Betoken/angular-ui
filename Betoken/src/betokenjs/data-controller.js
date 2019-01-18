@@ -19,7 +19,7 @@ export var investmentBalance = new ReactiveVar(BigNumber(0));
 export var investmentList = new ReactiveVar([]);
 export var lastCommissionRedemption = new ReactiveVar(0);
 export var managerROI = new ReactiveVar(BigNumber(0));
-export var transactionHistory = new ReactiveVar([]);
+export var commissionHistory = new ReactiveVar([]);
 export var portfolioValue = new ReactiveVar(BigNumber(0));
 export var currentStake = new ReactiveVar(BigNumber(0));
 
@@ -34,9 +34,6 @@ export var assetFeeRate = new ReactiveVar(BigNumber(0));
 export var fundValue = new ReactiveVar(BigNumber(0));
 export var currROI = new ReactiveVar(BigNumber(0));
 export var avgROI = new ReactiveVar(BigNumber(0));
-export var prevCommission = new ReactiveVar(BigNumber(0));
-export var historicalTotalCommission = new ReactiveVar(BigNumber(0));
-export var cycleTotalCommission = new ReactiveVar(BigNumber(0));
 export var ROIArray = new ReactiveVar([]);
 
 // cycle timekeeping
@@ -273,78 +270,24 @@ export const loadUserData = async () => {
 
 export const loadTxHistory = async () => {
     isLoadingRecords.set(true);
-    // Get deposit and withdraw history
-    transactionHistory.set([]);
-    const userAddr = userAddress.get();
-    const getDepositWithdrawHistory = async function(_type) {
-        var data, entry, event, events, j, len, tmp;
-        events = (await betoken.contracts.BetokenFund.getPastEvents(_type, {
-            fromBlock: DEPLOYED_BLOCK,
-            filter: {
-                _sender: userAddr
-            }
-        }));
-        for (j = 0, len = events.length; j < len; j++) {
-            event = events[j];
-            data = event.returnValues;
-            entry = {
-                type: _type,
-                timestamp: new Date(+data._timestamp * 1e3).toLocaleString(),
-                token: await betoken.getTokenSymbol(data._tokenAddress),
-                amount: BigNumber(data._tokenAmount).div(10 ** (+(await betoken.getTokenDecimals(data._tokenAddress)))).toFormat(4),
-                txHash: event.transactionHash
-            };
-            tmp = transactionHistory.get();
-            tmp.push(entry);
-            transactionHistory.set(tmp);
+    // Get commission history
+    let events = (await betoken.contracts.BetokenFund.getPastEvents("CommissionPaid", {
+        fromBlock: DEPLOYED_BLOCK,
+        filter: {
+            _sender: userAddress.get()
         }
-    };
-    // Get token transfer history
-    const getTransferHistory = async function(token, isIn) {
-        var _event, data, entry, events, j, len, tokenContract;
-        tokenContract = (() => {
-            switch (token) {
-                case "KRO":
-                    return betoken.contracts.Kairo;
-                case "BTKS":
-                    return betoken.contracts.Shares;
-                default:
-                    return null;
-            }
-        })();
-        events = (await tokenContract.getPastEvents("Transfer", {
-            fromBlock: DEPLOYED_BLOCK,
-            filter: isIn ? {
-                to: userAddr
-            } : {
-                from: userAddr
-            }
-        }));
-        for (j = 0, len = events.length; j < len; j++) {
-            _event = events[j];
-            if (_event == null) {
-                continue;
-            }
-            data = _event.returnValues;
-            if ((isIn && data._to !== userAddr) || (!isIn && data._from !== userAddr)) {
-                continue;
-            }
-            entry = {
-                type: "Transfer " + (isIn ? "In" : "Out"),
-                token: token,
-                amount: BigNumber(data._amount).div(1e18).toFormat(4),
-                timestamp: new Date(((await web3.eth.getBlock(_event.blockNumber))).timestamp * 1e3).toLocaleString(),
-                txHash: _event.transactionHash
-            };
-            tmp = transactionHistory.get();
-            tmp.push(entry);
-            transactionHistory.set(tmp);
-        }
-    };
-    await Promise.all([getDepositWithdrawHistory("Deposit"), getDepositWithdrawHistory("Withdraw"), getTransferHistory("BTKS", true), getTransferHistory("BTKS", false)]);
-    var tmp = transactionHistory.get();
-    tmp.sort((x, y) => new Date(y.timestamp) - new Date(x.timestamp));
-    transactionHistory.set(tmp);
+    }));
+    let commissionHistoryArray = [];
+    for (let event of events) {
+        let entry = {
+            cycle: event.returnValues._cycleNumber,
+            amount: BigNumber(event.returnValues._commission).div(10 ** 18),
+            timestamp: new Date((await web3.eth.getBlock(event.blockNumber)).timestamp * 1e3).toLocaleString(),
+            txHash: event.transactionHash
+        };
+        commissionHistoryArray.push(entry);
+    }
+    commissionHistory.set(commissionHistoryArray);
     isLoadingRecords.set(false);
 };
 
@@ -460,12 +403,6 @@ export const loadRanking = async () => {
 };
 
 export const loadStats = async () => {
-    // Get commissions
-    Promise.all([
-        cycleTotalCommission.set(BigNumber((await betoken.getMappingOrArrayItem("totalCommissionOfCycle", cycleNumber.get()))).div(PRECISION)),
-        prevCommission.set(BigNumber((await betoken.getMappingOrArrayItem("totalCommissionOfCycle", cycleNumber.get() - 1))).div(PRECISION))
-    ]);
-
     // calculate fund value
     var _fundValue = BigNumber(0);
     const getTokenValue = async (i) => {
@@ -489,11 +426,8 @@ export const loadStats = async () => {
 
     // get stats
     var rois = [];
-    var totalInputFunds = BigNumber(0);
-    var totalOutputFunds = BigNumber(0);
     currROI.set(BigNumber(0));
     avgROI.set(BigNumber(0));
-    historicalTotalCommission.set(BigNumber(0));
     return betoken.contracts.BetokenFund.getPastEvents("ROI",
         {
             fromBlock: DEPLOYED_BLOCK

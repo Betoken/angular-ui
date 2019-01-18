@@ -62,56 +62,36 @@
             </div>
           </div> <!-- / .row -->
         </div>
-        <div class="card-header">
-          <div class="row">
-            <div class="col-12">
-
-              <!-- Form -->
-              <form>
-                <div class="input-group input-group-flush input-group-merge">
-                  <input type="search" class="form-control form-control-prepended search" (keyup)="filterTable($event,'commissions-table',0)" placeholder="Search">
-                  <div class="input-group-prepend">
-                    <div class="input-group-text">
-                      <span class="fe fe-search"></span>
-                    </div>
-                  </div>
-                </div>
-              </form>
-
-            </div>
-          </div> <!-- / .row -->
-        </div>
         <div class="table-responsive">
           <table class="table table-sm table-nowrap card-table">
             <thead>
               <tr>
                 <th class="text-muted">
-                    Redeemed in
+                    Cycle Number
                 </th>
                 <th class="text-muted">
-                    Amount
+                    Commission Amount ($DAI)
                 </th>
                 <th class="text-muted">
-                    Time
+                    Timestamp
                 </th>
               </tr>
             </thead>
             <tbody class="list" id="commissions-table">
-              <tr *ngFor="let details of transactionTable">
+              <tr *ngFor="let entry of commissionHistory">
                 <td class="py-auto">
-                  <!-- Avatar -->
-                  <span class="avatar avatar-xs align-middle">
-                    <img src="assets/img/icons/dai.svg" alt="Dai logo" class="avatar-img rounded-circle">
-                  </span>
-                  <span class="align-middle ml-2">
-                    {{details.token}} • <small class="text-muted small">Stable Coin</small>
-                  </span>
+                  {{entry.cycle}}
                 </td>
                 <td class="align-middle">
-                  {{details.amount}}
+                  {{entry.amount}}
                 </td>
                 <td class="align-middle">
-                  {{details.timestamp}}
+                  {{entry.timestamp}}
+                </td>
+                <td class="align-middle">
+                  <div class="input-group-append">
+                    <a class="btn btn-white h-100" href="https://rinkeby.etherscan.io/tx/{{entry.txHash}}" target="_blank"><i class="fe fe-external-link"></i></a>
+                  </div>
                 </td>
               </tr>
             </tbody>

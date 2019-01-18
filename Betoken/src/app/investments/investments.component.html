@@ -85,16 +85,14 @@
               {{userValue}}
             </span>
 
-            <!-- Badge -->
-            <span class="badge" [ngClass]="{'badge-soft-success': +monthly_pl >= 0, 'badge-soft-danger': 0 > +monthly_pl}">
-              {{monthly_pl}}%
-            </span>
-
           </div>
           <div class="col-auto">
-
-            <!-- Icon -->
-            <span class="h2 fe fe-zap text-muted mb-0"></span>
+              <!-- Badge -->
+              <span class="badge mb-2 d-block" [ngClass]="{'badge-soft-success': +monthly_pl >= 0, 'badge-soft-danger': 0 > +monthly_pl}">
+                {{monthly_pl}}%
+              </span>
+              <!-- Icon -->
+              <span class="h2 fe fe-zap text-muted mb-0"></span>
 
           </div>
         </div> <!-- / .row -->
@@ -665,7 +663,7 @@
           <i class="fe fe-check-circle text-success"></i>
         </p>
         <p class="text-center text-muted mb-5" *ngIf="createInvestmentPopupStep === 4">
-          You staked <span class="text-secondary">{{stakeAmount}}</span> KRO to support <span class="text-secondary">{{selectedTokenSymbol}}</span>.
+          You staked <span class="font-weight-bold text-secondary">{{stakeAmount}}</span> KRO to support <span class="font-weight-bold text-secondary">{{selectedTokenSymbol}}</span>.
         </p>
         <hr *ngIf="createInvestmentPopupStep === 4">
         <form *ngIf="createInvestmentPopupStep === 4">
@@ -690,7 +688,7 @@
       <!-- Close button for step 4 -->
       <div class="modal-footer border-0" *ngIf="createInvestmentPopupStep === 4">
         <button type="submit" class="btn btn-block btn-white mt-auto" data-dismiss="modal" aria-label="Close">
-          Done
+          Close
         </button>
       </div>
     </div>
@@ -776,7 +774,7 @@
           <i class="fe fe-check-circle text-success"></i>
         </p>
         <p class="text-center text-muted mb-5" *ngIf="sellInvestmentPopupStep === 2">
-          Your investment position was sold and you redeeemed {{kroRedeemed}} KRO.
+          Your investment position was sold and you redeemed <span class="font-weight-bold text-secondary">{{kroRedeemed}}</span> KRO.
         </p>
         <hr *ngIf="sellInvestmentPopupStep === 2">
         <form *ngIf="sellInvestmentPopupStep === 2">

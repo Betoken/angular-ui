@@ -159,8 +159,12 @@ export class InvestmentsComponent implements OnInit {
                 this.active = false;
             }
         });
-
-        this.updateDisplayedTokenInfo(this.selectedTokenSymbol);
+        $('#modalBuy').on('hidden.bs.modal', () => {
+            this.resetModals();
+        });
+        $('#modalSell').on('hidden.bs.modal', () => {
+            this.resetModals();
+        });
     }
 
     // Popup triggers
@@ -179,7 +183,7 @@ export class InvestmentsComponent implements OnInit {
         this.nextphasealert = false;
     }
 
-    closePopup() {
+    resetModals() {
         this.stakeAmount = '';
         this.createInvestmentPopupStep = 0;
         this.sellInvestmentPopupStep = 0;
@@ -240,17 +244,8 @@ export class InvestmentsComponent implements OnInit {
     // Sell investment
 
     sell(data) {
-        this.showSellInvestmentPopup = true;
-        this.showNextPhasePopup = false;
-        this.showCreateInvestmentPopup = false;
-        this.sellInvestmentPopupStep = 0;
-
-        this.proposalPopup();
         this.sellId = data.id;
         this.kroRedeemed = data.currValue;
-
-        this.redeemalert = false;
-        this.nextphasealert = false;
 
         let pendingSell = (transactionHash) => {
             this.sellInvestmentPopupStep = 1;

@@ -280,7 +280,7 @@
                   </span>
                 </td>
                 <td class="action align-middle" *ngIf = "data.isSold == false">
-                    <button class="btn btn-sm btn-success" type="button" name="button" data-toggle="modal" (click)="sell(data)">Sell</button>
+                    <button class="btn btn-sm btn-success" type="button" name="button" data-toggle="modal" data-target="#modalSell" (click)="sell(data)">Sell</button>
                 </td>
               </tr>
             </tbody>
@@ -399,7 +399,7 @@
 
 
 <!-- Buy modal -->
-<div class="modal fade fixed-right" id="modalBuy" tabindex="-1" role="dialog" aria-labelledby="modalbuy" aria-hidden="true">
+<div class="modal fade fixed-right" id="modalBuy" tabindex="-1" role="dialog" aria-labelledby="modalBuy" aria-hidden="true">
   <div class="modal-dialog modal-dialog-vertical bg-white" role="document">
     <div class="modal-content" data-toggle="lists" data-lists-values="[&quot;name&quot;]">
       <div class="card-header">
@@ -429,7 +429,7 @@
           <div class="col-auto">
 
             <!-- Close -->
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closePopup()">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">×</span>
             </button>
 
@@ -689,7 +689,7 @@
 
       <!-- Close button for step 4 -->
       <div class="modal-footer border-0" *ngIf="createInvestmentPopupStep === 4">
-        <button type="submit" class="btn btn-block btn-white mt-auto" data-dismiss="modal" aria-label="Close" (click)="closePopup()">
+        <button type="submit" class="btn btn-block btn-white mt-auto" data-dismiss="modal" aria-label="Close">
           Done
         </button>
       </div>
@@ -698,7 +698,7 @@
 </div><!-- / modal -->
 
 <!-- Sell modal -->
-<div class="modal fade fixed-right" id="modalSell" tabindex="-1" role="dialog" aria-labelledby="modalSell" aria-hidden="true" *ngIf="showSellInvestmentPopup">
+<div class="modal fade fixed-right" id="modalSell" tabindex="-1" role="dialog" aria-labelledby="modalSell" aria-hidden="true">
   <div class="modal-dialog modal-dialog-vertical bg-white" role="document">
     <div class="modal-content">
       <div class="modal-body pb-5">
@@ -706,7 +706,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-        <!-- Confirm tx title
+        <!-- Confirm tx title -->
         <div class="header text-center" *ngIf="sellInvestmentPopupStep === 0">
           <div class="header-body">
 
@@ -720,12 +720,12 @@
 
           </div>
         </div>
-        <!-- Confirm tx body
+        <!-- Confirm tx body -->
         <p class="text-center text-muted mb-5" *ngIf="sellInvestmentPopupStep === 0">
           Confirm the transaction in your wallet’s interface to save it on the Ethereum blockchain. It's fine to stick with these defaults gas limit and price.
         </p>
 
-        <!-- Tx broadcasted title
+        <!-- Tx broadcasted title -->
         <div class="header text-center" *ngIf="sellInvestmentPopupStep === 1">
           <div class="header-body">
 
@@ -739,9 +739,9 @@
 
           </div>
         </div>
-        <!-- loader
+        <!-- loader -->
         <div class="py-5 is-loading is-loading-lg" *ngIf="sellInvestmentPopupStep === 1"></div>
-        <!-- Tx broadcasted body
+        <!-- Tx broadcasted body -->
         <p class="text-center text-muted mb-5" *ngIf="sellInvestmentPopupStep === 1">
           Your transaction is being saved on the Ethereum blockchain. You can check its status on Etherscan.
         </p>
@@ -757,8 +757,7 @@
             </div>
           </div>
         </form>
-        -->
-        <!-- Asset sold title
+        <!-- Asset sold title -->
         <div class="header text-center" *ngIf="sellInvestmentPopupStep === 2">
           <div class="header-body">
 
@@ -772,7 +771,7 @@
 
           </div>
         </div>
-        <!-- Asset sold body
+        <!-- Asset sold body -->
         <p class="h1 text-center" *ngIf="sellInvestmentPopupStep === 2">
           <i class="fe fe-check-circle text-success"></i>
         </p>
@@ -791,15 +790,13 @@
             </div>
           </div>
         </form>
-        -->
       </div>
-      <!-- close button panel after Asset being sold
+      <!-- close button panel after Asset being sold -->
       <div class="modal-footer border-0" *ngIf="sellInvestmentPopupStep === 2">
         <button type="submit" class="btn btn-block btn-white mt-auto" data-dismiss="modal" aria-label="Close">
           Close
         </button>
       </div>
-      -->
     </div>
   </div>
 </div><!-- / modal -->

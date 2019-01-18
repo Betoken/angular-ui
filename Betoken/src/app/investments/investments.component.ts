@@ -159,14 +159,6 @@ export class InvestmentsComponent implements OnInit {
         return loading.investments();
     }
 
-    getTokenDailyPriceChange(token) {
-        let result = tokens.asset_symbol_to_daily_price_change(token);
-        if (isUndefined(result)) {
-            result = new BigNumber(0);
-        }
-        return result.toFormat(4);
-    }
-
     filterTable = (event, tableID, searchID) => {
         let searchInput = event.target.value.toLowerCase();
         let entries = $(`#${tableID} tr`);
@@ -215,5 +207,13 @@ export class InvestmentsComponent implements OnInit {
             return '';
         }
         return result.logoUrl;
+    }
+
+    getTokenDailyPriceChange(token) {
+        let result = tokens.asset_symbol_to_daily_price_change(token);
+        if (isUndefined(result)) {
+            result = new BigNumber(0);
+        }
+        return result.toFormat(4);
     }
 }

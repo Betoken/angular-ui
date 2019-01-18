@@ -108,10 +108,10 @@
                 <td class="py-auto">
                   <!-- Avatar -->
                   <span class="avatar avatar-xs align-middle">
-                    <img src="assets/img/icons/eth.svg" alt="Ethereum logo" class="avatar-img rounded-circle">
+                    <img src={{getTokenLogoUrl(token)}} alt="token logo" class="avatar-img rounded-circle">
                   </span>
                   <span class="align-middle ml-2">
-                    {{token}} • <small class="text-muted small">Ethereum</small>
+                    {{token}} • <small class="text-muted small">{{getTokenName(token)}}</small>
                   </span>
                 </td>
                 <td class="align-middle">{{getTokenPrice(token)}}</td>

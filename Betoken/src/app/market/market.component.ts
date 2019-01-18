@@ -54,6 +54,22 @@ export class MarketComponent implements OnInit {
         return result.toFormat(4);
     }
 
+    getTokenName(token) {
+        let result = tokens.asset_symbol_to_metadata(token);
+        if (isUndefined(result)) {
+            return '';
+        }
+        return result.name;
+    }
+
+    getTokenLogoUrl(token) {
+        let result = tokens.asset_symbol_to_metadata(token);
+        if (isUndefined(result)) {
+            return '';
+        }
+        return result.logoUrl;
+    }
+
     refreshDisplay() {
         this.tokenList = tokens.token_list();
     }

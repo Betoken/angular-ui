@@ -240,10 +240,10 @@
                 <td class="py-auto">
                   <!-- Avatar -->
                   <span class="avatar avatar-xs align-middle">
-                    <img src="assets/img/icons/eth.svg" alt="Ethereum logo" class="avatar-img rounded-circle">
+                    <img src={{getTokenLogoUrl(data.tokenSymbol)}} alt="token logo" class="avatar-img rounded-circle">
                   </span>
                   <span class="align-middle ml-2">
-                    {{data.tokenSymbol}} • <small class="text-muted small">Ethereum</small>
+                    {{data.tokenSymbol}} • <small class="text-muted small">{{getTokenName(data.tokenSymbol)}}</small>
                   </span>
                 </td>
                 <td class="align-middle">
@@ -339,10 +339,10 @@
                 <td class="py-auto">
                   <!-- Avatar -->
                   <span class="avatar avatar-xs align-middle">
-                    <img src="assets/img/icons/eth.svg" alt="Ethereum logo" class="avatar-img rounded-circle">
+                    <img src={{getTokenLogoUrl(data.tokenSymbol)}} alt="token logo" class="avatar-img rounded-circle">
                   </span>
                   <span class="align-middle ml-2">
-                    {{data.tokenSymbol}} • <small class="text-muted small">Ethereum</small>
+                    {{data.tokenSymbol}} • <small class="text-muted small">{{getTokenName(data.tokenSymbol)}}</small>
                   </span>
                 </td>
                 <td class="align-middle">
@@ -388,7 +388,7 @@
             </h4>
             <!-- Selected Asset title -->
             <h4 class="card-header-title" *ngIf="createInvestmentPopupStep === 1">
-              Buy {{selectedTokenSymbol}}
+              Buy {{getTokenName(selectedTokenSymbol)}}
             </h4>
             <!-- Confirm asset investment title -->
             <h4 class="card-header-title" *ngIf="createInvestmentPopupStep === 2">
@@ -530,7 +530,7 @@
                     <div class="col-auto">
 
                       <span class="avatar avatar-sm">
-                        <img src="assets/img/icons/eth.svg" alt="Ethereum logo" class="avatar-img rounded-circle">
+                        <img src={{getTokenLogoUrl(token)}} alt="token logo" class="avatar-img rounded-circle">
                       </span>
 
                     </div>
@@ -541,7 +541,7 @@
                       </h4>
 
                       <p class="small text-secondary mb-0">
-                        Ethereum
+                        {{getTokenName(token)}}
                       </p>
 
                     </div>
@@ -563,7 +563,7 @@
         <!-- Asset logo -->
         <div class="row justify-content-center mb-4" *ngIf="createInvestmentPopupStep === 1">
           <span class="avatar avatar-lx align-middle">
-            <img src="assets/img/icons/eth.svg" alt="Ethereum logo" class="avatar-img rounded-circle">
+            <img src={{getTokenLogoUrl(selectedTokenSymbol)}} alt="Ethereum logo" class="avatar-img rounded-circle">
           </span>
         </div>
 

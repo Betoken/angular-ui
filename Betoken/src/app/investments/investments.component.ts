@@ -200,4 +200,20 @@ export class InvestmentsComponent implements OnInit {
     assetSymbolToPrice(symbol) {
         return tokens.asset_symbol_to_price(symbol);
     }
+
+    getTokenName(token) {
+        let result = tokens.asset_symbol_to_metadata(token);
+        if (isUndefined(result)) {
+            return '';
+        }
+        return result.name;
+    }
+
+    getTokenLogoUrl(token) {
+        let result = tokens.asset_symbol_to_metadata(token);
+        if (isUndefined(result)) {
+            return '';
+        }
+        return result.logoUrl;
+    }
 }

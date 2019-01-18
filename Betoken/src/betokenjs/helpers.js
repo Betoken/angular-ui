@@ -115,7 +115,8 @@ export const tokens = {
     asset_symbol_to_daily_price_change: (_symbol) => Data.assetSymbolToDailyPriceChange(_symbol),
     asset_symbol_to_weekly_price_change: (_symbol) => Data.assetSymbolToWeeklyPriceChange(_symbol),
     asset_symbol_to_monthly_price_change: (_symbol) => Data.assetSymbolToMonthlyPriceChange(_symbol),
-    asset_symbol_to_price: (_symbol) => Data.assetSymbolToPrice(_symbol)
+    asset_symbol_to_price: (_symbol) => Data.assetSymbolToPrice(_symbol),
+    asset_symbol_to_metadata: (_symbol) => Data.assetSymbolToMetadata(_symbol)
 }
 
 export const loading = {

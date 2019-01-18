@@ -203,6 +203,9 @@ export class DashboardComponent implements OnInit {
         let cumBetokenROIList = convertToCumulative(betokenROIList);
         this.standardDeviation = calcSampleStd(cumBetokenROIList).dp(NUM_DECIMALS);
 
+        // Convert to 4 decimals
+        betokenROIList = betokenROIList.map((x) => new BigNumber(x).dp(NUM_DECIMALS));
+
         // Compute timestamps
         let phase = timer.phase();
         let now = Math.floor(new Date().getTime() / 1000);

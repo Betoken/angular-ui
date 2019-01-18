@@ -55,6 +55,7 @@ export var kairoRanking = new ReactiveVar([]);
 // token data
 export var tokenPrices = new ReactiveVar([]);
 export var tokenAddresses = new ReactiveVar([]);
+export var tokenMetadata = new ReactiveVar([]);
 export var tokenDailyPriceChanges = new ReactiveVar([]);
 export var tokenWeeklyPriceChanges = new ReactiveVar([]);
 export var tokenMonthlyPriceChanges = new ReactiveVar([]);
@@ -94,6 +95,26 @@ export const assetSymbolToMonthlyPriceChange = function(_symbol) {
     return tokenMonthlyPriceChanges.get()[TOKENS.indexOf(_symbol)];
 };
 
+export const assetSymbolToMetadata = (_symbol) => {
+    return tokenMetadata.get()[TOKENS.indexOf(_symbol)];
+}
+
+export const httpsGet = async (apiStr) => {
+    const data = await (new Promise((resolve, reject) => {
+        https.get(apiStr, (res) => {
+            var rawData = "";
+            res.on("data", (chunk) => {
+                rawData += chunk;
+            });
+            res.on("end", () => {
+                var parsedData = JSON.parse(rawData);
+                resolve(parsedData);
+            });
+        }).on("error", reject);
+    }));
+    return data;
+}
+
 const clock = () => {
     const timeKeeper = setInterval(() => {
         var days, distance, hours, minutes, now, seconds, target;
@@ -124,9 +145,22 @@ export const loadMetadata = async () => {
         assetFeeRate.set(BigNumber((await betoken.getPrimitiveVar("assetFeeRate"))).div(PRECISION)),
         tokenAddresses.set((await Promise.all(TOKENS.map(async (_token) => {
             return await betoken.tokenSymbolToAddress(_token);
-        }))))
+        })))),
+        loadTokenMetadata()
     ]);
 };
+
+export const loadTokenMetadata = async () => {
+    const apiStr = `https://min-api.cryptocompare.com/data/coin/generalinfo?fsyms=${TOKENS.join()}&tsym=BTC`;
+    const data = (await httpsGet(apiStr)).Data;
+    let result = data.map((x) => {
+        return {
+            name: x.CoinInfo.FullName,
+            logoUrl: `https://cryptocompare.com${x.CoinInfo.ImageUrl}`
+        }
+    });
+    tokenMetadata.set(result);
+}
 
 export const loadFundData = async () => {
     return Promise.all([
@@ -347,18 +381,7 @@ const loadPriceChanges = async (_daysInPast) => {
         }
 
         const apiStr = `https://min-api.cryptocompare.com/data/pricehistorical?fsym=DAI&tsyms=${tokens.join()}&ts=${Math.floor(Date.now() / 1000 - 86400 * _daysInPast)}`;
-        const data = await (new Promise((resolve, reject) => {
-            https.get(apiStr, (res) => {
-                var rawData = "";
-                res.on("data", (chunk) => {
-                    rawData += chunk;
-                });
-                res.on("end", () => {
-                    var parsedData = JSON.parse(rawData);
-                    resolve(parsedData);
-                });
-            }).on("error", reject);
-        }));
+        const data = await httpsGet(apiStr);
 
         for (var t in tokens) {
             const _token = tokens[t];

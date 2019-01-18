@@ -338,7 +338,7 @@ var ThemeCharts = (function() {
 
   // Toggle ticks
   function toggleTicks(elem, $chart) {
-    
+
     if (elem.data('prefix') !== undefined || elem.data('prefix') !== undefined) {
       var prefix = elem.data('prefix') ? elem.data('prefix') : '';
       var suffix = elem.data('suffix') ? elem.data('suffix') : '';
@@ -405,5 +405,5 @@ var ThemeCharts = (function() {
     fonts: fonts,
     colorScheme: colorScheme
   };
-  
+
 })();

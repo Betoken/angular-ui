@@ -4,7 +4,7 @@ import { AppComponent } from '../app.component';
 import { Router } from '@angular/router';
 import { BigNumber } from 'bignumber.js';
 import { Chart } from 'chart.js';
-//import { Chart } from '../../assets/js/charts.js';
+import { ThemeCharts } from '../../assets/js/charts.js';
 
 import { } from 'jquery';
 declare var $: any;
@@ -267,7 +267,37 @@ export class DashboardComponent implements OnInit {
         // draw chart
         if (!this.hasDrawnChart) {
             var ctx = document.getElementById("roi-chart");
+
+            var $toggle = $('[data-toggle="chart"]');
+
+            // Config
+
+            var fonts = {
+              base: 'Cerebri Sans'
+            }
+
+            var colors = {
+              gray: {
+                300: '#E3EBF6',
+                600: '#95AAC9',
+                700: '#6E84A3',
+                800: '#152E4D',
+                900: '#283E59'
+              },
+              primary: {
+                100: '#D2DDEC',
+                300: '#A6C5F7',
+                700: '#2C7BE5',
+              },
+              black: '#12263F',
+              white: '#FFFFFF',
+              transparent: 'transparent',
+            };
+
+            var colorScheme = ( getComputedStyle(document.body).backgroundColor == 'rgb(249, 251, 253)' ) ? 'light' : 'dark';
+            Chart.defaults.global.defaultFontColor = colors.gray[300];
             this.performanceChart = new Chart(ctx, {
+
                 type: 'line',
                 data: {
                     labels: xLabels,
@@ -275,59 +305,187 @@ export class DashboardComponent implements OnInit {
                         {
                             label: 'Betoken',
                             borderColor: '#22c88a',
-                            backgroundColor: 'rgba(185, 238, 225, 0.5)',
-                            fill: true,
+                            backgroundColor: '#22c88a',
+                            fill: false,
                             data: id === 0 ? betokenROIList : cumBetokenROIList
                         }
                     ]
                 },
+
                 options: {
+                    responsive: true,
                     maintainAspectRatio: false,
                     scales: {
                         xAxes: [{
                             gridLines: {
                                 display: false
-                            }
+                            },
+                            ticks: {
+                              padding: 20
+                            },
+                            maxBarThickness: 10
                         }],
                         yAxes: [{
                             gridLines: {
-                                display: true
+                                display: true,
+                                borderDash: [2],
+                                borderDashOffset: [2],
+                                color: colors.gray[900],
+                                drawBorder: false,
+                                drawTicks: false,
+                                lineWidth: 0,
+                                zeroLineWidth: 0,
+                                zeroLineColor: colors.gray[300],
+                                zeroLineBorderDash: [2],
+                                zeroLineBorderDashOffset: [2]
                             },
                             ticks: {
+                                beginAtZero: true,
+                                padding: 10,
                                 callback: function(value, index, values) {
                                     return value + '%';
                                 }
                             }
                         }]
                     },
-                    title: {
-                        display: false
-                    },
-                    tooltips: {
-                        enabled: true,
-                        mode: 'index',
-                        intersect: false,
-                        displayColors: true,
-                        callbacks: {
-                            label: function(tooltipItems, data) {
-                                return tooltipItems.yLabel + '%';
-                            },
-                            title: function(tooltipItems, data) {
-                                return timestampStrs[tooltipItems[0].index];
-                            }
-                        }
+                    defaultColor: colors.primary[100],
+                    defaultFontColor: colors.primary[100],
+                    defaultFontFamily: fonts.base,
+                    defaultFontSize: 16,
+                    layout: {
+                      padding: 0
                     },
                     legend: {
-                        display: false
+                      display: false,
+                      position: 'bottom',
+                      labels: {
+                        usePointStyle: true,
+                        padding: 16
+                      }
+                    },
+                    elements: {
+                      point: {
+                        radius: 0,
+                        backgroundColor: colors.primary[700]
+                      },
+                      line: {
+                        tension: .4,
+                        borderWidth: 3,
+                        borderColor: colors.primary[700],
+                        backgroundColor: colors.transparent,
+                        borderCapStyle: 'rounded'
+                      },
+                      rectangle: {
+                        backgroundColor: colors.primary[700]
+                      },
+                      arc: {
+                        backgroundColor: colors.primary[700],
+                        borderColor: ( colorScheme == 'dark' ) ? colors.gray[800] : colors.white,
+                        borderWidth: 4
+                      }
+                    },
+                    tooltips: {
+                      enabled: false,
+                      mode: 'index',
+                      intersect: false,
+                      custom: function(model) {
+
+                        // Get tooltip
+                        var $tooltip = $('#chart-tooltip');
+
+                        // Create tooltip on first render
+                        if (!$tooltip.length) {
+                          $tooltip = $('<div id="chart-tooltip" class="popover bs-popover-top" role="tooltip"></div>');
+
+                          // Append to body
+                          $('body').append($tooltip);
+                        }
+
+                        // Hide if no tooltip
+                        if (model.opacity === 0) {
+                          $tooltip.css('display', 'none');
+                          return;
+                        }
+
+                        function getBody(bodyItem) {
+                          return bodyItem.lines;
+                        }
+
+                        // Fill with content
+                        if (model.body) {
+                          var titleLines = model.title || [];
+                          var bodyLines = model.body.map(getBody);
+                          var html = '';
+
+                          // Add arrow
+                          html += '<div class="arrow"></div>';
+
+                          // Add header
+                          titleLines.forEach(function(title) {
+                            html += '<h3 class="popover-header text-center">' + title + '</h3>';
+                          });
+
+                          // Add body
+                          bodyLines.forEach(function(body, i) {
+                            var colors = model.labelColors[i];
+                            var styles = 'background-color: ' + colors.backgroundColor;
+                            var indicator = '<span class="popover-body-indicator" style="' + styles + '"></span>';
+                            var align = (bodyLines.length > 1) ? 'justify-content-left' : 'justify-content-center';
+                            html += '<div class="popover-body d-flex align-items-center ' + align + '">' + indicator + body + '</div>';
+                          });
+
+                          $tooltip.html(html);
+                        }
+
+                        // Get tooltip position
+                        var $canvas = $(this._chart.canvas);
+
+                        var canvasWidth = $canvas.outerWidth();
+                        var canvasHeight = $canvas.outerHeight();
+
+                        var canvasTop = $canvas.offset().top;
+                        var canvasLeft = $canvas.offset().left;
+
+                        var tooltipWidth = $tooltip.outerWidth();
+                        var tooltipHeight = $tooltip.outerHeight();
+
+                        var top = canvasTop + model.caretY - tooltipHeight - 16;
+                        var left = canvasLeft + model.caretX - tooltipWidth / 2;
+
+                        // Display tooltip
+                        $tooltip.css({
+                          'top': top + 'px',
+                          'left':  left + 'px',
+                          'display': 'block',
+                        });
+
+                      },
+                      callbacks: {
+                        label: function(item, data) {
+                          var label = data.datasets[item.datasetIndex].label || '';
+                          var yLabel = item.yLabel;
+                          var content = '';
+
+                          if (data.datasets.length > 1) {
+                            content += '<span class="popover-body-label mr-auto">' + label + '%' + '</span>';
+                          }
+
+                          content += '<span class="popover-body-value">' + yLabel + '%' + '</span>';
+                          return content;
+                        }
+                    },
+
+
                     }
                 }
             });
+
         } else {
             this.performanceChart.data.datasets[0].data = id === 0 ? betokenROIList : cumBetokenROIList;
             this.performanceChart.data.labels = xLabels;
             this.performanceChart.update();
         }
-        
+
         this.hasDrawnChart = true;
     }
 }

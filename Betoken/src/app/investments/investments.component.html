@@ -173,7 +173,7 @@
   <div class="row">
     <div class="col-12">
       <!-- Active Investments -->
-      <div class="card" data-toggle="lists" data-lists-values='["asset", "buy-price", "current-price", "staked-kro", "redeem-kro", "action"]'>
+      <div class="card">
         <div class="card-header">
           <div class="row align-items-center">
             <div class="col">
@@ -215,41 +215,29 @@
           <table class="table table-sm table-nowrap card-table">
             <thead>
               <tr>
-                <th>
-                  <a href="#/investments" class="text-muted sort" data-sort="asset">
-                    Asset
-                  </a>
+                <th class="text-muted">
+                  Asset
                 </th>
-                <th>
-                  <a href="#/investments" class="text-muted sort" data-sort="buy-price">
-                    Buy Price
-                  </a>
+                <th class="text-muted">
+                  Buy Price
                 </th>
-                <th>
-                  <a href="#/investments" class="text-muted sort" data-sort="current-price">
-                    Current Price
-                  </a>
+                <th class="text-muted">
+                  Current Price
                 </th>
-                <th>
-                  <a href="#/investments" class="text-muted sort" data-sort="staked-kro">
-                    Staked KRO
-                  </a>
+                <th class="text-muted">
+                  Staked KRO
                 </th>
-                <th>
-                  <a href="#/investments" class="text-muted sort" data-sort="redeem-kro">
-                    KRO To Redeem
-                  </a>
+                <th class="text-muted">
+                  KRO To Redeem
                 </th>
-                <th>
-                  <a href="#/investments" class="text-muted sort" data-sort="action">
+                <th class="text-muted">
                     Action
-                  </a>
                 </th>
               </tr>
             </thead>
             <tbody class="list" id="active-investments-table">
               <tr *ngFor = "let data of activeInvestmentList">
-                <td class="asset py-auto">
+                <td class="py-auto">
                   <!-- Avatar -->
                   <span class="avatar avatar-xs align-middle">
                     <img src="assets/img/icons/eth.svg" alt="Ethereum logo" class="avatar-img rounded-circle">
@@ -258,16 +246,16 @@
                     {{data.tokenSymbol}} • <small class="text-muted small">Ethereum</small>
                   </span>
                 </td>
-                <td class="buy-price align-middle">
+                <td class="align-middle">
                   {{data.buyPrice.toFormat(6)}} DAI
                 </td>
-                <td class="current-price align-middle">
+                <td class="align-middle">
                   {{data.sellPrice.toFormat(6)}} DAI
                 </td>
-                <td class="staked-kro align-middle">
+                <td class="align-middle">
                   {{data.stake.toFormat(4)}} KRO
                 </td>
-                <td class="redeem-kro align-middle">
+                <td class="align-middle">
                   {{data.currValue.toFormat(4)}} KRO
                   <!-- Badge success -->
                   <span class="badge badge-soft-success" *ngIf = "+data.ROI >= 0">
@@ -278,7 +266,7 @@
                     {{data.ROI.toFormat(4)}}%
                   </span>
                 </td>
-                <td class="action align-middle" *ngIf = "data.isSold == false">
+                <td class="align-middle" *ngIf = "data.isSold == false">
                     <button class="btn btn-sm btn-success" type="button" name="button" data-toggle="modal" data-target="#modalSell" (click)="sell(data)">Sell</button>
                 </td>
               </tr>
@@ -287,7 +275,7 @@
         </div>
       </div>
       <!-- Past Investments -->
-      <div class="card" data-toggle="lists" data-lists-values='["asset", "buy-price", "sell-price", "staked-kro", "redeemed-kro"]'>
+      <div class="card">
         <div class="card-header">
           <div class="row align-items-center">
             <div class="col">
@@ -329,36 +317,26 @@
           <table class="table table-sm table-nowrap card-table">
             <thead>
               <tr>
-                <th>
-                  <a href="#/investments" class="text-muted sort" data-sort="asset">
+                <th class="text-muted">
                     Asset
-                  </a>
                 </th>
-                <th>
-                  <a href="#/investments" class="text-muted sort" data-sort="buy-price">
+                <th class="text-muted">
                     Buy Price
-                  </a>
                 </th>
-                <th>
-                  <a href="#/investments" class="text-muted sort" data-sort="sell-price">
+                <th class="text-muted">
                     Sell Price
-                  </a>
                 </th>
-                <th>
-                  <a href="#/investments" class="text-muted sort" data-sort="staked-kro">
+                <th class="text-muted">
                     Staked KRO
-                  </a>
                 </th>
-                <th>
-                  <a href="#/investments" class="text-muted sort" data-sort="redeemed-kro">
+                <th class="text-muted">
                     Redeemed KRO
-                  </a>
                 </th>
               </tr>
             </thead>
             <tbody class="list" id="past-investments-table">
               <tr *ngFor = "let data of inactiveInvestmentList">
-                <td class="asset py-auto">
+                <td class="py-auto">
                   <!-- Avatar -->
                   <span class="avatar avatar-xs align-middle">
                     <img src="assets/img/icons/eth.svg" alt="Ethereum logo" class="avatar-img rounded-circle">
@@ -367,16 +345,16 @@
                     {{data.tokenSymbol}} • <small class="text-muted small">Ethereum</small>
                   </span>
                 </td>
-                <td class="buy-price align-middle">
+                <td class="align-middle">
                   {{data.buyPrice.toFormat(6)}} DAI
                 </td>
-                <td class="sell-price align-middle">
+                <td class="align-middle">
                   {{data.sellPrice.toFormat(6)}} DAI
                 </td>
-                <td class="staked-kro align-middle">
+                <td class="align-middle">
                   {{data.stake.toFormat(4)}} KRO
                 </td>
-                <td class="redeemed-kro align-middle">
+                <td class="align-middle">
                   {{data.currValue.toFormat(4)}} KRO
                   <!-- Badge success -->
                   <span class="badge badge-soft-success" *ngIf = "+data.ROI >= 0">

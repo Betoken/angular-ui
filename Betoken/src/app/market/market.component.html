@@ -44,7 +44,7 @@
   <div class="row">
     <div class="col-12">
       <!-- Card -->
-      <div class="card" data-toggle="lists" data-lists-values='["asset", "asset-price", "24h-change", "7d-change", "1m-change"]'>
+      <div class="card">
         <div class="card-header">
           <div class="row align-items-center">
             <div class="col">
@@ -86,36 +86,26 @@
           <table class="table table-sm table-nowrap card-table">
             <thead>
               <tr>
-                <th>
-                  <a href="#/market/#" class="text-muted sort" data-sort="asset">
+                <th class="text-muted">
                     Asset
-                  </a>
                 </th>
-                <th>
-                  <a href="#/market/#" class="text-muted sort" data-sort="asset-price">
-                    Price/$DAI
-                  </a>
+                <th class="text-muted">
+                    Price in $DAI
                 </th>
-                <th>
-                  <a href="#/market/#" class="text-muted sort" data-sort="24h-change">
+                <th class="text-muted">
                     24h Change
-                  </a>
                 </th>
-                <th>
-                  <a href="#/market/#" class="text-muted sort" data-sort="7d-change">
+                <th class="text-muted">
                     7d change
-                  </a>
                 </th>
-                <th>
-                  <a href="#/market/#" class="text-muted sort" data-sort="1m-change">
+                <th class="text-muted">
                     1m change
-                  </a>
                 </th>
               </tr>
             </thead>
             <tbody class="list" id="market-table">
               <tr *ngFor="let token of tokenList">
-                <td class="asset py-auto">
+                <td class="py-auto">
                   <!-- Avatar -->
                   <span class="avatar avatar-xs align-middle">
                     <img src="assets/img/icons/eth.svg" alt="Ethereum logo" class="avatar-img rounded-circle">
@@ -124,18 +114,18 @@
                     {{token}} • <small class="text-muted small">Ethereum</small>
                   </span>
                 </td>
-                <td class="asset-price align-middle">{{getTokenPrice(token)}}</td>
+                <td class="align-middle">{{getTokenPrice(token)}}</td>
                 <td class="24h-change align-middle">
                   <span class="badge badge-xl" [ngClass]="{'badge-soft-success': +getTokenDailyPriceChange(token) >= 0, 'badge-soft-danger': 0 > +getTokenDailyPriceChange(token)}">
                     {{getTokenDailyPriceChange(token)}}%
                   </span>
                 </td>
-                <td class="7d-change align-middle">
+                <td class="align-middle">
                   <span class="badge badge-xl" [ngClass]="{'badge-soft-success': +getTokenWeeklyPriceChange(token) >= 0, 'badge-soft-danger': 0 > +getTokenWeeklyPriceChange(token)}">
                     {{getTokenWeeklyPriceChange(token)}}%
                   </span>
                 </td>
-                <td class="1m-change align-middle">
+                <td class="align-middle">
                   <span class="badge badge-xl" [ngClass]="{'badge-soft-success': +getTokenMonthlyPriceChange(token) >= 0, 'badge-soft-danger': 0 > +getTokenMonthlyPriceChange(token)}">
                     {{getTokenMonthlyPriceChange(token)}}%
                   </span>

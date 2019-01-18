@@ -43,7 +43,7 @@
     <div class="row">
       <div class="col-12">
         <!-- Card -->
-        <div class="card" data-toggle="lists" data-lists-values='["rank", "manager", "kro-balance", "monthlyPL"]'>
+        <div class="card">
           <div class="card-header">
             <div class="row align-items-center">
               <div class="col">
@@ -85,40 +85,32 @@
             <table class="table table-sm table-nowrap card-table">
               <thead>
                 <tr>
-                  <th>
-                    <a href="#/rankings/#" class="text-muted sort" data-sort="rank">
+                  <th class="text-muted">
                       Rank
-                    </a>
                   </th>
-                  <th>
-                    <a href="#/rankings/#" class="text-muted sort" data-sort="manager">
+                  <th class="text-muted">
                       Manager
-                    </a>
                   </th>
-                  <th>
-                    <a href="#/rankings/#" class="text-muted sort" data-sort="kro-balance">
+                  <th class="text-muted">
                       KRO Balance
-                    </a>
                   </th>
-                  <th>
-                    <a href="#/rankings/#" class="text-muted sort" data-sort="monthlyPL">
+                  <th class="text-muted">
                       Monthly P/L
-                    </a>
                   </th>
                 </tr>
               </thead>
               <tbody class="list" id="rankings-table">
                 <tr class="bg-dark text-white">
-                  <td class="rank align-middle">
+                  <td class="align-middle">
                     <strong>{{userRanking}}</strong>
                   </td>
-                  <td class="manager align-middle">
+                  <td class="align-middle">
                     <i class="fe fe-star text-warning ml-2"></i> You
                   </td>
-                  <td class="kro-balance align-middle">
+                  <td class="align-middle">
                     {{userValue}}
                   </td>
-                  <td class="monthlyPL align-middle">
+                  <td class="align-middle">
                     <!-- Badge -->
                     <span class="badge badge-xl" [ngClass]="{'badge-soft-success': +userROI >= 0, 'badge-soft-danger': 0 > +userROI}">
                      {{userROI}}%
@@ -126,16 +118,16 @@
                   </td>
                 </tr>
                 <tr *ngFor="let ranking of rankingArray">
-                  <td class="rank align-middle">
+                  <td class="align-middle">
                     <strong>{{ranking.rank}}</strong>
                   </td>
-                  <td class="manager align-middle">
+                  <td class="align-middle">
                     <span class="d-block text-truncate" style="width: 6rem;">{{ranking.address}}</span>
                   </td>
-                  <td class="kro-balance align-middle">
+                  <td class="align-middle">
                     {{ranking.kairoBalance}}
                   </td>
-                  <td class="monthlyPL align-middle">
+                  <td class="align-middle">
                     <!-- Badge -->
                     <span class="badge badge-xl" [ngClass]="{'badge-soft-success': +ranking.cycleROI >= 0, 'badge-soft-danger': 0 > +ranking.cycleROI}">
                       {{ranking.cycleROI}}%

@@ -43,7 +43,7 @@
   <div class="row">
     <div class="col-12">
       <!-- Card -->
-      <div class="card" data-toggle="lists" data-lists-values='["redeemIn", "amount", "time"]'>
+      <div class="card">
         <div class="card-header">
           <div class="row align-items-center">
             <div class="col">
@@ -85,26 +85,20 @@
           <table class="table table-sm table-nowrap card-table">
             <thead>
               <tr>
-                <th>
-                  <a href="#" class="text-muted sort" data-sort="redeemIn">
+                <th class="text-muted">
                     Redeemed in
-                  </a>
                 </th>
-                <th>
-                  <a href="#" class="text-muted sort" data-sort="amount">
+                <th class="text-muted">
                     Amount
-                  </a>
                 </th>
-                <th>
-                  <a href="#" class="text-muted sort" data-sort="time">
+                <th class="text-muted">
                     Time
-                  </a>
                 </th>
               </tr>
             </thead>
             <tbody class="list" id="commissions-table">
               <tr *ngFor="let details of transactionTable">
-                <td class="redeemIn py-auto">
+                <td class="py-auto">
                   <!-- Avatar -->
                   <span class="avatar avatar-xs align-middle">
                     <img src="assets/img/icons/dai.svg" alt="Dai logo" class="avatar-img rounded-circle">
@@ -113,10 +107,10 @@
                     {{details.token}} • <small class="text-muted small">Stable Coin</small>
                   </span>
                 </td>
-                <td class="amount align-middle">
+                <td class="align-middle">
                   {{details.amount}}
                 </td>
-                <td class="time align-middle">
+                <td class="align-middle">
                   {{details.timestamp}}
                 </td>
               </tr>

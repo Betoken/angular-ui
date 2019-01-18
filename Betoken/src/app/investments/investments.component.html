@@ -216,32 +216,32 @@
             <thead>
               <tr>
                 <th>
-                  <a href="#" class="text-muted sort" data-sort="asset">
+                  <a href="#/investments" class="text-muted sort" data-sort="asset">
                     Asset
                   </a>
                 </th>
                 <th>
-                  <a href="#" class="text-muted sort" data-sort="buy-price">
+                  <a href="#/investments" class="text-muted sort" data-sort="buy-price">
                     Buy Price
                   </a>
                 </th>
                 <th>
-                  <a href="#" class="text-muted sort" data-sort="current-price">
+                  <a href="#/investments" class="text-muted sort" data-sort="current-price">
                     Current Price
                   </a>
                 </th>
                 <th>
-                  <a href="#" class="text-muted sort" data-sort="staked-kro">
+                  <a href="#/investments" class="text-muted sort" data-sort="staked-kro">
                     Staked KRO
                   </a>
                 </th>
                 <th>
-                  <a href="#" class="text-muted sort" data-sort="redeem-kro">
+                  <a href="#/investments" class="text-muted sort" data-sort="redeem-kro">
                     KRO To Redeem
                   </a>
                 </th>
                 <th>
-                  <a href="#" class="text-muted sort" data-sort="action">
+                  <a href="#/investments" class="text-muted sort" data-sort="action">
                     Action
                   </a>
                 </th>
@@ -330,27 +330,27 @@
             <thead>
               <tr>
                 <th>
-                  <a href="#" class="text-muted sort" data-sort="asset">
+                  <a href="#/investments" class="text-muted sort" data-sort="asset">
                     Asset
                   </a>
                 </th>
                 <th>
-                  <a href="#" class="text-muted sort" data-sort="buy-price">
+                  <a href="#/investments" class="text-muted sort" data-sort="buy-price">
                     Buy Price
                   </a>
                 </th>
                 <th>
-                  <a href="#" class="text-muted sort" data-sort="sell-price">
+                  <a href="#/investments" class="text-muted sort" data-sort="sell-price">
                     Sell Price
                   </a>
                 </th>
                 <th>
-                  <a href="#" class="text-muted sort" data-sort="staked-kro">
+                  <a href="#/investments" class="text-muted sort" data-sort="staked-kro">
                     Staked KRO
                   </a>
                 </th>
                 <th>
-                  <a href="#" class="text-muted sort" data-sort="redeemed-kro">
+                  <a href="#/investments" class="text-muted sort" data-sort="redeemed-kro">
                     Redeemed KRO
                   </a>
                 </th>
@@ -439,7 +439,7 @@
       <div class="card-header" *ngIf="createInvestmentPopupStep === 0">
         <form>
           <div class="input-group input-group-flush input-group-merge">
-            <input type="search" class="form-control form-control-prepended search" placeholder="Search">
+            <input type="search" class="form-control form-control-prepended search" placeholder="Search" (keyup)="filterList($event, 'asset-list', 0)">
             <div class="input-group-prepend">
               <div class="input-group-text">
                 <span class="fe fe-search"></span>
@@ -540,7 +540,7 @@
             </li>
         </ul>
         <!-- List Market assets -->
-        <ul class="list-group list-group-flush list mt-3" *ngIf="createInvestmentPopupStep === 0">
+        <ul class="list-group list-group-flush list mt-3" id="asset-list" *ngIf="createInvestmentPopupStep === 0">
             <li class="list-group-item px-0 text-secondary border-bottom-0 border-top-0">
                 <h6 class="header-pretitle border-0">
                   Market Assets

@@ -1,7 +1,6 @@
 import { Component, OnInit, } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { AppComponent } from '../app.component';
-import { NguCarousel, NguCarouselStore, NguCarouselService } from '@ngu/carousel';
 import { Router } from '@angular/router';
 import { BigNumber } from 'bignumber.js';
 import { Chart } from 'chart.js';
@@ -11,7 +10,7 @@ import { } from 'jquery';
 declare var $: any;
 
 import {
-    user, timer, stats, investor_actions, manager_actions, tokens, refresh_actions
+    user, timer, stats, investor_actions, tokens
 } from '../../betokenjs/helpers';
 
 @Component({
@@ -33,30 +32,6 @@ import {
 
 export class DashboardComponent implements OnInit {
     userRanking = [];
-    walkthrough: boolean;
-    step1: boolean;
-    step2: boolean;
-    step3: boolean;
-    step4: boolean;
-    investalert: boolean;
-    footerbtn1: boolean;
-
-    footerbtn2: boolean;
-    changefundphase: boolean;
-    changeStep1: boolean;
-    changeStep2: boolean;
-    changeStep3: boolean;
-    changeStep4: boolean;
-    changealert: boolean;
-
-    footerbtn3: boolean;
-    state: string;
-    active: boolean;
-
-
-    success: boolean;
-    returnres: any;
-
     inputShare = 0.00;
     calculated_balance = 0.00;
     selectedTokenSymbol = 'DAI';
@@ -77,6 +52,7 @@ export class DashboardComponent implements OnInit {
     portfolioValueInDAI = '';
 
     hasDrawnChart = false;
+    performanceChart: any;
 
     days = 0;
     hours = 0;
@@ -85,10 +61,10 @@ export class DashboardComponent implements OnInit {
     investflow = false;
     withdrawflow = false;
 
-    private carouselToken: string;
-    public carouselBanner: NguCarousel;
     tokenList: any;
     rankingArray = [];
+
+    chartTabId = 0;
 
     transactionId: '';
 
@@ -99,23 +75,7 @@ export class DashboardComponent implements OnInit {
         this.ms.setPopUpW();
     }
 
-    constructor(private ms: AppComponent, private carousel: NguCarouselService, private route: Router) {
-        this.step1 = true;
-        this.step2 = false;
-        this.step3 = false;
-        this.step4 = false;
-        this.investalert = false;
-
-        this.changealert = false;
-        this.changefundphase = false;
-        this.changeStep1 = true;
-        this.changeStep2 = false;
-        this.changeStep3 = false;
-        this.changeStep4 = false;
-
-        this.footerbtn1 = true;
-        this.footerbtn2 = false;
-        this.footerbtn3 = false;
+    constructor(private ms: AppComponent, private route: Router) {
     }
 
     calculate_bal (event) {
@@ -133,65 +93,6 @@ export class DashboardComponent implements OnInit {
         setInterval(() => {
             this.refreshDisplay();
         }, 100);
-
-        this.carouselBanner = {
-            grid: { xs: 1, sm: 1, md: 1, lg: 1, all: 0 },
-            slide: 1,
-            speed: 400,
-            interval: 400000,
-            point: {visible: true},
-            load: 2,
-            loop: true,
-            touch: true
-        };
-
-        this.ms.getPopUp().subscribe((open: boolean) => {
-            this.investflow = true;
-            this.withdrawflow = false;
-            if (open) {
-                this.state = 'open';
-                this.active = true;
-            }
-
-            if (!open) {
-                this.state = 'close';
-                this.active = false;
-            }
-
-        });
-
-        this.ms.getPopUpW().subscribe((open: boolean) => {
-            this.investflow = false;
-            this.withdrawflow = true;
-            if (open) {
-                this.state = 'open';
-                this.active = true;
-            }
-
-            if (!open) {
-                this.state = 'close';
-                this.active = false;
-            }
-
-        });
-
-        this.ms.getchangefundPopUp().subscribe((open: boolean) => {
-            if (open) {
-                this.state = 'open';
-                this.active = true;
-                this.changefundphase = true;
-                this.investalert = false;
-                this.changeStep1 = true;
-                this.changeStep2 = false;
-                this.changeStep3 = false;
-                this.changeStep4 = false;
-            }
-
-            if (!open) {
-                this.state = 'close';
-                this.active = false;
-            }
-        });
     }
 
     refreshDisplay() {
@@ -206,73 +107,20 @@ export class DashboardComponent implements OnInit {
         this.updateDates();
         this.rankingList();
         if (stats.raw_roi_data().length > 0 && !this.hasDrawnChart) {
-            this.hasDrawnChart = true;
-            this.drawChart();
-        }
-    }
-
-
-    /* It will be triggered on every slide*/
-    onmoveFn(data: NguCarouselStore) {
-        console.log(data);
-    }
-
-    initDataFn(key: NguCarouselStore) {
-        this.carouselToken = key.token;
-    }
-
-    resetFn() {
-        this.carousel.reset(this.carouselToken);
-    }
-
-    shift() {
-        for (let i = 0; i < 2 ; i++) {
-            this.carousel.moveToSlide(this.carouselToken, i, false);
-        }
-    }
-
-    closePopup() {
-        this.state = 'close';
-        this.active = false;
-        this.step1 = true;
-        this.step2 = false;
-        this.step3 = false;
-        this.step4 = false;
-        this.footerbtn1 = false;
-        this.footerbtn2 = true;
-
-        if (this.changefundphase === true) {
-            this.changeStep1 = true;
-            this.changeStep2 = false;
-            this.changeStep3 = false;
-            this.changeStep4 = false;
-            this.footerbtn2 = false;
-            this.footerbtn3 = true;
+            this.drawChart(this.chartTabId);
         }
     }
 
     pending = (transactionHash) => {
         this.transactionId = transactionHash;
-        this.step1 = false;
-        this.step2 = false;
-        this.step3 = true;
-        this.step4 = false;
     }
 
     confirm = () => {
-        this.step1 = false;
-        this.step3 = false;
-        this.step3 = false;
-        this.step4 = true;
     }
 
 
     async withdraw() {
         investor_actions.withdraw_button(this.calculated_balance, this.selectedTokenSymbol, this.pending, this.confirm, (success) => {
-            this.step2 = true;
-            this.step1 = false;
-            this.step3 = false;
-            this.step4 = false;
         }, (error) => {
             alert(error);
         });
@@ -280,10 +128,6 @@ export class DashboardComponent implements OnInit {
 
     async invest() {
         investor_actions.deposit_button(this.calculated_balance, this.selectedTokenSymbol, this.pending, this.confirm, (success) => {
-            this.step2 = true;
-            this.step1 = false;
-            this.step3 = false;
-            this.step4 = false;
         }, (error) => {
             alert(error);
         });
@@ -294,30 +138,8 @@ export class DashboardComponent implements OnInit {
     }
 
     changefund() {
-        this.changefundphase = true;
-        this.investalert = false;
         this.openModalPopup();
         this.openModalPopupW();
-    }
-
-    changefundstep1() {
-        this.changeStep2 = true;
-        this.changeStep1 = false;
-        this.changeStep3 = false;
-        this.changeStep4 = false;
-    }
-
-    confirmcchangefund() {
-        this.changeStep3 = true;
-        this.changealert = true;
-        this.changeStep1 = false;
-        this.changeStep2 = false;
-        this.changeStep4 = false;
-        this.ms.setTradeBtn();
-    }
-
-    hideNextPhaseAlert() {
-        this.changealert = false;
     }
 
     makeInvestment() {
@@ -335,7 +157,7 @@ export class DashboardComponent implements OnInit {
         this.totalUser = this.rankingArray.length;
     }
 
-    drawChart = () => {
+    drawChart = (id) => {
         let BONDS_MONTHLY_INTEREST = 2.4662697e-3 // 3% annual interest rate
         let NUM_DECIMALS = 4;
         let betokenROIList = stats.raw_roi_data();
@@ -378,15 +200,15 @@ export class DashboardComponent implements OnInit {
         this.sortinoRatio = meanExcessReturn.div(excessReturnStd).dp(NUM_DECIMALS);
 
         // Get cumulative data & calc std
-        betokenROIList = convertToCumulative(betokenROIList);
-        this.standardDeviation = calcSampleStd(betokenROIList).dp(NUM_DECIMALS);
+        let cumBetokenROIList = convertToCumulative(betokenROIList);
+        this.standardDeviation = calcSampleStd(cumBetokenROIList).dp(NUM_DECIMALS);
 
         // Compute timestamps
         let phase = timer.phase();
         let now = Math.floor(new Date().getTime() / 1000);
         let phaseStart = timer.phase_start_time();
         let phaseLengths = timer.phase_lengths();
-        let timestamps = new Array(betokenROIList.length - 1);
+        let timestamps = new Array(betokenROIList.length);
         switch (phase) {
             case 0:
                 // invest & withdraw phase
@@ -428,7 +250,9 @@ export class DashboardComponent implements OnInit {
         for (var i = 0; i < timestamps.length; i++) {
             timestampStrs.push(new Date(timestamps[i].start * 1e3).toLocaleDateString());
         }
-        timestampStrs.push(new Date(timestamps[timestamps.length - 1].end * 1e3).toLocaleDateString());
+        if (id === 1) {
+            timestampStrs.push(new Date(timestamps[timestamps.length - 1].end * 1e3).toLocaleDateString());
+        }
 
         var xLabels = [];
         for (var i = 0; i < timestamps.length; i++) {
@@ -436,64 +260,74 @@ export class DashboardComponent implements OnInit {
             var formattedString = `${MONTHS[date.getMonth()]} ${date.getFullYear()}`;
             xLabels.push(formattedString);
         }
-        xLabels.push("Now");
+        if (id === 1) {
+            xLabels.push("Now");
+        }
 
         // draw chart
-        var ctx = document.getElementById("roi-chart");
-        var performanceChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: xLabels,
-                datasets: [
-                    {
-                        label: 'Betoken',
-                        borderColor: '#22c88a',
-                        backgroundColor: 'rgba(185, 238, 225, 0.5)',
-                        fill: true,
-                        data: betokenROIList
-                    }
-                ]
-            },
-            options: {
-                maintainAspectRatio: false,
-                scales: {
-                    xAxes: [{
-                        gridLines: {
-                            display: false
+        if (!this.hasDrawnChart) {
+            var ctx = document.getElementById("roi-chart");
+            this.performanceChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: xLabels,
+                    datasets: [
+                        {
+                            label: 'Betoken',
+                            borderColor: '#22c88a',
+                            backgroundColor: 'rgba(185, 238, 225, 0.5)',
+                            fill: true,
+                            data: id === 0 ? betokenROIList : cumBetokenROIList
                         }
-                    }],
-                    yAxes: [{
-                        gridLines: {
-                            display: true
-                        },
-                        ticks: {
-                            callback: function(value, index, values) {
-                                return value + '%';
+                    ]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    scales: {
+                        xAxes: [{
+                            gridLines: {
+                                display: false
+                            }
+                        }],
+                        yAxes: [{
+                            gridLines: {
+                                display: true
+                            },
+                            ticks: {
+                                callback: function(value, index, values) {
+                                    return value + '%';
+                                }
+                            }
+                        }]
+                    },
+                    title: {
+                        display: false
+                    },
+                    tooltips: {
+                        enabled: true,
+                        mode: 'index',
+                        intersect: false,
+                        displayColors: true,
+                        callbacks: {
+                            label: function(tooltipItems, data) {
+                                return tooltipItems.yLabel + '%';
+                            },
+                            title: function(tooltipItems, data) {
+                                return timestampStrs[tooltipItems[0].index];
                             }
                         }
-                    }]
-                },
-                title: {
-                    display: false
-                },
-                tooltips: {
-                    enabled: true,
-                    mode: 'index',
-					intersect: false,
-                    displayColors: true,
-                    callbacks: {
-                        label: function(tooltipItems, data) {
-                            return tooltipItems.yLabel + '%';
-                        },
-                        title: function(tooltipItems, data) {
-                            return timestampStrs[tooltipItems[0].index];
-                        }
+                    },
+                    legend: {
+                        display: false
                     }
-                },
-                legend: {
-                    display: false
                 }
-            }
-        });
+            });
+        } else {
+            this.performanceChart.data.datasets[0].data = id === 0 ? betokenROIList : cumBetokenROIList;
+            this.performanceChart.data.labels = xLabels;
+            this.performanceChart.update();
+        }
+        
+        this.hasDrawnChart = true;
     }
 }

@@ -41,7 +41,7 @@
             <!-- Nav -->
             <ul class="nav nav-tabs header-tabs">
               <li class="nav-item" data-toggle="chart" data-target="#headerChart" data-update='{"data":{"datasets":[{"data":[0,10,5,15,10,20,15,25,20,30,25,40]}]}}' data-prefix="$" data-suffix="k">
-                <a href="#" class="nav-link active" data-toggle="tab">
+                <a href="#" class="nav-link active" data-toggle="tab" (click)="chartTabId = 0; drawChart(0);">
                   <h6 class="header-pretitle text-secondary">
                     ROI (1 Mo)
                   </h6>
@@ -51,7 +51,7 @@
                 </a>
               </li>
               <li class="nav-item" data-toggle="chart" data-target="#headerChart" data-update='{"data":{"datasets":[{"data":[50,75, 35,25,55,87,67,53,25,80,87,45]}]}}' data-prefix="" data-suffix="k">
-                <a href="#" class="nav-link" data-toggle="tab">
+                <a href="#" class="nav-link" data-toggle="tab" (click)="chartTabId = 1; drawChart(1);">
                   <h6 class="header-pretitle text-secondary">
                     ROI Since Inception
                   </h6>

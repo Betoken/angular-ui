@@ -155,9 +155,9 @@
           <div class="form-group">
             <label for="exampleFormControlInput1">Share your link</label>
             <div class="input-group mb-3">
-              <input type="text" class="form-control" value="https://betoken.fund/iao/?ref={{user_address}}" aria-label="Referral link" aria-describedby="basic-addon2">
+              <input type="text" class="form-control" value="https://betoken.fund/iao/?ref={{user_address}}" aria-label="Referral link" aria-describedby="basic-addon2" #userinput>
               <div class="input-group-append">
-                <button class="btn btn-white" type="button"><i class="fe fe-copy"></i></button>
+                <button class="btn btn-white" type="button" (click)="copyInputMessage(userinput)" value="click to copy"><i class="fe fe-copy"></i></button>
               </div>
             </div>
           </div>

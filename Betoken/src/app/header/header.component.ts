@@ -25,6 +25,7 @@ export class HeaderComponent implements OnInit {
   phase = -1;
 
   user_address = '0x0';
+  userKairoValue: Object;
 
   can_redeem_commission = true;
 
@@ -58,6 +59,7 @@ export class HeaderComponent implements OnInit {
     this.phase = timer.phase();
 
     this.user_address = user.address();
+    this.userKairoValue = user.portfolio_value();
     this.can_redeem_commission = user.can_redeem_commission();
 
     error_notifications.check_dependency();

@@ -40,6 +40,14 @@
   </div>
 </div>
 
+<div *ngIf="userKairoValue.comparedTo(0) === 0">
+  <a target="_blank" href="https://betoken.fund/iao/">
+    <div class="alert alert-warning rounded-0 mb-0">
+      Hey there, did you know you could become a manager and start earning commissions right now by clicking here?
+    </div>
+  </a>
+</div>
+
 <div *ngIf="sellalert">
     <div class="alert alert-danger alert-dismissible fade show rounded-0 mb-0 d-flex justify-content-between align-items-center">
         <p class="m-0">🚨 Sell your assets to redeem all your KRO staked before cycle’s end. <a href="https://medium.com/betoken/the-ultimate-guide-to-betoken-omen-39adfe204296" target="_blank">More info</a>.</p>

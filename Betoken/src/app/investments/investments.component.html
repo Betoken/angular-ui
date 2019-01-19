@@ -642,7 +642,7 @@
           <i class="fe fe-check-circle text-success"></i>
         </p>
         <p class="text-center text-muted mb-5" *ngIf="createInvestmentPopupStep === 4">
-          You staked <span class="font-weight-bold text-secondary">{{stakeAmount}}</span> KRO to support <span class="font-weight-bold text-secondary">{{selectedTokenSymbol}}</span>.
+          You staked <span class="font-weight-bold text-secondary">{{stakeAmount}}</span> KRO to invest in <span class="font-weight-bold text-secondary">{{getTokenName(selectedTokenSymbol)}}</span>.
         </p>
         <hr *ngIf="createInvestmentPopupStep === 4">
         <form *ngIf="createInvestmentPopupStep === 4">

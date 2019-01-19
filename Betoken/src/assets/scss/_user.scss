@@ -17,7 +17,15 @@
 .navbar-brand > img{
     max-height: 2rem;
 }
-
+.btn-success{
+    border-color: #1DC887;
+    background-color: #1DC887;
+}
+.alert-success {
+    color: #fff;
+    border-color: #1DC887;
+    background-color: #1DC887;
+}
 @media (min-width: 768px)
 {.main-content {
     margin-left: 250px;

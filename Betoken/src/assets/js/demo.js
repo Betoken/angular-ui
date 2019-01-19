@@ -12,7 +12,7 @@ var Demo = (function() {
   //
 
   // Selectors
-  var form = document.querySelector('#demoForm');
+  var form = document.querySelector('#switchColor');
   var topnav = document.querySelector('#topnav');
   var topbar = document.querySelector('#topbar');
   var sidebar = document.querySelector('#sidebar');
@@ -153,14 +153,5 @@ var Demo = (function() {
   // Enable body
   document.body.style.display = 'block';
 
-  // Form submitted
-  if ( form ) {
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-
-      // Apply changes
-      submitForm(form);
-    });
-  }
 
 })();

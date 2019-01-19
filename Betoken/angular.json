@@ -27,8 +27,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/assets/scss/theme.scss",
-              "src/assets/scss/theme-dark.scss",
+              "src/assets/scss/_user.scss",
               "src/assets/fonts/feather/feather.css",
               "node_modules/highlight.js/styles/vs2015.css",
               "node_modules/quill/dist/quill.core.css",
@@ -49,6 +48,7 @@
                 "node_modules/select2/dist/js/select2.min.js",
                 "src/assets/js/charts.js",
                 "src/assets/js/dashkit.js",
+                "src/assets/js/demo.js",
                 "src/assets/js/dropdowns.js",
                 "src/assets/js/dropzone.js",
                 "src/assets/js/flatpickr.js",

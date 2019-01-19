@@ -6,8 +6,7 @@ import { loadAllData, loadDynamicData } from '../betokenjs/data-controller';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  templateUrl: './app.component.html'
 })
 export class AppComponent {
   title = 'Betoken';

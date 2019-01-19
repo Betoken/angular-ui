@@ -11,8 +11,7 @@
 
       <!-- Brand -->
       <a class="navbar-brand" href="index.html">
-        <img src="assets/img/betoken-logo-wo-text.svg" class="navbar-brand-img
-        mx-auto" alt="Betoken logo">
+        <img src="assets/img/betoken-logo-wo-text.svg" class="navbar-brand-img mx-auto" alt="Betoken logo">
       </a>
 
       <!-- notification -->
@@ -115,6 +114,16 @@
             </a>
           </li>
         </ul>
+        <form id="switchColor">
+            <div class="btn-group-toggle d-flex btn-group-sm mt--3 py-4 py-md-2" data-toggle="buttons">
+              <label class="btn btn-white col">
+                <input type="radio" name="colorScheme" id="colorSchemeLight" value="light" onchange="document.getElementById('switchColor').submit()"> <i class="fe fe-sun mr-2"></i>
+              </label>
+              <label class="btn btn-white col ml-2">
+                <input type="radio" name="colorScheme" id="colorSchemeDark" value="dark" onchange="document.getElementById('switchColor').submit()"> <i class="fe fe-moon mr-2"></i>
+              </label>
+            </div>
+        </form>
 
         <!-- Push content down -->
         <div class="mt-auto"></div>

@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {
     user,
     loading,
-    refresh_actions
+    refresh_actions,
+    manager_actions
 } from '../../betokenjs/helpers';
 
 import { } from 'jquery';
@@ -13,8 +14,12 @@ declare var $: any;
 })
 export class CommissionsComponent implements OnInit {
     commissionHistory: Array<Object>;
+    commissionAmount: Number;
+    transactionId: String;
+    step: Number;
 
     constructor() {
+        this.step = 0;
     }
 
     ngOnInit() {
@@ -23,10 +28,14 @@ export class CommissionsComponent implements OnInit {
             // I've tried, trust me
             this.refreshDisplay();
         }, 100);
+        $('#modalRedeem').on('hidden.bs.modal', () => {
+            this.resetModals();
+        });
     }
 
     refreshDisplay() {
         this.commissionHistory = user.commission_history();
+        this.commissionAmount = user.expected_commission().toFormat(2);
     }
 
     refresh() {
@@ -35,5 +44,30 @@ export class CommissionsComponent implements OnInit {
 
     isLoading() {
         return loading.records();
+    }
+
+    resetModals() {
+        this.step = 0;
+    }
+
+    redeemCommission(option) {
+        this.step = 1;
+
+        let pending = (transactionHash) => {
+            this.transactionId = transactionHash;
+            this.step = 2;
+        }
+    
+        let confirm = () => {
+            this.step = 3;
+            refresh_actions.records();
+        }
+
+        if (option === 0) {
+            manager_actions.redeem_commission(pending, confirm);
+        }
+        if (option === 1) {
+            manager_actions.redeem_commission_in_shares(pending, confirm);
+        }
     }
 }

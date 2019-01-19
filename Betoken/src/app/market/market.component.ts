@@ -10,6 +10,7 @@ declare var $ :any;
     selector: 'app-market',
     templateUrl: './market.component.html'
 })
+
 export class MarketComponent implements OnInit {
 
     tokenList: any;

@@ -1,5 +1,4 @@
-import {Component, ElementRef, OnInit, Renderer2, ViewChild} from '@angular/core';
-import { animate, state, style, transition, trigger } from '@angular/animations';
+import {Component, ElementRef, OnInit, Renderer2} from '@angular/core';
 import { AppComponent } from '../app.component';
 import { user, timer, manager_actions, loading, tokens, refresh_actions} from '../../betokenjs/helpers';
 import BigNumber from 'bignumber.js';
@@ -10,19 +9,7 @@ declare var $ :any;
 
 @Component({
     selector: 'app-proposal',
-    templateUrl: './investments.component.html',
-    animations: [
-        trigger('toggleProposal', [
-            state('open', style({
-                'right': '0'
-            })),
-            state('close', style({
-                'right': '-100%'
-            })),
-            transition('open <=> close', animate('300ms ease-in-out')),
-        ])
-
-    ]
+    templateUrl: './investments.component.html'
 })
 
 export class InvestmentsComponent implements OnInit {
@@ -30,7 +17,6 @@ export class InvestmentsComponent implements OnInit {
     sellInvestmentPopupStep: number;
     nextPhasePopupStep: number;
 
-    success: boolean;
     tradeAssetval: any;
 
     portfolioValueInDAI = '';
@@ -149,9 +135,7 @@ export class InvestmentsComponent implements OnInit {
             }
         }
 
-        manager_actions.sell_investment(this.sellId, pendingSell, confirmSell, (success) => {}, (error) => {
-            alert(error);
-        });
+        manager_actions.sell_investment(this.sellId, pendingSell, confirmSell);
     }
 
     // UI helpers

@@ -1,41 +1,23 @@
-import { Component, OnInit, } from '@angular/core';
-import { animate, state, style, transition, trigger } from '@angular/animations';
+import { Component, OnInit } from '@angular/core';
 import { AppComponent } from '../app.component';
 import { Router } from '@angular/router';
 import { BigNumber } from 'bignumber.js';
 import { Chart } from 'chart.js';
-import { ThemeCharts } from '../../assets/js/charts.js';
 
 import { } from 'jquery';
 declare var $: any;
 
 import {
-    user, timer, stats, investor_actions, tokens
+    user, timer, stats
 } from '../../betokenjs/helpers';
 
 @Component({
     selector: 'app-invest',
-    templateUrl: './dashboard.component.html',
-    animations: [
-        trigger('toggleMenu', [
-            state('open', style({
-                'right': '0'
-            })),
-            state('close', style({
-                'right': '-100%'
-            })),
-            transition('open <=> close', animate('300ms ease-in-out')),
-        ]),
-
-    ]
+    templateUrl: './dashboard.component.html'
 })
 
 export class DashboardComponent implements OnInit {
-    userRanking = [];
-    inputShare = 0.00;
-    calculated_balance = 0.00;
-    selectedTokenSymbol = 'DAI';
-
+    userRanking: String;
     kairo_balance = 0.0000;
     monthly_pl = 0.00;
     expected_commission = 0.00;
@@ -54,39 +36,9 @@ export class DashboardComponent implements OnInit {
     hasDrawnChart = false;
     performanceChart: any;
 
-    days = 0;
-    hours = 0;
-    minutes = 0;
-    seconds = 0;
-    investflow = false;
-    withdrawflow = false;
-
-    tokenList: any;
-    rankingArray = [];
-
     chartTabId = 0;
 
-    transactionId: '';
-
-    openModalPopup() {
-        this.ms.setPopUp();
-    }
-    openModalPopupW() {
-        this.ms.setPopUpW();
-    }
-
     constructor(private ms: AppComponent, private route: Router) {
-    }
-
-    calculate_bal (event) {
-        this.calculated_balance = event.target.value * 100.0000;
-    }
-
-    async updateDates() {
-        this.days = timer.day;
-        this.hours = timer.hour;
-        this.minutes = timer.minute;
-        this.seconds = timer.second;
     }
 
     ngOnInit() {
@@ -107,57 +59,10 @@ export class DashboardComponent implements OnInit {
         this.AUM = stats.fund_value().toFormat(NUM_DECIMALS);
         this.userRanking = user.rank();
         this.portfolioValueInDAI = user.portfolio_value_in_dai().toFormat(NUM_DECIMALS);
-        this.updateDates();
-        this.rankingList();
+        this.totalUser = stats.ranking().length;
         if (stats.raw_roi_data().length > 0 && !this.hasDrawnChart) {
             this.drawChart(this.chartTabId);
         }
-    }
-
-    pending = (transactionHash) => {
-        this.transactionId = transactionHash;
-    }
-
-    confirm = () => {
-    }
-
-
-    async withdraw() {
-        investor_actions.withdraw_button(this.calculated_balance, this.selectedTokenSymbol, this.pending, this.confirm, (success) => {
-        }, (error) => {
-            alert(error);
-        });
-    }
-
-    async invest() {
-        investor_actions.deposit_button(this.calculated_balance, this.selectedTokenSymbol, this.pending, this.confirm, (success) => {
-        }, (error) => {
-            alert(error);
-        });
-    }
-
-    updateTokenSymbol(value) {
-        this.selectedTokenSymbol = value;
-    }
-
-    changefund() {
-        this.openModalPopup();
-        this.openModalPopupW();
-    }
-
-    makeInvestment() {
-        this.openModalPopup();
-        this.openModalPopupW();
-        this.route.navigate(['/proposal']);
-    }
-
-    async tokensList() {
-        this.tokenList = tokens.token_list();
-    }
-
-    rankingList() {
-        this.rankingArray =  stats.ranking();
-        this.totalUser = this.rankingArray.length;
     }
 
     drawChart = (id) => {

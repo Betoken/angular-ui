@@ -1,19 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { user, stats, loading, refresh_actions } from '../../betokenjs/helpers';
-import BigNumber from 'bignumber.js';
 
 import { } from 'jquery';
 declare var $: any;
+
 @Component({
     selector: 'app-rankings',
     templateUrl: './rankings.component.html'
 })
+
 export class RankingsComponent implements OnInit {
-    rankingArray = [];
-    userRanking = [];
-    userValue: any;
+    rankingArray: Array<Object>;
+    userRanking: String;
+    userValue: String;
     userAddress: String;
-    userROI: any;
+    userROI: String;
 
     constructor() {
     }

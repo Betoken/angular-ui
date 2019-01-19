@@ -8,26 +8,15 @@ import {
   user, timer, network, error_notifications
 } from '../../betokenjs/helpers';
 
-
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html'
 })
+
 export class HeaderComponent implements OnInit {
-
-  btn1: boolean;
-  btn2: boolean;
-  btn3: boolean;
-
-  tradebtn: boolean;
-  nextphasebtn: boolean;
-  redeembtn: boolean;
-
   sellalert: boolean;
   nextphasealert: boolean;
   redeemalert: boolean;
-
-  newcyclebtn: boolean;
 
   days = 0;
   hours = 0;
@@ -36,9 +25,7 @@ export class HeaderComponent implements OnInit {
   phase = -1;
 
   user_address = '0x0';
-  share_balance = 0.0000;
 
-  curr_network = '';
   can_redeem_commission = true;
 
   errorMsg = '';
@@ -51,14 +38,6 @@ export class HeaderComponent implements OnInit {
  }
  
   constructor(private ms: AppComponent, private router: Router ) {
-    this.btn1 = true;
-    this.btn2 = false;
-    this.btn3 = false;
-    this.tradebtn = true;
-    this.nextphasebtn = false;
-    this.redeembtn = false;
-    this.newcyclebtn = false;
-    this.sellalert = false;
     this.nextphasealert = false;
     this.redeemalert = false;
   }
@@ -78,7 +57,6 @@ export class HeaderComponent implements OnInit {
     this.seconds = timer.second();
     this.phase = timer.phase();
 
-    this.curr_network = network.network_prefix();
     this.user_address = user.address();
     this.can_redeem_commission = user.can_redeem_commission();
 

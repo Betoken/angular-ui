@@ -49,8 +49,8 @@ export class DashboardComponent implements OnInit {
     }
 
     refreshDisplay() {
-        const NUM_DECIMALS = 4;
-        
+        const NUM_DECIMALS = 2;
+
         this.kairo_balance = user.portfolio_value().toFormat(NUM_DECIMALS);
         this.monthly_pl = user.monthly_roi().toFormat(NUM_DECIMALS);
         this.expected_commission = user.expected_commission().toFormat(NUM_DECIMALS);

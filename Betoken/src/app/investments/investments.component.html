@@ -50,7 +50,7 @@
 
             <!-- Title -->
             <h6 class="card-title text-uppercase text-muted mb-2">
-              Your Portfolio Value
+              Your Portfolio Value ($DAI)
             </h6>
 
             <!-- Heading -->
@@ -62,7 +62,7 @@
           <div class="col-auto">
 
             <!-- Icon -->
-            <span class="h2 text-muted mb-0">DAI</span>
+            <span class="h2 fe fe-pie-chart text-muted mb-0"></span>
 
           </div>
         </div> <!-- / .row -->
@@ -150,7 +150,7 @@
 
             <!-- Title -->
             <h6 class="card-title text-uppercase text-muted mb-2">
-              Your Estimated Commission This Month
+              Your Estimated Commission This Month ($DAI)
             </h6>
 
             <!-- Heading -->
@@ -162,7 +162,7 @@
           <div class="col-auto">
 
             <!-- Icon -->
-            <span class="h2 text-muted mb-0">DAI</span>
+            <span class="h2 fe fe-award text-muted mb-0"></span>
 
           </div>
         </div> <!-- / .row -->
@@ -447,7 +447,7 @@
                     </div>
                     <div class="col ml--2">
 
-                      <h4 class="mb-1 text-dark name">
+                      <h4 class="mb-1 name">
                         sETH
                       </h4>
 
@@ -462,7 +462,7 @@
                           Leveraged
                         </h6>
 
-                        <h4 class="header-title text-dark">
+                        <h4 class="header-title">
                           0.5x
                         </h4>
 
@@ -492,7 +492,7 @@
                     </div>
                     <div class="col ml--2">
 
-                      <h4 class="mb-1 text-dark name">
+                      <h4 class="mb-1 name">
                         LETH
                       </h4>
 
@@ -507,7 +507,7 @@
                           Leveraged
                         </h6>
 
-                        <h4 class="header-title text-dark">
+                        <h4 class="header-title">
                           1.5x
                         </h4>
 
@@ -536,9 +536,9 @@
                     </div>
                     <div class="col ml--2">
 
-                      <h4 class="mb-1 text-dark name">
+                      <span class="mb-1 h4 name">
                         {{token}}
-                      </h4>
+                      </span>
 
                       <p class="small text-secondary mb-0">
                         {{getTokenName(token)}}
@@ -573,7 +573,7 @@
             <h6 class="header-pretitle text-secondary">
               Current Price in $DAI
             </h6>
-            <h3 class="text-dark mb-0 text-truncate">
+            <h3 class="mb-0 text-truncate">
               {{assetSymbolToPrice(selectedTokenSymbol).dp(10)}}
             </h3>
           </div>
@@ -581,7 +581,7 @@
             <h6 class="header-pretitle text-secondary">
               24h change
             </h6>
-            <h3 class="text-dark mb-0">
+            <h3 class="mb-0">
               <span class="badge" [ngClass]="{'badge-soft-success': +getTokenDailyPriceChange(selectedTokenSymbol) >= 0, 'badge-soft-danger': 0 > +getTokenDailyPriceChange(selectedTokenSymbol)}">
                 {{getTokenDailyPriceChange(selectedTokenSymbol)}}%
               </span>

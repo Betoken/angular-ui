@@ -14,7 +14,7 @@ export class RankingsComponent implements OnInit {
     userRanking: String;
     userValue: String;
     userAddress: String;
-    userROI: String;
+    userROI: any;
 
     constructor() {
     }
@@ -30,7 +30,7 @@ export class RankingsComponent implements OnInit {
         this.userRanking = user.rank();
         this.userValue = user.portfolio_value().toFormat(10);
         this.userAddress = user.address();
-        this.userROI = user.monthly_roi().toFormat(4);
+        this.userROI = user.monthly_roi();
     }
 
     refresh() {

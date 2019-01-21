@@ -25,7 +25,7 @@ export class HeaderComponent implements OnInit {
   phase = -1;
 
   user_address = '0x0';
-  userKairoValue: Object;
+  userKairoValue: any;
 
   can_redeem_commission = true;
 

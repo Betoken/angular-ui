@@ -112,8 +112,8 @@
                   </td>
                   <td class="align-middle">
                     <!-- Badge -->
-                    <span class="badge badge-xl" [ngClass]="{'badge-soft-success': +userROI >= 0, 'badge-soft-danger': 0 > +userROI}">
-                     {{userROI}}%
+                    <span class="badge badge-xl" [ngClass]="{'badge-soft-success': userROI.gt(0), 'badge-soft-danger': !(userROI.gt(0))}">
+                     {{userROI.toFormat(4)}}%
                     </span>
                   </td>
                 </tr>

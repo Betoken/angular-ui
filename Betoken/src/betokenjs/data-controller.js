@@ -19,8 +19,9 @@ export var investmentBalance = new ReactiveVar(BigNumber(0));
 export var investmentList = new ReactiveVar([]);
 export var lastCommissionRedemption = new ReactiveVar(0);
 export var managerROI = new ReactiveVar(BigNumber(0));
-export var transactionHistory = new ReactiveVar([]);
+export var commissionHistory = new ReactiveVar([]);
 export var portfolioValue = new ReactiveVar(BigNumber(0));
+export var currentStake = new ReactiveVar(BigNumber(0));
 
 // fund metadata
 export var kairoTotalSupply = new ReactiveVar(BigNumber(0));
@@ -33,9 +34,6 @@ export var assetFeeRate = new ReactiveVar(BigNumber(0));
 export var fundValue = new ReactiveVar(BigNumber(0));
 export var currROI = new ReactiveVar(BigNumber(0));
 export var avgROI = new ReactiveVar(BigNumber(0));
-export var prevCommission = new ReactiveVar(BigNumber(0));
-export var historicalTotalCommission = new ReactiveVar(BigNumber(0));
-export var cycleTotalCommission = new ReactiveVar(BigNumber(0));
 export var ROIArray = new ReactiveVar([]);
 
 // cycle timekeeping
@@ -54,6 +52,7 @@ export var kairoRanking = new ReactiveVar([]);
 // token data
 export var tokenPrices = new ReactiveVar([]);
 export var tokenAddresses = new ReactiveVar([]);
+export var tokenMetadata = new ReactiveVar([]);
 export var tokenDailyPriceChanges = new ReactiveVar([]);
 export var tokenWeeklyPriceChanges = new ReactiveVar([]);
 export var tokenMonthlyPriceChanges = new ReactiveVar([]);
@@ -93,6 +92,26 @@ export const assetSymbolToMonthlyPriceChange = function(_symbol) {
     return tokenMonthlyPriceChanges.get()[TOKENS.indexOf(_symbol)];
 };
 
+export const assetSymbolToMetadata = (_symbol) => {
+    return tokenMetadata.get()[TOKENS.indexOf(_symbol)];
+}
+
+export const httpsGet = async (apiStr) => {
+    const data = await (new Promise((resolve, reject) => {
+        https.get(apiStr, (res) => {
+            var rawData = "";
+            res.on("data", (chunk) => {
+                rawData += chunk;
+            });
+            res.on("end", () => {
+                var parsedData = JSON.parse(rawData);
+                resolve(parsedData);
+            });
+        }).on("error", reject);
+    }));
+    return data;
+}
+
 const clock = () => {
     const timeKeeper = setInterval(() => {
         var days, distance, hours, minutes, now, seconds, target;
@@ -123,9 +142,22 @@ export const loadMetadata = async () => {
         assetFeeRate.set(BigNumber((await betoken.getPrimitiveVar("assetFeeRate"))).div(PRECISION)),
         tokenAddresses.set((await Promise.all(TOKENS.map(async (_token) => {
             return await betoken.tokenSymbolToAddress(_token);
-        }))))
+        })))),
+        loadTokenMetadata()
     ]);
 };
+
+export const loadTokenMetadata = async () => {
+    const apiStr = `https://min-api.cryptocompare.com/data/coin/generalinfo?fsyms=${TOKENS.join()}&tsym=BTC`;
+    const data = (await httpsGet(apiStr)).Data;
+    let result = data.map((x) => {
+        return {
+            name: x.CoinInfo.FullName,
+            logoUrl: `https://cryptocompare.com${x.CoinInfo.ImageUrl}`
+        }
+    });
+    tokenMetadata.set(result);
+}
 
 export const loadFundData = async () => {
     return Promise.all([
@@ -223,9 +255,12 @@ export const loadUserData = async () => {
                 await Promise.all(handleAllProposals());
                 investments = investments.filter((x) => +x.cycleNumber == cycleNumber.get());
                 investmentList.set(investments);
+
                 var totalKROChange = investments.map((x) => BigNumber(x.kroChange)).reduce((x, y) => x.plus(y));
-                var totalStake = investments.map((x) => BigNumber(x.stake)).reduce((x, y) => x.plus(y));
+                var totalStake = investments.map((x) => BigNumber(x.stake)).reduce((x, y) => x.plus(y), BigNumber(0));
+                var totalCurrentStake = investments.filter((x) => x.isSold == false).map((x) => BigNumber(x.stake)).reduce((x, y) => x.plus(y), BigNumber(0));
                 managerROI.set(totalKROChange.div(totalStake).times(100));
+                currentStake.set(totalCurrentStake);
             }
             isLoadingInvestments.set(false);
         }
@@ -235,78 +270,24 @@ export const loadUserData = async () => {
 
 export const loadTxHistory = async () => {
     isLoadingRecords.set(true);
-    // Get deposit and withdraw history
-    transactionHistory.set([]);
-    const userAddr = userAddress.get();
-    const getDepositWithdrawHistory = async function(_type) {
-        var data, entry, event, events, j, len, tmp;
-        events = (await betoken.contracts.BetokenFund.getPastEvents(_type, {
-            fromBlock: DEPLOYED_BLOCK,
-            filter: {
-                _sender: userAddr
-            }
-        }));
-        for (j = 0, len = events.length; j < len; j++) {
-            event = events[j];
-            data = event.returnValues;
-            entry = {
-                type: _type,
-                timestamp: new Date(+data._timestamp * 1e3).toLocaleString(),
-                token: await betoken.getTokenSymbol(data._tokenAddress),
-                amount: BigNumber(data._tokenAmount).div(10 ** (+(await betoken.getTokenDecimals(data._tokenAddress)))).toFormat(4),
-                txHash: event.transactionHash
-            };
-            tmp = transactionHistory.get();
-            tmp.push(entry);
-            transactionHistory.set(tmp);
+    // Get commission history
+    let events = (await betoken.contracts.BetokenFund.getPastEvents("CommissionPaid", {
+        fromBlock: DEPLOYED_BLOCK,
+        filter: {
+            _sender: userAddress.get()
         }
-    };
-    // Get token transfer history
-    const getTransferHistory = async function(token, isIn) {
-        var _event, data, entry, events, j, len, tokenContract;
-        tokenContract = (() => {
-            switch (token) {
-                case "KRO":
-                    return betoken.contracts.Kairo;
-                case "BTKS":
-                    return betoken.contracts.Shares;
-                default:
-                    return null;
-            }
-        })();
-        events = (await tokenContract.getPastEvents("Transfer", {
-            fromBlock: DEPLOYED_BLOCK,
-            filter: isIn ? {
-                to: userAddr
-            } : {
-                from: userAddr
-            }
-        }));
-        for (j = 0, len = events.length; j < len; j++) {
-            _event = events[j];
-            if (_event == null) {
-                continue;
-            }
-            data = _event.returnValues;
-            if ((isIn && data._to !== userAddr) || (!isIn && data._from !== userAddr)) {
-                continue;
-            }
-            entry = {
-                type: "Transfer " + (isIn ? "In" : "Out"),
-                token: token,
-                amount: BigNumber(data._amount).div(1e18).toFormat(4),
-                timestamp: new Date(((await web3.eth.getBlock(_event.blockNumber))).timestamp * 1e3).toLocaleString(),
-                txHash: _event.transactionHash
-            };
-            tmp = transactionHistory.get();
-            tmp.push(entry);
-            transactionHistory.set(tmp);
-        }
-    };
-    await Promise.all([getDepositWithdrawHistory("Deposit"), getDepositWithdrawHistory("Withdraw"), getTransferHistory("BTKS", true), getTransferHistory("BTKS", false)]);
-    var tmp = transactionHistory.get();
-    tmp.sort((x, y) => new Date(y.timestamp) - new Date(x.timestamp));
-    transactionHistory.set(tmp);
+    }));
+    let commissionHistoryArray = [];
+    for (let event of events) {
+        let entry = {
+            cycle: event.returnValues._cycleNumber,
+            amount: BigNumber(event.returnValues._commission).div(10 ** 18),
+            timestamp: new Date((await web3.eth.getBlock(event.blockNumber)).timestamp * 1e3).toLocaleString(),
+            txHash: event.transactionHash
+        };
+        commissionHistoryArray.push(entry);
+    }
+    commissionHistory.set(commissionHistoryArray);
     isLoadingRecords.set(false);
 };
 
@@ -343,18 +324,7 @@ const loadPriceChanges = async (_daysInPast) => {
         }
 
         const apiStr = `https://min-api.cryptocompare.com/data/pricehistorical?fsym=DAI&tsyms=${tokens.join()}&ts=${Math.floor(Date.now() / 1000 - 86400 * _daysInPast)}`;
-        const data = await (new Promise((resolve, reject) => {
-            https.get(apiStr, (res) => {
-                var rawData = "";
-                res.on("data", (chunk) => {
-                    rawData += chunk;
-                });
-                res.on("end", () => {
-                    var parsedData = JSON.parse(rawData);
-                    resolve(parsedData);
-                });
-            }).on("error", reject);
-        }));
+        const data = await httpsGet(apiStr);
 
         for (var t in tokens) {
             const _token = tokens[t];
@@ -433,12 +403,6 @@ export const loadRanking = async () => {
 };
 
 export const loadStats = async () => {
-    // Get commissions
-    Promise.all([
-        cycleTotalCommission.set(BigNumber((await betoken.getMappingOrArrayItem("totalCommissionOfCycle", cycleNumber.get()))).div(PRECISION)),
-        prevCommission.set(BigNumber((await betoken.getMappingOrArrayItem("totalCommissionOfCycle", cycleNumber.get() - 1))).div(PRECISION))
-    ]);
-
     // calculate fund value
     var _fundValue = BigNumber(0);
     const getTokenValue = async (i) => {
@@ -462,27 +426,9 @@ export const loadStats = async () => {
 
     // get stats
     var rois = [];
-    var totalInputFunds = BigNumber(0);
-    var totalOutputFunds = BigNumber(0);
     currROI.set(BigNumber(0));
     avgROI.set(BigNumber(0));
-    historicalTotalCommission.set(BigNumber(0));
-    return Promise.all([
-        /*betoken.contracts.BetokenFund.getPastEvents("TotalCommissionPaid",
-        {
-            fromBlock: DEPLOYED_BLOCK
-        }).then(function(events) {
-            var _event,
-            commission,
-            j,
-            len;
-            for (j = 0, len = events.length; j < len; j++) {
-                _event = events[j];
-                commission = BigNumber(_event.returnValues._totalCommissionInDAI).div(PRECISION);
-                historicalTotalCommission.set(historicalTotalCommission.get().plus(commission));
-            }
-        }),*/
-        betoken.contracts.BetokenFund.getPastEvents("ROI",
+    return betoken.contracts.BetokenFund.getPastEvents("ROI",
         {
             fromBlock: DEPLOYED_BLOCK
         }).then(function(events) {
@@ -496,26 +442,31 @@ export const loadStats = async () => {
                 data = _event.returnValues;
                 ROI = BigNumber(data._afterTotalFunds).minus(data._beforeTotalFunds).div(data._beforeTotalFunds).times(100);
                 // Update chart data
-                rois.push([+data._cycleNumber, ROI.toNumber()]);
+                rois.push(ROI.toNumber());
                 
                 if (+data._cycleNumber === cycleNumber.get()) {
                     currROI.set(ROI);
                 }
-
-                // Update average ROI
-                totalInputFunds = totalInputFunds.plus(BigNumber(data._beforeTotalFunds).div(PRECISION));
-                totalOutputFunds = totalOutputFunds.plus(BigNumber(data._afterTotalFunds).div(PRECISION));
             }
-            ROIArray.set(rois);
         }).then(() => {
             // Take current cycle's ROI into consideration
-            if (cyclePhase.get() !== 2) {
-                totalInputFunds = totalInputFunds.plus(totalFunds.get());
-                totalOutputFunds = totalOutputFunds.plus(fundValue.get());
+            if (cyclePhase.get() === 1) {
+                rois.push(fundValue.get().minus(totalFunds.get()).div(totalFunds.get()).times(100));
             }
-            avgROI.set(totalOutputFunds.minus(totalInputFunds).div(totalInputFunds).times(100));
-        })
-    ]);
+            ROIArray.set(rois);
+            const convertToCumulative = (list) => {
+                var tmp = BigNumber(1);
+                var tmpArray = [BigNumber(0)];
+                for (let roi of list) {
+                    tmp = BigNumber(roi).div(100).plus(1).times(tmp);
+                    tmpArray.push(tmp.times(100).minus(100));
+                }
+                return tmpArray;
+            }
+            
+            let cumulative = convertToCumulative(rois);
+            avgROI.set(cumulative[cumulative.length - 1]);
+        });
 };
 
 export const loadAllData = async function() {

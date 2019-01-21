@@ -1,88 +1,140 @@
-<div class="market-wrapper col-12 col-lg-10 float-right">
-      <div class="row">
-        <div class="alert-window" *ngIf="errorMsg !== '' ">
-            <div class="alert bg-warning d-flex justify-content-between align-items-center col-12">
-                <p class="m-0">{{errorMsg}}</p>
-            </div>
-        </div>
-        <div class="proposal-table-sec col-8">
-            <div class="sec-header d-flex justify-content-between align-items-center">
-                <p class="sec-title">Market</p>
-                <div class="d-flex justify-content-end">
-                  <button class="btn btn-outline-secondary text-secondary bg-white btn-sm" (click) = "refresh()">
-                      <span *ngIf="isLoading() == false">REFRESH</span>
-                      <span *ngIf="isLoading()">Loading...</span>
-                  </button>
-                </div>
-            </div>
-            <div class="cards table-responsive">
-                <input class="outline-box w-100" id="search-box" (keyup)="filterTable($event,'market-table',0)" placeholder="Search">
-                <table class="table proposal-table">
-                    <thead class="betoken-font">
-                        <tr>
-                            <th scope="col" class="pl-0">Asset</th>
-                            <th scope="col">Price</th>
-                            <th scope="col">24h Change</th>
-                            <th scope="col">7d Change</th>
-                            <th scope="col">30d Change</th>
-                        </tr>
-                    </thead>
-                    <tbody class="black-font" id="market-table">
-                        <tr *ngFor="let token of tokenList">
-                            <td class="identy pl-0">
-                                <div class="d-flex align-items-center">
-                                    <p class="m-0 abrivation">{{token}}</p>
-                                </div>
-                            </td>
-                            <td>{{getTokenPrice(token)}} DAI</td>
-                            <td [ngClass]="{'green-font': +getTokenDailyPriceChange(token) >= 0, 'red-font': 0 > +getTokenDailyPriceChange(token)}">{{getTokenDailyPriceChange(token)}}%</td>
-                            <td [ngClass]="{'green-font': +getTokenWeeklyPriceChange(token) >= 0, 'red-font': 0 > +getTokenWeeklyPriceChange(token)}">{{getTokenWeeklyPriceChange(token)}}%</td>
-                            <td [ngClass]="{'green-font': +getTokenMonthlyPriceChange(token) >= 0, 'red-font': 0 > +getTokenMonthlyPriceChange(token)}">{{getTokenMonthlyPriceChange(token)}}%</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+<!-- HEADER -->
+<div class="header">
+  <div class="container-fluid">
+    <!-- Body -->
+    <div class="header-body">
+      <div class="alert alert-primary alert-dismissible fade show d-flex d-md-none" role="alert">
+        <a class="text-white" data-toggle="modal" href="#modalReferral">
+          <strong>Invite friends</strong>, earn Kairo
+        </a>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="row align-items-end">
+        <div class="col">
 
-        <div class="email-update-sec col-4 col-md-3 col-lg-4 mb-3">
-            <!-- how to use betoken start -->
-            <div class="sec-header">
-                <p class="sec-title">How to join Betoken Beta?</p>
-            </div>
-            <div class="alert-window">
-                <div class="alert bg-primary py-3 cards rounded" role="alert">
-                  <a class="alert-link" href="https://betoken.fund/iao/" target="_blank">Create a manager account</a> by participating in our Initial Account Offering (IAO). You will receive Kairo --- Betoken's utility token necessary for managing the fund. Testnet Kairo will be credited at the end of each investment cycle (check the timer in the sidebar).
-                </div>
-            </div>
-            <!-- how to use betoken END -->
-            <div class="sec-header">
-                <p class="sec-title">Receive updates</p>
-            </div>
-            <div class="cards">
-                <p class="update-info black-font">
-                    Get updates about the fund status, beginning of new investment cycle phases and date to redeem commissions.
-                </p>
-                <p>Email address</p>
-                <form action="https://fund.us17.list-manage.com/subscribe/post?u=9c0647dcb587985ed6121cdf6&amp;id=150e0f091e" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-                    <div class="emailer-box">
-                        <input class="outline-button w-100 mb-3" type="email" value="" name="EMAIL" id="mce-EMAIL" placeholder="myemail@address.com" required>
-                        <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_9c0647dcb587985ed6121cdf6_150e0f091e" tabindex="-1" value=""></div>
-                        <div class="input-group-append">
-                            <button class="text-center outline-button black-font w-100 mb-3" name="subscribe" id="mc-embedded-subscribe">
-                                GET UPDATED
-                            </button>
-                        </div>
-                    </div>
-                </form>
-                <div class="update-footer">
-                    <a target="_blank" href="https://t.me/betokenfund">
-                        <p class="black-font" style="text-align: center;">
-                            Join our Telegram community
-                            <img src="assets/images/iconmonstr-telegram-4.svg" width="24" class="ml-1">
-                        </p>
-                    </a>
-                </div>
-            </div>
+          <!-- Pretitle -->
+          <h6 class="header-pretitle">
+            Overview
+          </h6>
+
+          <!-- Title -->
+          <h1 class="header-title">
+            Market
+          </h1>
+
         </div>
+        <div class="col-auto d-none d-md-flex">
+
+          <!-- Button -->
+          <button class="btn btn-primary mt-3 mt-md-0" data-toggle="modal" href="#modalReferral">
+            Invite friends, earn Kairo
+          </button>
+
+        </div>
+      </div> <!-- / .row -->
+    </div> <!-- / .header-body -->
+
+  </div>
+</div> <!-- / .header -->
+
+<!-- CARDS -->
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <!-- Card -->
+      <div class="card">
+        <div class="card-header">
+          <div class="row align-items-center">
+            <div class="col">
+
+              <!-- Title -->
+              <h4 class="card-header-title">
+                Prices & Trends
+              </h4>
+
+            </div>
+            <div class="col-auto">
+
+              <!-- Refresh -->
+              <button class="btn btn-sm btn-white" type="button" name="button" (click) = "refresh()"><i class="fe fe-refresh-cw align-middle" *ngIf="isLoading() == false"></i><div class="loader loader-sm loader-secondary my-1" *ngIf="isLoading()"></div></button>
+
+            </div>
+          </div> <!-- / .row -->
+        </div>
+        <div class="card-header">
+          <div class="row">
+            <div class="col-12">
+
+              <!-- Form -->
+              <form>
+                <div class="input-group input-group-flush input-group-merge">
+                  <input type="search" class="form-control form-control-prepended search" (keyup)="filterTable($event,'market-table',0)" placeholder="Search">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      <span class="fe fe-search"></span>
+                    </div>
+                  </div>
+                </div>
+              </form>
+
+            </div>
+          </div> <!-- / .row -->
+        </div>
+        <div class="table-responsive">
+          <table class="table table-sm table-nowrap card-table">
+            <thead>
+              <tr>
+                <th class="text-muted">
+                    Asset
+                </th>
+                <th class="text-muted">
+                    Price in $DAI
+                </th>
+                <th class="text-muted">
+                    24h Change
+                </th>
+                <th class="text-muted">
+                    7d change
+                </th>
+                <th class="text-muted">
+                    1m change
+                </th>
+              </tr>
+            </thead>
+            <tbody class="list" id="market-table">
+              <tr *ngFor="let token of tokenList">
+                <td class="py-auto">
+                  <!-- Avatar -->
+                  <span class="avatar avatar-xs align-middle">
+                    <img src="{{getTokenLogoUrl(token)}}" alt="token logo" class="avatar-img rounded-circle"> 
+                  </span>
+                  <span class="align-middle ml-2">
+                    {{token}} • <small class="text-muted small">{{getTokenName(token)}}</small>
+                  </span>
+                </td>
+                <td class="align-middle">{{getTokenPrice(token)}}</td>
+                <td class="24h-change align-middle">
+                  <span class="badge badge-xl" [ngClass]="{'badge-soft-success': +getTokenDailyPriceChange(token) >= 0, 'badge-soft-danger': 0 > +getTokenDailyPriceChange(token)}">
+                    {{getTokenDailyPriceChange(token)}}%
+                  </span>
+                </td>
+                <td class="align-middle">
+                  <span class="badge badge-xl" [ngClass]="{'badge-soft-success': +getTokenWeeklyPriceChange(token) >= 0, 'badge-soft-danger': 0 > +getTokenWeeklyPriceChange(token)}">
+                    {{getTokenWeeklyPriceChange(token)}}%
+                  </span>
+                </td>
+                <td class="align-middle">
+                  <span class="badge badge-xl" [ngClass]="{'badge-soft-success': +getTokenMonthlyPriceChange(token) >= 0, 'badge-soft-danger': 0 > +getTokenMonthlyPriceChange(token)}">
+                    {{getTokenMonthlyPriceChange(token)}}%
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
+  </div> <!-- / .row -->
 </div>

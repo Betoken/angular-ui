@@ -43,7 +43,9 @@ export const timer = {
     hour: () => Data.countdownHour.get(),
     minute: () => Data.countdownMin.get(),
     second: () => Data.countdownSec.get(),
-    phase: () => Data.cyclePhase.get()
+    phase: () => Data.cyclePhase.get(),
+    phase_start_time: () => Data.startTimeOfCyclePhase.get(),
+    phase_lengths: () => Data.phaseLengths.get()
 }
 
 export const user = {
@@ -61,12 +63,12 @@ export const user = {
                 return Data.kairoBalance.get().div(Data.kairoTotalSupply.get()).times(Data.cycleTotalCommission.get());
             }
             // Expected commission based on previous average ROI
-            var roi = Data.avgROI.get().gt(0) ? Data.avgROI.get() : BigNumber(0);
+            var roi = stats.cycle_roi().gt(0) ? stats.cycle_roi() : BigNumber(0);
             return Data.kairoBalance.get().div(Data.kairoTotalSupply.get()).times(Data.totalFunds.get()).times(roi.div(100).times(Data.commissionRate.get()).plus(Data.assetFeeRate.get()));
         }
         return BigNumber(0);
     },
-    transaction_history: () => Data.transactionHistory.get(),
+    commission_history: () => Data.commissionHistory.get(),
     investment_list: () => Data.investmentList.get(),
     rank: () => {
         var entry, j, len, ref;
@@ -79,7 +81,11 @@ export const user = {
         }
         return "N/A";
     },
-    portfolio_value: () => Data.portfolioValue.get()
+    portfolio_value: () => Data.portfolioValue.get(),
+    portfolio_value_in_dai: () => {
+        return Data.portfolioValue.get().times(Data.fundValue.get()).div(Data.kairoTotalSupply.get());
+    },
+    current_stake: () => Data.currentStake.get()
 }
 
 export const stats = {
@@ -109,7 +115,8 @@ export const tokens = {
     asset_symbol_to_daily_price_change: (_symbol) => Data.assetSymbolToDailyPriceChange(_symbol),
     asset_symbol_to_weekly_price_change: (_symbol) => Data.assetSymbolToWeeklyPriceChange(_symbol),
     asset_symbol_to_monthly_price_change: (_symbol) => Data.assetSymbolToMonthlyPriceChange(_symbol),
-    asset_symbol_to_price: (_symbol) => Data.assetSymbolToPrice(_symbol)
+    asset_symbol_to_price: (_symbol) => Data.assetSymbolToPrice(_symbol),
+    asset_symbol_to_metadata: (_symbol) => Data.assetSymbolToMetadata(_symbol)
 }
 
 export const loading = {
@@ -184,7 +191,7 @@ export const manager_actions = {
 
         try {
             address = (await betoken.tokenSymbolToAddress(tokenSymbol));
-            kairoAmountInWeis = BigNumber(amt).times("1e18"); 
+            kairoAmountInWeis = BigNumber(amt).times("1e18");
             betoken.createInvestment(address, kairoAmountInWeis, pending, confirm);
             return;
         } catch (error) {
@@ -206,7 +213,4 @@ export const manager_actions = {
             error_notifications.set_error_msg(SEND_TX_ERR);
         }
     }
-}   
-
-
-
+}

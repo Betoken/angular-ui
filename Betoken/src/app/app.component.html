@@ -1,20 +1,10 @@
-<div class="main-page">
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-116797881-2"></script>
-  <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-116797881-2');
-  </script>
-
-  <app-side-nav></app-side-nav>
+<app-side-nav></app-side-nav>
+<!-- MAIN CONTENT
+================================================== -->
+<div class="main-content mb-6">
 
   <app-header></app-header>
- 
-  <router-outlet></router-outlet>
-  
-  <div class="overlay" [class.active]="active" (click)="overlayhide()" ></div>
 
-</div>
+  <router-outlet></router-outlet>
+
+</div> <!-- / .main-content -->

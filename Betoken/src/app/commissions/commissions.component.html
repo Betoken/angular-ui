@@ -1,0 +1,223 @@
+<!-- HEADER -->
+<div class="header">
+  <div class="container-fluid">
+    <!-- Body -->
+    <div class="header-body">
+      <div class="alert alert-primary alert-dismissible fade show d-flex d-md-none" role="alert">
+        <a class="text-white" data-toggle="modal" href="#modalReferral">
+          <strong>Invite friends</strong>, earn Kairo
+        </a>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="row align-items-end">
+        <div class="col">
+
+          <!-- Pretitle -->
+          <h6 class="header-pretitle">
+            Overview
+          </h6>
+
+          <!-- Title -->
+          <h1 class="header-title">
+            Commissions
+          </h1>
+        </div>
+        <div class="col-auto d-none d-md-flex">
+
+          <!-- Button -->
+          <button class="btn btn-primary mt-3 mt-md-0" data-toggle="modal" href="#modalReferral">
+            Invite friends, earn Kairo
+          </button>
+
+        </div>
+      </div> <!-- / .row -->
+    </div> <!-- / .header-body -->
+
+  </div>
+</div> <!-- / .header -->
+
+<!-- CARDS -->
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <!-- Card -->
+      <div class="card">
+        <div class="card-header">
+          <div class="row align-items-center">
+            <div class="col">
+
+              <!-- Title -->
+              <h4 class="card-header-title">
+                Your Commission History
+              </h4>
+
+            </div>
+            <div class="col-auto">
+
+                <!-- Refresh -->
+                <button class="btn btn-sm btn-white" type="button" name="button" (click) = "refresh()"><i class="fe fe-refresh-cw align-middle" *ngIf="isLoading() == false"></i><div class="loader loader-sm loader-secondary my-1" *ngIf="isLoading()"></div></button>
+
+            </div>
+          </div> <!-- / .row -->
+        </div>
+        <div class="table-responsive">
+          <table class="table table-sm table-nowrap card-table">
+            <thead>
+              <tr>
+                <th class="text-muted">
+                    Cycle Number
+                </th>
+                <th class="text-muted">
+                    Commission Amount ($DAI)
+                </th>
+                <th class="text-muted">
+                    Timestamp
+                </th>
+                <th class="text-muted">
+                    Transaction
+                </th>
+              </tr>
+            </thead>
+            <tbody class="list" id="commissions-table">
+              <tr *ngFor="let entry of commissionHistory">
+                <td class="align-middle">
+                  {{entry.cycle}}
+                </td>
+                <td class="align-middle">
+                  {{entry.amount}}
+                </td>
+                <td class="align-middle">
+                  {{entry.timestamp}}
+                </td>
+                <td class="align-middle">
+                  <div class="input-group-append">
+                    <a class="btn btn-white h-100" href="https://rinkeby.etherscan.io/tx/{{entry.txHash}}" target="_blank"><i class="fe fe-external-link"></i></a>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div> <!-- / .row -->
+</div>
+
+<!-- Redeem modal -->
+<div class="modal fade fixed-right" id="modalRedeem" tabindex="-1" role="dialog" aria-labelledby="modalRedeem" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-vertical bg-white" role="document">
+    <div class="modal-content">
+      <div class="card-header">
+        <div class="row align-items-center">
+          <div class="col">
+            <!-- Select Asset title -->
+            <h4 class="card-header-title">
+              Redeem your commissions
+            </h4>
+
+          </div>
+          <div class="col-auto">
+
+            <!-- Close -->
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+
+          </div>
+        </div> <!-- / .row -->
+      </div>
+      <div class="modal-body">
+        <!-- commissions amount -->
+        <div class="row" *ngIf="step === 0">
+          <div class="col">
+            <h6 class="header-pretitle text-secondary">
+              This month's commission
+            </h6>
+            <h3 class="display-3 mb-0">
+              {{commissionAmount}} DAI
+            </h3>
+          </div>
+        </div>
+        <!-- Do you know section step 1 -->
+        <div class="card bg-light border mt-4 mb-0" *ngIf="step === 0">
+          <div class="card-body">
+
+            <h4 class="mb-2">
+              Do you know?
+            </h4>
+
+            <p class="small text-muted mb-0">
+              You can redeem your commissions in Betoken fund shares (BTKS) - meaning you swap your commissions for an equivalent number of shares in the fund. By doing so, you will make the fund Assets Under Management (AUM) grow quicker. A bigger AUM means more money to manage in the next cycle, and more commissions for you.
+            </p>
+
+          </div>
+        </div>
+
+        <!-- Confirm redeem body -->
+        <p class="text-center text-muted mb-5" *ngIf="step === 1">
+          Confirm the transaction in your wallet’s interface to save it on the Ethereum blockchain. It's fine to stick with these defaults gas limit and price.
+        </p>
+        <!-- Processing redeem body -->
+        <div class="py-5 is-loading is-loading-lg" *ngIf="step === 2"></div>
+        <p class="text-center text-muted mb-5" *ngIf="step === 2">
+          Your commissions is being saved on the Ethereum blockchain.
+        </p>
+        <hr *ngIf="step === 2">
+        <form *ngIf="step === 2">
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Transaction ID</label>
+            <div class="input-group mb-3">
+              <input type="text" class="form-control form-control-lg" value="{{transactionId}}" aria-label="Transaction ID" aria-describedby="">
+              <div class="input-group-append">
+                <a class="btn btn-white h-100" href="https://rinkeby.etherscan.io/tx/{{transactionId}}" target="_blank"><i class="fe fe-external-link"></i></a>
+              </div>
+            </div>
+          </div>
+        </form>
+        <!-- Redeem confirmed body -->
+        <p class="h1 text-center" *ngIf="step === 3">
+          <i class="fe fe-check-circle text-success"></i>
+        </p>
+        <p class="text-center text-muted mb-5" *ngIf="step === 3">
+          You redeeemed <span class="text-secondary">{{commissionAmount}}</span> $DAI (or equivalent Betoken Shares).
+        </p>
+        <hr *ngIf="step === 3">
+        <form *ngIf="step === 3">
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Transaction ID</label>
+            <div class="input-group mb-3">
+              <input type="text" class="form-control form-control-lg" value="{{transactionId}}" aria-label="Transaction ID" aria-describedby="">
+              <div class="input-group-append">
+                <a class="btn btn-white h-100" href="https://rinkeby.etherscan.io/tx/{{transactionId}}" target="_blank"><i class="fe fe-external-link"></i></a>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <!-- Redeem button for step 1 -->
+      <div class="modal-footer border-0" *ngIf="step === 0">
+          <div class="row">
+              <div class="col mb-2">
+                  <button type="submit" class="btn btn-success btn-lg btn-block" aria-label="Redeem in BTKS" (click)="redeemCommission(1)" >
+                    Redeem in $BTKS
+                  </button>
+              </div>
+              <div class="col">
+                  <button type="submit" class="btn btn-white btn-lg btn-block" aria-label="Redeem in DAI" (click)="redeemCommission(0)" >
+                    Redeem in $DAI
+                  </button>
+              </div>
+          </div>
+      </div>
+
+      <!-- close button -->
+      <div class="modal-footer border-0" *ngIf="step === 3">
+        <button type="submit" class="btn btn-block btn-white mt-auto" data-dismiss="modal" aria-label="Close">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div><!-- / modal -->

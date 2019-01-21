@@ -1,50 +1,185 @@
-<div class="preheader-container">
-  <div class="preheader-content">
-    <p>Join our Initial Account Offering to get referral bonus — <a href="https://betoken.fund/iao/" target="_blank">GET STARTED</a></p>
+<nav class="navbar navbar-expand-md navbar-light d-none d-md-flex" id="topbar">
+  <div class="container-fluid">
+
+    <div class="navbar-text p-0">
+      <h6 class="header-pretitle text-muted mb-1 time-left-title">
+        Time left {{phaseActionText()}}
+      </h6>
+      <h4 class="header-title text-secondary time-left-value">
+        {{days}}d {{hours}}h {{minutes}}m {{seconds}}s
+      </h4>
+    </div>
+
+    <!-- User -->
+    <div class="navbar-user">
+      <div class="mr-4 d-none d-md-flex">
+        <!-- Toggle -->
+        <a class="text-muted mt-3" data-toggle="modal" href="#modalEmailUpdates">
+          <span class="icon active">
+            <i class="fe fe-bell"></i>
+          </span>
+        </a>
+
+      </div>
+      <!-- cta -->
+      <div *ngIf="checkRouterURL('/investor') === false">
+        <button class="btn btn-success mr-4" routerLink="/investments" type="button" data-toggle="modal" data-target="#modalBuy" *ngIf="phase == 1">Make Investments</button>
+        <button class="btn btn-success mr-4" routerLink="/commissions" type="button" data-toggle="modal" data-target="#modalRedeem" *ngIf="phase == 2 && can_redeem_commission">Redeem Commission</button>
+        <button class="btn btn-white text-truncate" style="width: 12rem;" *ngIf="user_address !== '0x0'"><span class="text-success">●</span> {{user_address}}</button>
+        <button class="btn btn-white text-truncate" *ngIf="user_address == '0x0'"><span class="text-danger">●</span> No Account</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- PREHADER
+================================================== -->
+<div *ngIf="errorMsg !== '' ">
+  <div class="alert alert-warning rounded-0 mb-0">
+    {{errorMsg}}
   </div>
 </div>
-<header class="col-md-12 col-lg-12">
-  <div class="row d-flex align-items-center">
-    <div class="col-1 pr-0 nav-wrapper d-lg-none">
-      <nav class="navbar navbar-light p-0">
-        <button class="navbar-toggler p-0" type="button" (click)="toggle()">
-          <span class="navbar-toggler-icon"></span>
+
+<div *ngIf="userKairoValue.comparedTo(0) === 0">
+  <a target="_blank" href="https://betoken.fund/iao/">
+    <div class="alert alert-success rounded-0 mb-0">
+      Hey there, did you know you can become a manager and start earning commissions right now by clicking here?
+    </div>
+  </a>
+</div>
+
+<div *ngIf="sellalert">
+    <div class="alert alert-danger alert-dismissible fade show rounded-0 mb-0 d-flex justify-content-between align-items-center">
+        <p class="m-0">🚨 Sell your assets to redeem all your KRO staked before cycle’s end. <a href="https://medium.com/betoken/the-ultimate-guide-to-betoken-omen-39adfe204296" target="_blank">More info</a>.</p>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
         </button>
-      </nav>
     </div>
-    <div class="col-2">
-      <div class="logo pointer">
-          <a target="_blank" href="https://betoken.fund">
-              <img src="assets/images/betoken-logo.png" class="header-logo" width="148">
-          </a>
-      </div>
+</div>
+<div *ngIf="nextphasealert">
+    <div class="alert alert-info alert-dismissible fade show rounded-0 mb-0 d-flex justify-content-between align-items-center">
+        <p class="m-0">🚨 Current phase has ended.</p>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+</div>
+<div *ngIf="redeemalert">
+    <div class="alert alert-info alert-dismissible fade show rounded-0 mb-0 d-flex justify-content-between align-items-center">
+        <p class="m-0">🚨 Redeem your commissions before the phase ends. <a href="https://medium.com/betoken/the-ultimate-guide-to-betoken-omen-39adfe204296" target="_blank">More info</a>.</p>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+</div>
 
-      <div class="notification-bar pointer mt-3">
-          <div class="bt-notifications notification-icon"></div>
-      </div>
-    </div>
-    <div class="col-9 col-lg-5 d-flex align-items-center" *ngIf="checkRouterURL('/invest') === false">
-      <div class="portfolio-desc">
-        <p class="portfolio-title betoken-font m-0">Kairo balance</p>
-        <p class="portfolio-value black-font m-0 ellipseDesign" >{{kairo_balance}} KRO</p>
-      </div>
-      <div class="portfolio-desc ml-4">
-        <p class="portfolio-title betoken-font m-0">Monthly P/L</p>
-        <p class="portfolio-value m-0" [ngClass]="{'green-font': +monthly_pl >= 0, 'red-font': 0 > +monthly_pl}">{{monthly_pl}}%</p>
-      </div>
-      <div class="portfolio-desc ml-4">
-        <p class="portfolio-title betoken-font m-0">Est. Commission</p>
-        <p class="portfolio-value black-font m-0">{{expected_commission}} DAI</p>
-      </div>
-    </div>
+<!-- Get Updates modal -->
+<div class="modal fade fixed-right" id="modalEmailUpdates" tabindex="-1" role="dialog" aria-labelledby="Get update modal by email" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-vertical bg-white" role="document">
+    <div class="modal-content">
+      <div class="modal-body pb-5">
+        <!-- Close -->
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
 
-    <div class="col-5 text-right">
-      <div *ngIf="checkRouterURL('/invest') === false">
-        <button class="btn active mr-4" (click)="proposalPopup()" *ngIf="phase == 1">TRADE ASSSETS</button>
-        <button class="btn active mr-4" routerLink="/redeem" (click)="redeemPopup()" *ngIf="phase == 2 && can_redeem_commission">REDEEM COMMISSION</button>
-        <button class="btn btn-outline-secondary text-secondary bg-transparent connected-user-wallet-address" *ngIf="user_address !== '0x0'">🦊 {{user_address}}</button>
-        <button class="btn btn-outline-secondary text-secondary bg-white connected-user-wallet-address" *ngIf="user_address == '0x0'">No Account</button>
+        <div class="header text-center">
+          <div class="header-body">
+
+            <h6 class="header-pretitle">
+              Betoken Fund Updates
+            </h6>
+
+            <h1 class="header-title">
+              Get notified by email
+            </h1>
+
+          </div>
+        </div>
+        <!-- Text -->
+        <p class="text-center text-muted mb-5">
+          Be the first to know about new investment and management phases and when to redeem manager's commissions 👇.
+        </p>
+        <form action="https://fund.us17.list-manage.com/subscribe/post?u=9c0647dcb587985ed6121cdf6&amp;id=150e0f091e" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate col mb-5" target="_blank" novalidate>
+          <div class="input-group input-group-lg">
+            <input class="form-control" type="email" value="" name="EMAIL" id="mce-EMAIL" placeholder="myemail@address.com" required>
+            <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_9c0647dcb587985ed6121cdf6_150e0f091e" tabindex="-1" value=""></div>
+            <div class="input-group-append bg-black">
+              <button class="btn btn-dark btn-lg btn-block" name="subscribe" id="mc-embedded-subscribe">
+                  <span class="fe fe-send"></span>
+              </button>
+            </div>
+          </div>
+        </form>
+        <div class="row justify-content-center">
+          <div class="col-auto mb-5">
+            <a href="https://t.me/betokenfund" class="btn btn-rounded-circle btn-white mr-3" target="_blank">
+              <img class="mx-auto" src="assets/img/icons/telegram.svg" alt="telegram logo" height="20">
+            </a>
+            <a href="https://twitter.com/betokenfund" class="btn btn-rounded-circle btn-white mr-3" target="_blank">
+              <img class="mx-auto" src="assets/img/icons/twitter.svg" alt="twitter logo" height="20">
+            </a>
+            <a href="https://medium.com/betoken" class="btn btn-rounded-circle btn-white mr-3" target="_blank">
+              <img class="mx-auto" src="assets/img/icons/medium.svg" alt="medium logo" height="20">
+            </a>
+            <a href="https://github.com/Betoken" class="btn btn-rounded-circle btn-white" target="_blank">
+              <img class="mx-auto" src="assets/img/icons/github.svg" alt="medium logo" height="20">
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</header>
+</div><!-- / modal -->
+
+<!-- Referral modal -->
+<div class="modal fade fixed-right" id="modalReferral" tabindex="-1" role="dialog" aria-labelledby="modalReferral" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-vertical bg-white" role="document">
+    <div class="modal-content">
+      <div class="modal-body pb-5">
+        <!-- Close -->
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+
+        <div class="header text-center">
+          <div class="header-body">
+
+            <h6 class="header-pretitle">
+              Unlimited Free Kairo
+            </h6>
+
+            <h1 class="header-title">
+              Share your love of Betoken
+            </h1>
+
+          </div>
+        </div>
+        <!-- Text -->
+        <p class="text-center text-muted mb-5">
+          Introduce a friend to Betoken. You will both get 10% of free Kairo relative to the amount of Kairo tokens your friend buys 👇. <br>
+          <small>(Note: you need to own Mainnet Kairo to participate)</small>
+        </p>
+        <form>
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Share your link</label>
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" value="https://betoken.fund/iao/?ref={{user_address}}" aria-label="Referral link" aria-describedby="basic-addon2" #userinput>
+              <div class="input-group-append">
+                <button class="btn btn-white" type="button" (click)="copyInputMessage(userinput)" value="click to copy"><i class="fe fe-copy"></i></button>
+              </div>
+            </div>
+          </div>
+        </form>
+        <hr>
+        <div class="row justify-content-center">
+          <div class="col-auto">
+            <h4 class="text-center">Share on</h4>
+            <a class="btn btn-lg btn-twitter text-white mr-3" href="https://twitter.com/intent/tweet?hashtags=betokenfund%2C%20DeFi%2C%20cryptocurrency&original_referer=https%3A%2F%2Fpublish.twitter.com%2F%3FbuttonHashtag%3Dbetokenfund%252C%2520DeFi%252C%2520cryptocurrency%26buttonRecommendation%3Dbetokenfund%26buttonText%3DHey%2520everyone%252C%2520click%2520on%2520this%2520link%2520to%2520become%2520a%2520fund%2520manager%2520%2540betokenfund%252C%2520an%2520open%2520%2526%2520meritocratic%2520crypto%2520fund.%2520You%2520get%2520a%252020%2525%2520discount%2521%26buttonType%3DTweetButton%26buttonUrl%3Dhttps%253A%252F%252Fbetoken.fund%252Fiao%252F%253Fref%253D%257B%257Buser_address%257D%257D%26dnt%3D1%26widget%3DButton&ref_src=twsrc%5Etfw&related=betokenfund&text=Hey%20everyone%2C%20click%20on%20this%20link%20to%20become%20a%20fund%20manager%20%40betokenfund%2C%20an%20open%20%26%20meritocratic%20crypto%20fund.%20You%20get%20a%2020%25%20discount!&tw_p=tweetbutton&url=https%3A%2F%2Fbetoken.fund%2Fiao%2F%3Fref%3D{{user_address}}" rel="nofollow" target="_blank">Twitter</a>
+            <a class="btn btn-lg btn-facebook text-white" href="https://www.facebook.com/sharer/sharer.php?kid_directed_site=0&sdk=joey&u=https%3A%2F%2Fbetoken.fund%2Fiao%2F%3Fref%3D{{user_address}}&display=popup&ref=plugin&src=share_button" rel="nofollow" target="_blank">Facebook</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div><!-- / modal -->

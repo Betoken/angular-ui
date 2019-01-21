@@ -1,0 +1,32 @@
+//
+// user.scss
+// Use this to write your custom SCSS
+//
+.btn-twitter{
+    background-color: #1da1f2
+}
+.btn-facebook{
+    background-color: #0078d7
+}
+.input-xl{
+    font-size: 36px;
+}
+.badge-xl{
+    font-size: 14px;
+}
+.navbar-brand > img{
+    max-height: 2rem;
+}
+.btn-success{
+    border-color: #1DC887;
+    background-color: #1DC887;
+}
+.alert-success {
+    color: #fff;
+    border-color: #1DC887;
+    background-color: #1DC887;
+}
+@media (min-width: 768px)
+{.main-content {
+    margin-left: 250px;
+}}

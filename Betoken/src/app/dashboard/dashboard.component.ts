@@ -344,7 +344,7 @@ export class DashboardComponent implements OnInit {
                           // Add body
                           bodyLines.forEach(function(body, i) {
                             var colors = model.labelColors[i];
-                            var styles = 'background-color: ' + colors.backgroundColor;
+                            var styles = 'background-color: ' + colors.borderColor;
                             var indicator = '<span class="popover-body-indicator" style="' + styles + '"></span>';
                             var align = (bodyLines.length > 1) ? 'justify-content-left' : 'justify-content-center';
                             html += '<div class="popover-body d-flex align-items-center ' + align + '">' + indicator + body + '</div>';

@@ -177,7 +177,12 @@ export class DashboardComponent implements OnInit {
 
         // draw chart
         if (!this.hasDrawnChart) {
-            var ctx = document.getElementById("roi-chart");
+            const canvas: any = document.getElementById('roi-chart');
+            const ctx = canvas.getContext('2d');
+            var gradientFill = ctx.createLinearGradient(0, 0, 0, 200);
+            gradientFill.addColorStop(0, 'rgba(0, 217, 126, 0.5)');
+            gradientFill.addColorStop(0.5, 'rgba(0, 217, 126, 0.25)');
+            gradientFill.addColorStop(1, 'rgba(0, 217, 126, 0)');
 
             var $toggle = $('[data-toggle="chart"]');
 
@@ -216,8 +221,8 @@ export class DashboardComponent implements OnInit {
                         {
                             label: 'Betoken',
                             borderColor: '#22c88a',
-                            backgroundColor: '#22c88a',
-                            fill: false,
+                            fill: true,
+                            backgroundColor: gradientFill,
                             data: id === 0 ? betokenROIList : cumBetokenROIList
                         }
                     ]

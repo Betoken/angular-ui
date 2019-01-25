@@ -69,7 +69,7 @@ export const user = {
         return BigNumber(0);
     },
     commission_history: () => Data.commissionHistory.get(),
-    investment_list: () => Data.investmentList.get(),
+    investment_list: () => Data.cyclePhase.get() == 1 ? Data.investmentList.get() : [],
     rank: () => {
         var entry, j, len, ref;
         ref = Data.kairoRanking.get();

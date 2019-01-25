@@ -261,12 +261,15 @@ export const loadUserData = async () => {
                 var totalKROChange = investments.map((x) => BigNumber(x.kroChange)).reduce((x, y) => x.plus(y));
                 var totalStake = investments.map((x) => BigNumber(x.stake)).reduce((x, y) => x.plus(y), BigNumber(0));
                 var totalCurrentStake = investments.filter((x) => x.isSold == false).map((x) => BigNumber(x.currValue)).reduce((x, y) => x.plus(y), BigNumber(0));
-                managerROI.set(totalKROChange.div(totalStake).times(100));
+                managerROI.set(totalStake.gt(0) ? totalKROChange.div(totalStake).times(100) : BigNumber(0));
+                console.log(managerROI.get());
                 currentStake.set(totalCurrentStake);
             }
+
+            portfolioValue.set(stake.plus(kairoBalance.get()));
+
             isLoadingInvestments.set(false);
         }
-        portfolioValue.set(stake.plus(kairoBalance.get()));
     }
 };
 
@@ -359,12 +362,14 @@ export const loadRanking = async () => {
             var totalStake = BigNumber(0);
             for (var i = 0; i < investments.length; i++) {
                 var inv = investments[i];
-                if (!inv.isSold && +inv.cycleNumber === cycleNumber.get()) {
+                // calculate kairo balance
+                if (!inv.isSold && +inv.cycleNumber === cycleNumber.get() && cyclePhase.get() == 1) {
                     var currentStakeValue = assetSymbolToPrice(assetAddressToSymbol(inv.tokenAddress))
                         .minus(inv.buyPrice).div(inv.buyPrice).times(inv.stake).plus(inv.stake);
                     stake = stake.plus(currentStakeValue);
                 }
-                if (+inv.cycleNumber === cycleNumber.get()) {
+                // calculate roi
+                if (+inv.cycleNumber === cycleNumber.get() && (cyclePhase.get() == 1 || inv.isSold)) {
                     var _symbol = await betoken.getTokenSymbol(inv.tokenAddress);
                     var _stake = BigNumber(inv.stake).div(PRECISION);
                     var _buyPrice = BigNumber(inv.buyPrice).div(PRECISION);

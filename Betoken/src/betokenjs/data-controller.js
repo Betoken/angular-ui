@@ -35,6 +35,7 @@ export var fundValue = new ReactiveVar(BigNumber(0));
 export var currROI = new ReactiveVar(BigNumber(0));
 export var avgROI = new ReactiveVar(BigNumber(0));
 export var ROIArray = new ReactiveVar([]);
+export var cycleTotalCommission = new ReactiveVar(BigNumber(0));
 
 // cycle timekeeping
 export var cycleNumber = new ReactiveVar(0);
@@ -220,6 +221,7 @@ export const loadUserData = async () => {
 
             // Get last commission redemption cycle number
             lastCommissionRedemption.set(+((await betoken.getMappingOrArrayItem("lastCommissionRedemption", userAddr))));
+            cycleTotalCommission.set(BigNumber((await betoken.getMappingOrArrayItem("totalCommissionOfCycle", cycleNumber.get()))).div(PRECISION));
 
             // Get list of user's investments
             isLoadingInvestments.set(true);

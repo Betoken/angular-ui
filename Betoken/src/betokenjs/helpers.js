@@ -100,10 +100,14 @@ export const stats = {
     avg_roi: () => Data.avgROI.get(),
     fund_value: () => Data.fundValue.get(),
     cycle_roi: () => {
-        if (Data.cyclePhase.get() === 2) {
-            return Data.currROI.get();
+        switch (Data.cyclePhase.get()) {
+            case 0:
+                return BigNumber(0);
+            case 1:
+                return Data.fundValue.get().minus(Data.totalFunds.get()).div(Data.totalFunds.get()).times(100);
+            case 2:
+                return Data.currROI.get();
         }
-        return Data.fundValue.get().minus(Data.totalFunds.get()).div(Data.totalFunds.get()).times(100)
     },
     raw_roi_data: () => Data.ROIArray.get(),
     ranking: () => Data.kairoRanking.get()

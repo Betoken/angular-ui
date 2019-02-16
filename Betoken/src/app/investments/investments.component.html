@@ -245,7 +245,7 @@
                       <div class="col-3">
                           <!-- Avatar -->
                           <span class="avatar avatar-xs align-middle">
-                            <img src={{getTokenLogoUrl(data.tokenSymbol)}} alt="token logo" class="avatar-img rounded-circle">
+                            <img src={{getTokenLogoUrl(data.tokenSymbol)}} alt="{{data.tokenSymbol}} token logo" class="avatar-img rounded-circle">
                           </span>
                       </div>
                       <div class="col-9">
@@ -258,7 +258,7 @@
                           </div>
                           <div class="row">
                               <div class="col-12">
-                                  <span class="small text-muted">{{ (getTokenName(data.tokenSymbol).length>12)? (getTokenName(data.tokenSymbol) | slice:0:12)+'..':(getTokenName(data.tokenSymbol)) }}</span>
+                                  <span class="small text-muted">{{(getTokenName(data.tokenSymbol).length>12)? (getTokenName(data.tokenSymbol) | slice:0:12)+'..':(getTokenName(data.tokenSymbol)) }}</span>
                               </div>
                           </div>
                       </div>
@@ -269,7 +269,7 @@
                 </td>
                 <td class="align-middle">
                     <!-- Badge success -->
-                    <span class="badge badge-soft-success" *ngIf = "+data.ROI >= 0">
+                    <span class="badge badge-xl badge-soft-success" *ngIf = "+data.ROI >= 0">
                       {{data.ROI.toFormat(4)}}%
                     </span>
                     <!-- Badge danger -->
@@ -361,7 +361,7 @@
                       <div class="col-3">
                           <!-- Avatar -->
                           <span class="avatar avatar-xs align-middle">
-                            <img src={{getTokenLogoUrl(data.tokenSymbol)}} alt="token logo" class="avatar-img rounded-circle">
+                            <img src={{getTokenLogoUrl(data.tokenSymbol)}} alt="{{data.tokenSymbol}} token logo" class="avatar-img rounded-circle">
                           </span>
                       </div>
                       <div class="col-9">
@@ -374,7 +374,7 @@
                           </div>
                           <div class="row">
                               <div class="col-12">
-                                  <span class="small text-muted">{{ (getTokenName(data.tokenSymbol).length>12)? (getTokenName(data.tokenSymbol) | slice:0:12)+'..':(getTokenName(data.tokenSymbol)) }}</span>
+                                  <span class="small text-muted">{{(getTokenName(data.tokenSymbol).length>12)? (getTokenName(data.tokenSymbol) | slice:0:12)+'..':(getTokenName(data.tokenSymbol)) }}</span>
                               </div>
                           </div>
                       </div>

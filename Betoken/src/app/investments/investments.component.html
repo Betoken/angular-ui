@@ -219,10 +219,13 @@
                   Asset
                 </th>
                 <th class="text-muted">
-                  Buy Price
+                  Current Price
                 </th>
                 <th class="text-muted">
-                  Current Price
+                  Change
+                </th>
+                <th class="text-muted">
+                  Buy Price
                 </th>
                 <th class="text-muted">
                   Staked KRO
@@ -237,34 +240,51 @@
             </thead>
             <tbody class="list" id="active-investments-table">
               <tr *ngFor = "let data of activeInvestmentList">
-                <td class="py-auto">
-                  <!-- Avatar -->
-                  <span class="avatar avatar-xs align-middle">
-                    <img src={{getTokenLogoUrl(data.tokenSymbol)}} alt="token logo" class="avatar-img rounded-circle">
-                  </span>
-                  <span class="align-middle ml-2">
-                    {{data.tokenSymbol}} • <small class="text-muted small">{{getTokenName(data.tokenSymbol)}}</small>
-                  </span>
-                </td>
                 <td class="align-middle">
-                  {{data.buyPrice.toFormat(6)}} DAI
+                    <div class="row">
+                        <div class="col-3">
+                            <!-- Avatar -->
+                            <span class="avatar avatar-xs align-middle">
+                              <img src={{getTokenLogoUrl(data.tokenSymbol)}} alt="token logo" class="avatar-img rounded-circle">
+                            </span>
+                        </div>
+                        <div class="col-9">
+                            <div class="row">
+                                <div class="col-12">
+                                    <span class="align-middle">
+                                      {{data.tokenSymbol}}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <small class="small text-truncate text-muted" style="max-width: 12rem; min-width: 6rem;">{{getTokenName(data.tokenSymbol)}}</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </td>
                 <td class="align-middle">
                   {{data.sellPrice.toFormat(6)}} DAI
+                </td>
+                <td class="align-middle">
+                    <!-- Badge success -->
+                    <span class="badge badge-soft-success" *ngIf = "+data.ROI >= 0">
+                      {{data.ROI.toFormat(4)}}%
+                    </span>
+                    <!-- Badge danger -->
+                    <span class="badge badge-xl badge-soft-danger" *ngIf = "0 > +data.ROI">
+                      {{data.ROI.toFormat(4)}}%
+                    </span>
+                </td>
+                <td class="align-middle">
+                  {{data.buyPrice.toFormat(6)}} DAI
                 </td>
                 <td class="align-middle">
                   {{data.stake.toFormat(4)}} KRO
                 </td>
                 <td class="align-middle">
                   {{data.currValue.toFormat(4)}} KRO
-                  <!-- Badge success -->
-                  <span class="badge badge-soft-success" *ngIf = "+data.ROI >= 0">
-                    {{data.ROI.toFormat(4)}}%
-                  </span>
-                  <!-- Badge danger -->
-                  <span class="badge badge-soft-danger" *ngIf = "0 > +data.ROI">
-                    {{data.ROI.toFormat(4)}}%
-                  </span>
                 </td>
                 <td class="align-middle" *ngIf = "data.isSold == false">
                     <button class="btn btn-sm btn-success" type="button" name="button" data-toggle="modal" data-target="#modalSell" (click)="sell(data)">Sell</button>
@@ -379,39 +399,52 @@
 <div class="modal fade fixed-right" id="modalBuy" tabindex="-1" role="dialog" aria-labelledby="modalBuy" aria-hidden="true">
   <div class="modal-dialog modal-dialog-vertical bg-white" role="document">
     <div class="modal-content" data-toggle="lists" data-lists-values="[&quot;name&quot;]">
-      <div class="card-header">
-        <div class="row align-items-center">
-          <div class="col">
-            <!-- Select Asset title -->
-            <h4 class="card-header-title" *ngIf="createInvestmentPopupStep === 0">
-              Select An Asset
-            </h4>
-            <!-- Selected Asset title -->
-            <h4 class="card-header-title" *ngIf="createInvestmentPopupStep === 1">
-              Buy {{getTokenName(selectedTokenSymbol)}}
-            </h4>
-            <!-- Confirm asset investment title -->
-            <h4 class="card-header-title" *ngIf="createInvestmentPopupStep === 2">
-              Confirm Investment
-            </h4>
-            <!-- Processing title -->
-            <h4 class="card-header-title" *ngIf="createInvestmentPopupStep === 3">
-              Processing Investment
-            </h4>
-            <!-- Investment confirmed title -->
-            <h4 class="card-header-title" *ngIf="createInvestmentPopupStep === 4">
-              Investment confirmed
-            </h4>
-          </div>
-          <div class="col-auto">
+        <div class="card-header border-0">
+          <div class="row align-items-center">
+            <div class="col">
+              <!-- Select Asset title -->
+              <h4 class="card-header-title" *ngIf="createInvestmentPopupStep === 0">
+                Select An Asset
+              </h4>
+              <!-- Selected Asset title -->
+              <h4 class="card-header-title" *ngIf="createInvestmentPopupStep === 1">
+                  <span class="avatar avatar-xs align-middle mr-2">
+                    <img src={{getTokenLogoUrl(selectedTokenSymbol)}} alt="Ethereum logo" class="avatar-img rounded-circle">
+                  </span>
+                  Buy {{getTokenName(selectedTokenSymbol)}}
+              </h4>
+              <!-- Confirm asset investment title -->
+              <h4 class="card-header-title" *ngIf="createInvestmentPopupStep === 2">
+                Confirm Investment
+              </h4>
+              <!-- Processing title -->
+              <h4 class="card-header-title" *ngIf="createInvestmentPopupStep === 3">
+                Processing Investment
+              </h4>
+              <!-- Investment confirmed title -->
+              <h4 class="card-header-title" *ngIf="createInvestmentPopupStep === 4">
+                Investment confirmed
+              </h4>
+            </div>
+            <div class="col-auto">
 
-            <!-- Close -->
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
+              <!-- Close -->
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+              </button>
 
+            </div>
+          </div> <!-- / .row -->
+        </div>
+      <!-- progress bar buying -->
+      <div class="card-header py-0 border-0" style="min-height: 24px;">
+          <div class="progress" style="height: 8px;">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+            <div class="progress-bar bg-secondary border-left" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+            <div class="progress-bar bg-secondary border-left" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+            <div class="progress-bar bg-secondary border-left" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+            <div class="progress-bar bg-secondary border-left" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
           </div>
-        </div> <!-- / .row -->
       </div>
       <!-- Search in list assets -->
       <div class="card-header" *ngIf="createInvestmentPopupStep === 0">
@@ -429,7 +462,7 @@
       <div class="modal-body">
         <!-- Step 0: select asset -->
         <!-- List Short assets -->
-        <ul class="list-group list-group-flush list" *ngIf="createInvestmentPopupStep === 0">
+        <ul class="list-group list-group-flush list" id="asset-list" *ngIf="createInvestmentPopupStep === 0">
             <li class="list-group-item px-0 text-secondary border-bottom-0">
                 <h6 class="header-pretitle border-0">
                   Short Assets <span class="badge badge-soft-primary ml-auto">Soon</span>
@@ -474,7 +507,7 @@
 
         </ul>
         <!-- List Leveraged assets -->
-        <ul class="list-group list-group-flush list mt-3" *ngIf="createInvestmentPopupStep === 0">
+        <ul class="list-group list-group-flush list mt-3" id="asset-list" *ngIf="createInvestmentPopupStep === 0">
             <li class="list-group-item px-0 text-secondary border-bottom-0 border-top-0">
                 <h6 class="header-pretitle border-0">
                   Leveraged Assets <span class="badge badge-soft-primary ml-auto">Soon</span>
@@ -560,57 +593,65 @@
         </ul>
 
         <!-- Step 1: enter stake amount -->
-        <!-- Asset logo -->
-        <div class="row justify-content-center mb-4" *ngIf="createInvestmentPopupStep === 1">
-          <span class="avatar avatar-lx align-middle">
-            <img src={{getTokenLogoUrl(selectedTokenSymbol)}} alt="Ethereum logo" class="avatar-img rounded-circle">
-          </span>
-        </div>
-
         <!-- Asset price -->
         <div class="row" *ngIf="createInvestmentPopupStep === 1">
-          <div class="col-7">
-            <h6 class="header-pretitle text-secondary">
-              Current Price in $DAI
-            </h6>
-            <h3 class="mb-0 text-truncate">
-              {{assetSymbolToPrice(selectedTokenSymbol).dp(10)}}
-            </h3>
-          </div>
-          <div class="col-5">
-            <h6 class="header-pretitle text-secondary">
-              24h change
-            </h6>
-            <h3 class="mb-0">
-              <span class="badge" [ngClass]="{'badge-soft-success': +getTokenDailyPriceChange(selectedTokenSymbol) >= 0, 'badge-soft-danger': 0 > +getTokenDailyPriceChange(selectedTokenSymbol)}">
-                {{getTokenDailyPriceChange(selectedTokenSymbol)}}%
-              </span>
-            </h3>
-          </div>
+
+            <div class="col">
+                <h6 class="header-pretitle">
+                  Current price in DAI
+                </h6>
+                <h4 class="">
+                  {{assetSymbolToPrice(selectedTokenSymbol).dp(10)}}
+                </h4>
+            </div>
+            <div class="col">
+                <h6 class="header-pretitle">
+                  24h change
+                </h6>
+                <h4 class="">
+                    <span class="badge" [ngClass]="{'badge-soft-success': +getTokenDailyPriceChange(selectedTokenSymbol) >= 0, 'badge-soft-danger': 0 > +getTokenDailyPriceChange(selectedTokenSymbol)}">
+                      {{getTokenDailyPriceChange(selectedTokenSymbol)}}%
+                    </span>
+                </h4>
+            </div>
         </div>
-        <!-- KRO to stake for this asset -->
         <hr *ngIf="createInvestmentPopupStep === 1">
-        <form class="align-center" *ngIf="createInvestmentPopupStep === 1">
-          <div class="form-group text-center">
-            <label for="kroAmount" class="h4">Stake Kairo tokens to buy</label>
-            <input type="number" class="form-control form-control-lg form-control-flush input-xl my-1 text-center" aria-describedby="kroBalance" placeholder="0 KRO" id="kairo-input">
-            <small id="kroBalance" class="form-text text-secondary">{{kairo_balance}} KRO available</small>
-          </div>
-        </form>
+
+
+
+        <!-- KRO amount to stake -->
+        <h6 class="header-pretitle text-secondary" *ngIf="createInvestmentPopupStep === 1">I want to buy {{getTokenName(selectedTokenSymbol)}} by staking</h6>
+        <div class="row justify-content-center mb-4" *ngIf="createInvestmentPopupStep === 1">
+            <div class="col">
+                <form>
+                    <div class="form-group row mb-0">
+                      <div class="col">
+                          <input type="number" class="form-control form-control-lg form-control-flush input-xl border-bottom border-1 rounded-0 mt-1 mb-1" aria-describedby="KRO Token Amount to stake" placeholder="0.0" id="kairo-input">
+                      </div>
+                      <label for="kroAmount" class="col-auto col-form-label"><span class="display-4">KRO</span></label>
+                    </div>
+                    <small id="kroBalance" class="form-text text-secondary d-inline-block">{{kairo_balance}} KRO available</small>
+                </form>
+            </div>
+            <div class="col-auto">
+                <button class="btn btn-sm btn-outline-secondary mt-3" type="button" name="button">Max</button>
+            </div>
+        </div>
         <!-- Do you know section step 1 -->
-        <div class="card bg-light border mt-4 mb-0" *ngIf="createInvestmentPopupStep === 1">
+        <div class="card bg-light border" *ngIf="createInvestmentPopupStep === 1">
           <div class="card-body">
 
             <h4 class="mb-2">
-              Do you know?
+              Need help?
             </h4>
 
             <p class="small text-muted mb-0">
-              If the price of the asset goes up, you're rewarded with more Kairo. More Kairo means more monthly commissions, as well as more money you can use for investing. <a href="https://betoken.gitbook.io/betoken/portal/my-investments" target="_blank">Learn more</a>
+              Get started with <a href="https://betoken.gitbook.io/betoken/" target="_blank">our guides</a>.
             </p>
 
           </div>
         </div>
+
 
         <!-- Step 2: confirm transaction -->
         <p class="text-center text-muted mb-5" *ngIf="createInvestmentPopupStep === 2">
@@ -664,6 +705,12 @@
         </button>
       </div>
 
+      <!-- Close button for step 3 -->
+      <div class="modal-footer border-0" *ngIf="createInvestmentPopupStep === 3">
+        <button type="submit" class="btn btn-block btn-white mt-auto" data-dismiss="modal" aria-label="Close">
+          Close
+        </button>
+      </div>
       <!-- Close button for step 4 -->
       <div class="modal-footer border-0" *ngIf="createInvestmentPopupStep === 4">
         <button type="submit" class="btn btn-block btn-white mt-auto" data-dismiss="modal" aria-label="Close">

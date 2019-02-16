@@ -238,7 +238,7 @@
                 </th>
               </tr>
             </thead>
-            <tbody class="list" id="active-investments-table">
+            <tbody class="list" id="active-investments-table" >
               <tr *ngFor = "let data of activeInvestmentList">
                 <td class="align-middle">
                     <div class="row">
@@ -436,287 +436,282 @@
             </div>
           </div> <!-- / .row -->
         </div>
-      <!-- progress bar buying -->
-      <div class="card-header py-0 border-0" style="min-height: 24px;">
-          <div class="progress" style="height: 8px;">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-            <div class="progress-bar bg-secondary border-left" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-            <div class="progress-bar bg-secondary border-left" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-            <div class="progress-bar bg-secondary border-left" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-            <div class="progress-bar bg-secondary border-left" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-      </div>
-      <!-- Search in list assets -->
-      <div class="card-header" *ngIf="createInvestmentPopupStep === 0">
-        <form>
-          <div class="input-group input-group-flush input-group-merge">
-            <input type="search" class="form-control form-control-prepended search" placeholder="Search" (keyup)="filterList($event, 'asset-list', 0)">
-            <div class="input-group-prepend">
-              <div class="input-group-text">
-                <span class="fe fe-search"></span>
+        <!-- progress bar buying -->
+        <div class="card-header py-0 border-0" style="min-height: 24px;">
+            <div class="progress" style="height: 8px;">
+                <div class="progress-bar bg-success" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                <div class="progress-bar bg-secondary border-left" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                <div class="progress-bar bg-secondary border-left" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                <div class="progress-bar bg-secondary border-left" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                <div class="progress-bar bg-secondary border-left" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+        </div>
+        <!-- Search in list assets -->
+        <div class="card-header" *ngIf="createInvestmentPopupStep === 0">
+            <form>
+              <div class="input-group input-group-flush input-group-merge">
+                <input type="search" class="form-control form-control-prepended search" placeholder="Search" (keyup)="filterList($event, 'asset-list', 0)">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                    <span class="fe fe-search"></span>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-        </form>
-      </div>
-      <div class="modal-body">
-        <!-- Step 0: select asset -->
-        <!-- List Short assets -->
-        <ul class="list-group list-group-flush list" id="asset-list" *ngIf="createInvestmentPopupStep === 0">
-            <li class="list-group-item px-0 text-secondary border-bottom-0">
-                <h6 class="header-pretitle border-0">
-                  Short Assets <span class="badge badge-soft-primary ml-auto">Soon</span>
-                </h6>
-            </li>
-            <li class="list-group-item px-0 border-bottom-0">
-                <a>
-                  <div class="row align-items-center">
-                    <div class="col-auto">
-
-                      <span class="avatar avatar-sm">
-                        <img src="assets/img/icons/eth.svg" alt="Ethereum logo" class="avatar-img rounded-circle">
-                      </span>
-
-                    </div>
-                    <div class="col ml--2">
-
-                      <h4 class="mb-1 name">
-                        sETH
-                      </h4>
-
-                      <p class="small text-secondary mb-0">
-                        Short Ethereum
-                      </p>
-
-                    </div>
-                    <div class="col-auto text-right">
-
-                        <h6 class="header-pretitle">
-                          Leveraged
-                        </h6>
-
-                        <h4 class="header-title">
-                          0.5x
-                        </h4>
-
-                    </div>
-                  </div>
-
-                </a>
-            </li>
-
-        </ul>
-        <!-- List Leveraged assets -->
-        <ul class="list-group list-group-flush list mt-3" id="asset-list" *ngIf="createInvestmentPopupStep === 0">
-            <li class="list-group-item px-0 text-secondary border-bottom-0 border-top-0">
-                <h6 class="header-pretitle border-0">
-                  Leveraged Assets <span class="badge badge-soft-primary ml-auto">Soon</span>
-                </h6>
-            </li>
-            <li class="list-group-item px-0 border-bottom-0">
-                <a>
-                  <div class="row align-items-center">
-                    <div class="col-auto">
-
-                      <span class="avatar avatar-sm">
-                        <img src="assets/img/icons/eth.svg" alt="Ethereum logo" class="avatar-img rounded-circle">
-                      </span>
-
-                    </div>
-                    <div class="col ml--2">
-
-                      <h4 class="mb-1 name">
-                        LETH
-                      </h4>
-
-                      <p class="small text-secondary mb-0">
-                        Leveraged Ethereum
-                      </p>
-
-                    </div>
-                    <div class="col-auto text-right">
-
-                        <h6 class="header-pretitle">
-                          Leveraged
-                        </h6>
-
-                        <h4 class="header-title">
-                          1.5x
-                        </h4>
-
-                    </div>
-                  </div>
-
-                </a>
-            </li>
-        </ul>
-        <!-- List Market assets -->
-        <ul class="list-group list-group-flush list mt-3" id="asset-list" *ngIf="createInvestmentPopupStep === 0">
-            <li class="list-group-item px-0 text-secondary border-bottom-0 border-top-0">
-                <h6 class="header-pretitle border-0">
-                  Market Assets
-                </h6>
-            </li>
-            <li class="list-group-item px-0" *ngFor = "let token of tokenList">
-                <a href="#/investments" (click)="selectedTokenSymbol = token; createInvestmentPopupStep = 1;">
-                  <div class="row align-items-center">
-                    <div class="col-auto">
-
-                      <span class="avatar avatar-sm">
-                        <img src={{getTokenLogoUrl(token)}} alt="token logo" class="avatar-img rounded-circle">
-                      </span>
-
-                    </div>
-                    <div class="col ml--2">
-
-                      <span class="mb-1 h4 name">
-                        {{token}}
-                      </span>
-
-                      <p class="small text-secondary mb-0">
-                        {{getTokenName(token)}}
-                      </p>
-
-                    </div>
-                    <div class="col-auto text-right">
-
-                      <span class="text-secondary">{{assetSymbolToPrice(token).dp(6)}} DAI</span>
-                      <br>
-
-                      <span class="badge badge-xl" [ngClass]="{'badge-soft-success': +getTokenDailyPriceChange(token) >= 0, 'badge-soft-danger': 0 > +getTokenDailyPriceChange(token)}">{{getTokenDailyPriceChange(token)}}%</span>
-
-                    </div>
-                  </div>
-
-                </a>
-            </li>
-        </ul>
-
-        <!-- Step 1: enter stake amount -->
-        <!-- Asset price -->
-        <div class="row" *ngIf="createInvestmentPopupStep === 1">
-
-            <div class="col">
-                <h6 class="header-pretitle">
-                  Current price in DAI
-                </h6>
-                <h4 class="">
-                  {{assetSymbolToPrice(selectedTokenSymbol).dp(10)}}
-                </h4>
-            </div>
-            <div class="col">
-                <h6 class="header-pretitle">
-                  24h change
-                </h6>
-                <h4 class="">
-                    <span class="badge" [ngClass]="{'badge-soft-success': +getTokenDailyPriceChange(selectedTokenSymbol) >= 0, 'badge-soft-danger': 0 > +getTokenDailyPriceChange(selectedTokenSymbol)}">
-                      {{getTokenDailyPriceChange(selectedTokenSymbol)}}%
-                    </span>
-                </h4>
-            </div>
+            </form>
         </div>
-        <hr *ngIf="createInvestmentPopupStep === 1">
+        <div class="modal-body">
+            <!-- Step 0: select asset -->
+            <!-- List Short assets -->
+            <ul class="list-group list-group-flush list" id="asset-list" *ngIf="createInvestmentPopupStep === 0">
+                <li class="list-group-item px-0 text-secondary border-bottom-0">
+                    <h6 class="header-pretitle border-0">
+                      Short Assets <span class="badge badge-soft-primary ml-auto">Soon</span>
+                    </h6>
+                </li>
+                <li class="list-group-item px-0 border-bottom-0">
+                    <a>
+                      <div class="row align-items-center">
+                        <div class="col-auto">
 
+                          <span class="avatar avatar-sm">
+                            <img src="assets/img/icons/eth.svg" alt="Ethereum logo" class="avatar-img rounded-circle">
+                          </span>
 
+                        </div>
+                        <div class="col ml--2">
 
-        <!-- KRO amount to stake -->
-        <h6 class="header-pretitle text-secondary" *ngIf="createInvestmentPopupStep === 1">I want to buy {{getTokenName(selectedTokenSymbol)}} by staking</h6>
-        <div class="row justify-content-center mb-4" *ngIf="createInvestmentPopupStep === 1">
-            <div class="col">
-                <form>
-                    <div class="form-group row mb-0">
-                      <div class="col">
-                          <input type="number" class="form-control form-control-lg form-control-flush input-xl border-bottom border-1 rounded-0 mt-1 mb-1" aria-describedby="KRO Token Amount to stake" placeholder="0.0" id="kairo-input">
+                          <h4 class="mb-1 name">
+                            sETH
+                          </h4>
+
+                          <p class="small text-secondary mb-0">
+                            Short Ethereum
+                          </p>
+
+                        </div>
+                        <div class="col-auto text-right">
+
+                            <h6 class="header-pretitle">
+                              Leveraged
+                            </h6>
+
+                            <h4 class="header-title">
+                              0.5x
+                            </h4>
+
+                        </div>
                       </div>
-                      <label for="kroAmount" class="col-auto col-form-label"><span class="display-4">KRO</span></label>
-                    </div>
-                    <small id="kroBalance" class="form-text text-secondary d-inline-block">{{kairo_balance}} KRO available</small>
-                </form>
-            </div>
-            <div class="col-auto">
-                <button class="btn btn-sm btn-outline-secondary mt-3" type="button" name="button">Max</button>
-            </div>
-        </div>
-        <!-- Do you know section step 1 -->
-        <div class="card bg-light border" *ngIf="createInvestmentPopupStep === 1">
-          <div class="card-body">
 
-            <h4 class="mb-2">
-              Need help?
-            </h4>
+                    </a>
+                </li>
 
-            <p class="small text-muted mb-0">
-              Get started with <a href="https://betoken.gitbook.io/betoken/" target="_blank">our guides</a>.
+            </ul>
+            <!-- List Leveraged assets -->
+            <ul class="list-group list-group-flush list mt-3" id="asset-list" *ngIf="createInvestmentPopupStep === 0">
+                <li class="list-group-item px-0 text-secondary border-bottom-0 border-top-0">
+                    <h6 class="header-pretitle border-0">
+                      Leveraged Assets <span class="badge badge-soft-primary ml-auto">Soon</span>
+                    </h6>
+                </li>
+                <li class="list-group-item px-0 border-bottom-0">
+                    <a>
+                      <div class="row align-items-center">
+                        <div class="col-auto">
+
+                          <span class="avatar avatar-sm">
+                            <img src="assets/img/icons/eth.svg" alt="Ethereum logo" class="avatar-img rounded-circle">
+                          </span>
+
+                        </div>
+                        <div class="col ml--2">
+
+                          <h4 class="mb-1 name">
+                            LETH
+                          </h4>
+
+                          <p class="small text-secondary mb-0">
+                            Leveraged Ethereum
+                          </p>
+
+                        </div>
+                        <div class="col-auto text-right">
+
+                            <h6 class="header-pretitle">
+                              Leveraged
+                            </h6>
+
+                            <h4 class="header-title">
+                              1.5x
+                            </h4>
+
+                        </div>
+                      </div>
+
+                    </a>
+                </li>
+            </ul>
+            <!-- List Market assets -->
+            <ul class="list-group list-group-flush list mt-3" id="asset-list" *ngIf="createInvestmentPopupStep === 0">
+                <li class="list-group-item px-0 text-secondary border-bottom-0 border-top-0">
+                    <h6 class="header-pretitle border-0">
+                      Market Assets
+                    </h6>
+                </li>
+                <li class="list-group-item px-0" *ngFor = "let token of tokenList">
+                    <a href="#/investments" (click)="selectedTokenSymbol = token; createInvestmentPopupStep = 1;">
+                      <div class="row align-items-center">
+                        <div class="col-auto">
+
+                          <span class="avatar avatar-sm">
+                            <img src={{getTokenLogoUrl(token)}} alt="token logo" class="avatar-img rounded-circle">
+                          </span>
+
+                        </div>
+                        <div class="col ml--2">
+
+                          <span class="mb-1 h4 name">
+                            {{token}}
+                          </span>
+
+                          <p class="small text-secondary mb-0">
+                            {{getTokenName(token)}}
+                          </p>
+
+                        </div>
+                        <div class="col-auto text-right">
+
+                          <span class="text-secondary">{{assetSymbolToPrice(token).dp(6)}} DAI</span>
+                          <br>
+
+                          <span class="badge badge-xl" [ngClass]="{'badge-soft-success': +getTokenDailyPriceChange(token) >= 0, 'badge-soft-danger': 0 > +getTokenDailyPriceChange(token)}">{{getTokenDailyPriceChange(token)}}%</span>
+
+                        </div>
+                      </div>
+
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Step 1: enter stake amount -->
+            <!-- Asset price -->
+            <div class="row" *ngIf="createInvestmentPopupStep === 1">
+
+                <div class="col">
+                    <h6 class="header-pretitle">
+                      Current price in DAI
+                    </h6>
+                    <h4 class="mb-0">
+                      {{assetSymbolToPrice(selectedTokenSymbol).dp(10)}}
+                    </h4>
+                </div>
+                <div class="col">
+                    <h6 class="header-pretitle">
+                      24h change
+                    </h6>
+                    <h4 class="mb-0">
+                        <span class="badge" [ngClass]="{'badge-soft-success': +getTokenDailyPriceChange(selectedTokenSymbol) >= 0, 'badge-soft-danger': 0 > +getTokenDailyPriceChange(selectedTokenSymbol)}">
+                          {{getTokenDailyPriceChange(selectedTokenSymbol)}}%
+                        </span>
+                    </h4>
+                </div>
+            </div>
+            <hr *ngIf="createInvestmentPopupStep === 1">
+
+
+
+            <!-- KRO amount to stake -->
+            <h6 class="header-pretitle text-secondary" *ngIf="createInvestmentPopupStep === 1">I want to buy {{getTokenName(selectedTokenSymbol)}} by staking</h6>
+            <div class="row justify-content-center mb-4" *ngIf="createInvestmentPopupStep === 1">
+                <div class="col">
+                    <form>
+                        <div class="form-group row mb-0">
+                          <div class="col">
+                              <input type="number" class="form-control form-control-lg form-control-flush input-xl border-bottom border-1 rounded-0 mt-1 mb-1" aria-describedby="KRO Token Amount to stake" placeholder="0.0" id="kairo-input">
+                          </div>
+                          <label for="kroAmount" class="col-auto col-form-label"><span class="display-4">KRO</span></label>
+                        </div>
+                        <small id="kroBalance" class="form-text text-secondary d-inline-block">{{kairo_balance}} KRO available</small>
+                    </form>
+                </div>
+                <div class="col-auto">
+                    <button class="btn btn-sm btn-outline-secondary mt-3" type="button" name="button">Max</button>
+                </div>
+            </div>
+
+
+            <!-- Step 2: confirm transaction -->
+            <p class="text-center text-muted mb-5" *ngIf="createInvestmentPopupStep === 2">
+              Confirm the transaction in your wallet’s interface to save it on the Ethereum blockchain. It's fine to stick with these defaults gas limit and price.
             </p>
 
-          </div>
+            <!-- Step 3: transaction broadcasted -->
+            <!-- Processing investment body -->
+            <div class="py-5 is-loading is-loading-lg" *ngIf="createInvestmentPopupStep === 3"></div>
+            <p class="text-center text-muted mb-5" *ngIf="createInvestmentPopupStep === 3">
+              Your investment is being saved on the Ethereum blockchain.
+            </p>
+            <hr *ngIf="createInvestmentPopupStep === 3">
+            <form *ngIf="createInvestmentPopupStep === 3">
+              <div class="form-group">
+                <label for="exampleFormControlInput1">Transaction ID</label>
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control form-control-lg" value="{{transactionId}}" aria-label="Transaction ID" aria-describedby="">
+                  <div class="input-group-append">
+                    <a class="btn btn-white h-100" href="https://rinkeby.etherscan.io/tx/{{transactionId}}" target="_blank"><i class="fe fe-external-link"></i></a>
+                  </div>
+                </div>
+              </div>
+            </form>
+
+            <!-- Step 4: transaction confirmed -->
+            <!-- Investment confirmed body -->
+            <p class="h1 text-center" *ngIf="createInvestmentPopupStep === 4">
+              <i class="fe fe-check-circle text-success"></i>
+            </p>
+            <p class="text-center text-muted mb-5" *ngIf="createInvestmentPopupStep === 4">
+              You staked <span class="font-weight-bold text-secondary">{{stakeAmount}}</span> KRO to invest in <span class="font-weight-bold text-secondary">{{getTokenName(selectedTokenSymbol)}}</span>.
+            </p>
+            <hr *ngIf="createInvestmentPopupStep === 4">
+            <form *ngIf="createInvestmentPopupStep === 4">
+              <div class="form-group">
+                <label for="exampleFormControlInput1">Transaction ID</label>
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control form-control-lg" value="{{transactionId}}" aria-label="Transaction ID" aria-describedby="">
+                  <div class="input-group-append">
+                    <a class="btn btn-white h-100" href="https://rinkeby.etherscan.io/tx/{{transactionId}}" target="_blank"><i class="fe fe-external-link"></i></a>
+                  </div>
+                </div>
+              </div>
+            </form>
+
+            <!-- Continue button for step 1 -->
+            <button type="submit" class="btn btn-block btn-success mt-auto" aria-label="Invest" (click)="createInvestment()" *ngIf="createInvestmentPopupStep === 1">
+                Continue
+            </button>
+            <!-- Close button for step 3 -->
+            <button type="submit" class="btn btn-block btn-white mt-auto" data-dismiss="modal" aria-label="Close" *ngIf="createInvestmentPopupStep === 3">
+                Close
+            </button>
+            <!-- Close button for step 4 -->
+            <button type="submit" class="btn btn-block btn-white mt-auto" data-dismiss="modal" aria-label="Close" *ngIf="createInvestmentPopupStep === 4">
+                Close
+            </button>
+
+            <!-- Do you know section step 1 -->
+            <div class="card bg-light border mt-4" *ngIf="createInvestmentPopupStep === 1">
+              <div class="card-body">
+
+                <h4 class="mb-2">
+                  Need help?
+                </h4>
+
+                <p class="small text-muted mb-0">
+                  Get started with <a href="https://betoken.gitbook.io/betoken/" target="_blank">our guides</a>.
+                </p>
+
+              </div>
+            </div>
         </div>
-
-
-        <!-- Step 2: confirm transaction -->
-        <p class="text-center text-muted mb-5" *ngIf="createInvestmentPopupStep === 2">
-          Confirm the transaction in your wallet’s interface to save it on the Ethereum blockchain. It's fine to stick with these defaults gas limit and price.
-        </p>
-
-        <!-- Step 3: transaction broadcasted -->
-        <!-- Processing investment body -->
-        <div class="py-5 is-loading is-loading-lg" *ngIf="createInvestmentPopupStep === 3"></div>
-        <p class="text-center text-muted mb-5" *ngIf="createInvestmentPopupStep === 3">
-          Your investment is being saved on the Ethereum blockchain.
-        </p>
-        <hr *ngIf="createInvestmentPopupStep === 3">
-        <form *ngIf="createInvestmentPopupStep === 3">
-          <div class="form-group">
-            <label for="exampleFormControlInput1">Transaction ID</label>
-            <div class="input-group mb-3">
-              <input type="text" class="form-control form-control-lg" value="{{transactionId}}" aria-label="Transaction ID" aria-describedby="">
-              <div class="input-group-append">
-                <a class="btn btn-white h-100" href="https://rinkeby.etherscan.io/tx/{{transactionId}}" target="_blank"><i class="fe fe-external-link"></i></a>
-              </div>
-            </div>
-          </div>
-        </form>
-
-        <!-- Step 4: transaction confirmed -->
-        <!-- Investment confirmed body -->
-        <p class="h1 text-center" *ngIf="createInvestmentPopupStep === 4">
-          <i class="fe fe-check-circle text-success"></i>
-        </p>
-        <p class="text-center text-muted mb-5" *ngIf="createInvestmentPopupStep === 4">
-          You staked <span class="font-weight-bold text-secondary">{{stakeAmount}}</span> KRO to invest in <span class="font-weight-bold text-secondary">{{getTokenName(selectedTokenSymbol)}}</span>.
-        </p>
-        <hr *ngIf="createInvestmentPopupStep === 4">
-        <form *ngIf="createInvestmentPopupStep === 4">
-          <div class="form-group">
-            <label for="exampleFormControlInput1">Transaction ID</label>
-            <div class="input-group mb-3">
-              <input type="text" class="form-control form-control-lg" value="{{transactionId}}" aria-label="Transaction ID" aria-describedby="">
-              <div class="input-group-append">
-                <a class="btn btn-white h-100" href="https://rinkeby.etherscan.io/tx/{{transactionId}}" target="_blank"><i class="fe fe-external-link"></i></a>
-              </div>
-            </div>
-          </div>
-        </form>
-      </div>
-      <!-- Continue button for step 1 -->
-      <div class="modal-footer border-0" *ngIf="createInvestmentPopupStep === 1">
-        <button type="submit" class="btn btn-block btn-success mt-auto" aria-label="Invest" (click)="createInvestment()">
-          Continue
-        </button>
-      </div>
-
-      <!-- Close button for step 3 -->
-      <div class="modal-footer border-0" *ngIf="createInvestmentPopupStep === 3">
-        <button type="submit" class="btn btn-block btn-white mt-auto" data-dismiss="modal" aria-label="Close">
-          Close
-        </button>
-      </div>
-      <!-- Close button for step 4 -->
-      <div class="modal-footer border-0" *ngIf="createInvestmentPopupStep === 4">
-        <button type="submit" class="btn btn-block btn-white mt-auto" data-dismiss="modal" aria-label="Close">
-          Close
-        </button>
-      </div>
     </div>
   </div>
 </div><!-- / modal -->
@@ -725,44 +720,46 @@
 <div class="modal fade fixed-right" id="modalSell" tabindex="-1" role="dialog" aria-labelledby="modalSell" aria-hidden="true">
   <div class="modal-dialog modal-dialog-vertical bg-white" role="document">
     <div class="modal-content">
-      <div class="modal-body pb-5">
-        <!-- Close -->
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <!-- Confirm tx title -->
-        <div class="header text-center" *ngIf="sellInvestmentPopupStep === 0">
-          <div class="header-body">
+        <div class="card-header border-0">
+          <div class="row align-items-center">
+            <div class="col">
+              <!-- Confirm asset investment title -->
+              <h4 class="card-header-title" *ngIf="sellInvestmentPopupStep === 0">
+                Confirm sell order
+              </h4>
+              <!-- Processing title -->
+              <h4 class="card-header-title" *ngIf="sellInvestmentPopupStep === 1">
+                Processing sell order
+              </h4>
+              <!-- Sell order confirmed title -->
+              <h4 class="card-header-title" *ngIf="sellInvestmentPopupStep === 2">
+                Sell order confirmed
+              </h4>
+            </div>
+            <div class="col-auto">
 
-            <h6 class="header-pretitle">
-              Sell asset
-            </h6>
+              <!-- Close -->
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+              </button>
 
-            <h1 class="header-title">
-              Confirm your transaction
-            </h1>
-
-          </div>
+            </div>
+          </div> <!-- / .row -->
         </div>
+        <!-- progress bar buying -->
+        <div class="card-header py-0 border-0" style="min-height: 24px;">
+            <div class="progress" style="height: 8px;">
+                <div class="progress-bar bg-success" role="progressbar" style="width: 33.33%" aria-valuenow="33.33" aria-valuemin="0" aria-valuemax="100"></div>
+                <div class="progress-bar bg-secondary border-left" role="progressbar" style="width: 33.33%" aria-valuenow="33.33" aria-valuemin="0" aria-valuemax="100"></div>
+                <div class="progress-bar bg-secondary border-left" role="progressbar" style="width: 33.33%" aria-valuenow="33.33" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+        </div>
+
+      <div class="modal-body pb-5">
         <!-- Confirm tx body -->
         <p class="text-center text-muted mb-5" *ngIf="sellInvestmentPopupStep === 0">
           Confirm the transaction in your wallet’s interface to save it on the Ethereum blockchain. It's fine to stick with these defaults gas limit and price.
         </p>
-
-        <!-- Tx broadcasted title -->
-        <div class="header text-center" *ngIf="sellInvestmentPopupStep === 1">
-          <div class="header-body">
-
-            <h6 class="header-pretitle">
-              Sell asset
-            </h6>
-
-            <h1 class="header-title">
-              Transaction broadcasted!
-            </h1>
-
-          </div>
-        </div>
         <!-- loader -->
         <div class="py-5 is-loading is-loading-lg" *ngIf="sellInvestmentPopupStep === 1"></div>
         <!-- Tx broadcasted body -->
@@ -781,20 +778,6 @@
             </div>
           </div>
         </form>
-        <!-- Asset sold title -->
-        <div class="header text-center" *ngIf="sellInvestmentPopupStep === 2">
-          <div class="header-body">
-
-            <h6 class="header-pretitle">
-              Sell asset
-            </h6>
-
-            <h1 class="header-title">
-              Your sell was successful!
-            </h1>
-
-          </div>
-        </div>
         <!-- Asset sold body -->
         <p class="h1 text-center" *ngIf="sellInvestmentPopupStep === 2">
           <i class="fe fe-check-circle text-success"></i>
@@ -814,10 +797,12 @@
             </div>
           </div>
         </form>
-      </div>
-      <!-- close button panel after Asset being sold -->
-      <div class="modal-footer border-0" *ngIf="sellInvestmentPopupStep === 2">
-        <button type="submit" class="btn btn-block btn-white mt-auto" data-dismiss="modal" aria-label="Close">
+        <!-- close button panel after tx confirmed by user -->
+        <button type="submit" class="btn btn-block btn-white mt-auto" data-dismiss="modal" aria-label="Close" *ngIf="sellInvestmentPopupStep === 1">
+          Close
+        </button>
+        <!-- close button panel after Asset being sold -->
+        <button type="submit" class="btn btn-block btn-white mt-auto" data-dismiss="modal" aria-label="Close" *ngIf="sellInvestmentPopupStep === 2">
           Close
         </button>
       </div>

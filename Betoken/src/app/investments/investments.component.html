@@ -241,28 +241,28 @@
             <tbody class="list" id="active-investments-table" >
               <tr *ngFor = "let data of activeInvestmentList">
                 <td class="align-middle">
-                    <div class="row">
-                        <div class="col-3">
-                            <!-- Avatar -->
-                            <span class="avatar avatar-xs align-middle">
-                              <img src={{getTokenLogoUrl(data.tokenSymbol)}} alt="token logo" class="avatar-img rounded-circle">
-                            </span>
-                        </div>
-                        <div class="col-9">
-                            <div class="row">
-                                <div class="col-12">
-                                    <span class="align-middle">
-                                      {{data.tokenSymbol}}
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12">
-                                    <small class="small text-truncate text-muted" style="max-width: 12rem; min-width: 6rem;">{{getTokenName(data.tokenSymbol)}}</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                  <div class="row">
+                      <div class="col-3">
+                          <!-- Avatar -->
+                          <span class="avatar avatar-xs align-middle">
+                            <img src={{getTokenLogoUrl(data.tokenSymbol)}} alt="token logo" class="avatar-img rounded-circle">
+                          </span>
+                      </div>
+                      <div class="col-9">
+                          <div class="row">
+                              <div class="col-12">
+                                  <span class="align-middle">
+                                    {{data.tokenSymbol}}
+                                  </span>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-12">
+                                  <span class="small text-muted">{{ (getTokenName(data.tokenSymbol).length>12)? (getTokenName(data.tokenSymbol) | slice:0:12)+'..':(getTokenName(data.tokenSymbol)) }}</span>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
                 </td>
                 <td class="align-middle">
                   {{data.sellPrice.toFormat(6)}} DAI
@@ -356,14 +356,29 @@
             </thead>
             <tbody class="list" id="past-investments-table">
               <tr *ngFor = "let data of inactiveInvestmentList">
-                <td class="py-auto">
-                  <!-- Avatar -->
-                  <span class="avatar avatar-xs align-middle">
-                    <img src={{getTokenLogoUrl(data.tokenSymbol)}} alt="token logo" class="avatar-img rounded-circle">
-                  </span>
-                  <span class="align-middle ml-2">
-                    {{data.tokenSymbol}} • <small class="text-muted small">{{getTokenName(data.tokenSymbol)}}</small>
-                  </span>
+                <td class="align-middle">
+                  <div class="row">
+                      <div class="col-3">
+                          <!-- Avatar -->
+                          <span class="avatar avatar-xs align-middle">
+                            <img src={{getTokenLogoUrl(data.tokenSymbol)}} alt="token logo" class="avatar-img rounded-circle">
+                          </span>
+                      </div>
+                      <div class="col-9">
+                          <div class="row">
+                              <div class="col-12">
+                                  <span class="align-middle">
+                                    {{data.tokenSymbol}}
+                                  </span>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-12">
+                                  <span class="small text-muted">{{ (getTokenName(data.tokenSymbol).length>12)? (getTokenName(data.tokenSymbol) | slice:0:12)+'..':(getTokenName(data.tokenSymbol)) }}</span>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
                 </td>
                 <td class="align-middle">
                   {{data.buyPrice.toFormat(6)}} DAI

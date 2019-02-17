@@ -30,7 +30,7 @@ export class InvestmentsComponent implements OnInit {
     seconds = 0;
     phase = -1;
     expected_commission = 0.00;
-    kairo_balance = 0.0000;
+    kairo_balance: BigNumber;
     monthly_pl = 0.00;
     selectedTokenSymbol = 'ETH';
     stakeAmount = '';
@@ -74,7 +74,7 @@ export class InvestmentsComponent implements OnInit {
         this.activeInvestmentList = user.investment_list().filter((data) => data.isSold === false);
         this.inactiveInvestmentList = user.investment_list().filter((data) => data.isSold === true);
         this.expected_commission = user.expected_commission().toFormat(2);
-        this.kairo_balance = user.kairo_balance().toFormat(6);
+        this.kairo_balance = user.kairo_balance();
         this.monthly_pl = user.monthly_roi().toFormat(4);
         this.tokenList = tokens.token_list();
         this.userValue = user.portfolio_value().toFormat(4);
@@ -139,6 +139,10 @@ export class InvestmentsComponent implements OnInit {
     }
 
     // UI helpers
+
+    maxStake() {
+        $('#kairo-input').val(this.kairo_balance.toString());
+    }
 
     isLoading() {
         return loading.investments();

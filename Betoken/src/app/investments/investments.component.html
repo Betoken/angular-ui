@@ -219,10 +219,10 @@
                   Asset
                 </th>
                 <th class="text-muted">
-                  Current Price
+                  Change
                 </th>
                 <th class="text-muted">
-                  Change
+                  Current Price
                 </th>
                 <th class="text-muted">
                   Buy Price
@@ -240,33 +240,17 @@
             </thead>
             <tbody class="list" id="active-investments-table" >
               <tr *ngFor = "let data of activeInvestmentList">
-                <td class="align-middle">
-                  <div class="row">
-                      <div class="col-3">
-                          <!-- Avatar -->
-                          <span class="avatar avatar-xs align-middle">
+                  <td class="align-middle pr-0">
+                    <div class="media">
+                        <span class="avatar avatar-xs align-self-center mr-3">
                             <img src={{getTokenLogoUrl(data.tokenSymbol)}} alt="{{data.tokenSymbol}} token logo" class="avatar-img rounded-circle">
-                          </span>
-                      </div>
-                      <div class="col-9">
-                          <div class="row">
-                              <div class="col-12">
-                                  <span class="align-middle">
-                                    {{data.tokenSymbol}}
-                                  </span>
-                              </div>
-                          </div>
-                          <div class="row">
-                              <div class="col-12">
-                                  <span class="small text-muted">{{(getTokenName(data.tokenSymbol).length>12)? (getTokenName(data.tokenSymbol) | slice:0:12)+'..':(getTokenName(data.tokenSymbol)) }}</span>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-                </td>
-                <td class="align-middle">
-                  {{data.sellPrice.toFormat(6)}} DAI
-                </td>
+                        </span>
+                        <div class="media-body">
+                            <h5 class="mt-0">{{data.tokenSymbol}}</h5>
+                            <span class="small text-muted">{{ (getTokenName(data.tokenSymbol).length>12)? (getTokenName(data.tokenSymbol) | slice:0:12)+'..':(getTokenName(data.tokenSymbol)) }}</span>
+                        </div>
+                    </div>
+                  </td>
                 <td class="align-middle">
                     <!-- Badge success -->
                     <span class="badge badge-xl badge-soft-success" *ngIf = "+data.ROI >= 0">
@@ -276,6 +260,9 @@
                     <span class="badge badge-xl badge-soft-danger" *ngIf = "0 > +data.ROI">
                       {{data.ROI.toFormat(4)}}%
                     </span>
+                </td>
+                <td class="align-middle">
+                  {{data.sellPrice.toFormat(6)}} DAI
                 </td>
                 <td class="align-middle">
                   {{data.buyPrice.toFormat(6)}} DAI
@@ -334,75 +321,68 @@
           </div> <!-- / .row -->
         </div>
         <div class="table-responsive">
-          <table class="table table-sm table-nowrap card-table">
-            <thead>
-              <tr>
-                <th class="text-muted">
-                    Asset
-                </th>
-                <th class="text-muted">
-                    Buy Price
-                </th>
-                <th class="text-muted">
-                    Sell Price
-                </th>
-                <th class="text-muted">
-                    Staked KRO
-                </th>
-                <th class="text-muted">
-                    Redeemed KRO
-                </th>
-              </tr>
-            </thead>
-            <tbody class="list" id="past-investments-table">
-              <tr *ngFor = "let data of inactiveInvestmentList">
-                <td class="align-middle">
-                  <div class="row">
-                      <div class="col-3">
-                          <!-- Avatar -->
-                          <span class="avatar avatar-xs align-middle">
-                            <img src={{getTokenLogoUrl(data.tokenSymbol)}} alt="{{data.tokenSymbol}} token logo" class="avatar-img rounded-circle">
-                          </span>
-                      </div>
-                      <div class="col-9">
-                          <div class="row">
-                              <div class="col-12">
-                                  <span class="align-middle">
-                                    {{data.tokenSymbol}}
-                                  </span>
-                              </div>
-                          </div>
-                          <div class="row">
-                              <div class="col-12">
-                                  <span class="small text-muted">{{(getTokenName(data.tokenSymbol).length>12)? (getTokenName(data.tokenSymbol) | slice:0:12)+'..':(getTokenName(data.tokenSymbol)) }}</span>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-                </td>
-                <td class="align-middle">
-                  {{data.buyPrice.toFormat(6)}} DAI
-                </td>
-                <td class="align-middle">
-                  {{data.sellPrice.toFormat(6)}} DAI
-                </td>
-                <td class="align-middle">
-                  {{data.stake.toFormat(4)}} KRO
-                </td>
-                <td class="align-middle">
-                  {{data.currValue.toFormat(4)}} KRO
-                  <!-- Badge success -->
-                  <span class="badge badge-soft-success" *ngIf = "+data.ROI >= 0">
-                    {{data.ROI.toFormat(4)}}%
-                  </span>
-                  <!-- Badge danger -->
-                  <span class="badge badge-soft-danger" *ngIf = "0 > +data.ROI">
-                    {{data.ROI.toFormat(4)}}%
-                  </span>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+            <table class="table table-sm table-nowrap card-table">
+                <thead>
+                    <tr>
+                     <th class="text-muted">
+                         Asset
+                     </th>
+                     <th class="text-muted">
+                         Redeemed KRO
+                     </th>
+                     <th class="text-muted">
+                         Staked KRO
+                     </th>
+                     <th class="text-muted">
+                         Type
+                     </th>
+                     <th class="text-muted">
+                         Buy Price
+                     </th>
+                     <th class="text-muted">
+                         Sell Price
+                     </th>
+                    </tr>
+                </thead>
+                <tbody class="list" id="past-investments-table">
+                    <tr *ngFor = "let data of inactiveInvestmentList">
+                     <td class="align-middle pr-0">
+                       <div class="media">
+                           <span class="avatar avatar-xs align-self-center mr-3">
+                               <img src={{getTokenLogoUrl(data.tokenSymbol)}} alt="{{data.tokenSymbol}} token logo" class="avatar-img rounded-circle">
+                           </span>
+                           <div class="media-body">
+                               <h5 class="mt-0">{{data.tokenSymbol}}</h5>
+                               <span class="small text-muted">{{ (getTokenName(data.tokenSymbol).length>12)? (getTokenName(data.tokenSymbol) | slice:0:12)+'..':(getTokenName(data.tokenSymbol)) }}</span>
+                           </div>
+                       </div>
+                     </td>
+                     <td class="align-middle">
+                       {{data.currValue.toFormat(4)}} KRO
+                       <!-- Badge success -->
+                       <span class="badge badge-soft-success" *ngIf = "+data.ROI >= 0">
+                         {{data.ROI.toFormat(4)}}%
+                       </span>
+                       <!-- Badge danger -->
+                       <span class="badge badge-soft-danger" *ngIf = "0 > +data.ROI">
+                         {{data.ROI.toFormat(4)}}%
+                       </span>
+                     </td>
+                     <td class="align-middle">
+                       {{data.stake.toFormat(4)}} KRO
+                     </td>
+                     <td class="align-middle">
+                         Short
+                     </td>
+                     <td class="align-middle">
+                       {{data.buyPrice.toFormat(6)}} DAI
+                     </td>
+                     <td class="align-middle">
+                       {{data.sellPrice.toFormat(6)}} DAI
+                     </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
       </div>
     </div>

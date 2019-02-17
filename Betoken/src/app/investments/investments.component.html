@@ -445,7 +445,7 @@
         <div class="card-header" *ngIf="createInvestmentPopupStep === 0">
             <form>
               <div class="input-group input-group-flush input-group-merge">
-                <input type="search" class="form-control form-control-prepended search" placeholder="Search" (keyup)="filterList($event, 'asset-list', 0)">
+                <input type="search" class="form-control form-control-prepended search" placeholder="Search" (keyup)="filterList($event, 'asset-list', 0);filterList($event, 'short-asset-list', 0);filterList($event, 'long-asset-list', 0)">
                 <div class="input-group-prepend">
                   <div class="input-group-text">
                     <span class="fe fe-search"></span>
@@ -457,7 +457,7 @@
         <div class="modal-body">
             <!-- Step 0: select asset -->
             <!-- List Short assets -->
-            <ul class="list-group list-group-flush list" id="asset-list" *ngIf="createInvestmentPopupStep === 0">
+            <ul class="list-group list-group-flush list" id="short-asset-list" *ngIf="createInvestmentPopupStep === 0">
                 <li class="list-group-item px-0 text-secondary border-bottom-0">
                     <h6 class="header-pretitle border-0">
                       Short Assets <span class="badge badge-soft-primary ml-auto">Soon</span>
@@ -502,7 +502,7 @@
 
             </ul>
             <!-- List Leveraged assets -->
-            <ul class="list-group list-group-flush list mt-3" id="asset-list" *ngIf="createInvestmentPopupStep === 0">
+            <ul class="list-group list-group-flush list mt-3" id="long-asset-list" *ngIf="createInvestmentPopupStep === 0">
                 <li class="list-group-item px-0 text-secondary border-bottom-0 border-top-0">
                     <h6 class="header-pretitle border-0">
                       Leveraged Assets <span class="badge badge-soft-primary ml-auto">Soon</span>

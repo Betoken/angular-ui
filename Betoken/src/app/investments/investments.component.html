@@ -334,9 +334,6 @@
                          Staked KRO
                      </th>
                      <th class="text-muted">
-                         Type
-                     </th>
-                     <th class="text-muted">
                          Buy Price
                      </th>
                      <th class="text-muted">
@@ -370,9 +367,6 @@
                      </td>
                      <td class="align-middle">
                        {{data.stake.toFormat(4)}} KRO
-                     </td>
-                     <td class="align-middle">
-                         Short
                      </td>
                      <td class="align-middle">
                        {{data.buyPrice.toFormat(6)}} DAI
@@ -434,11 +428,11 @@
         <!-- progress bar buying -->
         <div class="card-header py-0 border-0" style="min-height: 24px;">
             <div class="progress" style="height: 8px;">
-                <div [ngClass]="{'bg-success': createInvestmentPopupStep === 0, 'bg-secondary': createInvestmentPopupStep !== 0}" class="progress-bar" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-                <div [ngClass]="{'bg-success': createInvestmentPopupStep === 1, 'bg-secondary': createInvestmentPopupStep !== 1}" class="progress-bar border-left" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-                <div [ngClass]="{'bg-success': createInvestmentPopupStep === 2, 'bg-secondary': createInvestmentPopupStep !== 2}" class="progress-bar border-left" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-                <div [ngClass]="{'bg-success': createInvestmentPopupStep === 3, 'bg-secondary': createInvestmentPopupStep !== 3}" class="progress-bar border-left" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-                <div [ngClass]="{'bg-success': createInvestmentPopupStep === 4, 'bg-secondary': createInvestmentPopupStep !== 4}" class="progress-bar border-left" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                <div [ngClass]="{'bg-success': createInvestmentPopupStep >= 0, 'bg-secondary': createInvestmentPopupStep !== 0}" class="progress-bar" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                <div [ngClass]="{'bg-success': createInvestmentPopupStep >= 1, 'bg-secondary': createInvestmentPopupStep !== 1}" class="progress-bar border-left" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                <div [ngClass]="{'bg-success': createInvestmentPopupStep >= 2, 'bg-secondary': createInvestmentPopupStep !== 2}" class="progress-bar border-left" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                <div [ngClass]="{'bg-success': createInvestmentPopupStep >= 3, 'bg-secondary': createInvestmentPopupStep !== 3}" class="progress-bar border-left" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                <div [ngClass]="{'bg-success': createInvestmentPopupStep >= 4, 'bg-secondary': createInvestmentPopupStep !== 4}" class="progress-bar border-left" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
         </div>
         <!-- Search in list assets -->
@@ -741,12 +735,12 @@
             </div>
           </div> <!-- / .row -->
         </div>
-        <!-- progress bar buying -->
+        <!-- progress bar selling -->
         <div class="card-header py-0 border-0" style="min-height: 24px;">
             <div class="progress" style="height: 8px;">
-                <div class="progress-bar bg-success" role="progressbar" style="width: 33.33%" aria-valuenow="33.33" aria-valuemin="0" aria-valuemax="100"></div>
-                <div class="progress-bar bg-secondary border-left" role="progressbar" style="width: 33.33%" aria-valuenow="33.33" aria-valuemin="0" aria-valuemax="100"></div>
-                <div class="progress-bar bg-secondary border-left" role="progressbar" style="width: 33.33%" aria-valuenow="33.33" aria-valuemin="0" aria-valuemax="100"></div>
+                <div [ngClass]="{'bg-success': sellInvestmentPopupStep >= 0, 'bg-secondary': sellInvestmentPopupStep !== 0}" class="progress-bar" role="progressbar" style="width: 33.33%" aria-valuenow="33.33" aria-valuemin="0" aria-valuemax="100"></div>
+                <div [ngClass]="{'bg-success': sellInvestmentPopupStep >= 1, 'bg-secondary': sellInvestmentPopupStep !== 1}" class="progress-bar border-left" role="progressbar" style="width: 33.33%" aria-valuenow="33.33" aria-valuemin="0" aria-valuemax="100"></div>
+                <div [ngClass]="{'bg-success': sellInvestmentPopupStep >= 2, 'bg-secondary': sellInvestmentPopupStep !== 2}" class="progress-bar border-left" role="progressbar" style="width: 33.33%" aria-valuenow="33.33" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
         </div>
 

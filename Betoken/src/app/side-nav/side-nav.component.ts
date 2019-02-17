@@ -11,6 +11,10 @@ import { user, timer } from '../../betokenjs/helpers';
 export class SideNavComponent implements OnInit {
     phase: Number;
     can_redeem_commission = true;
+    days = 0;
+    hours = 0;
+    minutes = 0;
+    seconds = 0;
 
     constructor(private ms: AppComponent , private router: Router) {
     }

@@ -26,6 +26,17 @@
 
       <!-- Collapse -->
       <div class="collapse navbar-collapse" id="sidebarCollapse">
+          <!-- Mobile time count-down -->
+          <div class="navbar-text px-3 pb-0 pb-2 w-100 justify-content-center text-center d-md-none">
+              <h6 class="header-pretitle mb-1">
+              Time left {{phaseActionText()}}
+              </h6>
+              <h4 class="header-title">
+              {{days}}d {{hours}}h {{minutes}}m {{seconds}}s
+              </h4>
+          </div>
+          <hr class="navbar-divider my-3">
+
         <!-- Navigation -->
         <ul class="navbar-nav">
           <li class="nav-item">
@@ -95,12 +106,6 @@
 
         <!-- Divider -->
         <hr class="navbar-divider my-3">
-
-        <!-- Heading -->
-        <h6 class="navbar-heading">
-          Documentation
-        </h6>
-
         <!-- Navigation -->
         <ul class="navbar-nav mb-md-2">
           <li class="nav-item">

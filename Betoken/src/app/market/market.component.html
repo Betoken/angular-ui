@@ -105,14 +105,16 @@
             </thead>
             <tbody class="list" id="market-table">
               <tr *ngFor="let token of tokenList">
-                <td class="py-auto">
-                  <!-- Avatar -->
-                  <span class="avatar avatar-xs align-middle">
-                    <img src="{{getTokenLogoUrl(token)}}" alt="token logo" class="avatar-img rounded-circle"> 
-                  </span>
-                  <span class="align-middle ml-2">
-                    {{token}} • <small class="text-muted small">{{getTokenName(token)}}</small>
-                  </span>
+                <td class="align-middle pr-0">
+                  <div class="media">
+                      <span class="avatar avatar-xs align-self-center mr-3">
+                          <img src={{getTokenLogoUrl(token)}} alt="{{token}} token logo" class="avatar-img rounded-circle">
+                      </span>
+                      <div class="media-body">
+                          <h5 class="mt-0">{{token}}</h5>
+                          <span class="small text-muted">{{ (getTokenName(token).length>12)? (getTokenName(token) | slice:0:12)+'..':(getTokenName(token)) }}</span>
+                      </div>
+                  </div>
                 </td>
                 <td class="align-middle">{{getTokenPrice(token)}}</td>
                 <td class="24h-change align-middle">

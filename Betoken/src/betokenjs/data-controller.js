@@ -262,7 +262,6 @@ export const loadUserData = async () => {
                 var totalStake = investments.map((x) => BigNumber(x.stake)).reduce((x, y) => x.plus(y), BigNumber(0));
                 var totalCurrentStake = investments.filter((x) => x.isSold == false).map((x) => BigNumber(x.currValue)).reduce((x, y) => x.plus(y), BigNumber(0));
                 managerROI.set(totalStake.gt(0) ? totalKROChange.div(totalStake).times(100) : BigNumber(0));
-                console.log(managerROI.get());
                 currentStake.set(totalCurrentStake);
             }
 

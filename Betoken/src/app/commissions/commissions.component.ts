@@ -13,6 +13,7 @@ declare var $: any;
     templateUrl: './commissions.component.html'
 })
 export class CommissionsComponent implements OnInit {
+    expected_commission = 0.00;
     commissionHistory: Array<Object>;
     commissionAmount: Number;
     transactionId: String;
@@ -36,6 +37,7 @@ export class CommissionsComponent implements OnInit {
     refreshDisplay() {
         this.commissionHistory = user.commission_history();
         this.commissionAmount = user.expected_commission().toFormat(2);
+        this.expected_commission = user.expected_commission().toFormat(NUM_DECIMALS);
     }
 
     refresh() {
@@ -57,7 +59,7 @@ export class CommissionsComponent implements OnInit {
             this.transactionId = transactionHash;
             this.step = 2;
         }
-    
+
         let confirm = () => {
             this.step = 3;
             refresh_actions.records();

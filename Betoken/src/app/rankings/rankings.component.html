@@ -108,7 +108,7 @@
                     <i class="fe fe-star text-warning ml-2"></i> You
                   </td>
                   <td class="align-middle">
-                    {{userValue}}
+                    {{userValue.toFormat(18)}}
                   </td>
                   <td class="align-middle">
                     <!-- Badge -->
@@ -125,12 +125,12 @@
                     <span class="d-block text-truncate" style="width: 6rem;">{{ranking.address}}</span>
                   </td>
                   <td class="align-middle">
-                    {{ranking.kairoBalance}}
+                    {{ranking.kairoBalance.toFormat(18)}}
                   </td>
                   <td class="align-middle">
                     <!-- Badge -->
                     <span class="badge badge-xl" [ngClass]="{'badge-soft-success': +ranking.cycleROI >= 0, 'badge-soft-danger': 0 > +ranking.cycleROI}">
-                      {{ranking.cycleROI}}%
+                      {{ranking.cycleROI.toFormat(4)}}%
                     </span>
                   </td>
                 </tr>

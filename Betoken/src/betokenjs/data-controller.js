@@ -385,8 +385,8 @@ export const loadRanking = async () => {
                 // format rank object
                 rank: 0,
                 address: _addr,
-                kairoBalance: BigNumber(await betoken.getKairoBalance(_addr)).div(PRECISION).plus(stake).toFixed(10),
-                cycleROI: totalStake.isZero() ? BigNumber(0).toFormat(4) : totalKROChange.div(totalStake).times(100).toFormat(4)
+                kairoBalance: BigNumber(await betoken.getKairoBalance(_addr)).div(PRECISION).plus(stake),
+                cycleROI: totalStake.isZero() ? BigNumber(0) : totalKROChange.div(totalStake).times(100)
             };
         });
     }));

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { user, stats, loading, refresh_actions } from '../../betokenjs/helpers';
 
 import { } from 'jquery';
+import BigNumber from 'bignumber.js';
 declare var $: any;
 
 @Component({
@@ -12,9 +13,9 @@ declare var $: any;
 export class RankingsComponent implements OnInit {
     rankingArray: Array<Object>;
     userRanking: String;
-    userValue: String;
+    userValue: BigNumber;
     userAddress: String;
-    userROI: any;
+    userROI: BigNumber;
 
     constructor() {
     }

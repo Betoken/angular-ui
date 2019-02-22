@@ -92,10 +92,13 @@
                       Manager
                   </th>
                   <th class="text-muted">
-                      Kairo Balance
+                      Current invest. cycle ROI
                   </th>
                   <th class="text-muted">
-                      Current Monthly ROI
+                      Kairo Balance (KRO)
+                  </th>
+                  <th class="text-muted">
+                      Commissions earned (all cycles)
                   </th>
                 </tr>
               </thead>
@@ -108,13 +111,16 @@
                     <i class="fe fe-star text-warning ml-2"></i> You
                   </td>
                   <td class="align-middle">
-                    {{userValue.toFormat(18)}}
-                  </td>
-                  <td class="align-middle">
                     <!-- Badge -->
                     <span class="badge badge-xl" [ngClass]="{'badge-soft-success': userROI.gt(0), 'badge-soft-danger': !(userROI.gt(0))}">
                      {{userROI.toFormat(4)}}%
                     </span>
+                  </td>
+                  <td class="align-middle">
+                    {{userValue.toFormat(4)}}
+                  </td>
+                  <td class="align-middle">
+                    1,000.0000 DAI
                   </td>
                 </tr>
                 <tr *ngFor="let ranking of rankingArray">
@@ -125,14 +131,18 @@
                     <span class="d-block text-truncate" style="width: 6rem;">{{ranking.address}}</span>
                   </td>
                   <td class="align-middle">
-                    {{ranking.kairoBalance.toFormat(18)}}
-                  </td>
-                  <td class="align-middle">
                     <!-- Badge -->
                     <span class="badge badge-xl" [ngClass]="{'badge-soft-success': +ranking.cycleROI >= 0, 'badge-soft-danger': 0 > +ranking.cycleROI}">
                       {{ranking.cycleROI.toFormat(4)}}%
                     </span>
                   </td>
+                  <td class="align-middle">
+                    {{ranking.kairoBalance.toFormat(4)}}
+                  </td>
+                  <td class="align-middle">
+                    1,000.0000 DAI
+                  </td>
+
                 </tr>
               </tbody>
             </table>

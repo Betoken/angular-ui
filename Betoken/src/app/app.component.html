@@ -1,9 +1,9 @@
-<app-side-nav></app-side-nav>
+<app-side-nav *ngIf="display_header_sidebar"></app-side-nav>
 <!-- MAIN CONTENT
 ================================================== -->
-<div class="main-content mb-6">
+<div class="mb-6" [ngClass]="{'main-content': display_header_sidebar}">
 
-  <app-header></app-header>
+  <app-header *ngIf="display_header_sidebar"></app-header>
 
   <router-outlet></router-outlet>
 

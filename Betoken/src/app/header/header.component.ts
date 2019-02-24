@@ -32,11 +32,11 @@ export class HeaderComponent implements OnInit {
   errorMsg = '';
 
   /* To copy Text from Textbox */
- copyInputMessage(inputElement){
-   inputElement.select();
-   document.execCommand('copy');
-   inputElement.setSelectionRange(0, 0);
- }
+  copyInputMessage(inputElement){
+    inputElement.select();
+    document.execCommand('copy');
+    inputElement.setSelectionRange(0, 0);
+  }
  
   constructor(private ms: AppComponent, private router: Router ) {
     this.nextphasealert = false;
@@ -64,6 +64,8 @@ export class HeaderComponent implements OnInit {
 
     error_notifications.check_dependency();
     this.errorMsg = error_notifications.get_error_msg();
+
+    this.ms.setHeaderSidebarDisplay(!this.checkRouterURL('/start'));
   }
 
   phaseActionText() {

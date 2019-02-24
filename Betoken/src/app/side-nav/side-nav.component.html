@@ -1,5 +1,6 @@
-<!-- NAVIGATION
-================================================== -->
+<div *ngIf="checkRouterURL('/commissions') === false">
+  <!-- NAVIGATION
+  ================================================== -->
 
   <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light py-1" id="sidebar">
     <div class="container-fluid">
@@ -144,3 +145,5 @@
       <button class="btn btn-success btn-block" routerLink="/commissions" type="button" data-toggle="modal" data-target="#modalRedeem" *ngIf="phase == 2 && can_redeem_commission">Redeem Commission</button>
     </div>
   </nav>
+
+</div>

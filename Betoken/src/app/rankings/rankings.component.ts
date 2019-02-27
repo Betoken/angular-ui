@@ -16,6 +16,7 @@ export class RankingsComponent implements OnInit {
     userValue: BigNumber;
     userAddress: String;
     userROI: BigNumber;
+    userHistCommission: BigNumber;
 
     constructor() {
     }
@@ -32,6 +33,7 @@ export class RankingsComponent implements OnInit {
         this.userValue = user.portfolio_value();
         this.userAddress = user.address();
         this.userROI = user.monthly_roi();
+        this.userHistCommission = user.historical_commission();
     }
 
     refresh() {

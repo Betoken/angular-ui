@@ -113,6 +113,26 @@ export const httpsGet = async (apiStr) => {
     return data;
 }
 
+export const getCommissionHistoryOf = async (addr) => {
+    let events = (await betoken.contracts.BetokenFund.getPastEvents("CommissionPaid", {
+        fromBlock: DEPLOYED_BLOCK,
+        filter: {
+            _sender: addr
+        }
+    }));
+    let commissionHistoryArray = [];
+    for (let event of events) {
+        let entry = {
+            cycle: event.returnValues._cycleNumber,
+            amount: BigNumber(event.returnValues._commission).div(10 ** 18),
+            timestamp: new Date((await web3.eth.getBlock(event.blockNumber)).timestamp * 1e3).toLocaleString(),
+            txHash: event.transactionHash
+        };
+        commissionHistoryArray.push(entry);
+    }
+    return commissionHistoryArray;
+}
+
 const clock = () => {
     const timeKeeper = setInterval(() => {
         var days, distance, hours, minutes, now, seconds, target;
@@ -275,23 +295,7 @@ export const loadUserData = async () => {
 export const loadTxHistory = async () => {
     isLoadingRecords.set(true);
     // Get commission history
-    let events = (await betoken.contracts.BetokenFund.getPastEvents("CommissionPaid", {
-        fromBlock: DEPLOYED_BLOCK,
-        filter: {
-            _sender: userAddress.get()
-        }
-    }));
-    let commissionHistoryArray = [];
-    for (let event of events) {
-        let entry = {
-            cycle: event.returnValues._cycleNumber,
-            amount: BigNumber(event.returnValues._commission).div(10 ** 18),
-            timestamp: new Date((await web3.eth.getBlock(event.blockNumber)).timestamp * 1e3).toLocaleString(),
-            txHash: event.transactionHash
-        };
-        commissionHistoryArray.push(entry);
-    }
-    commissionHistory.set(commissionHistoryArray);
+    commissionHistory.set(await getCommissionHistoryOf(userAddress.get()));
     isLoadingRecords.set(false);
 };
 
@@ -381,12 +385,19 @@ export const loadRanking = async () => {
                 }
             }
 
+            var history = await getCommissionHistoryOf(_addr);
+            var totalCommission = BigNumber(0);
+            history.forEach(element => {
+                totalCommission = totalCommission.plus(element['amount']);
+            });
+
             return {
                 // format rank object
                 rank: 0,
                 address: _addr,
                 kairoBalance: BigNumber(await betoken.getKairoBalance(_addr)).div(PRECISION).plus(stake),
-                cycleROI: totalStake.isZero() ? BigNumber(0) : totalKROChange.div(totalStake).times(100)
+                cycleROI: totalStake.isZero() ? BigNumber(0) : totalKROChange.div(totalStake).times(100),
+                commission: totalCommission
             };
         });
     }));

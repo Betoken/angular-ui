@@ -95,10 +95,10 @@
                       Current invest. cycle ROI
                   </th>
                   <th class="text-muted">
-                      Kairo Balance (KRO)
+                      Kairo Balance
                   </th>
                   <th class="text-muted">
-                      Commissions earned (all cycles)
+                      Commissions Earned Since Joining
                   </th>
                 </tr>
               </thead>
@@ -117,10 +117,10 @@
                     </span>
                   </td>
                   <td class="align-middle">
-                    {{userValue.toFormat(4)}}
+                    {{userValue.toFormat(4)}} KRO
                   </td>
                   <td class="align-middle">
-                    1,000.0000 DAI
+                    {{userHistCommission.toFormat(4)}} DAI
                   </td>
                 </tr>
                 <tr *ngFor="let ranking of rankingArray">
@@ -137,10 +137,10 @@
                     </span>
                   </td>
                   <td class="align-middle">
-                    {{ranking.kairoBalance.toFormat(4)}}
+                    {{ranking.kairoBalance.toFormat(4)}} KRO
                   </td>
                   <td class="align-middle">
-                    1,000.0000 DAI
+                    {{ranking.commission.toFormat(4)}} DAI
                   </td>
 
                 </tr>

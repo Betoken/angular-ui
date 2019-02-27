@@ -81,6 +81,14 @@ export const user = {
         }
         return "N/A";
     },
+    historical_commission: () => {
+        var history = Data.commissionHistory.get();
+        var totalCommission = BigNumber(0);
+        history.forEach(element => {
+            totalCommission = totalCommission.plus(element['amount']);
+        });
+        return totalCommission;
+    },
     portfolio_value: () => Data.portfolioValue.get(),
     portfolio_value_in_dai: () => {
         return Data.portfolioValue.get().times(Data.fundValue.get()).div(Data.kairoTotalSupply.get());

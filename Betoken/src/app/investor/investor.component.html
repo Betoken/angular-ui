@@ -10,7 +10,7 @@
 
                 <!-- Title -->
                 <h6 class="card-title text-uppercase text-muted mb-2">
-                  Owned $BTKS
+                  Owned BTKS (Betoken Shares)
                 </h6>
 
                 <!-- Heading -->
@@ -95,18 +95,25 @@
           <div class="col">
 
             <!-- Pretitle -->
-            <h6 class="header-pretitle text-secondary">
-              Betoken Fund
+            <h6 class="header-pretitle text-secondary mb-3">
+              Betoken Fund Overview
             </h6>
-            <img class="d-inline-block d-inline-block mb-3 mb-md-1 mr-3" src="assets/img/betoken-share-logo.svg" alt="" height="36">
-            <!-- Title -->
-            <h1 class="header-title text-white d-inline-block align-middle">
-              Current Share Price
-              <!-- Badge -->
-              <span class="badge badge-soft-success my-3 my-md-0 ml-md-2">
-                10.1340 DAI
-              </span>
-            </h1>
+            <div class="row align-items-center">
+              <div class="col-auto pr-0">
+                <img class="d-inline-block d-inline-block mb-3 mb-md-1 mr-3" src="assets/img/betoken-share-logo.svg" alt="" height="36">
+              </div>
+              <div class="col pl-0">
+                <!-- Title -->
+                <h1 class="header-title text-white d-inline-block align-middle">
+                  Current BTKS Price
+                  <!-- Badge -->
+                  <span class="badge badge-soft-success my-3 my-md-0 ml-md-2">
+                    {{sharePrice}} DAI
+                  </span>
+                </h1>
+              </div>
+
+            </div>
 
           </div>
           <div class="col-auto">
@@ -411,10 +418,10 @@
 
             <div class="col">
                 <h6 class="header-pretitle">
-                  BTKS Price in DAI
+                  Current buy price
                 </h6>
                 <h4 class="">
-                  10.2340
+                  10.2340 DAI
                 </h4>
             </div>
             <div class="col">
@@ -427,7 +434,7 @@
             </div>
         </div>
         <a class="text-secondary" data-toggle="tooltip" title="Because Betoken Shares are freely tradable on Uniswap exchange, when buying or selling, you must cross the Uniswap's spread. This means the price when selling can be above the current price. If you don't want to cross the spread, wait the end of the management phase to buy shares at the current price.">
-          <small>3.20% above current price</small>
+          <small>3.20% above current price <i class="fe fe-info align-middle"></i></small>
         </a>
         <hr>
         <h6 class="header-pretitle text-secondary">I want to buy</h6>
@@ -461,20 +468,28 @@
               </thead>
               <tbody>
                 <tr>
-                  <td class="px-0">
-                    200 BTKS <span class="text-muted small">@10.2340 DAI</span>
+                  <td class="px-0 small align-baseline text-muted">
+                    Value
                   </td>
-                  <td class="px-0 text-right">
-                    50.330,0000
+                  <td class="px-0 text-right small align-baseline">
+                    50,330.0000
+                  </td>
+                </tr>
+                <tr>
+                  <td class="px-0 small align-baseline text-muted">
+                    Betoken fees
+                  </td>
+                  <td class="px-0 text-right small align-baseline">
+                    0.0000
                   </td>
                 </tr>
                 <tr>
                   <td class="px-0 border-top border-top-2">
-                   <strong>Total Cost</strong>
+                   <strong>Total cost</strong>
                   </td>
                   <td colspan="2" class="px-0 text-right border-top border-top-2">
                     <span class="h3">
-                      50.330,0000
+                      50,330.0000 DAI
                     </span>
                   </td>
                 </tr>
@@ -595,10 +610,10 @@
 
             <div class="col">
                 <h6 class="header-pretitle">
-                  BTKS Price in DAI
+                  Current Sell Price
                 </h6>
                 <h4 class="">
-                  10.2340
+                  10.2340 DAI
                 </h4>
             </div>
             <div class="col">
@@ -611,7 +626,7 @@
             </div>
         </div>
         <a class="text-secondary" data-toggle="tooltip" title="Because Betoken Shares are freely tradable on Uniswap exchange, when buying or selling, you must cross the spread of Uniswap. This means the price when selling can be below the current price. If you don't want to cross the spread, wait the end of the management phase to sell shares at the current price.">
-          <small>3.20% below current price</small>
+          <small>3.20% below current price <i class="fe fe-info align-middle"></i></small>
         </a>
         <hr>
         <h6 class="header-pretitle text-secondary">I want to sell</h6>
@@ -645,20 +660,28 @@
               </thead>
               <tbody>
                 <tr>
-                  <td class="px-0">
-                    200 BTKS <span class="text-muted small">@10.2340 DAI</span>
+                  <td class="px-0 small align-baseline text-muted">
+                    Value
                   </td>
-                  <td class="px-0 text-right">
-                    50.330,0000
+                  <td class="px-0 text-right small align-baseline">
+                    50,330.0000
+                  </td>
+                </tr>
+                <tr>
+                  <td class="px-0 small align-baseline text-muted">
+                    Betoken fees
+                  </td>
+                  <td class="px-0 text-right small align-baseline">
+                    30.1234
                   </td>
                 </tr>
                 <tr>
                   <td class="px-0 border-top border-top-2">
-                   <strong>Total</strong>
+                   <strong>Total to withdraw</strong>
                   </td>
                   <td colspan="2" class="px-0 text-right border-top border-top-2">
                     <span class="h3">
-                      50.330,0000
+                      50,330.0000 DAI
                     </span>
                   </td>
                 </tr>

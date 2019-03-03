@@ -22,9 +22,16 @@
 
       </div>
       <!-- cta -->
-      <div *ngIf="checkRouterURL('/investor') === false">
+      <div *ngIf="checkRouterURL('/investing-dashboard') === false">
         <button class="btn btn-success mr-4" routerLink="/investments" type="button" data-toggle="modal" data-target="#modalBuy" *ngIf="phase == 1">Make Investments</button>
         <button class="btn btn-success mr-4" routerLink="/commissions" type="button" data-toggle="modal" data-target="#modalRedeem" *ngIf="phase == 2 && can_redeem_commission">Redeem Commission</button>
+        <button class="btn btn-white text-truncate" style="width: 12rem;" *ngIf="user_address !== '0x0'"><span class="text-success">●</span> {{user_address}}</button>
+        <button class="btn btn-white text-truncate" *ngIf="user_address == '0x0'"><span class="text-danger">●</span> No Account</button>
+      </div>
+      <!-- cta -->
+      <div *ngIf="checkRouterURL('/investing-dashboard') === true">
+        <button class="btn btn-success mr-2" type="button" data-toggle="modal" data-target="#/start">Buy BTKS</button>
+        <button class="btn btn-white mr-4" type="button" data-toggle="modal" data-target="#modalInvestorSell" disabled>Sell BTKS</button>
         <button class="btn btn-white text-truncate" style="width: 12rem;" *ngIf="user_address !== '0x0'"><span class="text-success">●</span> {{user_address}}</button>
         <button class="btn btn-white text-truncate" *ngIf="user_address == '0x0'"><span class="text-danger">●</span> No Account</button>
       </div>
@@ -125,6 +132,58 @@
             <a href="https://github.com/Betoken" class="btn btn-rounded-circle btn-white" target="_blank">
               <img class="mx-auto" src="assets/img/icons/github.svg" alt="medium logo" height="20">
             </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div><!-- / modal -->
+
+<!-- Referral modal -->
+<div class="modal fade fixed-right" id="modalReferral" tabindex="-1" role="dialog" aria-labelledby="modalReferral" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-vertical bg-white" role="document">
+    <div class="modal-content">
+      <div class="modal-body pb-5">
+        <!-- Close -->
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+
+        <div class="header text-center">
+          <div class="header-body">
+
+            <h6 class="header-pretitle">
+              Unlimited Free Kairo
+            </h6>
+
+            <h1 class="header-title">
+              Share your love of Betoken
+            </h1>
+
+          </div>
+        </div>
+        <!-- Text -->
+        <p class="text-center text-muted mb-5">
+          Introduce a friend to Betoken. You will both get 10% of free Kairo relative to the amount of Kairo tokens your friend buys 👇. <br>
+          <small>(Note: you need to own Mainnet Kairo to participate)</small>
+        </p>
+        <form>
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Share your link</label>
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" value="https://betoken.fund/iao/?ref={{user_address}}" aria-label="Referral link" aria-describedby="basic-addon2" #userinput>
+              <div class="input-group-append">
+                <button class="btn btn-white" type="button" (click)="copyInputMessage(userinput)" value="click to copy"><i class="fe fe-copy"></i></button>
+              </div>
+            </div>
+          </div>
+        </form>
+        <hr>
+        <div class="row justify-content-center">
+          <div class="col-auto">
+            <h4 class="text-center">Share on</h4>
+            <a class="btn btn-lg btn-twitter text-white mr-3" href="https://twitter.com/intent/tweet?hashtags=betokenfund%2C%20DeFi%2C%20cryptocurrency&original_referer=https%3A%2F%2Fpublish.twitter.com%2F%3FbuttonHashtag%3Dbetokenfund%252C%2520DeFi%252C%2520cryptocurrency%26buttonRecommendation%3Dbetokenfund%26buttonText%3DHey%2520everyone%252C%2520click%2520on%2520this%2520link%2520to%2520become%2520a%2520fund%2520manager%2520%2540betokenfund%252C%2520an%2520open%2520%2526%2520meritocratic%2520crypto%2520fund.%2520You%2520get%2520a%252020%2525%2520discount%2521%26buttonType%3DTweetButton%26buttonUrl%3Dhttps%253A%252F%252Fbetoken.fund%252Fiao%252F%253Fref%253D%257B%257Buser_address%257D%257D%26dnt%3D1%26widget%3DButton&ref_src=twsrc%5Etfw&related=betokenfund&text=Hey%20everyone%2C%20click%20on%20this%20link%20to%20become%20a%20fund%20manager%20%40betokenfund%2C%20an%20open%20%26%20meritocratic%20crypto%20fund.%20You%20get%20a%2020%25%20discount!&tw_p=tweetbutton&url=https%3A%2F%2Fbetoken.fund%2Fiao%2F%3Fref%3D{{user_address}}" rel="nofollow" target="_blank">Twitter</a>
+            <a class="btn btn-lg btn-facebook text-white" href="https://www.facebook.com/sharer/sharer.php?kid_directed_site=0&sdk=joey&u=https%3A%2F%2Fbetoken.fund%2Fiao%2F%3Fref%3D{{user_address}}&display=popup&ref=plugin&src=share_button" rel="nofollow" target="_blank">Facebook</a>
           </div>
         </div>
       </div>

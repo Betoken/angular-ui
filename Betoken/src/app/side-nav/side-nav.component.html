@@ -120,3 +120,11 @@
     <button class="btn btn-success btn-block" routerLink="/commissions" type="button" data-toggle="modal" data-target="#modalRedeem" *ngIf="phase == 2 && can_redeem_commission">Redeem Commission</button>
   </div>
 </nav>
+<nav class="navbar fixed-bottom d-md-none" *ngIf="checkRouterURL('/investing-dashboard') === true">
+  <div class="btn-group btn-block" role="group" aria-label="Basic example">
+      <button class="btn btn-success w-50" type="button" data-toggle="modal" data-target="#modalInvestorBuy">Buy BTKS</button>
+      <button class="btn btn-white w-50 " type="button" data-toggle="modal" data-target="#modalInvestorSell">Sell BTKS</button>
+  </div>
+  <div class="container-fluid justify-content-center px-0">
+      </div>
+</nav>

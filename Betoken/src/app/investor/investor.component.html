@@ -1,46 +1,727 @@
-<div class="investor-wrapper col-12 col-lg-10 float-right mt-5">
-  <div class="row">
-    <div class="left-sec col-12 col-lg-6 order-2 order-lg-1">
-      <img class="ml-4" src="assets/images/investor-waiting-illustration.svg" width="472">
+<!-- HEADER -->
+<div class="header bg-dark pb-5">
+    <div class="container-fluid">
+      <div class="card-deck mt-4 mb-0">
+        <!-- Card -->
+        <div class="card" data-toggle="tooltip" data-html="true" title="The total number of Betoken Fund Shares ($BTKS) owned by you.">
+          <div class="card-body">
+            <div class="row align-items-center">
+              <div class="col">
+
+                <!-- Title -->
+                <h6 class="card-title text-uppercase text-muted mb-2">
+                  Owned $BTKS
+                </h6>
+
+                <!-- Heading -->
+                <span class="h2 mb-0">
+                  344.0203
+                </span>
+
+              </div>
+              <div class="col-auto">
+
+                <!-- Icon -->
+                <span class="h2 fe fe-disc text-muted mb-0"></span>
+
+              </div>
+            </div> <!-- / .row -->
+
+          </div>
+        </div>
+        <!-- Card -->
+        <div class="card" data-toggle="tooltip" data-html="true" title="The actual value in DAI stable coin of the total Betoken Fund shares owned by you.">
+          <div class="card-body">
+            <div class="row align-items-center">
+              <div class="col">
+
+                  <!-- Title -->
+                  <h6 class="card-title text-uppercase text-muted mb-2">
+                    Value (DAI)
+                  </h6>
+
+                  <!-- Heading -->
+                  <span class="h2 mb-0">
+                    12,344.2323
+                  </span>
+
+              </div>
+              <div class="col-auto">
+
+                <!-- Icon -->
+                <span class="h2 fe fe-dollar-sign text-muted mb-0"></span>
+
+              </div>
+            </div> <!-- / .row -->
+
+          </div>
+        </div>
+        <!-- Card -->
+        <div class="card" data-toggle="tooltip" data-html="true" title="Your return on investment since you subscribed to Betoken Fund by buying shares ($BTKS)">
+          <div class="card-body">
+            <div class="row align-items-center">
+              <div class="col">
+
+                  <!-- Title -->
+                  <h6 class="card-title text-uppercase text-muted mb-2">
+                    ROI since subscription (DAI)
+                  </h6>
+
+                  <!-- Heading -->
+                  <span class="h2 mb-0">
+                    344.2323
+                  </span>
+
+                  <!-- Badge -->
+                  <span class="badge badge-soft-success mt--2">
+                    +10.32%
+                  </span>
+
+              </div>
+              <div class="col-auto">
+
+                <!-- Icon -->
+                <span class="h2 fe fe-activity text-muted mb-0"></span>
+
+              </div>
+            </div> <!-- / .row -->
+
+          </div>
+        </div>
+      </div> <!-- / .row -->
+      <!-- Body -->
+      <div class="header-body">
+        <div class="row align-items-end">
+          <div class="col">
+
+            <!-- Pretitle -->
+            <h6 class="header-pretitle text-secondary">
+              Betoken Fund
+            </h6>
+            <img class="d-inline-block d-inline-block mb-3 mb-md-1 mr-3" src="assets/img/betoken-share-logo.svg" alt="" height="36">
+            <!-- Title -->
+            <h1 class="header-title text-white d-inline-block align-middle">
+              Current Share Price
+              <!-- Badge -->
+              <span class="badge badge-soft-success my-3 my-md-0 ml-md-2">
+                10.1340 DAI
+              </span>
+            </h1>
+
+          </div>
+          <div class="col-auto">
+
+            <!-- Nav -->
+            <ul class="nav nav-tabs header-tabs">
+              <li class="nav-item" data-toggle="chart">
+                <a href="#" class="nav-link active" data-toggle="tab" (click)="chartTabId = 0; drawChart(0);">
+                  <h6 class="header-pretitle text-secondary">
+                      <!-- IDEA: notabs ui -->
+                    Change 1 month
+                  </h6>
+                  <h3 class="text-white mb-0">
+                    {{currMoROI}}%
+                  </h3>
+                </a>
+              </li>
+              <li class="nav-item" data-toggle="chart">
+                <a href="#" class="nav-link" data-toggle="tab" (click)="chartTabId = 1; drawChart(1);">
+                  <h6 class="header-pretitle text-secondary">
+                    Change since inception
+                  </h6>
+                  <h3 class="text-white mb-0">
+                    {{avgMonthReturn}}%
+                  </h3>
+                </a>
+              </li>
+            </ul>
+
+          </div>
+        </div> <!-- / .row -->
+      </div> <!-- / .header-body -->
+
+      <!-- Footer -->
+      <div class="header-footer">
+
+        <!-- Chart -->
+        <div class="chart">
+          <canvas id="roi-chart" class="chart-canvas">
+          </canvas>
+        </div>
+
+      </div>
+
     </div>
-    <div class="right-sec col-12 col-lg-5 order-1 order-lg-2">
-        <div class="row">
-            <div class="email-update-sec col-12 col-md-4 col-lg-12 mb-3">
-                <div class="sec-header">
-                    <p class="sec-title">Coming soon. Get early access by subscribing here</p>
-                </div>
+</div> <!-- / .header -->
 
-                    <p class="update-info black-font">
-                        Invest in cryptocurrencies even if you’ve never gone down the rabbit hole. Let someone else do the hard work. You just take those sweet profits. <a class="green-font" href="https://betoken.fund/" target="_blank">Learn more.</a>
-                    </p>
+<!-- CARDS -->
+<div class="container-fluid mt--6">
 
+    <div class="card-deck mb-5">
+        <!-- Card -->
+        <div class="card" data-toggle="tooltip" data-html="true" title="Sortino ratio is a way to examine the performance of an investment by adjusting for its risk. The risk-free rate used here is 3% per year, an approximation of the US 10Y treasury bond's interest rate.">
+          <div class="card-body">
+            <div class="row align-items-center">
+              <div class="col">
 
-                    <p>
-                        Email address
-                    </p>
+                  <!-- Title -->
+                  <h6 class="card-title text-uppercase text-muted mb-2">
+                    Sortino Ratio
+                  </h6>
 
-                    <form action="https://fund.us17.list-manage.com/subscribe/post?u=9c0647dcb587985ed6121cdf6&amp;id=150e0f091e" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-                        <div class="emailer-box">
-                            <input class="outline-button w-100 mb-3" type="email" value="" name="EMAIL" id="mce-EMAIL" placeholder="myemail@address.com" required>
-                            <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_9c0647dcb587985ed6121cdf6_150e0f091e" tabindex="-1" value=""></div>
-                            <div class="input-group-append">
-                                <button class="text-center outline-button black-font w-100 mb-3" name="subscribe" id="mc-embedded-subscribe">
-                                    GET UPDATED
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                  <!-- Heading -->
+                  <span class="h2 mb-0">
+                    {{sortinoRatio}}
+                  </span>
 
-                    <div class="update-footer">
-                        <a target="_blank" href="https://t.me/betokenfund">
-                            <p class="black-font" style="text-align: center;">
-                                Join our Telegram community
-                                <img src="assets/images/iconmonstr-telegram-4.svg" width="24" class="ml-1">
-                            </p>
-                        </a>
+              </div>
+              <div class="col-auto">
+
+                <!-- Icon -->
+                <span class="h2 fe fe-shield text-muted mb-0"></span>
+
+              </div>
+            </div> <!-- / .row -->
+
+          </div>
+        </div>
+        <!-- Card -->
+        <div class="card" data-toggle="tooltip" data-html="true" title="Standard deviation represents the volatility of an asset. The number shown here is the downside sample standard deviation of Betoken's cumulative ROI since inception.">
+          <div class="card-body">
+            <div class="row align-items-center">
+              <div class="col">
+
+                  <!-- Title -->
+                  <h6 class="card-title text-uppercase text-muted mb-2">
+                    Standard Deviation
+                  </h6>
+
+                  <!-- Heading -->
+                  <span class="h2 mb-0">
+                    {{standardDeviation}}
+                  </span>
+
+              </div>
+              <div class="col-auto">
+
+                <!-- Icon -->
+                <span class="h2 fe fe-bar-chart-2 text-muted mb-0"></span>
+
+              </div>
+            </div> <!-- / .row -->
+
+          </div>
+        </div>
+    </div> <!-- / .row -->
+</div>
+
+<!-- CARDS -->
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <!-- Card -->
+      <div class="card">
+        <div class="card-header">
+          <div class="row align-items-center">
+            <div class="col">
+
+              <!-- Title -->
+              <h4 class="card-header-title">
+                Your Deposit & Withdraw History
+              </h4>
+
+            </div>
+            <div class="col-auto">
+
+                <!-- Refresh -->
+                <button class="btn btn-sm btn-white" type="button" name="button" (click) = "refresh()"><i class="fe fe-refresh-cw align-middle" *ngIf="isLoading() == false"></i><div class="loader loader-sm loader-secondary my-1" *ngIf="isLoading()"></div></button>
+
+            </div>
+          </div> <!-- / .row -->
+        </div>
+        <div class="table-responsive">
+          <table class="table table-sm table-nowrap card-table">
+            <thead>
+              <tr>
+                <th class="text-muted">
+                    Type
+                </th>
+                <th class="text-muted">
+                    Amount (DAI)
+                </th>
+                <th class="text-muted">
+                    Timestamp
+                </th>
+                <th class="text-muted">
+                    Transaction
+                </th>
+              </tr>
+            </thead>
+            <tbody class="list">
+              <tr>
+                <td class="align-middle">
+                    <span class="badge badge-soft-success">
+                      Deposit
+                    </span>
+                </td>
+                <td class="align-middle">
+                  1,850.1234
+                </td>
+                <td class="align-middle">
+                  12/05/2019
+                </td>
+                <td class="align-middle">
+                  <div class="input-group-append">
+                    <a class="btn btn-white h-100" href="https://rinkeby.etherscan.io/tx/" target="_blank"><i class="fe fe-external-link"></i></a>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="align-middle">
+                    <span class="badge badge-soft-danger">
+                      Withdraw
+                    </span>
+                </td>
+                <td class="align-middle">
+                  1,850.1234
+                </td>
+                <td class="align-middle">
+                  12/05/2019
+                </td>
+                <td class="align-middle">
+                  <div class="input-group-append">
+                    <a class="btn btn-white h-100" href="https://rinkeby.etherscan.io/tx/" target="_blank"><i class="fe fe-external-link"></i></a>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div> <!-- / .row -->
+</div>
+
+<!-- Buy BTKS modal -->
+<div class="modal fade fixed-right" id="modalInvestorBuy" tabindex="-1" role="dialog" aria-labelledby="modalInvestorBuy" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-vertical bg-white" role="document">
+    <div class="modal-content" data-toggle="lists" data-lists-values="[&quot;name&quot;]">
+      <div class="card-header border-0">
+        <div class="row align-items-center">
+          <div class="col">
+            <!-- Select Asset to buy BTKS title --
+            <h4 class="card-header-title">
+              How do you want to buy?
+            </h4>
+            -->
+            <!-- BTKS amount title -->
+            <h4 class="card-header-title">
+              How many shares do you want to buy?
+            </h4>
+            <!-- BTKS Confirm buy title --
+            <h4 class="card-header-title">
+              Confirm Buy Order
+            </h4>
+            -->
+            <!-- BTKS Processing buy title --
+            <h4 class="card-header-title">
+              Processing Buy Order
+            </h4>
+            -->
+            <!-- BTKS confirmed buy title --
+            <h4 class="card-header-title">
+              Buy Order confirmed
+            </h4>
+            -->
+          </div>
+          <div class="col-auto">
+
+            <!-- Close -->
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+
+          </div>
+        </div> <!-- / .row -->
+      </div>
+      <div class="card-header py-0 border-0" style="min-height: 24px;">
+          <div class="progress" style="height: 8px;">
+              <div class="progress-bar bg-success" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+              <div class="progress-bar bg-success border-left" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+              <div class="progress-bar bg-secondary border-left" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+              <div class="progress-bar bg-secondary border-left" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+              <div class="progress-bar bg-secondary border-left" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+      </div>
+      <!-- Search in list assets to buy BTKS --
+      <div class="card-header">
+        <form>
+          <div class="input-group input-group-flush input-group-merge">
+            <input type="search" class="form-control form-control-prepended search" placeholder="Search" (keyup)="filterList($event, 'asset-list', 0)">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <span class="fe fe-search"></span>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      -->
+      <div class="modal-body">
+        <!-- Step 0: select asset --
+        <!-- List supported assets --
+        <ul class="list-group list-group-flush list" id="asset-list">
+            <li class="list-group-item px-0 text-secondary border-bottom-0 border-top-0">
+                <h6 class="header-pretitle border-0">
+                  Select a currency or utility token
+                </h6>
+            </li>
+            <li class="list-group-item px-0" *ngFor = "let token of tokenList">
+                <a href="#" (click)="selectedTokenSymbol = token; createInvestmentPopupStep = 1;">
+                  <div class="row align-items-center">
+                    <div class="col-auto">
+
+                      <span class="avatar avatar-sm">
+                        <img src={{getTokenLogoUrl(token)}} alt="token logo" class="avatar-img rounded-circle">
+                      </span>
+
                     </div>
+                    <div class="col ml--2">
+
+                      <span class="mb-1 h4 name">
+                        {{token}}
+                      </span>
+
+                      <p class="small text-secondary mb-0">
+                        {{getTokenName(token)}}
+                      </p>
+
+                    </div>
+                  </div>
+
+                </a>
+            </li>
+        </ul>
+        -->
+        <!-- Step 1: enter amount -->
+
+        <!-- Quantity of share to buy -->
+
+        <div class="row">
+
+            <div class="col">
+                <h6 class="header-pretitle">
+                  BTKS Price in DAI
+                </h6>
+                <h4 class="">
+                  10.2340
+                </h4>
+            </div>
+            <div class="col">
+                <h6 class="header-pretitle">
+                  OWNED BTKS
+                </h6>
+                <h4 class="">
+                  0,00
+                </h4>
             </div>
         </div>
+        <a class="text-secondary" data-toggle="tooltip" title="Because Betoken Shares are freely tradable on Uniswap exchange, when buying or selling, you must cross the Uniswap's spread. This means the price when selling can be above the current price. If you don't want to cross the spread, wait the end of the management phase to buy shares at the current price.">
+          <small>3.20% above current price</small>
+        </a>
+        <hr>
+        <h6 class="header-pretitle text-secondary">I want to buy</h6>
+        <div class="row justify-content-center mb-2">
+            <div class="col">
+                <form>
+                    <div class="form-group row mb-0">
+                      <div class="col">
+                          <input type="number" class="form-control form-control-lg form-control-flush input-xl border-bottom border-1 rounded-0 mt-1 mb-1" aria-describedby="Betoken Shares Amount to buy" placeholder="0.0" id="sharesAmountToBuy">
+                      </div>
+                      <label for="sharesAmountToBuy" class="col-auto col-form-label"><span class="display-4">BTKS</span></label>
+                    </div>
+                    <small id="kroBalance" class="form-text text-secondary d-inline-block">100 BAT available</small>
+                </form>
+            </div>
+            <div class="col-auto">
+                <button class="btn btn-sm btn-outline-secondary mt-3" type="button" name="button">Max</button>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table mb-4">
+              <thead>
+                <tr>
+                  <th class="px-0 bg-transparent border-top-0">
+                    <span class="h6">Order details</span>
+                  </th>
+                  <th class="px-0 bg-transparent border-top-0 text-right">
+                    <span class="h6">BAT</span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="px-0">
+                    200 BTKS <span class="text-muted small">@10.2340 DAI</span>
+                  </td>
+                  <td class="px-0 text-right">
+                    50.330,0000
+                  </td>
+                </tr>
+                <tr>
+                  <td class="px-0 border-top border-top-2">
+                   <strong>Total Cost</strong>
+                  </td>
+                  <td colspan="2" class="px-0 text-right border-top border-top-2">
+                    <span class="h3">
+                      50.330,0000
+                    </span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+        <!-- Step 2: confirm transaction --
+        <p class="text-center text-muted mb-5">
+          Confirm the transaction in your wallet’s interface to save it on the Ethereum blockchain. It's fine to stick with these defaults gas limit and price.
+        </p>
+        -->
+
+        <!-- Step 3: transaction broadcasted --
+        <!-- Processing investment body --
+        <div class="py-5 is-loading is-loading-lg"></div>
+        <p class="text-center text-muted mb-5">
+          Your investment is being saved on the Ethereum blockchain.
+        </p>
+        <hr >
+        <form >
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Transaction ID</label>
+            <div class="input-group mb-3">
+              <input type="text" class="form-control form-control-lg" value="{{transactionId}}" aria-label="Transaction ID" aria-describedby="">
+              <div class="input-group-append">
+                <a class="btn btn-white h-100" href="https://rinkeby.etherscan.io/tx/{{transactionId}}" target="_blank"><i class="fe fe-external-link"></i></a>
+              </div>
+            </div>
+          </div>
+        </form>
+        -->
+        <!-- Step 4: transaction confirmed --
+        <!-- Investment confirmed body --
+        <p class="h1 text-center">
+          <i class="fe fe-check-circle text-success"></i>
+        </p>
+        <p class="text-center text-muted mb-5">
+          You bought <span class="font-weight-bold text-secondary">000</span> BTKS.
+        </p>
+        <hr>
+        <form>
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Transaction ID</label>
+            <div class="input-group mb-3">
+              <input type="text" class="form-control form-control-lg" value="{{transactionId}}" aria-label="Transaction ID" aria-describedby="">
+              <div class="input-group-append">
+                <a class="btn btn-white h-100" href="https://rinkeby.etherscan.io/tx/{{transactionId}}" target="_blank"><i class="fe fe-external-link"></i></a>
+              </div>
+            </div>
+          </div>
+        </form>
+        -->
+        <!-- Continue button for step 1 -->
+        <button type="submit" class="btn btn-block btn-success mt-auto" aria-label="Continue to Buy">
+            Continue
+        </button>
+        <!-- Close button for step 4 --
+        <button type="submit" class="btn btn-block btn-white mt-auto" data-dismiss="modal" aria-label="Close">
+        Close
+        </button>
+        -->
+      </div>
     </div>
   </div>
-</div>
+</div><!-- / modal -->
+
+<!-- Sell BTKS modal -->
+<div class="modal fade fixed-right" id="modalInvestorSell" tabindex="-1" role="dialog" aria-labelledby="modalInvestorSell" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-vertical bg-white" role="document">
+    <div class="modal-content" data-toggle="lists" data-lists-values="[&quot;name&quot;]">
+      <div class="card-header border-0">
+        <div class="row align-items-center">
+          <div class="col">
+            <!-- BTKS amount title -->
+            <h4 class="card-header-title">
+              How many shares do you want to sell?
+            </h4>
+            <!-- BTKS Confirm Sell title --
+            <h4 class="card-header-title">
+              Confirm Sell Order
+            </h4>
+            -->
+            <!-- BTKS Processing Sell title --
+            <h4 class="card-header-title">
+              Processing Sell Order
+            </h4>
+            -->
+            <!-- BTKS confirmed Sell title --
+            <h4 class="card-header-title">
+              Sell Order confirmed
+            </h4>
+            -->
+          </div>
+          <div class="col-auto">
+
+            <!-- Close -->
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+
+          </div>
+        </div> <!-- / .row -->
+      </div>
+      <div class="card-header py-0 border-0" style="min-height: 24px;">
+          <div class="progress" style="height: 8px;">
+              <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+              <div class="progress-bar bg-secondary border-left" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+              <div class="progress-bar bg-secondary border-left" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+              <div class="progress-bar bg-secondary border-left" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+      </div>
+      <div class="modal-body">
+        <!-- Step 1: enter amount -->
+
+        <!-- Quantity of share to sell -->
+
+        <div class="row">
+
+            <div class="col">
+                <h6 class="header-pretitle">
+                  BTKS Price in DAI
+                </h6>
+                <h4 class="">
+                  10.2340
+                </h4>
+            </div>
+            <div class="col">
+                <h6 class="header-pretitle">
+                  OWNED BTKS
+                </h6>
+                <h4 class="">
+                  300,00
+                </h4>
+            </div>
+        </div>
+        <a class="text-secondary" data-toggle="tooltip" title="Because Betoken Shares are freely tradable on Uniswap exchange, when buying or selling, you must cross the spread of Uniswap. This means the price when selling can be below the current price. If you don't want to cross the spread, wait the end of the management phase to sell shares at the current price.">
+          <small>3.20% below current price</small>
+        </a>
+        <hr>
+        <h6 class="header-pretitle text-secondary">I want to sell</h6>
+
+        <div class="row justify-content-center mb-2">
+            <div class="col">
+                <form>
+                    <div class="form-group row mb-0">
+                      <div class="col">
+                          <input type="number" class="form-control form-control-lg form-control-flush input-xl border-bottom border-1 rounded-0 mt-1 mb-1" aria-describedby="Betoken Shares Amount to sell" placeholder="0.0" id="sharesAmountToSell">
+                      </div>
+                      <label for="sharesAmountToSell" class="col-auto col-form-label"><span class="display-4">BTKS</span></label>
+                    </div>
+                </form>
+            </div>
+            <div class="col-auto">
+                <button class="btn btn-sm btn-outline-secondary mt-3" type="button" name="button">Max</button>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table mb-4">
+              <thead>
+                <tr>
+                  <th class="px-0 bg-transparent border-top-0">
+                    <span class="h6">Order details</span>
+                  </th>
+                  <th class="px-0 bg-transparent border-top-0 text-right">
+                    <span class="h6 active">DAI</span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="px-0">
+                    200 BTKS <span class="text-muted small">@10.2340 DAI</span>
+                  </td>
+                  <td class="px-0 text-right">
+                    50.330,0000
+                  </td>
+                </tr>
+                <tr>
+                  <td class="px-0 border-top border-top-2">
+                   <strong>Total</strong>
+                  </td>
+                  <td colspan="2" class="px-0 text-right border-top border-top-2">
+                    <span class="h3">
+                      50.330,0000
+                    </span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+        <!-- Step 2: confirm transaction --
+        <p class="text-center text-muted mb-5">
+          Confirm the transaction in your wallet’s interface to save it on the Ethereum blockchain. It's fine to stick with these defaults gas limit and price.
+        </p>
+        -->
+
+        <!-- Step 3: transaction broadcasted --
+        <!-- Processing investment body --
+        <div class="py-5 is-loading is-loading-lg"></div>
+        <p class="text-center text-muted mb-5">
+          Your investment is being saved on the Ethereum blockchain.
+        </p>
+        <hr >
+        <form >
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Transaction ID</label>
+            <div class="input-group mb-3">
+              <input type="text" class="form-control form-control-lg" value="{{transactionId}}" aria-label="Transaction ID" aria-describedby="">
+              <div class="input-group-append">
+                <a class="btn btn-white h-100" href="https://rinkeby.etherscan.io/tx/{{transactionId}}" target="_blank"><i class="fe fe-external-link"></i></a>
+              </div>
+            </div>
+          </div>
+        </form>
+        -->
+        <!-- Step 4: transaction confirmed --
+        <!-- Sell order confirmed body --
+        <p class="h1 text-center">
+          <i class="fe fe-check-circle text-success"></i>
+        </p>
+        <p class="text-center text-muted mb-5">
+          You sold <span class="font-weight-bold text-secondary">000</span> BTKS.
+        </p>
+        <hr>
+        <form>
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Transaction ID</label>
+            <div class="input-group mb-3">
+              <input type="text" class="form-control form-control-lg" value="{{transactionId}}" aria-label="Transaction ID" aria-describedby="">
+              <div class="input-group-append">
+                <a class="btn btn-white h-100" href="https://rinkeby.etherscan.io/tx/{{transactionId}}" target="_blank"><i class="fe fe-external-link"></i></a>
+              </div>
+            </div>
+          </div>
+        </form>
+        -->
+        <!-- Continue button for step 1 -->
+        <button type="submit" class="btn btn-block btn-success mt-auto" aria-label="Continue to Sell">
+            Continue
+        </button>
+
+        <!-- Close button for step 4 --
+        <button type="submit" class="btn btn-block btn-white mt-auto" data-dismiss="modal" aria-label="Close">
+        Close
+        </button>
+        -->
+      </div>
+    </div>
+  </div>
+</div><!-- / modal -->

@@ -52,6 +52,11 @@ const routes: Routes = [
   path: 'market',
   component: MarketComponent,
   pathMatch: 'full'
+},
+{
+  path: 'investing-dashboard',
+  component: InvestorComponent,
+  pathMatch: 'full'
 }
 
 ];

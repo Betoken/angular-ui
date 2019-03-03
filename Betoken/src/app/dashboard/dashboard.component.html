@@ -1,27 +1,125 @@
 <!-- HEADER -->
 <div class="header bg-dark pb-5">
     <div class="container-fluid">
+      <div class="card-deck mt-4 mb-0">
+      <!-- Card -->
+      <div class="card" data-toggle="tooltip" data-html="true" title="Amount of Betoken's AUM you manage. The more Kairo you own, the more money you will manage.">
+        <div class="card-body">
+          <div class="row align-items-center">
+            <div class="col">
 
-      <!-- Body -->
-      <div class="header-body">
-        <div class="alert alert-primary alert-dismissible fade show d-flex d-md-none" role="alert">
-          <a class="text-white" data-toggle="modal" href="#modalReferral">
-            <strong>Invite friends</strong>, earn Kairo
-          </a>
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+              <!-- Title -->
+              <h6 class="card-title text-uppercase text-muted mb-2">
+                Your Portfolio Value ($DAI)
+              </h6>
+
+              <!-- Heading -->
+              <span class="h2 mb-0">
+                {{portfolioValueInDAI}}
+              </span>
+
+            </div>
+            <div class="col-auto">
+
+              <!-- Icon -->
+              <span class="h2 fe fe-pie-chart text-muted mb-0"></span>
+
+            </div>
+          </div> <!-- / .row -->
+
         </div>
-        <div class="row justify-content-end d-none d-md-flex">
-          <div class="col-auto">
+      </div>
+        <!-- Card -->
+        <div class="card" data-toggle="tooltip" data-html="true" title="The more Kairo you own, the more money you will manage, the more commission you will receive. You will be able to earn Kairo by making profitable investments for the Betoken fund.">
+          <div class="card-body">
+            <div class="row align-items-center">
+              <div class="col">
 
-            <!-- Button -->
-            <a class="btn btn-primary mt-3 mt-md-0" data-toggle="modal" href="#modalReferral">
-              Invite friends, earn Kairo
-            </a>
+                <!-- Title -->
+                <h6 class="card-title text-uppercase text-muted mb-2">
+                  Your KRO Balance
+                </h6>
+
+                <!-- Heading -->
+                <span class="h2 mb-0">
+                  {{kairo_balance}}
+                </span>
+
+                <!-- Badge -->
+                <span class="badge" [ngClass]="{'badge-soft-success': +monthly_pl >= 0, 'badge-soft-danger': 0 > +monthly_pl}">
+                  {{monthly_pl}}%
+                </span>
+
+              </div>
+              <div class="col-auto">
+
+                <!-- Icon -->
+                <span class="h2 fe fe-zap text-muted mb-0"></span>
+
+              </div>
+            </div> <!-- / .row -->
 
           </div>
         </div>
+        <!-- Card -->
+        <div class="card" data-toggle="tooltip" data-html="true" title="<strong>20%</strong> of the fund's profit and <strong>0.1%</strong> of the AUM is set aside as commissions every month, which is paid to managers proportional to the Kairo they hold. The estimate displayed here is calculated using the current fund ROI.">
+          <div class="card-body">
+            <div class="row align-items-center">
+              <div class="col">
+
+                <!-- Title -->
+                <h6 class="card-title text-uppercase text-muted mb-2">
+                  Your Estimated Commission This Month ($DAI)
+                </h6>
+
+                <!-- Heading -->
+                <span class="h2 mb-0">
+                  {{expected_commission}}
+                </span>
+
+              </div>
+              <div class="col-auto">
+
+                <!-- Icon -->
+                <span class="h2 fe fe-award text-muted mb-0"></span>
+
+              </div>
+            </div> <!-- / .row -->
+
+          </div>
+        </div>
+        <!-- Card -->
+        <div class="card">
+          <div data-toggle="tooltip" title="Your ranking among Betoken's managers based on your Kairo balance">
+            <div class="card-body">
+              <div class="row align-items-center">
+                <div class="col">
+
+                  <!-- Title -->
+                  <h6 class="card-title text-uppercase text-muted mb-2">
+                    Your Ranking
+                  </h6>
+
+                  <!-- Heading -->
+                  <span class="h2 mb-0">
+                    {{userRanking}}
+                  </span>
+
+                </div>
+                <div class="col-auto">
+
+                  <!-- Icon -->
+                  <span class="h2 fe fe-user text-muted mb-0"></span>
+
+                </div>
+              </div> <!-- / .row -->
+
+            </div>
+          </div>
+        </div>
+      </div> <!-- / .row -->
+      <!-- Body -->
+      <div class="header-body">
         <div class="row align-items-end">
           <div class="col">
 
@@ -189,123 +287,6 @@
             </div>
           </div> <!-- / .row -->
 
-        </div>
-      </div>
-    </div> <!-- / .row -->
-    <div class="card-deck mb-5">
-    <!-- Card -->
-    <div class="card" data-toggle="tooltip" data-html="true" title="Amount of Betoken's AUM you manage. The more Kairo you own, the more money you will manage.">
-      <div class="card-body">
-        <div class="row align-items-center">
-          <div class="col">
-
-            <!-- Title -->
-            <h6 class="card-title text-uppercase text-muted mb-2">
-              Your Portfolio Value ($DAI)
-            </h6>
-
-            <!-- Heading -->
-            <span class="h2 mb-0">
-              {{portfolioValueInDAI}}
-            </span>
-
-          </div>
-          <div class="col-auto">
-
-            <!-- Icon -->
-            <span class="h2 fe fe-pie-chart text-muted mb-0"></span>
-
-          </div>
-        </div> <!-- / .row -->
-
-      </div>
-    </div>
-      <!-- Card -->
-      <div class="card" data-toggle="tooltip" data-html="true" title="The more Kairo you own, the more money you will manage, the more commission you will receive. You will be able to earn Kairo by making profitable investments for the Betoken fund.">
-        <div class="card-body">
-          <div class="row align-items-center">
-            <div class="col">
-
-              <!-- Title -->
-              <h6 class="card-title text-uppercase text-muted mb-2">
-                Your KRO Balance
-              </h6>
-
-              <!-- Heading -->
-              <span class="h2 mb-0">
-                {{kairo_balance}}
-              </span>
-
-              <!-- Badge -->
-              <span class="badge" [ngClass]="{'badge-soft-success': +monthly_pl >= 0, 'badge-soft-danger': 0 > +monthly_pl}">
-                {{monthly_pl}}%
-              </span>
-
-            </div>
-            <div class="col-auto">
-
-              <!-- Icon -->
-              <span class="h2 fe fe-zap text-muted mb-0"></span>
-
-            </div>
-          </div> <!-- / .row -->
-
-        </div>
-      </div>
-      <!-- Card -->
-      <div class="card" data-toggle="tooltip" data-html="true" title="<strong>20%</strong> of the fund's profit and <strong>0.1%</strong> of the AUM is set aside as commissions every month, which is paid to managers proportional to the Kairo they hold. The estimate displayed here is calculated using the current fund ROI.">
-        <div class="card-body">
-          <div class="row align-items-center">
-            <div class="col">
-
-              <!-- Title -->
-              <h6 class="card-title text-uppercase text-muted mb-2">
-                Your Estimated Commission This Month ($DAI)
-              </h6>
-
-              <!-- Heading -->
-              <span class="h2 mb-0">
-                {{expected_commission}}
-              </span>
-
-            </div>
-            <div class="col-auto">
-
-              <!-- Icon -->
-              <span class="h2 fe fe-award text-muted mb-0"></span>
-
-            </div>
-          </div> <!-- / .row -->
-
-        </div>
-      </div>
-      <!-- Card -->
-      <div class="card">
-        <div data-toggle="tooltip" title="Your ranking among Betoken's managers based on your Kairo balance">
-          <div class="card-body">
-            <div class="row align-items-center">
-              <div class="col">
-
-                <!-- Title -->
-                <h6 class="card-title text-uppercase text-muted mb-2">
-                  Your Ranking
-                </h6>
-
-                <!-- Heading -->
-                <span class="h2 mb-0">
-                  {{userRanking}}
-                </span>
-
-              </div>
-              <div class="col-auto">
-
-                <!-- Icon -->
-                <span class="h2 fe fe-user text-muted mb-0"></span>
-
-              </div>
-            </div> <!-- / .row -->
-
-          </div>
         </div>
       </div>
     </div> <!-- / .row -->

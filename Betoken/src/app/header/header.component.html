@@ -30,7 +30,11 @@
       </div>
       <!-- cta -->
       <div *ngIf="checkRouterURL('/investing-dashboard') === true">
-        <button class="btn btn-success mr-2" type="button" data-toggle="modal" data-target="#/start">Buy BTKS</button>
+        <a class="btn btn-success mr-2" href="#/start">Buy BTKS</a>
+        <!-- IDEA: only displayed if BTKS in wallet --
+        <button class="btn btn-success mr-2" type="button" data-toggle="modal" data-target="#modalInvestorBuy">Buy BTKS</button>
+        -->
+        <!-- IDEA: disabled if no BTKS in wallet -->
         <button class="btn btn-white mr-4" type="button" data-toggle="modal" data-target="#modalInvestorSell" disabled>Sell BTKS</button>
         <button class="btn btn-white text-truncate" style="width: 12rem;" *ngIf="user_address !== '0x0'"><span class="text-success">●</span> {{user_address}}</button>
         <button class="btn btn-white text-truncate" *ngIf="user_address == '0x0'"><span class="text-danger">●</span> No Account</button>

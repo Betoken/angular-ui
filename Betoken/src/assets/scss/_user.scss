@@ -26,7 +26,14 @@
     border-color: #1DC887;
     background-color: #1DC887;
 }
+.text-green{
+  color: #1DC887;
+}
+.bg-green{
+  background-color: #1DC887;
+}
+.bg-green-curved{background-color:transparent!important;background-image:radial-gradient(#1DC887,#19A670 70%,transparent 70.1%);background-repeat:no-repeat;background-position:bottom;background-size:200% 150%}
 @media (min-width: 768px)
-{.main-content {
+{.main-content.custom-sidebar {
     margin-left: 250px;
 }}

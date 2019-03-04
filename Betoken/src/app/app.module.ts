@@ -15,6 +15,7 @@ import { InvestmentsComponent } from './investments/investments.component';
 import { CommissionsComponent } from './commissions/commissions.component';
 import { RankingsComponent } from './rankings/rankings.component';
 import { InvestorComponent } from './investor/investor.component';
+import { InvestoronboardingComponent } from './investor-onboarding/investoronboarding.component';
 import { MarketComponent } from './market/market.component';
 
 const routes: Routes = [
@@ -57,6 +58,11 @@ const routes: Routes = [
   path: 'investing-dashboard',
   component: InvestorComponent,
   pathMatch: 'full'
+},
+{
+  path: 'start',
+  component: InvestoronboardingComponent,
+  pathMatch: 'full'
 }
 
 ];
@@ -71,6 +77,7 @@ const routes: Routes = [
     CommissionsComponent,
     RankingsComponent,
     InvestorComponent,
+    InvestoronboardingComponent,
     MarketComponent,
   ],
   imports: [

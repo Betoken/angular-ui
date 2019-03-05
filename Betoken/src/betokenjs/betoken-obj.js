@@ -5,6 +5,7 @@ const Web3 = require('web3');
 // constants
 export const BETOKEN_ADDR = "0x5910d5abd4d5fd58b39957664cd9735cbfe42bf0";
 export const ETH_TOKEN_ADDRESS = "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee";
+export const DAI_ADDR = "0x6f2d6ff85efca691aad23d549771160a12f0a0fc";
 export const NET_ID = 4; // Rinkeby
 
 // helpers
@@ -249,6 +250,45 @@ export var Betoken = function() {
     /*
     Invest & Withdraw phase functions
     */
+
+    /**
+    * Allows user to deposit into the fund using ETH
+    * @param  {BigNumber} _tokenAmount the deposit token amount
+    * @return {Promise}               .then(()->)
+    */
+    self.depositETH = async function(_tokenAmount, _onTxHash, _onReceipt) {
+        await getDefaultAccount();
+        var amount = BigNumber(_tokenAmount).times(BigNumber(10).pow(18));
+        
+        return self.contracts.BetokenFund.methods.depositEther().send({
+            from: web3.eth.defaultAccount,
+            value: amount
+        }).on("transactionHash", _onTxHash).on("receipt", _onReceipt);
+    };
+
+    /**
+    * Allows user to deposit into the fund using DAI
+    * @param  {BigNumber} _tokenAmount the deposit token amount
+    * @return {Promise}               .then(()->)
+    */
+    self.depositDAI = async function(_tokenAmount, _onTxHash, _onReceipt) {
+        await getDefaultAccount();
+        var token = ERC20(DAI_ADDR);
+        var amount = BigNumber(_tokenAmount).times(BigNumber(10).pow(18));
+        
+        token.methods.approve(self.contracts.BetokenFund.options.address, 0).send({
+            from: web3.eth.defaultAccount
+        });
+        
+        token.methods.approve(self.contracts.BetokenFund.options.address, amount).send({
+            from: web3.eth.defaultAccount
+        });
+        
+        return self.contracts.BetokenFund.methods.depositDAI(amount).send({
+            from: web3.eth.defaultAccount
+        }).on("transactionHash", _onTxHash).on("receipt", _onReceipt);
+    };
+
     /**
     * Allows user to deposit into the fund
     * @param  {String} _tokenAddr the token address
@@ -272,6 +312,32 @@ export var Betoken = function() {
             from: web3.eth.defaultAccount
         }).on("transactionHash", _onTxHash).on("receipt", _onReceipt);
     };
+
+    /**
+    * Allows user to withdraw from fund balance into ETH
+    * @param  {BigNumber} _amountInDAI the withdrawal amount in DAI
+    * @return {Promise}               .then(()->)
+    */
+    self.withdrawETH = async function(_amountInDAI, _onTxHash, _onReceipt) {
+        await getDefaultAccount();
+        var amount = BigNumber(_amountInDAI).times(1e18);
+        return self.contracts.BetokenFund.methods.withdrawEther(amount).send({
+            from: web3.eth.defaultAccount
+        }).on("transactionHash", _onTxHash).on("receipt", _onReceipt);
+    };
+
+    /**
+    * Allows user to withdraw from fund balance into DAI
+    * @param  {BigNumber} _amountInDAI the withdrawal amount in DAI
+    * @return {Promise}               .then(()->)
+    */
+    self.withdrawDAI = async function(_amountInDAI, _onTxHash, _onReceipt) {
+        await getDefaultAccount();
+        var amount = BigNumber(_amountInDAI).times(1e18);
+        return self.contracts.BetokenFund.methods.withdrawDAI(amount).send({
+            from: web3.eth.defaultAccount
+        }).on("transactionHash", _onTxHash).on("receipt", _onReceipt);
+    };
     
     /**
     * Allows user to withdraw from fund balance
@@ -288,30 +354,6 @@ export var Betoken = function() {
     };
     
     /**
-    * Withdraws all of user's balance in cases of emergency
-    * @return {Promise}           .then(()->)
-    */
-    self.emergencyWithdraw = async function(_onTxHash, _onReceipt) {
-        await getDefaultAccount();
-        return self.contracts.BetokenFund.methods.emergencyWithdraw().send({
-            from: web3.eth.defaultAccount
-        }).on("transactionHash", _onTxHash).on("receipt", _onReceipt);
-    };
-    
-    /**
-    * Sends Kairo to another address
-    * @param  {String} _to           the recipient address
-    * @param  {BigNumber} _amountInWeis the amount
-    * @return {Promise}               .then(()->)
-    */
-    self.sendKairo = async function(_to, _amountInWeis, _onTxHash, _onReceipt) {
-        await getDefaultAccount();
-        return self.contracts.Kairo.methods.transfer(_to, _amountInWeis).send({
-            from: web3.eth.defaultAccount
-        }).on("transactionHash", _onTxHash).on("receipt", _onReceipt);
-    };
-    
-    /**
     * Sends Shares to another address
     * @param  {String} _to           the recipient address
     * @param  {BigNumber} _amountInWeis the amount
@@ -323,7 +365,6 @@ export var Betoken = function() {
             from: web3.eth.defaultAccount
         }).on("transactionHash", _onTxHash).on("receipt", _onReceipt);
     };
-    
     
     /*
     Decision Making phase functions

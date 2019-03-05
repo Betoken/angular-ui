@@ -615,7 +615,7 @@
                     <form>
                         <div class="form-group row mb-0">
                           <div class="col">
-                              <input type="number" min="0" class="form-control form-control-lg form-control-flush input-xl border-bottom border-1 rounded-0 mt-1 mb-1" aria-describedby="KRO Token Amount to stake" placeholder="0.0" id="kairo-input">
+                              <input type="number" min="0.0" max={{kairo_balance.toFormat(18)}} class="form-control form-control-lg form-control-flush input-xl border-bottom border-1 rounded-0 mt-1 mb-1" aria-describedby="KRO Token Amount to stake" placeholder="0.0" id="kairo-input">
                           </div>
                           <label for="kroAmount" class="col-auto col-form-label"><span class="display-4">KRO</span></label>
                         </div>

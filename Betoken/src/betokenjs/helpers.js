@@ -3,11 +3,8 @@ import BigNumber from "bignumber.js";
 const Data = require("./data-controller");
 
 // constants
-const WRONG_NETWORK_ERR = "Please switch to Rinkeby Testnet in order to use Betoken Omen.";
 const SEND_TX_ERR = "There was an error during sending your transaction to the Ethereum blockchain. Please check that your inputs are valid and try again later.";
-const INPUT_ERR = "There was an error in your input. Please fix it and try again.";
 const NO_WEB3_ERR = "Betoken can only be used in a Web3 enabled browser. Please install MetaMask or switch to another browser that supports Web3. You can currently view the fund's data, but cannot make any interactions.";
-const METAMASK_LOCKED_ERR = "Your browser seems to be Web3 enabled, but you need to unlock your account to interact with Betoken.";
 const DEPENDENCY_ERR = "Please enable MetaMask or visit this page in a Web3 browser to interact with Betoken on Rinkeby Testnet."
 var error_msg = "";
 
@@ -146,36 +143,60 @@ export const refresh_actions = {
 }
 
 export const investor_actions = {
-    deposit_button: async function (amt, tokenSymbol, pending, confirm, handledataSuccess, handledataError) {
+    depositETH: async (amt, pending, confirm) => {
+        var amount;
+        try {
+            amount = BigNumber(amt);
+            betoken.depositETH(amount, pending, confirm);
+        } catch (error) {
+            error_notifications.set_error_msg(error);
+        }
+    },
+    depositDAI: async (amt, pending, confirm) => {
+        var amount;
+        try {
+            amount = BigNumber(amt);
+            betoken.depositDAI(amount, pending, confirm);
+        } catch (error) {
+            error_notifications.set_error_msg(error);
+        }
+    },
+    depositToken: async (amt, tokenSymbol, pending, confirm) => {
         var amount, tokenAddr, tokenSymbol;
         try {
             amount = BigNumber(amt);
-            if (!amount.gt(0)) {
-                handledataError('Amount must be greater than zero.');
-                return;
-            }
             tokenAddr = betoken.tokenSymbolToAddress(tokenSymbol);
-            handledataSuccess(betoken.depositToken(tokenAddr, amount, pending, confirm));
-            return;
-        } catch (error1) {
-            handledataError(error1);
-            return;
+            betoken.depositToken(tokenAddr, amount, pending, confirm);
+        } catch (error) {
+            error_notifications.set_error_msg(error);
         }
     },
-    withdraw_button: async function (amt, tokenSymbol, pending, confirm, handledataSuccess, handledataError) {
-        var amount, error, tokenAddr, tokenSymbol;
+    withdrawETH: async (amt, pending, confirm) => {
+        var amount;
         try {
             amount = BigNumber(amt);
-            if (!amount.gt(0)) {
-                handledataError('Amount must be greater than zero.');
-                return;
-            }
+            return betoken.withdrawETH(amount, pending, confirm);
+        } catch (error) {
+            error_notifications.set_error_msg(error);
+        }
+    },
+    withdrawDAI: async (amt, pending, confirm) => {
+        var amount;
+        try {
+            amount = BigNumber(amt);
+            return betoken.withdrawDAI(amount, pending, confirm);
+        } catch (error) {
+            error_notifications.set_error_msg(error);
+        }
+    },
+    withdrawToken: async (amt, tokenSymbol, pending, confirm) => {
+        var amount, tokenAddr, tokenSymbol;
+        try {
+            amount = BigNumber(amt);
             tokenAddr = betoken.tokenSymbolToAddress(tokenSymbol);
-            handledataSuccess(betoken.withdrawToken(tokenAddr, amount, pending, confirm));
-            return;
-        } catch (error1) {
-            handledataError(error1);
-            return;
+            return betoken.withdrawToken(tokenAddr, amount, pending, confirm);
+        } catch (error) {
+            error_notifications.set_error_msg(error);
         }
     }
 }
@@ -197,7 +218,6 @@ export const manager_actions = {
             address = (await betoken.tokenSymbolToAddress(tokenSymbol));
             kairoAmountInWeis = BigNumber(amt).times("1e18");
             betoken.createInvestment(address, kairoAmountInWeis, pending, confirm);
-            return;
         } catch (error) {
             error_notifications.set_error_msg(SEND_TX_ERR);
         }

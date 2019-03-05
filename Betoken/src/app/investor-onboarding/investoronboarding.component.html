@@ -1,11 +1,8 @@
-<!-- MAIN CONTENT
-================================================== -->
+<!-- MAIN CONTENT -->
 <div class="main-content">
   <!-- HEADER --
   <nav class="navbar navbar-expand-md navbar-light bg-transparent border-0" id="topbar">
     <div class="container-fluid d-flex">
-
-
 
       <div class="navbar-brand mr-auto">
 
@@ -49,17 +46,17 @@
           Welcome To
         </h5>
         <h1 class="display-2 font-weight-bold">Betoken Fund</h1>
-        <p class="lead text-secondary">Do you think the cryptomarket is the future of finance but you don't find time to actively manage your money? Let us do the work for you! We make it easy to invest in cryptocurrencies.</p>
-        <p class="text-muted">Betoken crowdsourced community of fund managers analyze cryptomarkets 24/7 and put your money at work through time-tested investing strategies. Simply buy Betoken shares and let us save your time.</p>
-        <p class="text-muted">And yes, you stay in control. Betoken is <strong>100 % decentralized</strong> on the Ethereum Blockchain and <strong>100 % liquid</strong>. You can buy or sell shares at any time.</p>
+        <p class="lead text-secondary">Do you want to invest in cryptocurrencies, but don't know what to buy? Invest in Betoken, and leave the rest to us!</p>
+        <p class="text-muted">Betoken's community of fund managers analyze cryptomarkets 24/7 and put your money at work through time-tested investing strategies. Simply buy Betoken Shares and let us save your time and effort.</p>
+        <p class="text-muted">And yes, you stay in control. Betoken is <strong>100% decentralized</strong> on the Ethereum Blockchain and <strong>100% liquid</strong>.</p>
       </div>
       <div class="col-12 col-lg-6 pl-lg-4">
         <div class="card">
 
           <div class="card-header d-flex">
             <!-- cta -->
-            <span class="text-truncate align-items-start" style="max-width: 8rem;" *ngIf="user_address !== '0x0'"><span class="text-success">●</span> {{user_address}}</span>
-            <span class="text-truncate align-items-start" *ngIf="user_address == '0x0'"><span class="text-danger">●</span> Not Connected</span>
+            <span class="text-truncate align-items-start" *ngIf="user_address !== '0x0'"><span class="text-success">●</span> {{user_address}}</span>
+            <span class="text-truncate align-items-start" *ngIf="user_address == '0x0'"><span class="text-danger">●</span> No Wallet Connected</span>
           </div>
           <div class="card-body">
             <h2 class="h1 mb-0 text-secondary">New To Betoken?</h2>
@@ -164,11 +161,11 @@
             </div>
             <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
               <div class="card-body text-muted">
-                Yes. Betoken's protocol is 100 % liquid during the <a href="#">investment cycle</a>. You can buy and sell BTKS at any time (even 3am) in 2 ways:
+                Yes. Betoken's protocol is 100% liquid. You can buy and sell BTKS at any time in 2 ways:
                 <ol>
-                  <li>During the <a href="#">Betoken's management phase</a> of 27 days, BTKS are freely tradable on our secondary market shares. That means the market forces are dictating the price of 1 BTKS (Supply and demand law). So when buying or selling, you must cross the market's spread. This means the price when buying can be above the current BTKS' price displayed in your investing dashboard. And when selling, the price can be below the current BTKS' price.</li>
-                  <li>During the <a href="#">Betoken's intermission phase</a> of 3 days, you can buy and sell BTKS without having to cross the market's spread.</li>
-                </ol>.
+                  <li>During <a href="#">Betoken's management phase</a> (27 days), BTKS is freely tradable on exchanges. The price may be different from what's displayed on the investor dashboard.</li>
+                  <li>During <a href="#">Betoken's intermission phase</a> (3 days), you can buy and sell BTKS directly on the investor dashboard.</li>
+                </ol>
               </div>
             </div>
             <div class="card-header border-bottom" id="headingTwo">
@@ -187,7 +184,7 @@
             </div>
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
               <div class="card-body text-muted">
-                <p>Click on the Get Started button and follow the instructions. You'll be able to use $ETH (Ether) or any of our +50 supported ERC-20 tokens to buy Betoken's fund shares (BTKS).</p>
+                <p>Click on the Get Started button and follow the instructions. You'll be able to use Ether or any of our 50+ supported ERC-20 tokens to buy Betoken Shares (BTKS).</p>
               </div>
             </div>
             <div class="card-header border-bottom" id="headingThree">
@@ -206,11 +203,11 @@
             </div>
             <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
               <div class="card-body text-muted">
-                <p>Yes. We're charging the following fees to incentivize our crowdsourced managers community with commissions and maintain the integrity of the Betoken protocol.
+                <p>Yes. We're charging the following fees to pay our managers and pay for the development & maintainance of Betoken.
                 <ul>
-                  <li>Performances fee: 20%.</li>
-                  <li>Management fee: 0.2%.</li>
-                  <li>Withdrawal fee: 3%.</li>
+                  <li>Performance fee: 20%</li>
+                  <li>Management fee: 0.2%</li>
+                  <li>Exit fee: 3%</li>
                 </ul>
               </div>
             </div>
@@ -219,7 +216,7 @@
                   <div class="row align-items-center no-gutters">
                     <div class="col mr-auto">
                         <h3 class="card-text">
-                        What are the performances of Betoken fund?
+                        What are the performances of the Betoken fund?
                         </h3>
                     </div>
                     <div class="col-auto">
@@ -234,19 +231,15 @@
               </div>
             </div>
           </div>
-
         </div>
-
-
       </div>
-
     </div>
     <div class="row justify-content-center">
       <div class="col-12 col-lg-6">
         <div class="card card-inactive mb-4">
           <div class="card-body">
             <h3 class="text-center">Disclaimer</h3>
-            <p class="text-muted text-center">While we nerd out over the decentralized finance to expose you to the best possible information, alas, we are not financial experts and do not give financial advice. You also understand that Betoken is a highly experimental project and should be use at your own risk.</p>
+            <p class="text-muted text-center">Betoken is a highly experimental project and is used at your own risk. Betoken does not guarantee profit or any level of performance.</p>
           </div>
         </div>
         <div class="card bg-green">
@@ -280,33 +273,29 @@
           <div class="row align-items-center">
             <div class="col">
               <!-- Confirm rules title -->
-              <h4 class="card-header-title">
+              <h4 class="card-header-title" *ngIf="step == 0">
                 Please confirm before continuing
               </h4>
-              <!-- Select Asset to buy BTKS title --
-              <h4 class="card-header-title">
-                How do you want to buy?
+              <!-- Select Asset to buy BTKS title -->
+              <h4 class="card-header-title" *ngIf="step == 1">
+                Please choose method of payment
               </h4>
-              -->
-              <!-- BTKS amount title --
-              <h4 class="card-header-title">
+              <!-- BTKS amount title -->
+              <h4 class="card-header-title" *ngIf="step == 2">
                 How many shares do you want to buy?
               </h4>
-              <!-- BTKS Confirm buy title --
-              <h4 class="card-header-title">
-                Confirm Buy Order
+              <!-- BTKS Confirm buy title -->
+              <h4 class="card-header-title" *ngIf="step == 3">
+                Confirm order
               </h4>
-              -->
-              <!-- BTKS Processing buy title --
-              <h4 class="card-header-title">
-                Processing Buy Order
+              <!-- BTKS Processing buy title -->
+              <h4 class="card-header-title" *ngIf="step == 4">
+                Processing order
               </h4>
-              -->
-              <!-- BTKS confirmed buy title --
-              <h4 class="card-header-title">
-                Buy Order confirmed
+              <!-- BTKS confirmed buy title -->
+              <h4 class="card-header-title" *ngIf="step == 5">
+                Order confirmed
               </h4>
-              -->
             </div>
             <div class="col-auto">
 
@@ -319,224 +308,202 @@
           </div> <!-- / .row -->
         </div>
         <div class="card-header py-0 border-0" style="min-height: 24px;">
-            <div class="progress" style="height: 8px;">
-                <div class="progress-bar bg-success" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-                <div class="progress-bar bg-light border-left border-white" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-                <div class="progress-bar bg-light border-left border-white" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-                <div class="progress-bar bg-light border-left border-white" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-                <div class="progress-bar bg-light border-left border-white" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
+          <div class="progress" style="height: 8px;">
+            <div [ngClass]="{'bg-success': step >= 0, 'bg-secondary': step !== 0}" class="progress-bar" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+            <div [ngClass]="{'bg-success': step >= 1, 'bg-secondary': step !== 1}" class="progress-bar border-left" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+            <div [ngClass]="{'bg-success': step >= 2, 'bg-secondary': step !== 2}" class="progress-bar border-left" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+            <div [ngClass]="{'bg-success': step >= 3, 'bg-secondary': step !== 3}" class="progress-bar border-left" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+            <div [ngClass]="{'bg-success': step >= 4, 'bg-secondary': step !== 4}" class="progress-bar border-left" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+            <div [ngClass]="{'bg-success': step >= 4, 'bg-secondary': step !== 4}" class="progress-bar border-left" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
         </div>
-        <!-- Search in list assets to buy BTKS --
-        <div class="card-header">
-          <form>
-            <div class="input-group input-group-flush input-group-merge">
-              <input type="search" class="form-control form-control-prepended search" placeholder="Search" (keyup)="filterList($event, 'asset-list', 0)">
-              <div class="input-group-prepend">
-                <div class="input-group-text">
-                  <span class="fe fe-search"></span>
-                </div>
-              </div>
-            </div>
-          </form>
-        </div>
-        -->
-        <div class="modal-body">
 
+        <div class="modal-body">
           <!-- before starting confirm rules -->
-          <div class="custom-control custom-checkbox mb-4">
-            <input type="checkbox" class="custom-control-input" id="rule1">
-            <label class="custom-control-label small text-secondary" for="rule1">I am NEITHER a citizen or resident of, NOR currently located in any of the following states or territories, NOR an entity formed under the laws of: Afghanistan, Cuba, Democratic People's Republic of Korea, Iran, Iraq, People’s Republic of China, Russian Federation, Somalia, Sudan, Syria, United Arab Emirates, United States of America, Venezuela, Yemen.</label>
+          <div *ngIf="step == 0">
+            <div class="custom-control custom-checkbox mb-4">
+              <input type="checkbox" class="custom-control-input" id="rule1" (change)="checkboxes[0] = !checkboxes[0]">
+              <label class="custom-control-label small text-secondary" for="rule1">I am NEITHER a citizen or resident of, NOR currently located in any of the following states or territories, NOR an entity formed under the laws of: Afghanistan, Cuba, Democratic People's Republic of Korea, Iran, Iraq, People’s Republic of China, Russian Federation, Somalia, Sudan, Syria, United Arab Emirates, United States of America, Venezuela, Yemen.</label>
+            </div>
+            <div class="custom-control custom-checkbox mb-4">
+              <input type="checkbox" class="custom-control-input" id="rule2" (change)="checkboxes[1] = !checkboxes[1]">
+              <label class="custom-control-label small text-secondary" for="rule2">You have read and agree to the <a href="#">Terms of Use</a>, <a href="#">Privacy Policy</a> and <a href="#">AML Policy</a>.</label>
+            </div>
+            <div class="custom-control custom-checkbox mb-4">
+              <input type="checkbox" class="custom-control-input" id="rule3" (change)="checkboxes[2] = !checkboxes[2]">
+              <label class="custom-control-label small text-secondary" for="rule3">💀 You understand that Betoken Protocol is in beta. Use at your own risk.</label>
+            </div>
           </div>
-          <div class="custom-control custom-checkbox mb-4">
-            <input type="checkbox" class="custom-control-input" id="rule2">
-            <label class="custom-control-label small text-secondary" for="rule2">You have read and agree to the <a href="#">Terms of Use</a>, <a href="#">Privacy Policy</a> and <a href="#">AML Policy</a>.</label>
-          </div>
-          <div class="custom-control custom-checkbox mb-4">
-            <input type="checkbox" class="custom-control-input" id="rule3">
-            <label class="custom-control-label small text-secondary" for="rule3">💀 You understand that Betoken Protocol is in beta. Use at your own risk.</label>
-          </div>
-          <!-- Step 0: select asset --
-          <!-- List supported assets --
-          <ul class="list-group list-group-flush list" id="asset-list">
+
+          <!-- Step 1: select asset -->
+          <div *ngIf="step == 1">
+            <!-- Search in list assets to buy BTKS -->
+            <div class="card-header">
+              <form>
+                <div class="input-group input-group-flush input-group-merge">
+                  <input type="search" class="form-control form-control-prepended search" placeholder="Search" (keyup)="filterList($event, 'asset-list', 0)">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      <span class="fe fe-search"></span>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <!-- List supported assets -->
+            <ul class="list-group list-group-flush list" id="asset-list">
               <li class="list-group-item px-0 text-secondary border-bottom-0 border-top-0">
-                  <h6 class="header-pretitle border-0">
-                    Select a currency or utility token
-                  </h6>
+                <h6 class="header-pretitle border-0">
+                  Select a token
+                </h6>
               </li>
               <li class="list-group-item px-0" *ngFor = "let token of tokenList">
-                  <a href="#" (click)="selectedTokenSymbol = token; createInvestmentPopupStep = 1;">
-                    <div class="row align-items-center">
-                      <div class="col-auto">
-
-                        <span class="avatar avatar-sm">
-                          <img src={{getTokenLogoUrl(token)}} alt="token logo" class="avatar-img rounded-circle">
-                        </span>
-
-                      </div>
-                      <div class="col ml--2">
-
-                        <span class="mb-1 h4 name">
-                          {{token}}
-                        </span>
-
-                        <p class="small text-secondary mb-0">
-                          {{getTokenName(token)}}
-                        </p>
-
-                      </div>
-                    </div>
-
-                  </a>
-              </li>
-          </ul>
-          -->
-          <!-- Step 1: enter amount -->
-
-          <!-- Quantity of share to buy --
-
-          <div class="row">
-
-              <div class="col">
-                  <h6 class="header-pretitle">
-                    Current buy price
-                  </h6>
-                  <h4 class="">
-                    10.2340 DAI
-                  </h4>
-              </div>
-              <div class="col">
-                  <h6 class="header-pretitle">
-                    OWNED BTKS
-                  </h6>
-                  <h4 class="">
-                    0,00
-                  </h4>
-              </div>
-          </div>
-          <a class="text-secondary" data-toggle="tooltip" title="Because Betoken Shares are freely tradable on Uniswap exchange, when buying or selling, you must cross the Uniswap's spread. This means the price when selling can be above the current price. If you don't want to cross the spread, wait the end of the management phase to buy shares at the current price.">
-            <small>3.20% above current price <i class="fe fe-info align-middle"></i></small>
-          </a>
-          <hr>
-          <h6 class="header-pretitle text-secondary">I want to buy</h6>
-          <div class="row justify-content-center mb-2">
-              <div class="col">
-                  <form>
-                      <div class="form-group row mb-0">
-                        <div class="col">
-                            <input type="number" class="form-control form-control-lg form-control-flush input-xl border-bottom border-1 rounded-0 mt-1 mb-1" aria-describedby="Betoken Shares Amount to buy" placeholder="0.0" id="sharesAmountToBuy">
-                        </div>
-                        <label for="sharesAmountToBuy" class="col-auto col-form-label"><span class="display-4">BTKS</span></label>
-                      </div>
-                      <small id="kroBalance" class="form-text text-secondary d-inline-block">100 BAT available</small>
-                  </form>
-              </div>
-              <div class="col-auto">
-                  <button class="btn btn-sm btn-outline-secondary mt-3" type="button" name="button">Max</button>
-              </div>
-          </div>
-          <div class="table-responsive">
-              <table class="table mb-4">
-                <thead>
-                  <tr>
-                    <th class="px-0 bg-transparent border-top-0">
-                      <span class="h6">Order details</span>
-                    </th>
-                    <th class="px-0 bg-transparent border-top-0 text-right">
-                      <span class="h6">BAT</span>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td class="px-0 small align-baseline text-muted">
-                      Value
-                    </td>
-                    <td class="px-0 text-right small align-baseline">
-                      50,330.0000
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="px-0 small align-baseline text-muted">
-                      Betoken fees
-                    </td>
-                    <td class="px-0 text-right small align-baseline">
-                      0.0000
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="px-0 border-top border-top-2">
-                     <strong>Total cost</strong>
-                    </td>
-                    <td colspan="2" class="px-0 text-right border-top border-top-2">
-                      <span class="h3">
-                        50,330.0000 DAI
+                <a href="#/start" (click)="selectedTokenSymbol = token; step = 2;">
+                  <div class="row align-items-center">
+                    <div class="col-auto">
+                      <span class="avatar avatar-sm">
+                        <img src={{getTokenLogoUrl(token)}} alt="token logo" class="avatar-img rounded-circle">
                       </span>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+                    </div>
+                    <div class="col ml--2">
+                      <span class="mb-1 h4 name">
+                        {{token}}
+                      </span>
+                      <p class="small text-secondary mb-0">
+                        {{getTokenName(token)}}
+                      </p>
+                    </div>
+                  </div>
+                </a>
+              </li>
+            </ul>
           </div>
-          <!-- Step 2: confirm transaction --
-          <p class="text-center text-muted mb-5">
+          
+          <!-- Step 2: enter amount -->
+
+          <!-- Quantity of share to buy -->
+          <div *ngIf="step == 2">
+            <div class="row">
+              <div class="col">
+                  <h6 class="header-pretitle">
+                    Current price of Betoken Shares
+                  </h6>
+                  <h4 class="">
+                    10.2340 DAI/BTKS
+                  </h4>
+                </div>
+            </div>
+            <hr>
+            <h6 class="header-pretitle text-secondary">I want to buy Betoken Shares with</h6>
+            <div class="row justify-content-center mb-2">
+                <div class="col">
+                    <form>
+                        <div class="form-group row mb-0">
+                          <div class="col">
+                              <input type="number" min="0.0" class="form-control form-control-lg form-control-flush input-xl border-bottom border-1 rounded-0 mt-1 mb-1" aria-describedby="Betoken Shares Amount to buy" placeholder="0.0" id="sharesAmountToBuy">
+                          </div>
+                          <label for="sharesAmountToBuy" class="col-auto col-form-label"><span class="display-4">{{selectedTokenSymbol}}</span></label>
+                        </div>
+                        <small class="form-text text-secondary d-inline-block">100 {{selectedTokenSymbol}} available</small>
+                    </form>
+                </div>
+                <div class="col-auto">
+                    <button class="btn btn-sm btn-outline-secondary mt-3" type="button" name="button">Max</button>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table mb-4">
+                  <thead>
+                    <tr>
+                      <th class="px-0 bg-transparent border-top-0">
+                        <span class="h6">Order details</span>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="px-0 small align-baseline text-muted">
+                        Total cost
+                      </td>
+                      <td class="px-0 text-right small align-baseline">
+                        50,330.0000 {{selectedTokenSymbol}}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="px-0 small align-baseline text-muted">
+                        BTKS to be bought
+                      </td>
+                      <td class="px-0 text-right small align-baseline">
+                        0.0000
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+            </div>
+          </div>
+
+          
+          <!-- Step 3: confirm transaction -->
+          <p class="text-center text-muted mb-5" *ngIf="step == 3">
             Confirm the transaction in your wallet’s interface to save it on the Ethereum blockchain. It's fine to stick with these defaults gas limit and price.
           </p>
-          -->
 
-          <!-- Step 3: transaction broadcasted --
-          <!-- Processing investment body --
-          <div class="py-5 is-loading is-loading-lg"></div>
-          <p class="text-center text-muted mb-5">
-            Your investment is being saved on the Ethereum blockchain.
-          </p>
-          <hr >
-          <form >
-            <div class="form-group">
-              <label for="exampleFormControlInput1">Transaction ID</label>
-              <div class="input-group mb-3">
-                <input type="text" class="form-control form-control-lg" value="{{transactionId}}" aria-label="Transaction ID" aria-describedby="">
-                <div class="input-group-append">
-                  <a class="btn btn-white h-100" href="https://rinkeby.etherscan.io/tx/{{transactionId}}" target="_blank"><i class="fe fe-external-link"></i></a>
+          <!-- Step 4: transaction broadcasted -->
+          <!-- Processing investment body -->
+          <div *ngIf="step == 4">
+            <div class="py-5 is-loading is-loading-lg"></div>
+            <p class="text-center text-muted mb-5">
+              Your investment is being saved on the Ethereum blockchain.
+            </p>
+            <hr >
+            <form >
+              <div class="form-group">
+                <label for="exampleFormControlInput1">Transaction ID</label>
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control form-control-lg" value="{{transactionId}}" aria-label="Transaction ID" aria-describedby="">
+                  <div class="input-group-append">
+                    <a class="btn btn-white h-100" href="https://rinkeby.etherscan.io/tx/{{transactionId}}" target="_blank"><i class="fe fe-external-link"></i></a>
+                  </div>
                 </div>
               </div>
-            </div>
-          </form>
-          -->
-          <!-- Step 4: transaction confirmed --
-          <!-- Investment confirmed body --
-          <p class="h1 text-center">
-            <i class="fe fe-check-circle text-success"></i>
-          </p>
-          <p class="text-center text-muted mb-5">
-            You bought <span class="font-weight-bold text-secondary">000</span> BTKS.
-          </p>
-          <hr>
-          <form>
-            <div class="form-group">
-              <label for="exampleFormControlInput1">Transaction ID</label>
-              <div class="input-group mb-3">
-                <input type="text" class="form-control form-control-lg" value="{{transactionId}}" aria-label="Transaction ID" aria-describedby="">
-                <div class="input-group-append">
-                  <a class="btn btn-white h-100" href="https://rinkeby.etherscan.io/tx/{{transactionId}}" target="_blank"><i class="fe fe-external-link"></i></a>
+            </form>
+          </div>
+
+          <!-- Step 5: transaction confirmed -->
+          <!-- Investment confirmed body -->
+          <div *ngIf="step == 5">
+            <p class="h1 text-center">
+              <i class="fe fe-check-circle text-success"></i>
+            </p>
+            <p class="text-center text-muted mb-5">
+              You bought <span class="font-weight-bold text-secondary">000</span> BTKS.
+            </p>
+            <hr>
+            <form>
+              <div class="form-group">
+                <label for="exampleFormControlInput1">Transaction ID</label>
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control form-control-lg" value="{{transactionId}}" aria-label="Transaction ID" aria-describedby="">
+                  <div class="input-group-append">
+                    <a class="btn btn-white h-100" href="https://rinkeby.etherscan.io/tx/{{transactionId}}" target="_blank"><i class="fe fe-external-link"></i></a>
+                  </div>
                 </div>
               </div>
-            </div>
-          </form>
-          -->
+            </form>
+          </div>
+          
           <!-- Continue button for step 1 -->
-          <button type="submit" class="btn btn-block btn-success mt-auto" aria-label="BuyBTKS" disabled>
-              Buy $BTKS
+          <button type="submit" class="btn btn-block btn-success mt-auto" aria-label="BuyBTKS" *ngIf="step == 0" (click)="step = agreementsChecked() ? 1 : 0" [ngClass]="{'disabled': !agreementsChecked()}">
+            Buy Betoken Shares
           </button>
-          <!-- Continue button for step 1 --
-          <button type="submit" class="btn btn-block btn-success mt-auto" aria-label="Continue to Buy">
-              Continue
+          <!-- Continue button for step 2 -->
+          <button type="submit" class="btn btn-block btn-success mt-auto" aria-label="Continue to Buy" *ngIf="step == 2" (click)="step = 3">
+            Continue
           </button>
-          -->
-          <!-- Close button for step 4 --
-          <button type="submit" class="btn btn-block btn-white mt-auto" data-dismiss="modal" aria-label="Close">
-          Close
+          <!-- Close button for step 5 -->
+          <button type="submit" class="btn btn-block btn-white mt-auto" data-dismiss="modal" aria-label="Close" *ngIf="step == 5">
+            Close
           </button>
-          -->
         </div>
       </div>
     </div>

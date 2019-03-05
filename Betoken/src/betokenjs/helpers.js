@@ -165,7 +165,7 @@ export const investor_actions = {
         var amount, tokenAddr, tokenSymbol;
         try {
             amount = BigNumber(amt);
-            tokenAddr = betoken.tokenSymbolToAddress(tokenSymbol);
+            tokenAddr = await betoken.tokenSymbolToAddress(tokenSymbol);
             betoken.depositToken(tokenAddr, amount, pending, confirm);
         } catch (error) {
             error_notifications.set_error_msg(error);

@@ -497,7 +497,7 @@
             Buy Betoken Shares
           </button>
           <!-- Continue button for step 2 -->
-          <button type="submit" class="btn btn-block btn-success mt-auto" aria-label="Continue to Buy" *ngIf="step == 2" (click)="step = 3">
+          <button type="submit" class="btn btn-block btn-success mt-auto" aria-label="Continue to Buy" *ngIf="step == 2" (click)="step = 3; deposit();">
             Continue
           </button>
           <!-- Close button for step 5 -->

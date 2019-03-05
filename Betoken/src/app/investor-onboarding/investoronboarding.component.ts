@@ -21,6 +21,7 @@ export class InvestoronboardingComponent implements OnInit {
     step = 0;
     checkboxes = [false, false, false];
     selectedTokenSymbol = '';
+    transactionId = '';
     
     constructor(private ms: AppComponent, private router: Router) {
     }
@@ -53,7 +54,28 @@ export class InvestoronboardingComponent implements OnInit {
 
     deposit() {
         var payAmount = $('#sharesAmountToBuy').val();
-        investor_actions.deposit()
+        let pending = (txHash) => {
+            if (this.step == 3) {
+                this.transactionId = txHash;
+                this.step = 4;
+            }
+        };
+        let confirm = () => {
+            if (this.step == 4) {
+                this.step = 5;
+            }
+        };
+        switch (this.selectedTokenSymbol) {
+            case 'ETH':
+                investor_actions.depositETH(payAmount, pending, confirm);
+                break;
+            case 'DAI':
+                investor_actions.depositDAI(payAmount, pending, confirm);
+                break;
+            default:
+                investor_actions.depositToken(payAmount, this.selectedTokenSymbol, pending, confirm);
+                break;
+        }
     }
     
     filterList = (event, listID, searchID) => {

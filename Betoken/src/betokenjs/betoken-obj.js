@@ -278,15 +278,15 @@ export var Betoken = function() {
         
         token.methods.approve(self.contracts.BetokenFund.options.address, 0).send({
             from: web3.eth.defaultAccount
+        }).on("transactionHash", () => {
+            token.methods.approve(self.contracts.BetokenFund.options.address, amount).send({
+                from: web3.eth.defaultAccount
+            }).on("transactionHash", () => {
+                self.contracts.BetokenFund.methods.depositDAI(amount).send({
+                    from: web3.eth.defaultAccount
+                }).on("transactionHash", _onTxHash).on("receipt", _onReceipt);
+            });
         });
-        
-        token.methods.approve(self.contracts.BetokenFund.options.address, amount).send({
-            from: web3.eth.defaultAccount
-        });
-        
-        return self.contracts.BetokenFund.methods.depositDAI(amount).send({
-            from: web3.eth.defaultAccount
-        }).on("transactionHash", _onTxHash).on("receipt", _onReceipt);
     };
 
     /**
@@ -298,19 +298,19 @@ export var Betoken = function() {
     self.depositToken = async function(_tokenAddr, _tokenAmount, _onTxHash, _onReceipt) {
         await getDefaultAccount();
         var token = ERC20(_tokenAddr);
-        var amount = BigNumber(_tokenAmount).times(BigNumber(10).pow(self.getTokenDecimals(_tokenAddr)));
+        var amount = BigNumber(_tokenAmount).times(BigNumber(10).pow(await self.getTokenDecimals(_tokenAddr)));
         
         token.methods.approve(self.contracts.BetokenFund.options.address, 0).send({
             from: web3.eth.defaultAccount
+        }).on("transactionHash", () => {
+            token.methods.approve(self.contracts.BetokenFund.options.address, amount).send({
+                from: web3.eth.defaultAccount
+            }).on("transactionHash", () => {
+                self.contracts.BetokenFund.methods.depositToken(_tokenAddr, amount).send({
+                    from: web3.eth.defaultAccount
+                }).on("transactionHash", _onTxHash).on("receipt", _onReceipt);
+            });
         });
-        
-        token.methods.approve(self.contracts.BetokenFund.options.address, amount).send({
-            from: web3.eth.defaultAccount
-        });
-        
-        return self.contracts.BetokenFund.methods.depositToken(_tokenAddr, amount).send({
-            from: web3.eth.defaultAccount
-        }).on("transactionHash", _onTxHash).on("receipt", _onReceipt);
     };
 
     /**

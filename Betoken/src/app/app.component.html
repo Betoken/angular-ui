@@ -1,7 +1,7 @@
 <app-side-nav *ngIf="display_header_sidebar"></app-side-nav>
 <!-- MAIN CONTENT
 ================================================== -->
-<div class="mb-6" [ngClass]="{'main-content custom-sidebar': display_header_sidebar}">
+<div [ngClass]="{'main-content custom-sidebar': display_header_sidebar}">
 
   <app-header *ngIf="display_header_sidebar"></app-header>
 

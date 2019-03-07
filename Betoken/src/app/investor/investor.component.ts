@@ -70,15 +70,15 @@ export class InvestorComponent implements OnInit {
     }
 
 
-        refresh() {
-            refresh_actions.records();
-        }
+    refresh() {
+        refresh_actions.records();
+    }
 
-        isLoading() {
-            return loading.records();
-        }
-        resetModals() {
-        }
+    isLoading() {
+        return loading.records();
+    }
+    resetModals() {
+    }
 
     filterList = (event, listID, searchID) => {
         let searchInput = event.target.value.toLowerCase();

@@ -22,10 +22,10 @@ export class InvestoronboardingComponent implements OnInit {
     checkboxes = [false, false, false];
     selectedTokenSymbol = '';
     transactionId = '';
-    
+
     constructor(private ms: AppComponent, private router: Router) {
     }
-    
+
     ngOnInit() {
         error_notifications.set_error_msg("");
         this.tokenList = tokens.token_list();
@@ -38,8 +38,8 @@ export class InvestoronboardingComponent implements OnInit {
             this.resetModals();
         });
     }
-    
-    refreshDisplay() {        
+
+    refreshDisplay() {
         this.user_address = user.address();
         error_notifications.check_dependency();
         this.errorMsg = error_notifications.get_error_msg();
@@ -77,7 +77,7 @@ export class InvestoronboardingComponent implements OnInit {
                 break;
         }
     }
-    
+
     filterList = (event, listID, searchID) => {
         let searchInput = event.target.value.toLowerCase();
         let entries = $(`#${listID} li`);
@@ -92,11 +92,11 @@ export class InvestoronboardingComponent implements OnInit {
             }
         }
     }
-    
+
     assetSymbolToPrice(symbol) {
         return tokens.asset_symbol_to_price(symbol);
     }
-    
+
     getTokenName(token) {
         let result = tokens.asset_symbol_to_metadata(token);
         if (isUndefined(result)) {
@@ -104,7 +104,7 @@ export class InvestoronboardingComponent implements OnInit {
         }
         return result.name;
     }
-    
+
     getTokenLogoUrl(token) {
         let result = tokens.asset_symbol_to_metadata(token);
         if (isUndefined(result)) {
@@ -112,12 +112,12 @@ export class InvestoronboardingComponent implements OnInit {
         }
         return result.logoUrl;
     }
-    
+
     updateErrorMsg() {
         error_notifications.check_dependency();
         this.errorMsg = error_notifications.get_error_msg();
     }
-    
+
     checkRouterURL(route) {
         return this.router.url === route;
     }

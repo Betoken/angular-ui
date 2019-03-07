@@ -1,0 +1,498 @@
+<!-- PREHADER
+================================================== -->
+<div class="alert alert-warning rounded-0 mb-0"  *ngIf="errorMsg !== '' ">
+  {{errorMsg}}
+</div>
+<!-- MAIN CONTENT -->
+<div class="main-content">
+  <div class="container px-lg-7">
+    <div class="row justify-content-center my-5">
+      <div class="col-11 col-md-12">
+        <img class="image-fluid mb-4" src="assets/img/illustrations/betoken-particuls.svg" alt="Betoken particuls" style="max-width: 88px;">
+      </div>
+    </div>
+    <div class="row justify-content-center mb-6">
+      <div class="col-11 col-lg-6 pr-lg-4 order-2 order-lg-1">
+        <h5 class="header-pretitle d-none d-lg-block">
+          Welcome To
+        </h5>
+        <h1 class="display-2 font-weight-bold d-none d-lg-block">Betoken Fund</h1>
+        <p class="lead font-weight-bold mb-4 d-none d-lg-block">Do you want to invest in cryptocurrencies, but don't know what to buy? Invest in Betoken, and leave the rest to us!</p>
+        <div class="media mb-4 mb-lg-3">
+          <i class="fe fe-check text-green mr-3"></i>
+          <div class="media-body">
+            <h6 class="header-pretitle">
+              Crowdsourced finance
+            </h6>
+            <p>
+              Our fund managers community analyze cryptomarkets 24/7 and put your money at work through time-tested investing strategies. Simply buy Betoken Shares and let us save your time and effort.
+            </p>
+          </div>
+        </div>
+        <div class="media mb-4 mb-lg-3">
+          <i class="fe fe-check text-green mr-3"></i>
+          <div class="media-body">
+            <h6 class="header-pretitle">
+              Permissionless & transparent
+            </h6>
+            <p class="small">
+              Every aspect of the Betoken protocol is open to everyone and transparent in real-time through our <a href="#">manager</a> and <a href="#">investor dashboard</a>. The way finance should be.
+            </p>
+          </div>
+        </div>
+        <div class="media">
+          <i class="fe fe-check text-green mr-3"></i>
+          <div class="media-body">
+            <h6 class="header-pretitle">
+              Security & trust
+            </h6>
+            <p>
+              We're 100 % liquid and 100 % decentralized on the Ethereum blockchain. You can withdraw your money every 27 days during a 3 days period. We'll release soon a feature to let you buy and sell BTKS 24/7.
+            </p>
+          </div>
+        </div>
+        <p></p>
+        <p class=""></p>
+      </div>
+      <div class="col-11 col-lg-6 pl-lg-4 order-1 order-lg-2">
+        <h5 class="header-pretitle d-block d-lg-none">
+          Welcome To
+        </h5>
+        <h1 class="display-4 font-weight-bold d-block d-lg-none">Betoken Fund</h1>
+        <p class="lead font-weight-bold mb-4 d-block d-lg-none">Do you want to invest in cryptocurrencies, but don't know what to buy? Invest in Betoken, and leave the rest to us!</p>
+        <div class="card mb-6">
+
+          <div class="card-header d-flex text-center text-md-left">
+            <!-- cta -->
+            <span class="text-truncate d-block" *ngIf="user_address !== '0x0'"><span class="text-success">●</span> {{user_address}}</span>
+            <span class="text-truncate" *ngIf="user_address == '0x0'"><span class="text-danger">●</span> No Wallet Connected</span>
+          </div>
+          <div class="card-body text-center text-md-left">
+            <h2 class="h1 mb-2">New To Betoken?</h2>
+            <p class="mb-4 text-secondary">Start investing by buying Betoken Shares token ($BTKS)</p>
+            <button class="btn btn-block btn-lg btn-success mb-4" type="button" data-toggle="modal" data-target="#modalInvestorOnboarding">Get Started</button>
+            <!-- Time left to invest -->
+            <h6 class="header-pretitle text-secondary mb-1 text-center">
+              Time left to invest
+            </h6>
+            <h4 class="header-title text-center">
+              2d 7h 54m 30s <a href="#" data-toggle="tooltip" title="" data-original-title="Period of time in which investors can buy or sell BTKS every 27 days during 3 days."><i class="fe fe-info"></i></a>
+            </h4>
+            <!-- Time left until next intermission phase --
+            <h6 class="header-pretitle text-secondary mb-1">
+              Time left until next investment phase
+            </h6>
+            <h4 class="header-title mb-4">
+              2d 7h 54m 30s <a href="#" data-toggle="tooltip" title="" data-original-title="Period of time in which investors can buy or sell BTKS every 27 days during 3 days."><i class="fe fe-info"></i></a>
+            </h4>
+            <form action="https://fund.us17.list-manage.com/subscribe/post?u=9c0647dcb587985ed6121cdf6&amp;id=150e0f091e" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate mb-4" target="_blank" novalidate>
+              <label class="text-secondary" for="mce-EMAIL">Be notified by email 👇.</label>
+              <div class="input-group input-group-lg">
+                <input class="form-control" type="email" value="" name="EMAIL" id="mce-EMAIL" placeholder="myemail@address.com" required>
+                <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_9c0647dcb587985ed6121cdf6_150e0f091e" tabindex="-1" value=""></div>
+                <div class="input-group-append bg-black">
+                  <button class="btn btn-dark btn-lg btn-block" name="subscribe" id="mc-embedded-subscribe">
+                      <span class="fe fe-send"></span>
+                  </button>
+                </div>
+              </div>
+            </form>
+            <div class="row justify-content-center align-items-center">
+              <div class="col">
+                <p class="text-secondary mb-2 mb-md-0">Or follow us</p>
+              </div>
+              <div class="col-auto">
+
+                <a href="https://t.me/betokenfund" class="btn btn-rounded-circle btn-white mr-3" target="_blank">
+                  <img class="mx-auto" src="assets/img/icons/telegram.svg" alt="telegram logo" height="20">
+                </a>
+                <a href="https://twitter.com/betokenfund" class="btn btn-rounded-circle btn-white mr-3" target="_blank">
+                  <img class="mx-auto" src="assets/img/icons/twitter.svg" alt="twitter logo" height="20">
+                </a>
+                <a href="https://medium.com/betoken" class="btn btn-rounded-circle btn-white mr-3" target="_blank">
+                  <img class="mx-auto" src="assets/img/icons/medium.svg" alt="medium logo" height="20">
+                </a>
+                <a href="https://github.com/Betoken" class="btn btn-rounded-circle btn-white" target="_blank">
+                  <img class="mx-auto" src="assets/img/icons/github.svg" alt="medium logo" height="20">
+                </a>
+              </div>
+            </div>
+            -->
+            <hr class="my-4">
+            <div class="row align-items-center">
+              <div class="col mr-auto pr-0">
+                <h4 class="font-weight-bold mb-1">Already have BTKS?</h4>
+                <p class="text-secondary d-none d-md-block mb-0">Log in to your dashboard.</p>
+              </div>
+              <div class="col-auto">
+                <a class="btn btn-white" href="#/investing-dashboard" target="_blank">Log In</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container mt-3">
+    <div class="row justify-content-center">
+      <div class="col-11 col-lg-6">
+        <h1 class="text-center">Frequently asked questions</h1>
+        <div id="accordion">
+          <!-- question -->
+          <div class="card">
+            <div class="card-header" id="headingOne">
+                <a href="" class="text-secondary" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                  <div class="row align-items-center no-gutters">
+                    <div class="col mr-auto">
+                        <h3 class="card-text">
+                        Can I buy and sell shares at any time?
+                        </h3>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fe fe-plus"></i>
+                    </div>
+                  </div>
+                </a>
+            </div>
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+              <div class="card-body">
+                Yes. Betoken's protocol is 100% liquid. You can buy and sell BTKS at any time in 2 ways:
+                <ol>
+                  <li>During <a href="#">Betoken's management phase</a> (27 days), BTKS is freely tradable on exchanges. The price may be different from what's displayed on the investor dashboard.</li>
+                  <li>During <a href="#">Betoken's intermission phase</a> (3 days), you can buy and sell BTKS directly on the investor dashboard.</li>
+                </ol>
+              </div>
+            </div>
+            <div class="card-header border-bottom" id="headingTwo">
+                <a href="" class="text-secondary" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  <div class="row align-items-center no-gutters">
+                    <div class="col mr-auto">
+                        <h3 class="card-text">
+                        How can I buy BTKS?
+                        </h3>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fe fe-plus"></i>
+                    </div>
+                  </div>
+                </a>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+              <div class="card-body">
+                <p>Click on the Get Started button and follow the instructions. You'll be able to use Ether or any of our 50+ supported ERC-20 tokens to buy Betoken Shares (BTKS).</p>
+              </div>
+            </div>
+            <div class="card-header border-bottom" id="headingThree">
+                <a href="" class="text-secondary" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                  <div class="row align-items-center no-gutters">
+                    <div class="col mr-auto">
+                        <h3 class="card-text">
+                        Do you charge fees?
+                        </h3>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fe fe-plus"></i>
+                    </div>
+                  </div>
+                </a>
+            </div>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+              <div class="card-body">
+                <p>Yes. We're charging the following fees to pay our managers and pay for the development & maintainance of Betoken.
+                <ul>
+                  <li>Performance fee: 20%</li>
+                  <li>Management fee: 0.2%</li>
+                  <li>Exit fee: 3%</li>
+                </ul>
+              </div>
+            </div>
+            <div class="card-header border-bottom" id="headingFour">
+                <a href="" class="text-secondary" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                  <div class="row align-items-center no-gutters">
+                    <div class="col mr-auto">
+                        <h3 class="card-text">
+                        What are the performances of the Betoken fund?
+                        </h3>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fe fe-plus"></i>
+                    </div>
+                  </div>
+                </a>
+            </div>
+            <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+              <div class="card-body">
+                You can check our performance metrics on our <a href="#">website</a> or in your <a href="#">investing dashboard</a>.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-11 col-lg-6">
+        <div class="card card-inactive mb-4">
+          <div class="card-body">
+            <h3 class="text-center">Disclaimer</h3>
+            <p class="text-muted text-center">Betoken is a highly experimental project and is used at your own risk. Betoken does not guarantee profit or any level of performance.</p>
+          </div>
+        </div>
+        <div class="card bg-green">
+          <div class="card-body text-center">
+            <h3 class="text-white">Can’t find what you’re looking for?</h3>
+            <a class="btn btn-white mr-3" href="#">Telegram</a>
+            <a class="btn btn-white mr-3" href="#">Help Center</a>
+          </div>
+        </div>
+        <ul class="nav justify-content-center my-4">
+          <li class="nav-item">
+            <a href="https://betoken.fund" class="nav-link text-center text-secondary">Home</a>
+          </li>
+          <li class="nav-item">
+            <a href="https://medium.com/betoken" class="nav-link text-center text-secondary">Blog</a>
+          </li>
+          <li class="nav-item">
+            <a href="https://docs.google.com/document/d/1S1sz5O3fAG5u0unCPoVpB_ADpZBpwA_Gyvd1Rm1Obqg/edit?usp=sharing" class="nav-link text-center text-secondary">Terms&nbsp;of&nbsp;Service</a>
+          </li>
+        </ul>
+        <p class="text-center text-secondary">Contact us at <a class="text-secondary" href="mailto:hello@betoken.fund?subject=Hey">hello@betoken.fund</a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Buy BTKS modal -->
+  <div class="modal fade fixed-right" id="modalInvestorOnboarding" tabindex="-1" role="dialog" aria-labelledby="modalInvestorOnboarding" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-vertical bg-white" role="document">
+      <div class="modal-content" data-toggle="lists" data-lists-values="[&quot;name&quot;]">
+        <div class="card-header border-0">
+          <div class="row align-items-center">
+            <div class="col">
+              <!-- Confirm rules title -->
+              <h4 class="card-header-title" *ngIf="step == 0">
+                Please confirm before continuing
+              </h4>
+              <!-- Select Asset to buy BTKS title -->
+              <h4 class="card-header-title" *ngIf="step == 1">
+                Please choose method of payment
+              </h4>
+              <!-- BTKS amount title -->
+              <h4 class="card-header-title" *ngIf="step == 2">
+                How many shares do you want to buy?
+              </h4>
+              <!-- BTKS Confirm buy title -->
+              <h4 class="card-header-title" *ngIf="step == 3">
+                Confirm order
+              </h4>
+              <!-- BTKS Processing buy title -->
+              <h4 class="card-header-title" *ngIf="step == 4">
+                Processing order
+              </h4>
+              <!-- BTKS confirmed buy title -->
+              <h4 class="card-header-title" *ngIf="step == 5">
+                Order confirmed
+              </h4>
+            </div>
+            <div class="col-auto">
+
+              <!-- Close -->
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+              </button>
+
+            </div>
+          </div> <!-- / .row -->
+        </div>
+        <div class="card-header py-0 border-0" style="min-height: 24px;">
+          <div class="progress" style="height: 8px;">
+            <div [ngClass]="{'bg-success': step >= 0, 'bg-secondary': step !== 0}" class="progress-bar" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+            <div [ngClass]="{'bg-success': step >= 1, 'bg-secondary': step !== 1}" class="progress-bar border-left" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+            <div [ngClass]="{'bg-success': step >= 2, 'bg-secondary': step !== 2}" class="progress-bar border-left" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+            <div [ngClass]="{'bg-success': step >= 3, 'bg-secondary': step !== 3}" class="progress-bar border-left" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+            <div [ngClass]="{'bg-success': step >= 4, 'bg-secondary': step !== 4}" class="progress-bar border-left" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+        </div>
+        <!-- Search in list assets to buy BTKS -->
+        <div class="card-header"*ngIf="step == 1">
+          <form>
+            <div class="input-group input-group-flush input-group-merge">
+              <input type="search" class="form-control form-control-prepended search" placeholder="Search" (keyup)="filterList($event, 'asset-list', 0)">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  <span class="fe fe-search"></span>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-body">
+          <!-- before starting confirm rules -->
+          <div *ngIf="step == 0">
+            <div class="custom-control custom-checkbox mb-4">
+              <input type="checkbox" class="custom-control-input" id="rule1" (change)="checkboxes[0] = !checkboxes[0]">
+              <label class="custom-control-label small text-secondary" for="rule1">I am NEITHER a citizen or resident of, NOR currently located in any of the following states or territories, NOR an entity formed under the laws of: Afghanistan, Cuba, Democratic People's Republic of Korea, Iran, Iraq, People’s Republic of China, Russian Federation, Somalia, Sudan, Syria, United Arab Emirates, United States of America, Venezuela, Yemen.</label>
+            </div>
+            <div class="custom-control custom-checkbox mb-4">
+              <input type="checkbox" class="custom-control-input" id="rule2" (change)="checkboxes[1] = !checkboxes[1]">
+              <label class="custom-control-label small text-secondary" for="rule2">You have read and agree to the <a href="#">Terms of Use</a>, <a href="#">Privacy Policy</a> and <a href="#">AML Policy</a>.</label>
+            </div>
+            <div class="custom-control custom-checkbox mb-4">
+              <input type="checkbox" class="custom-control-input" id="rule3" (change)="checkboxes[2] = !checkboxes[2]">
+              <label class="custom-control-label small text-secondary" for="rule3">💀 You understand that Betoken Protocol is in beta. Use at your own risk.</label>
+            </div>
+          </div>
+
+          <!-- Step 1: select asset -->
+          <div *ngIf="step == 1">
+
+            <!-- List supported assets -->
+            <ul class="list-group list-group-flush list" id="asset-list">
+              <li class="list-group-item px-0" *ngFor = "let token of tokenList">
+                <a href="#/start" (click)="selectedTokenSymbol = token; step = 2;">
+                  <div class="row align-items-center">
+                    <div class="col-auto">
+                      <span class="avatar avatar-sm">
+                        <img src={{getTokenLogoUrl(token)}} alt="token logo" class="avatar-img rounded-circle">
+                      </span>
+                    </div>
+                    <div class="col ml--2">
+                      <span class="mb-1 h4 name">
+                        {{token}}
+                      </span>
+                      <p class="small text-secondary mb-0">
+                        {{getTokenName(token)}}
+                      </p>
+                    </div>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Step 2: enter amount -->
+
+          <!-- Quantity of share to buy -->
+          <div *ngIf="step == 2">
+            <h6 class="header-pretitle">
+              Current price
+            </h6>
+            <h4 class="mb-5">
+              10.2340 DAI/BTKS
+            </h4>
+            <h6 class="header-pretitle text-secondary">I want to buy Betoken Shares with</h6>
+            <div class="row justify-content-center mb-4">
+                <div class="col">
+                    <form>
+                        <div class="form-group row mb-0">
+                          <div class="col">
+                              <input type="number" min="0.0" class="form-control form-control-lg form-control-flush input-xl border-bottom border-1 rounded-0 mt-1 mb-1" aria-describedby="Betoken Shares Amount to buy" placeholder="0.0" id="sharesAmountToBuy">
+                          </div>
+                          <label for="sharesAmountToBuy" class="col-auto col-form-label"><span class="display-4">{{selectedTokenSymbol}}</span></label>
+                        </div>
+                        <small class="form-text text-secondary d-inline-block mb-0">100 {{selectedTokenSymbol}} available</small>
+                    </form>
+                </div>
+                <div class="col-auto">
+                    <button class="btn btn-sm btn-outline-secondary mt-3" type="button" name="button">Max</button>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table mb-4">
+                  <thead>
+                    <tr>
+                      <th class="px-0 bg-transparent border-top-0">
+                        <span class="h6">Order details</span>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="px-0 small align-baseline text-muted">
+                        Purchase BTKS for
+                      </td>
+                      <td class="px-0 text-right small align-baseline">
+                        50,330.0000 {{selectedTokenSymbol}}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="px-0 small align-baseline text-muted">
+                        BTKS to receive
+                      </td>
+                      <td class="px-0 text-right small align-baseline">
+                        0.0000
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+            </div>
+          </div>
+
+
+          <!-- Step 3: confirm transaction -->
+          <p class="text-center text-muted mb-5" *ngIf="step == 3">
+            Confirm the transaction in your wallet’s interface to save it on the Ethereum blockchain. It's fine to stick with these defaults gas limit and price.
+          </p>
+
+          <!-- Step 4: transaction broadcasted -->
+          <!-- Processing investment body -->
+          <div *ngIf="step == 4">
+            <div class="py-5 is-loading is-loading-lg"></div>
+            <p class="text-center text-muted mb-5">
+              Your investment is being saved on the Ethereum blockchain.
+            </p>
+            <hr >
+            <form >
+              <div class="form-group">
+                <label for="exampleFormControlInput1">Transaction ID</label>
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control form-control-lg" value="{{transactionId}}" aria-label="Transaction ID" aria-describedby="">
+                  <div class="input-group-append">
+                    <a class="btn btn-white h-100" href="https://rinkeby.etherscan.io/tx/{{transactionId}}" target="_blank"><i class="fe fe-external-link"></i></a>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <!-- Step 5: transaction confirmed -->
+          <!-- Investment confirmed body -->
+          <div *ngIf="step == 5">
+            <p class="h1 text-center">
+              <i class="fe fe-check-circle text-success"></i>
+            </p>
+            <p class="text-center text-muted mb-5">
+              You bought <span class="font-weight-bold text-secondary">000</span> BTKS.
+            </p>
+            <button class="btn btn-white btn-block" type="button" name="button">Check your Dashboard</button>
+            <button class="btn btn-twitter btn-block"type="button" name="button">Tweet it</button>
+            <hr>
+            <form>
+              <div class="form-group">
+                <label for="exampleFormControlInput1">Transaction ID</label>
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control form-control-lg" value="{{transactionId}}" aria-label="Transaction ID" aria-describedby="">
+                  <div class="input-group-append">
+                    <a class="btn btn-white h-100" href="https://rinkeby.etherscan.io/tx/{{transactionId}}" target="_blank"><i class="fe fe-external-link"></i></a>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <!-- Continue button for step 1 -->
+          <button type="submit" class="btn btn-block btn-success mt-auto" aria-label="BuyBTKS" *ngIf="step == 0" (click)="step = agreementsChecked() ? 1 : 0" [ngClass]="{'disabled': !agreementsChecked()}">
+            Buy Betoken Shares
+          </button>
+          <!-- Continue button for step 2 -->
+          <button type="submit" class="btn btn-block btn-success mt-auto" aria-label="Continue to Buy" *ngIf="step == 2" (click)="step = 3; deposit();">
+            Continue
+          </button>
+          <!-- Close button for step 5 -->
+          <button type="submit" class="btn btn-block btn-white mt-auto" data-dismiss="modal" aria-label="Close" *ngIf="step == 5">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div><!-- / modal -->
+
+</div> <!-- / .main-content -->

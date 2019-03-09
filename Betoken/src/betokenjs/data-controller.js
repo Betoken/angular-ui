@@ -267,31 +267,33 @@ export const loadUserData = async () => {
 
             portfolioValue.set(stake.plus(kairoBalance.get()));
 
-            isLoadingInvestments.set(false);
         }
     }
+    isLoadingInvestments.set(false);
 };
 
 export const loadTxHistory = async () => {
-    isLoadingRecords.set(true);
-    // Get commission history
-    let events = (await betoken.contracts.BetokenFund.getPastEvents("CommissionPaid", {
-        fromBlock: DEPLOYED_BLOCK,
-        filter: {
-            _sender: userAddress.get()
+    if (userAddress.get() != "0x0") {
+        isLoadingRecords.set(true);
+        // Get commission history
+        let events = (await betoken.contracts.BetokenFund.getPastEvents("CommissionPaid", {
+            fromBlock: DEPLOYED_BLOCK,
+            filter: {
+                _sender: userAddress.get()
+            }
+        }));
+        let commissionHistoryArray = [];
+        for (let event of events) {
+            let entry = {
+                cycle: event.returnValues._cycleNumber,
+                amount: BigNumber(event.returnValues._commission).div(10 ** 18),
+                timestamp: new Date((await web3.eth.getBlock(event.blockNumber)).timestamp * 1e3).toLocaleString(),
+                txHash: event.transactionHash
+            };
+            commissionHistoryArray.push(entry);
         }
-    }));
-    let commissionHistoryArray = [];
-    for (let event of events) {
-        let entry = {
-            cycle: event.returnValues._cycleNumber,
-            amount: BigNumber(event.returnValues._commission).div(10 ** 18),
-            timestamp: new Date((await web3.eth.getBlock(event.blockNumber)).timestamp * 1e3).toLocaleString(),
-            txHash: event.transactionHash
-        };
-        commissionHistoryArray.push(entry);
+        commissionHistory.set(commissionHistoryArray);
     }
-    commissionHistory.set(commissionHistoryArray);
     isLoadingRecords.set(false);
 };
 
@@ -380,7 +382,6 @@ export const loadRanking = async () => {
                     totalStake = totalStake.plus(_stake);
                 }
             }
-
             return {
                 // format rank object
                 rank: 0,

@@ -1,7 +1,19 @@
-<app-side-nav *ngIf="display_header_sidebar"></app-side-nav>
+<div class="main-content vh-100" *ngIf="is_loading">
+  <div class="container vh-100 justify-content-center d-flex align-content-center flex-wrap">
+    <div class="row justify-content-center my-5">
+      <div class="col-11 col-md-12">
+        <img class="image-fluid d-block mx-auto" src="assets/img/betoken-logo-wo-text.svg" alt="Betoken" style="width: 88px;">
+        <div class="loader loader-lg loader-white mx-auto d-block mb-4" style="width: 90px; height: 90px; margin-top: -89px; border-width: 7px;"></div>
+        <small>Loading data from the Ethereum blockchain... This will take ~10s.</small>
+      </div>
+    </div>
+  </div>
+</div> 
+
+<app-side-nav *ngIf="display_header_sidebar && !is_loading"></app-side-nav>
 <!-- MAIN CONTENT
 ================================================== -->
-<div [ngClass]="{'main-content custom-sidebar': display_header_sidebar}">
+<div [ngClass]="{'main-content custom-sidebar': display_header_sidebar}" *ngIf="!is_loading">
 
   <app-header *ngIf="display_header_sidebar"></app-header>
 

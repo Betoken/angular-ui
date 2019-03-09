@@ -7,6 +7,7 @@ declare var $: any;
 import {
   user, timer, network, error_notifications
 } from '../../betokenjs/helpers';
+import BigNumber from 'bignumber.js';
 
 @Component({
   selector: 'app-header',
@@ -25,7 +26,7 @@ export class HeaderComponent implements OnInit {
   phase = -1;
 
   user_address = '0x0';
-  userKairoValue: any;
+  userKairoValue = new BigNumber(0);
 
   can_redeem_commission = true;
 

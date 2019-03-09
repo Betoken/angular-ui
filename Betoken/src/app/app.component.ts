@@ -11,11 +11,13 @@ import { loadAllData, loadDynamicData } from '../betokenjs/data-controller';
 export class AppComponent {
   title = 'Betoken';
   display_header_sidebar = true;
+  is_loading = true;
 
   constructor() {
     const betoken = new Betoken();
     betoken.init().then(loadAllData).then(() => {
       setInterval(loadDynamicData, 120 * 1000); // refresh everything every 2 minutes
+      this.is_loading = false;
     });
   }
 

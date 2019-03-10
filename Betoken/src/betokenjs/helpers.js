@@ -50,6 +50,11 @@ export const user = {
     shares_balance: () => Data.sharesBalance.get(),
     investment_balance: () => Data.investmentBalance.get(),
     kairo_balance: () => Data.kairoBalance.get(),
+    token_balance: async (tokenSymbol) => {
+        let balance = await betoken.getTokenBalance(Data.assetSymbolToAddress(tokenSymbol), Data.userAddress.get());
+        let decimals = Data.TOKEN_DATA.get().find((x) => x.symbol === tokenSymbol).decimals;
+        return BigNumber(balance).div(Math.pow(10, decimals));
+    },
     monthly_roi: () => Data.managerROI.get(),
     can_redeem_commission: () => {
         return betoken.hasWeb3 && Data.cyclePhase.get() === 2 && Data.lastCommissionRedemption.get() < Data.cycleNumber.get();

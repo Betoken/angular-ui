@@ -41,6 +41,7 @@ export class InvestorComponent implements OnInit {
 
   checkboxes = [false, false, false];
   selectedTokenSymbol = '';
+  selectedTokenBalance = new BigNumber(0);
   transactionId = '';
   
   constructor(private ms: AppComponent, private route: Router) {
@@ -127,6 +128,11 @@ export class InvestorComponent implements OnInit {
       return '';
     }
     return result;
+  }
+
+  async getTokenBalance(token) {
+    this.selectedTokenBalance = await user.token_balance(token);
+    console.log(this.selectedTokenBalance);
   }
 
   deposit() {

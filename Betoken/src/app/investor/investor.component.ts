@@ -17,13 +17,16 @@ import {
   templateUrl: './investor.component.html'
 })
 export class InvestorComponent implements OnInit {
-  sharePrice = 0;
+  sharesPrice = 0;
   avgMonthReturn = 0;
   currMoROI = 0;
   AUM = 0;
   sortinoRatio = 0;
   standardDeviation = 0;
   tokenData: any;
+
+  sharesBalance: BigNumber;
+  investmentBalance: BigNumber;
 
   hasDrawnChart = false;
   performanceChart: any;
@@ -60,6 +63,10 @@ export class InvestorComponent implements OnInit {
     this.avgMonthReturn = stats.avg_roi().toFormat(NUM_DECIMALS);
     this.currMoROI = stats.cycle_roi().toFormat(NUM_DECIMALS);
     this.AUM = stats.fund_value().toFormat(NUM_DECIMALS);
+
+    this.sharesBalance = user.shares_balance();
+    this.investmentBalance = user.investment_balance();
+    this.sharesPrice = stats.shares_price();
 
     this.day = timer.day();
     this.hour = timer.hour();

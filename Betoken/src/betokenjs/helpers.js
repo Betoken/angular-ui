@@ -47,7 +47,8 @@ export const timer = {
 
 export const user = {
     address: () => Data.userAddress.get(),
-    share_balance: () => Data.investmentBalance.get(),
+    shares_balance: () => Data.sharesBalance.get(),
+    investment_balance: () => Data.investmentBalance.get(),
     kairo_balance: () => Data.kairoBalance.get(),
     monthly_roi: () => Data.managerROI.get(),
     can_redeem_commission: () => {
@@ -107,7 +108,8 @@ export const stats = {
         }
     },
     raw_roi_data: () => Data.ROIArray.get(),
-    ranking: () => Data.kairoRanking.get()
+    ranking: () => Data.kairoRanking.get(),
+    shares_price: () => Data.sharesPrice.get()
 }
 
 export const tokens = {

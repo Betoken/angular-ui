@@ -10,12 +10,12 @@
               
               <!-- Title -->
               <h6 class="card-title text-uppercase text-muted mb-2">
-                Owned BTKS (Betoken Shares)
+                Your Betoken Shares Balance
               </h6>
               
               <!-- Heading -->
               <span class="h2 mb-0">
-                344.0203
+                {{sharesBalance.toFormat(4)}} BTKS
               </span>
               
             </div>
@@ -37,12 +37,12 @@
               
               <!-- Title -->
               <h6 class="card-title text-uppercase text-muted mb-2">
-                Value (DAI)
+                Value of Your Betoken Shares
               </h6>
               
               <!-- Heading -->
               <span class="h2 mb-0">
-                12,344.2323
+                {{investmentBalance.toFormat(4)}} DAI
               </span>
               
             </div>
@@ -64,7 +64,7 @@
               
               <!-- Title -->
               <h6 class="card-title text-uppercase text-muted mb-2">
-                ROI since subscription (DAI)
+                ROI since subscription
               </h6>
               
               <!-- Heading -->
@@ -100,10 +100,10 @@
           </h6>
           <!-- Title -->
           <h1 class="header-title text-white d-inline-block align-middle">
-            Current BTKS Price
+            Betoken Shares Price
             <!-- Badge -->
             <span class="badge badge-soft-success my-3 my-md-0 ml-md-2">
-              {{sharePrice}} DAI
+              {{sharesPrice.toFormat(4)}} DAI
             </span>
           </h1>
           

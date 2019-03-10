@@ -34,6 +34,7 @@ export var currROI = new ReactiveVar(BigNumber(0));
 export var avgROI = new ReactiveVar(BigNumber(0));
 export var ROIArray = new ReactiveVar([]);
 export var cycleTotalCommission = new ReactiveVar(BigNumber(0));
+export var sharesPrice = new ReactiveVar(BigNumber(0));
 
 // cycle timekeeping
 export var cycleNumber = new ReactiveVar(0);
@@ -223,7 +224,7 @@ export const loadUserData = async () => {
             userAddress.set(userAddr);
 
             // Get shares balance
-            sharesBalance.set(BigNumber((await betoken.getShareBalance(userAddr))));
+            sharesBalance.set(BigNumber((await betoken.getShareBalance(userAddr))).div(PRECISION));
             if (!sharesTotalSupply.get().isZero()) {
                 investmentBalance.set(sharesBalance.get().div(sharesTotalSupply.get()).times(totalFunds.get()));
             }
@@ -453,6 +454,14 @@ export const loadStats = async () => {
     var totalDAI = BigNumber(await betoken.getTokenBalance(DAI_ADDR, betoken.contracts.BetokenFund.options.address)).minus(await betoken.getPrimitiveVar("totalCommissionLeft")).div(PRECISION);
     _fundValue = _fundValue.plus(totalDAI);
     fundValue.set(_fundValue);
+
+    if (!sharesTotalSupply.get().isZero() && userAddress.get() !== '0x0') {
+        investmentBalance.set(sharesBalance.get().div(sharesTotalSupply.get()).times(fundValue.get()));
+    }
+
+    if (!sharesTotalSupply.get().isZero()) {
+        sharesPrice.set(BigNumber(1).div(sharesTotalSupply.get()).times(fundValue.get()));
+    }
 
     // get stats
     var rois = [];

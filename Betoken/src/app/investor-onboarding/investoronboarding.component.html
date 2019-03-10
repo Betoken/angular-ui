@@ -346,20 +346,20 @@
   
               <!-- List supported assets -->
               <ul class="list-group list-group-flush list" id="asset-list">
-                <li class="list-group-item px-0" *ngFor = "let token of tokenList">
-                  <a href="#/start" (click)="selectedTokenSymbol = token; step = 2;">
+                <li class="list-group-item px-0" *ngFor = "let token of tokenData">
+                  <a href="#/start" (click)="selectedTokenSymbol = token.symbol; step = 2;">
                     <div class="row align-items-center">
                       <div class="col-auto">
                         <span class="avatar avatar-sm">
-                          <img src={{getTokenLogoUrl(token)}} alt="token logo" class="avatar-img rounded-circle">
+                          <img src={{token.logoUrl}} alt="token logo" class="avatar-img rounded-circle">
                         </span>
                       </div>
                       <div class="col ml--2">
                         <span class="mb-1 h4 name">
-                          {{token}}
+                          {{token.symbol}}
                         </span>
                         <p class="small text-secondary mb-0">
-                          {{getTokenName(token)}}
+                          {{token.name}}
                         </p>
                       </div>
                     </div>
@@ -446,7 +446,7 @@
                   <div class="input-group mb-3">
                     <input type="text" class="form-control form-control-lg" value="{{transactionId}}" aria-label="Transaction ID" aria-describedby="">
                     <div class="input-group-append">
-                      <a class="btn btn-white h-100" href="https://rinkeby.etherscan.io/tx/{{transactionId}}" target="_blank"><i class="fe fe-external-link"></i></a>
+                      <a class="btn btn-white h-100" href="https://ropsten.etherscan.io/tx/{{transactionId}}" target="_blank"><i class="fe fe-external-link"></i></a>
                     </div>
                   </div>
                 </div>
@@ -471,7 +471,7 @@
                   <div class="input-group mb-3">
                     <input type="text" class="form-control form-control-lg" value="{{transactionId}}" aria-label="Transaction ID" aria-describedby="">
                     <div class="input-group-append">
-                      <a class="btn btn-white h-100" href="https://rinkeby.etherscan.io/tx/{{transactionId}}" target="_blank"><i class="fe fe-external-link"></i></a>
+                      <a class="btn btn-white h-100" href="https://ropsten.etherscan.io/tx/{{transactionId}}" target="_blank"><i class="fe fe-external-link"></i></a>
                     </div>
                   </div>
                 </div>

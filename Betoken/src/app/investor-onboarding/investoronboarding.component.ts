@@ -15,7 +15,7 @@ import {
     templateUrl: './investoronboarding.component.html'
 })
 export class InvestoronboardingComponent implements OnInit {
-    tokenList: any;
+    tokenData: any;
     user_address = '0x0';
     errorMsg = '';
     step = 0;
@@ -28,7 +28,7 @@ export class InvestoronboardingComponent implements OnInit {
 
     ngOnInit() {
         error_notifications.set_error_msg("");
-        this.tokenList = tokens.token_list();
+        this.tokenData = tokens.token_data().get();
         setInterval(() => {
             this.updateErrorMsg();
             this.refreshDisplay();
@@ -98,19 +98,19 @@ export class InvestoronboardingComponent implements OnInit {
     }
 
     getTokenName(token) {
-        let result = tokens.asset_symbol_to_metadata(token);
+        let result = tokens.asset_symbol_to_name(token);
         if (isUndefined(result)) {
             return '';
         }
-        return result.name;
+        return result;
     }
 
     getTokenLogoUrl(token) {
-        let result = tokens.asset_symbol_to_metadata(token);
+        let result = tokens.asset_symbol_to_logo_url(token);
         if (isUndefined(result)) {
             return '';
         }
-        return result.logoUrl;
+        return result;
     }
 
     updateErrorMsg() {

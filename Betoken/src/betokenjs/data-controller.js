@@ -1,14 +1,12 @@
 // imports
-import { getDefaultAccount } from './betoken-obj';
+import { getDefaultAccount, DAI_ADDR } from './betoken-obj';
 import ReactiveVar from "meteor-standalone-reactive-var";
 import BigNumber from "bignumber.js";
 import https from "https";
 
 // constants
 const PRECISION = 1e18;
-export const TOKENS = require("./kn_token_symbols.json");
-const DEPLOYED_BLOCK = 2721413;
-const DAI_ADDR = "0x6f2d6ff85efca691aad23d549771160a12f0a0fc";
+const DEPLOYED_BLOCK = 5168545;
 
 // instance variables
 // user info
@@ -51,12 +49,7 @@ export var countdownSec = new ReactiveVar(0);
 export var kairoRanking = new ReactiveVar([]);
 
 // token data
-export var tokenPrices = new ReactiveVar([]);
-export var tokenAddresses = new ReactiveVar([]);
-export var tokenMetadata = new ReactiveVar([]);
-export var tokenDailyPriceChanges = new ReactiveVar([]);
-export var tokenWeeklyPriceChanges = new ReactiveVar([]);
-export var tokenMonthlyPriceChanges = new ReactiveVar([]);
+export var TOKEN_DATA = new ReactiveVar([]);
 
 // loading indicator
 export var isLoadingRanking = new ReactiveVar(true);
@@ -70,31 +63,35 @@ export var networkPrefix = new ReactiveVar("");
 
 // helpers
 export const assetSymbolToPrice = function(_symbol) {
-    return tokenPrices.get()[TOKENS.indexOf(_symbol)];
+    return TOKEN_DATA.get().find((x) => x.symbol === _symbol).price;
 };
 
 export const assetAddressToSymbol = function(_addr) {
-    return TOKENS[tokenAddresses.get().indexOf(_addr)];
+    return TOKEN_DATA.get().find((x) => x.address === _addr).symbol;
 };
 
 export const assetSymbolToAddress = function(_symbol) {
-    return tokenAddresses.get()[TOKENS.indexOf(_symbol)];
+    return TOKEN_DATA.get().find((x) => x.symbol === _symbol).address;
 };
 
 export const assetSymbolToDailyPriceChange = function(_symbol) {
-    return tokenDailyPriceChanges.get()[TOKENS.indexOf(_symbol)];
+    return TOKEN_DATA.get().find((x) => x.symbol === _symbol).dailyPriceChange;
 };
 
 export const assetSymbolToWeeklyPriceChange = function(_symbol) {
-    return tokenWeeklyPriceChanges.get()[TOKENS.indexOf(_symbol)];
+    return TOKEN_DATA.get().find((x) => x.symbol === _symbol).weeklyPriceChange;
 };
 
 export const assetSymbolToMonthlyPriceChange = function(_symbol) {
-    return tokenMonthlyPriceChanges.get()[TOKENS.indexOf(_symbol)];
+    return TOKEN_DATA.get().find((x) => x.symbol === _symbol).monthlyPriceChange;
 };
 
-export const assetSymbolToMetadata = (_symbol) => {
-    return tokenMetadata.get()[TOKENS.indexOf(_symbol)];
+export const assetSymbolToName = (_symbol) => {
+    return TOKEN_DATA.get().find((x) => x.symbol === _symbol).name;
+}
+
+export const assetSymbolToLogoUrl = (_symbol) => {
+    return TOKEN_DATA.get().find((x) => x.symbol === _symbol).logoUrl;
 }
 
 export const httpsGet = async (apiStr) => {
@@ -139,25 +136,40 @@ export const loadMetadata = async () => {
     return Promise.all([
         // get params
         phaseLengths.set(((await betoken.getPrimitiveVar("getPhaseLengths"))).map(x => +x)),
-        commissionRate.set(BigNumber((await betoken.getPrimitiveVar("commissionRate"))).div(PRECISION)),
-        assetFeeRate.set(BigNumber((await betoken.getPrimitiveVar("assetFeeRate"))).div(PRECISION)),
-        tokenAddresses.set((await Promise.all(TOKENS.map(async (_token) => {
-            return await betoken.tokenSymbolToAddress(_token);
-        })))),
+        commissionRate.set(BigNumber((await betoken.getPrimitiveVar("COMMISSION_RATE"))).div(PRECISION)),
+        assetFeeRate.set(BigNumber((await betoken.getPrimitiveVar("ASSET_FEE_RATE"))).div(PRECISION)),
         loadTokenMetadata()
     ]);
 };
 
 export const loadTokenMetadata = async () => {
-    const apiStr = `https://min-api.cryptocompare.com/data/coin/generalinfo?fsyms=${TOKENS.join()}&tsym=BTC`;
-    const data = (await httpsGet(apiStr)).Data;
-    let result = data.map((x) => {
+    // fetch token data from Kyber API
+    let apiStr = `https://ropsten-api.kyber.network/currencies`;
+    let rawData = (await httpsGet(apiStr)).data;
+    let tokenData = rawData.map((x) => {
         return {
-            name: x.CoinInfo.FullName,
-            logoUrl: `https://cryptocompare.com${x.CoinInfo.ImageUrl}`
+            name: x.name,
+            symbol: x.symbol,
+            address: x.address,
+            decimals: x.decimals,
+            logoUrl: '',
+            price: BigNumber(0),
+            dailyPriceChange: BigNumber(0),
+            weeklyPriceChange: BigNumber(0),
+            monthlyPriceChange: BigNumber(0)
         }
     });
-    tokenMetadata.set(result);
+
+    // fetch token metadata from CryptoCompare API
+    apiStr = `https://min-api.cryptocompare.com/data/coin/generalinfo?fsyms=${tokenData.map((x) => x.symbol).join()}&tsym=BTC`;
+    rawData = (await httpsGet(apiStr)).Data;
+    let tokenLogos = rawData.map((x) => `https://cryptocompare.com${x.CoinInfo.ImageUrl}`);
+    tokenData = tokenData.map((x, i) => {
+        x.logoUrl = tokenLogos[i];
+        return x;
+    });
+
+    TOKEN_DATA.set(tokenData);
 }
 
 export const loadFundData = async () => {
@@ -190,8 +202,8 @@ export const loadUserData = async () => {
             pre = "Ropsten";
             break;
             case 4:
-            net = "Rinkeby Testnet";
-            pre = "Rinkeby";
+            net = "Ropsten Testnet";
+            pre = "Ropsten";
             break;
             case 42:
             net = "Kovan Testnet";
@@ -300,20 +312,31 @@ export const loadTxHistory = async () => {
 export const loadTokenPrices = async () => {
     isLoadingPrices.set(true);
 
-    tokenPrices.set(await Promise.all(TOKENS.map(async (_token) => {
-        return betoken.getTokenPrice(_token).then((_price) => {
-            return BigNumber(_price).div(PRECISION);
-        });
-    })));
+    let tokenPrices = await Promise.all(TOKEN_DATA.get().map(async (_token) => {
+        return betoken.getTokenPrice(_token.address);
+    }));
+    TOKEN_DATA.set(TOKEN_DATA.get().map((x, i) => {
+        x.price = tokenPrices[i];
+        return x;
+    }));
 
     loadPriceChanges(1).then((changes) => {
-        tokenDailyPriceChanges.set(changes);
+        TOKEN_DATA.set(TOKEN_DATA.get().map((x, i) => {
+            x.dailyPriceChange = changes[i];
+            return x;
+        }));
     });
     loadPriceChanges(7).then((changes) => {
-        tokenWeeklyPriceChanges.set(changes);
+        TOKEN_DATA.set(TOKEN_DATA.get().map((x, i) => {
+            x.weeklyPriceChange = changes[i];
+            return x;
+        }));
     });
     loadPriceChanges(30).then((changes) => {
-        tokenMonthlyPriceChanges.set(changes);
+        TOKEN_DATA.set(TOKEN_DATA.get().map((x, i) => {
+            x.monthlyPriceChange = changes[i];
+            return x;
+        }));
     });
     
     isLoadingPrices.set(false);
@@ -322,10 +345,10 @@ export const loadTokenPrices = async () => {
 const loadPriceChanges = async (_daysInPast) => {
     var i = 0;
     var result = [];
-    while (i < TOKENS.length) {
+    while (i < TOKEN_DATA.get().length) {
         var tokens = [];
-        while (i < TOKENS.length && tokens.join().length + TOKENS[i].length + 1 <= 30) {
-            tokens.push(TOKENS[i]);
+        while (i < TOKEN_DATA.get().length && tokens.join().length + TOKEN_DATA.get()[i].symbol.length + 1 <= 30) {
+            tokens.push(TOKEN_DATA.get()[i].symbol);
             i++;
         }
 
@@ -347,12 +370,12 @@ export const loadRanking = async () => {
     kairoRanking.set([]);
     
     // load NewUser events to get list of users
-    var events = await betoken.contracts.BetokenFund.getPastEvents("NewUser", {
+    var events = await betoken.contracts.BetokenFund.getPastEvents("Register", {
         fromBlock: DEPLOYED_BLOCK
     });
 
     // fetch addresses
-    var addresses = events.map((_event) => _event.returnValues._user);
+    var addresses = events.map((_event) => _event.returnValues._manager);
     addresses = Array.from(new Set(addresses)); // remove duplicates
 
     // fetch KRO balances
@@ -413,15 +436,15 @@ export const loadStats = async () => {
     // calculate fund value
     var _fundValue = BigNumber(0);
     const getTokenValue = async (i) => {
-        var _token = TOKENS[i];
-        var balance = BigNumber(await betoken.getTokenBalance(assetSymbolToAddress(_token), betoken.contracts.BetokenFund.options.address))
-            .div(BigNumber(10).pow(await betoken.getTokenDecimals(assetSymbolToAddress(_token))));
-        var value = balance.times(assetSymbolToPrice(_token));
+        var _token = TOKEN_DATA[i];
+        var balance = BigNumber(await betoken.getTokenBalance(_token.address, betoken.contracts.BetokenFund.options.address))
+            .div(BigNumber(10).pow(_token.decimals));
+        var value = balance.times(_token.price);
         _fundValue = _fundValue.plus(value);
     };
     const getAllTokenValues = () => {
         var result = [];
-        for (var i = 0; i < TOKENS.length; i++) {
+        for (var i = 0; i < TOKEN_DATA.length; i++) {
             result.push(getTokenValue(i));
         }
         return result;

@@ -3,10 +3,11 @@ import BigNumber from "bignumber.js";
 const Web3 = require('web3');
 
 // constants
-export const BETOKEN_ADDR = "0x5910d5abd4d5fd58b39957664cd9735cbfe42bf0";
+export const BETOKEN_PROXY_ADDR = "0x1469155791145ad0A180D5D074d341A35d6071E1";
 export const ETH_TOKEN_ADDRESS = "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee";
-export const DAI_ADDR = "0x6f2d6ff85efca691aad23d549771160a12f0a0fc";
-export const NET_ID = 4; // Rinkeby
+export const DAI_ADDR = "0xaD6D458402F60fD3Bd25163575031ACDce07538D";
+export const KYBER_ADDR = "0x818E6FECD516Ecc3849DAf6845e3EC868087B755";
+export const NET_ID = 3; // Ropsten
 
 // helpers
 export var getDefaultAccount = async () => {
@@ -28,10 +29,10 @@ export var Betoken = function() {
     var self;
     self = this;
     self.contracts = {
+        BetokenProxy: null,
         BetokenFund: null,
         Kairo: null,
         Shares: null,
-        TokenFactory: null,
         Kyber: null
     };
     self.hasWeb3 = false;
@@ -42,14 +43,27 @@ export var Betoken = function() {
     self.init = async () => {
         // initialize web3
         await self.loadWeb3();
+
+        // Initialize BetokenProxy contract
+        var betokenProxyABI = require("./abi/BetokenProxy.json");
+        var BetokenProxy = new web3.eth.Contract(betokenProxyABI, BETOKEN_PROXY_ADDR);
+        self.contracts.BetokenProxy = BetokenProxy;
+
+        // Fetch address of BetokenFund
+        var betokenAddr = await BetokenProxy.methods.betokenFundAddress().call();
         
         // Initialize BetokenFund contract
         var betokenFundABI = require("./abi/BetokenFund.json");
-        var BetokenFund = new web3.eth.Contract(betokenFundABI, BETOKEN_ADDR);
+        var BetokenFund = new web3.eth.Contract(betokenFundABI, betokenAddr);
         self.contracts.BetokenFund = BetokenFund;
 
+        // Initialize KyberNetwork contract
+        var kyberABI = require("./abi/KyberNetwork.json");
+        var Kyber = new web3.eth.Contract(kyberABI, KYBER_ADDR);
+        self.contracts.Kyber = Kyber;
+
+        // Initialize token contracts
         var minimeABI = require("./abi/MiniMeToken.json");
-        
         await Promise.all([
             BetokenFund.methods.controlTokenAddr().call().then(function(_addr) {
                 // Initialize Kairo contract
@@ -58,16 +72,6 @@ export var Betoken = function() {
             BetokenFund.methods.shareTokenAddr().call().then(function(_addr) {
                 // Initialize Shares contract
                 self.contracts.Shares = new web3.eth.Contract(minimeABI, _addr);
-            }),
-            BetokenFund.methods.tokenFactoryAddr().call().then(function(_addr) {
-                // Initialize TestTokenFactory contract
-                var factoryABI = require("./abi/TestTokenFactory.json");
-                self.contracts.TokenFactory = new web3.eth.Contract(factoryABI, _addr);
-            }),
-            BetokenFund.methods.kyberAddr().call().then(function(_addr) {
-                // Initialize TestKyberNetwork contract
-                var knABI = require("./abi/TestKyberNetwork.json");
-                self.contracts.Kyber = new web3.eth.Contract(knABI, _addr);
             })
         ]);
         
@@ -89,7 +93,7 @@ export var Betoken = function() {
             self.hasWeb3 = true;
         } else {    
             // non-dapp browsers
-            window.web3 = new Web3(new Web3.providers.HttpProvider("https://rinkeby.infura.io/v3/3057a4979e92452bae6afaabed67a724"));
+            window.web3 = new Web3(new Web3.providers.HttpProvider("https://ropsten.infura.io/v3/3057a4979e92452bae6afaabed67a724"));
         }
     }
     
@@ -147,19 +151,18 @@ export var Betoken = function() {
         return ERC20(_tokenAddr).methods.decimals().call();
     };
     
-    // Uses TestTokenFactory to obtain a token's address from its symbol
-    self.tokenSymbolToAddress = function(_symbol) {
-        var symbolHash = web3.utils.soliditySha3(_symbol);
-        return self.contracts.TokenFactory.methods.createdTokens(symbolHash).call();
-    };
-    
-    self.getTokenPrice = async function(_symbol) {
-        var addr = await self.tokenSymbolToAddress(_symbol);
-        return self.contracts.Kyber.methods.priceInDAI(addr).call();
-    };
-    
     self.getTokenBalance = function(_tokenAddr, _addr) {
         return ERC20(_tokenAddr).methods.balanceOf(_addr).call();
+    };
+
+    self.getTokenPrice = async (_tokenAddr) => {
+        try {
+            var price = await self.contracts.Kyber.methods.getExpectedRate(_tokenAddr, DAI_ADDR, 1e5).call();
+            price = price[1];
+            return BigNumber(price).div(1e18);
+        } catch (e) {
+            return BigNumber(0);
+        }
     };
     
     /**
@@ -367,32 +370,48 @@ export var Betoken = function() {
     };
     
     /*
-    Decision Making phase functions
+    Manage functions
     */
     
     /**
-    * Creates proposal
+    * Creates an investment
     * @param  {String} _tokenAddress the token address
     * @param  {BigNumber} _stakeInWeis the investment amount
+    * @param  {BigNumber} _minPrice the min acceptable token price
+    * @param  {BigNumber} _maxPrice the max acceptable token price
     * @return {Promise}               .then(()->)
     */
-    self.createInvestment = async function(_tokenAddress, _stakeInWeis, _onTxHash, _onReceipt) {
+    self.createInvestment = async function(_tokenAddress, _stakeInWeis, _minPrice, _maxPrice, _onTxHash, _onReceipt) {
         await getDefaultAccount();
-        return self.contracts.BetokenFund.methods.createInvestment(_tokenAddress, _stakeInWeis).send({
+        return self.contracts.BetokenFund.methods.createInvestment(_tokenAddress, _stakeInWeis, _minPrice, _maxPrice).send({
             from: web3.eth.defaultAccount
         }).on("transactionHash", _onTxHash).on("receipt", _onReceipt);
     };
     
-    self.sellAsset = async function(_proposalId, _onTxHash, _onReceipt) {
+    /**
+    * Sells an investment (maybe only part of it)
+    * @param  {Number} _proposalId the investment's ID
+    * @param  {BigNumber} _tokenAmount the amount of tokens to sell
+    * @param  {BigNumber} _minPrice the min acceptable token price
+    * @param  {BigNumber} _maxPrice the max acceptable token price
+    * @return {Promise}               .then(()->)
+    */
+    self.sellAsset = async function(_proposalId, _tokenAmount, _minPrice, _maxPrice, _onTxHash, _onReceipt) {
         await getDefaultAccount();
-        return self.contracts.BetokenFund.methods.sellInvestmentAsset(_proposalId).send({
+        var sellTokenAmount = BigNumber(0);
+        if (_tokenAmount.gt(0)) {
+            sellTokenAmount = _tokenAmount;
+        } else {
+            sellTokenAmount = BigNumber(await self.getDoubleMapping("userInvestments", web3.eth.defaultAccount, _proposalId));
+        }
+        return self.contracts.BetokenFund.methods.sellInvestmentAsset(_proposalId, sellTokenAmount, _minPrice, _maxPrice).send({
             from: web3.eth.defaultAccount
         }).on("transactionHash", _onTxHash).on("receipt", _onReceipt);
     };
     
     
     /*
-    Redeem Commission phase functions
+    Redeem Commission functions
     */
     self.redeemCommission = async function(_onTxHash, _onReceipt) {
         await getDefaultAccount();

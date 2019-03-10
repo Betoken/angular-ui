@@ -5,7 +5,7 @@ const Data = require("./data-controller");
 // constants
 const SEND_TX_ERR = "There was an error during sending your transaction to the Ethereum blockchain. Please check that your inputs are valid and try again later.";
 const NO_WEB3_ERR = "Betoken can only be used in a Web3 enabled browser. Please install MetaMask or switch to another browser that supports Web3. You can currently view the fund's data, but cannot make any interactions.";
-const DEPENDENCY_ERR = "Please enable MetaMask or visit this page in a Web3 browser to interact with Betoken on Rinkeby Testnet."
+const DEPENDENCY_ERR = "Please enable MetaMask or visit this page in a Web3 browser to interact with Betoken on Ropsten Testnet."
 var error_msg = "";
 
 // exports
@@ -111,13 +111,13 @@ export const stats = {
 }
 
 export const tokens = {
-    token_list: () => Data.TOKENS,
-    token_prices: () => Data.tokenPrices.get(),
+    token_data: () => Data.TOKEN_DATA,
     asset_symbol_to_daily_price_change: (_symbol) => Data.assetSymbolToDailyPriceChange(_symbol),
     asset_symbol_to_weekly_price_change: (_symbol) => Data.assetSymbolToWeeklyPriceChange(_symbol),
     asset_symbol_to_monthly_price_change: (_symbol) => Data.assetSymbolToMonthlyPriceChange(_symbol),
     asset_symbol_to_price: (_symbol) => Data.assetSymbolToPrice(_symbol),
-    asset_symbol_to_metadata: (_symbol) => Data.assetSymbolToMetadata(_symbol)
+    asset_symbol_to_name: (_symbol) => Data.assetSymbolToName(_symbol),
+    asset_symbol_to_logo_url: (_symbol) => Data.assetSymbolToLogoUrl(_symbol)
 }
 
 export const loading = {
@@ -198,26 +198,29 @@ export const investor_actions = {
         } catch (error) {
             error_notifications.set_error_msg(error);
         }
+    },
+    nextPhase: async () => {
+        betoken.nextPhase();
     }
 }
 
 export const manager_actions = {
-    sell_investment: async function (id, pending, confirm) {
+    sell_investment: async function (id, amount, minPrice, maxPrice, pending, confirm) {
         try {
             if (Data.cyclePhase.get() === 1) {
-                return betoken.sellAsset(id, pending, confirm);
+                return betoken.sellAsset(id, amount, minPrice, maxPrice, pending, confirm);
             }
         } catch(error) {
             error_notifications.set_error_msg(SEND_TX_ERR);
         }
     },
-    new_investment: async function (tokenSymbol, amt, pending, confirm) {
-        var address, error, kairoAmountInWeis, tokenSymbol;
+    new_investment: async function (tokenSymbol, stakeAmount, minPrice, maxPrice, pending, confirm) {
+        var address, kairoAmountInWeis, tokenSymbol;
 
         try {
             address = (await betoken.tokenSymbolToAddress(tokenSymbol));
-            kairoAmountInWeis = BigNumber(amt).times("1e18");
-            betoken.createInvestment(address, kairoAmountInWeis, pending, confirm);
+            kairoAmountInWeis = BigNumber(stakeAmount).times(1e18);
+            betoken.createInvestment(address, kairoAmountInWeis, minPrice, maxPrice, pending, confirm);
         } catch (error) {
             error_notifications.set_error_msg(SEND_TX_ERR);
         }
@@ -236,5 +239,8 @@ export const manager_actions = {
         } catch (error) {
             error_notifications.set_error_msg(SEND_TX_ERR);
         }
+    },
+    nextPhase: async () => {
+        betoken.nextPhase();
     }
 }

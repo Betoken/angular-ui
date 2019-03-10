@@ -382,7 +382,7 @@
               <!-- Selected Asset title -->
               <h4 class="card-header-title" *ngIf="createInvestmentPopupStep === 1">
                   <span class="avatar avatar-xs align-middle mr-2">
-                    <img src={{getTokenLogoUrl(selectedTokenSymbol)}} alt="Ethereum logo" class="avatar-img rounded-circle">
+                    <img src={{getTokenLogoUrl(selectedTokenSymbol)}} alt="logo" class="avatar-img rounded-circle">
                   </span>
                   Buy {{getTokenName(selectedTokenSymbol)}}
               </h4>
@@ -530,33 +530,33 @@
                       Market Assets
                     </h6>
                 </li>
-                <li class="list-group-item px-0" *ngFor = "let token of tokenList">
-                    <a href="#/investments" (click)="selectedTokenSymbol = token; createInvestmentPopupStep = 1;">
+                <li class="list-group-item px-0" *ngFor = "let token of tokenData">
+                    <a href="#/investments" (click)="selectedTokenSymbol = token.symbol; createInvestmentPopupStep = 1;">
                       <div class="row align-items-center">
                         <div class="col-auto">
 
                           <span class="avatar avatar-sm">
-                            <img src={{getTokenLogoUrl(token)}} alt="token logo" class="avatar-img rounded-circle">
+                            <img src={{token.logoUrl}} alt="token logo" class="avatar-img rounded-circle">
                           </span>
 
                         </div>
                         <div class="col ml--2">
 
                           <span class="mb-1 h4 name">
-                            {{token}}
+                            {{token.symbol}}
                           </span>
 
                           <p class="small text-secondary mb-0">
-                            {{getTokenName(token)}}
+                            {{token.name}}
                           </p>
 
                         </div>
                         <div class="col-auto text-right">
 
-                          <span class="text-secondary">{{assetSymbolToPrice(token).dp(6)}} DAI</span>
+                          <span class="text-secondary">{{token.price.dp(6)}} DAI</span>
                           <br>
 
-                          <span class="badge badge-xl" [ngClass]="{'badge-soft-success': +getTokenDailyPriceChange(token) >= 0, 'badge-soft-danger': 0 > +getTokenDailyPriceChange(token)}">{{getTokenDailyPriceChange(token)}}%</span>
+                          <span class="badge badge-xl" [ngClass]="{'badge-soft-success': +token.dailyPriceChange >= 0, 'badge-soft-danger': 0 > +token.dailyPriceChange}">{{token.dailyPriceChange.toFormat(4)}}%</span>
 
                         </div>
                       </div>
@@ -630,7 +630,7 @@
                 <div class="input-group mb-3">
                   <input type="text" class="form-control form-control-lg" value="{{transactionId}}" aria-label="Transaction ID" aria-describedby="">
                   <div class="input-group-append">
-                    <a class="btn btn-white h-100" href="https://rinkeby.etherscan.io/tx/{{transactionId}}" target="_blank"><i class="fe fe-external-link"></i></a>
+                    <a class="btn btn-white h-100" href="https://ropsten.etherscan.io/tx/{{transactionId}}" target="_blank"><i class="fe fe-external-link"></i></a>
                   </div>
                 </div>
               </div>
@@ -651,7 +651,7 @@
                 <div class="input-group mb-3">
                   <input type="text" class="form-control form-control-lg" value="{{transactionId}}" aria-label="Transaction ID" aria-describedby="">
                   <div class="input-group-append">
-                    <a class="btn btn-white h-100" href="https://rinkeby.etherscan.io/tx/{{transactionId}}" target="_blank"><i class="fe fe-external-link"></i></a>
+                    <a class="btn btn-white h-100" href="https://ropsten.etherscan.io/tx/{{transactionId}}" target="_blank"><i class="fe fe-external-link"></i></a>
                   </div>
                 </div>
               </div>
@@ -746,7 +746,7 @@
             <div class="input-group mb-3">
               <input type="text" class="form-control form-control-lg" value="{{transactionId}}" aria-label="Transaction ID" aria-describedby="">
               <div class="input-group-append">
-                <a class="btn btn-white h-100" href="https://rinkeby.etherscan.io/tx/{{transactionId}}" target="_blank"><i class="fe fe-external-link"></i></a>
+                <a class="btn btn-white h-100" href="https://ropsten.etherscan.io/tx/{{transactionId}}" target="_blank"><i class="fe fe-external-link"></i></a>
               </div>
             </div>
           </div>
@@ -765,7 +765,7 @@
             <div class="input-group mb-3">
               <input type="text" class="form-control form-control-lg" value="{{transactionId}}" aria-label="Transaction ID" aria-describedby="">
               <div class="input-group-append">
-                <a class="btn btn-white h-100" href="https://rinkeby.etherscan.io/tx/{{transactionId}}" target="_blank"><i class="fe fe-external-link"></i></a>
+                <a class="btn btn-white h-100" href="https://ropsten.etherscan.io/tx/{{transactionId}}" target="_blank"><i class="fe fe-external-link"></i></a>
               </div>
             </div>
           </div>

@@ -30,13 +30,11 @@ export class InvestorComponent implements OnInit {
     totalBTFShares = 0;
     sortinoRatio = 0;
     standardDeviation = 0;
-    tokenList: any;
+    tokenData: any;
     portfolioValueInDAI = '';
 
     hasDrawnChart = false;
     performanceChart: any;
-
-    chartTabId = 0;
 
     constructor(private ms: AppComponent, private route: Router) {
     }
@@ -61,11 +59,11 @@ export class InvestorComponent implements OnInit {
         this.currMoROI = stats.cycle_roi().toFormat(NUM_DECIMALS);
         this.AUM = stats.fund_value().toFormat(NUM_DECIMALS);
         this.userRanking = user.rank();
-        this.tokenList = tokens.token_list();
+        this.tokenData = tokens.token_data().get();
         this.portfolioValueInDAI = user.portfolio_value_in_dai().toFormat(NUM_DECIMALS);
         this.totalUser = stats.ranking().length;
         if (stats.raw_roi_data().length > 0 && !this.hasDrawnChart) {
-            this.drawChart(this.chartTabId);
+            this.drawChart();
         }
     }
 
@@ -100,22 +98,22 @@ export class InvestorComponent implements OnInit {
     }
 
     getTokenName(token) {
-        let result = tokens.asset_symbol_to_metadata(token);
+        let result = tokens.asset_symbol_to_name(token);
         if (isUndefined(result)) {
             return '';
         }
-        return result.name;
+        return result;
     }
 
     getTokenLogoUrl(token) {
-        let result = tokens.asset_symbol_to_metadata(token);
+        let result = tokens.asset_symbol_to_logo_url(token);
         if (isUndefined(result)) {
             return '';
         }
-        return result.logoUrl;
+        return result;
     }
 
-    drawChart = (id) => {
+    drawChart = () => {
         let BONDS_MONTHLY_INTEREST = 2.4662697e-3 // 3% annual interest rate
         let NUM_DECIMALS = 4;
         let betokenROIList = stats.raw_roi_data();
@@ -211,9 +209,7 @@ export class InvestorComponent implements OnInit {
         for (var i = 0; i < timestamps.length; i++) {
             timestampStrs.push(new Date(timestamps[i].start * 1e3).toLocaleDateString());
         }
-        if (id === 1) {
-            timestampStrs.push(new Date(timestamps[timestamps.length - 1].end * 1e3).toLocaleDateString());
-        }
+        timestampStrs.push(new Date(timestamps[timestamps.length - 1].end * 1e3).toLocaleDateString());
 
         var xLabels = [];
         for (var i = 0; i < timestamps.length; i++) {
@@ -221,9 +217,7 @@ export class InvestorComponent implements OnInit {
             var formattedString = `${MONTHS[date.getMonth()]} ${date.getFullYear()}`;
             xLabels.push(formattedString);
         }
-        if (id === 1) {
-            xLabels.push("Now");
-        }
+        xLabels.push("Now");
 
         // draw chart
         if (!this.hasDrawnChart) {
@@ -273,7 +267,7 @@ export class InvestorComponent implements OnInit {
                             borderColor: '#2c7be5',
                             fill: true,
                             backgroundColor: gradientFill,
-                            data: id === 0 ? betokenROIList : cumBetokenROIList
+                            data: cumBetokenROIList
                         }
                     ]
                 },
@@ -447,11 +441,11 @@ export class InvestorComponent implements OnInit {
             });
 
         } else {
-            this.performanceChart.data.datasets[0].data = id === 0 ? betokenROIList : cumBetokenROIList;
+            this.performanceChart.data.datasets[0].data = cumBetokenROIList;
             this.performanceChart.data.labels = xLabels;
             this.performanceChart.update();
         }
 
         this.hasDrawnChart = true;
     }
-    }
+}

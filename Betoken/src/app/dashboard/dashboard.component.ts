@@ -84,7 +84,7 @@ export class DashboardComponent implements OnInit {
         let calcMean = function(list) {
             return list.reduce(function(accumulator, curr) {
             return new BigNumber(accumulator).plus(curr);
-            }).div(list.length);
+            }, new BigNumber(0)).div(list.length);
         };
         let calcSampleStd = function(list) {
             var mean, sampleStd, sampleVar;

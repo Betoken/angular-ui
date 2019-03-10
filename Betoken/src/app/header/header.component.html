@@ -25,6 +25,7 @@
       <div *ngIf="checkRouterURL('/investing-dashboard') === false">
         <button class="btn btn-success mr-4" routerLink="/investments" type="button" data-toggle="modal" data-target="#modalBuy" *ngIf="phase == 1">Make Investments</button>
         <button class="btn btn-success mr-4" routerLink="/commissions" type="button" data-toggle="modal" data-target="#modalRedeem" *ngIf="phase == 2 && can_redeem_commission">Redeem Commission</button>
+        <button class="btn btn-success mr-4" type="button" *ngIf="days == 0 && hours == 0 && minutes == 0 && seconds == 0" (click)="nextPhase()">Next Phase</button>
         <button class="btn btn-white text-truncate" style="width: 12rem;" *ngIf="user_address !== '0x0'"><span class="text-success">●</span> {{user_address}}</button>
         <button class="btn btn-white text-truncate" *ngIf="user_address == '0x0'"><span class="text-danger">●</span> No Account</button>
       </div>

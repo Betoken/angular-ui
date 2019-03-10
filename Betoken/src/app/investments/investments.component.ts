@@ -37,7 +37,7 @@ export class InvestmentsComponent implements OnInit {
     activeInvestmentList: any;
     inactiveInvestmentList: any;
     sellId: any;
-    tokenList: any;
+    tokenData: any;
     transactionId: '';
     kroRedeemed: '';
     dailyPriceChange = 0;
@@ -76,7 +76,7 @@ export class InvestmentsComponent implements OnInit {
         this.expected_commission = user.expected_commission().toFormat(2);
         this.kairo_balance = user.kairo_balance();
         this.monthly_pl = user.monthly_roi().toFormat(4);
-        this.tokenList = tokens.token_list();
+        this.tokenData = tokens.token_data().get();
         this.userValue = user.portfolio_value().toFormat(4);
         this.portfolioValueInDAI = user.portfolio_value_in_dai().toFormat(2);
         this.currentStake = user.current_stake().toFormat(4);
@@ -115,7 +115,9 @@ export class InvestmentsComponent implements OnInit {
                 this.refresh();
             }
         }
-        manager_actions.new_investment(this.selectedTokenSymbol, this.stakeAmount, pending, confirm);
+
+        let tokenPrice = this.assetSymbolToPrice(this.selectedTokenSymbol);
+        manager_actions.new_investment(this.selectedTokenSymbol, this.stakeAmount, tokenPrice.times(0.5), tokenPrice.times(2), pending, confirm);
     }
 
     // Sell investment
@@ -135,7 +137,8 @@ export class InvestmentsComponent implements OnInit {
             }
         }
 
-        manager_actions.sell_investment(this.sellId, pendingSell, confirmSell);
+        let tokenPrice = this.assetSymbolToPrice(data.tokenSymbol);
+        manager_actions.sell_investment(this.sellId, new BigNumber(-1), tokenPrice.times(0.5), tokenPrice.times(2), pendingSell, confirmSell);
     }
 
     // UI helpers
@@ -188,19 +191,19 @@ export class InvestmentsComponent implements OnInit {
     }
 
     getTokenName(token) {
-        let result = tokens.asset_symbol_to_metadata(token);
+        let result = tokens.asset_symbol_to_name(token);
         if (isUndefined(result)) {
             return '';
         }
-        return result.name;
+        return result;
     }
 
     getTokenLogoUrl(token) {
-        let result = tokens.asset_symbol_to_metadata(token);
+        let result = tokens.asset_symbol_to_logo_url(token);
         if (isUndefined(result)) {
             return '';
         }
-        return result.logoUrl;
+        return result;
     }
 
     getTokenDailyPriceChange(token) {

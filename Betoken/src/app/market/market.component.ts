@@ -13,7 +13,7 @@ declare var $ :any;
 
 export class MarketComponent implements OnInit {
 
-    tokenList: any;
+    tokenData: any;
 
     constructor() { }
 
@@ -56,23 +56,23 @@ export class MarketComponent implements OnInit {
     }
 
     getTokenName(token) {
-        let result = tokens.asset_symbol_to_metadata(token);
+        let result = tokens.asset_symbol_to_name(token);
         if (isUndefined(result)) {
             return '';
         }
-        return result.name;
+        return result;
     }
 
     getTokenLogoUrl(token) {
-        let result = tokens.asset_symbol_to_metadata(token);
+        let result = tokens.asset_symbol_to_logo_url(token);
         if (isUndefined(result)) {
             return '';
         }
-        return result.logoUrl;
+        return result;
     }
 
     refreshDisplay() {
-        this.tokenList = tokens.token_list();
+        this.tokenData = tokens.token_data().get();
     }
 
     refresh() {

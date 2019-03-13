@@ -590,8 +590,6 @@
             </div>
             <hr *ngIf="createInvestmentPopupStep === 1">
 
-
-
             <!-- KRO amount to stake -->
             <h6 class="header-pretitle text-secondary" *ngIf="createInvestmentPopupStep === 1">I want to buy {{getTokenName(selectedTokenSymbol)}} by staking</h6>
             <div class="row justify-content-center mb-4" *ngIf="createInvestmentPopupStep === 1">
@@ -610,6 +608,51 @@
                     <button class="btn btn-sm btn-outline-secondary mt-3" type="button" name="button" (click)="maxStake()">Max</button>
                 </div>
             </div>
+
+            <!-- Max acceptable price -->
+            <div class="row justify-content-center mb-4" *ngIf="createInvestmentPopupStep === 1">
+              <div class="col">
+                <div id="accordion">
+                  <!-- question -->
+                  <div class="card">
+                    <div class="card-header" id="headingOne">
+                        <a href="" class="text-secondary" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                          <div class="row align-items-center no-gutters">
+                            <div class="col mr-auto">
+                                <span class="card-text">
+                                  Advanced  <span class="text-muted">Optional</span>
+                                </span>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fe fe-a"></i>
+                            </div>
+                          </div>
+                        </a>
+                    </div>
+                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                      <div class="card-body">
+                        <div class="row align-items-center">
+                          <div class="col">
+                            <h4 class="font-weight-bold mb-1">Max. acceptable price</h4>
+                            <p class="text-secondary d-none d-md-block mb-0">Your order <strong>won't</strong> be executed if ETH price goes up by:</p>
+                            <form>
+                                <div class="form-group row mb-0">
+                                  <div class="col">
+                                      <input type="number" min="0.0" max={{kairo_balance.toFormat(18)}} class="form-control form-control-lg form-control-flush border-bottom border-1 rounded-0 mt-1 mb-1" aria-describedby="minAcceptablePrice" placeholder="0.0" value="3" id="minAcceptablePrice">
+                                  </div>
+                                  <label for="minAcceptablePrice" class="col-auto col-form-label"><span class="h3">%</span></label>
+                                </div>
+                            </form>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
 
 
             <!-- Step 2: confirm transaction -->
@@ -773,6 +816,50 @@
               <div class="col-auto">
                   <button class="btn btn-sm btn-outline-secondary mt-3" type="button" name="button" (click)="maxStake()">Max</button>
               </div>
+          </div>
+
+          <!-- Min acceptable price -->
+          <div class="row justify-content-center mb-4" *ngIf="sellInvestmentPopupStep === 0">
+            <div class="col">
+              <div id="accordion">
+                <!-- question -->
+                <div class="card">
+                  <div class="card-header" id="headingTwo">
+                      <a href="" class="text-secondary" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        <div class="row align-items-center no-gutters">
+                          <div class="col mr-auto">
+                              <span class="card-text">
+                                Advanced  <span class="text-muted">Optional</span>
+                              </span>
+                          </div>
+                          <div class="col-auto">
+                              <i class="fe fe-a"></i>
+                          </div>
+                        </div>
+                      </a>
+                  </div>
+                  <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                    <div class="card-body">
+                      <div class="row align-items-center">
+                        <div class="col">
+                          <h4 class="font-weight-bold mb-1">Min. acceptable price</h4>
+                          <p class="text-secondary d-none d-md-block mb-0">Your order <strong>won't</strong> be executed if ETH price goes down by:</p>
+                          <form>
+                              <div class="form-group row mb-0">
+                                <div class="col">
+                                    <input type="number" min="0.0" max={{kairo_balance.toFormat(18)}} class="form-control form-control-lg form-control-flush border-bottom border-1 rounded-0 mt-1 mb-1" aria-describedby="minAcceptablePrice" placeholder="0.0" value="3" id="minAcceptablePrice">
+                                </div>
+                                <label for="minAcceptablePrice" class="col-auto col-form-label"><span class="h3">%</span></label>
+                              </div>
+                          </form>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
         <!-- Confirm tx body -->

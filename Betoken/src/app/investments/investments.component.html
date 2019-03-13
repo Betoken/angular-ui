@@ -696,51 +696,97 @@
         <div class="card-header border-0">
           <div class="row align-items-center">
             <div class="col">
-              <!-- Confirm asset investment title -->
+              <!-- Quantity of asset to sell title -->
               <h4 class="card-header-title" *ngIf="sellInvestmentPopupStep === 0">
+                Sell Ethereum
+              </h4>
+              <!-- Confirm asset investment title -->
+              <h4 class="card-header-title" *ngIf="sellInvestmentPopupStep === 1">
                 Confirm sell order
               </h4>
               <!-- Processing title -->
-              <h4 class="card-header-title" *ngIf="sellInvestmentPopupStep === 1">
+              <h4 class="card-header-title" *ngIf="sellInvestmentPopupStep === 2">
                 Processing sell order
               </h4>
               <!-- Sell order confirmed title -->
-              <h4 class="card-header-title" *ngIf="sellInvestmentPopupStep === 2">
+              <h4 class="card-header-title" *ngIf="sellInvestmentPopupStep === 3">
                 Sell order confirmed
               </h4>
             </div>
             <div class="col-auto">
-
               <!-- Close -->
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">×</span>
               </button>
-
             </div>
           </div> <!-- / .row -->
         </div>
         <!-- progress bar selling -->
         <div class="card-header py-0 border-0" style="min-height: 24px;">
             <div class="progress" style="height: 8px;">
-                <div [ngClass]="{'bg-success': sellInvestmentPopupStep >= 0, 'bg-secondary': sellInvestmentPopupStep !== 0}" class="progress-bar" role="progressbar" style="width: 33.33%" aria-valuenow="33.33" aria-valuemin="0" aria-valuemax="100"></div>
-                <div [ngClass]="{'bg-success': sellInvestmentPopupStep >= 1, 'bg-secondary': sellInvestmentPopupStep !== 1}" class="progress-bar border-left" role="progressbar" style="width: 33.33%" aria-valuenow="33.33" aria-valuemin="0" aria-valuemax="100"></div>
-                <div [ngClass]="{'bg-success': sellInvestmentPopupStep >= 2, 'bg-secondary': sellInvestmentPopupStep !== 2}" class="progress-bar border-left" role="progressbar" style="width: 33.33%" aria-valuenow="33.33" aria-valuemin="0" aria-valuemax="100"></div>
+                <div [ngClass]="{'bg-success': sellInvestmentPopupStep >= 0, 'bg-secondary': sellInvestmentPopupStep !== 0}" class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                <div [ngClass]="{'bg-success': sellInvestmentPopupStep >= 1, 'bg-secondary': sellInvestmentPopupStep !== 1}" class="progress-bar border-left" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                <div [ngClass]="{'bg-success': sellInvestmentPopupStep >= 2, 'bg-secondary': sellInvestmentPopupStep !== 2}" class="progress-bar border-left" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                <div [ngClass]="{'bg-success': sellInvestmentPopupStep >= 3, 'bg-secondary': sellInvestmentPopupStep !== 3}" class="progress-bar border-left" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
         </div>
 
       <div class="modal-body pb-5">
+          <!-- Enter amount of KRO to unstake -->
+          <!-- Asset price -->
+          <div class="row" *ngIf="sellInvestmentPopupStep === 0">
+              <div class="col">
+                  <h6 class="header-pretitle">
+                    Current price in DAI
+                  </h6>
+                  <h4 class="mb-0">
+                    0.00
+                  </h4>
+              </div>
+              <div class="col">
+                  <h6 class="header-pretitle">
+                    24h change
+                  </h6>
+                  <h4 class="mb-0">
+                      <span class="badge badge-soft-success">
+                        0.00%
+                      </span>
+                  </h4>
+              </div>
+          </div>
+          <hr *ngIf="sellInvestmentPopupStep === 0">
+
+          <!-- KRO amount to unstake -->
+          <h6 class="header-pretitle text-secondary" *ngIf="sellInvestmentPopupStep === 0">I want to sell ETH by unstaking</h6>
+          <div class="row justify-content-center mb-4" *ngIf="sellInvestmentPopupStep === 0">
+              <div class="col">
+                  <form>
+                      <div class="form-group row mb-0">
+                        <div class="col">
+                            <input type="number" min="0.0" max={{kairo_balance.toFormat(18)}} class="form-control form-control-lg form-control-flush input-xl border-bottom border-1 rounded-0 mt-1 mb-1" aria-describedby="KRO Token Amount to stake" placeholder="0.0" id="kairo-input">
+                        </div>
+                        <label for="kroAmount" class="col-auto col-form-label"><span class="display-4">KRO</span></label>
+                      </div>
+                      <small id="kroBalance" class="form-text text-secondary d-inline-block">1.000000 KRO staked</small>
+                  </form>
+              </div>
+              <div class="col-auto">
+                  <button class="btn btn-sm btn-outline-secondary mt-3" type="button" name="button" (click)="maxStake()">Max</button>
+              </div>
+          </div>
+
         <!-- Confirm tx body -->
-        <p class="text-center text-muted mb-5" *ngIf="sellInvestmentPopupStep === 0">
+        <p class="text-center text-muted mb-5" *ngIf="sellInvestmentPopupStep === 1">
           Confirm the transaction in your wallet’s interface to save it on the Ethereum blockchain. It's fine to stick with these defaults gas limit and price.
         </p>
         <!-- loader -->
-        <div class="py-5 is-loading is-loading-lg" *ngIf="sellInvestmentPopupStep === 1"></div>
+        <div class="py-5 is-loading is-loading-lg" *ngIf="sellInvestmentPopupStep === 2"></div>
         <!-- Tx broadcasted body -->
-        <p class="text-center text-muted mb-5" *ngIf="sellInvestmentPopupStep === 1">
+        <p class="text-center text-muted mb-5" *ngIf="sellInvestmentPopupStep === 2">
           Your transaction is being saved on the Ethereum blockchain. You can check its status on Etherscan.
         </p>
-        <hr *ngIf="sellInvestmentPopupStep === 1">
-        <form *ngIf="sellInvestmentPopupStep === 1">
+        <hr *ngIf="sellInvestmentPopupStep === 2">
+        <form *ngIf="sellInvestmentPopupStep === 2">
           <div class="form-group">
             <label for="exampleFormControlInput1">Transaction ID</label>
             <div class="input-group mb-3">
@@ -770,14 +816,33 @@
             </div>
           </div>
         </form>
+        <!-- Continue button for amount to sell Step -->
+        <button type="submit" class="btn btn-block btn-success mt-auto" aria-label="Sell">
+            Continue
+        </button>
         <!-- close button panel after tx confirmed by user -->
-        <button type="submit" class="btn btn-block btn-white mt-auto" data-dismiss="modal" aria-label="Close" *ngIf="sellInvestmentPopupStep === 1">
+        <button type="submit" class="btn btn-block btn-white mt-auto" data-dismiss="modal" aria-label="Close" *ngIf="sellInvestmentPopupStep === 2">
           Close
         </button>
         <!-- close button panel after Asset being sold -->
         <button type="submit" class="btn btn-block btn-white mt-auto" data-dismiss="modal" aria-label="Close" *ngIf="sellInvestmentPopupStep === 2">
           Close
         </button>
+
+        <!-- Do you know section amount to sell -->
+        <div class="card bg-light border mt-4">
+          <div class="card-body">
+
+            <h4 class="mb-2">
+              Need help?
+            </h4>
+
+            <p class="small text-muted mb-0">
+              Get started with <a href="https://betoken.gitbook.io/betoken/" target="_blank">our guides</a>.
+            </p>
+
+          </div>
+        </div>
       </div>
     </div>
   </div>

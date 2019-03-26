@@ -57,11 +57,11 @@ export const user = {
     },
     monthly_roi: () => Data.managerROI.get(),
     can_redeem_commission: () => {
-        return betoken.hasWeb3 && Data.cyclePhase.get() === 2 && Data.lastCommissionRedemption.get() < Data.cycleNumber.get();
+        return betoken.hasWeb3 && Data.cyclePhase.get() === 0 && Data.lastCommissionRedemption.get() < Data.cycleNumber.get();
     },
     expected_commission: function () {
         if (Data.kairoTotalSupply.get().gt(0)) {
-            if (Data.cyclePhase.get() === 2) {
+            if (Data.cyclePhase.get() === 0) {
                 // Actual commission that will be redeemed
                 return Data.kairoBalance.get().div(Data.kairoTotalSupply.get()).times(Data.cycleTotalCommission.get());
             }

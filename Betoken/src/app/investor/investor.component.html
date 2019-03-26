@@ -333,7 +333,7 @@
           Time left until next investment phase
         </h6>
         <h4 class="header-title mb-4 text-center">
-          {{day}}d {{hour}}h {{minute}}m {{second}}s <a href="#" data-toggle="tooltip" title="" data-original-title="Investors can buy or sell Betoken Shares every 27 days, during a 3-day investment phase."><i class="fe fe-info"></i></a>
+          {{day}}d {{hour}}h {{minute}}m {{second}}s <a data-toggle="tooltip" title="Investors can buy or sell Betoken Shares every 27 days, during a 3-day investment phase."><i class="fe fe-info"></i></a>
         </h4>
         <form action="https://fund.us17.list-manage.com/subscribe/post?u=9c0647dcb587985ed6121cdf6&amp;id=150e0f091e" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate mb-4 text-center" target="_blank" novalidate>
           <label class="text-secondary" for="mce-EMAIL">Be notified by email 👇.</label>
@@ -417,7 +417,11 @@
                     <div class="col">
                       <input type="number" min="0.0" class="form-control form-control-lg form-control-flush input-xl border-bottom border-1 rounded-0 mt-1 mb-1" aria-describedby="Betoken Shares Amount to buy" placeholder="0.0" id="sharesAmountToBuy" (input)="refreshBuyOrderDetails($event.target.value)">
                     </div>
-                    <label for="sharesAmountToBuy" class="col-auto col-form-label"><span class="display-4">{{selectedTokenSymbol}}</span></label>
+                    <div class="form-group">
+                      <select class="form-control" id="buyTokenSelect" (change)="selectBuyToken($event.target.value)">
+                        <option *ngFor="let token of tokenData">{{token.symbol}}</option>
+                      </select>
+                    </div>
                   </div>
                   <small class="form-text text-secondary d-inline-block mb-0">{{selectedTokenBalance.toFormat(4)}} {{selectedTokenSymbol}} available</small>
                 </form>
@@ -483,7 +487,7 @@
               <i class="fe fe-check-circle text-success"></i>
             </p>
             <p class="text-center text-muted mb-5">
-              You bought <span class="font-weight-bold text-secondary">{{buySharesAmount.toFormat(4)}}</span> BTKS using <span class="font-weight-bold text-secondary">{{buyTokenAmount.toFormat(4)}}</span> DAI.
+              You bought <span class="font-weight-bold text-secondary">{{buySharesAmount.toFormat(4)}}</span> BTKS using <span class="font-weight-bold text-secondary">{{buyTokenAmount.toFormat(4)}}</span> {{selectedTokenSymbol}}.
             </p>
             <button class="btn btn-twitter btn-block"type="button" name="button">Tweet about it</button>
             <hr>
@@ -505,7 +509,7 @@
             Buy Betoken Shares
           </button>
           <!-- Continue button for buyStep 2 -->
-          <button type="submit" class="btn btn-block btn-success mt-auto" aria-label="Continue to Buy" *ngIf="buyStep == 1" (click)="buyStep = 2; deposit();">
+          <button type="submit" class="btn btn-block btn-success mt-auto" aria-label="Continue to Buy" *ngIf="buyStep == 1" (click)="deposit();">
             Continue
           </button>
           <!-- Close button for buyStep 4 -->
@@ -600,6 +604,17 @@
                 <button class="btn btn-sm btn-outline-secondary mt-3" type="button" name="button" (click)="maxSellAmount()">Max</button>
               </div>
             </div>
+
+            <h6 class="header-pretitle text-secondary">I want to receive</h6>
+
+            <div class="form-group">
+              <select class="form-control" id="sellTokenSelect" (change)="selectSellToken($event.target.selectedIndex)">
+                <option *ngFor="let token of tokenData">
+                  {{token.name}} ({{token.symbol}})
+                </option>
+              </select>
+            </div>
+
             <div class="table-responsive">
               <table class="table mb-4">
                 <thead>
@@ -615,15 +630,15 @@
                       Sell BTKS for
                     </td>
                     <td class="px-0 text-right small align-baseline">
-                      {{sellTokenAmount.toFormat(4)}} DAI
+                      {{sellTokenAmount.toFormat(4)}} {{selectedTokenSymbol}}
                     </td>
                   </tr>
                   <tr>
                     <td class="px-0 small align-baseline text-muted">
-                      Betoken fees <a class="text-muted" href="#" data-toggle="tooltip" title="" data-original-title="A 3% exit fee will be charged"><i class="fe fe-info"></i></a>
+                      Betoken fees <a class="text-muted" data-toggle="tooltip" title="A 3% exit fee will be charged"><i class="fe fe-info"></i></a>
                     </td>
                     <td class="px-0 text-right small align-baseline">
-                      {{sellTokenAmount.times(EXIT_FEE).toFormat(4)}} DAI
+                      {{sellTokenAmount.times(EXIT_FEE).toFormat(4)}} {{selectedTokenSymbol}}
                     </td>
                   </tr>
                   <tr>
@@ -631,7 +646,7 @@
                       Tokens to receive
                     </td>
                     <td class="px-0 text-right small align-baseline">
-                      {{sellTokenAmount.times(1 - EXIT_FEE).toFormat(4)}} DAI
+                      {{sellTokenAmount.times(1 - EXIT_FEE).toFormat(4)}} {{selectedTokenSymbol}}
                     </td>
                   </tr>
                 </tbody>
@@ -672,7 +687,7 @@
               <i class="fe fe-check-circle text-success"></i>
             </p>
             <p class="text-center text-muted mb-5">
-              You sold <span class="font-weight-bold text-secondary">{{sellSharesAmount.toFormat(4)}}</span> BTKS for <span class="font-weight-bold text-secondary">{{sellTokenAmount.times(1 - EXIT_FEE).toFormat(4)}}</span>.
+              You sold <span class="font-weight-bold text-secondary">{{sellSharesAmount.toFormat(4)}}</span> BTKS for <span class="font-weight-bold text-secondary">{{sellTokenAmount.times(1 - EXIT_FEE).toFormat(4)}}</span> {{selectedTokenSymbol}}.
             </p>
             <hr>
             <form>
@@ -689,7 +704,7 @@
           </div>
 
           <!-- Continue button for step 0 -->
-          <button type="submit" class="btn btn-block btn-success mt-auto" aria-label="Continue to Sell" *ngIf="sellStep == 0" (click)="sell(); sellStep = 1;">
+          <button type="submit" class="btn btn-block btn-success mt-auto" aria-label="Continue to Sell" *ngIf="sellStep == 0" (click)="sell()">
             Continue
           </button>
           
@@ -708,7 +723,7 @@
           Time left until next investment phase
         </h6>
         <h4 class="header-title mb-4 text-center">
-          {{day}}d {{hour}}h {{minute}}m {{second}}s <a href="#" data-toggle="tooltip" title="" data-original-title="Investors can buy or sell Betoken Shares every 27 days, during a 3-day investment phase."><i class="fe fe-info"></i></a>
+          {{day}}d {{hour}}h {{minute}}m {{second}}s <a data-toggle="tooltip" data-html="true" title="Investors can buy or sell Betoken Shares every 27 days, during a 3-day investment phase."><i class="fe fe-info"></i></a>
         </h4>
         <form action="https://fund.us17.list-manage.com/subscribe/post?u=9c0647dcb587985ed6121cdf6&amp;id=150e0f091e" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate mb-4 text-center" target="_blank" novalidate>
           <label class="text-secondary" for="mce-EMAIL">Be notified by email 👇.</label>

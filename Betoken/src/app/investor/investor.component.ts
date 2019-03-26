@@ -58,6 +58,7 @@ export class InvestorComponent implements OnInit {
   
   ngOnInit() {
     this.tokenData = tokens.token_data().get();
+    this.selectedTokenSymbol = this.tokenData[0].symbol;
     this.depositWithdrawHistory = user.deposit_withdraw_history().get();
     setInterval(() => {
       this.refreshDisplay();
@@ -108,7 +109,28 @@ export class InvestorComponent implements OnInit {
       this.sellTokenAmount = this.sellSharesAmount.times(this.sharesPrice).div(this.assetSymbolToPrice(this.selectedTokenSymbol));
     }
   }
-  
+
+  maxBuyAmount() {
+    $('#sharesAmountToBuy').val(this.selectedTokenBalance.toString());
+    this.refreshBuyOrderDetails(this.selectedTokenBalance);
+  }
+
+  maxSellAmount() {
+    $('#sharesAmountToSell').val(this.sharesBalance.toString());
+    this.refreshSellOrderDetails(this.sharesBalance);
+  }
+
+  selectBuyToken(value) {
+    this.selectedTokenSymbol = value;
+    $('#sharesAmountToBuy').val('0');
+    this.refreshBuyOrderDetails(0);
+  }
+
+  selectSellToken(tokenIndex) {
+    this.selectedTokenSymbol = this.tokenData[tokenIndex].symbol;
+    this.refreshSellOrderDetails(this.sellSharesAmount);
+  }
+
   refresh() {
     refresh_actions.records();
   }
@@ -120,19 +142,11 @@ export class InvestorComponent implements OnInit {
   resetModals() {
     this.buyStep = 0;
     this.sellStep = 0;
-    //this.selectedTokenSymbol = '';
+    this.selectedTokenSymbol = this.tokenData[0].symbol;
     this.checkboxes = [false, false, false];
   }
 
-  async maxBuyAmount() {
-    $('#sharesAmountToBuy').val(this.selectedTokenBalance.toString());
-    this.refreshBuyOrderDetails(this.selectedTokenBalance);
-  }
-
-  maxSellAmount() {
-    $('#sharesAmountToSell').val(this.sharesBalance.toString());
-    this.refreshSellOrderDetails(this.sharesBalance);
-  }
+  
   
   filterList = (event, listID, searchID) => {
     let searchInput = event.target.value.toLowerCase();
@@ -174,6 +188,7 @@ export class InvestorComponent implements OnInit {
   }
   
   deposit() {
+    this.buyStep = 2;
     var payAmount = $('#sharesAmountToBuy').val();
     let pending = (txHash) => {
       if (this.buyStep == 2) {
@@ -201,6 +216,7 @@ export class InvestorComponent implements OnInit {
   }
   
   sell() {
+    this.sellStep = 1;
     var sellAmount = $('#sharesAmountToSell').val();
     let pending = (txHash) => {
       if (this.sellStep == 1) {

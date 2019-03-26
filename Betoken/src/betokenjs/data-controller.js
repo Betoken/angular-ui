@@ -341,7 +341,6 @@ export const loadTxHistory = async () => {
 
 export const loadTokenPrices = async () => {
     isLoadingPrices.set(true);
-    console.log(TOKEN_DATA.get());
 
     let tokenPrices = await Promise.all(TOKEN_DATA.get().map(async (_token) => {
         return betoken.getTokenPrice(_token.address);

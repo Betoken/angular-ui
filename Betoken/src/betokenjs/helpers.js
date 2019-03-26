@@ -152,57 +152,45 @@ export const refresh_actions = {
 
 export const investor_actions = {
     depositETH: async (amt, pending, confirm) => {
-        var amount;
         try {
-            amount = BigNumber(amt);
-            betoken.depositETH(amount, pending, confirm);
+            betoken.depositETH(BigNumber(amt), pending, confirm);
         } catch (error) {
             error_notifications.set_error_msg(error);
         }
     },
     depositDAI: async (amt, pending, confirm) => {
-        var amount;
         try {
-            amount = BigNumber(amt);
-            betoken.depositDAI(amount, pending, confirm);
+            betoken.depositDAI(BigNumber(amt), pending, confirm);
         } catch (error) {
             error_notifications.set_error_msg(error);
         }
     },
     depositToken: async (amt, tokenSymbol, pending, confirm) => {
-        var amount, tokenAddr, tokenSymbol;
         try {
-            amount = BigNumber(amt);
-            tokenAddr = await betoken.tokenSymbolToAddress(tokenSymbol);
-            betoken.depositToken(tokenAddr, amount, pending, confirm);
+            let tokenAddr = Data.assetSymbolToAddress(tokenSymbol);
+            betoken.depositToken(tokenAddr, BigNumber(amt), pending, confirm);
         } catch (error) {
             error_notifications.set_error_msg(error);
         }
     },
     withdrawETH: async (amt, pending, confirm) => {
-        var amount;
         try {
-            amount = BigNumber(amt);
-            return betoken.withdrawETH(amount, pending, confirm);
+            return betoken.withdrawETH(BigNumber(amt), pending, confirm);
         } catch (error) {
             error_notifications.set_error_msg(error);
         }
     },
     withdrawDAI: async (amt, pending, confirm) => {
-        var amount;
         try {
-            amount = BigNumber(amt);
-            return betoken.withdrawDAI(amount, pending, confirm);
+            return betoken.withdrawDAI(BigNumber(amt), pending, confirm);
         } catch (error) {
             error_notifications.set_error_msg(error);
         }
     },
     withdrawToken: async (amt, tokenSymbol, pending, confirm) => {
-        var amount, tokenAddr, tokenSymbol;
         try {
-            amount = BigNumber(amt);
-            tokenAddr = betoken.tokenSymbolToAddress(tokenSymbol);
-            return betoken.withdrawToken(tokenAddr, amount, pending, confirm);
+            let tokenAddr = Data.assetSymbolToAddress(tokenSymbol);
+            return betoken.withdrawToken(tokenAddr, BigNumber(amt), pending, confirm);
         } catch (error) {
             error_notifications.set_error_msg(error);
         }
@@ -216,7 +204,7 @@ export const manager_actions = {
     sell_investment: async function (id, amount, minPrice, maxPrice, pending, confirm) {
         try {
             if (Data.cyclePhase.get() === 1) {
-                return betoken.sellAsset(id, amount, minPrice, maxPrice, pending, confirm);
+                return betoken.sellAsset(id, amount, minPrice.times(1e18), maxPrice.times(1e18), pending, confirm);
             }
         } catch(error) {
             error_notifications.set_error_msg(SEND_TX_ERR);
@@ -226,9 +214,9 @@ export const manager_actions = {
         var address, kairoAmountInWeis, tokenSymbol;
 
         try {
-            address = (await betoken.tokenSymbolToAddress(tokenSymbol));
+            address = Data.assetSymbolToAddress(tokenSymbol);
             kairoAmountInWeis = BigNumber(stakeAmount).times(1e18);
-            betoken.createInvestment(address, kairoAmountInWeis, minPrice, maxPrice, pending, confirm);
+            betoken.createInvestment(address, kairoAmountInWeis, minPrice.times(1e18), maxPrice.times(1e18), pending, confirm);
         } catch (error) {
             error_notifications.set_error_msg(SEND_TX_ERR);
         }
@@ -240,7 +228,6 @@ export const manager_actions = {
             error_notifications.set_error_msg(SEND_TX_ERR);
         }
     },
-
     redeem_commission_in_shares: async function (pending, confirm) {
         try {
             return betoken.redeemCommissionInShares(pending, confirm);

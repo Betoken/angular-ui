@@ -17,20 +17,27 @@ import {
   templateUrl: './investor.component.html'
 })
 export class InvestorComponent implements OnInit {
-  sharesPrice = 0;
-  avgMonthReturn = 0;
-  currMoROI = 0;
-  AUM = 0;
-  sortinoRatio = 0;
-  standardDeviation = 0;
-  tokenData: any;
+  EXIT_FEE = 0.03;
 
+  sharesPrice = new BigNumber(0);
+  avgMonthReturn = new BigNumber(0);
+  currMoROI = new BigNumber(0);
+  AUM = new BigNumber(0);
+  sortinoRatio = new BigNumber(0);
+  standardDeviation = new BigNumber(0);
+  tokenData: any;
+  
   sharesBalance: BigNumber;
   investmentBalance: BigNumber;
-
+  
+  buySharesAmount = new BigNumber(0);
+  buyTokenAmount = new BigNumber(0);
+  sellSharesAmount = new BigNumber(0);
+  sellTokenAmount = new BigNumber(0);
+  
   hasDrawnChart = false;
   performanceChart: any;
-
+  
   buyStep = 0;
   sellStep = 0;
   day = 0;
@@ -38,22 +45,28 @@ export class InvestorComponent implements OnInit {
   minute = 0;
   second = 0;
   phase = 0;
-
+  
   checkboxes = [false, false, false];
-  selectedTokenSymbol = '';
+  selectedTokenSymbol = 'DAI';
   selectedTokenBalance = new BigNumber(0);
   transactionId = '';
+
+  depositWithdrawHistory = [];
   
   constructor(private ms: AppComponent, private route: Router) {
   }
   
   ngOnInit() {
     this.tokenData = tokens.token_data().get();
+    this.depositWithdrawHistory = user.deposit_withdraw_history().get();
     setInterval(() => {
       this.refreshDisplay();
     }, 100);
     $('[data-toggle="tooltip"]').tooltip();
     $('#modalInvestorBuy').on('hidden.bs.modal', () => {
+      this.resetModals();
+    });
+    $('#modalInvestorSell').on('hidden.bs.modal', () => {
       this.resetModals();
     });
   }
@@ -64,19 +77,35 @@ export class InvestorComponent implements OnInit {
     this.avgMonthReturn = stats.avg_roi().toFormat(NUM_DECIMALS);
     this.currMoROI = stats.cycle_roi().toFormat(NUM_DECIMALS);
     this.AUM = stats.fund_value().toFormat(NUM_DECIMALS);
-
+    
     this.sharesBalance = user.shares_balance();
     this.investmentBalance = user.investment_balance();
     this.sharesPrice = stats.shares_price();
-
+    
     this.day = timer.day();
     this.hour = timer.hour();
     this.minute = timer.minute();
     this.second = timer.second();
     this.phase = timer.phase();
-
+    
+    this.getTokenBalance(this.selectedTokenSymbol);
+    
     if (stats.raw_roi_data().length > 0 && !this.hasDrawnChart) {
       this.drawChart();
+    }
+  }
+
+  refreshBuyOrderDetails(val) {
+    this.buyTokenAmount = new BigNumber(val);
+    if (!this.buyTokenAmount.isNaN()) {
+      this.buySharesAmount = this.buyTokenAmount.times(this.assetSymbolToPrice(this.selectedTokenSymbol)).div(this.sharesPrice);
+    }
+  }
+  
+  refreshSellOrderDetails(val) {
+    this.sellSharesAmount = new BigNumber(val);
+    if (!this.sellSharesAmount.isNaN()) {
+      this.sellTokenAmount = this.sellSharesAmount.times(this.sharesPrice).div(this.assetSymbolToPrice(this.selectedTokenSymbol));
     }
   }
   
@@ -87,12 +116,22 @@ export class InvestorComponent implements OnInit {
   isLoading() {
     return loading.records();
   }
-
+  
   resetModals() {
     this.buyStep = 0;
     this.sellStep = 0;
-    this.selectedTokenSymbol = '';
+    //this.selectedTokenSymbol = '';
     this.checkboxes = [false, false, false];
+  }
+
+  async maxBuyAmount() {
+    $('#sharesAmountToBuy').val(this.selectedTokenBalance.toString());
+    this.refreshBuyOrderDetails(this.selectedTokenBalance);
+  }
+
+  maxSellAmount() {
+    $('#sharesAmountToSell').val(this.sharesBalance.toString());
+    this.refreshSellOrderDetails(this.sharesBalance);
   }
   
   filterList = (event, listID, searchID) => {
@@ -129,43 +168,70 @@ export class InvestorComponent implements OnInit {
     }
     return result;
   }
-
+  
   async getTokenBalance(token) {
     this.selectedTokenBalance = await user.token_balance(token);
-    console.log(this.selectedTokenBalance);
   }
-
+  
   deposit() {
     var payAmount = $('#sharesAmountToBuy').val();
     let pending = (txHash) => {
-        if (this.buyStep == 3) {
-            this.transactionId = txHash;
-            this.buyStep = 4;
-        }
+      if (this.buyStep == 2) {
+        this.transactionId = txHash;
+        this.buyStep = 3;
+      }
     };
     let confirm = () => {
-        if (this.buyStep == 4) {
-            this.buyStep = 5;
-        }
+      if (this.buyStep == 3) {
+        this.buyStep = 4;
+      }
+      this.refresh();
     };
     switch (this.selectedTokenSymbol) {
-        case 'ETH':
-            investor_actions.depositETH(payAmount, pending, confirm);
-            break;
-        case 'DAI':
-            investor_actions.depositDAI(payAmount, pending, confirm);
-            break;
-        default:
-            investor_actions.depositToken(payAmount, this.selectedTokenSymbol, pending, confirm);
-            break;
+      case 'ETH':
+      investor_actions.depositETH(payAmount, pending, confirm);
+      break;
+      case 'DAI':
+      investor_actions.depositDAI(payAmount, pending, confirm);
+      break;
+      default:
+      investor_actions.depositToken(payAmount, this.selectedTokenSymbol, pending, confirm);
+      break;
     }
   }
-
+  
+  sell() {
+    var sellAmount = $('#sharesAmountToSell').val();
+    let pending = (txHash) => {
+      if (this.sellStep == 1) {
+        this.transactionId = txHash;
+        this.sellStep = 2;
+      }
+    };
+    let confirm = () => {
+      if (this.sellStep == 2) {
+        this.sellStep = 3;
+      }
+      this.refresh();
+    };
+    switch (this.selectedTokenSymbol) {
+      case 'ETH':
+      investor_actions.withdrawETH(sellAmount, pending, confirm);
+      break;
+      case 'DAI':
+      investor_actions.withdrawDAI(sellAmount, pending, confirm);
+      break;
+      default:
+      investor_actions.withdrawToken(sellAmount, this.selectedTokenSymbol, pending, confirm);
+      break;
+    }
+  }
+  
   agreementsChecked() {
     for (var checked of this.checkboxes) {
-        if (!checked) {
-            return false;
-        }
+      if (!checked) {
+        return false;
+      }
     }
     return true;
   }

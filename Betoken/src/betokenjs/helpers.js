@@ -72,6 +72,7 @@ export const user = {
         return BigNumber(0);
     },
     commission_history: () => Data.commissionHistory.get(),
+    deposit_withdraw_history: () => Data.depositWithdrawHistory,
     investment_list: () => Data.cyclePhase.get() == 1 ? Data.investmentList.get() : [],
     rank: () => {
         var entry, j, len, ref;

@@ -160,6 +160,9 @@ export var Betoken = function() {
 
     self.getTokenPrice = async (_tokenAddr) => {
         try {
+            if (_tokenAddr === "0xad6d458402f60fd3bd25163575031acdce07538d") {
+                return BigNumber(1);
+            }
             var price = await self.contracts.Kyber.methods.getExpectedRate(_tokenAddr, DAI_ADDR, 1e5).call();
             price = price[1];
             return BigNumber(price).div(1e18);

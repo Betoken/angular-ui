@@ -18,6 +18,7 @@ export var investmentList = new ReactiveVar([]);
 export var lastCommissionRedemption = new ReactiveVar(0);
 export var managerROI = new ReactiveVar(BigNumber(0));
 export var commissionHistory = new ReactiveVar([]);
+export var depositWithdrawHistory = new ReactiveVar([]);
 export var portfolioValue = new ReactiveVar(BigNumber(0));
 export var currentStake = new ReactiveVar(BigNumber(0));
 
@@ -306,12 +307,41 @@ export const loadTxHistory = async () => {
             commissionHistoryArray.push(entry);
         }
         commissionHistory.set(commissionHistoryArray);
+
+        // Get Deposit & Withdraw history
+        let depositWithdrawHistoryArray = [];
+        const getDepositWithdrawHistory = async function(_type) {
+            var data, entry, event, events, j, len;
+            events = (await betoken.contracts.BetokenFund.getPastEvents(_type, {
+                fromBlock: DEPLOYED_BLOCK,
+                filter: {
+                    _sender: userAddress.get()
+                }
+            }));
+            for (j = 0, len = events.length; j < len; j++) {
+                event = events[j];
+                data = event.returnValues;
+                let daiAmount = _type === "Deposit" ? data._daiAmount : data.daiAmount;
+                entry = {
+                    type: _type,
+                    timestamp: new Date(+data._timestamp * 1e3).toLocaleString(),
+                    token: await betoken.getTokenSymbol(data._tokenAddress),
+                    amount: BigNumber(data._tokenAmount).div(10 ** (+(await betoken.getTokenDecimals(data._tokenAddress)))),
+                    daiAmount: BigNumber(daiAmount).div(10 ** 18),
+                    txHash: event.transactionHash
+                };
+                depositWithdrawHistoryArray.push(entry);
+            }
+        };
+        await Promise.all([getDepositWithdrawHistory("Deposit"), getDepositWithdrawHistory("Withdraw")]);
+        depositWithdrawHistory.set(depositWithdrawHistoryArray);
     }
     isLoadingRecords.set(false);
 };
 
 export const loadTokenPrices = async () => {
     isLoadingPrices.set(true);
+    console.log(TOKEN_DATA.get());
 
     let tokenPrices = await Promise.all(TOKEN_DATA.get().map(async (_token) => {
         return betoken.getTokenPrice(_token.address);

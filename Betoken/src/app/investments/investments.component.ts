@@ -88,7 +88,7 @@ export class InvestmentsComponent implements OnInit {
         refresh_actions.investments();
     }
 
-    async updateDates() {
+    updateDates() {
         this.days = timer.day();
         this.hours = timer.hour();
         this.minutes = timer.minute();

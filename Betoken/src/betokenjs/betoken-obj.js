@@ -152,7 +152,7 @@ export var Betoken = function() {
     };
     
     self.getTokenBalance = function(_tokenAddr, _addr) {
-        if (_tokenAddr === ETH_TOKEN_ADDRESS) {
+        if (_tokenAddr === web3.utils.toChecksumAddress(ETH_TOKEN_ADDRESS)) {
             return web3.eth.getBalance(_addr);
         }
         return ERC20(_tokenAddr).methods.balanceOf(_addr).call();
@@ -160,7 +160,7 @@ export var Betoken = function() {
 
     self.getTokenPrice = async (_tokenAddr) => {
         try {
-            if (_tokenAddr === "0xad6d458402f60fd3bd25163575031acdce07538d") {
+            if (web3.utils.toChecksumAddress(_tokenAddr) === DAI_ADDR) {
                 return BigNumber(1);
             }
             var price = await self.contracts.Kyber.methods.getExpectedRate(_tokenAddr, DAI_ADDR, 1e5).call();

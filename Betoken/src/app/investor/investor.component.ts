@@ -27,8 +27,8 @@ export class InvestorComponent implements OnInit {
   standardDeviation = new BigNumber(0);
   tokenData: any;
   
-  sharesBalance: BigNumber;
-  investmentBalance: BigNumber;
+  sharesBalance = new BigNumber(0);
+  investmentBalance = new BigNumber(0);
   
   buySharesAmount = new BigNumber(0);
   buyTokenAmount = new BigNumber(0);
@@ -40,10 +40,10 @@ export class InvestorComponent implements OnInit {
   
   buyStep = 0;
   sellStep = 0;
-  day = 0;
-  hour = 0;
-  minute = 0;
-  second = 0;
+  days = 0;
+  hours = 0;
+  minutes = 0;
+  seconds = 0;
   phase = 0;
   
   checkboxes = [false, false, false];
@@ -83,10 +83,10 @@ export class InvestorComponent implements OnInit {
     this.investmentBalance = user.investment_balance();
     this.sharesPrice = stats.shares_price();
     
-    this.day = timer.day();
-    this.hour = timer.hour();
-    this.minute = timer.minute();
-    this.second = timer.second();
+    this.days = timer.day();
+    this.hours = timer.hour();
+    this.minutes = timer.minute();
+    this.seconds = timer.second();
     this.phase = timer.phase();
     
     this.getTokenBalance(this.selectedTokenSymbol);

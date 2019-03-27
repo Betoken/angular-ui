@@ -152,7 +152,7 @@ export const loadTokenMetadata = async () => {
         return {
             name: x.name,
             symbol: x.symbol,
-            address: x.address,
+            address: web3.utils.toChecksumAddress(x.address),
             decimals: x.decimals,
             logoUrl: '',
             price: BigNumber(0),
@@ -299,13 +299,14 @@ export const loadTxHistory = async () => {
         let commissionHistoryArray = [];
         for (let event of events) {
             let entry = {
-                cycle: event.returnValues._cycleNumber,
+                cycle: +event.returnValues._cycleNumber,
                 amount: BigNumber(event.returnValues._commission).div(10 ** 18),
                 timestamp: new Date((await web3.eth.getBlock(event.blockNumber)).timestamp * 1e3).toLocaleString(),
                 txHash: event.transactionHash
             };
             commissionHistoryArray.push(entry);
         }
+        commissionHistoryArray.sort((a, b) => b.cycle - a.cycle);
         commissionHistory.set(commissionHistoryArray);
 
         // Get Deposit & Withdraw history

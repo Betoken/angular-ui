@@ -189,7 +189,7 @@ export class InvestorComponent implements OnInit {
   
   deposit() {
     this.buyStep = 2;
-    var payAmount = $('#sharesAmountToBuy').val();
+    var payAmount = this.buyTokenAmount;
     let pending = (txHash) => {
       if (this.buyStep == 2) {
         this.transactionId = txHash;
@@ -204,20 +204,21 @@ export class InvestorComponent implements OnInit {
     };
     switch (this.selectedTokenSymbol) {
       case 'ETH':
-      investor_actions.depositETH(payAmount, pending, confirm);
-      break;
+        investor_actions.depositETH(payAmount, pending, confirm);
+        break;
       case 'DAI':
-      investor_actions.depositDAI(payAmount, pending, confirm);
-      break;
+        investor_actions.depositDAI(payAmount, pending, confirm);
+        break;
       default:
-      investor_actions.depositToken(payAmount, this.selectedTokenSymbol, pending, confirm);
-      break;
+        investor_actions.depositToken(payAmount, this.selectedTokenSymbol, pending, confirm);
+        break;
     }
   }
   
   sell() {
     this.sellStep = 1;
-    var sellAmount = $('#sharesAmountToSell').val();
+    var sellAmount = this.sellSharesAmount.times(this.sharesPrice);
+    console.log(sellAmount.toString());
     let pending = (txHash) => {
       if (this.sellStep == 1) {
         this.transactionId = txHash;
@@ -232,14 +233,14 @@ export class InvestorComponent implements OnInit {
     };
     switch (this.selectedTokenSymbol) {
       case 'ETH':
-      investor_actions.withdrawETH(sellAmount, pending, confirm);
-      break;
+        investor_actions.withdrawETH(sellAmount, pending, confirm);
+        break;
       case 'DAI':
-      investor_actions.withdrawDAI(sellAmount, pending, confirm);
-      break;
+        investor_actions.withdrawDAI(sellAmount, pending, confirm);
+        break;
       default:
-      investor_actions.withdrawToken(sellAmount, this.selectedTokenSymbol, pending, confirm);
-      break;
+        investor_actions.withdrawToken(sellAmount, this.selectedTokenSymbol, pending, confirm);
+        break;
     }
   }
   

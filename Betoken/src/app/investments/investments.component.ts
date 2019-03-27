@@ -134,6 +134,7 @@ export class InvestmentsComponent implements OnInit {
         let confirmSell = () => {
             if (this.sellInvestmentPopupStep === 1) {
                 this.sellInvestmentPopupStep = 2;
+                this.refresh();
             }
         }
 

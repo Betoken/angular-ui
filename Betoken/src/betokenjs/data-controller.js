@@ -324,7 +324,7 @@ export const loadTxHistory = async () => {
                 let daiAmount = _type === "Deposit" ? data._daiAmount : data.daiAmount;
                 entry = {
                     type: _type,
-                    timestamp: new Date(+data._timestamp * 1e3).toLocaleString(),
+                    timestamp: +data._timestamp,
                     token: await betoken.getTokenSymbol(data._tokenAddress),
                     amount: BigNumber(data._tokenAmount).div(10 ** (+(await betoken.getTokenDecimals(data._tokenAddress)))),
                     daiAmount: BigNumber(daiAmount).div(10 ** 18),
@@ -334,6 +334,12 @@ export const loadTxHistory = async () => {
             }
         };
         await Promise.all([getDepositWithdrawHistory("Deposit"), getDepositWithdrawHistory("Withdraw")]);
+        // sort the history, latest entries come first
+        depositWithdrawHistoryArray.sort((a, b) => b.timestamp - a.timestamp);
+        // convert timestamps to date strings
+        for (var entry of depositWithdrawHistoryArray) {
+            entry.timestamp = new Date(entry.timestamp * 1e3).toLocaleString();
+        }
         depositWithdrawHistory.set(depositWithdrawHistoryArray);
     }
     isLoadingRecords.set(false);

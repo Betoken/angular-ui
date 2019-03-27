@@ -73,7 +73,7 @@ export class InvestorComponent implements OnInit {
   }
   
   refreshDisplay() {
-    const NUM_DECIMALS = 2;
+    const NUM_DECIMALS = 4;
     
     this.avgMonthReturn = stats.avg_roi().toFormat(NUM_DECIMALS);
     this.currMoROI = stats.cycle_roi().toFormat(NUM_DECIMALS);

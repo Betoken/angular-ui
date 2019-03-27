@@ -509,6 +509,9 @@ export const loadStats = async () => {
                 _event = events[j];
                 data = _event.returnValues;
                 ROI = BigNumber(data._afterTotalFunds).minus(data._beforeTotalFunds).div(data._beforeTotalFunds).times(100);
+                if (ROI.isNaN()) {
+                    ROI = BigNumber(0);
+                }
                 // Update chart data
                 rois.push(ROI.toNumber());
                 

@@ -121,38 +121,30 @@ export class DashboardComponent implements OnInit {
         let phaseLengths = timer.phase_lengths();
         let timestamps = new Array(betokenROIList.length);
         switch (phase) {
-            case 0:
-                // invest & withdraw phase
-                // use last cycle's data
-                timestamps[timestamps.length - 1] = {
-                    end: phaseStart - phaseLengths[2],
-                    start: phaseStart - phaseLengths[2] - phaseLengths[1]
-                }
-                break;
-            case 1:
-                // manage phase
-                // use current data
-                timestamps[timestamps.length - 1] = {
-                    end: now,
-                    start: phaseStart
-                }
-                break;
-            case 2:
-                // redeem commission phase
-                // use data from manage phase
-                timestamps[timestamps.length - 1] = {
-                    end: phaseStart,
-                    start: phaseStart - phaseLengths[1]
-                }
-                break;
+          case 0:
+            // intermission phase
+            // use last cycle's data
+            timestamps[timestamps.length - 1] = {
+              end: phaseStart,
+              start: phaseStart - phaseLengths[1]
+            }
+            break;
+          case 1:
+            // manage phase
+            // use current data
+            timestamps[timestamps.length - 1] = {
+              end: now,
+              start: phaseStart
+            }
+            break;
         }
         for (let i = timestamps.length - 2; i >= 0; i--) {
-            timestamps[i] = {
-                start: 0,
-                end: 0
-            }
-            timestamps[i].end = timestamps[i+1].start - phaseLengths[0] - phaseLengths[2];
-            timestamps[i].start = timestamps[i].end - phaseLengths[1];
+          timestamps[i] = {
+            start: 0,
+            end: 0
+          }
+          timestamps[i].end = timestamps[i+1].start - phaseLengths[0];
+          timestamps[i].start = timestamps[i].end - phaseLengths[1];
         }
 
         let MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];

@@ -201,10 +201,10 @@ export const investor_actions = {
 }
 
 export const manager_actions = {
-    sell_investment: async function (id, amount, minPrice, maxPrice, pending, confirm) {
+    sell_investment: async function (id, percentage, minPrice, maxPrice, pending, confirm) {
         try {
             if (Data.cyclePhase.get() === 1) {
-                return betoken.sellAsset(id, amount, minPrice.times(1e18), maxPrice.times(1e18), pending, confirm);
+                return betoken.sellAsset(id, percentage, minPrice.times(1e18), maxPrice.times(1e18), pending, confirm);
             }
         } catch(error) {
             error_notifications.set_error_msg(SEND_TX_ERR);

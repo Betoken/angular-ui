@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, Renderer2} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { AppComponent } from '../app.component';
 import { user, timer, manager_actions, loading, tokens, refresh_actions} from '../../betokenjs/helpers';
 import BigNumber from 'bignumber.js';
@@ -30,7 +30,7 @@ export class InvestmentsComponent implements OnInit {
     seconds = 0;
     phase = -1;
     expected_commission = 0.00;
-    kairo_balance: BigNumber;
+    kairo_balance = new BigNumber(0);
     monthly_pl = 0.00;
     selectedTokenSymbol = 'ETH';
     stakeAmount = '';
@@ -39,10 +39,10 @@ export class InvestmentsComponent implements OnInit {
     sellId: any;
     tokenData: any;
     transactionId: '';
-    kroRedeemed: '';
+    kroRedeemed = new BigNumber(0);
     dailyPriceChange = 0;
 
-    constructor(private ms: AppComponent, private elementRef: ElementRef,private renderer:Renderer2) {
+    constructor(private ms: AppComponent) {
         this.createInvestmentPopupStep = 0;
         this.sellInvestmentPopupStep = 0;
         this.nextPhasePopupStep = 0;
@@ -63,6 +63,7 @@ export class InvestmentsComponent implements OnInit {
 
     resetModals() {
         this.stakeAmount = '';
+        this.selectedTokenSymbol = this.tokenData[0].symbol;
         this.createInvestmentPopupStep = 0;
         this.sellInvestmentPopupStep = 0;
         this.nextPhasePopupStep = 0;
@@ -117,35 +118,47 @@ export class InvestmentsComponent implements OnInit {
         }
 
         let tokenPrice = this.assetSymbolToPrice(this.selectedTokenSymbol);
-        manager_actions.new_investment(this.selectedTokenSymbol, this.stakeAmount, tokenPrice.times(0.5), tokenPrice.times(2), pending, confirm);
+        let maxPrice = tokenPrice.plus(tokenPrice.times($('#maxAcceptablePrice').val()).div(100));
+        manager_actions.new_investment(this.selectedTokenSymbol, this.stakeAmount, new BigNumber(0), maxPrice, pending, confirm);
     }
 
     // Sell investment
 
-    sell(data) {
+    openSellModal(data) {
         this.sellId = data.id;
         this.kroRedeemed = data.currValue;
+        this.selectedTokenSymbol = data.tokenSymbol;
+    }
+
+    sell() {
+        this.sellInvestmentPopupStep = 1;
 
         let pendingSell = (transactionHash) => {
-            this.sellInvestmentPopupStep = 1;
+            this.sellInvestmentPopupStep = 2;
             this.transactionId = transactionHash;
         }
 
         let confirmSell = () => {
-            if (this.sellInvestmentPopupStep === 1) {
-                this.sellInvestmentPopupStep = 2;
+            if (this.sellInvestmentPopupStep === 2) {
+                this.sellInvestmentPopupStep = 3;
                 this.refresh();
             }
         }
 
-        let tokenPrice = this.assetSymbolToPrice(data.tokenSymbol);
-        manager_actions.sell_investment(this.sellId, new BigNumber(-1), tokenPrice.times(0.5), tokenPrice.times(2), pendingSell, confirmSell);
+        let sellPercentage = new BigNumber($('#sell-percentage-input').val()).div(100);
+        let tokenPrice = this.assetSymbolToPrice(this.selectedTokenSymbol);
+        let minPrice = tokenPrice.minus(tokenPrice.times($('#minAcceptablePrice').val()).div(100));
+        manager_actions.sell_investment(this.sellId, sellPercentage, minPrice, tokenPrice.times(100), pendingSell, confirmSell);
     }
 
     // UI helpers
 
     maxStake() {
         $('#kairo-input').val(this.kairo_balance.toString());
+    }
+
+    maxSellPercent() {
+        $('#sell-percentage-input').val('100.0');
     }
 
     isLoading() {

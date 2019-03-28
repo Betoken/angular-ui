@@ -397,19 +397,14 @@ export var Betoken = function() {
     /**
     * Sells an investment (maybe only part of it)
     * @param  {Number} _proposalId the investment's ID
-    * @param  {BigNumber} _tokenAmount the amount of tokens to sell
+    * @param  {BigNumber} _percentage the percentage of tokens to sell
     * @param  {BigNumber} _minPrice the min acceptable token price
     * @param  {BigNumber} _maxPrice the max acceptable token price
     * @return {Promise}               .then(()->)
     */
-    self.sellAsset = async function(_proposalId, _tokenAmount, _minPrice, _maxPrice, _onTxHash, _onReceipt) {
+    self.sellAsset = async function(_proposalId, _percentage, _minPrice, _maxPrice, _onTxHash, _onReceipt) {
         await getDefaultAccount();
-        var sellTokenAmount = BigNumber(0);
-        if (_tokenAmount.gt(0)) {
-            sellTokenAmount = _tokenAmount;
-        } else {
-            sellTokenAmount = BigNumber((await self.getDoubleMapping("userInvestments", web3.eth.defaultAccount, _proposalId)).tokenAmount);
-        }
+        var sellTokenAmount = BigNumber((await self.getDoubleMapping("userInvestments", web3.eth.defaultAccount, _proposalId)).tokenAmount).times(_percentage).integerValue();
         return self.contracts.BetokenFund.methods.sellInvestmentAsset(_proposalId, sellTokenAmount, _minPrice, _maxPrice).send({
             from: web3.eth.defaultAccount
         }).on("transactionHash", _onTxHash).on("receipt", _onReceipt);

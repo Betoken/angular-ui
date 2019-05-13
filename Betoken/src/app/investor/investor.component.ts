@@ -82,6 +82,9 @@ export class InvestorComponent implements OnInit {
     this.sharesBalance = user.shares_balance();
     this.investmentBalance = user.investment_balance();
     this.sharesPrice = stats.shares_price();
+    if (this.sharesPrice.eq(0)) {
+      this.sharesPrice = new BigNumber(1);
+    }
     
     this.days = timer.day();
     this.hours = timer.hour();

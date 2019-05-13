@@ -3,7 +3,7 @@ import BigNumber from "bignumber.js";
 const Web3 = require('web3');
 
 // constants
-export const BETOKEN_PROXY_ADDR = "0x1469155791145ad0A180D5D074d341A35d6071E1";
+export const BETOKEN_PROXY_ADDR = "0x06Db85c3Aebd4Fcbbdf2aF1ea3C046f38a86b89B";
 export const ETH_TOKEN_ADDRESS = "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee";
 export const DAI_ADDR = "0xaD6D458402F60fD3Bd25163575031ACDce07538D";
 export const KYBER_ADDR = "0x818E6FECD516Ecc3849DAf6845e3EC868087B755";

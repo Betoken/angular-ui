@@ -156,11 +156,10 @@
             </div>
             <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
               <div class="card-body">
-                <p>Yes. We're charging the following fees to pay our managers and pay for the development & maintainance of Betoken.</p>
+                <p>Yes. We're charging the following monthly fees to pay our managers and pay for the development & maintainance of Betoken.</p>
                 <ul>
-                  <li>Performance fee: 20%</li>
-                  <li>Management fee: 0.2%</li>
-                  <li>Exit fee: 3%</li>
+                  <li>Performance fee: 20% (of profits)</li>
+                  <li>Management fee: 0.2% (of assets)</li>
                 </ul>
               </div>
             </div>
@@ -421,8 +420,6 @@
                 <p class="text-center text-muted mb-5">
                   You bought <span class="font-weight-bold text-secondary">{{buySharesAmount.toFormat(4)}}</span> BTKS using <span class="font-weight-bold text-secondary">{{buyTokenAmount.toFormat(4)}}</span> {{selectedTokenSymbol}}.
                 </p>
-                <button class="btn btn-twitter btn-block"type="button" name="button">Tweet about it</button>
-                <hr>
                 <form>
                   <div class="form-group">
                     <label for="exampleFormControlInput1">Transaction ID</label>
@@ -434,8 +431,13 @@
                     </div>
                   </div>
                 </form>
+                <hr>
+                <a target="__blank" href="https://twitter.com/intent/tweet?hashtags=Betoken%2C%20DeFi&related=betokenfund&text=I%27ve%20just%20joined%20https%3A%2F%2Fbetoken.fund%2C%20world%27s%20first%20crowd-powered%20cryptocurrency%20investment%20protocol!">
+                  <button class="btn btn-twitter btn-block" type="button" name="button">Tweet about it</button>
+                </a>
               </div>
               
+              <hr>
               <!-- Continue button for buyStep 1 -->
               <button type="submit" class="btn btn-block btn-success mt-auto" aria-label="BuyBTKS" *ngIf="buyStep == 0" (click)="buyStep = agreementsChecked() ? 1 : 0" [ngClass]="{'disabled': !agreementsChecked()}">
                 Buy Betoken Shares
@@ -445,9 +447,7 @@
                 Continue
               </button>
               <!-- Close button for buyStep 4 -->
-              <button type="submit" class="btn btn-block btn-white mt-auto" data-dismiss="modal" aria-label="Close" *ngIf="buyStep == 4">
-                Close
-              </button>
+              <a class="btn btn-block btn-success mt-auto" href="#/investing-dashboard" target="_blank" *ngIf="buyStep == 4">Enter Investor Portal</a>
             </div>
           </div>
         </div>

@@ -414,16 +414,9 @@ export var Betoken = function() {
     /*
     Redeem Commission functions
     */
-    self.redeemCommission = async function(_onTxHash, _onReceipt) {
+    self.redeemCommission = async function(_inShares, _onTxHash, _onReceipt) {
         await getDefaultAccount();
-        return self.contracts.BetokenFund.methods.redeemCommission().send({
-            from: web3.eth.defaultAccount
-        }).on("transactionHash", _onTxHash).on("receipt", _onReceipt);
-    };
-    
-    self.redeemCommissionInShares = async function(_onTxHash, _onReceipt) {
-        await getDefaultAccount();
-        return self.contracts.BetokenFund.methods.redeemCommissionInShares().send({
+        return self.contracts.BetokenFund.methods.redeemCommission(_inShares).send({
             from: web3.eth.defaultAccount
         }).on("transactionHash", _onTxHash).on("receipt", _onReceipt);
     };

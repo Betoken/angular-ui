@@ -204,7 +204,6 @@ export class InvestorComponent implements OnInit {
   sell() {
     this.sellStep = 1;
     var sellAmount = this.sellSharesAmount.times(this.sharesPrice);
-    console.log(sellAmount.toString());
     let pending = (txHash) => {
       if (this.sellStep == 1) {
         this.transactionId = txHash;

@@ -3,6 +3,7 @@ import { getDefaultAccount, DAI_ADDR } from './betoken-obj';
 import ReactiveVar from "meteor-standalone-reactive-var";
 import BigNumber from "bignumber.js";
 import https from "https";
+import { isUndefined } from 'util';
 
 // constants
 const PRECISION = 1e18;
@@ -503,26 +504,28 @@ export const loadStats = async () => {
     var rois = [];
     currROI.set(BigNumber(0));
     avgROI.set(BigNumber(0));
-    return betoken.contracts.BetokenFund.getPastEvents("ROI",
+    return betoken.contracts.BetokenFund.getPastEvents("ChangedPhase",
         {
             fromBlock: DEPLOYED_BLOCK
         }).then(function(events) {
-            var ROI,
-            _event,
-            data,
-            j,
-            len;
-            for (j = 0, len = events.length; j < len; j++) {
-                _event = events[j];
-                data = _event.returnValues;
-                ROI = BigNumber(data._afterTotalFunds).minus(data._beforeTotalFunds).div(data._beforeTotalFunds).times(100);
+            for (var cycle = 1; cycle <= cycleNumber.get(); cycle++) {
+                // find events emitted before & after the Manage phase of cycle
+                var beforeEvent = events.find((e) => e.returnValues._cycleNumber == cycle && e.returnValues._newPhase == 1);
+                var afterEvent = events.find((e) => e.returnValues._cycleNumber == cycle + 1 && e.returnValues._newPhase == 0);
+                
+                if (isUndefined(beforeEvent) || isUndefined(afterEvent)) {
+                    break;
+                }
+
+                var beforeTotalFunds = BigNumber(beforeEvent.returnValues._totalFundsInDAI);
+                var afterTotalFunds = BigNumber(afterEvent.returnValues._totalFundsInDAI);
+                var ROI = afterTotalFunds.minus(beforeTotalFunds).div(beforeTotalFunds).times(100);
                 if (ROI.isNaN()) {
                     ROI = BigNumber(0);
                 }
-                // Update chart data
                 rois.push(ROI.toNumber());
                 
-                if (+data._cycleNumber === cycleNumber.get()) {
+                if (cycle === cycleNumber.get()) {
                     currROI.set(ROI);
                 }
             }

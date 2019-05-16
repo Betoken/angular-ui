@@ -223,14 +223,14 @@ export const manager_actions = {
     },
     redeem_commission: async function (pending, confirm) {
         try {
-            return betoken.redeemCommission(pending, confirm);
+            return betoken.redeemCommission(false, pending, confirm);
         } catch(error) {
             error_notifications.set_error_msg(SEND_TX_ERR);
         }
     },
     redeem_commission_in_shares: async function (pending, confirm) {
         try {
-            return betoken.redeemCommissionInShares(pending, confirm);
+            return betoken.redeemCommission(true, pending, confirm);
         } catch (error) {
             error_notifications.set_error_msg(SEND_TX_ERR);
         }

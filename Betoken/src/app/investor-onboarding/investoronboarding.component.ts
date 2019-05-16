@@ -18,7 +18,6 @@ import {
 export class InvestoronboardingComponent implements OnInit {
   tokenData: any;
   user_address = '0x0';
-  errorMsg = '';
   buyStep = 0;
   checkboxes = [false, false, false];
   selectedTokenSymbol = '';
@@ -38,20 +37,20 @@ export class InvestoronboardingComponent implements OnInit {
   }
   
   ngOnInit() {
+    setInterval(() => {
+      this.refreshDisplay();
+    }, 100);
+    this.ms.setHeaderSidebarDisplay(!this.checkRouterURL('/start'));
     $('[data-toggle="tooltip"]').tooltip();
     $('#modalInvestorBuy').on('hidden.bs.modal', () => {
       this.resetModals();
     });
     this.tokenData = tokens.token_data().get();
     this.selectedTokenSymbol = this.tokenData[0].symbol;
-    setInterval(() => {
-      this.refreshDisplay();
-    }, 100);
   }
   
   refreshDisplay() {
     this.user_address = user.address();
-    this.ms.setHeaderSidebarDisplay(!this.checkRouterURL('/start'));
     this.sharesPrice = stats.shares_price();
     
     this.days = timer.day();

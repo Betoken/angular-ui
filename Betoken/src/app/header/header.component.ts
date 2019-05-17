@@ -65,6 +65,7 @@ export class HeaderComponent implements OnInit {
 
     error_notifications.check_dependency();
     this.errorMsg = error_notifications.get_error_msg();
+    this.ms.setHeaderSidebarDisplay(!this.checkRouterURL('/start'));
   }
 
   phaseActionText() {

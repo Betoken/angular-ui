@@ -10,7 +10,7 @@ import { loadAllData, loadDynamicData } from '../betokenjs/data-controller';
 })
 export class AppComponent {
   title = 'Betoken';
-  display_header_sidebar = false;
+  display_header_sidebar = true;
   is_loading = true;
 
   constructor() {

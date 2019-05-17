@@ -34,6 +34,7 @@ export class SideNavComponent implements OnInit {
     this.phase = timer.phase();
     
     this.can_redeem_commission = user.can_redeem_commission();
+    this.ms.setHeaderSidebarDisplay(!this.checkRouterURL('/start'));
   }
   
   phaseActionText() {

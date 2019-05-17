@@ -134,8 +134,9 @@ export class InvestorComponent implements OnInit {
     this.refreshSellOrderDetails(this.sellSharesAmount);
   }
 
-  refresh() {
-    refresh_actions.records();
+  async refresh() {
+    await refresh_actions.records();
+    this.depositWithdrawHistory = user.deposit_withdraw_history().get();
   }
   
   isLoading() {

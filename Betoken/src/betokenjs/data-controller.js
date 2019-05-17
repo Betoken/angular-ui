@@ -8,10 +8,11 @@ import { isUndefined } from 'util';
 // constants
 const PRECISION = 1e18;
 const DEPLOYED_BLOCK = 5168545;
+const ZERO_ADDR = '0x0000000000000000000000000000000000000000';
 
 // instance variables
 // user info
-export var userAddress = new ReactiveVar("0x0");
+export var userAddress = new ReactiveVar(ZERO_ADDR);
 export var kairoBalance = new ReactiveVar(BigNumber(0));
 export var sharesBalance = new ReactiveVar(BigNumber(0));
 export var investmentBalance = new ReactiveVar(BigNumber(0));
@@ -288,7 +289,7 @@ export const loadUserData = async () => {
 };
 
 export const loadTxHistory = async () => {
-    if (userAddress.get() != "0x0") {
+    if (userAddress.get() != ZERO_ADDR) {
         isLoadingRecords.set(true);
         // Get commission history
         let events = (await betoken.contracts.BetokenFund.getPastEvents("CommissionPaid", {
@@ -492,7 +493,7 @@ export const loadStats = async () => {
     _fundValue = _fundValue.plus(totalDAI);
     fundValue.set(_fundValue);
 
-    if (!sharesTotalSupply.get().isZero() && userAddress.get() !== '0x0') {
+    if (!sharesTotalSupply.get().isZero() && userAddress.get() !== ZERO_ADDR) {
         investmentBalance.set(sharesBalance.get().div(sharesTotalSupply.get()).times(fundValue.get()));
     }
 

@@ -25,7 +25,8 @@ export class HeaderComponent implements OnInit {
   seconds = 0;
   phase = -1;
 
-  user_address = '0x0';
+  ZERO_ADDR = '0x0000000000000000000000000000000000000000';
+  user_address = this.ZERO_ADDR;
   userKairoValue = new BigNumber(0);
 
   can_redeem_commission = true;

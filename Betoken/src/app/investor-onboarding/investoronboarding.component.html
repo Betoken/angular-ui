@@ -58,23 +58,15 @@
         <div class="card mb-6">
           <div class="card-header d-flex text-center text-md-left">
             <!-- cta -->
-            <span class="text-truncate d-block" *ngIf="user_address !== '0x0'"><span class="text-success">●</span> {{user_address}}</span>
-            <span class="text-truncate" *ngIf="user_address == '0x0'"><span class="text-danger">●</span> No Wallet Connected</span>
+            <span class="text-truncate d-block" *ngIf="user_address !== ZERO_ADDR"><span class="text-success">●</span> {{user_address}}</span>
+            <span class="text-truncate" *ngIf="user_address == ZERO_ADDR"><span class="text-danger">●</span> No Wallet Connected</span>
           </div>
           <div class="card-body text-center text-md-left">
-            <h2 class="h1 mb-2">New To Betoken?</h2>
-            <p class="mb-4 text-secondary">Start investing by buying Betoken Shares</p>
-            <a class="btn btn-block btn-lg btn-success mb-4" *ngIf="user_address == '0x0'" target="__blank" href="https://metamask.io/">Install Metamask</a>
-            <button class="btn btn-block btn-lg btn-success mb-4" type="button" data-toggle="modal" data-target="#modalInvestorBuy" *ngIf="user_address != '0x0'">Get Started</button>
-            <hr class="my-4">
-            <div class="row align-items-center">
-              <div class="col mr-auto pr-0">
-                <h4 class="font-weight-bold mb-1">Already have Betoken Shares?</h4>
-              </div>
-              <div class="col-auto">
-                <a class="btn btn-white" href="#/investing-dashboard" target="_blank">Log In</a>
-              </div>
+            <div *ngIf="user_address == ZERO_ADDR">
+              <p class="mb-4 text-secondary">You don't seem to be using a Web3 browser. Please install Metamask to continue.</p>
+              <a class="btn btn-block btn-lg btn-success mb-4" target="__blank" href="https://metamask.io/">Install Metamask</a>
             </div>
+            <button class="btn btn-block btn-lg btn-success mb-4" type="button" data-toggle="modal" data-target="#modalInvestorBuy" *ngIf="user_address != ZERO_ADDR">Get Started</button>
           </div>
         </div>
         <div class="card card-inactive mb-4">

@@ -17,7 +17,8 @@ import {
 })
 export class InvestoronboardingComponent implements OnInit {
   tokenData: any;
-  user_address = '0x0';
+  ZERO_ADDR = '0x0000000000000000000000000000000000000000';
+  user_address = this.ZERO_ADDR;
   buyStep = 0;
   checkboxes = [false, false, false];
   selectedTokenSymbol = '';

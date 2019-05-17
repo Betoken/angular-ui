@@ -5,9 +5,10 @@ import {AppComponent} from '../app.component';
 import { } from 'jquery';
 declare var $: any;
 import {
-  user, timer, error_notifications, manager_actions
+  user, timer, error_notifications, manager_actions, refresh_actions
 } from '../../betokenjs/helpers';
 import BigNumber from 'bignumber.js';
+import { isNull } from 'util';
 
 @Component({
   selector: 'app-header',
@@ -61,6 +62,9 @@ export class HeaderComponent implements OnInit {
     this.phase = timer.phase();
 
     this.user_address = user.address();
+    if (isNull(user.address())) {
+      this.user_address = this.ZERO_ADDR;
+    }
     this.userKairoValue = user.portfolio_value();
     this.can_redeem_commission = user.can_redeem_commission();
 
@@ -86,5 +90,9 @@ export class HeaderComponent implements OnInit {
 
   nextPhase() {
     manager_actions.nextPhase();
+  }
+
+  reloadAll() {
+    refresh_actions.reload_all();
   }
 }

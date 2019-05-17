@@ -81,6 +81,8 @@ export var Betoken = function() {
     
     self.loadWeb3 = async () => {
         self.hasWeb3 = false;
+        self.wrongNetwork = false;
+        
         if (typeof window.ethereum !== 'undefined') {
             // new metamask
             try {

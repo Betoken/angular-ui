@@ -38,8 +38,8 @@
         <button class="btn btn-success mr-4" type="button" *ngIf="days == 0 && hours == 0 && minutes == 0 && 1 >= seconds" (click)="nextPhase()">Next Phase</button>
 
         <!--Account display-->
-        <button class="btn btn-white text-truncate" style="width: 12rem;" *ngIf="user_address !== ZERO_ADDR"><span class="text-success">●</span> {{user_address}}</button>
-        <button class="btn btn-white text-truncate" *ngIf="user_address == ZERO_ADDR"><span class="text-danger">●</span> No Account</button>
+        <button class="btn btn-white text-truncate" style="width: 12rem;" (click)="reloadAll()" *ngIf="user_address !== ZERO_ADDR"><span class="text-success">●</span> {{user_address}}</button>
+        <button class="btn btn-white text-truncate" (click)="reloadAll()" *ngIf="user_address == ZERO_ADDR"><span class="text-danger">●</span> Connect Wallet </button>
       </div>
       <!-- cta -->
       <div *ngIf="checkRouterURL('/investing-dashboard') === true">
@@ -48,8 +48,8 @@
         <button class="btn btn-white mr-4" type="button" data-toggle="modal" data-target="#modalInvestorSell">Sell BTKS</button>
 
         <!--Account display-->
-        <button class="btn btn-white text-truncate" style="width: 12rem;" *ngIf="user_address !== ZERO_ADDR"><span class="text-success">●</span> {{user_address}}</button>
-        <button class="btn btn-white text-truncate" *ngIf="user_address == ZERO_ADDR"><span class="text-danger">●</span> No Account</button>
+        <button class="btn btn-white text-truncate" style="width: 12rem;" (click)="reloadAll()" *ngIf="user_address !== ZERO_ADDR"><span class="text-success">●</span> {{user_address}}</button>
+        <button class="btn btn-white text-truncate" (click)="reloadAll()" *ngIf="user_address == ZERO_ADDR"><span class="text-danger">●</span> Connect Wallet </button>
       </div>
     </div>
   </div>

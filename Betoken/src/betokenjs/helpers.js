@@ -1,5 +1,6 @@
 // imports
 import BigNumber from "bignumber.js";
+import {Betoken} from "./betoken-obj";
 const Data = require("./data-controller");
 
 // constants
@@ -147,6 +148,10 @@ export const refresh_actions = {
     },
     prices: () => {
         Data.loadTokenPrices();
+    },
+    reload_all: () => {
+        const betoken = new Betoken();
+        betoken.init().then(Data.loadDynamicData);
     }
 }
 
@@ -196,7 +201,8 @@ export const investor_actions = {
         }
     },
     nextPhase: async () => {
-        betoken.nextPhase();
+        await betoken.nextPhase();
+        await Data.loadDynamicData();
     }
 }
 
@@ -236,6 +242,7 @@ export const manager_actions = {
         }
     },
     nextPhase: async () => {
-        betoken.nextPhase();
+        await betoken.nextPhase();
+        await Data.loadDynamicData();
     }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppComponent } from '../app.component';
 import { user, timer } from '../../betokenjs/helpers';
+import { BigNumber } from 'bignumber.js';
 
 @Component({
   selector: 'app-side-nav',
@@ -15,6 +16,10 @@ export class SideNavComponent implements OnInit {
   hours = 0;
   minutes = 0;
   seconds = 0;
+
+  ZERO_ADDR = '0x0000000000000000000000000000000000000000';
+  user_address = this.ZERO_ADDR;
+  userKairoValue = new BigNumber(0);
   
   constructor(private ms: AppComponent , private router: Router) {
   }
@@ -35,6 +40,9 @@ export class SideNavComponent implements OnInit {
     
     this.can_redeem_commission = user.can_redeem_commission();
     this.ms.setHeaderSidebarDisplay(!this.checkRouterURL('/start'));
+
+    this.user_address = user.address();
+    this.userKairoValue = user.portfolio_value();
   }
   
   phaseActionText() {

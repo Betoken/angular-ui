@@ -1,7 +1,19 @@
-<app-side-nav></app-side-nav>
+<div class="vh-100" *ngIf="is_loading">
+  <div class="container vh-100 justify-content-center d-flex align-content-center flex-wrap">
+    <div class="row justify-content-center my-5">
+      <div class="col-11 col-md-12">
+        <img class="image-fluid d-block mx-auto" src="assets/img/betoken-logo-wo-text.svg" alt="Betoken" style="width: 88px;">
+        <div class="loader loader-lg loader-white mx-auto d-block mb-4" style="width: 90px; height: 90px; margin-top: -89px; border-width: 7px;"></div>
+        <small>Fetching the latest data for you... This will take ~10s.</small>
+      </div>
+    </div>
+  </div>
+</div> 
+
+<app-side-nav *ngIf="!is_loading"></app-side-nav>
 <!-- MAIN CONTENT
 ================================================== -->
-<div class="main-content mb-6">
+<div class="main-content mb-6" *ngIf="!is_loading">
 
   <app-header></app-header>
 

@@ -324,7 +324,7 @@ export const loadTxHistory = async () => {
             for (j = 0, len = events.length; j < len; j++) {
                 event = events[j];
                 data = event.returnValues;
-                let daiAmount = _type === "Deposit" ? data._daiAmount : data.daiAmount;
+                let daiAmount = data._daiAmount;
                 entry = {
                     type: _type,
                     timestamp: +data._timestamp,

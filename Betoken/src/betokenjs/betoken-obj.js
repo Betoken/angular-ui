@@ -219,7 +219,7 @@ export var Betoken = function() {
     self.getInvestments = function(_userAddress) {
         var array = [];
         return self.getMappingOrArrayItem("investmentsCount", _userAddress).then((_count) => {
-            var getAllItems, getItem, id;
+            var getAllItems, getItem;
             var count = +_count;
             if (count === 0) {
                 return [];
@@ -249,6 +249,10 @@ export var Betoken = function() {
             return array;
         });
     };
+
+    self.getCompoundOrders = function(_userAddress) {
+        // TODO
+    }
     
     
     /*
@@ -419,7 +423,49 @@ export var Betoken = function() {
             from: web3.eth.defaultAccount
         }).on("transactionHash", _onTxHash).on("receipt", _onReceipt);
     };
+
+    /**
+    * Creates an Compound order
+    * @param  {Bool} _orderType True for shorting, false for longing
+    * @param  {String} _tokenAddress the token address
+    * @param  {BigNumber} _stakeInWeis the investment amount
+    * @param  {BigNumber} _minPrice the min acceptable token price
+    * @param  {BigNumber} _maxPrice the max acceptable token price
+    * @return {Promise}               .then(()->)
+    */
+    self.createCompoundOrder = async function(_orderType, _tokenAddress, _stakeInWeis, _minPrice, _maxPrice, _onTxHash, _onReceipt) {
+        await getDefaultAccount();
+        return self.contracts.BetokenFund.methods.createCompoundOrder(_orderType, _tokenAddress, _stakeInWeis, _minPrice, _maxPrice).send({
+            from: web3.eth.defaultAccount
+        }).on("transactionHash", _onTxHash).on("receipt", _onReceipt);
+    };
+
+    /**
+    * Sells a Compound order
+    * @param  {Number} _proposalId the order's ID
+    * @param  {BigNumber} _minPrice the min acceptable token price
+    * @param  {BigNumber} _maxPrice the max acceptable token price
+    * @return {Promise}               .then(()->)
+    */
+    self.sellCompoundOrder = async function(_proposalId, _minPrice, _maxPrice, _onTxHash, _onReceipt) {
+        await getDefaultAccount();
+        return self.contracts.BetokenFund.methods.sellCompoundOrder(_proposalId, _minPrice, _maxPrice).send({
+            from: web3.eth.defaultAccount
+        }).on("transactionHash", _onTxHash).on("receipt", _onReceipt);
+    };
     
+    /**
+    * Repays debt for a Compound order
+    * @param  {Number} _proposalId the order's ID
+    * @param  {BigNumber} _amountInDAI the amount to repay, in DAI
+    * @return {Promise}               .then(()->)
+    */
+    self.repayCompoundOrder = async function(_proposalId, _amountInDAI, _onTxHash, _onReceipt) {
+        await getDefaultAccount();
+        return self.contracts.BetokenFund.methods.repayCompoundOrder(_proposalId, _amountInDAI).send({
+            from: web3.eth.defaultAccount
+        }).on("transactionHash", _onTxHash).on("receipt", _onReceipt);
+    }
     
     /*
     Redeem Commission functions

@@ -420,7 +420,7 @@ export var Betoken = function() {
     /**
     * Creates an Compound order
     * @param  {Bool} _orderType True for shorting, false for longing
-    * @param  {String} _tokenAddress the token address
+    * @param  {String} _tokenAddress the compound token address (not underlying)
     * @param  {BigNumber} _stakeInKRO the investment amount
     * @param  {BigNumber} _minPrice the min acceptable token price
     * @param  {BigNumber} _maxPrice the max acceptable token price

@@ -9,6 +9,7 @@ import { isUndefined } from 'util';
 const PRECISION = 1e18;
 const DEPLOYED_BLOCK = 5168545;
 const ZERO_ADDR = '0x0000000000000000000000000000000000000000';
+const CTOKENS = require('./compound_tokens.json');
 
 // instance variables
 // user info
@@ -77,6 +78,10 @@ export const assetAddressToSymbol = function(_addr) {
 export const assetSymbolToAddress = function(_symbol) {
     return TOKEN_DATA.get().find((x) => x.symbol === _symbol).address;
 };
+
+export const assetSymbolToCTokenAddress = (_symbol) => {
+    return CTOKENS.find((x) => x.symbol === _symbol).address;
+}
 
 export const assetSymbolToDailyPriceChange = function(_symbol) {
     return TOKEN_DATA.get().find((x) => x.symbol === _symbol).dailyPriceChange;

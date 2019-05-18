@@ -33,7 +33,7 @@ export class InvestmentsComponent implements OnInit {
     kairo_balance = new BigNumber(0);
     monthly_pl = 0.00;
     selectedTokenSymbol = 'ETH';
-    stakeAmount = '';
+    stakeAmount = new BigNumber(0);
     activeInvestmentList: any;
     inactiveInvestmentList: any;
     sellId: any;
@@ -62,7 +62,7 @@ export class InvestmentsComponent implements OnInit {
     }
 
     resetModals() {
-        this.stakeAmount = '';
+        this.stakeAmount = new BigNumber(0);
         this.selectedTokenSymbol = this.tokenData[0].symbol;
         this.createInvestmentPopupStep = 0;
         this.sellInvestmentPopupStep = 0;
@@ -100,7 +100,7 @@ export class InvestmentsComponent implements OnInit {
     // Create investment
 
     createInvestment() {
-        this.stakeAmount = $('#kairo-input').val();
+        this.stakeAmount = new BigNumber($('#kairo-input').val());
         this.createInvestmentPopupStep = 2;
 
         let pending = (transactionHash) => {

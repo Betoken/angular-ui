@@ -156,16 +156,17 @@ export const refresh_actions = {
 }
 
 export const investor_actions = {
+    // All amounts must be BigNumber, in floating point (no need to multiply by 1e18)
     depositETH: async (amt, pending, confirm) => {
         try {
-            betoken.depositETH(BigNumber(amt), pending, confirm);
+            betoken.depositETH(amt, pending, confirm);
         } catch (error) {
             error_notifications.set_error_msg(error);
         }
     },
     depositDAI: async (amt, pending, confirm) => {
         try {
-            betoken.depositDAI(BigNumber(amt), pending, confirm);
+            betoken.depositDAI(amt, pending, confirm);
         } catch (error) {
             error_notifications.set_error_msg(error);
         }
@@ -173,21 +174,21 @@ export const investor_actions = {
     depositToken: async (amt, tokenSymbol, pending, confirm) => {
         try {
             let tokenAddr = Data.assetSymbolToAddress(tokenSymbol);
-            betoken.depositToken(tokenAddr, BigNumber(amt), pending, confirm);
+            betoken.depositToken(tokenAddr, amt, pending, confirm);
         } catch (error) {
             error_notifications.set_error_msg(error);
         }
     },
     withdrawETH: async (amt, pending, confirm) => {
         try {
-            return betoken.withdrawETH(BigNumber(amt), pending, confirm);
+            return betoken.withdrawETH(amt, pending, confirm);
         } catch (error) {
             error_notifications.set_error_msg(error);
         }
     },
     withdrawDAI: async (amt, pending, confirm) => {
         try {
-            return betoken.withdrawDAI(BigNumber(amt), pending, confirm);
+            return betoken.withdrawDAI(amt, pending, confirm);
         } catch (error) {
             error_notifications.set_error_msg(error);
         }
@@ -195,7 +196,7 @@ export const investor_actions = {
     withdrawToken: async (amt, tokenSymbol, pending, confirm) => {
         try {
             let tokenAddr = Data.assetSymbolToAddress(tokenSymbol);
-            return betoken.withdrawToken(tokenAddr, BigNumber(amt), pending, confirm);
+            return betoken.withdrawToken(tokenAddr, amt, pending, confirm);
         } catch (error) {
             error_notifications.set_error_msg(error);
         }
@@ -207,23 +208,41 @@ export const investor_actions = {
 }
 
 export const manager_actions = {
+    // All amounts must be BigNumber, in floating point (no need to multiply by 1e18)
+    new_investment: async function (tokenSymbol, stakeInKRO, minPrice, maxPrice, pending, confirm) {
+        try {
+            var tokenAddress = Data.assetSymbolToAddress(tokenSymbol);
+            betoken.createInvestment(tokenAddress, stakeInKRO, minPrice, maxPrice, pending, confirm);
+        } catch (error) {
+            error_notifications.set_error_msg(SEND_TX_ERR);
+        }
+    },
     sell_investment: async function (id, percentage, minPrice, maxPrice, pending, confirm) {
         try {
-            if (Data.cyclePhase.get() === 1) {
-                return betoken.sellAsset(id, percentage, minPrice.times(1e18), maxPrice.times(1e18), pending, confirm);
-            }
+            return betoken.sellAsset(id, percentage, minPrice, maxPrice, pending, confirm);
         } catch(error) {
             error_notifications.set_error_msg(SEND_TX_ERR);
         }
     },
-    new_investment: async function (tokenSymbol, stakeAmount, minPrice, maxPrice, pending, confirm) {
-        var address, kairoAmountInWeis, tokenSymbol;
-
+    new_compound_order: async function (orderType, tokenSymbol, stakeInKRO, minPrice, maxPrice, pending, confirm) {
         try {
-            address = Data.assetSymbolToAddress(tokenSymbol);
-            kairoAmountInWeis = BigNumber(stakeAmount).times(1e18);
-            betoken.createInvestment(address, kairoAmountInWeis, minPrice.times(1e18), maxPrice.times(1e18), pending, confirm);
+            var tokenAddress = Data.assetSymbolToAddress(tokenSymbol);
+            betoken.createInvestment(orderType, tokenAddress, stakeInKRO, minPrice, maxPrice, pending, confirm);
         } catch (error) {
+            error_notifications.set_error_msg(SEND_TX_ERR);
+        }
+    },
+    sell_compound_order: async function (id, minPrice, maxPrice, pending, confirm) {
+        try {
+            return betoken.sellCompoundOrder(id, minPrice, maxPrice, pending, confirm);
+        } catch(error) {
+            error_notifications.set_error_msg(SEND_TX_ERR);
+        }
+    },
+    repay_compound_order: async function (id, amountInDAI, pending, confirm) {
+        try {
+            return betoken.repayCompoundOrder(id, amountInDAI, pending, confirm);
+        } catch(error) {
             error_notifications.set_error_msg(SEND_TX_ERR);
         }
     },
@@ -244,5 +263,26 @@ export const manager_actions = {
     nextPhase: async () => {
         await betoken.nextPhase();
         await Data.loadDynamicData();
+    },
+    register_with_DAI: async (amountInDAI, pending, confirm) => {
+        try {
+            return betoken.registerWithDAI(amountInDAI, pending, confirm);
+        } catch (error) {
+            error_notifications.set_error_msg(SEND_TX_ERR);
+        }
+    },
+    register_with_ETH: async (amountInETH, pending, confirm) => {
+        try {
+            return betoken.registerWithDAI(amountInETH, pending, confirm);
+        } catch (error) {
+            error_notifications.set_error_msg(SEND_TX_ERR);
+        }
+    },
+    register_with_token: async (tokenAddr, amountInToken, pending, confirm) => {
+        try {
+            return betoken.registerWithDAI(tokenAddr, amountInToken, pending, confirm);
+        } catch (error) {
+            error_notifications.set_error_msg(SEND_TX_ERR);
+        }
     }
 }

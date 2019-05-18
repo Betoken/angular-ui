@@ -10,6 +10,7 @@ const PRECISION = 1e18;
 const DEPLOYED_BLOCK = 5168545;
 const ZERO_ADDR = '0x0000000000000000000000000000000000000000';
 const CTOKENS = require('./compound_tokens.json');
+const STABLECOINS = require('./stablecoins.json');
 
 // instance variables
 // user info
@@ -101,6 +102,10 @@ export const assetSymbolToName = (_symbol) => {
 
 export const assetSymbolToLogoUrl = (_symbol) => {
     return TOKEN_DATA.get().find((x) => x.symbol === _symbol).logoUrl;
+}
+
+export const notStablecoin = (_symbol) => {
+    return !STABLECOINS.includes(_symbol);
 }
 
 export const httpsGet = async (apiStr) => {

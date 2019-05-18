@@ -77,7 +77,7 @@ export class InvestmentsComponent implements OnInit {
         this.expected_commission = user.expected_commission().toFormat(2);
         this.kairo_balance = user.kairo_balance();
         this.monthly_pl = user.monthly_roi().toFormat(4);
-        this.tokenData = tokens.token_data().get();
+        this.tokenData = tokens.token_data().get().filter((x) => tokens.not_stablecoin(x.symbol));
         this.userValue = user.portfolio_value().toFormat(4);
         this.portfolioValueInDAI = user.portfolio_value_in_dai().toFormat(2);
         this.currentStake = user.current_stake().toFormat(4);

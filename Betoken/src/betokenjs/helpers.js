@@ -126,7 +126,8 @@ export const tokens = {
     asset_symbol_to_monthly_price_change: (_symbol) => Data.assetSymbolToMonthlyPriceChange(_symbol),
     asset_symbol_to_price: (_symbol) => Data.assetSymbolToPrice(_symbol),
     asset_symbol_to_name: (_symbol) => Data.assetSymbolToName(_symbol),
-    asset_symbol_to_logo_url: (_symbol) => Data.assetSymbolToLogoUrl(_symbol)
+    asset_symbol_to_logo_url: (_symbol) => Data.assetSymbolToLogoUrl(_symbol),
+    not_stablecoin: (_symbol) => Data.notStablecoin(_symbol)
 }
 
 export const loading = {

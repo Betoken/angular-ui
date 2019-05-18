@@ -3,7 +3,6 @@ import { tokens, loading, refresh_actions } from '../../betokenjs/helpers';
 import BigNumber from 'bignumber.js';
 import { isUndefined } from 'util';
 
-declare var jquery:any;
 declare var $ :any;
 
 @Component({
@@ -72,7 +71,7 @@ export class MarketComponent implements OnInit {
     }
 
     refreshDisplay() {
-        this.tokenData = tokens.token_data().get();
+        this.tokenData = tokens.token_data().get().filter((x) => tokens.not_stablecoin(x.symbol));
     }
 
     refresh() {

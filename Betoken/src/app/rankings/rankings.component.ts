@@ -12,13 +12,18 @@ declare var $: any;
 
 export class RankingsComponent implements OnInit {
     rankingArray: Array<Object>;
-    userRanking = "";
-    userValue = new BigNumber(0);
-    userAddress = "";
-    userROI = new BigNumber(0);
-    userHistCommission = new BigNumber(0);
+    userRanking: String;
+    userValue: BigNumber;
+    userAddress: String;
+    userROI: BigNumber;
+    userHistCommission: BigNumber;
 
     constructor() {
+        this.userRanking = "";
+        this.userValue = new BigNumber(0);
+        this.userAddress = "";
+        this.userROI = new BigNumber(0);
+        this.userHistCommission = new BigNumber(0);
     }
 
     ngOnInit() {

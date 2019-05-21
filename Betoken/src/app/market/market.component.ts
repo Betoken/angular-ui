@@ -12,7 +12,7 @@ declare var $ :any;
 
 export class MarketComponent implements OnInit {
 
-    tokenData: any;
+    tokenData: Array<Object>;
 
     constructor() { }
 

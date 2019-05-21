@@ -18,27 +18,38 @@ import {
 
 export class DashboardComponent implements OnInit {
     userRanking: String;
-    kairo_balance = 0.0000;
-    monthly_pl = 0.00;
-    expected_commission = 0.00;
-    sharePrice = 0;
-    avgMonthReturn = 0;
-    currMoROI = 0;
-    totalUser = 0;
-    AUM = 0;
-    totalKairo = 0;
-    totalBTFShares = 0;
-    sortinoRatio = 0;
-    standardDeviation = 0;
+    kairo_balance: String;
+    monthly_pl: String;
+    expected_commission: String;
+    sharePrice: String;
+    avgMonthReturn: String;
+    currMoROI: String;
+    totalUser: Number;
+    AUM: String;
+    sortinoRatio: BigNumber;
+    standardDeviation: BigNumber;
+    portfolioValueInDAI: String;
 
-    portfolioValueInDAI = '';
-
-    hasDrawnChart = false;
+    hasDrawnChart: boolean;
     performanceChart: any;
-
-    chartTabId = 0;
+    chartTabId: Number;
 
     constructor(private ms: AppComponent, private route: Router) {
+      this.userRanking = '';
+      this.kairo_balance = '';
+      this.monthly_pl = '';
+      this.expected_commission = '';
+      this.sharePrice = '';
+      this.avgMonthReturn = '';
+      this.currMoROI = '';
+      this.totalUser = 0;
+      this.AUM = '';
+      this.sortinoRatio = new BigNumber(0);
+      this.standardDeviation = new BigNumber(0);
+      this.portfolioValueInDAI = '';
+
+      this.hasDrawnChart = false;
+      this.chartTabId = 0;
     }
 
     ngOnInit() {

@@ -638,7 +638,7 @@
                       Betoken fees <a class="text-muted" data-toggle="tooltip" title="A 3% exit fee will be charged"><i class="fe fe-info"></i></a>
                     </td>
                     <td class="px-0 text-right small align-baseline">
-                      {{sellTokenAmount.times(EXIT_FEE).toFormat(4)}} {{selectedTokenSymbol}}
+                      0 {{selectedTokenSymbol}}
                     </td>
                   </tr>
                   <tr>
@@ -646,7 +646,7 @@
                       Tokens to receive
                     </td>
                     <td class="px-0 text-right small align-baseline">
-                      {{sellTokenAmount.times(1 - EXIT_FEE).toFormat(4)}} {{selectedTokenSymbol}}
+                      {{sellTokenAmount.toFormat(4)}} {{selectedTokenSymbol}}
                     </td>
                   </tr>
                 </tbody>
@@ -687,7 +687,7 @@
               <i class="fe fe-check-circle text-success"></i>
             </p>
             <p class="text-center text-muted mb-5">
-              You sold <span class="font-weight-bold text-secondary">{{sellSharesAmount.toFormat(4)}}</span> BTKS for <span class="font-weight-bold text-secondary">{{sellTokenAmount.times(1 - EXIT_FEE).toFormat(4)}}</span> {{selectedTokenSymbol}}.
+              You sold <span class="font-weight-bold text-secondary">{{sellSharesAmount.toFormat(4)}}</span> BTKS for <span class="font-weight-bold text-secondary">{{sellTokenAmount.toFormat(4)}}</span> {{selectedTokenSymbol}}.
             </p>
             <hr>
             <form>

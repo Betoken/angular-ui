@@ -18,6 +18,11 @@ export class RankingsComponent implements OnInit {
     userROI: BigNumber;
 
     constructor() {
+        this.rankingArray = new Array<Object>();
+        this.userRanking = '';
+        this.userValue = new BigNumber(0);
+        this.userAddress = '';
+        this.userROI = new BigNumber(0);
     }
 
     ngOnInit() {

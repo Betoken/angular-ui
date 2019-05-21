@@ -7,6 +7,7 @@ import {
 } from '../../betokenjs/helpers';
 
 import { } from 'jquery';
+import BigNumber from 'bignumber.js';
 declare var $: any;
 @Component({
     selector: 'app-account',
@@ -14,11 +15,14 @@ declare var $: any;
 })
 export class CommissionsComponent implements OnInit {
     commissionHistory: Array<Object>;
-    commissionAmount: Number;
+    commissionAmount: BigNumber;
     transactionId: String;
     step: Number;
 
     constructor() {
+        this.commissionHistory = new Array<Object>();
+        this.commissionAmount = new BigNumber(0);
+        this.transactionId = '';
         this.step = 0;
     }
 
@@ -35,7 +39,7 @@ export class CommissionsComponent implements OnInit {
 
     refreshDisplay() {
         this.commissionHistory = user.commission_history();
-        this.commissionAmount = user.expected_commission().toFormat(2);
+        this.commissionAmount = user.expected_commission();
     }
 
     refresh() {

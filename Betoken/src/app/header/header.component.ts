@@ -16,23 +16,20 @@ import { isNull } from 'util';
 })
 
 export class HeaderComponent implements OnInit {
-  sellalert: boolean;
-  nextphasealert: boolean;
-  redeemalert: boolean;
-
-  days = 0;
-  hours = 0;
-  minutes = 0;
-  seconds = 0;
-  phase = -1;
-
   ZERO_ADDR = '0x0000000000000000000000000000000000000000';
-  user_address = this.ZERO_ADDR;
-  userKairoValue = new BigNumber(0);
 
-  can_redeem_commission = true;
+  days: Number;
+  hours: Number;
+  minutes: Number;
+  seconds: Number;
+  phase: Number;
 
-  errorMsg = '';
+  user_address: String;
+  userKairoValue: BigNumber;
+
+  can_redeem_commission: boolean;
+
+  errorMsg: String;
 
   /* To copy Text from Textbox */
   copyInputMessage(inputElement){
@@ -42,8 +39,18 @@ export class HeaderComponent implements OnInit {
   }
  
   constructor(private ms: AppComponent, private router: Router ) {
-    this.nextphasealert = false;
-    this.redeemalert = false;
+    this.days = 0;
+    this.hours = 0;
+    this.minutes = 0;
+    this.seconds = 0;
+    this.phase = -1;
+
+    this.user_address = this.ZERO_ADDR;
+    this.userKairoValue = new BigNumber(0);
+
+    this.can_redeem_commission = true;
+
+    this.errorMsg = '';
   }
 
   ngOnInit() {

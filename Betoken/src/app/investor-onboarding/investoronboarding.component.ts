@@ -16,25 +16,41 @@ import {
   templateUrl: './investoronboarding.component.html'
 })
 export class InvestoronboardingComponent implements OnInit {
-  tokenData: any;
   ZERO_ADDR = '0x0000000000000000000000000000000000000000';
-  user_address = this.ZERO_ADDR;
-  buyStep = 0;
-  checkboxes = [false, false, false];
-  selectedTokenSymbol = '';
-  selectedTokenBalance = new BigNumber(0);
-  transactionId = '';
-  sharesPrice = new BigNumber(0);
-  buySharesAmount = new BigNumber(0);
-  buyTokenAmount = new BigNumber(0);
+
+  tokenData: Array<Object>;
+  user_address: String;
+  checkboxes: Array<boolean>;
+  selectedTokenSymbol: String;
+  selectedTokenBalance: BigNumber;
+  transactionId: String;
+  sharesPrice: BigNumber;
+  buySharesAmount: BigNumber;
+  buyTokenAmount: BigNumber;
   
-  days = 0;
-  hours = 0;
-  minutes = 0;
-  seconds = 0;
-  phase = 0;
+  buyStep: Number;
+  days: Number;
+  hours: Number;
+  minutes: Number;
+  seconds: Number;
+  phase: Number;
   
   constructor(private ms: AppComponent, private router: Router) {
+    this.user_address = this.ZERO_ADDR;
+    this.buyStep = 0;
+    this.checkboxes = [false, false, false];
+    this.selectedTokenSymbol = '';
+    this.selectedTokenBalance = new BigNumber(0);
+    this.transactionId = '';
+    this.sharesPrice = new BigNumber(0);
+    this.buySharesAmount = new BigNumber(0);
+    this.buyTokenAmount = new BigNumber(0);
+    
+    this.days = 0;
+    this.hours = 0;
+    this.minutes = 0;
+    this.seconds = 0;
+    this.phase = 0;
   }
   
   ngOnInit() {
@@ -47,7 +63,7 @@ export class InvestoronboardingComponent implements OnInit {
       this.resetModals();
     });
     this.tokenData = tokens.token_data().get();
-    this.selectedTokenSymbol = this.tokenData[0].symbol;
+    this.selectedTokenSymbol = this.tokenData[0]['symbol'];
   }
   
   refreshDisplay() {
@@ -65,7 +81,7 @@ export class InvestoronboardingComponent implements OnInit {
   
   resetModals() {
     this.buyStep = 0;
-    this.selectedTokenSymbol = this.tokenData[0].symbol;
+    this.selectedTokenSymbol = this.tokenData[0]['symbol'];
     this.checkboxes = [false, false, false];
   }
   

@@ -68,7 +68,7 @@ export const user = {
             }
             // Expected commission based on previous average ROI
             var roi = stats.cycle_roi().gt(0) ? stats.cycle_roi() : BigNumber(0);
-            return Data.kairoBalance.get().div(Data.kairoTotalSupply.get()).times(Data.totalFunds.get()).times(roi.div(100).times(Data.commissionRate.get()).plus(Data.assetFeeRate.get()));
+            return user.portfolio_value().div(Data.kairoTotalSupply.get()).times(Data.totalFunds.get()).times(roi.div(100).times(Data.commissionRate.get()).plus(Data.assetFeeRate.get()));
         }
         return BigNumber(0);
     },

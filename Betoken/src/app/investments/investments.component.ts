@@ -13,39 +13,58 @@ declare var $ :any;
 })
 
 export class InvestmentsComponent implements OnInit {
-    createInvestmentPopupStep: number;
-    sellInvestmentPopupStep: number;
-    nextPhasePopupStep: number;
+    createInvestmentPopupStep: Number;
+    sellInvestmentPopupStep: Number;
+    nextPhasePopupStep: Number;
 
-    tradeAssetval: any;
+    portfolioValueInDAI: String;
+    currentStake: String;
+    currentStakeProportion: String;
 
-    portfolioValueInDAI = '';
-    currentStake = '';
-    currentStakeProportion = '';
-
-    userValue: any;
-    days = 0;
-    hours = 0;
-    minutes = 0;
-    seconds = 0;
-    phase = -1;
-    expected_commission = 0.00;
-    kairo_balance = new BigNumber(0);
-    monthly_pl = 0.00;
-    selectedTokenSymbol = 'ETH';
-    stakeAmount = new BigNumber(0);
-    activeInvestmentList: any;
-    inactiveInvestmentList: any;
-    sellId: any;
-    tokenData: any;
-    transactionId: '';
-    kroRedeemed = new BigNumber(0);
-    dailyPriceChange = 0;
+    userValue: String;
+    days: Number;
+    hours: Number;
+    minutes: Number;
+    seconds: Number;
+    phase: Number;
+    expected_commission: String;
+    kairo_balance: BigNumber;
+    monthly_pl: String;
+    selectedTokenSymbol: String;
+    stakeAmount: BigNumber;
+    activeInvestmentList: Array<Object>;
+    inactiveInvestmentList: Array<Object>;
+    sellId: Number;
+    tokenData: Array<Object>;
+    transactionId: String;
+    kroRedeemed: BigNumber;
 
     constructor(private ms: AppComponent) {
         this.createInvestmentPopupStep = 0;
         this.sellInvestmentPopupStep = 0;
         this.nextPhasePopupStep = 0;
+
+        this.portfolioValueInDAI = '';
+        this.currentStake = '';
+        this.currentStakeProportion = '';
+
+        this.userValue = '';
+        this.days = 0;
+        this.hours = 0;
+        this.minutes = 0;
+        this.seconds = 0;
+        this.phase = -1;
+        this.expected_commission = '';
+        this.kairo_balance = new BigNumber(0);
+        this.monthly_pl = '';
+        this.selectedTokenSymbol = 'ETH';
+        this.stakeAmount = new BigNumber(0);
+        this.activeInvestmentList = new Array<Object>();
+        this.inactiveInvestmentList = new Array<Object>();
+        this.sellId = 0;
+        this.tokenData = new Array<Object>();
+        this.transactionId = '';
+        this.kroRedeemed = new BigNumber(0);
     }
 
     ngOnInit() {
@@ -63,7 +82,7 @@ export class InvestmentsComponent implements OnInit {
 
     resetModals() {
         this.stakeAmount = new BigNumber(0);
-        this.selectedTokenSymbol = this.tokenData[0].symbol;
+        this.selectedTokenSymbol = this.tokenData[0]['symbol'];
         this.createInvestmentPopupStep = 0;
         this.sellInvestmentPopupStep = 0;
         this.nextPhasePopupStep = 0;
@@ -82,19 +101,16 @@ export class InvestmentsComponent implements OnInit {
         this.portfolioValueInDAI = user.portfolio_value_in_dai().toFormat(2);
         this.currentStake = user.current_stake().toFormat(4);
         this.currentStakeProportion = user.current_stake().div(user.portfolio_value()).times(100).toFixed(4);
-        this.updateDates();
-    }
 
-    refresh() {
-        refresh_actions.investments();
-    }
-
-    updateDates() {
         this.days = timer.day();
         this.hours = timer.hour();
         this.minutes = timer.minute();
         this.seconds = timer.second();
         this.phase = timer.phase();
+    }
+
+    refresh() {
+        refresh_actions.investments();
     }
 
     // Create investment

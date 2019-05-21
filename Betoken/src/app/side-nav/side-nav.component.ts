@@ -10,18 +10,27 @@ import { BigNumber } from 'bignumber.js';
 })
 
 export class SideNavComponent implements OnInit {
+  days: Number;
+  hours: Number;
+  minutes: Number;
+  seconds: Number;
   phase: Number;
-  can_redeem_commission = true;
-  days = 0;
-  hours = 0;
-  minutes = 0;
-  seconds = 0;
 
   ZERO_ADDR = '0x0000000000000000000000000000000000000000';
-  user_address = this.ZERO_ADDR;
-  userKairoValue = new BigNumber(0);
+  user_address: String;
+  userKairoValue: BigNumber;
+  can_redeem_commission: boolean;
   
   constructor(private ms: AppComponent , private router: Router) {
+    this.days = 0;
+    this.hours = 0;
+    this.minutes = 0;
+    this.seconds = 0;
+    this.phase = 0;
+
+    this.user_address = this.ZERO_ADDR;
+    this.userKairoValue = new BigNumber(0);
+    this.can_redeem_commission = true;
   }
   
   ngOnInit() {

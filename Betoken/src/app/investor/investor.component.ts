@@ -17,48 +17,78 @@ import {
   templateUrl: './investor.component.html'
 })
 export class InvestorComponent implements OnInit {
-  EXIT_FEE = 0.03;
-
-  sharesPrice = new BigNumber(0);
-  avgMonthReturn = new BigNumber(0);
-  currMoROI = new BigNumber(0);
-  AUM = new BigNumber(0);
-  sortinoRatio = new BigNumber(0);
-  standardDeviation = new BigNumber(0);
-  tokenData: any;
+  sharesPrice: BigNumber;
+  avgMonthReturn: BigNumber;
+  currMoROI: BigNumber;
+  AUM: BigNumber;
+  sortinoRatio: BigNumber;
+  standardDeviation: BigNumber;
+  tokenData: Array<Object>;
   
-  sharesBalance = new BigNumber(0);
-  investmentBalance = new BigNumber(0);
+  sharesBalance: BigNumber;
+  investmentBalance: BigNumber;
   
-  buySharesAmount = new BigNumber(0);
-  buyTokenAmount = new BigNumber(0);
-  sellSharesAmount = new BigNumber(0);
-  sellTokenAmount = new BigNumber(0);
+  buySharesAmount: BigNumber;
+  buyTokenAmount: BigNumber;
+  sellSharesAmount: BigNumber;
+  sellTokenAmount: BigNumber;
   
-  hasDrawnChart = false;
+  hasDrawnChart: boolean;
   performanceChart: any;
   
-  buyStep = 0;
-  sellStep = 0;
-  days = 0;
-  hours = 0;
-  minutes = 0;
-  seconds = 0;
-  phase = 0;
+  buyStep: Number;
+  sellStep: Number;
+  days: Number;
+  hours: Number;
+  minutes: Number;
+  seconds: Number;
+  phase: Number;
   
-  checkboxes = [false, false, false];
-  selectedTokenSymbol = 'DAI';
-  selectedTokenBalance = new BigNumber(0);
-  transactionId = '';
+  checkboxes: Array<boolean>;
+  selectedTokenSymbol: String;
+  selectedTokenBalance: BigNumber;
+  transactionId: String;
 
-  depositWithdrawHistory = [];
+  depositWithdrawHistory: Array<Object>;
   
   constructor(private ms: AppComponent, private route: Router) {
+    this.sharesPrice = new BigNumber(0);
+    this.avgMonthReturn = new BigNumber(0);
+    this.currMoROI = new BigNumber(0);
+    this.AUM = new BigNumber(0);
+    this.sortinoRatio = new BigNumber(0);
+    this.standardDeviation = new BigNumber(0);
+    this.tokenData = new Array<Object>();
+    
+    this.sharesBalance = new BigNumber(0);
+    this.investmentBalance = new BigNumber(0);
+    
+    this.buySharesAmount = new BigNumber(0);
+    this.buyTokenAmount = new BigNumber(0);
+    this.sellSharesAmount = new BigNumber(0);
+    this.sellTokenAmount = new BigNumber(0);
+    
+    this.hasDrawnChart = false;
+    
+    this.buyStep = 0;
+    this.sellStep = 0;
+    this.days = 0;
+    this.hours = 0;
+    this.minutes = 0;
+    this.seconds = 0;
+    this.phase = 0;
+    
+    this.checkboxes = [false, false, false];
+    this.selectedTokenSymbol = 'DAI';
+    this.selectedTokenBalance = new BigNumber(0);
+    this.transactionId = '';
+
+    this.depositWithdrawHistory = new Array<Object>();
   }
   
   ngOnInit() {
     this.tokenData = tokens.token_data().get();
-    this.selectedTokenSymbol = this.tokenData[0].symbol;
+    this.selectedTokenSymbol = this.tokenData[0]['symbol'];
     this.depositWithdrawHistory = user.deposit_withdraw_history().get();
     setInterval(() => {
       this.refreshDisplay();
@@ -130,7 +160,7 @@ export class InvestorComponent implements OnInit {
   }
 
   selectSellToken(tokenIndex) {
-    this.selectedTokenSymbol = this.tokenData[tokenIndex].symbol;
+    this.selectedTokenSymbol = this.tokenData[tokenIndex]['symbol'];
     this.refreshSellOrderDetails(this.sellSharesAmount);
   }
 
@@ -146,7 +176,7 @@ export class InvestorComponent implements OnInit {
   resetModals() {
     this.buyStep = 0;
     this.sellStep = 0;
-    this.selectedTokenSymbol = this.tokenData[0].symbol;
+    this.selectedTokenSymbol = this.tokenData[0]['symbol'];
     this.checkboxes = [false, false, false];
   }
   

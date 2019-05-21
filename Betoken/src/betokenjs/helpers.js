@@ -3,12 +3,9 @@ import BigNumber from "bignumber.js";
 const Data = require("./data-controller");
 
 // constants
-const WRONG_NETWORK_ERR = "Please switch to Rinkeby Testnet in order to use Betoken Omen.";
 const SEND_TX_ERR = "There was an error during sending your transaction to the Ethereum blockchain. Please check that your inputs are valid and try again later.";
-const INPUT_ERR = "There was an error in your input. Please fix it and try again.";
 const NO_WEB3_ERR = "Betoken can only be used in a Web3 enabled browser. Please install MetaMask or switch to another browser that supports Web3. You can currently view the fund's data, but cannot make any interactions.";
-const METAMASK_LOCKED_ERR = "Your browser seems to be Web3 enabled, but you need to unlock your account to interact with Betoken.";
-const DEPENDENCY_ERR = "Please enable MetaMask or visit this page in a Web3 browser to interact with Betoken on Rinkeby Testnet."
+const WRONG_NETWORK_ERR = "Please switch to the Ropsten Test network.";
 var error_msg = "";
 
 // exports
@@ -19,15 +16,14 @@ export const error_notifications = {
         error_msg = msg;
     },
     check_dependency: () => {
-        if (typeof betoken === "undefined") {
-            error_notifications.set_error_msg(DEPENDENCY_ERR);
-        }
-        else {
-            if (network.has_web3() === false) {
-                error_notifications.set_error_msg(NO_WEB3_ERR);
+        if (network.has_web3() === false) {
+            if (network.wrong_network() === true) {
+                error_notifications.set_error_msg(WRONG_NETWORK_ERR);
             } else {
-                error_notifications.set_error_msg('');
+                error_notifications.set_error_msg(NO_WEB3_ERR);
             }
+        } else {
+            error_notifications.set_error_msg('');
         }
     }
 }
@@ -35,7 +31,8 @@ export const error_notifications = {
 export const network = {
     network_prefix: () => Data.networkPrefix.get(),
     network_name: () => Data.networkName.get(),
-    has_web3: () => betoken.hasWeb3
+    has_web3: () => betoken.hasWeb3,
+    wrong_network: () => betoken.wrongNetwork
 }
 
 export const timer = {

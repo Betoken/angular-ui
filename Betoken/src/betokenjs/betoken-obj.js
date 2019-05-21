@@ -34,6 +34,7 @@ export var Betoken = function() {
         Kyber: null
     };
     self.hasWeb3 = false;
+    self.wrongNetwork = false;
     
     /*
     Object Initialization
@@ -75,6 +76,8 @@ export var Betoken = function() {
     
     self.loadWeb3 = async () => {
         self.hasWeb3 = false;
+        self.wrongNetwork = false;
+        
         if (typeof window.ethereum !== 'undefined') {
             // new metamask
             try {
@@ -89,6 +92,13 @@ export var Betoken = function() {
         } else {    
             // non-dapp browsers
             window.web3 = new Web3(new Web3.providers.HttpProvider("https://rinkeby.infura.io/v3/3057a4979e92452bae6afaabed67a724"));
+        }
+
+        const netID = await window.web3.eth.net.getId();
+        if (netID != NET_ID) {
+            window.web3 = new Web3(new Web3.providers.HttpProvider("https://rinkeby.infura.io/v3/3057a4979e92452bae6afaabed67a724"));
+            self.hasWeb3 = false;
+            self.wrongNetwork = true;
         }
     }
     

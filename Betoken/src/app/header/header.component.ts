@@ -7,6 +7,7 @@ declare var $: any;
 import {
   user, timer, network, error_notifications
 } from '../../betokenjs/helpers';
+import BigNumber from 'bignumber.js';
 
 @Component({
   selector: 'app-header',
@@ -14,10 +15,6 @@ import {
 })
 
 export class HeaderComponent implements OnInit {
-  sellalert: boolean;
-  nextphasealert: boolean;
-  redeemalert: boolean;
-
   days = 0;
   hours = 0;
   minutes = 0;
@@ -25,7 +22,7 @@ export class HeaderComponent implements OnInit {
   phase = -1;
 
   user_address = '0x0';
-  userKairoValue: any;
+  userKairoValue = new BigNumber(0);
 
   can_redeem_commission = true;
 
@@ -38,10 +35,7 @@ export class HeaderComponent implements OnInit {
    inputElement.setSelectionRange(0, 0);
  }
  
-  constructor(private ms: AppComponent, private router: Router ) {
-    this.nextphasealert = false;
-    this.redeemalert = false;
-  }
+  constructor(private ms: AppComponent, private router: Router ) {}
 
   ngOnInit() {
     error_notifications.set_error_msg("");

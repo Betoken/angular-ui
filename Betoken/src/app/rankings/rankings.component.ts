@@ -12,11 +12,11 @@ declare var $: any;
 
 export class RankingsComponent implements OnInit {
     rankingArray: Array<Object>;
-    userRanking: String;
-    userValue: BigNumber;
-    userAddress: String;
-    userROI: BigNumber;
-    userHistCommission: BigNumber;
+    userRanking = "";
+    userValue = new BigNumber(0);
+    userAddress = "";
+    userROI = new BigNumber(0);
+    userHistCommission = new BigNumber(0);
 
     constructor() {
     }

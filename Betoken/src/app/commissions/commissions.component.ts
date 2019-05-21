@@ -15,13 +15,16 @@ declare var $: any;
 })
 export class CommissionsComponent implements OnInit {
     commissionHistory: Array<Object>;
-    commissionAmount: Number;
+    commissionAmount: BigNumber;
     totalCommissionAmount: BigNumber;
     transactionId: String;
     step: Number;
 
     constructor() {
         this.step = 0;
+        this.commissionAmount = new BigNumber(0);
+        this.totalCommissionAmount = new BigNumber(0);
+        this.transactionId = "";
     }
 
     ngOnInit() {
@@ -37,7 +40,7 @@ export class CommissionsComponent implements OnInit {
 
     refreshDisplay() {
         this.commissionHistory = user.commission_history();
-        this.commissionAmount = user.expected_commission().toFormat(4);
+        this.commissionAmount = user.expected_commission();
 
         let totalCommission = new BigNumber(0);
         this.commissionHistory.forEach(element => {

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppComponent } from '../app.component';
-import { user, timer } from '../../betokenjs/helpers';
+import { user, timer, manager_actions } from '../../betokenjs/helpers';
 
 @Component({
     selector: 'app-side-nav',
@@ -45,7 +45,12 @@ export class SideNavComponent implements OnInit {
           return 'to redeem commission';
       }
     }
+
     checkRouterURL(route) {
         return this.router.url === route;
+    }
+    
+    nextPhase() {
+       manager_actions.next_phase(); 
     }
 }

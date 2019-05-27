@@ -5,7 +5,7 @@ import {AppComponent} from '../app.component';
 import { } from 'jquery';
 declare var $: any;
 import {
-  user, timer, network, error_notifications
+  user, timer, network, error_notifications, manager_actions
 } from '../../betokenjs/helpers';
 import BigNumber from 'bignumber.js';
 
@@ -78,5 +78,9 @@ export class HeaderComponent implements OnInit {
   updateErrorMsg() {
       error_notifications.check_dependency();
       this.errorMsg = error_notifications.get_error_msg();
+  }
+
+  nextPhase() {
+    manager_actions.next_phase(); 
   }
 }

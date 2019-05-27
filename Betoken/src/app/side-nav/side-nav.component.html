@@ -142,5 +142,6 @@
     <div class="container px-0">
       <button class="btn btn-success btn-block" routerLink="/investments" type="button" data-toggle="modal" data-target="#modalBuy" *ngIf="phase == 1">Make Investments</button>
       <button class="btn btn-success btn-block" routerLink="/commissions" type="button" data-toggle="modal" data-target="#modalRedeem" *ngIf="phase == 2 && can_redeem_commission">Redeem Commission</button>
+      <button class="btn btn-success btn-block" type="button" *ngIf="days == 0 && hours == 0 && minutes == 0 && 1 >= seconds" (click)="nextPhase()">Next Phase</button>
     </div>
   </nav>

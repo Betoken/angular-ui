@@ -1,6 +1,7 @@
 // imports
 import BigNumber from "bignumber.js";
 const Data = require("./data-controller");
+import { async } from "rxjs/internal/scheduler/async";
 
 // constants
 const SEND_TX_ERR = "There was an error during sending your transaction to the Ethereum blockchain. Please check that your inputs are valid and try again later.";
@@ -214,10 +215,16 @@ export const manager_actions = {
             error_notifications.set_error_msg(SEND_TX_ERR);
         }
     },
-
     redeem_commission_in_shares: async function (pending, confirm) {
         try {
             return betoken.redeemCommissionInShares(pending, confirm);
+        } catch (error) {
+            error_notifications.set_error_msg(SEND_TX_ERR);
+        }
+    },
+    next_phase: async function () {
+        try {
+            return betoken.nextPhase();
         } catch (error) {
             error_notifications.set_error_msg(SEND_TX_ERR);
         }

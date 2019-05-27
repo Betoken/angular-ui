@@ -29,7 +29,7 @@ export class InvestmentsComponent implements OnInit {
     phase: Number;
     expected_commission: String;
     kairo_balance: BigNumber;
-    monthly_pl: String;
+    monthly_pl: BigNumber;
     selectedTokenSymbol: String;
     stakeAmount: BigNumber;
     activeInvestmentList: Array<Object>;
@@ -56,7 +56,7 @@ export class InvestmentsComponent implements OnInit {
         this.phase = -1;
         this.expected_commission = '';
         this.kairo_balance = new BigNumber(0);
-        this.monthly_pl = '';
+        this.monthly_pl = new BigNumber(0);
         this.selectedTokenSymbol = 'ETH';
         this.stakeAmount = new BigNumber(0);
         this.activeInvestmentList = new Array<Object>();
@@ -95,7 +95,7 @@ export class InvestmentsComponent implements OnInit {
         this.inactiveInvestmentList = user.investment_list().filter((data) => data.isSold === true);
         this.expected_commission = user.expected_commission().toFormat(2);
         this.kairo_balance = user.kairo_balance();
-        this.monthly_pl = user.monthly_roi().toFormat(4);
+        this.monthly_pl = user.monthly_roi();
         this.tokenData = tokens.token_data().get().filter((x) => tokens.not_stablecoin(x.symbol));
         this.userValue = user.portfolio_value().toFormat(4);
         this.portfolioValueInDAI = user.portfolio_value_in_dai().toFormat(2);

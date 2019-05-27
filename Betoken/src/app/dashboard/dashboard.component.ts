@@ -19,7 +19,7 @@ import {
 export class DashboardComponent implements OnInit {
     userRanking: String;
     kairo_balance: String;
-    monthly_pl: String;
+    monthly_pl: BigNumber;
     expected_commission: String;
     sharePrice: String;
     avgMonthReturn: String;
@@ -37,7 +37,7 @@ export class DashboardComponent implements OnInit {
     constructor(private ms: AppComponent, private route: Router) {
       this.userRanking = '';
       this.kairo_balance = '';
-      this.monthly_pl = '';
+      this.monthly_pl = new BigNumber(0);
       this.expected_commission = '';
       this.sharePrice = '';
       this.avgMonthReturn = '';
@@ -63,7 +63,7 @@ export class DashboardComponent implements OnInit {
         const NUM_DECIMALS = 2;
 
         this.kairo_balance = user.portfolio_value().toFormat(NUM_DECIMALS);
-        this.monthly_pl = user.monthly_roi().toFormat(NUM_DECIMALS);
+        this.monthly_pl = user.monthly_roi();
         this.expected_commission = user.expected_commission().toFormat(NUM_DECIMALS);
         this.avgMonthReturn = stats.avg_roi().toFormat(NUM_DECIMALS);
         this.currMoROI = stats.cycle_roi().toFormat(NUM_DECIMALS);

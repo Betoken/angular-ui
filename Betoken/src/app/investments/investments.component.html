@@ -69,8 +69,8 @@
               {{userValue}}
             </span>
             <!-- Badge -->
-            <span class="badge" [ngClass]="{'badge-soft-success': +monthly_pl >= 0, 'badge-soft-danger': 0 > +monthly_pl}">
-              {{monthly_pl}}%
+            <span class="badge" [ngClass]="{'badge-soft-success': monthly_pl.gte(0), 'badge-soft-danger': monthly_pl.lt(0)}">
+              {{monthly_pl.toFormat(4)}}%
             </span>
             
           </div>

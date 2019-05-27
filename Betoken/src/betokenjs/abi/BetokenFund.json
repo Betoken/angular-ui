@@ -123,16 +123,7 @@
   },
   {
     "constant": true,
-    "inputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      },
-      {
-        "name": "",
-        "type": "address"
-      }
-    ],
+    "inputs": [],
     "name": "betokenLogic",
     "outputs": [
       {
@@ -197,12 +188,7 @@
   },
   {
     "constant": true,
-    "inputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
+    "inputs": [],
     "name": "MAX_BUY_KRO_PROP",
     "outputs": [
       {
@@ -217,10 +203,6 @@
   {
     "constant": true,
     "inputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      },
       {
         "name": "",
         "type": "uint256"
@@ -276,12 +258,7 @@
   },
   {
     "constant": true,
-    "inputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
+    "inputs": [],
     "name": "MIN_RISK_TIME",
     "outputs": [
       {
@@ -352,12 +329,7 @@
   },
   {
     "constant": true,
-    "inputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
+    "inputs": [],
     "name": "hasFinalizedNextVersion",
     "outputs": [
       {
@@ -418,19 +390,9 @@
   },
   {
     "constant": false,
-    "inputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
+    "inputs": [],
     "name": "renounceOwnership",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
+    "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
     "type": "function"
@@ -517,52 +479,11 @@
   },
   {
     "constant": true,
-    "inputs": [
-      {
-        "name": "",
-        "type": "address"
-      },
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
+    "inputs": [],
     "name": "isOwner",
     "outputs": [
       {
         "name": "",
-        "type": "bool"
-      },
-      {
-        "name": "cycleNumber",
-        "type": "uint256"
-      },
-      {
-        "name": "stake",
-        "type": "uint256"
-      },
-      {
-        "name": "tokenAmount",
-        "type": "uint256"
-      },
-      {
-        "name": "buyPrice",
-        "type": "uint256"
-      },
-      {
-        "name": "sellPrice",
-        "type": "uint256"
-      },
-      {
-        "name": "buyTime",
-        "type": "uint256"
-      },
-      {
-        "name": "buyCostInDAI",
-        "type": "uint256"
-      },
-      {
-        "name": "isSold",
         "type": "bool"
       }
     ],
@@ -572,12 +493,7 @@
   },
   {
     "constant": true,
-    "inputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
+    "inputs": [],
     "name": "kairoPrice",
     "outputs": [
       {
@@ -698,12 +614,7 @@
   },
   {
     "constant": true,
-    "inputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
+    "inputs": [],
     "name": "currentSubchunk",
     "outputs": [
       {
@@ -792,16 +703,7 @@
   },
   {
     "constant": true,
-    "inputs": [
-      {
-        "name": "",
-        "type": "address"
-      },
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
+    "inputs": [],
     "name": "MIN_KRO_PRICE",
     "outputs": [
       {
@@ -964,12 +866,7 @@
   },
   {
     "constant": true,
-    "inputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
+    "inputs": [],
     "name": "previousVersion",
     "outputs": [
       {
@@ -983,20 +880,7 @@
   },
   {
     "constant": true,
-    "inputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      },
-      {
-        "name": "",
-        "type": "address"
-      },
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
+    "inputs": [],
     "name": "upgradeVotingActive",
     "outputs": [
       {
@@ -1010,12 +894,7 @@
   },
   {
     "constant": true,
-    "inputs": [
-      {
-        "name": "newOwner",
-        "type": "address"
-      }
-    ],
+    "inputs": [],
     "name": "controlTokenAddr",
     "outputs": [
       {
@@ -1062,12 +941,7 @@
   },
   {
     "constant": true,
-    "inputs": [
-      {
-        "name": "",
-        "type": "address"
-      }
-    ],
+    "inputs": [],
     "name": "currentChunk",
     "outputs": [
       {
@@ -1112,6 +986,80 @@
       {
         "name": "newOwner",
         "type": "address"
+      }
+    ],
+    "name": "transferOwnership",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "VOTE_SUCCESS_THRESHOLD",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "cyclePhase",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint8"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "lastActiveCycle",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "devFundingAccount",
+    "outputs": [
+      {
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "name": "_kroAddr",
+        "type": "address"
       },
       {
         "name": "_sTokenAddr",
@@ -1150,248 +1098,14 @@
         "type": "address"
       }
     ],
-    "name": "transferOwnership",
-    "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "VOTE_SUCCESS_THRESHOLD",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [
-      {
-        "indexed": true,
-        "name": "_cycleNumber",
-        "type": "uint256"
-      },
-      {
-        "indexed": true,
-        "name": "_newPhase",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "name": "_timestamp",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "name": "_totalFundsInDAI",
-        "type": "uint256"
-      }
-    ],
-    "name": "cyclePhase",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint8"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function",
-    "anonymous": false
-  },
-  {
-    "constant": true,
-    "inputs": [
-      {
-        "name": "",
-        "type": "address",
-        "indexed": true
-      },
-      {
-        "indexed": true,
-        "name": "_sender",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "name": "_tokenAddress",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "name": "_tokenAmount",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "name": "_daiAmount",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "name": "_timestamp",
-        "type": "uint256"
-      }
-    ],
-    "name": "lastActiveCycle",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function",
-    "anonymous": false
-  },
-  {
-    "constant": true,
-    "inputs": [
-      {
-        "indexed": true,
-        "name": "_cycleNumber",
-        "type": "uint256"
-      },
-      {
-        "indexed": true,
-        "name": "_sender",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "name": "_tokenAddress",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "name": "_tokenAmount",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "name": "_daiAmount",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "name": "_timestamp",
-        "type": "uint256"
-      }
-    ],
-    "name": "devFundingAccount",
-    "outputs": [
-      {
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function",
-    "anonymous": false
-  },
-  {
-    "inputs": [
-      {
-        "name": "_kroAddr",
-        "type": "address",
-        "indexed": true
-      },
-      {
-        "name": "_sTokenAddr",
-        "type": "address",
-        "indexed": true
-      },
-      {
-        "name": "_devFundingAccount",
-        "type": "address",
-        "indexed": false
-      },
-      {
-        "name": "_phaseLengths",
-        "type": "uint256[2]",
-        "indexed": false
-      },
-      {
-        "name": "_devFundingRate",
-        "type": "uint256",
-        "indexed": false
-      },
-      {
-        "name": "_previousVersion",
-        "type": "address",
-        "indexed": false
-      },
-      {
-        "name": "_daiAddr",
-        "type": "address",
-        "indexed": false
-      },
-      {
-        "name": "_kyberAddr",
-        "type": "address"
-      },
-      {
-        "name": "_compoundFactoryAddr",
-        "type": "address"
-      },
-      {
-        "name": "_betokenLogic",
-        "type": "address"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "constructor",
-    "anonymous": false,
-    "name": "CreatedInvestment"
+    "type": "constructor"
   },
   {
     "payable": true,
     "stateMutability": "payable",
-    "type": "fallback",
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "name": "_cycleNumber",
-        "type": "uint256"
-      },
-      {
-        "indexed": true,
-        "name": "_sender",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "name": "_investmentId",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "name": "_receivedKairo",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "name": "_sellPrice",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "name": "_earnedDAIAmount",
-        "type": "uint256"
-      }
-    ],
-    "name": "SoldInvestment"
+    "type": "fallback"
   },
   {
     "anonymous": false,
@@ -1414,21 +1128,6 @@
       {
         "indexed": false,
         "name": "_totalFundsInDAI",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "name": "_tokenAddress",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "name": "_stakeInWeis",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "name": "_costDAIAmount",
         "type": "uint256"
       }
     ],
@@ -1466,11 +1165,6 @@
       {
         "indexed": false,
         "name": "_timestamp",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "name": "_earnedDAIAmount",
         "type": "uint256"
       }
     ],
@@ -1738,16 +1432,6 @@
         "indexed": false,
         "name": "_totalCommissionInDAI",
         "type": "uint256"
-      },
-      {
-        "indexed": true,
-        "name": "_sender",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "name": "_candidate",
-        "type": "address"
       }
     ],
     "name": "TotalCommissionPaid",
@@ -1769,16 +1453,6 @@
       {
         "indexed": false,
         "name": "_donationInDAI",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "name": "_inSupport",
-        "type": "bool"
-      },
-      {
-        "indexed": false,
-        "name": "_weight",
         "type": "uint256"
       }
     ],
@@ -1831,22 +1505,10 @@
         "indexed": true,
         "name": "_cycleNumber",
         "type": "uint256"
-      },
-      {
-        "name": "_compoundTokens",
-        "type": "address[]"
-      },
-      {
-        "name": "_positionTokens",
-        "type": "address[]"
       }
     ],
     "name": "InitiatedUpgrade",
-    "type": "event",
-    "constant": false,
-    "outputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable"
+    "type": "event"
   },
   {
     "anonymous": false,
@@ -1873,11 +1535,7 @@
       }
     ],
     "name": "ProposedCandidate",
-    "type": "event",
-    "constant": false,
-    "outputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable"
+    "type": "event"
   },
   {
     "anonymous": false,
@@ -1909,16 +1567,7 @@
       }
     ],
     "name": "Voted",
-    "type": "event",
-    "constant": false,
-    "outputs": [
-      {
-        "name": "_success",
-        "type": "bool"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "nonpayable"
+    "type": "event"
   },
   {
     "anonymous": false,
@@ -1935,16 +1584,7 @@
       }
     ],
     "name": "FinalizedNextVersion",
-    "type": "event",
-    "constant": false,
-    "outputs": [
-      {
-        "name": "_success",
-        "type": "bool"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "nonpayable"
+    "type": "event"
   },
   {
     "anonymous": false,
@@ -1961,16 +1601,7 @@
       }
     ],
     "name": "OwnershipTransferred",
-    "type": "event",
-    "constant": false,
-    "outputs": [
-      {
-        "name": "_success",
-        "type": "bool"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "nonpayable"
+    "type": "event"
   },
   {
     "constant": false,
@@ -1989,12 +1620,7 @@
       }
     ],
     "name": "initTokenListings",
-    "outputs": [
-      {
-        "name": "_success",
-        "type": "bool"
-      }
-    ],
+    "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
     "type": "function"
@@ -2008,12 +1634,7 @@
       }
     ],
     "name": "setProxy",
-    "outputs": [
-      {
-        "name": "_success",
-        "type": "bool"
-      }
-    ],
+    "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
     "type": "function"
@@ -2115,10 +1736,6 @@
       {
         "name": "_success",
         "type": "bool"
-      },
-      {
-        "name": "_penalty",
-        "type": "uint256"
       }
     ],
     "payable": false,
@@ -2127,27 +1744,9 @@
   },
   {
     "constant": false,
-    "inputs": [
-      {
-        "name": "_manager",
-        "type": "address"
-      },
-      {
-        "name": "_cycle",
-        "type": "uint256"
-      }
-    ],
+    "inputs": [],
     "name": "migrateOwnedContractsToNextVersion",
-    "outputs": [
-      {
-        "name": "_commission",
-        "type": "uint256"
-      },
-      {
-        "name": "_penalty",
-        "type": "uint256"
-      }
-    ],
+    "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
     "type": "function"
@@ -2161,12 +1760,7 @@
       }
     ],
     "name": "transferAssetToNextVersion",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
+    "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
     "type": "function"
@@ -2310,24 +1904,14 @@
       }
     ],
     "name": "listKyberToken",
-    "outputs": [
-      {
-        "name": "_kairoPrice",
-        "type": "uint256"
-      }
-    ],
+    "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
     "type": "function"
   },
   {
     "constant": false,
-    "inputs": [
-      {
-        "name": "_donationInDAI",
-        "type": "uint256"
-      }
-    ],
+    "inputs": [],
     "name": "nextPhase",
     "outputs": [],
     "payable": false,
@@ -2350,16 +1934,7 @@
   },
   {
     "constant": false,
-    "inputs": [
-      {
-        "name": "_token",
-        "type": "address"
-      },
-      {
-        "name": "_donationInTokens",
-        "type": "uint256"
-      }
-    ],
+    "inputs": [],
     "name": "registerWithETH",
     "outputs": [],
     "payable": true,
@@ -2386,12 +1961,7 @@
   },
   {
     "constant": false,
-    "inputs": [
-      {
-        "name": "_daiAmount",
-        "type": "uint256"
-      }
-    ],
+    "inputs": [],
     "name": "depositEther",
     "outputs": [],
     "payable": true,
@@ -2403,10 +1973,6 @@
     "inputs": [
       {
         "name": "_daiAmount",
-        "type": "uint256"
-      },
-      {
-        "name": "_tokenAmount",
         "type": "uint256"
       }
     ],
@@ -2454,10 +2020,6 @@
       {
         "name": "_amountInDAI",
         "type": "uint256"
-      },
-      {
-        "name": "_amountInDAI",
-        "type": "uint256"
       }
     ],
     "name": "withdrawDAI",
@@ -2490,10 +2052,6 @@
       {
         "name": "_inShares",
         "type": "bool"
-      },
-      {
-        "name": "_cycle",
-        "type": "uint256"
       }
     ],
     "name": "redeemCommission",
@@ -2554,18 +2112,6 @@
       {
         "name": "_deadman",
         "type": "address"
-      },
-      {
-        "name": "_stake",
-        "type": "uint256"
-      },
-      {
-        "name": "_minPrice",
-        "type": "uint256"
-      },
-      {
-        "name": "_maxPrice",
-        "type": "uint256"
       }
     ],
     "name": "burnDeadman",
@@ -2613,10 +2159,6 @@
       },
       {
         "name": "_minPrice",
-        "type": "uint256"
-      },
-      {
-        "name": "_maxPrice",
         "type": "uint256"
       },
       {
@@ -2695,12 +2237,7 @@
       }
     ],
     "name": "repayCompoundOrder",
-    "outputs": [
-      {
-        "name": "",
-        "type": "bool"
-      }
-    ],
+    "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
     "type": "function"
@@ -2711,14 +2248,6 @@
       {
         "name": "_owner",
         "type": "address"
-      },
-      {
-        "name": "_to",
-        "type": "address"
-      },
-      {
-        "name": "_amount",
-        "type": "uint256"
       }
     ],
     "name": "proxyPayment",

@@ -522,8 +522,6 @@
                   <button class="btn btn-twitter btn-block" type="button" name="button">Tweet about it</button>
                 </a>
               </div>
-
-              <hr>
               <!-- Continue button for buyStep 1 -->
               <button type="submit" class="btn btn-block btn-success mt-auto" aria-label="BuyBTKS" *ngIf="buyStep == 0" (click)="buyStep = agreementsChecked() ? 1 : 0" [ngClass]="{'disabled': !agreementsChecked()}">
                 Buy Betoken Shares

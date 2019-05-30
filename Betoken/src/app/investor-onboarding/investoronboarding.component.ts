@@ -57,7 +57,6 @@ export class InvestoronboardingComponent implements OnInit {
     setInterval(() => {
       this.refreshDisplay();
     }, 100);
-    this.ms.setHeaderSidebarDisplay(!this.checkRouterURL('/start'));
     $('[data-toggle="tooltip"]').tooltip();
     $('#modalInvestorBuy').on('hidden.bs.modal', () => {
       this.resetModals();

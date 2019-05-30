@@ -56,7 +56,6 @@ export class ManageronboardingComponent implements OnInit {
     setInterval(() => {
       this.refreshDisplay();
     }, 100);
-    this.ms.setHeaderSidebarDisplay(!this.checkRouterURL('/start-managing'));
     $('[data-toggle="tooltip"]').tooltip();
     $('#modalInvestorBuy').on('hidden.bs.modal', () => {
       this.resetModals();

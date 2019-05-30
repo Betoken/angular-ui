@@ -34,7 +34,6 @@ export class SideNavComponent implements OnInit {
   }
   
   ngOnInit() {
-    this.ms.setHeaderSidebarDisplay(!this.checkRouterURL('/start'));
     setInterval(() => {
       this.refreshDisplay();
     }, 100);
@@ -48,7 +47,6 @@ export class SideNavComponent implements OnInit {
     this.phase = timer.phase();
     
     this.can_redeem_commission = user.can_redeem_commission();
-    this.ms.setHeaderSidebarDisplay(!this.checkRouterURL('/start'));
 
     this.user_address = user.address();
     this.userKairoValue = user.portfolio_value();

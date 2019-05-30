@@ -97,12 +97,12 @@ export var Betoken = function() {
             self.hasWeb3 = true;
         } else {    
             // non-dapp browsers
-            window.web3 = new Web3(new Web3.providers.WebsocketProvider("wss://ropsten.infura.io/ws/v3/3057a4979e92452bae6afaabed67a724"));
+            window.web3 = new Web3("wss://ropsten.infura.io/ws/v3/3057a4979e92452bae6afaabed67a724");
         }
 
         const netID = await window.web3.eth.net.getId();
         if (netID != NET_ID) {
-            window.web3 = new Web3(new Web3.providers.WebsocketProvider("wss://ropsten.infura.io/ws/v3/3057a4979e92452bae6afaabed67a724"));
+            window.web3 = new Web3("wss://ropsten.infura.io/ws/v3/3057a4979e92452bae6afaabed67a724");
             self.hasWeb3 = false;
             self.wrongNetwork = true;
         }

@@ -116,7 +116,8 @@ export const stats = {
     },
     raw_roi_data: () => Data.ROIArray.get(),
     ranking: () => Data.kairoRanking.get(),
-    shares_price: () => Data.sharesPrice.get()
+    shares_price: () => Data.sharesPrice.get(),
+    kairo_price: () => Data.kairoPrice.get()
 }
 
 export const tokens = {
@@ -274,14 +275,14 @@ export const manager_actions = {
     },
     register_with_ETH: async (amountInETH, pending, confirm) => {
         try {
-            return betoken.registerWithDAI(amountInETH, pending, confirm);
+            return betoken.registerWithETH(amountInETH, pending, confirm);
         } catch (error) {
             error_notifications.set_error_msg(SEND_TX_ERR);
         }
     },
     register_with_token: async (tokenAddr, amountInToken, pending, confirm) => {
         try {
-            return betoken.registerWithDAI(tokenAddr, amountInToken, pending, confirm);
+            return betoken.registerWithToken(tokenAddr, amountInToken, pending, confirm);
         } catch (error) {
             error_notifications.set_error_msg(SEND_TX_ERR);
         }

@@ -8,7 +8,7 @@ import { } from 'jquery';
 declare var $: any;
 
 import {
-  user, timer, stats, tokens, investor_actions
+  user, timer, stats, tokens, manager_actions
 } from '../../betokenjs/helpers';
 
 @Component({
@@ -23,8 +23,8 @@ export class ManageronboardingComponent implements OnInit {
   selectedTokenSymbol: String;
   selectedTokenBalance: BigNumber;
   transactionId: String;
-  sharesPrice: BigNumber;
-  buySharesAmount: BigNumber;
+  kairoPrice: BigNumber;
+  buyKairoAmount: BigNumber;
   buyTokenAmount: BigNumber;
 
   buyStep: Number;
@@ -41,8 +41,8 @@ export class ManageronboardingComponent implements OnInit {
     this.selectedTokenSymbol = '';
     this.selectedTokenBalance = new BigNumber(0);
     this.transactionId = '';
-    this.sharesPrice = new BigNumber(0);
-    this.buySharesAmount = new BigNumber(0);
+    this.kairoPrice = new BigNumber(0);
+    this.buyKairoAmount = new BigNumber(0);
     this.buyTokenAmount = new BigNumber(0);
 
     this.days = 0;
@@ -57,7 +57,7 @@ export class ManageronboardingComponent implements OnInit {
       this.refreshDisplay();
     }, 100);
     $('[data-toggle="tooltip"]').tooltip();
-    $('#modalInvestorBuy').on('hidden.bs.modal', () => {
+    $('#modalBuy').on('hidden.bs.modal', () => {
       this.resetModals();
     });
     this.tokenData = tokens.token_data().get();
@@ -66,7 +66,7 @@ export class ManageronboardingComponent implements OnInit {
 
   refreshDisplay() {
     this.user_address = user.address();
-    this.sharesPrice = stats.shares_price();
+    this.kairoPrice = stats.kairo_price();
 
     this.days = timer.day();
     this.hours = timer.hour();
@@ -86,7 +86,7 @@ export class ManageronboardingComponent implements OnInit {
   refreshBuyOrderDetails(val) {
     this.buyTokenAmount = new BigNumber(val);
     if (!this.buyTokenAmount.isNaN()) {
-      this.buySharesAmount = this.buyTokenAmount.times(this.assetSymbolToPrice(this.selectedTokenSymbol)).div(this.sharesPrice);
+      this.buyKairoAmount = this.buyTokenAmount.times(this.assetSymbolToPrice(this.selectedTokenSymbol)).div(this.kairoPrice);
     }
   }
 
@@ -105,7 +105,7 @@ export class ManageronboardingComponent implements OnInit {
     this.selectedTokenBalance = await user.token_balance(token);
   }
 
-  deposit() {
+  register() {
     this.buyStep = 2;
     var payAmount = this.buyTokenAmount;
     let pending = (txHash) => {
@@ -121,13 +121,13 @@ export class ManageronboardingComponent implements OnInit {
     };
     switch (this.selectedTokenSymbol) {
       case 'ETH':
-        investor_actions.depositETH(payAmount, pending, confirm);
+        manager_actions.register_with_ETH(payAmount, pending, confirm);
         break;
       case 'DAI':
-        investor_actions.depositDAI(payAmount, pending, confirm);
+        manager_actions.register_with_DAI(payAmount, pending, confirm);
         break;
       default:
-        investor_actions.depositToken(payAmount, this.selectedTokenSymbol, pending, confirm);
+        manager_actions.register_with_token(payAmount, this.selectedTokenSymbol, pending, confirm);
         break;
     }
   }

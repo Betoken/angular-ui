@@ -54,7 +54,7 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.ms.setHeaderSidebarDisplay(!this.checkRouterURL('/start'));
+    this.refreshHeaderSidebarDisplay();
     error_notifications.set_error_msg("");
     setInterval(() => {
         this.refreshDisplay();
@@ -77,7 +77,12 @@ export class HeaderComponent implements OnInit {
 
     error_notifications.check_dependency();
     this.errorMsg = error_notifications.get_error_msg();
-    this.ms.setHeaderSidebarDisplay(!this.checkRouterURL('/start'));
+
+    this.refreshHeaderSidebarDisplay();
+  }
+
+  refreshHeaderSidebarDisplay() {
+    this.ms.setHeaderSidebarDisplay(!this.checkRouterURL('/start') && !this.checkRouterURL('/start-managing'));
   }
 
   phaseActionText() {

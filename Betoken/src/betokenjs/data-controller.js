@@ -40,6 +40,7 @@ export var avgROI = new ReactiveVar(BigNumber(0));
 export var ROIArray = new ReactiveVar([]);
 export var cycleTotalCommission = new ReactiveVar(BigNumber(0));
 export var sharesPrice = new ReactiveVar(BigNumber(0));
+export var kairoPrice = new ReactiveVar(BigNumber(0));
 
 // cycle timekeeping
 export var cycleNumber = new ReactiveVar(0);
@@ -509,6 +510,14 @@ export const loadStats = async () => {
 
     if (!sharesTotalSupply.get().isZero()) {
         sharesPrice.set(BigNumber(1).div(sharesTotalSupply.get()).times(fundValue.get()));
+    } else {
+        sharesPrice.set(BigNumber(1));
+    }
+
+    if (!kairoTotalSupply.get().isZero()) {
+        kairoPrice.set(totalFunds.get().div(kairoTotalSupply.get()));
+    } else {
+        kairoPrice.set(BigNumber(2.5));
     }
 
     // get stats

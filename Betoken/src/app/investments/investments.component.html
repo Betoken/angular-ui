@@ -5,21 +5,21 @@
     <div class="header-body">
       <div class="row align-items-end">
         <div class="col">
-          
+
           <!-- Pretitle -->
           <h6 class="header-pretitle">
             Overview
           </h6>
-          
+
           <!-- Title -->
           <h1 class="header-title">
             My Investments
           </h1>
-          
+
         </div>
       </div> <!-- / .row -->
     </div> <!-- / .header-body -->
-    
+
   </div>
 </div> <!-- / .header -->
 
@@ -31,26 +31,26 @@
       <div class="card-body">
         <div class="row align-items-center">
           <div class="col">
-            
+
             <!-- Title -->
             <h6 class="card-title text-uppercase text-muted mb-2">
               Your Portfolio Value ($DAI)
             </h6>
-            
+
             <!-- Heading -->
             <span class="h2 mb-0">
               {{portfolioValueInDAI}}
             </span>
-            
+
           </div>
           <div class="col-auto">
-            
+
             <!-- Icon -->
             <span class="h2 fe fe-pie-chart text-muted mb-0"></span>
-            
+
           </div>
         </div> <!-- / .row -->
-        
+
       </div>
     </div>
     <!-- Card -->
@@ -58,12 +58,12 @@
       <div class="card-body">
         <div class="row align-items-center">
           <div class="col">
-            
+
             <!-- Title -->
             <h6 class="card-title text-uppercase text-muted mb-2">
               Your Kairo Balance
             </h6>
-            
+
             <!-- Heading -->
             <span class="h2 mb-0">
               {{userValue}}
@@ -72,58 +72,58 @@
             <span class="badge" [ngClass]="{'badge-soft-success': monthly_pl.gte(0), 'badge-soft-danger': monthly_pl.lt(0)}">
               {{monthly_pl.toFormat(4)}}%
             </span>
-            
+
           </div>
           <div class="col-auto">
-            
+
             <!-- Icon -->
             <span class="h2 fe fe-zap text-muted mb-0"></span>
-            
+
           </div>
         </div> <!-- / .row -->
-        
+
       </div>
     </div>
-    
+
     <!-- Card -->
     <div class="card" data-toggle="tooltip" data-html="true" title="The more Kairo you stake, the more of Betoken's money you put at work, the more commissions you earn.">
       <div class="card-body">
         <div class="row align-items-center">
           <div class="col">
-            
+
             <!-- Title -->
             <h6 class="card-title text-uppercase text-muted mb-2">
               Staked Kairo Proportion
             </h6>
-            
+
             <div class="row align-items-center no-gutters">
               <div class="col-auto mb-2">
-                
+
                 <!-- Heading -->
                 <span class="h2 mr-2 mb-0">
                   {{currentStakeProportion}}%
                 </span>
-                
+
               </div>
               <div class="col-12">
-                
+
                 <!-- Progress -->
                 <div class="progress progress-sm">
                   <div class="progress-bar" role="progressbar" [ngStyle]="{'width': currentStakeProportion + '%'}" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
-                
+
               </div>
             </div> <!-- / .row -->
-            
+
           </div>
           <div class="col-auto">
-            
+
             <!-- Icon -->
             <span class="h2 fe fe-database text-muted mb-0"></span>
-            
+
           </div>
         </div> <!-- / .row -->
-        
+
       </div>
     </div>
     <!-- Card -->
@@ -131,59 +131,59 @@
       <div class="card-body">
         <div class="row align-items-center">
           <div class="col">
-            
+
             <!-- Title -->
             <h6 class="card-title text-uppercase text-muted mb-2">
               Your Estimated Commission This Month ($DAI)
             </h6>
-            
+
             <!-- Heading -->
             <span class="h2 mb-0">
               {{expected_commission}}
             </span>
-            
+
           </div>
           <div class="col-auto">
-            
+
             <!-- Icon -->
             <span class="h2 fe fe-award text-muted mb-0"></span>
-            
+
           </div>
         </div> <!-- / .row -->
-        
+
       </div>
     </div>
   </div> <!-- / .row -->
   <div class="row">
     <div class="col-12">
-      <!-- Active Investments -->
+      <!-- Active trades -->
       <div class="card">
         <div class="card-header">
           <div class="row align-items-center">
             <div class="col">
-              
+
               <!-- Title -->
               <h4 class="card-header-title">
-                Your Active Investments
+                Active trades
               </h4>
-              
+
             </div>
             <div class="col-auto">
-              
+
               <!-- Refresh -->
               <button class="btn btn-sm btn-white" type="button" name="button" (click) = "refresh()"><i class="fe fe-refresh-cw align-middle" *ngIf="isLoading() == false"></i><div class="loader loader-sm loader-secondary my-1" *ngIf="isLoading()"></div></button>
-              
+
             </div>
           </div> <!-- / .row -->
         </div>
         <div class="card-header">
           <div class="row">
             <div class="col-12">
-              
+
               <!-- Form -->
               <form>
                 <div class="input-group input-group-flush input-group-merge">
-                  <input type="search" class="form-control form-control-prepended search" (keyup)="filterTable($event,'active-investments-table',0)" placeholder="Search">
+                  <input type="search" class="form-control form-control-prepended search" (keyup)="filterList($event,'active-investments-list',0)" placeholder="Search">
                   <div class="input-group-prepend">
                     <div class="input-group-text">
                       <span class="fe fe-search"></span>
@@ -191,51 +191,46 @@
                   </div>
                 </div>
               </form>
-              
+
             </div>
           </div> <!-- / .row -->
         </div>
-        <div class="table-responsive">
-          <table class="table table-sm table-nowrap card-table">
-            <thead>
-              <tr>
-                <th class="text-muted">
-                  Asset
-                </th>
-                <th class="text-muted">
-                  Change
-                </th>
-                <th class="text-muted">
-                  Current Price
-                </th>
-                <th class="text-muted">
-                  Buy Price
-                </th>
-                <th class="text-muted">
-                  Staked KRO
-                </th>
-                <th class="text-muted">
-                  KRO To Redeem
-                </th>
-                <th class="text-muted">
-                  Action
-                </th>
-              </tr>
-            </thead>
-            <tbody class="list" id="active-investments-table" >
-              <tr *ngFor = "let data of activeInvestmentList">
-                <td class="align-middle pr-0">
-                  <div class="media">
-                    <span class="avatar avatar-xs align-self-center mr-3">
-                      <img src={{getTokenLogoUrl(data.tokenSymbol)}} alt="{{data.tokenSymbol}} token logo" class="avatar-img rounded-circle">
-                    </span>
-                    <div class="media-body">
-                      <h5 class="mt-0">{{data.tokenSymbol}}</h5>
-                      <span class="small text-muted">{{ (getTokenName(data.tokenSymbol).length>12)? (getTokenName(data.tokenSymbol) | slice:0:12)+'..':(getTokenName(data.tokenSymbol)) }}</span>
-                    </div>
-                  </div>
-                </td>
-                <td class="align-middle">
+        <ul class="list-group list-group-flush list" id="active-investments-list">
+          <li class="list-group-item list-group-item-action py-0" *ngFor = "let data of activeInvestmentList">
+            <a class="py-3 d-block text-secondary" href="#" data-toggle="modal" data-target="#modalSell" (click)="openSellModal(data)">
+              <div class="row d-flex align-items-center">
+                <div class="col-auto">
+                  <span class="avatar avatar-xs">
+                    <img src={{getTokenLogoUrl(data.tokenSymbol)}} alt="{{data.tokenSymbol}} token logo" class="avatar-img rounded-circle">
+                  </span>
+                </div>
+                <div class="col">
+                  <span class="h4 mb-1">
+                    {{data.tokenSymbol}}<span class="text-secondary d-none d-lg-inline-block ml-1 small font-weight-normal">• Leveraged 4x {{ (getTokenName(data.tokenSymbol).length>24)? (getTokenName(data.tokenSymbol) | slice:0:24)+'..':(getTokenName(data.tokenSymbol)) }}</span>
+                  </span>
+                  <br>
+                  <small class="text-danger mb-0">
+                    Unsafe
+                  </small>
+                  <!-- IDEA: At risk --
+                  <span class="badge badge-soft-warning">
+                    At risk
+                  </span>
+                  -->
+                  <!-- IDEA: Safe --
+                  <span class="badge badge-soft-success">
+                    Safe
+                  </span>
+                  -->
+                </div>
+                <div class="col d-none d-lg-block">
+                  <span class="text-secondary small">Price</span>
+                  <br>
+                  <span class="font-weight-bold">{{data.sellPrice.toFormat(6)}} DAI</span>
+                </div>
+                <div class="col-auto text-right">
+                  <span class="font-weight-bold">{{data.currValue.toFormat(4)}} KRO</span>
+                  <br>
                   <!-- Badge success -->
                   <span class="badge badge-xl badge-soft-success" *ngIf = "+data.ROI >= 0">
                     {{data.ROI.toFormat(4)}}%
@@ -244,124 +239,67 @@
                   <span class="badge badge-xl badge-soft-danger" *ngIf = "0 > +data.ROI">
                     {{data.ROI.toFormat(4)}}%
                   </span>
-                </td>
-                <td class="align-middle">
-                  {{data.sellPrice.toFormat(6)}} DAI
-                </td>
-                <td class="align-middle">
-                  {{data.buyPrice.toFormat(6)}} DAI
-                </td>
-                <td class="align-middle">
-                  {{data.stake.toFormat(4)}} KRO
-                </td>
-                <td class="align-middle">
-                  {{data.currValue.toFormat(4)}} KRO
-                </td>
-                <td class="align-middle" *ngIf = "data.isSold == false">
-                  <button class="btn btn-sm btn-success" type="button" name="button" data-toggle="modal" data-target="#modalSell" (click)="openSellModal(data)">Sell</button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+                </div>
+              </div>
+            </a>
+          </li>
+        </ul>
       </div>
-      <!-- Past Investments -->
+
+      <!-- Closed trades -->
       <div class="card">
         <div class="card-header">
           <div class="row align-items-center">
             <div class="col">
-              
+
               <!-- Title -->
               <h4 class="card-header-title">
-                Your Past Investments
+                Closed trades
               </h4>
-              
+
             </div>
             <div class="col-auto">
-              
+
               <!-- Refresh -->
               <button class="btn btn-sm btn-white" type="button" name="button" (click) = "refresh()"><i class="fe fe-refresh-cw align-middle" *ngIf="isLoading() == false"></i><div class="loader loader-sm loader-secondary my-1" *ngIf="isLoading()"></div></button>
-              
+
             </div>
           </div> <!-- / .row -->
         </div>
-        <div class="card-header">
-          <div class="row">
-            <div class="col-12">
-              
-              <!-- Form -->
-              <form>
-                <div class="input-group input-group-flush input-group-merge">
-                  <input type="search" class="form-control form-control-prepended search" (keyup)="filterTable($event,'past-investments-table',0)" placeholder="Search">
-                  <div class="input-group-prepend">
-                    <div class="input-group-text">
-                      <span class="fe fe-search"></span>
-                    </div>
-                  </div>
-                </div>
-              </form>
-              
+
+        <ul class="list-group list-group-flush list">
+          <li class="list-group-item" *ngFor = "let data of inactiveInvestmentList">
+            <div class="row d-flex align-items-center text-secondary">
+              <div class="col-auto">
+                <span class="avatar avatar-xs">
+                  <img src={{getTokenLogoUrl(data.tokenSymbol)}} alt="{{data.tokenSymbol}} token logo" class="avatar-img rounded-circle">
+                </span>
+              </div>
+              <div class="col">
+                <span class="h4 mb-1">
+                  {{data.tokenSymbol}}<span class="text-secondary d-none d-lg-inline-block ml-1 small font-weight-normal">• Leveraged 4x {{ (getTokenName(data.tokenSymbol).length>24)? (getTokenName(data.tokenSymbol) | slice:0:24)+'..':(getTokenName(data.tokenSymbol)) }}</span>
+                </span>
+                <!-- IDEA: display if liquidated -->
+                <br>
+                <small class="text-danger mb-0">
+                  Liquidated
+                </small>
+              </div>
+              <div class="col-auto text-right">
+                <span class="font-weight-bold">{{data.currValue.toFormat(4)}} KRO</span>
+                <br>
+                <!-- Badge success -->
+                <span class="badge badge-xl badge-soft-success" *ngIf = "+data.ROI >= 0">
+                  {{data.ROI.toFormat(4)}}%
+                </span>
+                <!-- Badge danger -->
+                <span class="badge badge-xl badge-soft-danger" *ngIf = "0 > +data.ROI">
+                  {{data.ROI.toFormat(4)}}%
+                </span>
+              </div>
             </div>
-          </div> <!-- / .row -->
-        </div>
-        <div class="table-responsive">
-          <table class="table table-sm table-nowrap card-table">
-            <thead>
-              <tr>
-                <th class="text-muted">
-                  Asset
-                </th>
-                <th class="text-muted">
-                  Redeemed KRO
-                </th>
-                <th class="text-muted">
-                  Staked KRO
-                </th>
-                <th class="text-muted">
-                  Buy Price
-                </th>
-                <th class="text-muted">
-                  Sell Price
-                </th>
-              </tr>
-            </thead>
-            <tbody class="list" id="past-investments-table">
-              <tr *ngFor = "let data of inactiveInvestmentList">
-                <td class="align-middle pr-0">
-                  <div class="media">
-                    <span class="avatar avatar-xs align-self-center mr-3">
-                      <img src={{getTokenLogoUrl(data.tokenSymbol)}} alt="{{data.tokenSymbol}} token logo" class="avatar-img rounded-circle">
-                    </span>
-                    <div class="media-body">
-                      <h5 class="mt-0">{{data.tokenSymbol}}</h5>
-                      <span class="small text-muted">{{ (getTokenName(data.tokenSymbol).length>12)? (getTokenName(data.tokenSymbol) | slice:0:12)+'..':(getTokenName(data.tokenSymbol)) }}</span>
-                    </div>
-                  </div>
-                </td>
-                <td class="align-middle">
-                  {{data.currValue.toFormat(4)}} KRO
-                  <!-- Badge success -->
-                  <span class="badge badge-soft-success" *ngIf = "+data.ROI >= 0">
-                    {{data.ROI.toFormat(4)}}%
-                  </span>
-                  <!-- Badge danger -->
-                  <span class="badge badge-soft-danger" *ngIf = "0 > +data.ROI">
-                    {{data.ROI.toFormat(4)}}%
-                  </span>
-                </td>
-                <td class="align-middle">
-                  {{data.stake.toFormat(4)}} KRO
-                </td>
-                <td class="align-middle">
-                  {{data.buyPrice.toFormat(6)}} DAI
-                </td>
-                <td class="align-middle">
-                  {{data.sellPrice.toFormat(6)}} DAI
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+          </li>
+        </ul>
       </div>
     </div>
   </div> <!-- / .row -->
@@ -400,12 +338,12 @@
             </h4>
           </div>
           <div class="col-auto">
-            
+
             <!-- Close -->
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">×</span>
             </button>
-            
+
           </div>
         </div> <!-- / .row -->
       </div>
@@ -423,7 +361,7 @@
       <div class="card-header" *ngIf="createInvestmentPopupStep === 0">
         <form>
           <div class="input-group input-group-flush input-group-merge">
-            <input type="search" class="form-control form-control-prepended search" placeholder="Search" (keyup)="filterList($event, 'asset-list', 0);filterList($event, 'short-asset-list', 0);filterList($event, 'long-asset-list', 0)">
+            <input type="search" class="form-control form-control-prepended search" placeholder="Search" (keyup)="filterList($event, 'asset-list', 0)">
             <div class="input-group-prepend">
               <div class="input-group-text">
                 <span class="fe fe-search"></span>
@@ -434,141 +372,44 @@
       </div>
       <div class="modal-body">
         <!-- Step 0: select asset -->
-        <!-- List Short assets -->
-        <ul class="list-group list-group-flush list" id="short-asset-list" *ngIf="createInvestmentPopupStep === 0">
-          <li class="list-group-item px-0 text-secondary border-bottom-0">
-            <h6 class="header-pretitle border-0">
-              Short Assets <span class="badge badge-soft-primary ml-auto">Soon</span>
-            </h6>
-          </li>
-          <li class="list-group-item px-0 border-bottom-0">
-            <a>
-              <div class="row align-items-center">
-                <div class="col-auto">
-                  
-                  <span class="avatar avatar-sm">
-                    <img src="assets/img/icons/eth.svg" alt="Ethereum logo" class="avatar-img rounded-circle">
-                  </span>
-                  
-                </div>
-                <div class="col ml--2">
-                  
-                  <h4 class="mb-1 name">
-                    sETH
-                  </h4>
-                  
-                  <p class="small text-secondary mb-0">
-                    Short Ethereum
-                  </p>
-                  
-                </div>
-                <div class="col-auto text-right">
-                  
-                  <h6 class="header-pretitle">
-                    Leveraged
-                  </h6>
-                  
-                  <h4 class="header-title">
-                    0.5x
-                  </h4>
-                  
-                </div>
-              </div>
-              
-            </a>
-          </li>
-          
-        </ul>
-        <!-- List Leveraged assets -->
-        <ul class="list-group list-group-flush list mt-3" id="long-asset-list" *ngIf="createInvestmentPopupStep === 0">
-          <li class="list-group-item px-0 text-secondary border-bottom-0 border-top-0">
-            <h6 class="header-pretitle border-0">
-              Leveraged Assets <span class="badge badge-soft-primary ml-auto">Soon</span>
-            </h6>
-          </li>
-          <li class="list-group-item px-0 border-bottom-0">
-            <a>
-              <div class="row align-items-center">
-                <div class="col-auto">
-                  
-                  <span class="avatar avatar-sm">
-                    <img src="assets/img/icons/eth.svg" alt="Ethereum logo" class="avatar-img rounded-circle">
-                  </span>
-                  
-                </div>
-                <div class="col ml--2">
-                  
-                  <h4 class="mb-1 name">
-                    LETH
-                  </h4>
-                  
-                  <p class="small text-secondary mb-0">
-                    Leveraged Ethereum
-                  </p>
-                  
-                </div>
-                <div class="col-auto text-right">
-                  
-                  <h6 class="header-pretitle">
-                    Leveraged
-                  </h6>
-                  
-                  <h4 class="header-title">
-                    1.5x
-                  </h4>
-                  
-                </div>
-              </div>
-              
-            </a>
-          </li>
-        </ul>
-        <!-- List Market assets -->
-        <ul class="list-group list-group-flush list mt-3" id="asset-list" *ngIf="createInvestmentPopupStep === 0">
-          <li class="list-group-item px-0 text-secondary border-bottom-0 border-top-0">
-            <h6 class="header-pretitle border-0">
-              Market Assets
-            </h6>
-          </li>
+        <ul class="list-group list-group-flush list" id="asset-list" *ngIf="createInvestmentPopupStep === 0">
           <li class="list-group-item px-0" *ngFor = "let token of tokenData">
-            <a href="#/investments" (click)="selectedTokenSymbol = token.symbol; createInvestmentPopupStep = 1;">
+            <a class="text-secondary" href="#/investments" (click)="selectedTokenSymbol = token.symbol; createInvestmentPopupStep = 1;">
               <div class="row align-items-center">
                 <div class="col-auto">
-                  
                   <span class="avatar avatar-sm">
                     <img src={{token.logoUrl}} alt="token logo" class="avatar-img rounded-circle">
                   </span>
-                  
                 </div>
-                <div class="col ml--2">
-                  
-                  <span class="mb-1 h4 name">
+                <div class="col ml--2 pl-1">
+                  <span class="mb-1 h4 font-weight-bold">
                     {{token.symbol}}
+                    <span class="badge badge-soft-primary align-top ml-1">
+                      Leverage
+                    </span>
                   </span>
-                  
-                  <p class="small text-secondary mb-0">
+                  <p class="small mb-0">
                     {{token.name}}
                   </p>
-                  
                 </div>
                 <div class="col-auto text-right">
-                  
-                  <span class="text-secondary">{{token.price.dp(6)}} DAI</span>
+
+                  <span>{{token.price.dp(4)}} DAI</span>
                   <br>
-                  
+
                   <span class="badge badge-xl" [ngClass]="{'badge-soft-success': +token.dailyPriceChange >= 0, 'badge-soft-danger': 0 > +token.dailyPriceChange}">{{token.dailyPriceChange.toFormat(4)}}%</span>
-                  
+
                 </div>
               </div>
-              
+
             </a>
           </li>
         </ul>
-        
+
         <!-- Step 1: enter stake amount -->
         <!-- Asset price -->
         <div class="row" *ngIf="createInvestmentPopupStep === 1">
-          
+
           <div class="col">
             <h6 class="header-pretitle">
               Current price in DAI
@@ -588,83 +429,127 @@
             </h4>
           </div>
         </div>
-        <hr *ngIf="createInvestmentPopupStep === 1">
-        
+        <hr class="my-4" *ngIf="createInvestmentPopupStep === 1">
+
         <!-- KRO amount to stake -->
-        <h6 class="header-pretitle text-secondary" *ngIf="createInvestmentPopupStep === 1">I want to buy {{getTokenName(selectedTokenSymbol)}} by staking</h6>
-        <div class="row justify-content-center mb-4" *ngIf="createInvestmentPopupStep === 1">
+        <h6 class="header-pretitle" *ngIf="createInvestmentPopupStep === 1">I want to buy {{getTokenName(selectedTokenSymbol)}} by staking</h6>
+        <div class="row justify-content-center" *ngIf="createInvestmentPopupStep === 1">
           <div class="col">
             <form>
-              <div class="form-group row mb-0">
-                <div class="col">
-                  <input type="number" min="0.0" max={{kairo_balance.toFormat(18)}} class="form-control form-control-lg form-control-flush input-xl border-bottom border-1 rounded-0 mt-1 mb-1" aria-describedby="KRO Token Amount to stake" placeholder="0.0" id="kairo-input">
+              <div class="input-group mb-2">
+                <input type="number" min="0.0" max={{kairo_balance.toFormat(18)}} class="form-control form-control-lg pr-0" aria-describedby="KRO Token Amount to stake" placeholder="0.0 KRO" id="kairo-input">
+                <div class="input-group-append">
+                  <button class="btn btn-white" name="button" type="button" (click)="maxStake()">Max</button>
+                  <button class="btn btn-white dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Basic order</button>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Leveraged (0.0x)</a>
+                    <a class="dropdown-item" href="#">Leveraged (0.0x)</a>
+                    <a class="dropdown-item" href="#">Leveraged (0.0x)</a>
+                    <a class="dropdown-item" href="#">Leveraged (0.0x)</a>
+                    <a class="dropdown-item" href="#">Shorted (0.0x)</a>
+                    <a class="dropdown-item" href="#">Shorted (0.0x)</a>
+                    <a class="dropdown-item" href="#">Shorted (0.0x)</a>
+                    <a class="dropdown-item" href="#">Shorted (0.0x)</a>
+                  </div>
                 </div>
-                <label for="kroAmount" class="col-auto col-form-label"><span class="display-4">KRO</span></label>
               </div>
-              <small id="kroBalance" class="form-text text-secondary d-inline-block">{{kairo_balance.toFormat(18)}} KRO available</small>
+              <small id="kroBalance" class="form-text text-secondary d-inline-block mb-0 mt-1">{{kairo_balance.toFormat(18)}} KRO available</small>
             </form>
           </div>
-          <div class="col-auto">
-            <button class="btn btn-sm btn-outline-secondary mt-3" type="button" name="button" (click)="maxStake()">Max</button>
-          </div>
         </div>
-        
         <!-- Max acceptable price -->
-        <div class="row justify-content-center mb-4" *ngIf="createInvestmentPopupStep === 1">
+        <div class="row justify-content-center" *ngIf="createInvestmentPopupStep === 1">
           <div class="col">
             <div id="accordion">
               <!-- question -->
-              <div class="card">
-                <div class="card-header" id="headingOne">
+              <div class="card border-0 shadow-none mb-0">
+                <div class="card-header border-0 shadow-none px-0" id="headingOne">
                   <a href="" class="text-secondary" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
                     <div class="row align-items-center no-gutters">
                       <div class="col mr-auto">
-                        <span class="card-text">
+                        <span class="card-text text-muted small">
                           Advanced
                         </span>
                       </div>
                       <div class="col-auto">
-                        <i class="fe fe-a"></i>
+                        <i class="fe fe-plus"></i>
                       </div>
                     </div>
                   </a>
                 </div>
                 <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-                  <div class="card-body">
+                  <div class="card-body p-0 pb-4">
                     <div class="row align-items-center">
                       <div class="col">
-                        <h4 class="font-weight-bold mb-1">Max acceptable price</h4>
-                        <p class="text-secondary d-none d-md-block mb-0">Your order <strong>won't</strong> be executed if the price goes up by more than:</p>
+                        <h6 class="header-pretitle">
+                          Max acceptable price
+                        </h6>
+                        <p>Your order <strong>won't</strong> be executed if the price goes up by more than:</p>
                         <form>
-                          <div class="form-group row mb-0">
-                            <div class="col">
-                              <input type="number" min="0.0" class="form-control form-control-lg form-control-flush border-bottom border-1 rounded-0 mt-1 mb-1" aria-describedby="maxAcceptablePrice" placeholder="0.0" value="10" id="maxAcceptablePrice">
+                          <div class="input-group input-group-lg">
+                            <input type="number" class="form-control border-right-0" aria-describedby="maxAcceptablePrice" placeholder="0.0" value="10" id="maxAcceptablePrice">
+                            <div class="input-group-append">
+                              <span class="input-group-text rounded-right border-left-0" id="maxAcceptablePriceUnit">%</span>
                             </div>
-                            <label for="maxAcceptablePrice" class="col-auto col-form-label"><span class="h3">%</span></label>
                           </div>
                         </form>
                       </div>
                     </div>
-                    
+
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        
+
+        <!-- IDEA: All the components below are displayed if leveraged or shorted order option is selected -->
+        <hr class="mb-4 mt-0" *ngIf="createInvestmentPopupStep === 1">
+
+        <!-- Payout -->
+        <h6 class="header-pretitle" *ngIf="createInvestmentPopupStep === 1">
+          2x leverage payout
+        </h6>
+        <p *ngIf="createInvestmentPopupStep === 1">This order <strong>magnifies ETH returns by 2x</strong>.</p>
+        <!-- IDEA: leveraged order -->
+        <p *ngIf="createInvestmentPopupStep === 1">If ETH goes <span class="text-success">+10%</span>, you <span class="text-success">gain 20%</span>.</p>
+        <p *ngIf="createInvestmentPopupStep === 1">If ETH goes <span class="text-danger">-10%</span>, you <span class="text-danger">lose -20%</span>.</p>
+        <!-- IDEA: shorted order --
+        <p *ngIf="createInvestmentPopupStep === 1">If ETH goes <span class="text-danger">-10%</span>, you <span class="text-success">gain 20%</span>.</p>
+        <p *ngIf="createInvestmentPopupStep === 1">If ETH goes <span class="text-success">+10%</span>, you <span class="text-danger">lose -20%</span>.</p>
+        -->
+
+        <!-- order details -->
+        <div class="card card-inactive my-4" *ngIf="createInvestmentPopupStep === 1">
+          <div class="card-body">
+            <h3>Order details</h3>
+            <h6 class="header-pretitle">Expiry</h6>
+            <p>
+              This order will close only if you close it or if your collateral get liquidated. <a href="#">Learn More</a>
+            </p>
+            <h6 class="header-pretitle">Collateralization</h6>
+            <p>
+              You must provide KRO collateral 200% times the value of your order to short ETH. You can repay a part or the total of the collateral at anytime after. <a href="#">Learn More</a>
+            </p>
+            <h6 class="header-pretitle">Liquidation</h6>
+            <p>
+              This order could be liquidated if it's below 200% collateralization. <a href="#">Learn More</a>
+            </p>
+          </div>
+        </div>
+
         <!-- Step 2: confirm transaction -->
         <p class="text-center text-muted mb-5" *ngIf="createInvestmentPopupStep === 2">
           Confirm the transaction in your wallet’s interface to save it on the Ethereum blockchain. It's fine to stick with these defaults gas limit and price.
         </p>
-        
+
         <!-- Step 3: transaction broadcasted -->
         <!-- Processing investment body -->
         <div class="py-5 is-loading is-loading-lg" *ngIf="createInvestmentPopupStep === 3"></div>
         <p class="text-center text-muted mb-5" *ngIf="createInvestmentPopupStep === 3">
           Your investment is being saved on the Ethereum blockchain.
         </p>
-        
+
         <!-- Step 4: transaction confirmed -->
         <!-- Investment confirmed body -->
         <p class="h1 text-center" *ngIf="createInvestmentPopupStep === 4">
@@ -685,7 +570,7 @@
             </div>
           </div>
         </form>
-        
+
         <!-- Continue button for step 1 -->
         <button type="submit" class="btn btn-block btn-success mt-auto" aria-label="Invest" (click)="createInvestment()" *ngIf="createInvestmentPopupStep === 1">
           Continue
@@ -698,21 +583,6 @@
         <button type="submit" class="btn btn-block btn-white mt-auto" data-dismiss="modal" aria-label="Close" *ngIf="createInvestmentPopupStep === 4">
           Close
         </button>
-        
-        <!-- Do you know section step 1 -->
-        <div class="card bg-light border mt-4" *ngIf="createInvestmentPopupStep === 1">
-          <div class="card-body">
-            
-            <h4 class="mb-2">
-              Need help?
-            </h4>
-            
-            <p class="small text-muted mb-0">
-              Get started with <a href="https://betoken.gitbook.io/betoken/" target="_blank">our guides</a>.
-            </p>
-            
-          </div>
-        </div>
       </div>
     </div>
   </div>
@@ -727,8 +597,12 @@
           <div class="col">
             <!-- Quantity of asset to sell title -->
             <h4 class="card-header-title" *ngIf="sellInvestmentPopupStep === 0">
-              Sell {{getTokenName(selectedTokenSymbol)}} ({{selectedTokenSymbol}})
+              <span class="avatar avatar-xs align-middle mr-2">
+                <img src={{getTokenLogoUrl(selectedTokenSymbol)}} alt="logo" class="avatar-img rounded-circle">
+              </span>
+              {{selectedTokenSymbol}} • Leveraged 4x
             </h4>
+            <time class="header-pretitle h6 mb-0" *ngIf="sellInvestmentPopupStep === 0">OPENED 5/30/2019 • 9:12:35 PM</time>
             <!-- Confirm asset investment title -->
             <h4 class="card-header-title" *ngIf="sellInvestmentPopupStep === 1">
               Confirm sell order
@@ -741,6 +615,23 @@
             <h4 class="card-header-title" *ngIf="sellInvestmentPopupStep === 3">
               Sell order confirmed
             </h4>
+            <!-- Collateralization target title --
+            <h4 class="card-header-title">
+              Top up your collateralization
+            </h4>
+            <!-- Confirm top up title --
+            <h4 class="card-header-title">
+              Confirm top up order
+            </h4>
+            <!-- Processing top up title --
+            <h4 class="card-header-title">
+              Processing top up order
+            </h4>
+            <!-- Top up order confirmed title --
+            <h4 class="card-header-title">
+              Top up confirmed
+            </h4>
+            -->
           </div>
           <div class="col-auto">
             <!-- Close -->
@@ -759,12 +650,12 @@
           <div [ngClass]="{'bg-success': sellInvestmentPopupStep >= 3, 'bg-secondary': sellInvestmentPopupStep !== 3}" class="progress-bar border-left" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
         </div>
       </div>
-      
+
       <div class="modal-body pb-5">
         <!--Step 0: enter sell amount-->
         <!-- Enter amount of KRO to unstake -->
         <!-- Asset price -->
-        <div class="row" *ngIf="sellInvestmentPopupStep === 0">
+        <div class="row mb-4" *ngIf="sellInvestmentPopupStep === 0">
           <div class="col">
             <h6 class="header-pretitle">
               Current price in DAI
@@ -775,7 +666,7 @@
           </div>
           <div class="col">
             <h6 class="header-pretitle">
-              24h change
+              ROI
             </h6>
             <h4 class="mb-0">
               <span class="badge badge-soft-success">
@@ -784,77 +675,163 @@
             </h4>
           </div>
         </div>
-        <hr *ngIf="sellInvestmentPopupStep === 0">
-        
+        <div class="row" *ngIf="sellInvestmentPopupStep === 0">
+          <div class="col">
+            <h6 class="header-pretitle">
+              Staked KRO
+            </h6>
+            <h4 class="mb-0">
+              0.0000
+            </h4>
+          </div>
+          <div class="col">
+            <h6 class="header-pretitle">
+              KRO to Redeem
+            </h6>
+            <h4 class="mb-0">
+              {{kroRedeemed.toFormat(6)}}
+            </h4>
+          </div>
+        </div>
+        <hr class="my-4" *ngIf="sellInvestmentPopupStep === 0">
+        <div class="row align-items-center justify-content-center mb-3" *ngIf="sellInvestmentPopupStep === 0">
+          <div class="col">
+            <h6 class="header-pretitle mb-0">
+              Collateralization status
+            </h6>
+          </div>
+          <div class="col-auto d-flex align-items-center">
+            <a href="" class="btn btn-sm btn-white" data-toggle="modal" data-target="#modalTopUpCollateralization">Top up</a>
+          </div>
+        </div>
+        <div class="row align-items-center" *ngIf="sellInvestmentPopupStep === 0">
+          <div class="col">
+            <span class="badge badge-soft-danger mb-2">
+              Unsafe
+            </span>
+            <!-- IDEA: At risk --
+            <span class="badge badge-soft-warning mb-2">
+              At risk
+            </span>
+            -->
+            <!-- IDEA: Safe --
+            <span class="badge badge-soft-success mb-2">
+              Safe
+            </span>
+            -->
+            <!-- IDEA: When the user indicates his collateralization target, the progress bar and the status label is updated -->
+            <div class="progress">
+              <div class="progress-bar bg-danger" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">220%</div>
+            </div>
+            <div class="row no-gutters justify-content-between text-secondary mb-3">
+              <div class="col text-left">
+                <small class="h6">150%</small>
+              </div>
+              <div class="col text-left position-absolute d-block w-auto" style="left: 49.0000%;transform: translateX(-50%);">
+                <div style="display: flex; flex-direction: column;">
+                  <div style="border: 0.5px dashed #6e84a3; width: 1px; height: 8px; align-self: center;"></div>
+                  <small class="h6">200% • min. collateral ratio</small>
+                </div>
+              </div>
+              <div class="col text-right">
+                <small class="h6">250%</small>
+              </div>
+            </div>
+            <p class="text-secondary small mb-0">This order must be at least <strong>200%</strong> collateralized. It's at risk if ETH falls below <strong>150 DAI</strong>.</p>
+          </div>
+        </div>
+
+        <hr class="my-4" *ngIf="sellInvestmentPopupStep === 0">
+
         <!-- KRO amount to unstake -->
-        <h6 class="header-pretitle text-secondary" *ngIf="sellInvestmentPopupStep === 0">Proportion of assets to sell</h6>
-        <div class="row justify-content-center mb-4" *ngIf="sellInvestmentPopupStep === 0">
+        <!-- IDEA: hideen when top up feature is activated -->
+        <h6 class="header-pretitle" *ngIf="sellInvestmentPopupStep === 0">Proportion of assets to sell</h6>
+        <div class="row" *ngIf="sellInvestmentPopupStep === 0">
           <div class="col">
             <form>
-              <div class="form-group row mb-0">
-                <div class="col">
-                  <input type="number" min="0.0" max="100.0" class="form-control form-control-lg form-control-flush input-xl border-bottom border-1 rounded-0 mt-1 mb-1" aria-describedby="percent of stake to sell" placeholder="0.0" id="sell-percentage-input">
+              <div class="input-group mb-2">
+                <input type="number" min="0.0" max="100.0" class="form-control form-control-lg border-right-0 pr-0" aria-describedby="percent of stake to sell" placeholder="0.0" id="sell-percentage-input">
+                <div class="input-group-append">
+                  <span class="input-group-text border-left-0 border-right-0" id="maxSellPercentUnit">%</span>
+                  <button class="btn btn-white" name="button" type="button" (click)="maxSellPercent()">Max</button>
                 </div>
-                <label for="sell-percentage-input" class="col-auto col-form-label"><span class="display-4">%</span></label>
               </div>
               <small id="kroStakedInInvestment" class="form-text text-secondary d-inline-block">{{kroRedeemed.toFormat(18)}} KRO staked</small>
             </form>
           </div>
-          <div class="col-auto">
-            <button class="btn btn-sm btn-outline-secondary mt-3" type="button" name="button" (click)="maxSellPercent()">Max</button>
+        </div>
+
+        <!-- Collateralization target --
+        <h6 class="header-pretitle">Collateralization target</h6>
+        <div class="row mb-4">
+          <div class="col">
+            <form>
+              <div class="input-group mb-2">
+                <input type="number" min="0.0" class="form-control form-control-lg border-right-0 pr-0" aria-describedby="percent of collateralization target" placeholder="0.0" id="collateralization-percentage-input">
+                <div class="input-group-append">
+                  <span class="input-group-text border-left-0 border-right-0" id="desiredCollateralizationUnit">%</span>
+                  <button class="btn btn-white" name="button" type="button">Max</button>
+                </div>
+              </div>
+              <small id="kroBalance" class="form-text text-secondary d-inline-block mb-0 mt-1">242% • Max collateralization allowed</small>
+            </form>
           </div>
         </div>
-        
+        -->
+
         <!-- Min acceptable price -->
+        <!-- IDEA: Hideen when Top up feature is activated -->
         <div class="row justify-content-center mb-4" *ngIf="sellInvestmentPopupStep === 0">
           <div class="col">
             <div id="accordion">
               <!-- question -->
-              <div class="card">
-                <div class="card-header" id="headingTwo">
+              <div class="card border-0 shadow-none mb-0">
+                <div class="card-header border-0 shadow-none px-0" id="headingTwo">
                   <a href="" class="text-secondary" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                     <div class="row align-items-center no-gutters">
                       <div class="col mr-auto">
-                        <span class="card-text">
+                        <span class="card-text text-muted small">
                           Advanced
                         </span>
                       </div>
                       <div class="col-auto">
-                        <i class="fe fe-a"></i>
+                        <i class="fe fe-plus"></i>
                       </div>
                     </div>
                   </a>
                 </div>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-                  <div class="card-body">
+                  <div class="card-body p-0 pb-4">
                     <div class="row align-items-center">
                       <div class="col">
-                        <h4 class="font-weight-bold mb-1">Min acceptable price</h4>
-                        <p class="text-secondary d-none d-md-block mb-0">Your order <strong>won't</strong> be executed if ETH price goes down by more than:</p>
+                        <h6 class="header-pretitle">
+                          Min acceptable price
+                        </h6>
+                        <p>Your order <strong>won't</strong> be executed if ETH price goes down by more than:</p>
                         <form>
-                          <div class="form-group row mb-0">
-                            <div class="col">
-                              <input type="number" min="0.0" max="100.0" class="form-control form-control-lg form-control-flush border-bottom border-1 rounded-0 mt-1 mb-1" aria-describedby="minAcceptablePrice" placeholder="0.0" value="10" id="minAcceptablePrice">
+                          <div class="input-group input-group-lg">
+                            <input type="number" min="0.0" max="100.0" class="form-control border-right-0" aria-describedby="minAcceptablePrice" placeholder="0.0" value="10" id="minAcceptablePrice">
+                            <div class="input-group-append">
+                              <span class="input-group-text rounded-right border-left-0" id="minAcceptablePriceUnit">%</span>
                             </div>
-                            <label for="minAcceptablePrice" class="col-auto col-form-label"><span class="h3">%</span></label>
                           </div>
                         </form>
                       </div>
                     </div>
-                    
+
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        
+
         <!--Step 1: confirm tx in wallet-->
         <!-- Confirm tx body -->
         <p class="text-center text-muted mb-5" *ngIf="sellInvestmentPopupStep === 1">
           Confirm the transaction in your wallet’s interface to save it on the Ethereum blockchain. It's fine to stick with these defaults gas limit and price.
         </p>
-        
+
         <!--Step 2: tx broadcasted-->
         <!-- loader -->
         <div class="py-5 is-loading is-loading-lg" *ngIf="sellInvestmentPopupStep === 2"></div>
@@ -862,7 +839,7 @@
         <p class="text-center text-muted mb-5" *ngIf="sellInvestmentPopupStep === 2">
           Your transaction is being saved on the Ethereum blockchain. You can check its status on Etherscan.
         </p>
-        
+
         <!--Step 3: tx confirmed-->
         <!-- Asset sold body -->
         <p class="h1 text-center" *ngIf="sellInvestmentPopupStep === 3">
@@ -883,7 +860,7 @@
             </div>
           </div>
         </form>
-        
+
         <!-- Continue button for amount to sell Step -->
         <button type="submit" class="btn btn-block btn-success mt-auto" aria-label="Sell" (click)="sell()" *ngIf="sellInvestmentPopupStep === 0">
           Continue
@@ -892,21 +869,154 @@
         <button type="submit" class="btn btn-block btn-white mt-auto" data-dismiss="modal" aria-label="Close" *ngIf="sellInvestmentPopupStep === 3">
           Close
         </button>
-        
-        <!-- Do you know section amount to sell -->
-        <div class="card bg-light border mt-4">
-          <div class="card-body">
-            
-            <h4 class="mb-2">
-              Need help?
+
+      </div>
+    </div>
+  </div>
+</div><!-- / modal -->
+
+<!-- IDEA: Could be deleted after backend connection. -->
+<!-- Top up collateralization modal -->
+<div class="modal fade fixed-right" id="modalTopUpCollateralization" tabindex="-1" role="dialog" aria-labelledby="modalTopUpCollateralization" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-vertical bg-white" role="document">
+    <div class="modal-content">
+      <div class="card-header border-0">
+        <div class="row align-items-center">
+          <div class="col">
+            <!-- Collateralization target title -->
+            <h4 class="card-header-title">
+              Top up your collateralization
             </h4>
-            
-            <p class="small text-muted mb-0">
-              Get started with <a href="https://betoken.gitbook.io/betoken/" target="_blank">our guides</a>.
-            </p>
-            
+            <!-- Confirm top up title --
+            <h4 class="card-header-title">
+              Confirm top up order
+            </h4>
+            <!-- Processing top up title --
+            <h4 class="card-header-title">
+              Processing top up order
+            </h4>
+            <!-- Top up order confirmed title --
+            <h4 class="card-header-title">
+              Top up confirmed
+            </h4>
+            -->
+          </div>
+          <div class="col-auto">
+            <!-- Close -->
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+        </div> <!-- / .row -->
+      </div>
+      <!-- progress bar selling -->
+      <div class="card-header py-0 border-0" style="min-height: 24px;">
+        <div class="progress" style="height: 8px;">
+          <div class="progress-bar bg-success" role="progressbar" style="width: 33.33%" aria-valuenow="33.33" aria-valuemin="0" aria-valuemax="100"></div>
+          <div class="progress-bar border-left bg-secondary" role="progressbar" style="width: 33.33%" aria-valuenow="33.33" aria-valuemin="0" aria-valuemax="100"></div>
+          <div class="progress-bar border-left bg-secondary" role="progressbar" style="width: 33.33%" aria-valuenow="33.33" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+      </div>
+
+      <div class="modal-body pb-5">
+        <!--Step 0: enter top up amount-->
+        <div class="row align-items-center justify-content-center mb-3">
+          <div class="col">
+            <h6 class="header-pretitle mb-0">
+              Collateralization status
+            </h6>
           </div>
         </div>
+        <div class="row align-items-center">
+          <div class="col">
+            <span class="badge badge-soft-danger mb-2">
+              Unsafe
+            </span>
+            <!-- IDEA: When the user indicates his collateralization target, the progress bar and the status label is updated -->
+            <div class="progress">
+              <div class="progress-bar bg-danger" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">220%</div>
+            </div>
+            <div class="row no-gutters justify-content-between text-secondary mb-3">
+              <div class="col text-left">
+                <small class="h6">150%</small>
+              </div>
+              <div class="col text-left position-absolute d-block w-auto" style="left: 49.0000%;transform: translateX(-50%);">
+                <div style="display: flex; flex-direction: column;">
+                  <div style="border: 0.5px dashed #6e84a3; width: 1px; height: 8px; align-self: center;"></div>
+                  <small class="h6 text-dark">200% • min. collateral ratio</small>
+                </div>
+              </div>
+              <div class="col text-right">
+                <small class="h6">250%</small>
+              </div>
+            </div>
+            <p class="text-secondary small mb-0">This order must be at least <strong>200%</strong> collateralized. It's at risk if ETH falls below <strong>150 DAI</strong>.</p>
+          </div>
+        </div>
+
+        <hr class="my-4">
+
+        <!-- Collateralization target -->
+        <h6 class="header-pretitle">Collateralization target</h6>
+        <div class="row mb-4">
+          <div class="col">
+            <form>
+              <div class="input-group mb-2">
+                <input type="number" min="0.0" class="form-control form-control-lg border-right-0 pr-0" aria-describedby="percent of collateralization target" placeholder="0.0" id="collateralization-percentage-input">
+                <div class="input-group-append">
+                  <span class="input-group-text border-left-0 border-right-0" id="desiredCollateralizationUnit">%</span>
+                  <button class="btn btn-white" name="button" type="button">Max</button>
+                </div>
+              </div>
+              <small id="kroBalance" class="form-text text-secondary d-inline-block mb-0 mt-1">242% • Max collateralization allowed</small>
+            </form>
+          </div>
+        </div>
+
+        <!--Step 1: confirm tx in wallet-->
+        <!-- Confirm tx body -->
+        <p class="text-center text-muted mb-5" *ngIf="sellInvestmentPopupStep === 1">
+          Confirm the transaction in your wallet’s interface to save it on the Ethereum blockchain. It's fine to stick with these defaults gas limit and price.
+        </p>
+
+        <!--Step 2: tx broadcasted-->
+        <!-- loader -->
+        <div class="py-5 is-loading is-loading-lg" *ngIf="sellInvestmentPopupStep === 2"></div>
+        <!-- Tx broadcasted body -->
+        <p class="text-center text-muted mb-5" *ngIf="sellInvestmentPopupStep === 2">
+          Your transaction is being saved on the Ethereum blockchain. You can check its status on Etherscan.
+        </p>
+
+        <!--Step 3: tx confirmed-->
+        <!-- Asset sold body -->
+        <p class="h1 text-center" *ngIf="sellInvestmentPopupStep === 3">
+          <i class="fe fe-check-circle text-success"></i>
+        </p>
+        <p class="text-center text-muted mb-5" *ngIf="sellInvestmentPopupStep === 3">
+          You have successfully repay  the investment and redeemed your Kairo.
+        </p>
+        <hr *ngIf="sellInvestmentPopupStep === 2 || sellInvestmentPopupStep === 3">
+        <form *ngIf="sellInvestmentPopupStep === 2 || sellInvestmentPopupStep === 3">
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Transaction ID</label>
+            <div class="input-group mb-3">
+              <input type="text" class="form-control form-control-lg" value="{{transactionId}}" aria-label="Transaction ID" aria-describedby="">
+              <div class="input-group-append">
+                <a class="btn btn-white h-100" href="https://ropsten.etherscan.io/tx/{{transactionId}}" target="_blank"><i class="fe fe-external-link"></i></a>
+              </div>
+            </div>
+          </div>
+        </form>
+
+        <!-- Continue button for amount to sell Step -->
+        <button type="submit" class="btn btn-block btn-success mt-auto" aria-label="Sell" (click)="sell()" *ngIf="sellInvestmentPopupStep === 0">
+          Continue
+        </button>
+        <!-- close button panel after Asset being sold -->
+        <button type="submit" class="btn btn-block btn-white mt-auto" data-dismiss="modal" aria-label="Close" *ngIf="sellInvestmentPopupStep === 3">
+          Close
+        </button>
+
       </div>
     </div>
   </div>

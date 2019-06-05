@@ -53,7 +53,10 @@
               <p class="mb-4 text-secondary">You don't seem to be using a Web3 browser. Please install Metamask to continue.</p>
               <a class="btn btn-block btn-lg btn-success mb-4" target="__blank" href="https://metamask.io/">Install Metamask</a>
             </div>
-            <button class="btn btn-block btn-lg btn-success" type="button" data-toggle="modal" data-target="#modalBuy" *ngIf="user_address != ZERO_ADDR">Get Started</button>
+            <button class="btn btn-block btn-lg btn-success" type="button" data-toggle="modal" data-target="#modalBuy" *ngIf="user_address != ZERO_ADDR && kairoBalance.eq(0)">Get Started</button>
+            <p *ngIf="user_address != ZERO_ADDR && kairoBalance.gt(0)">
+              You are already a manager. Please <a href="#/dashboard">sign in to the manager portal</a>.
+            </p>
           </div>
         </div>
         <div class="card card-inactive mb-6">

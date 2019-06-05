@@ -26,6 +26,7 @@ export class ManageronboardingComponent implements OnInit {
   kairoPrice: BigNumber;
   buyKairoAmount: BigNumber;
   buyTokenAmount: BigNumber;
+  kairoBalance: BigNumber;
 
   buyStep: Number;
   days: Number;
@@ -44,6 +45,7 @@ export class ManageronboardingComponent implements OnInit {
     this.kairoPrice = new BigNumber(0);
     this.buyKairoAmount = new BigNumber(0);
     this.buyTokenAmount = new BigNumber(0);
+    this.kairoBalance = new BigNumber(0);
 
     this.days = 0;
     this.hours = 0;
@@ -67,6 +69,7 @@ export class ManageronboardingComponent implements OnInit {
   refreshDisplay() {
     this.user_address = user.address();
     this.kairoPrice = stats.kairo_price();
+    this.kairoBalance = user.kairo_balance();
 
     this.days = timer.day();
     this.hours = timer.hour();

@@ -164,7 +164,7 @@
 
               <!-- Title -->
               <h4 class="card-header-title">
-                Active trades
+                Active Investments
               </h4>
 
             </div>
@@ -176,8 +176,7 @@
             </div>
           </div> <!-- / .row -->
         </div>
-        <!-- IDEA: Hide if no investment -->
-        <div class="card-header">
+        <div class="card-header" *ngIf="activeInvestmentList.length > 0">
           <div class="row">
             <div class="col-12">
               <!-- Form -->
@@ -231,19 +230,15 @@
                   <span class="font-weight-bold">{{data.currValue.toFormat(4)}} KRO</span>
                   <br>
                   <!-- Badge success -->
-                  <span class="badge badge-xl badge-soft-success" *ngIf = "+data.ROI >= 0">
-                    {{data.ROI.toFormat(4)}}%
-                  </span>
-                  <!-- Badge danger -->
-                  <span class="badge badge-xl badge-soft-danger" *ngIf = "0 > +data.ROI">
+                  <span class="badge badge-xl" [ngClass]="{'badge-soft-success': data.ROI.gte(0), 'badge-soft-danger': data.ROI.lt(0)}">
                     {{data.ROI.toFormat(4)}}%
                   </span>
                 </div>
               </div>
             </a>
           </li>
-          <li class="list-group-item justify-content-center text-center pt-5">
-            <h3 class="mb-4">You have no investment yet</h3>
+          <li class="list-group-item justify-content-center text-center pt-5" *ngIf="activeInvestmentList.length == 0">
+            <h3 class="mb-4">You have no active investments</h3>
             <button class="btn btn-success mb-5" routerLink="/investments" type="button" data-toggle="modal" data-target="#modalBuy">Make Investments</button>
             <img class="w-50 mx-auto d-block" src="assets/img/illustrations/undraw_empty_xct9.svg" alt="zero-state-illustration">
           </li>
@@ -258,7 +253,7 @@
 
               <!-- Title -->
               <h4 class="card-header-title">
-                Closed trades
+                Past Investments
               </h4>
 
             </div>
@@ -407,11 +402,6 @@
               </div>
 
             </a>
-          </li>
-          <!-- IDEA: zero state no result -->
-          <li class="list-group list-group-flush list text-center">
-            <h3 class="my-4">No results</h3>
-            <img class="w-50 mx-auto d-block" src="assets/img/illustrations/undraw_empty_xct9.svg" alt="zero-state-illustration">
           </li>
         </ul>
 
@@ -678,8 +668,8 @@
               ROI
             </h6>
             <h4 class="mb-0">
-              <span class="badge badge-soft-success">
-                {{getTokenDailyPriceChange(selectedTokenSymbol)}}%
+              <span class="badge" [ngClass]="{'badge-soft-success': activeInvestmentList[sellId].ROI.gte(0), 'badge-soft-danger': activeInvestmentList[sellId].ROI.lt(0)}">
+                {{activeInvestmentList[sellId].ROI.toFormat(4)}}%
               </span>
             </h4>
           </div>
@@ -690,7 +680,7 @@
               Staked KRO
             </h6>
             <h4 class="mb-0">
-              0.0000
+              {{activeInvestmentList[sellId].stake.toFormat(4)}}
             </h4>
           </div>
           <div class="col">
@@ -698,7 +688,7 @@
               KRO to Redeem
             </h6>
             <h4 class="mb-0">
-              {{kroRedeemed.toFormat(6)}}
+                {{activeInvestmentList[sellId].currValue.toFormat(4)}}
             </h4>
           </div>
         </div>
@@ -765,7 +755,6 @@
                   <button class="btn btn-white" name="button" type="button" (click)="maxSellPercent()">Max</button>
                 </div>
               </div>
-              <small id="kroStakedInInvestment" class="form-text text-secondary d-inline-block">{{kroRedeemed.toFormat(18)}} KRO staked</small>
             </form>
           </div>
         </div>

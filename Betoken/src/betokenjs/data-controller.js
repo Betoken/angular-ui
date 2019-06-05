@@ -296,7 +296,7 @@ export const loadUserData = async () => {
             // get list of Compound orders
             var compoundOrderAddrs = await betoken.getCompoundOrders(userAddr);
             if (compoundOrderAddrs.length > 0) {
-                const handleProposal = (id) => {
+                const handleProposal = async (id) => {
                     const order = await CompoundOrder(compoundOrderAddrs[id]);
                     // TODO: fetch info from order contract
                 };

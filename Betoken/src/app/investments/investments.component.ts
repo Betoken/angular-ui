@@ -181,20 +181,6 @@ export class InvestmentsComponent implements OnInit {
         return loading.investments();
     }
 
-    filterTable = (event, tableID, searchID) => {
-        let searchInput = event.target.value.toLowerCase();
-        let entries = $(`#${tableID} tr`);
-        for (let i = 0; i < entries.length; i++) {
-            let entry = entries[i];
-            let searchTarget = entry.children[searchID];
-            if (searchTarget) {
-                if (searchTarget.innerText.toLowerCase().indexOf(searchInput) > -1)
-                    entry.style.display = "";
-                else
-                    entry.style.display = "none";
-            }
-        }
-    }
 
     filterList = (event, listID, searchID) => {
         let searchInput = event.target.value.toLowerCase();

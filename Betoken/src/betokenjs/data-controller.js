@@ -541,7 +541,8 @@ export const loadStats = async () => {
     }
 
     if (!kairoTotalSupply.get().isZero()) {
-        kairoPrice.set(totalFunds.get().div(kairoTotalSupply.get()));
+        var price = totalFunds.get().div(kairoTotalSupply.get());
+        kairoPrice.set(BigNumber.max(price, BigNumber(2.5)));
     } else {
         kairoPrice.set(BigNumber(2.5));
     }

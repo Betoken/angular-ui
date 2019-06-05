@@ -61,7 +61,7 @@ export class CommissionsComponent implements OnInit {
             this.transactionId = transactionHash;
             this.step = 2;
         }
-    
+
         let confirm = () => {
             this.step = 3;
             refresh_actions.records();

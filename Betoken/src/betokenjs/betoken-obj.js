@@ -21,6 +21,11 @@ export var ERC20 = function(_tokenAddr) {
     return new web3.eth.Contract(erc20ABI, _tokenAddr);
 };
 
+export var CompoundOrder = function(_addr) {
+    var abi = require("./abi/CompoundOrder.json");
+    return new web3.eth.Contract(abi, _addr);
+};
+
 // Betoken abstraction
 /**
 * Constructs an abstraction of Betoken contracts
@@ -252,9 +257,37 @@ export var Betoken = function() {
     };
 
     self.getCompoundOrders = function(_userAddress) {
-        // TODO
+        var array = [];
+        return self.getMappingOrArrayItem("compoundOrdersCount", _userAddress).then((_count) => {
+            var count = +_count;
+            if (count === 0) {
+                return [];
+            }
+            array = new Array(count);
+            const getItem = (id) => {
+                return self.getDoubleMapping("userCompoundOrders", _userAddress, id).then((_item) => {
+                    return new Promise((fullfill, reject) => {
+                        if (typeof _item !== null) {
+                            array[id] = _item;
+                            fullfill();
+                        } else {
+                            reject();
+                        }
+                    });
+                });
+            };
+            const getAllItems = () => {
+                var results = [];
+                for (var i = 0; i < count; i++) {
+                    results.push(getItem(i));
+                }
+                return results;
+            };
+            return Promise.all(getAllItems());
+        }).then(function() {
+            return array;
+        });
     }
-    
     
     /*
     Phase handler

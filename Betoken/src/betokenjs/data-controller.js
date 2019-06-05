@@ -1,5 +1,5 @@
 // imports
-import { getDefaultAccount, DAI_ADDR } from './betoken-obj';
+import { getDefaultAccount, DAI_ADDR, CompoundOrder } from './betoken-obj';
 import ReactiveVar from "meteor-standalone-reactive-var";
 import BigNumber from "bignumber.js";
 import https from "https";
@@ -250,10 +250,11 @@ export const loadUserData = async () => {
             lastCommissionRedemption.set(+((await betoken.getMappingOrArrayItem("lastCommissionRedemption", userAddr))));
             cycleTotalCommission.set(BigNumber((await betoken.getMappingOrArrayItem("totalCommissionOfCycle", cycleNumber.get()))).div(PRECISION));
 
-            // Get list of user's investments
             isLoadingInvestments.set(true);
-            var investments = await betoken.getInvestments(userAddr);
             var stake = BigNumber(0);
+
+            // Get list of user's investments
+            var investments = await betoken.getInvestments(userAddr);
             if (investments.length > 0) {
                 const handleProposal = (id) => {
                     return betoken.getTokenSymbol(investments[id].tokenAddress).then(function(_symbol) {
@@ -273,6 +274,31 @@ export const loadUserData = async () => {
                             stake = stake.plus(currentStakeValue);
                         }
                     });
+                };
+                const handleAllProposals = () => {
+                    var results = [];
+                    for (var i = 0; i < investments.length; i++) {
+                        results.push(handleProposal(i));
+                    }
+                    return results;
+                };
+                await Promise.all(handleAllProposals());
+                investments = investments.filter((x) => +x.cycleNumber == cycleNumber.get());
+                investmentList.set(investments);
+
+                var totalKROChange = investments.map((x) => BigNumber(x.kroChange)).reduce((x, y) => x.plus(y), BigNumber(0));
+                var totalStake = investments.map((x) => BigNumber(x.stake)).reduce((x, y) => x.plus(y), BigNumber(0));
+                var totalCurrentStake = investments.filter((x) => x.isSold == false).map((x) => BigNumber(x.currValue)).reduce((x, y) => x.plus(y), BigNumber(0));
+                managerROI.set(totalStake.gt(0) ? totalKROChange.div(totalStake).times(100) : BigNumber(0));
+                currentStake.set(totalCurrentStake);
+            }
+
+            // get list of Compound orders
+            var compoundOrderAddrs = await betoken.getCompoundOrders(userAddr);
+            if (compoundOrderAddrs.length > 0) {
+                const handleProposal = (id) => {
+                    const order = await CompoundOrder(compoundOrderAddrs[id]);
+                    // TODO: fetch info from order contract
                 };
                 const handleAllProposals = () => {
                     var results = [];

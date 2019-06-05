@@ -34,10 +34,10 @@ export class InvestmentsComponent implements OnInit {
     stakeAmount: BigNumber;
     activeInvestmentList: Array<Object>;
     inactiveInvestmentList: Array<Object>;
-    sellId: Number;
     tokenData: Array<Object>;
     transactionId: String;
-    kroRedeemed: BigNumber;
+    sellId: Number;
+    sellData: Object;
 
     constructor(private ms: AppComponent) {
         this.createInvestmentPopupStep = 0;
@@ -64,7 +64,11 @@ export class InvestmentsComponent implements OnInit {
         this.sellId = 0;
         this.tokenData = new Array<Object>();
         this.transactionId = '';
-        this.kroRedeemed = new BigNumber(0);
+        this.sellData = {
+            stake: new BigNumber(0),
+            ROI: new BigNumber(0),
+            currValue: new BigNumber(0)
+        };
     }
 
     ngOnInit() {
@@ -142,7 +146,7 @@ export class InvestmentsComponent implements OnInit {
 
     openSellModal(data) {
         this.sellId = data.id;
-        this.kroRedeemed = data.currValue;
+        this.sellData = data;
         this.selectedTokenSymbol = data.tokenSymbol;
     }
 

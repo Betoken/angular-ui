@@ -668,8 +668,8 @@
               ROI
             </h6>
             <h4 class="mb-0">
-              <span class="badge" [ngClass]="{'badge-soft-success': activeInvestmentList[sellId].ROI.gte(0), 'badge-soft-danger': activeInvestmentList[sellId].ROI.lt(0)}">
-                {{activeInvestmentList[sellId].ROI.toFormat(4)}}%
+              <span class="badge" [ngClass]="{'badge-soft-success': sellData.ROI.gte(0), 'badge-soft-danger': sellData.ROI.lt(0)}">
+                {{sellData.ROI.toFormat(4)}}%
               </span>
             </h4>
           </div>
@@ -680,7 +680,7 @@
               Staked KRO
             </h6>
             <h4 class="mb-0">
-              {{activeInvestmentList[sellId].stake.toFormat(4)}}
+              {{sellData.stake.toFormat(4)}}
             </h4>
           </div>
           <div class="col">
@@ -688,7 +688,7 @@
               KRO to Redeem
             </h6>
             <h4 class="mb-0">
-                {{activeInvestmentList[sellId].currValue.toFormat(4)}}
+                {{sellData.currValue.toFormat(4)}}
             </h4>
           </div>
         </div>

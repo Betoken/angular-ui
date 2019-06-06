@@ -197,13 +197,31 @@ export var Betoken = function() {
     };
 
     self.getKairoBalanceAtCycleStart = async function(_address) {
-        let cycleStartBlock = await self.contracts.BetokenFund.methods.commissionPhaseStartBlock((await self.getPrimitiveVar("cycleNumber")) - 1).call();
+        let cycleStartBlock = await self.contracts.BetokenFund.methods.managePhaseEndBlock((await self.getPrimitiveVar("cycleNumber")) - 1).call();
         return self.contracts.Kairo.methods.balanceOfAt(_address, cycleStartBlock).call();
     };
+
+    self.getBaseStake = async (_address) => {
+        let baseStake = BigNumber(await self.getKairoBalanceAtCycleStart(_address));
+        if (baseStake.isZero()) {
+            baseStake = BigNumber(await self.getMappingOrArrayItem("baseRiskStakeFallback", _address));
+        }
+        return baseStake;
+    }
     
     self.getKairoTotalSupply = function() {
         return self.contracts.Kairo.methods.totalSupply().call();
     };
+
+    self.getRiskTaken = async (_address) => {
+        return self.getDoubleMapping("riskTakenInCycle", _address, (await self.getPrimitiveVar("cycleNumber")));
+    }
+
+    self.getRiskThreshold = async (_address) => {
+        let baseStake = await self.getBaseStake(_address);
+        let threeDayInSeconds = 3 * 24 * 60 * 60;
+        return baseStake.times(threeDayInSeconds);
+    }
     
     /**
     * Gets the Share balance of an address

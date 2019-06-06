@@ -107,7 +107,7 @@ export class InvestorComponent implements OnInit {
     
     this.avgMonthReturn = stats.avg_roi().toFormat(NUM_DECIMALS);
     this.currMoROI = stats.cycle_roi().toFormat(NUM_DECIMALS);
-    this.AUM = stats.fund_value().toFormat(NUM_DECIMALS);
+    this.AUM = stats.total_funds().toFormat(NUM_DECIMALS);
     
     this.sharesBalance = user.shares_balance();
     this.investmentBalance = user.investment_balance();

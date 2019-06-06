@@ -93,7 +93,7 @@
 
             <!-- Title -->
             <h6 class="card-title text-uppercase text-muted mb-2">
-              Staked Kairo Proportion
+              Risk Taken
             </h6>
 
             <div class="row align-items-center no-gutters">
@@ -101,7 +101,7 @@
 
                 <!-- Heading -->
                 <span class="h2 mr-2 mb-0">
-                  {{currentStakeProportion}}%
+                  {{riskTakenPercentage.toFormat(2)}}%
                 </span>
 
               </div>
@@ -109,7 +109,7 @@
 
                 <!-- Progress -->
                 <div class="progress progress-sm">
-                  <div class="progress-bar" role="progressbar" [ngStyle]="{'width': currentStakeProportion + '%'}" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                  <div class="progress-bar" role="progressbar" [ngStyle]="{'width': riskTakenPercentage.toFormat(2) + '%'}" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
 
               </div>
@@ -507,8 +507,6 @@
           <!-- IDEA: All the components below are displayed if leveraged or shorted order option is selected -->
           <hr class="mb-4 mt-0">
 
-          
-
           <!-- order details -->
           <div class="card card-inactive my-4">
             <div class="card-body">
@@ -555,19 +553,22 @@
           <p class="text-center text-muted mb-5">
             You staked <span class="font-weight-bold text-secondary">{{stakeAmount}}</span> KRO to invest in <span class="font-weight-bold text-secondary">{{getTokenName(selectedTokenSymbol)}}</span>.
           </p>
-          <hr *ngIf="createInvestmentPopupStep === 3 || createInvestmentPopupStep === 4">
-          <form *ngIf="createInvestmentPopupStep === 3 || createInvestmentPopupStep === 4">
-            <div class="form-group">
-              <label for="exampleFormControlInput1">Transaction ID</label>
-              <div class="input-group mb-3">
-                <input type="text" class="form-control form-control-lg" value="{{transactionId}}" aria-label="Transaction ID" aria-describedby="">
-                <div class="input-group-append">
-                  <a class="btn btn-white h-100" href="https://ropsten.etherscan.io/tx/{{transactionId}}" target="_blank"><i class="fe fe-external-link"></i></a>
-                </div>
+          
+        </div>
+
+        <!-- Transaction hash display for steps 3 & 4 -->
+        <hr *ngIf="createInvestmentPopupStep === 3 || createInvestmentPopupStep === 4">
+        <form *ngIf="createInvestmentPopupStep === 3 || createInvestmentPopupStep === 4">
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Transaction ID</label>
+            <div class="input-group mb-3">
+              <input type="text" class="form-control form-control-lg" value="{{transactionId}}" aria-label="Transaction ID" aria-describedby="">
+              <div class="input-group-append">
+                <a class="btn btn-white h-100" href="https://ropsten.etherscan.io/tx/{{transactionId}}" target="_blank"><i class="fe fe-external-link"></i></a>
               </div>
             </div>
-          </form>
-        </div>
+          </div>
+        </form>
 
         <!-- Continue button for step 1 -->
         <button type="submit" class="btn btn-block btn-success mt-auto" aria-label="Invest" (click)="createInvestment()" *ngIf="createInvestmentPopupStep === 1">

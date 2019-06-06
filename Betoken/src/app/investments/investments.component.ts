@@ -18,8 +18,9 @@ export class InvestmentsComponent implements OnInit {
     nextPhasePopupStep: Number;
 
     portfolioValueInDAI: String;
-    currentStake: String;
-    currentStakeProportion: String;
+    riskTaken: BigNumber;
+    riskThreshold: BigNumber;
+    riskTakenPercentage: BigNumber;
 
     userValue: String;
     days: Number;
@@ -45,8 +46,9 @@ export class InvestmentsComponent implements OnInit {
         this.nextPhasePopupStep = 0;
 
         this.portfolioValueInDAI = '';
-        this.currentStake = '';
-        this.currentStakeProportion = '';
+        this.riskTaken = new BigNumber(0);
+        this.riskThreshold = new BigNumber(1);
+        this.riskTakenPercentage = new BigNumber(0);
 
         this.userValue = '';
         this.days = 0;
@@ -59,8 +61,10 @@ export class InvestmentsComponent implements OnInit {
         this.monthly_pl = new BigNumber(0);
         this.selectedTokenSymbol = 'ETH';
         this.stakeAmount = new BigNumber(0);
+
         this.activeInvestmentList = new Array<Object>();
         this.inactiveInvestmentList = new Array<Object>();
+
         this.sellId = 0;
         this.tokenData = new Array<Object>();
         this.transactionId = '';
@@ -103,8 +107,9 @@ export class InvestmentsComponent implements OnInit {
         this.tokenData = tokens.token_data().get().filter((x) => tokens.not_stablecoin(x.symbol));
         this.userValue = user.portfolio_value().toFormat(4);
         this.portfolioValueInDAI = user.portfolio_value_in_dai().toFormat(2);
-        this.currentStake = user.current_stake().toFormat(4);
-        this.currentStakeProportion = user.current_stake().div(user.portfolio_value()).times(100).toFixed(4);
+        this.riskTaken = user.risk_taken();
+        this.riskThreshold = user.risk_threshold();
+        this.riskTakenPercentage = this.riskTaken.div(this.riskThreshold).times(100);
 
         this.days = timer.day();
         this.hours = timer.hour();

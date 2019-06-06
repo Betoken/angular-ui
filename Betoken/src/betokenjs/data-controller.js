@@ -24,8 +24,7 @@ export var managerROI = new ReactiveVar(BigNumber(0));
 export var commissionHistory = new ReactiveVar([]);
 export var depositWithdrawHistory = new ReactiveVar([]);
 export var portfolioValue = new ReactiveVar(BigNumber(0));
-export var riskTaken = new ReactiveVar(BigNumber(0));
-export var riskThreshold = new ReactiveVar(BigNumber(0));
+export var riskTakenPercentage = new ReactiveVar(BigNumber(0));
 
 // fund metadata
 export var kairoTotalSupply = new ReactiveVar(BigNumber(0));
@@ -251,8 +250,9 @@ export const loadUserData = async () => {
             cycleTotalCommission.set(BigNumber((await betoken.getMappingOrArrayItem("totalCommissionOfCycle", cycleNumber.get()))).div(PRECISION));
 
             // Get user's risk profile
-            riskTaken.set(BigNumber(await betoken.getRiskTaken(userAddr)).div(PRECISION));
-            riskThreshold.set((await betoken.getRiskThreshold(userAddr)).div(PRECISION));
+            let risk = BigNumber(await betoken.getRiskTaken(userAddr)).div(await betoken.getRiskThreshold(userAddr));
+            risk = BigNumber.min(risk, 1); // Meaningless after exceeding 1
+            riskTakenPercentage.set(BigNumber(await betoken.getRiskTaken(userAddr)).div(await betoken.getRiskThreshold(userAddr)));
 
             isLoadingInvestments.set(true);
             var stake = BigNumber(0);

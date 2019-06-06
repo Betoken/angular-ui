@@ -68,7 +68,7 @@ export const user = {
             }
             // Expected commission based on previous average ROI
             var roi = stats.cycle_roi().gt(0) ? stats.cycle_roi() : BigNumber(0);
-            return user.portfolio_value().div(Data.kairoTotalSupply.get()).times(Data.totalFunds.get()).times(roi.div(100).times(Data.commissionRate.get()).plus(Data.assetFeeRate.get())).times(Data.riskTaken.get()).div(Data.riskThreshold.get());
+            return user.portfolio_value().div(Data.kairoTotalSupply.get()).times(Data.totalFunds.get()).times(roi.div(100).times(Data.commissionRate.get()).plus(Data.assetFeeRate.get())).times(Data.riskTakenPercentage.get());
         }
         return BigNumber(0);
     },
@@ -90,8 +90,7 @@ export const user = {
     portfolio_value_in_dai: () => {
         return Data.portfolioValue.get().times(Data.totalFunds.get()).div(Data.kairoTotalSupply.get());
     },
-    risk_taken: () => Data.riskTaken.get(),
-    risk_threshold: () => Data.riskThreshold.get()
+    risk_taken_percentage: () => Data.riskTakenPercentage.get(),
 }
 
 export const stats = {

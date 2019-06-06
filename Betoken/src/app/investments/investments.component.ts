@@ -18,8 +18,6 @@ export class InvestmentsComponent implements OnInit {
     nextPhasePopupStep: Number;
 
     portfolioValueInDAI: String;
-    riskTaken: BigNumber;
-    riskThreshold: BigNumber;
     riskTakenPercentage: BigNumber;
 
     userValue: String;
@@ -46,8 +44,6 @@ export class InvestmentsComponent implements OnInit {
         this.nextPhasePopupStep = 0;
 
         this.portfolioValueInDAI = '';
-        this.riskTaken = new BigNumber(0);
-        this.riskThreshold = new BigNumber(1);
         this.riskTakenPercentage = new BigNumber(0);
 
         this.userValue = '';
@@ -107,9 +103,7 @@ export class InvestmentsComponent implements OnInit {
         this.tokenData = tokens.token_data().get().filter((x) => tokens.not_stablecoin(x.symbol));
         this.userValue = user.portfolio_value().toFormat(4);
         this.portfolioValueInDAI = user.portfolio_value_in_dai().toFormat(2);
-        this.riskTaken = user.risk_taken();
-        this.riskThreshold = user.risk_threshold();
-        this.riskTakenPercentage = this.riskTaken.div(this.riskThreshold).times(100);
+        this.riskTakenPercentage = user.risk_taken_percentage().times(100);
 
         this.days = timer.day();
         this.hours = timer.hour();

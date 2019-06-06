@@ -376,7 +376,7 @@
                 <div class="col ml--2 pl-1">
                   <span class="mb-1 h4 font-weight-bold">
                     {{token.symbol}}
-                    <span class="badge badge-soft-primary align-top ml-1" *ngIf="isMarginToken(token.symbol)">
+                    <span class="badge badge-soft-primary" *ngIf="isMarginToken(token.symbol)" style="font-size:10px;">
                       Margin Trading
                     </span>
                   </span>
@@ -542,7 +542,7 @@
           <p class="text-center text-muted mb-5">
             You staked <span class="font-weight-bold text-secondary">{{stakeAmount}}</span> KRO to invest in <span class="font-weight-bold text-secondary">{{getTokenName(selectedTokenSymbol)}}</span>.
           </p>
-          
+
         </div>
 
         <!-- Transaction hash display for steps 3 & 4 -->
@@ -710,9 +710,9 @@
               <p class="text-secondary small mb-0">This order must be at least <strong>200%</strong> collateralized. It's at risk if ETH falls below <strong>150 DAI</strong>.</p>
             </div>
           </div>
-  
+
           <hr class="my-4">
-  
+
           <!-- KRO amount to unstake -->
           <!-- IDEA: hideen when top up feature is activated -->
           <h6 class="header-pretitle">Proportion of assets to sell</h6>
@@ -729,7 +729,7 @@
               </form>
             </div>
           </div>
-  
+
           <!-- Min acceptable price -->
           <div class="row justify-content-center mb-4">
             <div class="col">
@@ -893,7 +893,7 @@
               <div class="col text-left position-absolute d-block w-auto" style="left: 49.0000%;transform: translateX(-50%);">
                 <div style="display: flex; flex-direction: column;">
                   <div style="border: 0.5px dashed #6e84a3; width: 1px; height: 8px; align-self: center;"></div>
-                  <small class="h6 text-dark">200% • min. collateral ratio</small>
+                  <small class="h6">200% • min. collateral ratio</small>
                 </div>
               </div>
               <div class="col text-right">

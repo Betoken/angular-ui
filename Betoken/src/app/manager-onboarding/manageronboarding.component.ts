@@ -57,7 +57,7 @@ export class ManageronboardingComponent implements OnInit {
   ngOnInit() {
     setInterval(() => {
       this.refreshDisplay();
-    }, 100);
+    }, 500);
     $('[data-toggle="tooltip"]').tooltip();
     $('#modalBuy').on('hidden.bs.modal', () => {
       this.resetModals();

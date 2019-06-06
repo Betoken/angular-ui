@@ -92,7 +92,7 @@ export class InvestorComponent implements OnInit {
     this.depositWithdrawHistory = user.deposit_withdraw_history().get();
     setInterval(() => {
       this.refreshDisplay();
-    }, 100);
+    }, 500);
     $('[data-toggle="tooltip"]').tooltip();
     $('#modalInvestorBuy').on('hidden.bs.modal', () => {
       this.resetModals();

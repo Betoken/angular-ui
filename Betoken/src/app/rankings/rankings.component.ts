@@ -28,7 +28,7 @@ export class RankingsComponent implements OnInit {
     ngOnInit() {
         setInterval(() => {
             this.refreshDisplay();
-        }, 100);
+        }, 500);
     }
 
     refreshDisplay() {

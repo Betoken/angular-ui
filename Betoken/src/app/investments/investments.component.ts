@@ -74,7 +74,7 @@ export class InvestmentsComponent implements OnInit {
     ngOnInit() {
         setInterval(() => {
             this.refreshDisplay();
-        }, 100);
+        }, 500);
         $('#modalBuy').on('hidden.bs.modal', () => {
             this.resetModals();
         });

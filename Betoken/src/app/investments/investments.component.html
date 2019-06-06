@@ -406,136 +406,133 @@
         </ul>
 
         <!-- Step 1: enter stake amount -->
-        <!-- Asset price -->
-        <div class="row" *ngIf="createInvestmentPopupStep === 1">
+        <div *ngIf="createInvestmentPopupStep === 1">
+          <!-- Asset price -->
+          <div class="row">
 
-          <div class="col">
-            <h6 class="header-pretitle">
-              Current price in DAI
-            </h6>
-            <h4 class="mb-0">
-              {{assetSymbolToPrice(selectedTokenSymbol).dp(10)}}
-            </h4>
+            <div class="col">
+              <h6 class="header-pretitle">
+                Current price in DAI
+              </h6>
+              <h4 class="mb-0">
+                {{assetSymbolToPrice(selectedTokenSymbol).dp(10)}}
+              </h4>
+            </div>
+            <div class="col">
+              <h6 class="header-pretitle">
+                24h change
+              </h6>
+              <h4 class="mb-0">
+                <span class="badge" [ngClass]="{'badge-soft-success': +getTokenDailyPriceChange(selectedTokenSymbol) >= 0, 'badge-soft-danger': 0 > +getTokenDailyPriceChange(selectedTokenSymbol)}">
+                  {{getTokenDailyPriceChange(selectedTokenSymbol)}}%
+                </span>
+              </h4>
+            </div>
           </div>
-          <div class="col">
-            <h6 class="header-pretitle">
-              24h change
-            </h6>
-            <h4 class="mb-0">
-              <span class="badge" [ngClass]="{'badge-soft-success': +getTokenDailyPriceChange(selectedTokenSymbol) >= 0, 'badge-soft-danger': 0 > +getTokenDailyPriceChange(selectedTokenSymbol)}">
-                {{getTokenDailyPriceChange(selectedTokenSymbol)}}%
-              </span>
-            </h4>
-          </div>
-        </div>
-        <hr class="my-4" *ngIf="createInvestmentPopupStep === 1">
+          <hr class="my-4" >
 
-        <!-- KRO amount to stake -->
-        <h6 class="header-pretitle" *ngIf="createInvestmentPopupStep === 1">I want to buy {{getTokenName(selectedTokenSymbol)}} by staking</h6>
-        <div class="row justify-content-center" *ngIf="createInvestmentPopupStep === 1">
-          <div class="col">
-            <form>
-              <div class="input-group mb-2">
-                <input type="number" min="0.0" max={{kairo_balance.toFormat(18)}} class="form-control form-control-lg pr-0" aria-describedby="KRO Token Amount to stake" placeholder="0.0 KRO" id="kairo-input">
-                <div class="input-group-append">
-                  <button class="btn btn-white" name="button" type="button" (click)="maxStake()">Max</button>
-                  <button class="btn btn-white dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Basic order</button>
-                  <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Leveraged (0.0x)</a>
-                    <a class="dropdown-item" href="#">Leveraged (0.0x)</a>
-                    <a class="dropdown-item" href="#">Leveraged (0.0x)</a>
-                    <a class="dropdown-item" href="#">Leveraged (0.0x)</a>
-                    <a class="dropdown-item" href="#">Shorted (0.0x)</a>
-                    <a class="dropdown-item" href="#">Shorted (0.0x)</a>
-                    <a class="dropdown-item" href="#">Shorted (0.0x)</a>
-                    <a class="dropdown-item" href="#">Shorted (0.0x)</a>
+          <!-- KRO amount to stake -->
+          <h6 class="header-pretitle">I want to buy {{getTokenName(selectedTokenSymbol)}} by staking</h6>
+          <div class="row justify-content-center">
+            <div class="col">
+              <form>
+                <div class="input-group mb-2">
+                  <input type="number" min="0.0" max={{kairo_balance.toFormat(18)}} class="form-control form-control-lg pr-0" aria-describedby="KRO Token Amount to stake" placeholder="0.0 KRO" id="kairo-input">
+                  <div class="input-group-append">
+                    <button class="btn btn-white" name="button" type="button" (click)="maxStake()">Max</button>
+                    <button class="btn btn-white dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Basic order</button>
+                    <div class="dropdown-menu">
+                      <a class="dropdown-item" href="#">Leveraged (0.0x)</a>
+                      <a class="dropdown-item" href="#">Leveraged (0.0x)</a>
+                      <a class="dropdown-item" href="#">Leveraged (0.0x)</a>
+                      <a class="dropdown-item" href="#">Leveraged (0.0x)</a>
+                      <a class="dropdown-item" href="#">Shorted (0.0x)</a>
+                      <a class="dropdown-item" href="#">Shorted (0.0x)</a>
+                      <a class="dropdown-item" href="#">Shorted (0.0x)</a>
+                      <a class="dropdown-item" href="#">Shorted (0.0x)</a>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <small id="kroBalance" class="form-text text-secondary d-inline-block mb-0 mt-1">{{kairo_balance.toFormat(18)}} KRO available</small>
-            </form>
+                <small id="kroBalance" class="form-text text-secondary d-inline-block mb-0 mt-1">{{kairo_balance.toFormat(18)}} KRO available</small>
+              </form>
+            </div>
           </div>
-        </div>
-        <!-- Max acceptable price -->
-        <div class="row justify-content-center" *ngIf="createInvestmentPopupStep === 1">
-          <div class="col">
-            <div id="accordion">
-              <!-- question -->
-              <div class="card border-0 shadow-none mb-0">
-                <div class="card-header border-0 shadow-none px-0" id="headingOne">
-                  <a href="" class="text-secondary" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                    <div class="row align-items-center no-gutters">
-                      <div class="col mr-auto">
-                        <span class="card-text text-muted small">
-                          Advanced
-                        </span>
-                      </div>
-                      <div class="col-auto">
-                        <i class="fe fe-plus"></i>
-                      </div>
-                    </div>
-                  </a>
-                </div>
-                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-                  <div class="card-body p-0 pb-4">
-                    <div class="row align-items-center">
-                      <div class="col">
-                        <h6 class="header-pretitle">
-                          Max acceptable price
-                        </h6>
-                        <p>Your order <strong>won't</strong> be executed if the price goes up by more than:</p>
-                        <form>
-                          <div class="input-group input-group-lg">
-                            <input type="number" class="form-control border-right-0" aria-describedby="maxAcceptablePrice" placeholder="0.0" value="10" id="maxAcceptablePrice">
-                            <div class="input-group-append">
-                              <span class="input-group-text rounded-right border-left-0" id="maxAcceptablePriceUnit">%</span>
-                            </div>
-                          </div>
-                        </form>
-                      </div>
-                    </div>
 
+          <!-- Max acceptable price -->
+          <div class="row justify-content-center">
+            <div class="col">
+              <div id="accordion">
+                <!-- question -->
+                <div class="card border-0 shadow-none mb-0">
+                  <div class="card-header border-0 shadow-none px-0" id="headingOne">
+                    <a href="" class="text-secondary" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                      <div class="row align-items-center no-gutters">
+                        <div class="col mr-auto">
+                          <span class="card-text text-muted small">
+                            Advanced
+                          </span>
+                        </div>
+                        <div class="col-auto">
+                          <i class="fe fe-plus"></i>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                  <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body p-0 pb-4">
+                      <div class="row align-items-center">
+                        <div class="col">
+                          <h6 class="header-pretitle">
+                            Max acceptable price
+                          </h6>
+                          <p>Your order <strong>won't</strong> be executed if the price goes up by more than:</p>
+                          <form>
+                            <div class="input-group input-group-lg">
+                              <input type="number" class="form-control border-right-0" aria-describedby="maxAcceptablePrice" placeholder="0.0" value="10" id="maxAcceptablePrice">
+                              <div class="input-group-append">
+                                <span class="input-group-text rounded-right border-left-0" id="maxAcceptablePriceUnit">%</span>
+                              </div>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <!-- IDEA: All the components below are displayed if leveraged or shorted order option is selected -->
-        <hr class="mb-4 mt-0" *ngIf="createInvestmentPopupStep === 1">
+          <!-- IDEA: All the components below are displayed if leveraged or shorted order option is selected -->
+          <hr class="mb-4 mt-0">
 
-        <!-- Payout -->
-        <h6 class="header-pretitle" *ngIf="createInvestmentPopupStep === 1">
-          2x leverage payout
-        </h6>
-        <p *ngIf="createInvestmentPopupStep === 1">This order <strong>magnifies ETH returns by 2x</strong>.</p>
-        <!-- IDEA: leveraged order -->
-        <p *ngIf="createInvestmentPopupStep === 1">If ETH goes <span class="text-success">+10%</span>, you <span class="text-success">gain 20%</span>.</p>
-        <p *ngIf="createInvestmentPopupStep === 1">If ETH goes <span class="text-danger">-10%</span>, you <span class="text-danger">lose -20%</span>.</p>
-        <!-- IDEA: shorted order --
-        <p *ngIf="createInvestmentPopupStep === 1">If ETH goes <span class="text-danger">-10%</span>, you <span class="text-success">gain 20%</span>.</p>
-        <p *ngIf="createInvestmentPopupStep === 1">If ETH goes <span class="text-success">+10%</span>, you <span class="text-danger">lose -20%</span>.</p>
-        -->
+          
 
-        <!-- order details -->
-        <div class="card card-inactive my-4" *ngIf="createInvestmentPopupStep === 1">
-          <div class="card-body">
-            <h3>Order details</h3>
-            <h6 class="header-pretitle">Expiry</h6>
-            <p>
-              This order will close only if you close it or if your collateral get liquidated. <a href="#">Learn More</a>
-            </p>
-            <h6 class="header-pretitle">Collateralization</h6>
-            <p>
-              You must provide KRO collateral 200% times the value of your order to short ETH. You can repay a part or the total of the collateral at anytime after. <a href="#">Learn More</a>
-            </p>
-            <h6 class="header-pretitle">Liquidation</h6>
-            <p>
-              This order could be liquidated if it's below 200% collateralization. <a href="#">Learn More</a>
-            </p>
+          <!-- order details -->
+          <div class="card card-inactive my-4">
+            <div class="card-body">
+              <!-- Payout -->
+              <h6 class="header-pretitle">
+                2x leverage payout
+              </h6>
+              <p>This order <strong>magnifies {{selectedTokenSymbol}} returns by 2x</strong>.</p>
+              <!-- IDEA: leveraged order -->
+              <p>If {{selectedTokenSymbol}}'s price <span class="text-success">+10%</span>, you <span class="text-success">gain +20%</span>.</p>
+              <p>If {{selectedTokenSymbol}}'s price <span class="text-danger">-10%</span>, you <span class="text-danger">lose -20%</span>.</p>
+              <!-- IDEA: shorted order --
+              <p>If {{selectedTokenSymbol}} goes <span class="text-danger">-10%</span>, you <span class="text-success">gain 20%</span>.</p>
+              <p>If {{selectedTokenSymbol}} goes <span class="text-success">+10%</span>, you <span class="text-danger">lose -20%</span>.</p>
+              -->
+
+              <h6 class="header-pretitle">Liquidation</h6>
+              <p>
+                This order could be liquidated if its collateral ratio is below 150%. If that happens, a large portion of your stake will be lost. <a href="#">Learn More</a>
+              </p>
+            </div>
           </div>
         </div>
+        
 
         <!-- Step 2: confirm transaction -->
         <p class="text-center text-muted mb-5" *ngIf="createInvestmentPopupStep === 2">
@@ -551,24 +548,26 @@
 
         <!-- Step 4: transaction confirmed -->
         <!-- Investment confirmed body -->
-        <p class="h1 text-center" *ngIf="createInvestmentPopupStep === 4">
-          <i class="fe fe-check-circle text-success"></i>
-        </p>
-        <p class="text-center text-muted mb-5" *ngIf="createInvestmentPopupStep === 4">
-          You staked <span class="font-weight-bold text-secondary">{{stakeAmount}}</span> KRO to invest in <span class="font-weight-bold text-secondary">{{getTokenName(selectedTokenSymbol)}}</span>.
-        </p>
-        <hr *ngIf="createInvestmentPopupStep === 3 || createInvestmentPopupStep === 4">
-        <form *ngIf="createInvestmentPopupStep === 3 || createInvestmentPopupStep === 4">
-          <div class="form-group">
-            <label for="exampleFormControlInput1">Transaction ID</label>
-            <div class="input-group mb-3">
-              <input type="text" class="form-control form-control-lg" value="{{transactionId}}" aria-label="Transaction ID" aria-describedby="">
-              <div class="input-group-append">
-                <a class="btn btn-white h-100" href="https://ropsten.etherscan.io/tx/{{transactionId}}" target="_blank"><i class="fe fe-external-link"></i></a>
+        <div *ngIf="createInvestmentPopupStep === 4">
+          <p class="h1 text-center">
+            <i class="fe fe-check-circle text-success"></i>
+          </p>
+          <p class="text-center text-muted mb-5">
+            You staked <span class="font-weight-bold text-secondary">{{stakeAmount}}</span> KRO to invest in <span class="font-weight-bold text-secondary">{{getTokenName(selectedTokenSymbol)}}</span>.
+          </p>
+          <hr *ngIf="createInvestmentPopupStep === 3 || createInvestmentPopupStep === 4">
+          <form *ngIf="createInvestmentPopupStep === 3 || createInvestmentPopupStep === 4">
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Transaction ID</label>
+              <div class="input-group mb-3">
+                <input type="text" class="form-control form-control-lg" value="{{transactionId}}" aria-label="Transaction ID" aria-describedby="">
+                <div class="input-group-append">
+                  <a class="btn btn-white h-100" href="https://ropsten.etherscan.io/tx/{{transactionId}}" target="_blank"><i class="fe fe-external-link"></i></a>
+                </div>
               </div>
             </div>
-          </div>
-        </form>
+          </form>
+        </div>
 
         <!-- Continue button for step 1 -->
         <button type="submit" class="btn btn-block btn-success mt-auto" aria-label="Invest" (click)="createInvestment()" *ngIf="createInvestmentPopupStep === 1">
@@ -778,7 +777,6 @@
         -->
 
         <!-- Min acceptable price -->
-        <!-- IDEA: Hideen when Top up feature is activated -->
         <div class="row justify-content-center mb-4" *ngIf="sellInvestmentPopupStep === 0">
           <div class="col">
             <div id="accordion">

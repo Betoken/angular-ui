@@ -36,7 +36,7 @@ export class SideNavComponent implements OnInit {
   ngOnInit() {
     setInterval(() => {
       this.refreshDisplay();
-    }, 100);
+    }, 500);
   }
   
   refreshDisplay() {

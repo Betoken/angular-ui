@@ -31,7 +31,7 @@ export class CommissionsComponent implements OnInit {
             // using this.loadData directly as arg for setInterval() DOES NOT WORK!
             // I've tried, trust me
             this.refreshDisplay();
-        }, 100);
+        }, 500);
         $('#modalRedeem').on('hidden.bs.modal', () => {
             this.resetModals();
         });

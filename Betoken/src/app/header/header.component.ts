@@ -58,7 +58,7 @@ export class HeaderComponent implements OnInit {
     error_notifications.set_error_msg("");
     setInterval(() => {
         this.refreshDisplay();
-    }, 100);
+    }, 500);
   }
 
   refreshDisplay() {

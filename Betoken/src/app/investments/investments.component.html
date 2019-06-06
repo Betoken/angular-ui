@@ -310,12 +310,15 @@
               Select An Asset
             </h4>
             <!-- Selected Asset title -->
-            <h4 class="card-header-title" *ngIf="createInvestmentPopupStep === 1">
-              <span class="avatar avatar-xs align-middle mr-2">
-                <img src={{getTokenLogoUrl(selectedTokenSymbol)}} alt="logo" class="avatar-img rounded-circle">
-              </span>
-              Buy {{getTokenName(selectedTokenSymbol)}}
-            </h4>
+            <a class="text-secondary" href="#/investments" (click)="createInvestmentPopupStep = 0;">
+              <h4 class="card-header-title d-flex align-items-center" *ngIf="createInvestmentPopupStep === 1">
+                <i class="fe fe-arrow-left mr-2"></i>
+                <span class="avatar avatar-xs align-middle mr-2">
+                  <img src={{getTokenLogoUrl(selectedTokenSymbol)}} alt="logo" class="avatar-img rounded-circle">
+                </span>
+                Buy {{getTokenName(selectedTokenSymbol)}}
+              </h4>
+            </a>
             <!-- Confirm asset investment title -->
             <h4 class="card-header-title" *ngIf="createInvestmentPopupStep === 2">
               Confirm Investment
@@ -528,7 +531,7 @@
 
         <!-- Step 3: transaction broadcasted -->
         <!-- Processing investment body -->
-        <div class="py-5 is-loading is-loading-lg" *ngIf="createInvestmentPopupStep === 3"></div>
+        <img class="image-fluid d-block mx-auto mb-4" src="assets/img/animated-logo.svg" alt="Betoken logo" style="width: 88px;" *ngIf="createInvestmentPopupStep === 3">
         <p class="text-center text-muted mb-5" *ngIf="createInvestmentPopupStep === 3">
           Your investment is being saved on the Ethereum blockchain.
         </p>
@@ -784,7 +787,7 @@
 
         <!--Step 2: tx broadcasted-->
         <!-- loader -->
-        <div class="py-5 is-loading is-loading-lg" *ngIf="sellInvestmentPopupStep === 2"></div>
+        <img class="image-fluid d-block mx-auto mb-4" src="assets/img/animated-logo.svg" alt="Betoken logo" style="width: 88px;" *ngIf="sellInvestmentPopupStep === 2">
         <!-- Tx broadcasted body -->
         <p class="text-center text-muted mb-5" *ngIf="sellInvestmentPopupStep === 2">
           Your transaction is being saved on the Ethereum blockchain. You can check its status on Etherscan.
@@ -931,7 +934,7 @@
 
         <!--Step 2: tx broadcasted-->
         <!-- loader -->
-        <div class="py-5 is-loading is-loading-lg" *ngIf="sellInvestmentPopupStep === 2"></div>
+        <img class="image-fluid d-block mx-auto mb-4" src="assets/img/animated-logo.svg" alt="Betoken logo" style="width: 88px;" *ngIf="sellInvestmentPopupStep === 2">
         <!-- Tx broadcasted body -->
         <p class="text-center text-muted mb-5" *ngIf="sellInvestmentPopupStep === 2">
           Your transaction is being saved on the Ethereum blockchain. You can check its status on Etherscan.

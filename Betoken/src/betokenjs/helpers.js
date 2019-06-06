@@ -227,7 +227,7 @@ export const manager_actions = {
     new_compound_order: async function (orderType, tokenSymbol, stakeInKRO, minPrice, maxPrice, pending, confirm) {
         try {
             var tokenAddress = Data.assetSymbolToCTokenAddress(tokenSymbol);
-            betoken.createInvestment(orderType, tokenAddress, stakeInKRO, minPrice, maxPrice, pending, confirm);
+            betoken.createCompoundOrder(orderType, tokenAddress, stakeInKRO, minPrice, maxPrice, pending, confirm);
         } catch (error) {
             error_notifications.set_error_msg(SEND_TX_ERR);
         }

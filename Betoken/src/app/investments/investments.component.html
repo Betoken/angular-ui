@@ -197,27 +197,21 @@
                 </div>
                 <div class="col">
                   <span class="h4 mb-1">
-                    {{data.tokenSymbol}}<span class="text-secondary d-none d-lg-inline-block ml-1 small font-weight-normal">• Leveraged 4x {{ (getTokenName(data.tokenSymbol).length>24)? (getTokenName(data.tokenSymbol) | slice:0:24)+'..':(getTokenName(data.tokenSymbol)) }}</span>
+                    {{data.tokenSymbol}}<span class="text-secondary d-none d-lg-inline-block ml-1 small font-weight-normal"> {{ (getTokenName(data.tokenSymbol).length>24)? (getTokenName(data.tokenSymbol) | slice:0:24)+'..':(getTokenName(data.tokenSymbol)) }}</span>
                   </span>
                   <br>
                   <small class="text-danger mb-0">
                     Unsafe
                   </small>
-                  <!-- IDEA: At risk --
-                  <span class="badge badge-soft-warning">
-                    At risk
+                  <!-- IDEA: At risk -->
+                  <span class="badge">
+                    Long 1.5x
                   </span>
-                  -->
                   <!-- IDEA: Safe --
                   <span class="badge badge-soft-success">
                     Safe
                   </span>
                   -->
-                </div>
-                <div class="col d-none d-lg-block">
-                  <span class="text-secondary small">Price</span>
-                  <br>
-                  <span class="font-weight-bold">{{data.sellPrice.toFormat(6)}} DAI</span>
                 </div>
                 <div class="col-auto text-right">
                   <span class="font-weight-bold">{{data.currValue.toFormat(4)}} KRO</span>
@@ -588,8 +582,9 @@
               <span class="avatar avatar-xs align-middle mr-2">
                 <img src={{getTokenLogoUrl(selectedTokenSymbol)}} alt="logo" class="avatar-img rounded-circle">
               </span>
-              {{selectedTokenSymbol}} • Leveraged 4x
+              {{selectedTokenSymbol}}
             </h4>
+            <time class="header-pretitle h6 mb-0" *ngIf="sellInvestmentPopupStep === 0">OPENED 5/30/2019 • 9:12:35 PM</time>
             <!-- Confirm asset investment title -->
             <h4 class="card-header-title" *ngIf="sellInvestmentPopupStep === 1">
               Confirm sell order

@@ -138,7 +138,7 @@ export class InvestmentsComponent implements OnInit {
 
         let tokenPrice = this.assetSymbolToPrice(this.selectedTokenSymbol);
         let maxPrice = tokenPrice.plus(tokenPrice.times($('#maxAcceptablePrice').val()).div(100));
-        manager_actions.new_investment(this.selectedTokenSymbol, this.stakeAmount, new BigNumber(0), maxPrice, pending, confirm);
+        manager_actions.new_compound_order(true, this.selectedTokenSymbol, this.stakeAmount, new BigNumber(0), maxPrice, pending, confirm);
     }
 
     // Sell investment

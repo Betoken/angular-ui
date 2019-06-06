@@ -84,6 +84,10 @@ export const assetSymbolToCTokenAddress = (_symbol) => {
     return CTOKENS.find((x) => x.symbol === _symbol).address;
 }
 
+export const assetCTokenAddressToSymbol = (_addr) => {
+    return CTOKENS.find((x) => x.address === _addr).symbol;
+}
+
 export const assetSymbolToDailyPriceChange = function(_symbol) {
     return TOKEN_DATA.get().find((x) => x.symbol === _symbol).dailyPriceChange;
 };
@@ -268,9 +272,9 @@ export const loadUserData = async () => {
             if (investments.length > 0) {
                 const handleProposal = (id) => {
                     return betoken.getTokenSymbol(investments[id].tokenAddress).then(function(_symbol) {
+                        investments[id].type = "basic";
                         investments[id].id = id;
                         investments[id].tokenSymbol = _symbol;
-                        investments[id].investment = BigNumber(investments[id].stake).div(kairoTotalSupply.get()).times(totalFunds.get()).div(PRECISION);
                         investments[id].stake = BigNumber(investments[id].stake).div(PRECISION);
                         investments[id].buyPrice = BigNumber(investments[id].buyPrice).div(PRECISION);
                         investments[id].sellPrice = investments[id].isSold ? BigNumber(investments[id].sellPrice).div(PRECISION) : assetSymbolToPrice(_symbol);
@@ -294,7 +298,6 @@ export const loadUserData = async () => {
                 };
                 await Promise.all(handleAllProposals());
                 investments = investments.filter((x) => +x.cycleNumber == cycleNumber.get());
-                investmentList.set(investments);
 
                 totalKROChange = totalKROChange.plus(investments.map((x) => BigNumber(x.kroChange)).reduce((x, y) => x.plus(y), BigNumber(0)));
             }
@@ -303,25 +306,49 @@ export const loadUserData = async () => {
             var compoundOrderAddrs = await betoken.getCompoundOrders(userAddr);
             var compoundOrders = new Array(compoundOrderAddrs.length);
             if (compoundOrderAddrs.length > 0) {
+                const properties = ["stake", "cycleNumber", "collateralAmountInDAI", "compoundTokenAddr", "isSold", "orderType", "buyTime", "getCurrentCollateralRatioInDAI", "getCurrentProfitInDAI"];
                 const handleProposal = async (id) => {
                     const order = await CompoundOrder(compoundOrderAddrs[id]);
-                    // TODO: fetch info from order contract
+                    let orderData = {"id": id + investments.length};
+                    compoundOrders[id] = orderData;
                     const batch = new web3.BatchRequest();
-                    batch.add();
+                    for (let prop of properties) {
+                        const callback = (err, result) => orderData[prop] = result;
+                        batch.add(order.methods[prop]().call.request(callback));
+                    }
+                    return batch.execute();
                 };
                 const handleAllProposals = () => {
                     var results = [];
-                    for (var i = 0; i < investments.length; i++) {
+                    for (var i = 0; i < compoundOrderAddrs.length; i++) {
                         results.push(handleProposal(i));
                     }
                     return results;
                 };
                 await Promise.all(handleAllProposals());
-                investments = investments.filter((x) => +x.cycleNumber == cycleNumber.get());
-                investmentList.set(investments);
 
-                totalKROChange = totalKROChange.plus(investments.map((x) => BigNumber(x.kroChange)).reduce((x, y) => x.plus(y), BigNumber(0)));
+                // reformat compound order objects
+                compoundOrders = compoundOrders.filter((x) => +x.cycleNumber == cycleNumber.get());
+                for (let o of compoundOrders) {
+                    o.stake = BigNumber(o.stake).div(PRECISION);
+                    o.cycleNumber = +o.cycleNumber;
+                    o.collateralAmountInDAI = BigNumber(o.collateralAmountInDAI).div(PRECISION);
+                    o.buyTime = new Date(+o.buyTime * 1e3);
+                    o.collateralRatio = BigNumber(o.getCurrentCollateralRatioInDAI).div(PRECISION);
+                    o.currProfit = BigNumber(o.getCurrentProfitInDAI).div(PRECISION);
+                    
+                    o.ROI = o.currProfit.div(collateralAmountInDAI).times(100);
+                    o.kroChange = o.ROI.times(o.stake).div(100);
+                    o.symbol = assetCTokenAddressToSymbol(o.compoundTokenAddr);
+                    o.type = "compound"
+
+                    delete o.getCurrentCollateralRatioInDAI;
+                    delete o.getCurrentProfitInDAI;
+                }
+
+                totalKROChange = totalKROChange.plus(compoundOrders.map((x) => BigNumber(x.kroChange)).reduce((x, y) => x.plus(y), BigNumber(0)));
             }
+            investmentList.set(investments.concat(compoundOrders));
 
             portfolioValue.set(stake.plus(kairoBalance.get()));
             var cycleStartKRO = BigNumber(await betoken.getBaseStake(userAddr)).div(PRECISION);

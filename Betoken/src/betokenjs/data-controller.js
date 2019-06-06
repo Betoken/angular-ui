@@ -311,12 +311,11 @@ export const loadUserData = async () => {
                     const order = await CompoundOrder(compoundOrderAddrs[id]);
                     let orderData = {"id": id + investments.length};
                     compoundOrders[id] = orderData;
-                    const batch = new web3.BatchRequest();
+                    let promises = [];
                     for (let prop of properties) {
-                        const callback = (err, result) => orderData[prop] = result;
-                        batch.add(order.methods[prop]().call.request(callback));
+                        promises.push(order.methods[prop]().call().then((x) => orderData[prop] = x));
                     }
-                    return batch.execute();
+                    return await Promise.all(promises);
                 };
                 const handleAllProposals = () => {
                     var results = [];
@@ -335,11 +334,12 @@ export const loadUserData = async () => {
                     o.collateralAmountInDAI = BigNumber(o.collateralAmountInDAI).div(PRECISION);
                     o.buyTime = new Date(+o.buyTime * 1e3);
                     o.collateralRatio = BigNumber(o.getCurrentCollateralRatioInDAI).div(PRECISION);
-                    o.currProfit = BigNumber(o.getCurrentProfitInDAI).div(PRECISION);
+                    o.currProfit = BigNumber(o.getCurrentProfitInDAI._amount).times(o.getCurrentProfitInDAI._isNegative ? -1 : 1).div(PRECISION);
                     
-                    o.ROI = o.currProfit.div(collateralAmountInDAI).times(100);
+                    o.ROI = o.currProfit.div(o.collateralAmountInDAI).times(100);
                     o.kroChange = o.ROI.times(o.stake).div(100);
-                    o.symbol = assetCTokenAddressToSymbol(o.compoundTokenAddr);
+                    o.tokenSymbol = assetCTokenAddressToSymbol(o.compoundTokenAddr);
+                    o.currValue = o.stake.plus(o.kroChange);
                     o.type = "compound"
 
                     delete o.getCurrentCollateralRatioInDAI;

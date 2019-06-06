@@ -1,293 +1,291 @@
 <!-- HEADER -->
 <div class="header bg-dark pb-5 pt-5">
-    <div class="container-fluid">
-      <div class="card-deck mb-0">
+  <div class="container-fluid">
+    <h1 class="header-title text-white">
+      Your Stats
+    </h1>
+    <hr>
+    <div class="card-deck mb-0">
       <!-- Card -->
       <div class="card" data-toggle="tooltip" data-html="true" title="Amount of Betoken's AUM you manage. The more Kairo you own, the more money you will manage.">
         <div class="card-body">
           <div class="row align-items-center">
             <div class="col">
-
+              
               <!-- Title -->
               <h6 class="card-title text-uppercase text-muted mb-2">
                 Your Portfolio Value ($DAI)
               </h6>
-
+              
               <!-- Heading -->
               <span class="h2 mb-0">
                 {{portfolioValueInDAI}}
               </span>
-
+              
             </div>
             <div class="col-auto">
-
+              
               <!-- Icon -->
               <span class="h2 fe fe-pie-chart text-muted mb-0"></span>
-
+              
             </div>
           </div> <!-- / .row -->
-
+          
         </div>
       </div>
-        <!-- Card -->
-        <div class="card" data-toggle="tooltip" data-html="true" title="The more Kairo you own, the more money you will manage, the more commission you will receive. You will be able to earn Kairo by making profitable investments for the Betoken fund.">
-          <div class="card-body">
-            <div class="row align-items-center">
-              <div class="col">
-
-                <!-- Title -->
-                <h6 class="card-title text-uppercase text-muted mb-2">
-                  Your KRO Balance
-                </h6>
-
-                <!-- Heading -->
-                <span class="h2 mb-0">
-                  {{kairo_balance}}
-                </span>
-
-                <!-- Badge -->
-                <span class="badge" [ngClass]="{'badge-soft-success': monthly_pl.gte(0), 'badge-soft-danger': monthly_pl.lt(0)}">
-                  {{monthly_pl.toFormat(4)}}%
-                </span>
-
-              </div>
-              <div class="col-auto">
-
-                <!-- Icon -->
-                <span class="h2 fe fe-zap text-muted mb-0"></span>
-
-              </div>
-            </div> <!-- / .row -->
-
-          </div>
-        </div>
-        <!-- Card -->
-        <div class="card" data-toggle="tooltip" data-html="true" title="<strong>20%</strong> of the fund's profit and <strong>0.1%</strong> of the AUM is set aside as commissions every month, which is paid to managers proportional to the Kairo they hold. The estimate displayed here is calculated using the current fund ROI.">
-          <div class="card-body">
-            <div class="row align-items-center">
-              <div class="col">
-
-                <!-- Title -->
-                <h6 class="card-title text-uppercase text-muted mb-2">
-                  Your Estimated Commission This Month ($DAI)
-                </h6>
-
-                <!-- Heading -->
-                <span class="h2 mb-0">
-                  {{expected_commission}}
-                </span>
-
-              </div>
-              <div class="col-auto">
-
-                <!-- Icon -->
-                <span class="h2 fe fe-award text-muted mb-0"></span>
-
-              </div>
-            </div> <!-- / .row -->
-
-          </div>
-        </div>
-        <!-- Card -->
-        <div class="card">
-          <div data-toggle="tooltip" title="Your ranking among Betoken's managers based on your Kairo balance">
-            <div class="card-body">
-              <div class="row align-items-center">
-                <div class="col">
-
-                  <!-- Title -->
-                  <h6 class="card-title text-uppercase text-muted mb-2">
-                    Your Ranking
-                  </h6>
-
-                  <!-- Heading -->
-                  <span class="h2 mb-0">
-                    {{userRanking}}
-                  </span>
-
-                </div>
-                <div class="col-auto">
-
-                  <!-- Icon -->
-                  <span class="h2 fe fe-user text-muted mb-0"></span>
-
-                </div>
-              </div> <!-- / .row -->
-
+      <!-- Card -->
+      <div class="card" data-toggle="tooltip" data-html="true" title="The more Kairo you own, the more money you will manage, the more commission you will receive. You will be able to earn Kairo by making profitable investments for the Betoken fund.">
+        <div class="card-body">
+          <div class="row align-items-center">
+            <div class="col">
+              
+              <!-- Title -->
+              <h6 class="card-title text-uppercase text-muted mb-2">
+                Your KRO Balance
+              </h6>
+              
+              <!-- Heading -->
+              <span class="h2 mb-0">
+                {{kairo_balance}}
+              </span>
+              
+              <!-- Badge -->
+              <span class="badge" [ngClass]="{'badge-soft-success': monthly_pl.gte(0), 'badge-soft-danger': monthly_pl.lt(0)}">
+                {{monthly_pl.toFormat(4)}}%
+              </span>
+              
             </div>
+            <div class="col-auto">
+              
+              <!-- Icon -->
+              <span class="h2 fe fe-zap text-muted mb-0"></span>
+              
+            </div>
+          </div> <!-- / .row -->
+          
+        </div>
+      </div>
+      <!-- Card -->
+      <div class="card" data-toggle="tooltip" data-html="true" title="<strong>20%</strong> of the fund's profit and <strong>0.1%</strong> of the AUM is set aside as commissions every month, which is paid to managers proportional to the Kairo they hold. The estimate displayed here is calculated using the current fund ROI.">
+        <div class="card-body">
+          <div class="row align-items-center">
+            <div class="col">
+              
+              <!-- Title -->
+              <h6 class="card-title text-uppercase text-muted mb-2">
+                Your Estimated Commission This Month ($DAI)
+              </h6>
+              
+              <!-- Heading -->
+              <span class="h2 mb-0">
+                {{expected_commission}}
+              </span>
+              
+            </div>
+            <div class="col-auto">
+              
+              <!-- Icon -->
+              <span class="h2 fe fe-award text-muted mb-0"></span>
+              
+            </div>
+          </div> <!-- / .row -->
+          
+        </div>
+      </div>
+      <!-- Card -->
+      <div class="card">
+        <div data-toggle="tooltip" title="Your ranking among Betoken's managers based on your Kairo balance">
+          <div class="card-body">
+            <div class="row align-items-center">
+              <div class="col">
+                
+                <!-- Title -->
+                <h6 class="card-title text-uppercase text-muted mb-2">
+                  Your Ranking
+                </h6>
+                
+                <!-- Heading -->
+                <span class="h2 mb-0">
+                  {{userRanking}}
+                </span>
+                
+              </div>
+              <div class="col-auto">
+                
+                <!-- Icon -->
+                <span class="h2 fe fe-user text-muted mb-0"></span>
+                
+              </div>
+            </div> <!-- / .row -->
+            
           </div>
+        </div>
+      </div>
+    </div> <!-- / .row -->
+    <!-- Body -->
+    <div class="header-body">
+      <div class="row align-items-end">
+        <div class="col">
+          <!-- Title -->
+          <h1 class="header-title text-white">
+            Betoken Stats
+          </h1>
+          
+        </div>
+        <div class="col-auto">
+          
+          <!-- Nav -->
+          <ul class="nav nav-tabs header-tabs">
+            <li class="nav-item" data-toggle="chart">
+              <a href="#" class="nav-link active" data-toggle="tab" (click)="chartTabId = 0; drawChart(0);">
+                <h6 class="header-pretitle text-secondary">
+                  ROI (1M)
+                </h6>
+                <h3 class="text-white mb-0">
+                  {{currMoROI}}%
+                </h3>
+              </a>
+            </li>
+            <li class="nav-item" data-toggle="chart">
+              <a href="#" class="nav-link" data-toggle="tab" (click)="chartTabId = 1; drawChart(1);">
+                <h6 class="header-pretitle text-secondary">
+                  ROI Since Inception
+                </h6>
+                <h3 class="text-white mb-0">
+                  {{avgMonthReturn}}%
+                </h3>
+              </a>
+            </li>
+          </ul>
+          
         </div>
       </div> <!-- / .row -->
-      <!-- Body -->
-      <div class="header-body">
-        <div class="row align-items-end">
-          <div class="col">
-
-            <!-- Pretitle -->
-            <h6 class="header-pretitle text-secondary">
-              Overview
-            </h6>
-
-            <!-- Title -->
-            <h1 class="header-title text-white">
-              Betoken Returns
-            </h1>
-
-          </div>
-          <div class="col-auto">
-
-            <!-- Nav -->
-            <ul class="nav nav-tabs header-tabs">
-              <li class="nav-item" data-toggle="chart">
-                <a href="#" class="nav-link active" data-toggle="tab" (click)="chartTabId = 0; drawChart(0);">
-                  <h6 class="header-pretitle text-secondary">
-                    ROI (1 Mo)
-                  </h6>
-                  <h3 class="text-white mb-0">
-                    {{currMoROI}}%
-                  </h3>
-                </a>
-              </li>
-              <li class="nav-item" data-toggle="chart">
-                <a href="#" class="nav-link" data-toggle="tab" (click)="chartTabId = 1; drawChart(1);">
-                  <h6 class="header-pretitle text-secondary">
-                    ROI Since Inception
-                  </h6>
-                  <h3 class="text-white mb-0">
-                    {{avgMonthReturn}}%
-                  </h3>
-                </a>
-              </li>
-            </ul>
-
-          </div>
-        </div> <!-- / .row -->
-      </div> <!-- / .header-body -->
-
-      <!-- Footer -->
-      <div class="header-footer">
-
-        <!-- Chart -->
-        <div class="chart">
-          <canvas id="roi-chart" class="chart-canvas">
-          </canvas>
-        </div>
-
+    </div> <!-- / .header-body -->
+    
+    <!-- Footer -->
+    <div class="header-footer">
+      
+      <!-- Chart -->
+      <div class="chart">
+        <canvas id="roi-chart" class="chart-canvas">
+        </canvas>
       </div>
-
+      
     </div>
+    
+  </div>
 </div> <!-- / .header -->
 
 <!-- CARDS -->
 <div class="container-fluid mt--6">
-    <div class="card-deck mb-0 mb-md-4">
-      <!-- Card -->
-      <div class="card" data-toggle="tooltip" data-html="true" title="Assets Under Management. The amount of money managed by Betoken managers community.">
-        <div class="card-body">
-          <div class="row align-items-center">
-            <div class="col">
-
-              <!-- Title -->
-              <h6 class="card-title text-uppercase text-muted mb-2">
-                Betoken AUM ($DAI)
-              </h6>
-
-              <!-- Heading -->
-              <span class="h2 mb-0">
-                {{AUM}}
-              </span>
-
-            </div>
-            <div class="col-auto">
-
-              <!-- Icon -->
-              <span class="h2 fe fe-disc text-muted mb-0"></span>
-
-            </div>
-          </div> <!-- / .row -->
-
-        </div>
+  <div class="card-deck mb-0 mb-md-4">
+    <!-- Card -->
+    <div class="card" data-toggle="tooltip" data-html="true" title="Assets Under Management. The amount of money managed by Betoken managers community.">
+      <div class="card-body">
+        <div class="row align-items-center">
+          <div class="col">
+            
+            <!-- Title -->
+            <h6 class="card-title text-uppercase text-muted mb-2">
+              Betoken AUM ($DAI)
+            </h6>
+            
+            <!-- Heading -->
+            <span class="h2 mb-0">
+              {{AUM}}
+            </span>
+            
+          </div>
+          <div class="col-auto">
+            
+            <!-- Icon -->
+            <span class="h2 fe fe-disc text-muted mb-0"></span>
+            
+          </div>
+        </div> <!-- / .row -->
+        
       </div>
-      <!-- Card -->
-      <div class="card" data-toggle="tooltip" data-html="true" title="Sortino ratio is a way to examine the performance of an investment by adjusting for its risk. The risk-free rate used here is 3% per year, an approximation of the US 10Y treasury bond's interest rate.">
-        <div class="card-body">
-          <div class="row align-items-center">
-            <div class="col">
-
-              <!-- Title -->
-              <h6 class="card-title text-uppercase text-muted mb-2">
-                Sortino Ratio
-              </h6>
-
-              <!-- Heading -->
-              <span class="h2 mb-0">
-                {{sortinoRatio}}
-              </span>
-
-            </div>
-            <div class="col-auto">
-
-              <!-- Icon -->
-              <span class="h2 fe fe-shield text-muted mb-0"></span>
-
-            </div>
-          </div> <!-- / .row -->
-
-        </div>
+    </div>
+    <!-- Card -->
+    <div class="card" data-toggle="tooltip" data-html="true" title="Sortino ratio is a way to examine the performance of an investment by adjusting for its risk. The risk-free rate used here is 3% per year, an approximation of the US 10Y treasury bond's interest rate.">
+      <div class="card-body">
+        <div class="row align-items-center">
+          <div class="col">
+            
+            <!-- Title -->
+            <h6 class="card-title text-uppercase text-muted mb-2">
+              Sortino Ratio
+            </h6>
+            
+            <!-- Heading -->
+            <span class="h2 mb-0">
+              {{sortinoRatio}}
+            </span>
+            
+          </div>
+          <div class="col-auto">
+            
+            <!-- Icon -->
+            <span class="h2 fe fe-shield text-muted mb-0"></span>
+            
+          </div>
+        </div> <!-- / .row -->
+        
       </div>
-      <!-- Card -->
-      <div class="card" data-toggle="tooltip" data-html="true" title="Standard deviation represents the volatility of an asset. The number shown here is the downside sample standard deviation of Betoken's cumulative ROI since inception.">
-        <div class="card-body">
-          <div class="row align-items-center">
-            <div class="col">
-
-              <!-- Title -->
-              <h6 class="card-title text-uppercase text-muted mb-2">
-                Standard Deviation
-              </h6>
-
-              <!-- Heading -->
-              <span class="h2 mb-0">
-                {{standardDeviation}}
-              </span>
-
-            </div>
-            <div class="col-auto">
-
-              <!-- Icon -->
-              <span class="h2 fe fe-bar-chart-2 text-muted mb-0"></span>
-
-            </div>
-          </div> <!-- / .row -->
-
-        </div>
+    </div>
+    <!-- Card -->
+    <div class="card" data-toggle="tooltip" data-html="true" title="Standard deviation represents the volatility of an asset. The number shown here is the downside sample standard deviation of Betoken's cumulative ROI since inception.">
+      <div class="card-body">
+        <div class="row align-items-center">
+          <div class="col">
+            
+            <!-- Title -->
+            <h6 class="card-title text-uppercase text-muted mb-2">
+              Standard Deviation
+            </h6>
+            
+            <!-- Heading -->
+            <span class="h2 mb-0">
+              {{standardDeviation}}
+            </span>
+            
+          </div>
+          <div class="col-auto">
+            
+            <!-- Icon -->
+            <span class="h2 fe fe-bar-chart-2 text-muted mb-0"></span>
+            
+          </div>
+        </div> <!-- / .row -->
+        
       </div>
-      <!-- Card -->
-      <div class="card" data-toggle="tooltip" data-html="true" title="Talented Fund Managers actively managing the Betoken AUM.">
-        <div class="card-body">
-          <div class="row align-items-center">
-            <div class="col">
-
-              <!-- Title -->
-              <h6 class="card-title text-uppercase text-muted mb-2">
-                Total fund managers
-              </h6>
-
-              <!-- Heading -->
-              <span class="h2 mb-0">
-                  {{totalUser}}
-              </span>
-
-            </div>
-            <div class="col-auto">
-
-              <!-- Icon -->
-              <span class="h2 fe fe-users text-muted mb-0"></span>
-
-            </div>
-          </div> <!-- / .row -->
-
-        </div>
+    </div>
+    <!-- Card -->
+    <div class="card" data-toggle="tooltip" data-html="true" title="Talented Fund Managers actively managing the Betoken AUM.">
+      <div class="card-body">
+        <div class="row align-items-center">
+          <div class="col">
+            
+            <!-- Title -->
+            <h6 class="card-title text-uppercase text-muted mb-2">
+              Total fund managers
+            </h6>
+            
+            <!-- Heading -->
+            <span class="h2 mb-0">
+              {{totalUser}}
+            </span>
+            
+          </div>
+          <div class="col-auto">
+            
+            <!-- Icon -->
+            <span class="h2 fe fe-users text-muted mb-0"></span>
+            
+          </div>
+        </div> <!-- / .row -->
+        
       </div>
-    </div> <!-- / .row -->
+    </div>
+  </div> <!-- / .row -->
 </div>

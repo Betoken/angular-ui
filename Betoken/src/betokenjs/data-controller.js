@@ -108,6 +108,11 @@ export const notStablecoin = (_symbol) => {
     return !STABLECOINS.includes(_symbol);
 }
 
+export const isCompoundToken = (_symbol) => {
+    const result = CTOKENS.find((x) => x.symbol === _symbol);
+    return !isUndefined(result);
+}
+
 export const httpsGet = async (apiStr) => {
     const data = await (new Promise((resolve, reject) => {
         https.get(apiStr, (res) => {
@@ -296,10 +301,13 @@ export const loadUserData = async () => {
 
             // get list of Compound orders
             var compoundOrderAddrs = await betoken.getCompoundOrders(userAddr);
+            var compoundOrders = new Array(compoundOrderAddrs.length);
             if (compoundOrderAddrs.length > 0) {
                 const handleProposal = async (id) => {
                     const order = await CompoundOrder(compoundOrderAddrs[id]);
                     // TODO: fetch info from order contract
+                    const batch = new web3.BatchRequest();
+                    batch.add();
                 };
                 const handleAllProposals = () => {
                     var results = [];
@@ -312,7 +320,7 @@ export const loadUserData = async () => {
                 investments = investments.filter((x) => +x.cycleNumber == cycleNumber.get());
                 investmentList.set(investments);
 
-                totalKROChange = investments.map((x) => BigNumber(x.kroChange)).reduce((x, y) => x.plus(y), BigNumber(0));
+                totalKROChange = totalKROChange.plus(investments.map((x) => BigNumber(x.kroChange)).reduce((x, y) => x.plus(y), BigNumber(0)));
             }
 
             portfolioValue.set(stake.plus(kairoBalance.get()));

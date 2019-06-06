@@ -232,4 +232,8 @@ export class InvestmentsComponent implements OnInit {
         }
         return result.toFormat(4);
     }
+
+    isMarginToken(token) {
+        return tokens.is_compound_token(token);
+    }
 }

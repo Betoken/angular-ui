@@ -197,7 +197,7 @@
                 </div>
                 <div class="col">
                   <span class="h4 mb-1">
-                    {{data.tokenSymbol}}<span class="text-secondary d-none d-lg-inline-block ml-1 small font-weight-normal"> {{ (getTokenName(data.tokenSymbol).length>24)? (getTokenName(data.tokenSymbol) | slice:0:24)+'..':(getTokenName(data.tokenSymbol)) }}</span>
+                    {{data.tokenSymbol}}<span class="text-secondary d-none d-lg-inline-block ml-1 small font-weight-normal">• {{ (getTokenName(data.tokenSymbol).length>24)? (getTokenName(data.tokenSymbol) | slice:0:24)+'..':(getTokenName(data.tokenSymbol)) }}</span>
                   </span>
                   <br>
                   <span *ngIf="isMarginOrder(data)">
@@ -266,13 +266,15 @@
               </div>
               <div class="col">
                 <span class="h4 mb-1">
-                  {{data.tokenSymbol}}<span class="text-secondary d-none d-lg-inline-block ml-1 small font-weight-normal">• Leveraged 4x {{ (getTokenName(data.tokenSymbol).length>24)? (getTokenName(data.tokenSymbol) | slice:0:24)+'..':(getTokenName(data.tokenSymbol)) }}</span>
+                  {{data.tokenSymbol}}<span class="text-secondary d-none d-lg-inline-block ml-1 small font-weight-normal">• {{ (getTokenName(data.tokenSymbol).length>24)? (getTokenName(data.tokenSymbol) | slice:0:24)+'..':(getTokenName(data.tokenSymbol)) }}</span>
                 </span>
-                <!-- IDEA: display if liquidated -->
                 <br>
-                <small class="text-danger mb-0">
-                  Liquidated
-                </small>
+                <span class="badge badge-soft-primary" *ngIf="!data.orderType">
+                  Long 1.5x
+                </span>
+                <span class="badge badge-soft-primary" *ngIf="data.orderType">
+                  Short 0.5x
+                </span>
               </div>
               <div class="col-auto text-right">
                 <span class="font-weight-bold">{{data.currValue.toFormat(4)}} KRO</span>

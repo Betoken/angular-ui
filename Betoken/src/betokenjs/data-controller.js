@@ -11,6 +11,7 @@ const DEPLOYED_BLOCK = 5168545;
 const ZERO_ADDR = '0x0000000000000000000000000000000000000000';
 const CTOKENS = require('./compound_tokens.json');
 const STABLECOINS = require('./stablecoins.json');
+const UNSAFE_COL_RATIO = 1.65;
 
 // instance variables
 // user info
@@ -281,6 +282,7 @@ export const loadUserData = async () => {
                         investments[id].ROI = BigNumber(investments[id].sellPrice).minus(investments[id].buyPrice).div(investments[id].buyPrice).times(100);
                         investments[id].kroChange = BigNumber(investments[id].ROI).times(investments[id].stake).div(100);
                         investments[id].currValue = BigNumber(investments[id].kroChange).plus(investments[id].stake);
+                        investments[id].buyTime = new Date(+investments[id].buyTime * 1e3);
 
                         if (!investments[id].isSold && +investments[id].cycleNumber === cycleNumber.get()) {
                             var currentStakeValue = assetSymbolToPrice(assetAddressToSymbol(investments[id].tokenAddress))
@@ -309,7 +311,7 @@ export const loadUserData = async () => {
                 const properties = ["stake", "cycleNumber", "collateralAmountInDAI", "compoundTokenAddr", "isSold", "orderType", "buyTime", "getCurrentCollateralRatioInDAI", "getCurrentProfitInDAI"];
                 const handleProposal = async (id) => {
                     const order = await CompoundOrder(compoundOrderAddrs[id]);
-                    let orderData = {"id": id + investments.length};
+                    let orderData = {"id": id};
                     compoundOrders[id] = orderData;
                     let promises = [];
                     for (let prop of properties) {
@@ -340,7 +342,8 @@ export const loadUserData = async () => {
                     o.kroChange = o.ROI.times(o.stake).div(100);
                     o.tokenSymbol = assetCTokenAddressToSymbol(o.compoundTokenAddr);
                     o.currValue = o.stake.plus(o.kroChange);
-                    o.type = "compound"
+                    o.safety = o.collateralRatio.gt(UNSAFE_COL_RATIO);
+                    o.type = "compound";
 
                     delete o.getCurrentCollateralRatioInDAI;
                     delete o.getCurrentProfitInDAI;

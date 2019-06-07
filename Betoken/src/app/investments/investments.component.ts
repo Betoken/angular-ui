@@ -19,24 +19,29 @@ export class InvestmentsComponent implements OnInit {
 
     portfolioValueInDAI: String;
     riskTakenPercentage: BigNumber;
-
     userValue: String;
+    expected_commission: String;
+    kairo_balance: BigNumber;
+    monthly_pl: BigNumber;
+
+    selectedTokenSymbol: String;
+    stakeAmount: BigNumber;
+    transactionId: String;
+    orderType: Number;
+    orderLeverage: Number;
+
+    sellId: Number;
+    sellData: Object;
+
+    activeInvestmentList: Array<Object>;
+    inactiveInvestmentList: Array<Object>;
+    tokenData: Array<Object>;
+
     days: Number;
     hours: Number;
     minutes: Number;
     seconds: Number;
     phase: Number;
-    expected_commission: String;
-    kairo_balance: BigNumber;
-    monthly_pl: BigNumber;
-    selectedTokenSymbol: String;
-    stakeAmount: BigNumber;
-    activeInvestmentList: Array<Object>;
-    inactiveInvestmentList: Array<Object>;
-    tokenData: Array<Object>;
-    transactionId: String;
-    sellId: Number;
-    sellData: Object;
 
     constructor(private ms: AppComponent) {
         this.createInvestmentPopupStep = 0;
@@ -45,30 +50,35 @@ export class InvestmentsComponent implements OnInit {
 
         this.portfolioValueInDAI = '';
         this.riskTakenPercentage = new BigNumber(0);
-
         this.userValue = '';
+        this.expected_commission = '';
+        this.kairo_balance = new BigNumber(0);
+        this.monthly_pl = new BigNumber(0);
+
+        this.selectedTokenSymbol = 'ETH';
+        this.stakeAmount = new BigNumber(0);
+        this.transactionId = '';
+        this.orderType = 0;
+        this.orderLeverage = 1;
+
+        this.sellId = 0;
+        this.sellData = {
+            stake: new BigNumber(0),
+            ROI: new BigNumber(0),
+            currValue: new BigNumber(0),
+            type: "basic",
+            buyTime: new Date()
+        };
+
+        this.activeInvestmentList = new Array<Object>();
+        this.inactiveInvestmentList = new Array<Object>();
+        this.tokenData = new Array<Object>();
+
         this.days = 0;
         this.hours = 0;
         this.minutes = 0;
         this.seconds = 0;
         this.phase = -1;
-        this.expected_commission = '';
-        this.kairo_balance = new BigNumber(0);
-        this.monthly_pl = new BigNumber(0);
-        this.selectedTokenSymbol = 'ETH';
-        this.stakeAmount = new BigNumber(0);
-
-        this.activeInvestmentList = new Array<Object>();
-        this.inactiveInvestmentList = new Array<Object>();
-
-        this.sellId = 0;
-        this.tokenData = new Array<Object>();
-        this.transactionId = '';
-        this.sellData = {
-            stake: new BigNumber(0),
-            ROI: new BigNumber(0),
-            currValue: new BigNumber(0)
-        };
     }
 
     ngOnInit() {
@@ -87,6 +97,8 @@ export class InvestmentsComponent implements OnInit {
     resetModals() {
         this.stakeAmount = new BigNumber(0);
         this.selectedTokenSymbol = this.tokenData[0]['symbol'];
+        this.orderType = 0;
+        this.orderLeverage = 1;
         this.createInvestmentPopupStep = 0;
         this.sellInvestmentPopupStep = 0;
         this.nextPhasePopupStep = 0;
@@ -118,6 +130,26 @@ export class InvestmentsComponent implements OnInit {
 
     // Create investment
 
+    selectOrderType(type) {
+        this.orderType = type;
+        
+        // set leverage
+        switch (type) {
+            case 0:
+                // basic order
+                this.orderLeverage = 1;
+                break;
+            case 1:
+                // long compound order
+                this.orderLeverage = 1.5;
+                break;
+            case 2:
+                // short compound order
+                this.orderLeverage = -0.5;
+                break 
+        }
+    }
+
     createInvestment() {
         this.stakeAmount = new BigNumber($('#kairo-input').val());
         this.createInvestmentPopupStep = 2;
@@ -138,7 +170,21 @@ export class InvestmentsComponent implements OnInit {
 
         let tokenPrice = this.assetSymbolToPrice(this.selectedTokenSymbol);
         let maxPrice = tokenPrice.plus(tokenPrice.times($('#maxAcceptablePrice').val()).div(100));
-        manager_actions.new_compound_order(true, this.selectedTokenSymbol, this.stakeAmount, new BigNumber(0), maxPrice, pending, confirm);
+        
+        switch (this.orderType) {
+            case 0:
+                // basic order
+                manager_actions.new_investment(this.selectedTokenSymbol, this.stakeAmount, new BigNumber(0), maxPrice, pending, confirm);
+                break;
+            case 1:
+                // long compound order
+                manager_actions.new_compound_order(false, this.selectedTokenSymbol, this.stakeAmount, new BigNumber(0), maxPrice, pending, confirm);
+                break;
+            case 2:
+                // short compound order
+                manager_actions.new_compound_order(true, this.selectedTokenSymbol, this.stakeAmount, new BigNumber(0), maxPrice, pending, confirm);
+                break;
+        }
     }
 
     // Sell investment
@@ -164,10 +210,20 @@ export class InvestmentsComponent implements OnInit {
             }
         }
 
-        let sellPercentage = new BigNumber($('#sell-percentage-input').val()).div(100);
         let tokenPrice = this.assetSymbolToPrice(this.selectedTokenSymbol);
         let minPrice = tokenPrice.minus(tokenPrice.times($('#minAcceptablePrice').val()).div(100));
-        manager_actions.sell_investment(this.sellId, sellPercentage, minPrice, tokenPrice.times(100), pendingSell, confirmSell);
+
+        switch (this.sellData['type']) {
+            case 'basic':
+                // basic order
+                let sellPercentage = new BigNumber($('#sell-percentage-input').val()).div(100);
+                manager_actions.sell_investment(this.sellId, sellPercentage, minPrice, tokenPrice.times(100), pendingSell, confirmSell);
+                break;
+            case 'compound':
+                // compound order
+                manager_actions.sell_compound_order(this.sellId, minPrice, tokenPrice.times(100), pendingSell, confirmSell);
+                break;
+        }
     }
 
     // UI helpers
@@ -235,5 +291,9 @@ export class InvestmentsComponent implements OnInit {
 
     isMarginToken(token) {
         return tokens.is_compound_token(token);
+    }
+
+    isMarginOrder(orderData) {
+        return orderData.type !== "basic";
     }
 }

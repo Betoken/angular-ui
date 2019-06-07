@@ -77,7 +77,7 @@ export class InvestmentsComponent implements OnInit {
             this.resetModals();
         });
         $('[data-toggle="tooltip"]').tooltip();
-        this.refresh();
+        this.refreshDisplay();
     }
 
     resetModals() {

@@ -269,12 +269,15 @@
                   {{data.tokenSymbol}}<span class="text-secondary d-none d-lg-inline-block ml-1 small font-weight-normal">• {{ (getTokenName(data.tokenSymbol).length>24)? (getTokenName(data.tokenSymbol) | slice:0:24)+'..':(getTokenName(data.tokenSymbol)) }}</span>
                 </span>
                 <br>
-                <span class="badge badge-soft-primary" *ngIf="!data.orderType">
-                  Long 1.5x
+                <span *ngIf="isMarginOrder(data)">
+                  <span class="badge badge-soft-primary" *ngIf="!data.orderType">
+                    Long 1.5x
+                  </span>
+                  <span class="badge badge-soft-primary" *ngIf="data.orderType">
+                    Short 0.5x
+                  </span>
                 </span>
-                <span class="badge badge-soft-primary" *ngIf="data.orderType">
-                  Short 0.5x
-                </span>
+                
               </div>
               <div class="col-auto text-right">
                 <span class="font-weight-bold">{{data.currValue.toFormat(4)}} KRO</span>

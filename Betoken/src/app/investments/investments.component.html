@@ -514,8 +514,8 @@
                 </h6>
                 <p>This order <strong>multiplies your returns by {{orderLeverage}}x</strong>.</p>
                 <!-- IDEA: leveraged order -->
-                <p>If {{selectedTokenSymbol}}'s price <span class="text-success">+10%</span>, you <span class="text-success" *ngIf="orderLeverage > 0">gain {{10 * orderLeverage}}%</span> <span class="text-danger" *ngIf="0 > orderLeverage">lose {{10 * orderLeverage}}%</span>.</p>
-                <p>If {{selectedTokenSymbol}}'s price <span class="text-danger">-10%</span>, you <span class="text-danger" *ngIf="orderLeverage > 0">lose {{10 * orderLeverage}}%</span> <span class="text-success" *ngIf="0 > orderLeverage">gain {{10 * orderLeverage}}%</span>.</p>
+                <p>If {{selectedTokenSymbol}}'s price <span class="text-success">+10%</span>, you <span class="text-success" *ngIf="orderLeverage > 0">gain {{10 * orderLeverage}}%</span> <span class="text-danger" *ngIf="0 > orderLeverage">lose {{-10 * orderLeverage}}%</span>.</p>
+                <p>If {{selectedTokenSymbol}}'s price <span class="text-danger">-10%</span>, you <span class="text-danger" *ngIf="orderLeverage > 0">lose {{10 * orderLeverage}}%</span> <span class="text-success" *ngIf="0 > orderLeverage">gain {{-10 * orderLeverage}}%</span>.</p>
 
                 <h6 class="header-pretitle">Liquidation</h6>
                 <p>

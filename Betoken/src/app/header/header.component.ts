@@ -56,9 +56,8 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.refreshHeaderSidebarDisplay();
     error_notifications.set_error_msg("");
-    setInterval(() => {
-        this.refreshDisplay();
-    }, 500);
+    this.refreshDisplay();
+    setInterval(() => this.refreshDisplay(), 1000);
   }
 
   refreshDisplay() {

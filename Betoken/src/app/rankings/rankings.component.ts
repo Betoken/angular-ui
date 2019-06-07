@@ -26,9 +26,7 @@ export class RankingsComponent implements OnInit {
     }
 
     ngOnInit() {
-        setInterval(() => {
-            this.refreshDisplay();
-        }, 500);
+        this.refreshDisplay();
     }
 
     refreshDisplay() {
@@ -39,8 +37,9 @@ export class RankingsComponent implements OnInit {
         this.userROI = user.monthly_roi();
     }
 
-    refresh() {
-        refresh_actions.ranking();
+    async refresh() {
+        await refresh_actions.ranking();
+        this.refreshDisplay();
     }
 
     isLoading() {

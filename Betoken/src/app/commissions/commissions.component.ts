@@ -27,11 +27,7 @@ export class CommissionsComponent implements OnInit {
     }
 
     ngOnInit() {
-        setInterval(() => {
-            // using this.loadData directly as arg for setInterval() DOES NOT WORK!
-            // I've tried, trust me
-            this.refreshDisplay();
-        }, 500);
+        this.refreshDisplay();
         $('#modalRedeem').on('hidden.bs.modal', () => {
             this.resetModals();
         });
@@ -42,8 +38,9 @@ export class CommissionsComponent implements OnInit {
         this.commissionAmount = user.expected_commission();
     }
 
-    refresh() {
-        refresh_actions.records();
+    async refresh() {
+        await refresh_actions.records();
+        this.refreshDisplay();
     }
 
     isLoading() {

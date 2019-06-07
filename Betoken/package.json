@@ -51,7 +51,6 @@
     "randomhex": "^0.1.5",
     "reactive-var-std": "^1.1.6",
     "rxjs": "^6.0.0",
-    "rxjs-compat": "^6.2.2",
     "save": "^2.3.2",
     "select2": "^4.0.6-rc.1",
     "stream": "0.0.2",
@@ -59,7 +58,7 @@
     "trackr": "^2.0.2",
     "underscore": "^1.9.1",
     "utf8": "^3.0.0",
-    "web3": "^1.0.0-beta.35",
+    "web3": "1.0.0-beta.35",
     "xmlhttprequest": "^1.8.0",
     "zone.js": "^0.8.26"
   },

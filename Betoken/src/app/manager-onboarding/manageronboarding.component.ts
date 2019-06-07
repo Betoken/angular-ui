@@ -29,11 +29,6 @@ export class ManageronboardingComponent implements OnInit {
   kairoBalance: BigNumber;
 
   buyStep: Number;
-  days: Number;
-  hours: Number;
-  minutes: Number;
-  seconds: Number;
-  phase: Number;
 
   constructor(private ms: AppComponent, private router: Router) {
     this.user_address = this.ZERO_ADDR;
@@ -46,36 +41,22 @@ export class ManageronboardingComponent implements OnInit {
     this.buyKairoAmount = new BigNumber(0);
     this.buyTokenAmount = new BigNumber(0);
     this.kairoBalance = new BigNumber(0);
-
-    this.days = 0;
-    this.hours = 0;
-    this.minutes = 0;
-    this.seconds = 0;
-    this.phase = 0;
   }
 
   ngOnInit() {
-    setInterval(() => {
-      this.refreshDisplay();
-    }, 500);
     $('[data-toggle="tooltip"]').tooltip();
     $('#modalBuy').on('hidden.bs.modal', () => {
       this.resetModals();
     });
     this.tokenData = tokens.token_data().get();
     this.selectedTokenSymbol = this.tokenData[0]['symbol'];
+    this.refreshDisplay();
   }
 
   refreshDisplay() {
     this.user_address = user.address();
     this.kairoPrice = stats.kairo_price();
     this.kairoBalance = user.kairo_balance();
-
-    this.days = timer.day();
-    this.hours = timer.hour();
-    this.minutes = timer.minute();
-    this.seconds = timer.second();
-    this.phase = timer.phase();
 
     this.getTokenBalance(this.selectedTokenSymbol);
   }

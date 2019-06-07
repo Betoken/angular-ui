@@ -90,9 +90,7 @@ export class InvestorComponent implements OnInit {
     this.tokenData = tokens.token_data().get();
     this.selectedTokenSymbol = this.tokenData[0]['symbol'];
     this.depositWithdrawHistory = user.deposit_withdraw_history().get();
-    setInterval(() => {
-      this.refreshDisplay();
-    }, 500);
+    this.refreshDisplay();
     $('[data-toggle="tooltip"]').tooltip();
     $('#modalInvestorBuy').on('hidden.bs.modal', () => {
       this.resetModals();
@@ -100,6 +98,13 @@ export class InvestorComponent implements OnInit {
     $('#modalInvestorSell').on('hidden.bs.modal', () => {
       this.resetModals();
     });
+  }
+
+  async refresh() {
+    await refresh_actions.records();
+    await refresh_actions.stats();
+    this.depositWithdrawHistory = user.deposit_withdraw_history().get();
+    this.refreshDisplay();
   }
   
   refreshDisplay() {
@@ -162,11 +167,6 @@ export class InvestorComponent implements OnInit {
   selectSellToken(tokenIndex) {
     this.selectedTokenSymbol = this.tokenData[tokenIndex]['symbol'];
     this.refreshSellOrderDetails(this.sellSharesAmount);
-  }
-
-  async refresh() {
-    await refresh_actions.records();
-    this.depositWithdrawHistory = user.deposit_withdraw_history().get();
   }
   
   isLoading() {

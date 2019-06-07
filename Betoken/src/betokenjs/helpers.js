@@ -138,20 +138,23 @@ export const loading = {
 
 export const refresh_actions = {
     investments: () => {
-        Data.loadTokenPrices().then(Data.loadUserData);
+        return Data.loadTokenPrices().then(Data.loadUserData);
     },
     ranking: () => {
-        Data.loadTokenPrices().then(Data.loadRanking);
+        return Data.loadTokenPrices().then(Data.loadRanking);
     },
     records: () => {
-        Data.loadUserData().then(Data.loadTxHistory);
+        return Data.loadUserData().then(Data.loadTxHistory);
     },
     prices: () => {
-        Data.loadTokenPrices();
+        return Data.loadTokenPrices();
+    },
+    stats: () => {
+        return Data.loadUserData().then(Data.loadStats);
     },
     reload_all: () => {
         const betoken = new Betoken();
-        betoken.init().then(Data.loadDynamicData);
+        return betoken.init().then(Data.loadDynamicData);
     }
 }
 

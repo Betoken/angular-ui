@@ -37,12 +37,6 @@ export class InvestmentsComponent implements OnInit {
     inactiveInvestmentList: Array<Object>;
     tokenData: Array<Object>;
 
-    days: Number;
-    hours: Number;
-    minutes: Number;
-    seconds: Number;
-    phase: Number;
-
     constructor(private ms: AppComponent) {
         this.createInvestmentPopupStep = 0;
         this.sellInvestmentPopupStep = 0;
@@ -73,18 +67,9 @@ export class InvestmentsComponent implements OnInit {
         this.activeInvestmentList = new Array<Object>();
         this.inactiveInvestmentList = new Array<Object>();
         this.tokenData = new Array<Object>();
-
-        this.days = 0;
-        this.hours = 0;
-        this.minutes = 0;
-        this.seconds = 0;
-        this.phase = -1;
     }
 
     ngOnInit() {
-        setInterval(() => {
-            this.refreshDisplay();
-        }, 500);
         $('#modalBuy').on('hidden.bs.modal', () => {
             this.resetModals();
         });
@@ -92,6 +77,7 @@ export class InvestmentsComponent implements OnInit {
             this.resetModals();
         });
         $('[data-toggle="tooltip"]').tooltip();
+        this.refresh();
     }
 
     resetModals() {
@@ -107,8 +93,6 @@ export class InvestmentsComponent implements OnInit {
     // Refresh info
 
     refreshDisplay() {
-        this.activeInvestmentList = user.investment_list().filter((data) => data.isSold === false);
-        this.inactiveInvestmentList = user.investment_list().filter((data) => data.isSold === true);
         this.expected_commission = user.expected_commission().toFormat(2);
         this.kairo_balance = user.kairo_balance();
         this.monthly_pl = user.monthly_roi();
@@ -117,15 +101,13 @@ export class InvestmentsComponent implements OnInit {
         this.portfolioValueInDAI = user.portfolio_value_in_dai().toFormat(2);
         this.riskTakenPercentage = user.risk_taken_percentage().times(100);
 
-        this.days = timer.day();
-        this.hours = timer.hour();
-        this.minutes = timer.minute();
-        this.seconds = timer.second();
-        this.phase = timer.phase();
+        this.activeInvestmentList = user.investment_list().filter((data) => data.isSold === false);
+        this.inactiveInvestmentList = user.investment_list().filter((data) => data.isSold === true);
     }
 
-    refresh() {
-        refresh_actions.investments();
+    async refresh() {
+        await refresh_actions.investments();
+        this.refreshDisplay();
     }
 
     // Create investment
@@ -164,8 +146,8 @@ export class InvestmentsComponent implements OnInit {
         let confirm = () => {
             if (this.createInvestmentPopupStep !== 0) {
                 this.createInvestmentPopupStep = 4;
-                this.refresh();
             }
+            this.refresh();
         }
 
         let tokenPrice = this.assetSymbolToPrice(this.selectedTokenSymbol);
@@ -206,8 +188,8 @@ export class InvestmentsComponent implements OnInit {
         let confirmSell = () => {
             if (this.sellInvestmentPopupStep === 2) {
                 this.sellInvestmentPopupStep = 3;
-                this.refresh();
             }
+            this.refresh();
         }
 
         let tokenPrice = this.assetSymbolToPrice(this.selectedTokenSymbol);

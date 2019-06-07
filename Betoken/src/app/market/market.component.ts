@@ -17,9 +17,7 @@ export class MarketComponent implements OnInit {
     constructor() { }
 
     ngOnInit() {
-        setInterval(() => {
-            this.refreshDisplay();
-        }, 500);
+        this.refreshDisplay();
     }
 
     getTokenPrice(token) {

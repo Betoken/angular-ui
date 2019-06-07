@@ -53,10 +53,8 @@ export class DashboardComponent implements OnInit {
     }
 
     ngOnInit() {
-        setInterval(() => {
-            this.refreshDisplay();
-        }, 500);
-        $('[data-toggle="tooltip"]').tooltip();
+      this.refreshDisplay();
+      $('[data-toggle="tooltip"]').tooltip();
     }
 
     refreshDisplay() {

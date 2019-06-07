@@ -54,15 +54,14 @@ export class InvestoronboardingComponent implements OnInit {
   }
   
   ngOnInit() {
-    setInterval(() => {
-      this.refreshDisplay();
-    }, 500);
     $('[data-toggle="tooltip"]').tooltip();
     $('#modalInvestorBuy').on('hidden.bs.modal', () => {
       this.resetModals();
     });
     this.tokenData = tokens.token_data().get();
     this.selectedTokenSymbol = this.tokenData[0]['symbol'];
+    this.refreshDisplay();
+    setInterval(() => this.refreshDisplay(), 1000);
   }
   
   refreshDisplay() {

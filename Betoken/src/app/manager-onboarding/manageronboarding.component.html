@@ -412,6 +412,10 @@
               <p class="text-center text-muted mb-5">
                 You bought <span class="font-weight-bold text-secondary">{{buyKairoAmount.toFormat(4)}}</span> KRO using <span class="font-weight-bold text-secondary">{{buyTokenAmount.toFormat(4)}}</span> {{selectedTokenSymbol}}.
               </p>
+              <a target="__blank" href="https://twitter.com/intent/tweet?hashtags=Betoken%2C%20DeFi&related=betokenfund&text=I%27ve%20just%20joined%20https%3A%2F%2Fbetoken.fund%2C%20world%27s%20first%20crowd-powered%20cryptocurrency%20investment%20protocol!">
+                <button class="btn btn-twitter btn-block" type="button" name="button">Tweet about it</button>
+              </a>
+              <hr>
               <form>
                 <div class="form-group">
                   <label for="exampleFormControlInput1">Transaction ID</label>
@@ -422,12 +426,9 @@
                     </div>
                   </div>
                 </div>
-              </form>
-              <hr>
-              <a target="__blank" href="https://twitter.com/intent/tweet?hashtags=Betoken%2C%20DeFi&related=betokenfund&text=I%27ve%20just%20joined%20https%3A%2F%2Fbetoken.fund%2C%20world%27s%20first%20crowd-powered%20cryptocurrency%20investment%20protocol!">
-                <button class="btn btn-twitter btn-block" type="button" name="button">Tweet about it</button>
-              </a>
+              </form>              
             </div>
+            
             <!-- Continue button for buyStep 1 -->
             <button type="submit" class="btn btn-block btn-success mt-auto" aria-label="BuyBTKS" *ngIf="buyStep == 0" (click)="buyStep = agreementsChecked() ? 1 : 0" [ngClass]="{'disabled': !agreementsChecked()}">
               Buy Kairo tokens

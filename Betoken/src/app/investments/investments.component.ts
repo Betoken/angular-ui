@@ -181,12 +181,14 @@ export class InvestmentsComponent implements OnInit {
         this.sellInvestmentPopupStep = 1;
 
         let pendingSell = (transactionHash) => {
-            this.sellInvestmentPopupStep = 2;
-            this.transactionId = transactionHash;
+            if (this.sellInvestmentPopupStep !== 0) {
+                this.sellInvestmentPopupStep = 2;
+                this.transactionId = transactionHash;
+            }
         }
 
         let confirmSell = () => {
-            if (this.sellInvestmentPopupStep === 2) {
+            if (this.sellInvestmentPopupStep !== 0) {
                 this.sellInvestmentPopupStep = 3;
             }
             this.refresh();

@@ -124,6 +124,51 @@
             </h3>
           </div>
         </div>
+        <!-- Max acceptable price -->
+        <div class="row justify-content-center" *ngIf="step === 0">
+          <div class="col">
+            <div id="accordion">
+              <!-- question -->
+              <div class="card border-0 shadow-none mb-0">
+                <div class="card-header border-0 shadow-none px-0" id="headingOne">
+                  <a href="" class="text-secondary" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                    <div class="row align-items-center no-gutters">
+                      <div class="col mr-auto">
+                        <span class="card-text text-muted small">
+                          Advanced
+                        </span>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fe fe-plus"></i>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                  <div class="card-body p-0 pb-4">
+                    <div class="row align-items-center">
+                      <div class="col">
+                        <h6 class="header-pretitle">
+                          Cycle's commissions
+                        </h6>
+                        <p>Choose which cycle's commissions you want to redeem:</p>
+                        <div>
+                          <select class="form-control form-control-lg">
+                            <option selected>Cycle 7</option>
+                            <option>Cycle 6</option>
+                            <option>Cycle 5</option>
+                            <option>Cycle 4</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         <!-- Do you know section step 1 -->
         <div class="card bg-light border mt-4 mb-0" *ngIf="step === 0">
           <div class="card-body">

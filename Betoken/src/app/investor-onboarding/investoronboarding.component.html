@@ -72,11 +72,28 @@
           </div>
           <div class="card-body text-center text-md-left">
             <div *ngIf="user_address == ZERO_ADDR">
-              <p class="mb-4 text-secondary">You don't seem to be using a Web3 browser. Please install Metamask to continue.</p>
-              <a class="btn btn-block btn-lg btn-success mb-4" target="__blank" href="https://metamask.io/">Install Metamask</a>
+              <p class="text-secondary text-center">Please enable Metamask or visit this page in a Web3 browser to interact with Betoken on the Ethereum Mainnet.</p>
+              <a class="btn btn-block btn-lg btn-success" target="__blank" href="#">Connect your wallet</a>
             </div>
             <button class="btn btn-block btn-lg btn-success" type="button" data-toggle="modal" data-target="#modalInvestorBuy" *ngIf="user_address != ZERO_ADDR">Get Started</button>
           </div>
+          <a href="https://drive.google.com/file/d/1Cwk-SMzcTxRC0XAi0qejvTd4Quik-1TF/view?usp=sharing" target="_blank">
+            <div class="card-footer">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  <div class="avatar avatar-sm">
+                    <img class="avatar-img rounded-circle bg-secondary" src="assets/img/solidified-logo.png" alt="Solidified logo">
+                  </div>
+                </div>
+                <div class="col">
+                  <p class="small text-secondary mb-0">Betoken Smart Contracts are audited and secured by Solidified</p>
+                </div>
+                <div class="col-auto">
+                  <i class="fe fe-arrow-right text-secondary"></i>
+                </div>
+              </div>
+            </div>
+          </a>
         </div>
         <div class="card card-inactive mb-6">
           <div class="card-body">
@@ -449,7 +466,7 @@
                       </div>
                     </div>
                   </div>
-                </form>                
+                </form>
               </div>
 
               <!-- Continue button for buyStep 1 -->

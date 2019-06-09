@@ -58,7 +58,7 @@
     "trackr": "^2.0.2",
     "underscore": "^1.9.1",
     "utf8": "^3.0.0",
-    "web3": "^1.0.0-beta.55",
+    "web3": "^1.0.0-beta.36",
     "xmlhttprequest": "^1.8.0",
     "zone.js": "^0.8.26"
   },

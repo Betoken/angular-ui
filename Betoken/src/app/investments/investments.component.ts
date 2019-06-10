@@ -1,10 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import { AppComponent } from '../app.component';
-import { user, manager_actions, loading, tokens, refresh_actions } from '../../betokenjs/helpers';
+import { user, timer, manager_actions, loading, tokens, refresh_actions } from '../../betokenjs/helpers';
 import BigNumber from 'bignumber.js';
 import { isUndefined } from 'util';
 
-declare var jquery:any;
 declare var $ :any;
 
 @Component({
@@ -24,6 +23,7 @@ export class InvestmentsComponent implements OnInit {
     expected_commission: String;
     kairo_balance: BigNumber;
     monthly_pl: BigNumber;
+    phase: Number;
 
     selectedTokenSymbol: String;
     stakeAmount: BigNumber;
@@ -50,6 +50,7 @@ export class InvestmentsComponent implements OnInit {
         this.expected_commission = '';
         this.kairo_balance = new BigNumber(0);
         this.monthly_pl = new BigNumber(0);
+        this.phase = 0;
 
         this.selectedTokenSymbol = 'ETH';
         this.stakeAmount = new BigNumber(0);
@@ -111,6 +112,7 @@ export class InvestmentsComponent implements OnInit {
         this.userValue = user.portfolio_value().toFormat(4);
         this.portfolioValueInDAI = user.portfolio_value_in_dai().toFormat(2);
         this.riskTakenPercentage = user.risk_taken_percentage().times(100);
+        this.phase = timer.phase();
 
         this.activeInvestmentList = user.investment_list().filter((data) => data.isSold === false);
         this.inactiveInvestmentList = user.investment_list().filter((data) => data.isSold === true);

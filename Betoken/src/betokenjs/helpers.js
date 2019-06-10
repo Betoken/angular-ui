@@ -114,7 +114,8 @@ export const stats = {
     raw_roi_data: () => Data.ROIArray.get(),
     ranking: () => Data.kairoRanking.get(),
     shares_price: () => Data.sharesPrice.get(),
-    kairo_price: () => Data.kairoPrice.get()
+    kairo_price: () => Data.kairoPrice.get(),
+    kairo_total_supply: () => Data.kairoTotalSupply.get()
 }
 
 export const tokens = {

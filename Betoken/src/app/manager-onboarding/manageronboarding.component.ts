@@ -8,7 +8,7 @@ import { } from 'jquery';
 declare var $: any;
 
 import {
-  user, timer, stats, tokens, manager_actions
+  user, stats, tokens, manager_actions
 } from '../../betokenjs/helpers';
 
 @Component({
@@ -17,6 +17,7 @@ import {
 })
 export class ManageronboardingComponent implements OnInit {
   ZERO_ADDR = '0x0000000000000000000000000000000000000000';
+  FALLBACK_MAX_DONATION: BigNumber;
   tokenData: Array<Object>;
   user_address: String;
   checkboxes: Array<boolean>;
@@ -27,6 +28,7 @@ export class ManageronboardingComponent implements OnInit {
   buyKairoAmount: BigNumber;
   buyTokenAmount: BigNumber;
   kairoBalance: BigNumber;
+  kairoTotalSupply: BigNumber;
 
   buyStep: Number;
 
@@ -41,6 +43,8 @@ export class ManageronboardingComponent implements OnInit {
     this.buyKairoAmount = new BigNumber(0);
     this.buyTokenAmount = new BigNumber(0);
     this.kairoBalance = new BigNumber(0);
+    this.kairoTotalSupply = new BigNumber(0);
+    this.FALLBACK_MAX_DONATION = new BigNumber(100); // fallback max DAI payment is 100
   }
 
   ngOnInit() {
@@ -57,6 +61,7 @@ export class ManageronboardingComponent implements OnInit {
     this.user_address = user.address();
     this.kairoPrice = stats.kairo_price();
     this.kairoBalance = user.kairo_balance();
+    this.kairoTotalSupply = stats.kairo_total_supply();
 
     this.getTokenBalance(this.selectedTokenSymbol);
   }
@@ -74,9 +79,14 @@ export class ManageronboardingComponent implements OnInit {
     }
   }
 
+  getMaxPaymentAmount() {
+    return BigNumber.max(this.kairoTotalSupply.div(100).times(this.kairoPrice), this.FALLBACK_MAX_DONATION).div(this.assetSymbolToPrice(this.selectedTokenSymbol));
+  }
+
   maxBuyAmount() {
-    $('#sharesAmountToBuy').val(this.selectedTokenBalance.toString());
-    this.refreshBuyOrderDetails(this.selectedTokenBalance);
+    let amount = BigNumber.min(this.selectedTokenBalance, this.getMaxPaymentAmount());
+    $('#sharesAmountToBuy').val(amount.toString());
+    this.refreshBuyOrderDetails(amount);
   }
 
   selectBuyToken(value) {

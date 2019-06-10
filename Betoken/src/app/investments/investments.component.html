@@ -690,9 +690,8 @@
             </div>
             <div class="row align-items-center">
               <div class="col">
-                <!-- IDEA: When the user indicates his collateralization target, the progress bar and the status label is updated -->
                 <div class="progress">
-                  <div class="progress-bar bg-danger" role="progressbar" [ngStyle]="{'width': sellData.collateralRatio.times(100).div(3).toFormat(2) + '%'}">{{sellData.collateralRatio.times(100).toFormat(0)}}%</div>
+                  <div class="progress-bar bg-danger" role="progressbar" [ngStyle]="{'width': sellData.collateralRatio.div(sellData.minCollateralRatio.times(2)).times(100).toFormat(2) + '%'}">{{sellData.collateralRatio.times(100).toFormat(0)}}%</div>
                 </div>
                 <div class="row no-gutters justify-content-between text-secondary mb-3">
                   <div class="col text-left">
@@ -701,14 +700,14 @@
                   <div class="col text-left position-absolute d-block w-auto" style="left: 49.0000%;transform: translateX(-50%);">
                     <div style="display: flex; flex-direction: column;">
                       <div style="border: 0.5px dashed #6e84a3; width: 1px; height: 8px; align-self: center;"></div>
-                      <small class="h6">150% • min. collateral ratio</small>
+                      <small class="h6">{{sellData.minCollateralRatio.times(100).toFormat(0)}}% • min. collateral ratio</small>
                     </div>
                   </div>
                   <div class="col text-right">
-                    <small class="h6">300%</small>
+                    <small class="h6">{{sellData.minCollateralRatio.times(2).times(100).toFormat(0)}}%</small>
                   </div>
                 </div>
-                <p class="text-secondary small mb-0">This order must be at least <strong>150%</strong> collateralized.</p>
+                <p class="text-secondary small mb-0">If the order's collateral ratio falls below the minimum, it will be liquidated, which will cause huge losses.</p>
               </div>
             </div>
           </div>
@@ -880,32 +879,35 @@
             <h6 class="header-pretitle mb-0">
               Collateralization status
             </h6>
+            <span class="badge badge-soft-success mr-2" *ngIf="sellData.safety">
+              Safe
+            </span>
+            <span class="badge badge-soft-danger mr-2" *ngIf="!sellData.safety">
+              In Danger
+            </span>
           </div>
         </div>
         <div class="row align-items-center">
           <div class="col">
-            <span class="badge badge-soft-danger mb-2">
-              Unsafe
-            </span>
             <!-- IDEA: When the user indicates his collateralization target, the progress bar and the status label is updated -->
             <div class="progress">
-              <div class="progress-bar bg-danger" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">220%</div>
+              <div class="progress-bar bg-danger" role="progressbar" [ngStyle]="{'width': sellData.collateralRatio.div(sellData.minCollateralRatio.times(2)).times(100).toFormat(2) + '%'}">{{sellData.collateralRatio.times(100).toFormat(0)}}%</div>
             </div>
             <div class="row no-gutters justify-content-between text-secondary mb-3">
               <div class="col text-left">
-                <small class="h6">150%</small>
+                <small class="h6">0%</small>
               </div>
               <div class="col text-left position-absolute d-block w-auto" style="left: 49.0000%;transform: translateX(-50%);">
                 <div style="display: flex; flex-direction: column;">
                   <div style="border: 0.5px dashed #6e84a3; width: 1px; height: 8px; align-self: center;"></div>
-                  <small class="h6">200% • min. collateral ratio</small>
+                  <small class="h6">{{sellData.minCollateralRatio.times(100).toFormat(0)}}% • min. collateral ratio</small>
                 </div>
               </div>
               <div class="col text-right">
-                <small class="h6">250%</small>
+                <small class="h6">{{sellData.minCollateralRatio.times(2).times(100).toFormat(0)}}%</small>
               </div>
             </div>
-            <p class="text-secondary small mb-0">This order must be at least <strong>200%</strong> collateralized. It's at risk if ETH falls below <strong>150 DAI</strong>.</p>
+            <p class="text-secondary small mb-0">If the order's collateral ratio falls below the minimum, it will be liquidated, which will cause huge losses.</p>
           </div>
         </div>
 

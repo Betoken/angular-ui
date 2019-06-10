@@ -61,7 +61,9 @@ export class InvestmentsComponent implements OnInit {
             ROI: new BigNumber(0),
             currValue: new BigNumber(0),
             type: "basic",
-            buyTime: new Date()
+            buyTime: new Date(),
+            collateralRatio: new BigNumber(0),
+            minCollateralRatio: new BigNumber(0)
         };
 
         this.activeInvestmentList = new Array<Object>();

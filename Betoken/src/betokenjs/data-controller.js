@@ -308,7 +308,7 @@ export const loadUserData = async () => {
             var compoundOrderAddrs = await betoken.getCompoundOrders(userAddr);
             var compoundOrders = new Array(compoundOrderAddrs.length);
             if (compoundOrderAddrs.length > 0) {
-                const properties = ["stake", "cycleNumber", "collateralAmountInDAI", "compoundTokenAddr", "isSold", "orderType", "buyTime", "getCurrentCollateralRatioInDAI", "getCurrentProfitInDAI"];
+                const properties = ["stake", "cycleNumber", "collateralAmountInDAI", "compoundTokenAddr", "isSold", "orderType", "buyTime", "getCurrentCollateralRatioInDAI", "getCurrentCollateralInDAI", "getCurrentBorrowInDAI", "getCurrentCashInDAI", "getCurrentProfitInDAI", "getCurrentLiquidityInDAI", "getMarketCollateralFactor"];
                 const handleProposal = async (id) => {
                     const order = await CompoundOrder(compoundOrderAddrs[id]);
                     let orderData = {"id": id};
@@ -337,6 +337,11 @@ export const loadUserData = async () => {
                     o.buyTime = new Date(+o.buyTime * 1e3);
                     o.collateralRatio = BigNumber(o.getCurrentCollateralRatioInDAI).div(PRECISION);
                     o.currProfit = BigNumber(o.getCurrentProfitInDAI._amount).times(o.getCurrentProfitInDAI._isNegative ? -1 : 1).div(PRECISION);
+                    o.currCollateral = BigNumber(o.getCurrentCollateralInDAI).div(PRECISION);
+                    o.currBorrow = BigNumber(o.getCurrentBorrowInDAI).div(PRECISION);
+                    o.currCash = BigNumber(o.getCurrentCashInDAI).div(PRECISION);
+                    o.minCollateralRatio = BigNumber(PRECISION).div(o.getMarketCollateralFactor);
+                    o.currLiquidity = BigNumber(o.getCurrentLiquidityInDAI._amount).times(o.getCurrentLiquidityInDAI._isNegative ? -1 : 1).div(PRECISION);
                     
                     o.ROI = o.currProfit.div(o.collateralAmountInDAI).times(100);
                     o.kroChange = o.ROI.times(o.stake).div(100);
@@ -345,8 +350,17 @@ export const loadUserData = async () => {
                     o.safety = o.collateralRatio.gt(UNSAFE_COL_RATIO);
                     o.type = "compound";
 
+                    if (!o.isSold && o.cycleNumber === cycleNumber.get()) {
+                        var currentStakeValue = o.stake.times(o.ROI.div(100).plus(1));
+                        stake = stake.plus(currentStakeValue);
+                    }
+
                     delete o.getCurrentCollateralRatioInDAI;
                     delete o.getCurrentProfitInDAI;
+                    delete o.getCurrentCollateralInDAI;
+                    delete o.getCurrentBorrowInDAI;
+                    delete o.getCurrentCashInDAI;
+                    delete o.getMarketCollateralFactor;
                 }
 
                 totalKROChange = totalKROChange.plus(compoundOrders.map((x) => BigNumber(x.kroChange)).reduce((x, y) => x.plus(y), BigNumber(0)));

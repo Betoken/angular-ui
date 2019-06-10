@@ -207,6 +207,20 @@
   {
     "constant": true,
     "inputs": [],
+    "name": "outputAmount",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
     "name": "KYBER_ADDR",
     "outputs": [
       {
@@ -455,6 +469,62 @@
         "name": "_isNegative",
         "type": "bool"
       },
+      {
+        "name": "_amount",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [],
+    "name": "getMarketCollateralFactor",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [],
+    "name": "getCurrentCollateralInDAI",
+    "outputs": [
+      {
+        "name": "_amount",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [],
+    "name": "getCurrentBorrowInDAI",
+    "outputs": [
+      {
+        "name": "_amount",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [],
+    "name": "getCurrentCashInDAI",
+    "outputs": [
       {
         "name": "_amount",
         "type": "uint256"

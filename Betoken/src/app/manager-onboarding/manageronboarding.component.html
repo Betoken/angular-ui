@@ -346,16 +346,16 @@
                 <div class="col">
                   <form>
                     <div class="form-group row mb-0">
+                      <div class="col d-flex align-items-center">
+                        <input aria-describedby="Kairo Amount to buy" class="form-control form-control-lg form-control-flush border rounded px-3" type="number" placeholder="0.0" id="sharesAmountToBuy" (input)="refreshBuyOrderDetails($event.target.value)">
+                        <button class="btn btn-sm btn-white position-absolute" name="button" type="button" (click)="maxBuyAmount()" style="right: 20px;">Max</button>
+                      </div>
                       <div class="col">
                         <div class="form-group mb-0">
                           <select class="form-control form-control-lg" id="buyTokenSelect" (change)="selectBuyToken($event.target.value)">
                             <option *ngFor="let token of tokenData">{{token.symbol}}</option>
                           </select>
                         </div>
-                      </div>
-                      <div class="col d-flex align-items-center">
-                        <input aria-describedby="Kairo Amount to buy" class="form-control form-control-lg form-control-flush border rounded px-3" type="number" placeholder="0.0" id="sharesAmountToBuy" (input)="refreshBuyOrderDetails($event.target.value)">
-                        <button class="btn btn-sm btn-white position-absolute" name="button" type="button" (click)="maxBuyAmount()" style="right: 20px;">Max</button>
                       </div>
                     </div>
                     <small class="form-text text-secondary d-inline-block mb-0 mt-1">{{selectedTokenBalance.toFormat(4)}} {{selectedTokenSymbol}} available</small>

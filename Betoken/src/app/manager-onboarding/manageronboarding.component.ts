@@ -93,6 +93,7 @@ export class ManageronboardingComponent implements OnInit {
     this.selectedTokenSymbol = value;
     $('#sharesAmountToBuy').val('0');
     this.refreshBuyOrderDetails(0);
+    this.getTokenBalance(this.selectedTokenSymbol);
   }
 
   async getTokenBalance(token) {

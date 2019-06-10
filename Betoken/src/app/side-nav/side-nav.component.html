@@ -122,7 +122,7 @@
 <nav class="navbar fixed-bottom d-md-none" *ngIf="checkRouterURL('/investing-dashboard') === false">
   <div class="container px-0">
     <!--Provide onboarding for prospective managers with no Kairo-->
-    <a class="btn btn-success btn-block" target="_blank" href="https://betoken.fund/iao/" *ngIf="userKairoValue.comparedTo(0) === 0">
+    <a class="btn btn-success btn-block" href="#/start-managing" *ngIf="userKairoValue.comparedTo(0) === 0">
       Become a Manager
     </a>
 

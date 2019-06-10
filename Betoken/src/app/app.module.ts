@@ -12,6 +12,7 @@ import { SideNavComponent } from './side-nav/side-nav.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 import { InvestmentsComponent } from './investments/investments.component';
+import { UpgradeComponent } from './upgrade/upgrade.component';
 import { CommissionsComponent } from './commissions/commissions.component';
 import { RankingsComponent } from './rankings/rankings.component';
 import { InvestorComponent } from './investor/investor.component';
@@ -33,6 +34,11 @@ const routes: Routes = [
 {
   path: 'investments',
   component: InvestmentsComponent,
+  pathMatch: 'full'
+},
+{
+  path: 'upgrades',
+  component: UpgradeComponent,
   pathMatch: 'full'
 },
 {
@@ -80,6 +86,7 @@ const routes: Routes = [
     SideNavComponent,
     DashboardComponent,
     InvestmentsComponent,
+    UpgradeComponent,
     CommissionsComponent,
     RankingsComponent,
     InvestorComponent,

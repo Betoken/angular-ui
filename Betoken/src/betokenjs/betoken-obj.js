@@ -512,7 +512,7 @@ export var Betoken = function() {
     self.repayCompoundOrder = async function(_proposalId, _amountInDAI, _onTxHash, _onReceipt) {
         await getDefaultAccount();
         var repayAmount = _amountInDAI.times(PRECISION).integerValue().toFixed();
-        return self.contracts.BetokenFund.methods.repayCompoundOrder(_proposalId, _amountInDAI).send({
+        return self.contracts.BetokenFund.methods.repayCompoundOrder(_proposalId, repayAmount).send({
             from: web3.eth.defaultAccount
         }).on("transactionHash", _onTxHash).on("receipt", _onReceipt);
     }

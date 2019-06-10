@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import { AppComponent } from '../app.component';
-import { user, timer, manager_actions, loading, tokens, refresh_actions} from '../../betokenjs/helpers';
+import { user, manager_actions, loading, tokens, refresh_actions } from '../../betokenjs/helpers';
 import BigNumber from 'bignumber.js';
 import { isUndefined } from 'util';
 
@@ -16,6 +16,7 @@ export class InvestmentsComponent implements OnInit {
     createInvestmentPopupStep: Number;
     sellInvestmentPopupStep: Number;
     nextPhasePopupStep: Number;
+    topupPopupStep: Number;
 
     portfolioValueInDAI: String;
     riskTakenPercentage: BigNumber;
@@ -41,6 +42,7 @@ export class InvestmentsComponent implements OnInit {
         this.createInvestmentPopupStep = 0;
         this.sellInvestmentPopupStep = 0;
         this.nextPhasePopupStep = 0;
+        this.topupPopupStep = 0;
 
         this.portfolioValueInDAI = '';
         this.riskTakenPercentage = new BigNumber(0);
@@ -63,7 +65,10 @@ export class InvestmentsComponent implements OnInit {
             type: "basic",
             buyTime: new Date(),
             collateralRatio: new BigNumber(0),
-            minCollateralRatio: new BigNumber(0)
+            minCollateralRatio: new BigNumber(0),
+            currCollateral: new BigNumber(0),
+            currBorrow: new BigNumber(0),
+            currCash: new BigNumber(0)
         };
 
         this.activeInvestmentList = new Array<Object>();
@@ -90,6 +95,7 @@ export class InvestmentsComponent implements OnInit {
         this.createInvestmentPopupStep = 0;
         this.sellInvestmentPopupStep = 0;
         this.nextPhasePopupStep = 0;
+        this.topupPopupStep = 0;
     }
 
     // Refresh info
@@ -212,6 +218,30 @@ export class InvestmentsComponent implements OnInit {
         }
     }
 
+    // Top up Compound order
+    topup() {
+        this.topupPopupStep = 1;
+        let targetColRatio = new BigNumber($('#collateral-ratio-target-input').val()).div(100);
+        let repayAmount = this.sellData['currBorrow'].minus(this.sellData['currCollateral'].div(targetColRatio));
+
+        let pending = (transactionHash) => {
+            if (this.topupPopupStep !== 0) {
+                this.topupPopupStep = 2;
+                this.transactionId = transactionHash;
+            }
+        }
+
+        let confirm = () => {
+            if (this.topupPopupStep !== 0) {
+                this.topupPopupStep = 3;
+            }
+            this.sellData['collateralRatio'] = targetColRatio;
+            this.refresh();
+        }
+
+        manager_actions.repay_compound_order(this.sellId, repayAmount, pending, confirm);
+    }
+
     // UI helpers
 
     maxStake() {
@@ -220,6 +250,10 @@ export class InvestmentsComponent implements OnInit {
 
     maxSellPercent() {
         $('#sell-percentage-input').val('100.0');
+    }
+
+    maxTopupTarget() {
+        $('#collateral-ratio-target-input').val(this.sellData['currCollateral'].div(this.sellData['currBorrow'].minus(this.sellData['currCash'])).times(100).toFixed(0));
     }
 
     isLoading() {

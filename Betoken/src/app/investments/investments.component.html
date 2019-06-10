@@ -838,22 +838,21 @@
         <div class="row align-items-center">
           <div class="col">
             <!-- Collateralization target title -->
-            <h4 class="card-header-title">
-              Top up your collateralization
+            <h4 class="card-header-title" *ngIf="topupPopupStep == 0">
+              Top up your order
             </h4>
-            <!-- Confirm top up title --
-            <h4 class="card-header-title">
+            <!-- Confirm top up title -->
+            <h4 class="card-header-title" *ngIf="topupPopupStep == 1">
               Confirm top up order
             </h4>
-            <!-- Processing top up title --
-            <h4 class="card-header-title">
+            <!-- Processing top up title -->
+            <h4 class="card-header-title" *ngIf="topupPopupStep == 2">
               Processing top up order
             </h4>
-            <!-- Top up order confirmed title --
-            <h4 class="card-header-title">
+            <!-- Top up order confirmed title -->
+            <h4 class="card-header-title" *ngIf="topupPopupStep == 3">
               Top up confirmed
             </h4>
-            -->
           </div>
           <div class="col-auto">
             <!-- Close -->
@@ -866,96 +865,103 @@
       <!-- progress bar selling -->
       <div class="card-header py-0 border-0" style="min-height: 24px;">
         <div class="progress" style="height: 8px;">
-          <div class="progress-bar bg-success" role="progressbar" style="width: 33.33%" aria-valuenow="33.33" aria-valuemin="0" aria-valuemax="100"></div>
-          <div class="progress-bar border-left bg-secondary" role="progressbar" style="width: 33.33%" aria-valuenow="33.33" aria-valuemin="0" aria-valuemax="100"></div>
-          <div class="progress-bar border-left bg-secondary" role="progressbar" style="width: 33.33%" aria-valuenow="33.33" aria-valuemin="0" aria-valuemax="100"></div>
+          <div [ngClass]="{'bg-success': topupPopupStep >= 0, 'bg-secondary': topupPopupStep !== 0}" class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+          <div [ngClass]="{'bg-success': topupPopupStep >= 1, 'bg-secondary': topupPopupStep !== 1}" class="progress-bar border-left" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+          <div [ngClass]="{'bg-success': topupPopupStep >= 2, 'bg-secondary': topupPopupStep !== 2}" class="progress-bar border-left" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+          <div [ngClass]="{'bg-success': topupPopupStep >= 3, 'bg-secondary': topupPopupStep !== 3}" class="progress-bar border-left" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
         </div>
       </div>
 
       <div class="modal-body pb-5">
         <!--Step 0: enter top up amount-->
-        <div class="row align-items-center justify-content-center mb-3">
-          <div class="col">
-            <h6 class="header-pretitle mb-0">
-              Collateralization status
-            </h6>
-            <span class="badge badge-soft-success mr-2" *ngIf="sellData.safety">
-              Safe
-            </span>
-            <span class="badge badge-soft-danger mr-2" *ngIf="!sellData.safety">
-              In Danger
-            </span>
-          </div>
-        </div>
-        <div class="row align-items-center">
-          <div class="col">
-            <!-- IDEA: When the user indicates his collateralization target, the progress bar and the status label is updated -->
-            <div class="progress">
-              <div class="progress-bar bg-danger" role="progressbar" [ngStyle]="{'width': sellData.collateralRatio.div(sellData.minCollateralRatio.times(2)).times(100).toFormat(2) + '%'}">{{sellData.collateralRatio.times(100).toFormat(0)}}%</div>
+        <div *ngIf="topupPopupStep == 0">
+          <div class="row align-items-center justify-content-center mb-3">
+            <div class="col">
+              <h6 class="header-pretitle mb-0">
+                Collateralization status
+              </h6>
+              <span class="badge badge-soft-success mr-2" *ngIf="sellData.safety">
+                Safe
+              </span>
+              <span class="badge badge-soft-danger mr-2" *ngIf="!sellData.safety">
+                In Danger
+              </span>
             </div>
-            <div class="row no-gutters justify-content-between text-secondary mb-3">
-              <div class="col text-left">
-                <small class="h6">0%</small>
+          </div>
+          <div class="row align-items-center">
+            <div class="col">
+              <div class="progress">
+                <div class="progress-bar bg-danger" role="progressbar" [ngStyle]="{'width': sellData.collateralRatio.div(sellData.minCollateralRatio.times(2)).times(100).toFormat(2) + '%'}">{{sellData.collateralRatio.times(100).toFormat(0)}}%</div>
               </div>
-              <div class="col text-left position-absolute d-block w-auto" style="left: 49.0000%;transform: translateX(-50%);">
-                <div style="display: flex; flex-direction: column;">
-                  <div style="border: 0.5px dashed #6e84a3; width: 1px; height: 8px; align-self: center;"></div>
-                  <small class="h6">{{sellData.minCollateralRatio.times(100).toFormat(0)}}% • min. collateral ratio</small>
+              <div class="row no-gutters justify-content-between text-secondary mb-3">
+                <div class="col text-left">
+                  <small class="h6">0%</small>
+                </div>
+                <div class="col text-left position-absolute d-block w-auto" style="left: 49.0000%;transform: translateX(-50%);">
+                  <div style="display: flex; flex-direction: column;">
+                    <div style="border: 0.5px dashed #6e84a3; width: 1px; height: 8px; align-self: center;"></div>
+                    <small class="h6">{{sellData.minCollateralRatio.times(100).toFormat(0)}}% • min. collateral ratio</small>
+                  </div>
+                </div>
+                <div class="col text-right">
+                  <small class="h6">{{sellData.minCollateralRatio.times(2).times(100).toFormat(0)}}%</small>
                 </div>
               </div>
-              <div class="col text-right">
-                <small class="h6">{{sellData.minCollateralRatio.times(2).times(100).toFormat(0)}}%</small>
-              </div>
+              <p class="text-secondary small mb-0">If the order's collateral ratio falls below the minimum, it will be liquidated, which will cause huge losses.</p>
             </div>
-            <p class="text-secondary small mb-0">If the order's collateral ratio falls below the minimum, it will be liquidated, which will cause huge losses.</p>
           </div>
-        </div>
 
-        <hr class="my-4">
+          <hr class="my-4">
 
-        <!-- Collateralization target -->
-        <h6 class="header-pretitle">Collateralization target</h6>
-        <div class="row mb-4">
-          <div class="col">
-            <form>
-              <div class="input-group mb-2">
-                <input type="number" min="0.0" class="form-control form-control-lg border-right-0 pr-0" aria-describedby="percent of collateralization target" placeholder="0.0" id="collateralization-percentage-input">
-                <div class="input-group-append">
-                  <span class="input-group-text border-left-0 border-right-0" id="desiredCollateralizationUnit">%</span>
-                  <button class="btn btn-white" name="button" type="button">Max</button>
+          <!-- Collateralization target -->
+          <h6 class="header-pretitle">Collateralization target</h6>
+          <div class="row mb-4">
+            <div class="col">
+              <form>
+                <div class="input-group mb-2">
+                  <input type="number" min="0.0" class="form-control form-control-lg border-right-0 pr-0" aria-describedby="percent of collateralization target" placeholder="0.0" id="collateral-ratio-target-input">
+                  <div class="input-group-append">
+                    <span class="input-group-text border-left-0 border-right-0" id="desiredCollateralizationUnit">%</span>
+                    <button class="btn btn-white" name="button" type="button" *ngIf="sellData.currCash.lt(sellData.currBorrow)" (click)="maxTopupTarget()">Max</button>
+                  </div>
                 </div>
-              </div>
-              <small id="kroBalance" class="form-text text-secondary d-inline-block mb-0 mt-1">242% • Max collateralization allowed</small>
-            </form>
+                <small id="kroBalance" class="form-text text-secondary d-inline-block mb-0 mt-1" *ngIf="sellData.currCash.lt(sellData.currBorrow)">{{sellData.currCollateral.div(sellData.currBorrow.minus(sellData.currCash)).times(100).toFormat(0)}}% • Max possible collateral ratio</small>
+              </form>
+            </div>
           </div>
         </div>
 
         <!--Step 1: confirm tx in wallet-->
         <!-- Confirm tx body -->
-        <p class="text-center text-muted mb-5" *ngIf="sellInvestmentPopupStep === 1">
+        <p class="text-center text-muted mb-5" *ngIf="topupPopupStep === 1">
           Confirm the transaction in your wallet’s interface to save it on the Ethereum blockchain. It's fine to stick with these defaults gas limit and price.
         </p>
 
         <!--Step 2: tx broadcasted-->
-        <!-- loader -->
-        <img class="image-fluid d-block mx-auto mb-4" src="assets/img/animated-logo.svg" alt="Betoken logo" style="width: 88px;" *ngIf="sellInvestmentPopupStep === 2">
-        <!-- Tx broadcasted body -->
-        <p class="text-center text-muted mb-5" *ngIf="sellInvestmentPopupStep === 2">
-          Your transaction is being saved on the Ethereum blockchain. You can check its status on Etherscan.
-        </p>
+        <div *ngIf="topupPopupStep == 2">
+          <!-- loader -->
+          <img class="image-fluid d-block mx-auto mb-4" src="assets/img/animated-logo.svg" alt="Betoken logo" style="width: 88px;">
+          <!-- Tx broadcasted body -->
+          <p class="text-center text-muted mb-5">
+            Your transaction is being saved on the Ethereum blockchain. You can check its status on Etherscan.
+          </p>
+        </div>
 
         <!--Step 3: tx confirmed-->
         <!-- Asset sold body -->
-        <p class="h1 text-center" *ngIf="sellInvestmentPopupStep === 3">
-          <i class="fe fe-check-circle text-success"></i>
-        </p>
-        <p class="text-center text-muted mb-5" *ngIf="sellInvestmentPopupStep === 3">
-          You have successfully repay  the investment and redeemed your Kairo.
-        </p>
-        <hr *ngIf="sellInvestmentPopupStep === 2 || sellInvestmentPopupStep === 3">
-        <form *ngIf="sellInvestmentPopupStep === 2 || sellInvestmentPopupStep === 3">
+        <div *ngIf="topupPopupStep == 3">
+          <p class="h1 text-center">
+            <i class="fe fe-check-circle text-success"></i>
+          </p>
+          <p class="text-center text-muted mb-5">
+            You have successfully topped up the order.
+          </p>
+        </div>
+        
+        <hr *ngIf="topupPopupStep === 2 || topupPopupStep === 3">
+        <form *ngIf="topupPopupStep === 2 || topupPopupStep === 3">
           <div class="form-group">
-            <label for="exampleFormControlInput1">Transaction ID</label>
+            <label>Transaction ID</label>
             <div class="input-group mb-3">
               <input type="text" class="form-control form-control-lg" value="{{transactionId}}" aria-label="Transaction ID" aria-describedby="">
               <div class="input-group-append">
@@ -966,14 +972,13 @@
         </form>
 
         <!-- Continue button for amount to sell Step -->
-        <button type="submit" class="btn btn-block btn-success mt-auto" aria-label="Sell" (click)="sell()" *ngIf="sellInvestmentPopupStep === 0">
+        <button type="submit" class="btn btn-block btn-success mt-auto" aria-label="Topup" (click)="topup()" *ngIf="topupPopupStep === 0">
           Continue
         </button>
         <!-- close button panel after Asset being sold -->
-        <button type="submit" class="btn btn-block btn-white mt-auto" data-dismiss="modal" aria-label="Close" *ngIf="sellInvestmentPopupStep === 3">
+        <button type="submit" class="btn btn-block btn-white mt-auto" data-dismiss="modal" aria-label="Close" *ngIf="topupPopupStep === 3">
           Close
         </button>
-
       </div>
     </div>
   </div>

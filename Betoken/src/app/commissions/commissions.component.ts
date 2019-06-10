@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {
     user,
+    timer,
     loading,
     refresh_actions,
     manager_actions
@@ -18,12 +19,14 @@ export class CommissionsComponent implements OnInit {
     commissionAmount: BigNumber;
     transactionId: String;
     step: Number;
+    cycle: Number;
 
     constructor() {
         this.commissionHistory = new Array<Object>();
         this.commissionAmount = new BigNumber(0);
         this.transactionId = '';
         this.step = 0;
+        this.cycle = 0;
     }
 
     ngOnInit() {
@@ -36,6 +39,7 @@ export class CommissionsComponent implements OnInit {
     refreshDisplay() {
         this.commissionHistory = user.commission_history();
         this.commissionAmount = user.expected_commission();
+        this.cycle = timer.cycle();
     }
 
     async refresh() {
@@ -53,6 +57,7 @@ export class CommissionsComponent implements OnInit {
 
     redeemCommission(option) {
         this.step = 1;
+        let cycle = +$('#redeem-commission-cycle-input').val();
 
         let pending = (transactionHash) => {
             this.transactionId = transactionHash;
@@ -64,11 +69,13 @@ export class CommissionsComponent implements OnInit {
             refresh_actions.records();
         }
 
-        if (option === 0) {
-            manager_actions.redeem_commission(pending, confirm);
-        }
-        if (option === 1) {
-            manager_actions.redeem_commission_in_shares(pending, confirm);
+        var inShares = (option == 0);
+        if (cycle == 0) {
+            console.log('normal');
+            manager_actions.redeem_commission(inShares, pending, confirm);
+        } else {
+            console.log('special');
+            manager_actions.redeem_commission_for_cycle(inShares, cycle, pending, confirm);
         }
     }
 }

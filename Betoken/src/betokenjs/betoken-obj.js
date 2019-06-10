@@ -527,6 +527,13 @@ export var Betoken = function() {
         }).on("transactionHash", _onTxHash).on("receipt", _onReceipt);
     };
 
+    self.redeemCommissionForCycle = async function(_inShares, _cycle, _onTxHash, _onReceipt) {
+        await getDefaultAccount();
+        return self.contracts.BetokenFund.methods.redeemCommissionForCycle(_inShares, _cycle).send({
+            from: web3.eth.defaultAccount
+        }).on("transactionHash", _onTxHash).on("receipt", _onReceipt);
+    };
+
     /*
     Manager Registration functions
     */

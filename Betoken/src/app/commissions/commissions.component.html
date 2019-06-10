@@ -149,20 +149,19 @@
                     <div class="row align-items-center">
                       <div class="col">
                         <h6 class="header-pretitle">
-                          Cycle's commissions
+                          Redeem commisssion for a particular cycle
                         </h6>
-                        <p>Choose which cycle's commissions you want to redeem:</p>
-                        <div>
-                          <select class="form-control form-control-lg">
-                            <option selected>Cycle 7</option>
-                            <option>Cycle 6</option>
-                            <option>Cycle 5</option>
-                            <option>Cycle 4</option>
-                          </select>
-                        </div>
+                        <p><small>Only use this when normal redemption fails</small></p>
+                        <form>
+                          <div class="input-group mb-2">
+                            <input type="number" min="0" [max]="cycle - 1" class="form-control form-control-lg border-right-0 pr-0" aria-describedby="cycle for which to redeem commission" placeholder="0" id="redeem-commission-cycle-input">
+                            <div class="input-group-append">
+                              <span class="input-group-text border-left-0 border-right-0" id="redeemCommissionCycle"></span>
+                            </div>
+                          </div>
+                        </form>
                       </div>
                     </div>
-
                   </div>
                 </div>
               </div>

@@ -10,7 +10,7 @@
 
               <!-- Title -->
               <h6 class="card-title text-uppercase text-muted mb-2">
-                Your Betoken Shares Balance
+                Betoken Shares Balance
               </h6>
 
               <!-- Heading -->
@@ -37,12 +37,39 @@
 
               <!-- Title -->
               <h6 class="card-title text-uppercase text-muted mb-2">
-                Value of Your Betoken Shares
+                Total value
               </h6>
 
               <!-- Heading -->
               <span class="h2 mb-0">
                 {{investmentBalance.toFormat(4)}} DAI
+              </span>
+
+            </div>
+            <div class="col-auto">
+
+              <!-- Icon -->
+              <span class="h2 fe fe-dollar-sign text-muted mb-0"></span>
+
+            </div>
+          </div> <!-- / .row -->
+
+        </div>
+      </div>
+      <!-- Card -->
+      <div class="card" data-toggle="tooltip" data-html="true" title="The actual value in DAI stable coin of the total Betoken Fund shares owned by you.">
+        <div class="card-body">
+          <div class="row align-items-center">
+            <div class="col">
+
+              <!-- Title -->
+              <h6 class="card-title text-uppercase text-muted mb-2">
+                Price/BTKS
+              </h6>
+
+              <!-- Heading -->
+              <span class="h2 mb-0">
+                {{sharesPrice.toFormat(4)}} DAI
               </span>
 
             </div>
@@ -68,11 +95,7 @@
           </h6>
           <!-- Title -->
           <h1 class="header-title text-white d-inline-block align-middle">
-            Betoken Shares Price
-            <!-- Badge -->
-            <span class="badge badge-soft-success my-3 my-md-0 ml-md-2">
-              {{sharesPrice.toFormat(4)}} DAI
-            </span>
+            BTKS Price Chart
           </h1>
 
         </div>
@@ -311,7 +334,7 @@
             </div>
             <!-- Wait until next intermission title -->
             <h4 class="card-header-title" *ngIf="phase == 1">
-              Sorry, that operation isn't avaialble right now
+              Operation not permitted
             </h4>
           </div>
           <div class="col-auto">
@@ -328,9 +351,9 @@
       <!-- Manage phase, buying not allowed -->
       <div class="modal-body" *ngIf="phase == 1">
         <img class="mb-4 image-fluid w-75 mx-auto d-block" src="assets/img/illustrations/undraw_queue_qt30.svg" alt="">
-        <!-- Time left until next intermission phase -->
+        <!-- Time left until operation allowed -->
         <h6 class="header-pretitle text-secondary mb-2 text-center">
-          Time left until next investment phase
+          Time left until operation allowed
         </h6>
         <h4 class="header-title mb-4 text-center">
           {{days}}d {{hours}}h {{minutes}}m {{seconds}}s <a data-toggle="tooltip" title="Investors can buy or sell Betoken Shares every 27 days, during a 3-day investment phase."><i class="fe fe-info"></i></a>
@@ -398,7 +421,7 @@
           </div>
           <div class="card card-inactive mb-4">
             <div class="card-body">
-              <h3 class="text-white">Disclaimer</h3>
+              <h3>Disclaimer</h3>
               <p class="text-muted">
                 Nothing herein constitutes an offer to sell, or the solicitation of an offer to buy, any securities or tokens.
               </p>
@@ -573,7 +596,7 @@
             </div>
             <div *ngIf="phase == 1">
               <h4 class="card-header-title">
-                Sorry, that operation isn't avaialble right now
+                Operation not permitted
               </h4>
             </div>
           </div>

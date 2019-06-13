@@ -266,7 +266,7 @@
                 </div>
                 <!-- Wait until next intermission title -->
                 <h4 class="card-header-title" *ngIf="phase == 1">
-                  Sorry, that operation isn't available right now
+                  Operation not permitted
                 </h4>
               </div>
               <div class="col-auto">
@@ -283,9 +283,9 @@
           <!-- Manage phase, buying not allowed -->
           <div class="modal-body" *ngIf="phase == 1">
             <img class="mb-4 image-fluid w-75 mx-auto d-block" src="assets/img/illustrations/undraw_queue_qt30.svg" alt="">
-            <!-- Time left until next intermission phase -->
+            <!-- Time left until operation allowed -->
             <h6 class="header-pretitle text-secondary mb-2 text-center">
-              Time left until next investment phase
+              Time left until operation allowed
             </h6>
             <h4 class="header-title mb-4 text-center">
               {{days}}d {{hours}}h {{minutes}}m {{seconds}}s <a data-toggle="tooltip" title="Investors can buy or sell Betoken Shares every 27 days, during a 3-day investment phase."><i class="fe fe-info"></i></a>

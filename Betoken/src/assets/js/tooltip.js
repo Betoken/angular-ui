@@ -1,24 +1,25 @@
 //
-// Tooltips ==================================
+// tooltip.js
+// Theme module
 //
 
 'use strict';
 
-var Tooltip = (function() {
+(function() {
 
   //
   // Variables
   //
 
-  var $tooltip = $('[data-toggle="tooltip"]');
+  var toggle = document.querySelectorAll('[data-toggle="tooltip"]');
 
 
   //
-  // Methods
+  // Functions
   //
 
-  function init() {
-    $tooltip.tooltip();
+  function init(toggle) {
+    $(toggle).tooltip();
   }
 
 
@@ -26,8 +27,8 @@ var Tooltip = (function() {
   // Events
   //
 
-  if( $tooltip.length ) {
-    init();
+  if (toggle) {
+    init(toggle);
   }
   
 })();

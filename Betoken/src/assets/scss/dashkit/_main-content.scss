@@ -7,8 +7,10 @@
 //
 // General styles
 
-.main-content {
-
+.navbar-vertical:not([style*="display: none"]) ~  .main-content,
+.navbar-vertical-sm:not([style*="display: none"]) ~  .main-content {
+  
+  .container,
   .container-fluid {
 
     @include media-breakpoint-up(md) {
@@ -25,10 +27,8 @@
 
 .navbar-vertical.navbar-expand {
   
-  @each $breakpoint, $dimension in $grid-breakpoints {
-      
+  @each $breakpoint, $value in $grid-breakpoints {
     &-#{$breakpoint} {
-        
       @include media-breakpoint-up(#{$breakpoint}) {
 
         // Left
@@ -41,6 +41,28 @@
 
         &.fixed-right:not([style*="display: none"]) ~ .main-content {
           margin-right: $navbar-vertical-width;
+        }
+      }
+    }
+  }
+}
+
+.navbar-vertical-sm.navbar-expand {
+  
+  @each $breakpoint, $value in $grid-breakpoints {
+    &-#{$breakpoint} {
+      @include media-breakpoint-up(#{$breakpoint}) {
+
+        // Left
+
+        &.fixed-left:not([style*="display: none"]) ~ .main-content {
+          margin-left: $navbar-vertical-width-sm;
+        }
+
+        // Right
+
+        &.fixed-right:not([style*="display: none"]) ~ .main-content {
+          margin-right: $navbar-vertical-width-sm;
         }
       }
     }

@@ -22,3 +22,11 @@
   padding-top: $list-group-item-padding-y-lg;
   padding-bottom: $list-group-item-padding-y-lg;
 }
+
+
+// List group flush
+
+.list-group-flush .list-group-item {
+  padding-left: 0;
+  padding-right: 0;
+}

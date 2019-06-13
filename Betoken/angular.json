@@ -35,10 +35,17 @@
                 "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
                 "node_modules/chart.js/dist/Chart.min.js",
                 "src/assets/libs/chart.js/Chart.extension.js",
+                "src/assets/js/polyfills.js",
+                "src/assets/js/demo.js",
                 "src/assets/js/charts.js",
+                "src/assets/js/autosize.js",
                 "src/assets/js/dashkit.js",
                 "src/assets/js/dropdowns.js",
+                "src/assets/js/flatpickr.js",
+                "src/assets/js/list.js",
                 "src/assets/js/navbar.js",
+                "src/assets/js/popover.js",
+                "src/assets/js/select2.js",
                 "src/assets/js/tooltip.js"
             ]
           },

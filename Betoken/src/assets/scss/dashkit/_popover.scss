@@ -11,7 +11,7 @@
   padding: $popover-padding-y $popover-padding-x;
 
   &:hover {
-    display: block !important;
+    visibility: visible !important;
   }
 }
 

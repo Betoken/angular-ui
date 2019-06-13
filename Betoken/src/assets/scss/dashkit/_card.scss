@@ -8,6 +8,7 @@
 //
 
 .card {
+  display: block;
   margin-bottom: $spacer;
   border-color: $card-outline-color;
   box-shadow: $card-box-shadow;
@@ -152,4 +153,31 @@
   border-style: dashed;
   background-color: transparent;
   box-shadow: none;
+}
+
+
+// Card flush
+
+.card-flush {
+  background: none;
+  border: none;
+  box-shadow: none;
+}
+
+
+// Card sizing
+
+.card-sm .card-body {
+  padding: $card-spacer-x-sm;
+}
+
+
+// Card header flush
+
+.card-header-flush {
+  border-bottom: 0;
+}
+
+.card-header-flush + .card-body {
+  padding-top: 0;
 }

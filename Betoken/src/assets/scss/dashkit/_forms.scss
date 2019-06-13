@@ -3,7 +3,6 @@
 // Extended from Bootstrap
 //
 
-
 //
 // Bootstrap Overrides ===================================
 //
@@ -16,6 +15,14 @@
 }
 
 
+// Form validation
+
+.was-validated .form-control:valid:focus, .form-control.is-valid:focus,
+.was-validated .form-control:invalid:focus, .form-control.is-invalid:focus {
+  box-shadow: none;
+}
+
+
 //
 // Dashkit ===================================
 //
@@ -25,13 +32,22 @@
 // Removes borders and paddings from inputs and text areas
 
 .form-control-flush {
-  padding: 0;
-  border-width: 0;
-  background-color: transparent;
+  padding-left: 0;
+  padding-right: 0;
+  border-color: transparent !important;
+  background-color: transparent !important;
+  resize: none;
+}
 
-  &:focus {
-    background-color: transparent;
-  }
+
+// Form control auto
+//
+// Sets the height of the input to auto
+
+.form-control-auto {
+  height: auto;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 
@@ -206,9 +222,10 @@
 .input-group-flush {
 
   > .form-control {
-    padding: 0;
-    border-width: 0;
-    background-color: transparent;
+    padding-top: 0;
+    padding-bottom: 0;
+    border-color: transparent !important;
+    background-color: transparent !important;
   }
 
   > .input-group-prepend,
@@ -219,5 +236,37 @@
       border-width: 0;
       background-color: transparent;
     }
+  }
+}
+
+
+// Font size
+
+.form-control {
+
+  &.h1, &.h2, &.h3, &.h4, &.h5 {
+    margin-bottom: 0;
+    font-weight: $headings-font-weight;
+    letter-spacing: $headings-letter-spacing;
+  }
+
+  &.h1 {
+    font-size: $h1-font-size;
+  }
+
+  &.h2 {
+    font-size: $h2-font-size;
+  }
+
+  &.h3 {
+    font-size: $h3-font-size;
+  }
+
+  &.h4 {
+    font-size: $h4-font-size;
+  }
+
+  &.h5 {
+    font-size: $h5-font-size;
   }
 }

@@ -1,44 +1,44 @@
 //
-// Dropdowns ==================================
+// dropdowns.js
+// Theme module
 //
 
 'use strict';
 
-var Dropdowns = (function() {
+(function() {
 
   //
   // Variables
   //
 
-  var $dropdown = $('.dropup, .dropright, .dropdown, .dropleft');
-  var $dropdownMenu = $('.dropdown-menu');
-  var $dropdownSubmenu = $('.dropdown-menu .dropdown-menu');
-  var $dropdownSubmenuToggle = $('.dropdown-menu .dropdown-toggle');
+  var dropdown = document.querySelectorAll('.dropup, .dropright, .dropdown, .dropleft');
+  var dropdownSubmenuToggle = document.querySelectorAll('.dropdown-menu .dropdown-toggle');
 
 
   //
-  // Methods
+  // Functions
   //
 
-  // Toggle submenu
-  function toggleSubmenu(toggle) {
-    var $siblingDropdown = toggle.closest($dropdown).siblings($dropdown);
-    var $siblingSubmenu = $siblingDropdown.find($dropdownMenu);
+  function toggleSubmenu(el) {
+    var dropdownMenu = el.parentElement.querySelector('.dropdown-menu');
+    var dropdownMenuSiblings = el.closest('.dropdown-menu').querySelectorAll('.dropdown-menu');
 
-    // Hide sibling submenus
-    $siblingSubmenu.removeClass('show');
+    [].forEach.call(dropdownMenuSiblings, function(el) {
+      if (el !== dropdownMenu) {
+        el.classList.remove('show');
+      }
+    });
 
-    // Show / hide current submenu
-    toggle.next($dropdownSubmenu).toggleClass('show');
+    dropdownMenu.classList.toggle('show');
   }
 
-  // Hide submenu
-  function hideSubmenu(dropdown) {
-    var $submenu = dropdown.find($dropdownSubmenu);
+  function hideSubmenu(el) {
+    var dropdownSubmenus = el.querySelectorAll('.dropdown-menu');
 
-    // Check if there is a submenu
-    if ($submenu.length) {
-      $submenu.removeClass('show');
+    if (dropdownSubmenus) {
+      [].forEach.call(dropdownSubmenus, function(el) {
+        el.classList.remove('show');
+      });
     }
   }
 
@@ -47,16 +47,18 @@ var Dropdowns = (function() {
   // Events
   //
 
-  // Toggle submenu
-  $dropdownSubmenuToggle.on('click', function() {
-    toggleSubmenu($(this));
+  if (dropdownSubmenuToggle) {
+    [].forEach.call(dropdownSubmenuToggle, function(el) {
+      el.addEventListener('click', function(e) {
+        e.preventDefault();
+        toggleSubmenu(el);
+        e.stopPropagation();
+      });
+    });
+  }
 
-    return false;
-  });
-
-  // Hide submenu
-  $dropdown.on('hide.bs.dropdown', function() {
-    hideSubmenu($(this));
+  $(dropdown).on('hide.bs.dropdown', function() {
+    hideSubmenu(this);
   });
 
 })();

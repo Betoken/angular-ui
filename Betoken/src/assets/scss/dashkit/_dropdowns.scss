@@ -13,33 +13,40 @@
 
 .dropdown-toggle {
 
-  &:after {
-    content: '\e92e';
+  &::after {
     width: auto; height: auto;
     border: none !important;
     vertical-align: middle;
     font-family: 'Feather';
   }
+
+  &::after {
+    content: '\e92e';
+  }
 }
 
 .dropup > .dropdown-toggle {
 
-  &:after {
+  &::after {
     content: '\e931';
   }
 }
 
 .dropright > .dropdown-toggle {
 
-  &:after {
+  &::after {
     content: '\e930';
   }
 }
 
 .dropleft > .dropdown-toggle {
 
-  &:after {
+  &::before {
     content: '\e92f';
+    width: auto; height: auto;
+    border: none !important;
+    vertical-align: middle;
+    font-family: 'Feather';
   }
 }
 

@@ -31,6 +31,12 @@ $gray-800: #3B506C !default;
 $gray-900: #283E59 !default;
 $black:    #12263F !default;
 
+$gray-600-dark: #244166 !default;
+$gray-700-dark: #1E3A5C !default;
+$gray-800-dark: #152E4D !default;
+$gray-900-dark: #132A46 !default;
+$black-dark: #12263F !default;
+
 $blue:       #2C7BE5 !default;
 $indigo:     #727cf5 !default; // NOT USED
 $purple:     #6b5eae !default;
@@ -65,9 +71,18 @@ $theme-colors: map-merge((
 ), $theme-colors);
 // stylelint-enable
 
+$lighter: $gray-100 !default;
+
 // Customize the light and dark text colors for use in our YIQ color contrast function.
 $yiq-text-dark: $gray-900 !default;
 $yiq-text-light: $white !default;
+
+
+// Options
+//
+// Quickly modify global styling by enabling or disabling optional features.
+
+$enable-validation-icons: false !default;
 
 
 // Spacing
@@ -79,23 +94,15 @@ $yiq-text-light: $white !default;
 $spacer: 1.5rem !default;
 $spacers: () !default;
 $spacers: map-merge((
-  -8: -($spacer * 9),
-  -7: -($spacer * 4.5),
-  -6: -($spacer * 3),
-  -5: -($spacer * 1.5),
-  -4: -$spacer,
-  -3: -($spacer * .5),
-  -2: -($spacer * .25),
-  -1: -($spacer * .125),
   0: 0,
-  1: ($spacer * .125),
-  2: ($spacer * .25),
-  3: ($spacer * .5),
-  4: $spacer,
-  5: ($spacer * 1.5),
-  6: ($spacer * 3),
-  7: ($spacer * 4.5),
-  8: ($spacer * 9)
+  1: ($spacer * .125),  // 3px
+  2: ($spacer * .25),   // 6px
+  3: ($spacer * .5),    // 12px
+  4: $spacer,           // 24px
+  5: ($spacer * 1.5),   // 36px
+  6: ($spacer * 3),     // 72px
+  7: ($spacer * 4.5),   // 108px
+  8: ($spacer * 9)      // 216px
 ), $spacers);
 
 // This variable affects the `.h-*` and `.w-*` classes.
@@ -303,11 +310,19 @@ $input-group-addon-color: $text-muted !default;
 $custom-select-focus-border-color: $input-focus-border-color !default;
 $custom-select-focus-box-shadow: inset 0 1px 2px rgba($black, .075), 0 0 5px rgba($custom-select-focus-border-color, .5) !default;
 
+$custom-control-indicator-bg: $border-color !default;
+$custom-control-indicator-border-width: 0 !default;
+
+$custom-switch-width: 3rem !default;
+$custom-switch-indicator-size: 1.125rem !default;
+$custom-switch-indicator-border-radius: $custom-switch-indicator-size / 2 !default;
+
 
 // Dropdowns
 //
 // Dropdown menu container and contents.
 
+$dropdown-spacer: 0 !default;
 $dropdown-border-color: rgba($black, .1) !default;
 
 $dropdown-link-color: $gray-700 !default;
@@ -343,7 +358,7 @@ $navbar-brand-padding-y: 0 !default;
 
 $navbar-toggler-padding-x: 0 !default;
 
-$navbar-dark-color: fade-out($white, .3) !default;
+$navbar-dark-color: $gray-700 !default;
 $navbar-dark-hover-color: $white !default;
 $navbar-dark-active-color: $white !default;
 $navbar-dark-toggler-border-color: transparent !default;
@@ -409,6 +424,22 @@ $popover-header-margin-bottom: .25rem !default;
 $popover-body-color: $text-muted !default;
 
 
+// Toasts
+
+$toast-max-width: 300px !default;
+$toast-padding-x: 1rem !default;
+$toast-padding-y: 0.75rem !default;
+$toast-font-size: $font-size-base !default;
+$toast-background-color: $white !default;
+$toast-border-color: $border-color !default;
+$toast-border-radius: $border-radius !default;
+$toast-box-shadow: 0 0.75rem 1.5rem fade-out($black, .9) !default;
+
+$toast-header-color: $body-color !default;
+$toast-header-background-color: $toast-background-color !default;
+$toast-header-border-color: $border-color !default;
+
+
 // Badges
 
 $badge-font-weight: $font-weight-normal !default;
@@ -425,6 +456,8 @@ $modal-content-border-color: transparent !default;
 $modal-header-padding: 1.5rem !default;
 $modal-header-border-color: $border-color !default;
 $modal-footer-border-color: $border-color !default;
+
+$modal-md: 600px !default;
 
 
 // Alerts
@@ -482,10 +515,13 @@ $code-color: $blue !default;
 // Dashkit =====================================
 //
 
+// Paths
+
+$path-to-fonts: '../fonts' !default;
+$path-to-img: '../img' !default;
+
 
 // Type
-
-$font-path: '../fonts/cerebrisans' !default;
 
 $font-size-xs: ($font-size-base * .6666666667) !default; // 10px
 
@@ -536,6 +572,8 @@ $breadcrumb-font-size-sm: $font-size-sm !default;
 
 // Cards
 
+$card-spacer-x-sm: 1rem !default;
+
 $card-outline-color: $card-border-color !default;
 $card-box-shadow: 0 .75rem 1.5rem transparentize($black, .97) !default;
 
@@ -546,6 +584,9 @@ $card-header-min-height: 3.75rem !default;
 
 $chart-height: 300px !default;
 $chart-height-sm: 225px !default;
+
+$chart-sparkline-width: 75px !default;
+$chart-sparkline-height: 35px !default;
 
 $chart-legend-margin-top: 2.5rem !default;
 $chart-legend-font-size: $font-size-sm !default;
@@ -560,7 +601,7 @@ $comment-margin-bottom: 1rem !default;
 $comment-body-padding-y: 1rem !default;
 $comment-body-padding-x: 1.25rem !default;
 $comment-body-bg: $body-bg !default;
-$comment-body-border-radius: $border-radius !default;
+$comment-body-border-radius: $border-radius-lg !default;
 $comment-body-font-size: $font-size-sm !default;
 
 $comment-time-margin-bottom: .5625rem !default;
@@ -593,13 +634,6 @@ $header-body-border-color-dark: fade-out($header-body-border-color, .9) !default
 $list-group-item-padding-y-lg: $spacer !default;
 
 
-// Loaders
-
-$loader-size-base: 1.5rem !default;
-$loader-size-sm: 1rem !default;
-$loader-size-lg: 2rem !default;
-
-
 // Main content
 
 $main-content-padding-y: 40px !default;
@@ -629,18 +663,30 @@ $nav-tabs-sm-link-margin-x: .5rem !default;
 // Navbar
 
 $navbar-vertical-width: 250px !default;
+$navbar-vertical-width-sm: 66px !default;
+
 $navbar-vertical-padding-x: 1.5rem !default;
+$navbar-vertical-padding-x-sm: 0.75rem !default;
 
 $navbar-icon-min-width: 1.75rem !default;
 
 $navbar-breadcrumb-padding-y: $nav-link-padding-y !default;
 $navbar-breadcrumb-padding-x: 0 !default;
 
-$navbar-dark-bg: $dark !default;
-$navbar-dark-border-color: fade-out($white, .8) !default;
-$navbar-dark-heading-color: fade-out($white, .6) !default;
-$navbar-dark-divider-color: fade-out($white, .8) !default;
-$navbar-dark-brand-filter: brightness(0) invert(1);
+$navbar-vibrant-border-color: transparent !default;
+$navbar-vibrant-heading-color: fade-out($white, .6) !default;
+$navbar-vibrant-divider-color: fade-out($white, .8) !default;
+$navbar-vibrant-color: fade-out($white, .3) !default;
+$navbar-vibrant-hover-color: $white !default;
+$navbar-vibrant-active-color: $white !default;
+$navbar-vibrant-brand-filter: brightness(0) invert(1) !default;
+$navbar-vibrant-toggler-icon-bg: str-replace(url("data:image/svg+xml,%3csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3e%3cpath stroke='#{$navbar-vibrant-color}' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e"), "#", "%23") !default;
+
+$navbar-dark-bg: $gray-800-dark !default;
+$navbar-dark-border-color: $gray-800-dark !default;
+$navbar-dark-heading-color: $navbar-dark-color !default;
+$navbar-dark-divider-color: $gray-700-dark !default;
+$navbar-dark-brand-filter: none !default;
 
 $navbar-light-bg: $white !default;
 $navbar-light-border-color: $border-color !default;
@@ -648,18 +694,34 @@ $navbar-light-heading-color: $text-muted !default;
 $navbar-light-divider-color: $border-color !default;
 $navbar-light-brand-filter: none;
 
+$navbar-dropdown-toggle-on-hover: true !default;
+
 
 // Progress bars
 
 $progress-height-sm: 0.25rem !default;
 
 
-// Toggle
+// Forms
 
-$toggle-handle-bg: $white !default;
-$toggle-handle-active-bg: $white !default;
+$custom-switch-height: 1.5rem !default;
+$custom-switch-spacing: ($custom-switch-height - $custom-switch-indicator-size) / 2 !default;
+
+$custom-switch-indicator-bg: $white !default;
+$custom-switch-indicator-active-bg: $white !default;
 
 
-// Paths
+// Close
 
-$path-to-img: '../img/';
+$close-font-size-sm: $font-size-base !default;
+
+
+// Kanban
+
+$kanban-col-width: 375px !default;
+
+
+// Components
+
+$box-shadow-lift: 0 1rem 2.5rem fade-out($black, .9), 0 .5rem 1rem -.75rem fade-out($black, .9) !default;
+$box-shadow-lift-lg: 0 2rem 5rem fade-out($black, .9), 0 .5rem 1rem -.75rem fade-out($black, .95) !default;

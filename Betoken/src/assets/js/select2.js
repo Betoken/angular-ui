@@ -1,48 +1,52 @@
 //
-// Select2.js ==================================
+// select2.js
+// Theme module
 //
 
 'use strict';
 
-var Select2 = (function() {
+(function() {
 
   //
   // Variables
   //
 
-  var $select = $('[data-toggle="select"]');
+  var toggle = document.querySelectorAll('[data-toggle="select"]');
 
 
   //
-  // Methods
+  // Functions
   //
 
-  function init($this) {
-    var options = {
-      dropdownParent: $this.closest('.modal').length ? $this.closest('.modal') : $(document.body),
-      minimumResultsForSearch: $this.data('minimum-results-for-search'),
-      templateResult: formatAvatar
+  function init(el) {
+    var elementOptions = el.dataset.options;
+        elementOptions = elementOptions ? JSON.parse(elementOptions) : {};
+    var defaultOptions = {
+      dropdownParent: $(el).closest('.modal').length ? $(el).closest('.modal') : $(document.body),
+      templateResult: formatTemplate
     };
+    var options = Object.assign(elementOptions, defaultOptions);
 
-    $this.select2(options);
+    $(el).select2(options);
   }
 
-  function formatAvatar(avatar) {
-    if ( !avatar.id ) {
-      return avatar.text;
+  function formatTemplate(item) {
+    if (!item.id) {
+      return item.text;
     }
 
-    var $option = $(avatar.element);
-    var optionAvatar = $option.data('avatar-src');
-    var output;
+    var option = item.element;
+    var avatar = option.dataset.avatarSrc;
 
-    if ( optionAvatar ) {
-      output = $('<span class="avatar avatar-xs mr-3"><img class="avatar-img rounded-circle" src="' + optionAvatar + '" alt="' + avatar.text + '"></span><span>' + avatar.text + '</span>');
+    if (avatar) {
+      var content = document.createElement('div');
+
+      content.innerHTML = '<span class="avatar avatar-xs mr-3"><img class="avatar-img rounded-circle" src="' + avatar + '" alt="' + item.text + '"></span><span>' + item.text + '</span>';
     } else {
-      output = avatar.text;
+      var content = item.text;
     }
 
-    return output;
+    return content;
   }
 
 
@@ -50,12 +54,10 @@ var Select2 = (function() {
   // Events
   //
 
-  if ( $select.length ) {
-
-    // Init selects
-    $select.each(function() {
-      init( $(this) );
+  if (jQuery().select2 && toggle) {
+    [].forEach.call(toggle, function(el) {
+      init(el);
     });
   }
-
+  
 })();

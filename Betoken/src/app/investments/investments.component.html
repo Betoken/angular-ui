@@ -214,7 +214,7 @@
                       Short 0.5x
                     </span>
                   </span>
-                  
+
                 </div>
                 <div class="col-auto text-right">
                   <span class="font-weight-bold">{{data.currValue.toFormat(4)}} KRO</span>
@@ -277,7 +277,7 @@
                     Short 0.5x
                   </span>
                 </span>
-                
+
               </div>
               <div class="col-auto text-right">
                 <span class="font-weight-bold">{{data.currValue.toFormat(4)}} KRO</span>
@@ -378,7 +378,7 @@
                     <img src={{token.logoUrl}} alt="token logo" class="avatar-img rounded-circle">
                   </span>
                 </div>
-                <div class="col ml--2 pl-1">
+                <div class="col ml-n2 pl-1">
                   <span class="mb-1 h4 font-weight-bold">
                     {{token.symbol}}
                     <span class="badge badge-soft-primary" *ngIf="isMarginToken(token.symbol)" style="font-size:10px;">
@@ -438,7 +438,7 @@
                   <input type="number" min="0.0" max={{kairo_balance.toFormat(18)}} class="form-control form-control-lg pr-0" aria-describedby="KRO Token Amount to stake" placeholder="0.0 KRO" id="kairo-input">
                   <div class="input-group-append">
                     <button class="btn btn-white" name="button" type="button" (click)="maxStake()">Max</button>
-                    
+
                   </div>
                 </div>
                 <small id="kroBalance" class="form-text text-secondary d-inline-block mb-0 mt-1">{{kairo_balance.toFormat(18)}} KRO available</small>
@@ -711,7 +711,7 @@
               </div>
             </div>
           </div>
-          
+
           <div *ngIf="!isMarginOrder(sellData)">
             <hr class="my-4">
 
@@ -732,7 +732,7 @@
               </div>
             </div>
           </div>
-          
+
 
           <!-- Min acceptable price -->
           <div class="row justify-content-center mb-4">
@@ -956,7 +956,7 @@
             You have successfully topped up the order.
           </p>
         </div>
-        
+
         <hr *ngIf="topupPopupStep === 2 || topupPopupStep === 3">
         <form *ngIf="topupPopupStep === 2 || topupPopupStep === 3">
           <div class="form-group">

@@ -26,6 +26,11 @@
   color: $primary;
 }
 
+.btn-group-toggle .btn-white:focus,
+.btn-group-toggle .btn-white.focus {
+  box-shadow: none;
+}
+
 
 // Button outline secondary
 

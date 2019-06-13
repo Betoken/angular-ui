@@ -1,24 +1,25 @@
 //
-// Popovers ==================================
+// popover.js
+// Theme module
 //
 
 'use strict';
 
-var Popover = (function() {
+(function() {
 
   //
   // Variables
   //
 
-  var $popover = $('[data-toggle="popover"]');
+  var toggle = document.querySelectorAll('[data-toggle="popover"]');
 
 
   //
-  // Methods
+  // Functions
   //
 
-  function init() {
-    $popover.popover();
+  function init(toggle) {
+    $(toggle).popover();
   }
 
 
@@ -26,8 +27,8 @@ var Popover = (function() {
   // Events
   //
 
-  if( $popover.length ) {
-    init();
+  if (toggle) {
+    init(toggle);
   }
   
 })();

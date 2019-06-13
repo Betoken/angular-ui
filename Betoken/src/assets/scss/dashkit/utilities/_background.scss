@@ -54,20 +54,6 @@
 }
 
 
-// Vibrant
-
-.bg-vibrant {
-  background-image: linear-gradient(to bottom right, fade-out(#126FEB, .1), fade-out(#7203E1, .1)), url(#{$path-to-img}/covers/sidebar-cover.jpg);
-  background-repeat: no-repeat, no-repeat;
-  background-position: center center, center center;
-  background-size: cover, cover;
-
-  @include media-breakpoint-down(sm) {
-    background-attachment: fixed, fixed;
-  }
-}
-
-
 // Hero
 
 .bg-hero {
@@ -75,4 +61,11 @@
   background-repeat: no-repeat, no-repeat;
   background-position: center center, center center;
   background-size: cover, cover;
+}
+
+
+// Colors
+
+.bg-lighter {
+  background-color: $lighter !important;
 }

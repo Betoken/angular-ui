@@ -1,24 +1,15 @@
 //
-// Charts global ==================================
+// charts.js
+// Theme module
 //
 
 'use strict';
 
-var ThemeCharts = (function() {
+(function() {
 
   //
   // Variables
   //
-
-  // Selectors
-
-  var $toggle = $('[data-toggle="chart"]');
-
-  // Config
-
-  var fonts = {
-    base: 'Cerebri Sans'
-  }
 
   var colors = {
     gray: {
@@ -38,197 +29,185 @@ var ThemeCharts = (function() {
     transparent: 'transparent',
   };
 
-  var colorScheme = ( getComputedStyle(document.body).backgroundColor == 'rgb(249, 251, 253)' ) ? 'light' : 'dark';
+  var fonts = {
+    base: 'Cerebri Sans'
+  }
+
+  var toggle = document.querySelectorAll('[data-toggle="chart"]');
+  var legend = document.querySelectorAll('[data-toggle="legend"]');
 
 
   //
-  // Methods
+  // Functions
   //
 
-  // Chart.js global options
-  function chartOptions() {
+  function globalOptions() {
 
-    // Options
-    var options = {
-      defaults: {
-        global: {
-          responsive: true,
-          maintainAspectRatio: false,
-          defaultColor: ( colorScheme == 'dark' ) ? colors.gray[700] : colors.gray[600],
-          defaultFontColor: ( colorScheme == 'dark' ) ? colors.gray[700] : colors.gray[600],
-          defaultFontFamily: fonts.base,
-          defaultFontSize: 13,
-          layout: {
-            padding: 0
-          },
-          legend: {
-            display: false,
-            position: 'bottom',
-            labels: {
-              usePointStyle: true,
-              padding: 16
-            }
-          },
-          elements: {
-            point: {
-              radius: 0,
-              backgroundColor: colors.primary[700]
-            },
-            line: {
-              tension: .4,
-              borderWidth: 3,
-              borderColor: colors.primary[700],
-              backgroundColor: colors.transparent,
-              borderCapStyle: 'rounded'
-            },
-            rectangle: {
-              backgroundColor: colors.primary[700]
-            },
-            arc: {
-              backgroundColor: colors.primary[700],
-              borderColor: ( colorScheme == 'dark' ) ? colors.gray[800] : colors.white,
-              borderWidth: 4
-            }
-          },
-          tooltips: {
-            enabled: false,
-            mode: 'index',
-            intersect: false,
-            custom: function(model) {
+    // Global
 
-              // Get tooltip
-              var $tooltip = $('#chart-tooltip');
+    Chart.defaults.global.responsive = true;
+    Chart.defaults.global.maintainAspectRatio = false;
 
-              // Create tooltip on first render
-              if (!$tooltip.length) {
-                $tooltip = $('<div id="chart-tooltip" class="popover bs-popover-top" role="tooltip"></div>');
+    // Default
+    Chart.defaults.global.defaultColor = colors.gray[600];
+    Chart.defaults.global.defaultFontColor = colors.gray[600];
+    Chart.defaults.global.defaultFontFamily = fonts.base;
+    Chart.defaults.global.defaultFontSize = 13;
 
-                // Append to body
-                $('body').append($tooltip);
-              }
+    // Layout
+    Chart.defaults.global.layout.padding = 0;
 
-              // Hide if no tooltip
-              if (model.opacity === 0) {
-                $tooltip.css('display', 'none');
-                return;
-              }
+    // Legend
+    Chart.defaults.global.legend.display = false;
+    Chart.defaults.global.legend.position = 'bottom';
+    Chart.defaults.global.legend.labels.usePointStyle = true;
+    Chart.defaults.global.legend.labels.padding = 16;
 
-              function getBody(bodyItem) {
-                return bodyItem.lines;
-              }
+    // Point
+    Chart.defaults.global.elements.point.radius = 0;
+    Chart.defaults.global.elements.point.backgroundColor = colors.primary[700];
 
-              // Fill with content
-              if (model.body) {
-                var titleLines = model.title || [];
-                var bodyLines = model.body.map(getBody);
-                var html = '';
+    // Line
+    Chart.defaults.global.elements.line.tension = .4;
+    Chart.defaults.global.elements.line.borderWidth = 3;
+    Chart.defaults.global.elements.line.borderColor = colors.primary[700];
+    Chart.defaults.global.elements.line.backgroundColor = colors.transparent;
+    Chart.defaults.global.elements.line.borderCapStyle = 'rounded';
 
-                // Add arrow
-                html += '<div class="arrow"></div>';
+    // Rectangle
+    Chart.defaults.global.elements.rectangle.backgroundColor = colors.primary[700];
 
-                // Add header
-                titleLines.forEach(function(title) {
-                  html += '<h3 class="popover-header text-center">' + title + '</h3>';
-                });
+    // Arc
+    Chart.defaults.global.elements.arc.backgroundColor = colors.primary[700];
+    Chart.defaults.global.elements.arc.borderColor = colors.white;
+    Chart.defaults.global.elements.arc.borderWidth = 4;
+    Chart.defaults.global.elements.arc.hoverBorderColor = colors.white;
 
-                // Add body
-                bodyLines.forEach(function(body, i) {
-                  var colors = model.labelColors[i];
-                  var styles = 'background-color: ' + colors.backgroundColor;
-                  var indicator = '<span class="popover-body-indicator" style="' + styles + '"></span>';
-                  var align = (bodyLines.length > 1) ? 'justify-content-left' : 'justify-content-center';
-                  html += '<div class="popover-body d-flex align-items-center ' + align + '">' + indicator + body + '</div>';
-                });
+    // Tooltips
+    Chart.defaults.global.tooltips.enabled = false;
+    Chart.defaults.global.tooltips.mode = 'index';
+    Chart.defaults.global.tooltips.intersect = false;
+    Chart.defaults.global.tooltips.custom = function(model) {
+      var tooltip = document.getElementById('chart-tooltip');
 
-                $tooltip.html(html);
-              }
+      if (!tooltip) {
+        tooltip = document.createElement('div');
 
-              // Get tooltip position
-              var $canvas = $(this._chart.canvas);
-
-              var canvasWidth = $canvas.outerWidth();
-              var canvasHeight = $canvas.outerHeight();
-
-              var canvasTop = $canvas.offset().top;
-              var canvasLeft = $canvas.offset().left;
-
-              var tooltipWidth = $tooltip.outerWidth();
-              var tooltipHeight = $tooltip.outerHeight();
-
-              var top = canvasTop + model.caretY - tooltipHeight - 16;
-              var left = canvasLeft + model.caretX - tooltipWidth / 2;
-
-              // Display tooltip
-              $tooltip.css({
-                'top': top + 'px',
-                'left':  left + 'px',
-                'display': 'block',
-              });
-
-            },
-            callbacks: {
-              label: function(item, data) {
-                var label = data.datasets[item.datasetIndex].label || '';
-                var yLabel = item.yLabel;
-                var content = '';
-
-                if (data.datasets.length > 1) {
-                  content += '<span class="popover-body-label mr-auto">' + label + '</span>';
-                }
-
-                content += '<span class="popover-body-value">' + yLabel + '</span>';
-                return content;
-              }
-            }
-          }
-        },
-        doughnut: {
-          cutoutPercentage: 83,
-          tooltips: {
-            callbacks: {
-              title: function(item, data) {
-                var title = data.labels[item[0].index];
-                return title;
-              },
-              label: function(item, data) {
-                var value = data.datasets[0].data[item.index];
-                var content = '';
-
-                content += '<span class="popover-body-value">' + value + '</span>';
-                return content;
-              }
-            }
-          },
-          legendCallback: function(chart) {
-            var data = chart.data;
-            var content = '';
-
-            data.labels.forEach(function(label, index) {
-              var bgColor = data.datasets[0].backgroundColor[index];
-
-              content += '<span class="chart-legend-item">';
-              content += '<i class="chart-legend-indicator" style="background-color: ' + bgColor + '"></i>';
-              content += label;
-              content += '</span>';
-            });
-
-            return content;
-          }
-        }
+        tooltip.setAttribute('id', 'chart-tooltip');
+        tooltip.setAttribute('role', 'tooltip');
+        tooltip.classList.add('popover');
+        tooltip.classList.add('bs-popover-top');
+        
+        document.body.appendChild(tooltip);
       }
-    }
+
+      if (model.opacity === 0) {
+        tooltip.style.visibility = 'hidden';
+        return;
+      }
+
+      function getBody(bodyItem) {
+        return bodyItem.lines;
+      }
+
+      if (model.body) {
+        var titleLines = model.title || [];
+        var bodyLines = model.body.map(getBody);
+        var html = '';
+
+        html += '<div class="arrow"></div>';
+
+        titleLines.forEach(function(title) {
+          html += '<h3 class="popover-header text-center">' + title + '</h3>';
+        });
+
+        bodyLines.forEach(function(body, i) {
+          var colors = model.labelColors[i];
+          var styles = 'background-color: ' + colors.backgroundColor;
+          var indicator = '<span class="popover-body-indicator" style="' + styles + '"></span>';
+          var align = (bodyLines.length > 1) ? 'justify-content-left' : 'justify-content-center';
+          
+          html += '<div class="popover-body d-flex align-items-center ' + align + '">' + indicator + body + '</div>';
+        });
+
+        tooltip.innerHTML = html;
+      }
+
+      var canvas = this._chart.canvas;
+      var canvasRect = canvas.getBoundingClientRect();
+
+      var canvasWidth = canvas.offsetWidth;
+      var canvasHeight = canvas.offsetHeight;
+
+      var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+      var scrollLeft = window.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft || 0;
+
+      var canvasTop = canvasRect.top + scrollTop;
+      var canvasLeft = canvasRect.left + scrollLeft;
+
+      var tooltipWidth = tooltip.offsetWidth;
+      var tooltipHeight = tooltip.offsetHeight;
+
+      var top = canvasTop + model.caretY - tooltipHeight - 16;
+      var left = canvasLeft + model.caretX - tooltipWidth / 2;
+
+      tooltip.style.top = top + 'px';
+      tooltip.style.left = left + 'px';
+      tooltip.style.visibility = 'visible';
+
+    };
+    Chart.defaults.global.tooltips.callbacks.label = function(item, data) {
+      var label = data.datasets[item.datasetIndex].label || '';
+      var yLabel = item.yLabel;
+      var content = ''; 
+
+      if (data.datasets.length > 1) {
+        content += '<span class="popover-body-label mr-auto">' + label + '</span>';
+      }
+
+      content += '<span class="popover-body-value">' + yLabel + '</span>';
+
+      return content;
+    };
+
+    // Doughnut
+    Chart.defaults.doughnut.cutoutPercentage = 83;
+    Chart.defaults.doughnut.tooltips.callbacks.title = function(item, data) {
+      var title = data.labels[item[0].index];
+      return title;
+    };
+    Chart.defaults.doughnut.tooltips.callbacks.label = function(item, data) {
+      var value = data.datasets[0].data[item.index];
+      var content = '';
+
+      content += '<span class="popover-body-value">' + value + '</span>';
+      return content;
+    };
+    Chart.defaults.doughnut.legendCallback = function(chart) {
+      var data = chart.data;
+      var content = '';
+
+      data.labels.forEach(function(label, index) {
+        var bgColor = data.datasets[0].backgroundColor[index];
+
+        content += '<span class="chart-legend-item">';
+        content += '<i class="chart-legend-indicator" style="background-color: ' + bgColor + '"></i>';
+        content += label;
+        content += '</span>';
+      });
+
+      return content;
+    };
 
     // yAxes
     Chart.scaleService.updateScaleDefaults('linear', {
       gridLines: {
         borderDash: [2],
         borderDashOffset: [2],
-        color: (colorScheme == 'dark') ? colors.gray[900] : colors.gray[300],
+        color: colors.gray[300],
         drawBorder: false,
         drawTicks: false,
-        lineWidth: 0,
-        zeroLineWidth: 0,
-        zeroLineColor: (colorScheme == 'dark') ? colors.gray[900] : colors.gray[300],
+        zeroLineColor: colors.gray[300],
         zeroLineBorderDash: [2],
         zeroLineBorderDashOffset: [2]
       },
@@ -256,115 +235,117 @@ var ThemeCharts = (function() {
       maxBarThickness: 10
     });
 
-    return options;
-
   }
 
-  // Parse global options
-  function parseOptions(parent, options) {
+  function toggleOptions(el) {
+    var target = el.dataset.target;
+    var targetEl = document.querySelector(target);
+    var chart = getChartInstance(targetEl);
+    var options = JSON.parse(el.dataset.add);
+
+    if (el.checked) {
+      pushOptions(chart, options);
+    } else {
+      popOptions(chart, options);
+    }
+
+    chart.update();
+  }
+
+  function updateOptions(el) {
+    var target = el.dataset.target;
+    var targetEl = document.querySelector(target);
+    var chart = getChartInstance(targetEl);
+    var options = JSON.parse(el.dataset.update);
+    var prefix = el.dataset.prefix;
+    var suffix = el.dataset.suffix;
+
+    parseOptions(chart, options);
+
+    if (prefix || suffix) {
+      toggleTicks(chart, prefix, suffix);
+    }
+
+    chart.update();
+  }
+
+  function parseOptions(chart, options) {
     for (var item in options) {
       if (typeof options[item] !== 'object') {
-        parent[item] = options[item];
+        chart[item] = options[item];
       } else {
-        parseOptions(parent[item], options[item]);
+        parseOptions(chart[item], options[item]);
       }
     }
   }
 
-  // Push options
-  function pushOptions(parent, options) {
+  function pushOptions(chart, options) {
     for (var item in options) {
       if (Array.isArray(options[item])) {
         options[item].forEach(function(data) {
-          parent[item].push(data);
+          chart[item].push(data);
         });
       } else {
-        pushOptions(parent[item], options[item]);
+        pushOptions(chart[item], options[item]);
       }
     }
   }
 
-  // Pop options
-  function popOptions(parent, options) {
+  function popOptions(chart, options) {
     for (var item in options) {
       if (Array.isArray(options[item])) {
         options[item].forEach(function(data) {
-          parent[item].pop();
+          chart[item].pop();
         });
       } else {
-        popOptions(parent[item], options[item]);
+        popOptions(chart[item], options[item]);
       }
     }
   }
 
-  // Toggle options
-  function toggleOptions(elem) {
-    var options = elem.data('add');
-    var $target = $(elem.data('target'));
-    var $chart = $target.data('chart');
+  function toggleTicks(chart, prefix, suffix) {
+    prefix = prefix ? prefix : '';
+    suffix = suffix ? suffix : '';
 
-    if (elem.is(':checked')) {
+    chart.options.scales.yAxes[0].ticks.callback = function(value) {
+      if ( !(value % 10) ) {
+        return prefix + value + suffix;
+      }
+    }
 
-      // Add options
-      pushOptions($chart, options);
+    chart.options.tooltips.callbacks.label = function(item, data) {
+      var label = data.datasets[item.datasetIndex].label || '';
+      var yLabel = item.yLabel;
+      var content = '';
 
-      // Update chart
-      $chart.update();
-    } else {
+      if (data.datasets.length > 1) {
+        content += '<span class="popover-body-label mr-auto">' + label + '</span>';
+      }
 
-      // Remove options
-      popOptions($chart, options);
-
-      // Update chart
-      $chart.update();
+      content += '<span class="popover-body-value">' + prefix + yLabel + suffix + '</span>';
+      return content;
     }
   }
 
-  // Update options
-  function updateOptions(elem) {
-    var options = elem.data('update');
-    var $target = $(elem.data('target'));
-    var $chart = $target.data('chart');
+  function toggleLegend(el) {
+    var chart = getChartInstance(el);
+    var legend = chart.generateLegend();
+    var target = el.dataset.target;
+    var targetEl = document.querySelector(target);
 
-    // Parse options
-    parseOptions($chart, options);
-
-    // Toggle ticks
-    toggleTicks(elem, $chart);
-
-    // Update chart
-    $chart.update();
+    targetEl.innerHTML = legend;
   }
 
-  // Toggle ticks
-  function toggleTicks(elem, $chart) {
+  function getChartInstance(chart) {
+    var chartInstance = undefined;
 
-    if (elem.data('prefix') !== undefined || elem.data('prefix') !== undefined) {
-      var prefix = elem.data('prefix') ? elem.data('prefix') : '';
-      var suffix = elem.data('suffix') ? elem.data('suffix') : '';
-
-      // Update ticks
-      $chart.options.scales.yAxes[0].ticks.callback = function(value) {
-        if ( !(value % 10) ) {
-          return prefix + value + suffix;
-        }
+    Chart.helpers.each(Chart.instances, function(instance) {
+      if (chart == instance.chart.canvas) {
+        chartInstance = instance;
       }
+    });
 
-      // Update tooltips
-      $chart.options.tooltips.callbacks.label = function(item, data) {
-        var label = data.datasets[item.datasetIndex].label || '';
-        var yLabel = item.yLabel;
-        var content = '';
-
-        if (data.datasets.length > 1) {
-          content += '<span class="popover-body-label mr-auto">' + label + '</span>';
-        }
-
-        content += '<span class="popover-body-value">' + prefix + yLabel + suffix + '</span>';
-        return content;
-      }
-
-    }
+    return chartInstance;
   }
 
 
@@ -372,38 +353,36 @@ var ThemeCharts = (function() {
   // Events
   //
 
-  // Parse global options
-  if (window.Chart) {
-    parseOptions(Chart, chartOptions());
-  }
+  if (typeof Chart !== 'undefined') {
 
-  // Toggle options
-  $toggle.on({
-    'change': function() {
-      var $this = $(this);
+    // Global options
+    globalOptions();
 
-      if ($this.is('[data-add]')) {
-        toggleOptions($this);
-      }
-    },
-    'click': function() {
-      var $this = $(this);
-
-      if ($this.is('[data-update]')) {
-        updateOptions($this);
-      }
+    // Toggle chart
+    if (toggle) {
+      [].forEach.call(toggle, function(el) {
+        el.addEventListener('change', function() {
+          if (el.dataset.add) {
+            toggleOptions(el);
+          }
+        });
+        el.addEventListener('click', function() {
+          if (el.dataset.update) {
+            updateOptions(el);
+          }
+        });
+      });
     }
-  });
 
-
-  //
-  // Return
-  //
-
-  return {
-    colors: colors,
-    fonts: fonts,
-    colorScheme: colorScheme
-  };
+    // Toggle lenegd
+    if (legend) {
+      document.addEventListener('DOMContentLoaded', function() {
+        [].forEach.call(legend, function(el) {
+          toggleLegend(el);
+        });
+      });
+    }
+    
+  }
 
 })();

@@ -1,29 +1,28 @@
 //
-// Flatpickr ==================================
+// flatpickr.js
+// Theme module
 //
 
 'use strict';
 
-var Flatpickr = (function() {
+(function() {
 
   //
   // Variables
   //
 
-  var $flatpickr = $('[data-toggle="flatpickr"]');
+  var toggle = document.querySelectorAll('[data-toggle="flatpickr"]');
 
 
   //
-  // Methods
+  // Functions
   //
 
-  function init($this) {
-    var options = {
-      mode: ( $this.data('flatpickr-mode') !== undefined ) ? $this.data('flatpickr-mode') : 'single'
-    };
+  function init(el) {
+    var options = el.dataset.options;
+        options = options ? JSON.parse(options) : {};
 
-    // Init Flatpickr
-    $this.flatpickr(options);
+    flatpickr(el, options);
   }
 
 
@@ -31,9 +30,9 @@ var Flatpickr = (function() {
   // Events
   //
 
-  if ($flatpickr.length) {
-    $flatpickr.each(function() {
-      init( $(this) );
+  if (typeof flatpickr !== 'undefined' && toggle) {
+    [].forEach.call(toggle, function(el) {
+      init(el);
     });
   }
 

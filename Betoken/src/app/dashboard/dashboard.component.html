@@ -11,26 +11,26 @@
         <div class="card-body">
           <div class="row align-items-center">
             <div class="col">
-              
+
               <!-- Title -->
               <h6 class="card-title text-uppercase text-muted mb-2">
                 Your Portfolio Value ($DAI)
               </h6>
-              
+
               <!-- Heading -->
               <span class="h2 mb-0">
                 {{portfolioValueInDAI}}
               </span>
-              
+
             </div>
             <div class="col-auto">
-              
+
               <!-- Icon -->
               <span class="h2 fe fe-pie-chart text-muted mb-0"></span>
-              
+
             </div>
           </div> <!-- / .row -->
-          
+
         </div>
       </div>
       <!-- Card -->
@@ -38,31 +38,31 @@
         <div class="card-body">
           <div class="row align-items-center">
             <div class="col">
-              
+
               <!-- Title -->
               <h6 class="card-title text-uppercase text-muted mb-2">
                 Your KRO Balance
               </h6>
-              
+
               <!-- Heading -->
               <span class="h2 mb-0">
                 {{kairo_balance}}
               </span>
-              
+
               <!-- Badge -->
               <span class="badge" [ngClass]="{'badge-soft-success': monthly_pl.gte(0), 'badge-soft-danger': monthly_pl.lt(0)}">
                 {{monthly_pl.toFormat(4)}}%
               </span>
-              
+
             </div>
             <div class="col-auto">
-              
+
               <!-- Icon -->
               <span class="h2 fe fe-zap text-muted mb-0"></span>
-              
+
             </div>
           </div> <!-- / .row -->
-          
+
         </div>
       </div>
       <!-- Card -->
@@ -70,26 +70,26 @@
         <div class="card-body">
           <div class="row align-items-center">
             <div class="col">
-              
+
               <!-- Title -->
               <h6 class="card-title text-uppercase text-muted mb-2">
                 Your Estimated Commission This Month ($DAI)
               </h6>
-              
+
               <!-- Heading -->
               <span class="h2 mb-0">
                 {{expected_commission}}
               </span>
-              
+
             </div>
             <div class="col-auto">
-              
+
               <!-- Icon -->
               <span class="h2 fe fe-award text-muted mb-0"></span>
-              
+
             </div>
           </div> <!-- / .row -->
-          
+
         </div>
       </div>
       <!-- Card -->
@@ -98,26 +98,26 @@
           <div class="card-body">
             <div class="row align-items-center">
               <div class="col">
-                
+
                 <!-- Title -->
                 <h6 class="card-title text-uppercase text-muted mb-2">
                   Your Ranking
                 </h6>
-                
+
                 <!-- Heading -->
                 <span class="h2 mb-0">
                   {{userRanking}}
                 </span>
-                
+
               </div>
               <div class="col-auto">
-                
+
                 <!-- Icon -->
                 <span class="h2 fe fe-user text-muted mb-0"></span>
-                
+
               </div>
             </div> <!-- / .row -->
-            
+
           </div>
         </div>
       </div>
@@ -130,10 +130,10 @@
           <h1 class="header-title text-white">
             Betoken Stats
           </h1>
-          
+
         </div>
         <div class="col-auto">
-          
+
           <!-- Nav -->
           <ul class="nav nav-tabs header-tabs">
             <li class="nav-item" data-toggle="chart">
@@ -157,53 +157,53 @@
               </a>
             </li>
           </ul>
-          
+
         </div>
       </div> <!-- / .row -->
     </div> <!-- / .header-body -->
-    
+
     <!-- Footer -->
     <div class="header-footer">
-      
+
       <!-- Chart -->
       <div class="chart">
         <canvas id="roi-chart" class="chart-canvas">
         </canvas>
       </div>
-      
+
     </div>
-    
+
   </div>
 </div> <!-- / .header -->
 
 <!-- CARDS -->
-<div class="container-fluid mt--6">
+<div class="container-fluid mt-n6">
   <div class="card-deck mb-0 mb-md-4">
     <!-- Card -->
     <div class="card" data-toggle="tooltip" data-html="true" title="Assets Under Management. The amount of money managed by Betoken managers community.">
       <div class="card-body">
         <div class="row align-items-center">
           <div class="col">
-            
+
             <!-- Title -->
             <h6 class="card-title text-uppercase text-muted mb-2">
               Betoken AUM ($DAI)
             </h6>
-            
+
             <!-- Heading -->
             <span class="h2 mb-0">
               {{AUM}}
             </span>
-            
+
           </div>
           <div class="col-auto">
-            
+
             <!-- Icon -->
             <span class="h2 fe fe-disc text-muted mb-0"></span>
-            
+
           </div>
         </div> <!-- / .row -->
-        
+
       </div>
     </div>
     <!-- Card -->
@@ -211,26 +211,26 @@
       <div class="card-body">
         <div class="row align-items-center">
           <div class="col">
-            
+
             <!-- Title -->
             <h6 class="card-title text-uppercase text-muted mb-2">
               Sortino Ratio
             </h6>
-            
+
             <!-- Heading -->
             <span class="h2 mb-0">
               {{sortinoRatio}}
             </span>
-            
+
           </div>
           <div class="col-auto">
-            
+
             <!-- Icon -->
             <span class="h2 fe fe-shield text-muted mb-0"></span>
-            
+
           </div>
         </div> <!-- / .row -->
-        
+
       </div>
     </div>
     <!-- Card -->
@@ -238,26 +238,26 @@
       <div class="card-body">
         <div class="row align-items-center">
           <div class="col">
-            
+
             <!-- Title -->
             <h6 class="card-title text-uppercase text-muted mb-2">
               Standard Deviation
             </h6>
-            
+
             <!-- Heading -->
             <span class="h2 mb-0">
               {{standardDeviation}}
             </span>
-            
+
           </div>
           <div class="col-auto">
-            
+
             <!-- Icon -->
             <span class="h2 fe fe-bar-chart-2 text-muted mb-0"></span>
-            
+
           </div>
         </div> <!-- / .row -->
-        
+
       </div>
     </div>
     <!-- Card -->
@@ -265,26 +265,26 @@
       <div class="card-body">
         <div class="row align-items-center">
           <div class="col">
-            
+
             <!-- Title -->
             <h6 class="card-title text-uppercase text-muted mb-2">
               Total fund managers
             </h6>
-            
+
             <!-- Heading -->
             <span class="h2 mb-0">
               {{totalUser}}
             </span>
-            
+
           </div>
           <div class="col-auto">
-            
+
             <!-- Icon -->
             <span class="h2 fe fe-users text-muted mb-0"></span>
-            
+
           </div>
         </div> <!-- / .row -->
-        
+
       </div>
     </div>
   </div> <!-- / .row -->

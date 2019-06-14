@@ -1,6 +1,6 @@
 <!-- HEADER -->
 <div class="header">
-  <div class="container-fluid">
+  <div class="container-fluid px-md-5">
     <!-- Body -->
     <div class="header-body">
       <div class="row align-items-end">
@@ -17,7 +17,7 @@
 </div> <!-- / .header -->
 
 <!-- CARDS -->
-<div class="container-fluid pb-6">
+<div class="container-fluid pb-6 px-md-5">
   <div class="card-deck mb-5">
     <!-- Card -->
     <div class="card" data-toggle="tooltip" data-html="true" title="Amount of Betoken's AUM you manage. The more Kairo you own, the more money you will manage.">
@@ -176,9 +176,9 @@
             </div>
           </div> <!-- / .row -->
         </div>
-        <div class="card-body">
+        <div class="card-body p-0">
           <ul class="list-group list-group-flush list" id="active-investments-list">
-            <li class="list-group-item list-group-item-action py-0" *ngFor="let data of activeInvestmentList">
+            <li class="list-group-item list-group-item-action py-0 px-4" *ngFor="let data of activeInvestmentList">
               <a class="py-3 d-block text-secondary" href="#" data-toggle="modal" data-target="#modalSell" (click)="openSellModal(data)">
                 <div class="row d-flex align-items-center">
                   <div class="col-auto">
@@ -234,9 +234,9 @@
             </div>
           </div> <!-- / .row -->
         </div>
-        <div class="card-body">
+        <div class="card-body px-0">
           <ul class="list-group list-group-flush list">
-            <li class="list-group-item" *ngFor = "let data of inactiveInvestmentList">
+            <li class="list-group-item px-4" *ngFor = "let data of inactiveInvestmentList">
               <div class="row d-flex align-items-center text-secondary">
                 <div class="col-auto">
                   <span class="avatar avatar-xs">
@@ -568,15 +568,19 @@
           <div class="col">
             <!-- Quantity of asset to sell title -->
             <h4 class="card-header-title" *ngIf="sellInvestmentPopupStep === 0">
-              <span class="avatar avatar-xs align-middle mr-2">
-                <img src={{getTokenLogoUrl(selectedTokenSymbol)}} alt="logo" class="avatar-img rounded-circle">
-              </span>
-              {{selectedTokenSymbol}}              
-              <span class="badge badge-soft-primary" *ngIf="!data.orderType">
-                Long 1.5x
-              </span>
-              <span class="badge badge-soft-primary" *ngIf="data.orderType">
-                Short 0.5x
+              <span class="d-flex align-items-center">
+                <span class="avatar avatar-xs align-middle mr-2">
+                  <img src={{getTokenLogoUrl(selectedTokenSymbol)}} alt="logo" class="avatar-img rounded-circle">
+                </span>
+                {{selectedTokenSymbol}}
+                <span class="ml-2" *ngIf="isMarginOrder(sellData)">
+                  <span class="badge badge-soft-primary" *ngIf="!sellData.orderType">
+                    Long 1.5x
+                  </span>
+                  <span class="badge badge-soft-primary" *ngIf="sellData.orderType">
+                    Short 0.5x
+                  </span>
+                </span>
               </span>
             </h4>
             <time class="header-pretitle h6 mb-0" *ngIf="sellInvestmentPopupStep === 0">OPENED {{sellData.buyTime.toLocaleString()}}</time>
@@ -661,12 +665,6 @@
                 <h6 class="header-pretitle mb-0">
                   Collateralization status
                 </h6>
-                <span class="badge badge-soft-success mr-2" *ngIf="sellData.safety">
-                  Safe
-                </span>
-                <span class="badge badge-soft-danger mr-2" *ngIf="!sellData.safety">
-                  In Danger
-                </span>
               </div>
               <div class="col-auto d-flex align-items-center">
                 <a href="" class="btn btn-sm btn-white" data-toggle="modal" data-target="#modalTopUp">Top up</a>
@@ -674,6 +672,12 @@
             </div>
             <div class="row align-items-center">
               <div class="col">
+                <span class="badge badge-soft-success mb-2" *ngIf="sellData.safety">
+                  Safe
+                </span>
+                <span class="badge badge-soft-danger mb-2" *ngIf="!sellData.safety">
+                  In Danger
+                </span>
                 <div class="progress">
                   <div [ngClass]="{'bg-success': sellData.safety, 'bg-danger': !sellData.safety}" class="progress-bar" role="progressbar" [ngStyle]="{'width': sellData.collateralRatio.div(sellData.minCollateralRatio.times(2)).times(100).toFormat(2) + '%'}">{{sellData.collateralRatio.times(100).toFormat(0)}}%</div>
                 </div>
@@ -863,16 +867,16 @@
               <h6 class="header-pretitle mb-0">
                 Collateralization status
               </h6>
-              <span class="badge badge-soft-success mr-2" *ngIf="sellData.safety">
-                Safe
-              </span>
-              <span class="badge badge-soft-danger mr-2" *ngIf="!sellData.safety">
-                In Danger
-              </span>
             </div>
           </div>
           <div class="row align-items-center">
             <div class="col">
+              <span class="badge badge-soft-success mb-2" *ngIf="sellData.safety">
+                Safe
+              </span>
+              <span class="badge badge-soft-danger mb-2" *ngIf="!sellData.safety">
+                In Danger
+              </span>
               <div class="progress">
                 <div [ngClass]="{'bg-success': sellData.safety, 'bg-danger': !sellData.safety}" class="progress-bar" role="progressbar" [ngStyle]="{'width': sellData.collateralRatio.div(sellData.minCollateralRatio.times(2)).times(100).toFormat(2) + '%'}">{{sellData.collateralRatio.times(100).toFormat(0)}}%</div>
               </div>

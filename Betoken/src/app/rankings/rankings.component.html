@@ -1,124 +1,116 @@
 <!-- HEADER -->
 <div class="header">
-    <div class="container-fluid">
-      <!-- Body -->
-      <div class="header-body">
-        <div class="row align-items-end">
-          <div class="col">
-            <!-- Title -->
-            <h1 class="header-title">
-              Managers Ranking
-            </h1>
-          </div>
-        </div> <!-- / .row -->
-      </div> <!-- / .header-body -->
-
-    </div>
-    </div> <!-- / .header -->
-
-    <!-- CARDS -->
-    <div class="container-fluid">
-    <div class="row">
-      <div class="col-12">
-        <!-- Card -->
-        <div class="card">
-          <div class="card-header">
-            <div class="row align-items-center">
-              <div class="col">
-
-                <!-- Title -->
-                <h4 class="card-header-title">
-                  Kairo Balances & Current Return
-                </h4>
-
-              </div>
-              <div class="col-auto">
-
-                  <!-- Refresh -->
-                  <button class="btn btn-sm btn-white" type="button" name="button" (click) = "refresh()"><i class="fe fe-refresh-cw align-middle" *ngIf="isLoading() == false"></i><div class="loader loader-sm loader-secondary my-1" *ngIf="isLoading()"></div></button>
-
-              </div>
-            </div> <!-- / .row -->
-          </div>
-          <div class="card-header">
-            <div class="row">
-              <div class="col-12">
-
-                <!-- Form -->
-                <form>
-                  <div class="input-group input-group-flush input-group-merge">
-                    <input type="search" class="form-control form-control-prepended search" (keyup)="filterTable($event,'rankings-table',1)" placeholder="Search">
-                    <div class="input-group-prepend">
-                      <div class="input-group-text">
-                        <span class="fe fe-search"></span>
-                      </div>
+  <div class="container-fluid">
+    <!-- Body -->
+    <div class="header-body">
+      <div class="row align-items-end">
+        <div class="col">
+          <!-- Title -->
+          <h1 class="header-title">
+            Managers Ranking
+          </h1>
+        </div>
+      </div> <!-- / .row -->
+    </div> <!-- / .header-body -->
+  </div>
+</div> <!-- / .header -->
+<!-- CARDS -->
+<div class="container-fluid pb-6">
+  <div class="row">
+    <div class="col-12">
+      <!-- Card -->
+      <div class="card">
+        <div class="card-header">
+          <div class="row align-items-center">
+            <div class="col">
+              <!-- Title -->
+              <h4 class="card-header-title">
+                Kairo Balances & Current Return
+              </h4>
+            </div>
+            <div class="col-auto">
+                <!-- Refresh -->
+                <button class="btn btn-sm btn-white" type="button" name="button" (click) = "refresh()"><i class="fe fe-refresh-cw align-middle" *ngIf="isLoading() == false"></i><div class="loader loader-sm loader-secondary my-1" *ngIf="isLoading()"></div></button>
+            </div>
+          </div> <!-- / .row -->
+        </div>
+        <div class="card-header">
+          <div class="row">
+            <div class="col-12">
+              <!-- Form -->
+              <form>
+                <div class="input-group input-group-flush input-group-merge">
+                  <input type="search" class="form-control form-control-prepended search" (keyup)="filterTable($event,'rankings-table',1)" placeholder="Search">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      <span class="fe fe-search"></span>
                     </div>
                   </div>
-                </form>
-
-              </div>
-            </div> <!-- / .row -->
-          </div>
-          <div class="table-responsive">
-            <table class="table table-sm table-nowrap card-table">
-              <thead>
-                <tr>
-                  <th class="text-muted">
-                      Rank
-                  </th>
-                  <th class="text-muted">
-                      Manager
-                  </th>
-                  <th class="text-muted">
-                      Kairo Balance
-                  </th>
-                  <th class="text-muted">
-                      Current Monthly ROI
-                  </th>
-                </tr>
-              </thead>
-              <tbody class="list" id="rankings-table">
-                <tr class="bg-dark text-white">
-                  <td class="align-middle">
-                    <strong>{{userRanking}}</strong>
-                  </td>
-                  <td class="align-middle">
-                    <i class="fe fe-star text-warning ml-2"></i> You
-                  </td>
-                  <td class="align-middle">
-                    {{userValue.toFormat(18)}}
-                  </td>
-                  <td class="align-middle">
-                    <!-- Badge -->
-                    <span class="badge badge-xl" [ngClass]="{'badge-soft-success': userROI.gt(0), 'badge-soft-danger': !(userROI.gt(0))}">
-                     {{userROI.toFormat(4)}}%
-                    </span>
-                  </td>
-                </tr>
-                <tr *ngFor="let ranking of rankingArray">
-                  <td class="align-middle">
-                    <strong>{{ranking.rank}}</strong>
-                  </td>
-                  <td class="align-middle">
-                    <span class="d-block text-truncate" style="width: 6rem;">{{ranking.address}}</span>
-                    <span class="badge badge-soft-primary">
-                      Betoken Evangelist
-                    </span>
-                  </td>
-                  <td class="align-middle">
-                    {{ranking.kairoBalance.toFormat(18)}}
-                  </td>
-                  <td class="align-middle">
-                    <!-- Badge -->
-                    <span class="badge badge-xl" [ngClass]="{'badge-soft-success': +ranking.cycleROI >= 0, 'badge-soft-danger': 0 > +ranking.cycleROI}">
-                      {{ranking.cycleROI.toFormat(4)}}%
-                    </span>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+                </div>
+              </form>
+            </div>
+          </div> <!-- / .row -->
+        </div>
+        <div class="table-responsive">
+          <table class="table table-sm table-nowrap card-table">
+            <thead>
+              <tr>
+                <th class="text-muted">
+                    Rank
+                </th>
+                <th class="text-muted">
+                    Manager
+                </th>
+                <th class="text-muted">
+                    Kairo Balance
+                </th>
+                <th class="text-muted">
+                    Current Monthly ROI
+                </th>
+              </tr>
+            </thead>
+            <tbody class="list" id="rankings-table">
+              <tr class="bg-dark text-white">
+                <td class="align-middle">
+                  <strong>{{userRanking}}</strong>
+                </td>
+                <td class="align-middle">
+                  <i class="fe fe-star text-warning ml-2"></i> You
+                </td>
+                <td class="align-middle">
+                  {{userValue.toFormat(18)}}
+                </td>
+                <td class="align-middle">
+                  <!-- Badge -->
+                  <span class="badge badge-xl" [ngClass]="{'badge-soft-success': userROI.gt(0), 'badge-soft-danger': !(userROI.gt(0))}">
+                   {{userROI.toFormat(4)}}%
+                  </span>
+                </td>
+              </tr>
+              <tr *ngFor="let ranking of rankingArray">
+                <td class="align-middle">
+                  <strong>{{ranking.rank}}</strong>
+                </td>
+                <td class="align-middle">
+                  <span class="d-block text-truncate" style="width: 6rem;">{{ranking.address}}</span>
+                  <span class="badge badge-soft-primary">
+                    Betoken Evangelist
+                  </span>
+                </td>
+                <td class="align-middle">
+                  {{ranking.kairoBalance.toFormat(18)}}
+                </td>
+                <td class="align-middle">
+                  <!-- Badge -->
+                  <span class="badge badge-xl" [ngClass]="{'badge-soft-success': +ranking.cycleROI >= 0, 'badge-soft-danger': 0 > +ranking.cycleROI}">
+                    {{ranking.cycleROI.toFormat(4)}}%
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
-    </div> <!-- / .row -->
+    </div>
+  </div> <!-- / .row -->
 </div>

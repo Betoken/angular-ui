@@ -8,14 +8,10 @@
     </div>
   </div>
 </div>
-
 <app-side-nav *ngIf="display_header_sidebar && !is_loading"></app-side-nav>
 <!-- MAIN CONTENT
 ================================================== -->
 <div [ngClass]="{'main-content custom-sidebar': display_header_sidebar}" *ngIf="!is_loading">
-
   <app-header *ngIf="display_header_sidebar"></app-header>
-
   <router-outlet></router-outlet>
-
 </div> <!-- / .main-content -->

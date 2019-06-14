@@ -17,7 +17,7 @@
 </div> <!-- / .header -->
 
 <!-- CARDS -->
-<div class="container-fluid">
+<div class="container-fluid pb-6">
   <div class="row">
     <div class="col-12">
       <!-- Card -->
@@ -124,7 +124,7 @@
             </h3>
           </div>
         </div>
-        <!-- Max acceptable price -->
+        <!-- Advanced option -->
         <div class="row justify-content-center" *ngIf="step === 0">
           <div class="col">
             <div id="accordion">
@@ -151,14 +151,9 @@
                         <h6 class="header-pretitle">
                           Redeem commisssion for a particular cycle
                         </h6>
-                        <p><small>Only use this when normal redemption fails</small></p>
+                        <p class="small">Only use this when normal redemption fails</p>
                         <form>
-                          <div class="input-group mb-2">
-                            <input type="number" min="0" [max]="cycle - 1" class="form-control form-control-lg border-right-0 pr-0" aria-describedby="cycle for which to redeem commission" placeholder="0" id="redeem-commission-cycle-input">
-                            <div class="input-group-append">
-                              <span class="input-group-text border-left-0 border-right-0" id="redeemCommissionCycle"></span>
-                            </div>
-                          </div>
+                          <input type="number" min="0" [max]="cycle - 1" class="form-control form-control-lg mb-2" aria-describedby="cycle for which to redeem commission" placeholder="0" id="redeem-commission-cycle-input">
                         </form>
                       </div>
                     </div>
@@ -168,6 +163,12 @@
             </div>
           </div>
         </div>
+        <button type="submit" class="btn btn-success btn-lg btn-block mb-2" aria-label="Redeem in BTKS" (click)="redeemCommission(1)" *ngIf="step === 0">
+          Redeem in $BTKS
+        </button>
+        <button type="submit" class="btn btn-white btn-lg btn-block" aria-label="Redeem in DAI" (click)="redeemCommission(0)" *ngIf="step === 0">
+          Redeem in $DAI
+        </button>
         <!-- Do you know section step 1 -->
         <div class="card bg-light border mt-4 mb-0" *ngIf="step === 0">
           <div class="card-body">
@@ -223,21 +224,6 @@
             </div>
           </div>
         </form>
-      </div>
-      <!-- Redeem button for step 1 -->
-      <div class="modal-footer border-0" *ngIf="step === 0">
-          <div class="row">
-              <div class="col mb-2">
-                  <button type="submit" class="btn btn-success btn-lg btn-block" aria-label="Redeem in BTKS" (click)="redeemCommission(1)" >
-                    Redeem in $BTKS
-                  </button>
-              </div>
-              <div class="col">
-                  <button type="submit" class="btn btn-white btn-lg btn-block" aria-label="Redeem in DAI" (click)="redeemCommission(0)" >
-                    Redeem in $DAI
-                  </button>
-              </div>
-          </div>
       </div>
 
       <!-- close button -->

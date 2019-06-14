@@ -17,30 +17,25 @@
 </div> <!-- / .header -->
 
 <!-- CARDS -->
-<div class="container-fluid">
+<div class="container-fluid pb-6">
   <div class="card-deck mb-5">
     <!-- Card -->
     <div class="card" data-toggle="tooltip" data-html="true" title="Amount of Betoken's AUM you manage. The more Kairo you own, the more money you will manage.">
       <div class="card-body">
         <div class="row align-items-center">
           <div class="col">
-
             <!-- Title -->
             <h6 class="card-title text-uppercase text-muted mb-2">
               Your Portfolio Value ($DAI)
             </h6>
-
             <!-- Heading -->
             <span class="h2 mb-0">
               {{portfolioValueInDAI}}
             </span>
-
           </div>
           <div class="col-auto">
-
             <!-- Icon -->
             <span class="h2 fe fe-pie-chart text-muted mb-0"></span>
-
           </div>
         </div> <!-- / .row -->
 
@@ -77,7 +72,6 @@
 
       </div>
     </div>
-
     <!-- Card -->
     <div class="card" data-toggle="tooltip" data-html="true" title="The more Kairo you stake, the more of Betoken's money you put at work, the more commissions you earn.">
       <div class="card-body">
@@ -154,18 +148,14 @@
         <div class="card-header">
           <div class="row align-items-center">
             <div class="col">
-
               <!-- Title -->
               <h4 class="card-header-title">
                 Active Investments
               </h4>
-
             </div>
             <div class="col-auto">
-
               <!-- Refresh -->
               <button class="btn btn-sm btn-white" type="button" name="button" (click) = "refresh()"><i class="fe fe-refresh-cw align-middle" *ngIf="isLoading() == false"></i><div class="loader loader-sm loader-secondary my-1" *ngIf="isLoading()"></div></button>
-
             </div>
           </div> <!-- / .row -->
         </div>
@@ -186,10 +176,68 @@
             </div>
           </div> <!-- / .row -->
         </div>
-        <ul class="list-group list-group-flush list" id="active-investments-list">
-          <li class="list-group-item list-group-item-action py-0" *ngFor = "let data of activeInvestmentList">
-            <a class="py-3 d-block text-secondary" href="#" data-toggle="modal" data-target="#modalSell" (click)="openSellModal(data)">
-              <div class="row d-flex align-items-center">
+        <div class="card-body">
+          <ul class="list-group list-group-flush list" id="active-investments-list">
+            <li class="list-group-item list-group-item-action py-0" *ngFor="let data of activeInvestmentList">
+              <a class="py-3 d-block text-secondary" href="#" data-toggle="modal" data-target="#modalSell" (click)="openSellModal(data)">
+                <div class="row d-flex align-items-center">
+                  <div class="col-auto">
+                    <span class="avatar avatar-xs">
+                      <img src={{getTokenLogoUrl(data.tokenSymbol)}} alt="{{data.tokenSymbol}} token logo" class="avatar-img rounded-circle">
+                    </span>
+                  </div>
+                  <div class="col">
+                    <p class="h4 mb-1">
+                      {{data.tokenSymbol}}<span class="text-secondary d-none d-lg-inline-block ml-1 small font-weight-normal">• {{ (getTokenName(data.tokenSymbol).length>24)? (getTokenName(data.tokenSymbol) | slice:0:24)+'..':(getTokenName(data.tokenSymbol)) }}</span>
+                    </p>
+                    <span *ngIf="isMarginOrder(data)">
+                      <span class="badge badge-soft-success mr-2" *ngIf="data.safety">
+                        Safe
+                      </span>
+                      <span class="badge badge-soft-danger mr-2" *ngIf="!data.safety">
+                        In Danger
+                      </span>
+                    </span>
+                  </div>
+                  <div class="col-auto text-right">
+                    <span class="font-weight-bold">{{data.currValue.toFormat(4)}} KRO</span>
+                    <br>
+                    <!-- Badge success -->
+                    <span class="badge badge-xl" [ngClass]="{'badge-soft-success': data.ROI.gte(0), 'badge-soft-danger': data.ROI.lt(0)}">
+                      {{data.ROI.toFormat(4)}}%
+                    </span>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <li class="list-group-item justify-content-center text-center pt-5" *ngIf="activeInvestmentList.length == 0">
+              <h3 class="mb-4">You have no active investments</h3>
+              <button class="btn btn-success mb-5" routerLink="/investments" type="button" data-toggle="modal" data-target="#modalBuy" *ngIf="phase == 1">Make Investments</button>
+              <img class="w-50 mx-auto d-block" src="assets/img/illustrations/undraw_empty_xct9.svg" alt="zero-state-illustration">
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- Closed trades -->
+      <div class="card">
+        <div class="card-header">
+          <div class="row align-items-center">
+            <div class="col">
+              <!-- Title -->
+              <h4 class="card-header-title">
+                Past Investments
+              </h4>
+            </div>
+            <div class="col-auto">
+              <!-- Refresh -->
+              <button class="btn btn-sm btn-white" type="button" name="button" (click) = "refresh()"><i class="fe fe-refresh-cw align-middle" *ngIf="isLoading() == false"></i><div class="loader loader-sm loader-secondary my-1" *ngIf="isLoading()"></div></button>
+            </div>
+          </div> <!-- / .row -->
+        </div>
+        <div class="card-body">
+          <ul class="list-group list-group-flush list">
+            <li class="list-group-item" *ngFor = "let data of inactiveInvestmentList">
+              <div class="row d-flex align-items-center text-secondary">
                 <div class="col-auto">
                   <span class="avatar avatar-xs">
                     <img src={{getTokenLogoUrl(data.tokenSymbol)}} alt="{{data.tokenSymbol}} token logo" class="avatar-img rounded-circle">
@@ -199,14 +247,7 @@
                   <span class="h4 mb-1">
                     {{data.tokenSymbol}}<span class="text-secondary d-none d-lg-inline-block ml-1 small font-weight-normal">• {{ (getTokenName(data.tokenSymbol).length>24)? (getTokenName(data.tokenSymbol) | slice:0:24)+'..':(getTokenName(data.tokenSymbol)) }}</span>
                   </span>
-                  <br>
                   <span *ngIf="isMarginOrder(data)">
-                    <span class="badge badge-soft-success mr-2" *ngIf="data.safety">
-                      Safe
-                    </span>
-                    <span class="badge badge-soft-danger mr-2" *ngIf="!data.safety">
-                      In Danger
-                    </span>
                     <span class="badge badge-soft-primary" *ngIf="!data.orderType">
                       Long 1.5x
                     </span>
@@ -214,86 +255,23 @@
                       Short 0.5x
                     </span>
                   </span>
-
                 </div>
                 <div class="col-auto text-right">
                   <span class="font-weight-bold">{{data.currValue.toFormat(4)}} KRO</span>
                   <br>
                   <!-- Badge success -->
-                  <span class="badge badge-xl" [ngClass]="{'badge-soft-success': data.ROI.gte(0), 'badge-soft-danger': data.ROI.lt(0)}">
+                  <span class="badge badge-xl badge-soft-success" *ngIf = "+data.ROI >= 0">
+                    {{data.ROI.toFormat(4)}}%
+                  </span>
+                  <!-- Badge danger -->
+                  <span class="badge badge-xl badge-soft-danger" *ngIf = "0 > +data.ROI">
                     {{data.ROI.toFormat(4)}}%
                   </span>
                 </div>
               </div>
-            </a>
-          </li>
-          <li class="list-group-item justify-content-center text-center pt-5" *ngIf="activeInvestmentList.length == 0">
-            <h3 class="mb-4">You have no active investments</h3>
-            <button class="btn btn-success mb-5" routerLink="/investments" type="button" data-toggle="modal" data-target="#modalBuy" *ngIf="phase == 1">Make Investments</button>
-            <img class="w-50 mx-auto d-block" src="assets/img/illustrations/undraw_empty_xct9.svg" alt="zero-state-illustration">
-          </li>
-        </ul>
-      </div>
-
-      <!-- Closed trades -->
-      <div class="card">
-        <div class="card-header">
-          <div class="row align-items-center">
-            <div class="col">
-
-              <!-- Title -->
-              <h4 class="card-header-title">
-                Past Investments
-              </h4>
-
-            </div>
-            <div class="col-auto">
-
-              <!-- Refresh -->
-              <button class="btn btn-sm btn-white" type="button" name="button" (click) = "refresh()"><i class="fe fe-refresh-cw align-middle" *ngIf="isLoading() == false"></i><div class="loader loader-sm loader-secondary my-1" *ngIf="isLoading()"></div></button>
-
-            </div>
-          </div> <!-- / .row -->
+            </li>
+          </ul>
         </div>
-
-        <ul class="list-group list-group-flush list">
-          <li class="list-group-item" *ngFor = "let data of inactiveInvestmentList">
-            <div class="row d-flex align-items-center text-secondary">
-              <div class="col-auto">
-                <span class="avatar avatar-xs">
-                  <img src={{getTokenLogoUrl(data.tokenSymbol)}} alt="{{data.tokenSymbol}} token logo" class="avatar-img rounded-circle">
-                </span>
-              </div>
-              <div class="col">
-                <span class="h4 mb-1">
-                  {{data.tokenSymbol}}<span class="text-secondary d-none d-lg-inline-block ml-1 small font-weight-normal">• {{ (getTokenName(data.tokenSymbol).length>24)? (getTokenName(data.tokenSymbol) | slice:0:24)+'..':(getTokenName(data.tokenSymbol)) }}</span>
-                </span>
-                <br>
-                <span *ngIf="isMarginOrder(data)">
-                  <span class="badge badge-soft-primary" *ngIf="!data.orderType">
-                    Long 1.5x
-                  </span>
-                  <span class="badge badge-soft-primary" *ngIf="data.orderType">
-                    Short 0.5x
-                  </span>
-                </span>
-
-              </div>
-              <div class="col-auto text-right">
-                <span class="font-weight-bold">{{data.currValue.toFormat(4)}} KRO</span>
-                <br>
-                <!-- Badge success -->
-                <span class="badge badge-xl badge-soft-success" *ngIf = "+data.ROI >= 0">
-                  {{data.ROI.toFormat(4)}}%
-                </span>
-                <!-- Badge danger -->
-                <span class="badge badge-xl badge-soft-danger" *ngIf = "0 > +data.ROI">
-                  {{data.ROI.toFormat(4)}}%
-                </span>
-              </div>
-            </div>
-          </li>
-        </ul>
       </div>
     </div>
   </div> <!-- / .row -->
@@ -593,7 +571,13 @@
               <span class="avatar avatar-xs align-middle mr-2">
                 <img src={{getTokenLogoUrl(selectedTokenSymbol)}} alt="logo" class="avatar-img rounded-circle">
               </span>
-              {{selectedTokenSymbol}}
+              {{selectedTokenSymbol}}              
+              <span class="badge badge-soft-primary" *ngIf="!data.orderType">
+                Long 1.5x
+              </span>
+              <span class="badge badge-soft-primary" *ngIf="data.orderType">
+                Short 0.5x
+              </span>
             </h4>
             <time class="header-pretitle h6 mb-0" *ngIf="sellInvestmentPopupStep === 0">OPENED {{sellData.buyTime.toLocaleString()}}</time>
             <!-- Confirm asset investment title -->
@@ -691,7 +675,7 @@
             <div class="row align-items-center">
               <div class="col">
                 <div class="progress">
-                  <div class="progress-bar bg-danger" role="progressbar" [ngStyle]="{'width': sellData.collateralRatio.div(sellData.minCollateralRatio.times(2)).times(100).toFormat(2) + '%'}">{{sellData.collateralRatio.times(100).toFormat(0)}}%</div>
+                  <div [ngClass]="{'bg-success': sellData.safety, 'bg-danger': !sellData.safety}" class="progress-bar" role="progressbar" [ngStyle]="{'width': sellData.collateralRatio.div(sellData.minCollateralRatio.times(2)).times(100).toFormat(2) + '%'}">{{sellData.collateralRatio.times(100).toFormat(0)}}%</div>
                 </div>
                 <div class="row no-gutters justify-content-between text-secondary mb-3">
                   <div class="col text-left">
@@ -890,7 +874,7 @@
           <div class="row align-items-center">
             <div class="col">
               <div class="progress">
-                <div class="progress-bar bg-danger" role="progressbar" [ngStyle]="{'width': sellData.collateralRatio.div(sellData.minCollateralRatio.times(2)).times(100).toFormat(2) + '%'}">{{sellData.collateralRatio.times(100).toFormat(0)}}%</div>
+                <div [ngClass]="{'bg-success': sellData.safety, 'bg-danger': !sellData.safety}" class="progress-bar" role="progressbar" [ngStyle]="{'width': sellData.collateralRatio.div(sellData.minCollateralRatio.times(2)).times(100).toFormat(2) + '%'}">{{sellData.collateralRatio.times(100).toFormat(0)}}%</div>
               </div>
               <div class="row no-gutters justify-content-between text-secondary mb-3">
                 <div class="col text-left">

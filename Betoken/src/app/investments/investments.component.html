@@ -274,45 +274,37 @@
 <div class="modal fade fixed-right" id="modalBuy" tabindex="-1" role="dialog" aria-labelledby="modalBuy" aria-hidden="true">
   <div class="modal-dialog modal-dialog-vertical bg-white" role="document">
     <div class="modal-content" data-toggle="lists" data-lists-values="[&quot;name&quot;]">
-      <div class="card-header border-0">
-        <div class="row align-items-center">
-          <div class="col">
-            <!-- Select Asset title -->
-            <h4 class="card-header-title" *ngIf="createInvestmentPopupStep === 0">
-              Select An Asset
-            </h4>
-            <!-- Selected Asset title -->
-            <a class="text-secondary" href="#/investments" (click)="createInvestmentPopupStep = 0;">
-              <h4 class="card-header-title d-flex align-items-center" *ngIf="createInvestmentPopupStep === 1">
-                <i class="fe fe-arrow-left mr-2"></i>
-                <span class="avatar avatar-xs align-middle mr-2">
-                  <img src={{getTokenLogoUrl(selectedTokenSymbol)}} alt="logo" class="avatar-img rounded-circle">
-                </span>
-                Buy {{getTokenName(selectedTokenSymbol)}}
-              </h4>
-            </a>
-            <!-- Confirm asset investment title -->
-            <h4 class="card-header-title" *ngIf="createInvestmentPopupStep === 2">
-              Confirm Investment
-            </h4>
-            <!-- Processing title -->
-            <h4 class="card-header-title" *ngIf="createInvestmentPopupStep === 3">
-              Processing Investment
-            </h4>
-            <!-- Investment confirmed title -->
-            <h4 class="card-header-title" *ngIf="createInvestmentPopupStep === 4">
-              Investment confirmed
-            </h4>
-          </div>
-          <div class="col-auto">
-
-            <!-- Close -->
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-
-          </div>
-        </div> <!-- / .row -->
+      <div class="modal-header border-0">
+        <!-- Select Asset title -->
+        <h4 class="modal-title" *ngIf="createInvestmentPopupStep === 0">
+          Select An Asset
+        </h4>
+        <!-- Selected Asset title -->
+        <a class="text-secondary" href="#/investments" (click)="createInvestmentPopupStep = 0;">
+          <h4 class="modal-title d-flex align-items-center" *ngIf="createInvestmentPopupStep === 1">
+            <i class="fe fe-arrow-left mr-2"></i>
+            <span class="avatar avatar-xs align-middle mr-2">
+              <img src={{getTokenLogoUrl(selectedTokenSymbol)}} alt="logo" class="avatar-img rounded-circle">
+            </span>
+            Buy {{getTokenName(selectedTokenSymbol)}}
+          </h4>
+        </a>
+        <!-- Confirm asset investment title -->
+        <h4 class="modal-title" *ngIf="createInvestmentPopupStep === 2">
+          Confirm Investment
+        </h4>
+        <!-- Processing title -->
+        <h4 class="modal-title" *ngIf="createInvestmentPopupStep === 3">
+          Processing Investment
+        </h4>
+        <!-- Investment confirmed title -->
+        <h4 class="modal-title" *ngIf="createInvestmentPopupStep === 4">
+          Investment confirmed
+        </h4>
+        <!-- Close -->
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
       </div>
       <!-- progress bar buying -->
       <div class="card-header py-0 border-0" style="min-height: 24px;">
@@ -549,43 +541,36 @@
 <div class="modal fade fixed-right" id="modalSell" tabindex="-1" role="dialog" aria-labelledby="modalSell" aria-hidden="true">
   <div class="modal-dialog modal-dialog-vertical bg-white" role="document">
     <div class="modal-content">
-      <div class="card-header border-0">
-        <div class="row align-items-center">
-          <div class="col">
-            <!-- Quantity of asset to sell title -->
-            <h4 class="card-header-title" *ngIf="sellInvestmentPopupStep === 0">
-              <span class="d-flex align-items-center">
-                <span class="avatar avatar-xs align-middle mr-2">
-                  <img src={{getTokenLogoUrl(selectedTokenSymbol)}} alt="logo" class="avatar-img rounded-circle">
-                </span>
-                {{selectedTokenSymbol}}
-                <span class="text-secondary ml-2" *ngIf="isMarginOrder(sellData)">
-                  <span *ngIf="!sellData.orderType">Long • Leverage 1.5x</span>
-                  <span *ngIf="sellData.orderType">Short • Leverage 0.5x</span>
-                </span>
-              </span>
-            </h4>
-            <time class="header-pretitle h6 mb-0" *ngIf="sellInvestmentPopupStep === 0">OPENED {{sellData.buyTime.toLocaleString()}}</time>
-            <!-- Confirm asset investment title -->
-            <h4 class="card-header-title" *ngIf="sellInvestmentPopupStep === 1">
-              Confirm sell order
-            </h4>
-            <!-- Processing title -->
-            <h4 class="card-header-title" *ngIf="sellInvestmentPopupStep === 2">
-              Processing sell order
-            </h4>
-            <!-- Sell order confirmed title -->
-            <h4 class="card-header-title" *ngIf="sellInvestmentPopupStep === 3">
-              Sell order confirmed
-            </h4>
-          </div>
-          <div class="col-auto">
-            <!-- Close -->
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-        </div> <!-- / .row -->
+      <div class="modal-header border-0">
+        <!-- Quantity of asset to sell title -->
+        <h4 class="modal-title" *ngIf="sellInvestmentPopupStep === 0">
+          <span class="align-items-center">
+            <span class="avatar avatar-xs align-middle mr-2">
+              <img src={{getTokenLogoUrl(selectedTokenSymbol)}} alt="logo" class="avatar-img rounded-circle">
+            </span>
+            {{selectedTokenSymbol}}
+            <span class="text-secondary ml-2" *ngIf="isMarginOrder(sellData)">
+              <span *ngIf="!sellData.orderType">Long • Leverage 1.5x</span>
+              <span *ngIf="sellData.orderType">Short • Leverage 0.5x</span>
+            </span>
+          </span>
+        </h4>
+        <!-- Confirm asset investment title -->
+        <h4 class="modal-title" *ngIf="sellInvestmentPopupStep === 1">
+          Confirm sell order
+        </h4>
+        <!-- Processing title -->
+        <h4 class="modal-title" *ngIf="sellInvestmentPopupStep === 2">
+          Processing sell order
+        </h4>
+        <!-- Sell order confirmed title -->
+        <h4 class="modal-title" *ngIf="sellInvestmentPopupStep === 3">
+          Sell order confirmed
+        </h4>
+        <!-- Close -->
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
       </div>
       <!-- progress bar selling -->
       <div class="card-header py-0 border-0" style="min-height: 24px;">
@@ -600,6 +585,8 @@
       <div class="modal-body pb-5">
         <!--Step 0: enter sell amount-->
         <div *ngIf="sellInvestmentPopupStep === 0">
+          <time class="header-pretitle h6 mb-0" *ngIf="sellInvestmentPopupStep === 0">OPENED {{sellData.buyTime.toLocaleString()}}</time>
+          <hr class="mb-4" *ngIf="sellInvestmentPopupStep === 0">
           <!-- Asset price -->
           <div class="row mb-4">
             <div class="col">
@@ -803,33 +790,27 @@
 <div class="modal fade fixed-right" id="modalTopUp" tabindex="-1" role="dialog" aria-labelledby="modalTopUp" aria-hidden="true">
   <div class="modal-dialog modal-dialog-vertical bg-white" role="document">
     <div class="modal-content">
-      <div class="card-header border-0">
-        <div class="row align-items-center">
-          <div class="col">
-            <!-- Collateralization target title -->
-            <h4 class="card-header-title" *ngIf="topupPopupStep == 0">
-              Top up your order
-            </h4>
-            <!-- Confirm top up title -->
-            <h4 class="card-header-title" *ngIf="topupPopupStep == 1">
-              Confirm top up order
-            </h4>
-            <!-- Processing top up title -->
-            <h4 class="card-header-title" *ngIf="topupPopupStep == 2">
-              Processing top up order
-            </h4>
-            <!-- Top up order confirmed title -->
-            <h4 class="card-header-title" *ngIf="topupPopupStep == 3">
-              Top up confirmed
-            </h4>
-          </div>
-          <div class="col-auto">
-            <!-- Close -->
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-        </div> <!-- / .row -->
+      <div class="modal-header border-0">
+        <!-- Collateralization target title -->
+        <h4 class="modal-title" *ngIf="topupPopupStep == 0">
+          Top up your order
+        </h4>
+        <!-- Confirm top up title -->
+        <h4 class="modal-title" *ngIf="topupPopupStep == 1">
+          Confirm top up order
+        </h4>
+        <!-- Processing top up title -->
+        <h4 class="modal-title" *ngIf="topupPopupStep == 2">
+          Processing top up order
+        </h4>
+        <!-- Top up order confirmed title -->
+        <h4 class="modal-title" *ngIf="topupPopupStep == 3">
+          Top up confirmed
+        </h4>
+        <!-- Close -->
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
       </div>
       <!-- progress bar selling -->
       <div class="card-header py-0 border-0" style="min-height: 24px;">

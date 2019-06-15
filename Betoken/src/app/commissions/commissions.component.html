@@ -93,24 +93,36 @@
 <div class="modal fade fixed-right" id="modalRedeem" tabindex="-1" role="dialog" aria-labelledby="modalRedeem" aria-hidden="true">
   <div class="modal-dialog modal-dialog-vertical bg-white" role="document">
     <div class="modal-content">
-      <div class="card-header">
-        <div class="row align-items-center">
-          <div class="col">
-            <!-- Select Asset title -->
-            <h4 class="card-header-title">
-              Redeem your commissions
-            </h4>
-
-          </div>
-          <div class="col-auto">
-
-            <!-- Close -->
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-
-          </div>
-        </div> <!-- / .row -->
+      <div class="modal-header border-0">
+        <!-- Select Asset title -->
+        <h4 class="modal-title" *ngIf="step == 0">
+          Redeem your commissions
+        </h4>
+        <!-- BTKS Confirm buy title -->
+        <h4 class="modal-title" *ngIf="step == 1">
+          Confirm Redeem
+        </h4>
+        <!-- BTKS Processing buy title -->
+        <h4 class="modal-title" *ngIf="step == 2">
+          Processing Redeem
+        </h4>
+        <!-- BTKS confirmed buy title -->
+        <h4 class="modal-title" *ngIf="step == 3">
+          Commissions Redeemed
+        </h4>
+        <!-- Close -->
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <!-- Intermission, buying allowed -->
+      <div class="card-header py-0 border-0" style="min-height: 24px;">
+        <div class="progress" style="height: 8px;">
+          <div [ngClass]="{'bg-success': step >= 0, 'bg-secondary': step !== 0}" class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+          <div [ngClass]="{'bg-success': step >= 1, 'bg-secondary': step !== 1}" class="progress-bar border-left" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+          <div [ngClass]="{'bg-success': step >= 2, 'bg-secondary': step !== 2}" class="progress-bar border-left" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+          <div [ngClass]="{'bg-success': step >= 3, 'bg-secondary': step !== 3}" class="progress-bar border-left" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
       </div>
       <div class="modal-body">
         <!-- commissions amount -->

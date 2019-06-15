@@ -127,7 +127,7 @@ export class InvestmentsComponent implements OnInit {
 
     selectOrderType(type) {
         this.orderType = type;
-        
+
         // set leverage
         switch (type) {
             case 0:
@@ -141,7 +141,7 @@ export class InvestmentsComponent implements OnInit {
             case 2:
                 // short compound order
                 this.orderLeverage = -0.5;
-                break 
+                break
         }
     }
 
@@ -165,7 +165,7 @@ export class InvestmentsComponent implements OnInit {
 
         let tokenPrice = this.assetSymbolToPrice(this.selectedTokenSymbol);
         let maxPrice = tokenPrice.plus(tokenPrice.times($('#maxAcceptablePrice').val()).div(100));
-        
+
         switch (this.orderType) {
             case 0:
                 // basic order

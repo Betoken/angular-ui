@@ -1,91 +1,99 @@
 <!-- HEADER -->
-<div class="header bg-dark pb-5 pt-5">
+<div class="header bg-dark pb-5">
   <div class="container-fluid px-md-5">
-    <div class="card-deck mb-0">
-      <!-- Card -->
-      <div class="card" data-toggle="tooltip" data-html="true" title="The total number of Betoken Fund Shares ($BTKS) owned by you.">
-        <div class="card-body">
-          <div class="row align-items-center">
-            <div class="col">
 
-              <!-- Title -->
-              <h6 class="card-title text-uppercase text-muted mb-2">
-                Betoken Shares Balance
-              </h6>
-
-              <!-- Heading -->
-              <span class="h2 mb-0">
-                {{sharesBalance.toFormat(4)}} BTKS
-              </span>
-
-            </div>
-            <div class="col-auto">
-
-              <!-- Icon -->
-              <span class="h2 fe fe-disc text-muted mb-0"></span>
-
-            </div>
-          </div> <!-- / .row -->
-
-        </div>
-      </div>
-      <!-- Card -->
-      <div class="card" data-toggle="tooltip" data-html="true" title="The actual value in DAI stable coin of the total Betoken Fund shares owned by you.">
-        <div class="card-body">
-          <div class="row align-items-center">
-            <div class="col">
-
-              <!-- Title -->
-              <h6 class="card-title text-uppercase text-muted mb-2">
-                Total value
-              </h6>
-
-              <!-- Heading -->
-              <span class="h2 mb-0">
-                {{investmentBalance.toFormat(4)}} DAI
-              </span>
-
-            </div>
-            <div class="col-auto">
-
-              <!-- Icon -->
-              <span class="h2 fe fe-dollar-sign text-muted mb-0"></span>
-
-            </div>
-          </div> <!-- / .row -->
-
-        </div>
-      </div>
-      <!-- Card -->
-      <div class="card" data-toggle="tooltip" data-html="true" title="The actual value in DAI stable coin of the total Betoken Fund shares owned by you.">
-        <div class="card-body">
-          <div class="row align-items-center">
-            <div class="col">
-
-              <!-- Title -->
-              <h6 class="card-title text-uppercase text-muted mb-2">
-                Price/BTKS
-              </h6>
-
-              <!-- Heading -->
-              <span class="h2 mb-0">
-                {{sharesPrice.toFormat(4)}} DAI
-              </span>
-
-            </div>
-            <div class="col-auto">
-
-              <!-- Icon -->
-              <span class="h2 fe fe-dollar-sign text-muted mb-0"></span>
-
-            </div>
-          </div> <!-- / .row -->
-
-        </div>
-      </div>
-    </div> <!-- / .row -->
     <!-- Body -->
     <div class="header-body">
+      <!-- Title -->
+      <h1 class="header-title text-white">
+        Your stats
+      </h1>
+    </div>
+    <!-- Body -->
+    <div class="header-body">
+      <div class="card-deck mb-5">
+        <!-- Card -->
+        <div class="card" data-toggle="tooltip" data-html="true" title="The total number of Betoken Fund Shares ($BTKS) owned by you.">
+          <div class="card-body">
+            <div class="row align-items-center">
+              <div class="col">
+
+                <!-- Title -->
+                <h6 class="card-title text-uppercase text-muted mb-2">
+                  Betoken Shares Balance
+                </h6>
+
+                <!-- Heading -->
+                <span class="h2 mb-0">
+                  {{sharesBalance.toFormat(4)}} BTKS
+                </span>
+
+              </div>
+              <div class="col-auto">
+
+                <!-- Icon -->
+                <span class="h2 fe fe-disc text-muted mb-0"></span>
+
+              </div>
+            </div> <!-- / .row -->
+
+          </div>
+        </div>
+        <!-- Card -->
+        <div class="card" data-toggle="tooltip" data-html="true" title="The actual value in DAI stable coin of the total Betoken Fund shares owned by you.">
+          <div class="card-body">
+            <div class="row align-items-center">
+              <div class="col">
+
+                <!-- Title -->
+                <h6 class="card-title text-uppercase text-muted mb-2">
+                  Total value
+                </h6>
+
+                <!-- Heading -->
+                <span class="h2 mb-0">
+                  {{investmentBalance.toFormat(4)}} DAI
+                </span>
+
+              </div>
+              <div class="col-auto">
+
+                <!-- Icon -->
+                <span class="h2 fe fe-dollar-sign text-muted mb-0"></span>
+
+              </div>
+            </div> <!-- / .row -->
+
+          </div>
+        </div>
+        <!-- Card -->
+        <div class="card" data-toggle="tooltip" data-html="true" title="The actual value in DAI stable coin of the total Betoken Fund shares owned by you.">
+          <div class="card-body">
+            <div class="row align-items-center">
+              <div class="col">
+
+                <!-- Title -->
+                <h6 class="card-title text-uppercase text-muted mb-2">
+                  Price/BTKS
+                </h6>
+
+                <!-- Heading -->
+                <span class="h2 mb-0">
+                  {{sharesPrice.toFormat(4)}} DAI
+                </span>
+
+              </div>
+              <div class="col-auto">
+
+                <!-- Icon -->
+                <span class="h2 fe fe-dollar-sign text-muted mb-0"></span>
+
+              </div>
+            </div> <!-- / .row -->
+
+          </div>
+        </div>
+      </div> <!-- / .row -->
       <div class="row align-items-end">
         <div class="col">
 
@@ -291,7 +299,7 @@
                 </td>
                 <td class="align-middle">
                   <div class="input-group-append">
-                    <a class="btn btn-white h-100" href="https://ropsten.etherscan.io/tx/{{entry.txHash}}" target="_blank"><i class="fe fe-external-link"></i></a>
+                    <a class="btn btn-white h-100 d-flex align-items-center" href="https://ropsten.etherscan.io/tx/{{entry.txHash}}" target="_blank"><i class="fe fe-external-link"></i></a>
                   </div>
                 </td>
               </tr>
@@ -521,7 +529,7 @@
               <div class="input-group mb-3">
                 <input type="text" class="form-control form-control-lg" value="{{transactionId}}" aria-label="Transaction ID" aria-describedby="">
                 <div class="input-group-append">
-                  <a class="btn btn-white h-100" href="https://ropsten.etherscan.io/tx/{{transactionId}}" target="_blank"><i class="fe fe-external-link"></i></a>
+                  <a class="btn btn-white h-100 d-flex align-items-center" href="https://ropsten.etherscan.io/tx/{{transactionId}}" target="_blank"><i class="fe fe-external-link"></i></a>
                 </div>
               </div>
             </div>
@@ -545,7 +553,7 @@
               <div class="input-group mb-3">
                 <input type="text" class="form-control form-control-lg" value="{{transactionId}}" aria-label="Transaction ID" aria-describedby="">
                 <div class="input-group-append">
-                  <a class="btn btn-white h-100" href="https://ropsten.etherscan.io/tx/{{transactionId}}" target="_blank"><i class="fe fe-external-link"></i></a>
+                  <a class="btn btn-white h-100 d-flex align-items-center" href="https://ropsten.etherscan.io/tx/{{transactionId}}" target="_blank"><i class="fe fe-external-link"></i></a>
                 </div>
               </div>
             </div>
@@ -700,7 +708,7 @@
               <div class="input-group mb-3">
                 <input type="text" class="form-control form-control-lg" value="{{transactionId}}" aria-label="Transaction ID" aria-describedby="">
                 <div class="input-group-append">
-                  <a class="btn btn-white h-100" href="https://ropsten.etherscan.io/tx/{{transactionId}}" target="_blank"><i class="fe fe-external-link"></i></a>
+                  <a class="btn btn-white h-100 d-flex align-items-center" href="https://ropsten.etherscan.io/tx/{{transactionId}}" target="_blank"><i class="fe fe-external-link"></i></a>
                 </div>
               </div>
             </div>
@@ -723,7 +731,7 @@
               <div class="input-group mb-3">
                 <input type="text" class="form-control form-control-lg" value="{{transactionId}}" aria-label="Transaction ID" aria-describedby="">
                 <div class="input-group-append">
-                  <a class="btn btn-white h-100" href="https://ropsten.etherscan.io/tx/{{transactionId}}" target="_blank"><i class="fe fe-external-link"></i></a>
+                  <a class="btn btn-white h-100 d-flex align-items-center" href="https://ropsten.etherscan.io/tx/{{transactionId}}" target="_blank"><i class="fe fe-external-link"></i></a>
                 </div>
               </div>
             </div>

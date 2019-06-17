@@ -20,54 +20,6 @@ export class MarketComponent implements OnInit {
         this.refreshDisplay();
     }
 
-    getTokenPrice(token) {
-        let price = tokens.asset_symbol_to_price(token);
-        if (isUndefined(price)) {
-            price = new BigNumber(0);
-        }
-        return price.toFormat(10);
-    }
-
-    getTokenDailyPriceChange(token) {
-        let result = tokens.asset_symbol_to_daily_price_change(token);
-        if (isUndefined(result)) {
-            result = new BigNumber(0);
-        }
-        return result.toFormat(4);
-    }
-
-    getTokenWeeklyPriceChange(token) {
-        let result = tokens.asset_symbol_to_weekly_price_change(token);
-        if (isUndefined(result)) {
-            result = new BigNumber(0);
-        }
-        return result.toFormat(4);
-    }
-
-    getTokenMonthlyPriceChange(token) {
-        let result = tokens.asset_symbol_to_monthly_price_change(token);
-        if (isUndefined(result)) {
-            result = new BigNumber(0);
-        }
-        return result.toFormat(4);
-    }
-
-    getTokenName(token) {
-        let result = tokens.asset_symbol_to_name(token);
-        if (isUndefined(result)) {
-            return '';
-        }
-        return result;
-    }
-
-    getTokenLogoUrl(token) {
-        let result = tokens.asset_symbol_to_logo_url(token);
-        if (isUndefined(result)) {
-            return '';
-        }
-        return result;
-    }
-
     refreshDisplay() {
         this.tokenData = tokens.token_data().get().filter((x) => tokens.not_stablecoin(x.symbol));
     }

@@ -269,12 +269,7 @@ export class InvestmentsComponent implements OnInit {
     filterList = (event, listID, searchID) => {
         let searchInput = event.target.value.toLowerCase();
         let entries = $(`#${listID} li`);
-        if (searchInput.length > 0) {
-            entries[0].style.display = "none";
-        } else {
-            entries[0].style.display = "";
-        }
-        for (let i = 1; i < entries.length; i++) { // skip first item (titles etc.)
+        for (let i = 0; i < entries.length; i++) { // skip first item (titles etc.)
             let entry = entries[i];
             let searchTarget = entry.children[searchID];
             if (searchTarget) {

@@ -254,6 +254,7 @@ export class InvestmentsComponent implements OnInit {
 
     maxStake() {
         $('#kairo-input').val(this.kairo_balance.toString());
+        this.continueEnabled = true;
     }
 
     maxSellPercent() {

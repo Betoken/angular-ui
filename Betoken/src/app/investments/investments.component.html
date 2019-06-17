@@ -171,11 +171,8 @@
                 </div>
                 <div class="col-12 col-lg-auto">
                   <span *ngIf="isMarginOrder(data)">
-                    <span class="badge badge-soft-success" *ngIf="data.safety">
-                      <span class="text-secondary" *ngIf="!data.orderType">Long</span><span class="text-secondary" *ngIf="data.orderType">Short</span> • Safe
-                    </span>
-                    <span class="badge badge-soft-danger" *ngIf="!data.safety">
-                      <span class="text-secondary" *ngIf="!data.orderType">Long</span><span class="text-secondary" *ngIf="data.orderType">Short</span> • Unsafe
+                    <span class="badge" *ngIf="data.safety" [ngClass]="{'badge-soft-success': data.safety, 'badge-soft-danger': !data.safety}">
+                      <span class="text-secondary" *ngIf="!data.orderType">Long 1.5x</span><span class="text-secondary" *ngIf="data.orderType">Short 0.5x</span> • <span *ngIf="data.safety">Safe</span><span *ngIf="!data.safety">In Danger</span>
                     </span>
                   </span>
                 </div>
@@ -234,8 +231,8 @@
                 </div>
                 <div class="col-12 col-lg-auto">
                   <span *ngIf="isMarginOrder(data)">
-                    <span class="badge badge-soft-secondary" *ngIf="!data.orderType">Long</span>
-                    <span class="badge badge-soft-secondary" *ngIf="data.orderType">Short</span>
+                    <span class="badge badge-soft-secondary" *ngIf="!data.orderType">Long 1.5x</span>
+                    <span class="badge badge-soft-secondary" *ngIf="data.orderType">Short 0.5x</span>
                   </span>
                 </div>
               </div>
@@ -400,7 +397,7 @@
                 <select class="form-control form-control-lg" id="orderTypeSelect" (change)="selectOrderType($event.target.selectedIndex)" *ngIf="isMarginToken(selectedTokenSymbol)">
                   <option selected>Basic order</option>
                   <option>Long • Leverage 1.5x</option>
-                  <option>Short • Leverage -0.5x</option>
+                  <option>Short • Leverage 0.5x</option>
                 </select>
               </form>
             </div>

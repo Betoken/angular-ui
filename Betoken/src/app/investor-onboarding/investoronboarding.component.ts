@@ -96,6 +96,7 @@ export class InvestoronboardingComponent implements OnInit {
   maxBuyAmount() {
     $('#sharesAmountToBuy').val(this.selectedTokenBalance.toString());
     this.refreshBuyOrderDetails(this.selectedTokenBalance);
+    this.continueEnabled = true;
   }
 
   selectBuyToken(value) {

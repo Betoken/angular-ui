@@ -90,6 +90,7 @@ export class ManageronboardingComponent implements OnInit {
     let amount = BigNumber.min(this.selectedTokenBalance, this.getMaxPaymentAmount());
     $('#sharesAmountToBuy').val(amount.toString());
     this.refreshBuyOrderDetails(amount);
+    this.continueEnabled = true;
   }
 
   selectBuyToken(value) {

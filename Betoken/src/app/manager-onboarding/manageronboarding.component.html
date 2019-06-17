@@ -51,7 +51,8 @@
           <div class="card-body text-center text-md-left">
             <div *ngIf="user_address == ZERO_ADDR">
               <p class="text-secondary text-center">Please enable Metamask or visit this page in a Web3 browser to interact with Betoken on the Ethereum Mainnet.</p>
-              <a class="btn btn-block btn-lg btn-success" target="__blank" href="#">Connect your wallet</a>
+              <a class="btn btn-block btn-lg btn-success" target="__blank" href="https://metamask.io">Get Metamask (Desktop)</a>
+              <a class="btn btn-block btn-lg btn-success" target="__blank" href="https://wallet.coinbase.com/">Get Coinbase Wallet (Mobile)</a>
             </div>
             <button class="btn btn-block btn-lg btn-success" type="button" data-toggle="modal" data-target="#modalBuy" *ngIf="user_address != ZERO_ADDR && kairoBalance.eq(0)">Get Started</button>
             <div *ngIf="user_address != ZERO_ADDR && kairoBalance.gt(0)">
@@ -339,17 +340,17 @@
                   <form>
                     <div class="form-group row mb-2">
                       <div class="col">
-                        <select class="form-control form-control-lg" id="buyTokenSelect" (change)="selectBuyToken($event.target.value)">
-                          <option *ngFor="let token of tokenData">{{token.symbol}}</option>
-                        </select>
-                      </div>
-                      <div class="col">
                         <div class="input-group">
                           <input aria-describedby="Betoken Shares Amount to buy" class="form-control form-control-lg pr-0" type="number" placeholder="0.0" id="sharesAmountToBuy" (input)="refreshBuyOrderDetails($event.target.value)">
                           <div class="input-group-append">
                             <button class="btn btn-white" name="button" type="button" (click)="maxBuyAmount()">Max</button>
                           </div>
                         </div>
+                      </div>
+                      <div class="col">
+                        <select class="form-control form-control-lg" id="buyTokenSelect" (change)="selectBuyToken($event.target.value)">
+                          <option *ngFor="let token of tokenData">{{token.symbol}}</option>
+                        </select>
                       </div>
                     </div>
                     <small class="form-text text-secondary d-inline-block mb-0">{{selectedTokenBalance.toFormat(4)}} {{selectedTokenSymbol}} available</small>

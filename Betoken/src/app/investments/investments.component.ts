@@ -30,6 +30,7 @@ export class InvestmentsComponent implements OnInit {
     transactionId: String;
     orderType: Number;
     orderLeverage: Number;
+    continueEnabled: Boolean;
 
     sellId: Number;
     sellData: Object;
@@ -57,6 +58,7 @@ export class InvestmentsComponent implements OnInit {
         this.transactionId = '';
         this.orderType = 0;
         this.orderLeverage = 1;
+        this.continueEnabled = false;
 
         this.sellId = 0;
         this.sellData = {
@@ -100,6 +102,7 @@ export class InvestmentsComponent implements OnInit {
         this.sellInvestmentPopupStep = 0;
         this.nextPhasePopupStep = 0;
         this.topupPopupStep = 0;
+        this.continueEnabled = false;
     }
 
     // Refresh info

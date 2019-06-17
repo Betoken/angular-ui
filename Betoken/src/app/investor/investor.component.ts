@@ -48,6 +48,7 @@ export class InvestorComponent implements OnInit {
   selectedTokenSymbol: String;
   selectedTokenBalance: BigNumber;
   transactionId: String;
+  continueEnabled: Boolean;
 
   depositWithdrawHistory: Array<Object>;
   
@@ -82,6 +83,7 @@ export class InvestorComponent implements OnInit {
     this.selectedTokenSymbol = 'DAI';
     this.selectedTokenBalance = new BigNumber(0);
     this.transactionId = '';
+    this.continueEnabled = false;
 
     this.depositWithdrawHistory = new Array<Object>();
   }
@@ -178,6 +180,7 @@ export class InvestorComponent implements OnInit {
     this.sellStep = 0;
     this.selectedTokenSymbol = this.tokenData[0]['symbol'];
     this.checkboxes = [false, false, false];
+    this.continueEnabled = false;
   }
   
   assetSymbolToPrice(symbol) {

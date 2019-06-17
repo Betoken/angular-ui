@@ -27,6 +27,7 @@ export class InvestoronboardingComponent implements OnInit {
   sharesPrice: BigNumber;
   buySharesAmount: BigNumber;
   buyTokenAmount: BigNumber;
+  continueEnabled: Boolean;
   
   buyStep: Number;
   days: Number;
@@ -45,6 +46,7 @@ export class InvestoronboardingComponent implements OnInit {
     this.sharesPrice = new BigNumber(0);
     this.buySharesAmount = new BigNumber(0);
     this.buyTokenAmount = new BigNumber(0);
+    this.continueEnabled = false;
     
     this.days = 0;
     this.hours = 0;
@@ -81,6 +83,7 @@ export class InvestoronboardingComponent implements OnInit {
     this.buyStep = 0;
     this.selectedTokenSymbol = this.tokenData[0]['symbol'];
     this.checkboxes = [false, false, false];
+    this.continueEnabled = false;
   }
   
   refreshBuyOrderDetails(val) {

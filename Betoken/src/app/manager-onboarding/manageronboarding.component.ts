@@ -31,6 +31,7 @@ export class ManageronboardingComponent implements OnInit {
   kairoTotalSupply: BigNumber;
 
   buyStep: Number;
+  continueEnabled: Boolean;
 
   constructor(private ms: AppComponent, private router: Router) {
     this.user_address = this.ZERO_ADDR;
@@ -45,6 +46,7 @@ export class ManageronboardingComponent implements OnInit {
     this.kairoBalance = new BigNumber(0);
     this.kairoTotalSupply = new BigNumber(0);
     this.FALLBACK_MAX_DONATION = new BigNumber(100); // fallback max DAI payment is 100
+    this.continueEnabled = false;
   }
 
   ngOnInit() {
@@ -70,6 +72,7 @@ export class ManageronboardingComponent implements OnInit {
     this.buyStep = 0;
     this.selectedTokenSymbol = this.tokenData[0]['symbol'];
     this.checkboxes = [false, false, false];
+    this.continueEnabled = false;
   }
 
   refreshBuyOrderDetails(val) {

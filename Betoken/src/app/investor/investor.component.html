@@ -456,7 +456,7 @@
                       </div>
                       <div class="col">
                         <div class="input-group">
-                          <input aria-describedby="Betoken Shares Amount to buy" class="form-control form-control-lg pr-0" type="number" placeholder="0.0" id="sharesAmountToBuy" (input)="refreshBuyOrderDetails($event.target.value)">
+                          <input aria-describedby="Betoken Shares Amount to buy" class="form-control form-control-lg pr-0" type="number" placeholder="0.0" id="sharesAmountToBuy" (input)="refreshBuyOrderDetails($event.target.value); continueEnabled = true">
                           <div class="input-group-append">
                             <button class="btn btn-white" name="button" type="button" (click)="maxBuyAmount()">Max</button>
                           </div>
@@ -556,7 +556,7 @@
           Buy Betoken Shares
         </button>
         <!-- Continue button for buyStep 2 -->
-        <button type="submit" class="btn btn-block btn-success mt-auto" aria-label="Continue to Buy" *ngIf="buyStep == 1" (click)="deposit();">
+        <button type="submit" class="btn btn-block btn-success mt-auto" aria-label="Continue to Buy" *ngIf="buyStep == 1" (click)="deposit();" [disabled]="!continueEnabled">
           Continue
         </button>
         <!-- Close button for buyStep 4 -->

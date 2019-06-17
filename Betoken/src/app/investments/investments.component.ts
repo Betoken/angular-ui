@@ -259,10 +259,12 @@ export class InvestmentsComponent implements OnInit {
 
     maxSellPercent() {
         $('#sell-percentage-input').val('100.0');
+        this.continueEnabled = true;
     }
 
     maxTopupTarget() {
         $('#collateral-ratio-target-input').val(this.sellData['currCollateral'].div(this.sellData['currBorrow'].minus(this.sellData['currCash'])).times(100).toFixed(0));
+        this.continueEnabled = true;
     }
 
     isLoading() {

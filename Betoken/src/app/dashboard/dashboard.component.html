@@ -140,23 +140,24 @@
 
           <!-- Nav -->
           <ul class="nav nav-tabs header-tabs">
+
             <li class="nav-item" data-toggle="chart">
-              <a href="#" class="nav-link active" data-toggle="tab" (click)="chartTabId = 0; drawChart(0);">
-                <h6 class="header-pretitle text-secondary">
-                  ROI (1M)
-                </h6>
-                <h3 class="text-white mb-0">
-                  {{currMoROI}}%
-                </h3>
-              </a>
-            </li>
-            <li class="nav-item" data-toggle="chart">
-              <a href="#" class="nav-link" data-toggle="tab" (click)="chartTabId = 1; drawChart(1);">
+              <a href="#" class="nav-link active" data-toggle="tab" (click)="chartTabId = 1; drawChart(1);">
                 <h6 class="header-pretitle text-secondary">
                   ROI Since Inception
                 </h6>
                 <h3 class="text-white mb-0">
                   {{avgMonthReturn}}%
+                </h3>
+              </a>
+            </li>
+            <li class="nav-item" data-toggle="chart">
+              <a href="#" class="nav-link" data-toggle="tab" (click)="chartTabId = 0; drawChart(0);">
+                <h6 class="header-pretitle text-secondary">
+                  ROI (1M)
+                </h6>
+                <h3 class="text-white mb-0">
+                  {{currMoROI}}%
                 </h3>
               </a>
             </li>

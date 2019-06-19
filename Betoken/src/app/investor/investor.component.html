@@ -1,7 +1,7 @@
 <!-- HEADER -->
 <div class="header bg-dark pb-5">
   <div class="container-fluid px-md-5">
-
+    
     <!-- Body -->
     <div class="header-body">
       <!-- Title -->
@@ -17,26 +17,26 @@
           <div class="card-body">
             <div class="row align-items-center">
               <div class="col">
-
+                
                 <!-- Title -->
                 <h6 class="card-title text-uppercase text-muted mb-2">
                   Betoken Shares Balance
                 </h6>
-
+                
                 <!-- Heading -->
                 <span class="h2 mb-0">
                   {{sharesBalance.toFormat(4)}} BTKS
                 </span>
-
+                
               </div>
               <div class="col-auto">
-
+                
                 <!-- Icon -->
                 <span class="h2 fe fe-disc text-muted mb-0"></span>
-
+                
               </div>
             </div> <!-- / .row -->
-
+            
           </div>
         </div>
         <!-- Card -->
@@ -44,26 +44,26 @@
           <div class="card-body">
             <div class="row align-items-center">
               <div class="col">
-
+                
                 <!-- Title -->
                 <h6 class="card-title text-uppercase text-muted mb-2">
                   Total value
                 </h6>
-
+                
                 <!-- Heading -->
                 <span class="h2 mb-0">
                   {{investmentBalance.toFormat(4)}} DAI
                 </span>
-
+                
               </div>
               <div class="col-auto">
-
+                
                 <!-- Icon -->
                 <span class="h2 fe fe-dollar-sign text-muted mb-0"></span>
-
+                
               </div>
             </div> <!-- / .row -->
-
+            
           </div>
         </div>
         <!-- Card -->
@@ -71,32 +71,32 @@
           <div class="card-body">
             <div class="row align-items-center">
               <div class="col">
-
+                
                 <!-- Title -->
                 <h6 class="card-title text-uppercase text-muted mb-2">
                   Price/BTKS
                 </h6>
-
+                
                 <!-- Heading -->
                 <span class="h2 mb-0">
                   {{sharesPrice.toFormat(4)}} DAI
                 </span>
-
+                
               </div>
               <div class="col-auto">
-
+                
                 <!-- Icon -->
                 <span class="h2 fe fe-dollar-sign text-muted mb-0"></span>
-
+                
               </div>
             </div> <!-- / .row -->
-
+            
           </div>
         </div>
       </div> <!-- / .row -->
       <div class="row align-items-end">
         <div class="col">
-
+          
           <!-- Pretitle -->
           <h6 class="header-pretitle text-secondary mb-3">
             Betoken Fund Overview
@@ -105,54 +105,54 @@
           <h1 class="header-title text-white d-inline-block align-middle">
             BTKS Price Chart
           </h1>
-
+          
         </div>
       </div> <!-- / .row -->
     </div> <!-- / .header-body -->
-
+    
     <!-- Footer -->
     <div class="header-footer">
-
+      
       <!-- Chart -->
       <div class="chart">
         <canvas id="roi-chart" class="chart-canvas">
         </canvas>
       </div>
-
+      
     </div>
-
+    
   </div>
 </div> <!-- / .header -->
 
 <!-- CARDS -->
 <div class="container-fluid mt-n6 px-md-5">
-
+  
   <div class="card-deck mb-5">
     <!-- Card -->
     <div class="card" >
       <div class="card-body">
         <div class="row align-items-center">
           <div class="col">
-
+            
             <!-- Title -->
             <h6 class="card-title text-uppercase text-muted mb-2">
               Price Change (Current Cycle)
             </h6>
-
+            
             <!-- Heading -->
             <span class="badge badge-xl badge-soft-success">
               {{currMoROI}}%
             </span>
-
+            
           </div>
           <div class="col-auto">
-
+            
             <!-- Icon -->
             <span class="h2 fe fe-activity text-muted mb-0"></span>
-
+            
           </div>
         </div> <!-- / .row -->
-
+        
       </div>
     </div>
     <!-- Card -->
@@ -160,26 +160,26 @@
       <div class="card-body">
         <div class="row align-items-center">
           <div class="col">
-
+            
             <!-- Title -->
             <h6 class="card-title text-uppercase text-muted mb-2">
               Price Change (Since Inception)
             </h6>
-
+            
             <!-- Heading -->
             <span class="badge badge-xl badge-soft-success">
               {{avgMonthReturn}}%
             </span>
-
+            
           </div>
           <div class="col-auto">
-
+            
             <!-- Icon -->
             <span class="h2 fe fe-activity text-muted mb-0"></span>
-
+            
           </div>
         </div> <!-- / .row -->
-
+        
       </div>
     </div>
     <!-- Card -->
@@ -187,26 +187,26 @@
       <div class="card-body">
         <div class="row align-items-center">
           <div class="col">
-
+            
             <!-- Title -->
             <h6 class="card-title text-uppercase text-muted mb-2">
               Sortino Ratio
             </h6>
-
+            
             <!-- Heading -->
             <span class="h2 mb-0">
               {{sortinoRatio}}
             </span>
-
+            
           </div>
           <div class="col-auto">
-
+            
             <!-- Icon -->
             <span class="h2 fe fe-shield text-muted mb-0"></span>
-
+            
           </div>
         </div> <!-- / .row -->
-
+        
       </div>
     </div>
     <!-- Card -->
@@ -214,26 +214,26 @@
       <div class="card-body">
         <div class="row align-items-center">
           <div class="col">
-
+            
             <!-- Title -->
             <h6 class="card-title text-uppercase text-muted mb-2">
               Standard Deviation
             </h6>
-
+            
             <!-- Heading -->
             <span class="h2 mb-0">
               {{standardDeviation}}
             </span>
-
+            
           </div>
           <div class="col-auto">
-
+            
             <!-- Icon -->
             <span class="h2 fe fe-bar-chart-2 text-muted mb-0"></span>
-
+            
           </div>
         </div> <!-- / .row -->
-
+        
       </div>
     </div>
   </div> <!-- / .row -->
@@ -248,18 +248,18 @@
         <div class="card-header">
           <div class="row align-items-center">
             <div class="col">
-
+              
               <!-- Title -->
               <h4 class="card-header-title">
                 Your Deposit & Withdraw History
               </h4>
-
+              
             </div>
             <div class="col-auto">
-
+              
               <!-- Refresh -->
               <button class="btn btn-sm btn-white" type="button" name="button" (click) = "refresh()"><i class="fe fe-refresh-cw align-middle" *ngIf="isLoading() == false"></i><div class="loader loader-sm loader-secondary my-1" *ngIf="isLoading()"></div></button>
-
+              
             </div>
           </div> <!-- / .row -->
         </div>
@@ -299,7 +299,7 @@
                 </td>
                 <td class="align-middle">
                   <div class="input-group-append">
-                    <a class="btn btn-white h-100 d-flex align-items-center" href="https://ropsten.etherscan.io/tx/{{entry.txHash}}" target="_blank"><i class="fe fe-external-link"></i></a>
+                    <a class="btn btn-white h-100 d-flex align-items-center" href="https://etherscan.io/tx/{{entry.txHash}}" target="_blank"><i class="fe fe-external-link"></i></a>
                   </div>
                 </td>
               </tr>
@@ -347,7 +347,7 @@
           <span aria-hidden="true">×</span>
         </button>
       </div>
-
+      
       <!-- Manage phase, buying not allowed -->
       <div class="modal-body" *ngIf="phase == 1">
         <img class="mb-4 image-fluid w-75 mx-auto d-block" src="assets/img/illustrations/undraw_queue_qt30.svg" alt="">
@@ -392,7 +392,7 @@
           Close
         </button>
       </div>
-
+      
       <!-- Intermission, buying allowed -->
       <div class="card-header py-0 border-0" style="min-height: 24px;" *ngIf="phase == 0">
         <div class="progress" style="height: 8px;">
@@ -403,7 +403,7 @@
           <div [ngClass]="{'bg-success': buyStep >= 4, 'bg-secondary': buyStep !== 4}" class="progress-bar border-left" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
         </div>
       </div>
-
+      
       <div class="modal-body" *ngIf="phase == 0">
         <!-- before starting confirm rules -->
         <div *ngIf="buyStep == 0">
@@ -431,9 +431,9 @@
             </div>
           </div>
         </div>
-
+        
         <!-- Step 1: enter amount -->
-
+        
         <!-- Quantity of share to buy -->
         <div *ngIf="buyStep == 1">
           <h6 class="header-pretitle">
@@ -450,17 +450,17 @@
                   <form>
                     <div class="form-group row mb-2">
                       <div class="col">
-                        <select class="form-control form-control-lg" id="buyTokenSelect" (change)="selectBuyToken($event.target.value)">
-                          <option *ngFor="let token of tokenData">{{token.symbol}}</option>
-                        </select>
-                      </div>
-                      <div class="col">
                         <div class="input-group">
                           <input aria-describedby="Betoken Shares Amount to buy" class="form-control form-control-lg pr-0" type="number" placeholder="0.0" id="sharesAmountToBuy" (input)="refreshBuyOrderDetails($event.target.value); continueEnabled = true">
                           <div class="input-group-append">
                             <button class="btn btn-white" name="button" type="button" (click)="maxBuyAmount()">Max</button>
                           </div>
                         </div>
+                      </div>
+                      <div class="col">
+                        <select class="form-control form-control-lg" id="buyTokenSelect" (change)="selectBuyToken($event.target.value)">
+                          <option *ngFor="let token of tokenData">{{token.symbol}}</option>
+                        </select>
                       </div>
                     </div>
                     <small class="form-text text-secondary d-inline-block mb-0">{{selectedTokenBalance.toFormat(4)}} {{selectedTokenSymbol}} available</small>
@@ -499,13 +499,13 @@
             </table>
           </div>
         </div>
-
-
+        
+        
         <!-- Step 2: confirm transaction -->
         <p class="text-center text-muted mb-5" *ngIf="buyStep == 2">
           Confirm the transaction in your wallet’s interface to save it on the Ethereum blockchain. It's fine to stick with these defaults gas limit and price.
         </p>
-
+        
         <!-- Step 3: transaction broadcasted -->
         <!-- Processing investment body -->
         <div *ngIf="buyStep == 3">
@@ -520,13 +520,13 @@
               <div class="input-group mb-3">
                 <input type="text" class="form-control form-control-lg" value="{{transactionId}}" aria-label="Transaction ID" aria-describedby="">
                 <div class="input-group-append">
-                  <a class="btn btn-white h-100 d-flex align-items-center" href="https://ropsten.etherscan.io/tx/{{transactionId}}" target="_blank"><i class="fe fe-external-link"></i></a>
+                  <a class="btn btn-white h-100 d-flex align-items-center" href="https://etherscan.io/tx/{{transactionId}}" target="_blank"><i class="fe fe-external-link"></i></a>
                 </div>
               </div>
             </div>
           </form>
         </div>
-
+        
         <!-- Step 4: transaction confirmed -->
         <!-- Investment confirmed body -->
         <div *ngIf="buyStep == 4">
@@ -544,13 +544,13 @@
               <div class="input-group mb-3">
                 <input type="text" class="form-control form-control-lg" value="{{transactionId}}" aria-label="Transaction ID" aria-describedby="">
                 <div class="input-group-append">
-                  <a class="btn btn-white h-100 d-flex align-items-center" href="https://ropsten.etherscan.io/tx/{{transactionId}}" target="_blank"><i class="fe fe-external-link"></i></a>
+                  <a class="btn btn-white h-100 d-flex align-items-center" href="https://etherscan.io/tx/{{transactionId}}" target="_blank"><i class="fe fe-external-link"></i></a>
                 </div>
               </div>
             </div>
           </form>
         </div>
-
+        
         <!-- Continue button for buyStep 1 -->
         <button type="submit" class="btn btn-block btn-success mt-auto" aria-label="BuyBTKS" *ngIf="buyStep == 0" (click)="buyStep = agreementsChecked() ? 1 : 0" [ngClass]="{'disabled': !agreementsChecked()}">
           Buy Betoken Shares
@@ -601,14 +601,14 @@
           <span aria-hidden="true">×</span>
         </button>
       </div>
-
+      
       <!--Intermission phase, selling allowed-->
       <div class="card-header py-0 border-0" style="min-height: 24px;" *ngIf="phase == 0">
         <div class="progress" style="height: 8px;">
-            <div [ngClass]="{'bg-success': sellStep >= 0, 'bg-secondary': sellStep !== 0}" class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-            <div [ngClass]="{'bg-success': sellStep >= 1, 'bg-secondary': sellStep !== 1}" class="progress-bar border-left" role="progressbar" style="width: 25%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-            <div [ngClass]="{'bg-success': sellStep >= 2, 'bg-secondary': sellStep !== 2}" class="progress-bar border-left" role="progressbar" style="width: 25%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-            <div [ngClass]="{'bg-success': sellStep >= 3, 'bg-secondary': sellStep !== 3}" class="progress-bar border-left" role="progressbar" style="width: 25%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+          <div [ngClass]="{'bg-success': sellStep >= 0, 'bg-secondary': sellStep !== 0}" class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+          <div [ngClass]="{'bg-success': sellStep >= 1, 'bg-secondary': sellStep !== 1}" class="progress-bar border-left" role="progressbar" style="width: 25%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+          <div [ngClass]="{'bg-success': sellStep >= 2, 'bg-secondary': sellStep !== 2}" class="progress-bar border-left" role="progressbar" style="width: 25%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+          <div [ngClass]="{'bg-success': sellStep >= 3, 'bg-secondary': sellStep !== 3}" class="progress-bar border-left" role="progressbar" style="width: 25%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
         </div>
       </div>
       <div class="modal-body" *ngIf="phase == 0">
@@ -620,9 +620,9 @@
           <h4 class="mb-5">
             {{sharesPrice.toFormat(4)}} DAI/BTKS
           </h4>
-
+          
           <h6 class="header-pretitle text-secondary">I want to sell</h6>
-
+          
           <div class="row justify-content-center mb-4">
             <div class="col">
               <!--Form for entering the sell amount-->
@@ -638,9 +638,9 @@
               </form>
             </div>
           </div>
-
+          
           <h6 class="header-pretitle text-secondary">I want to receive</h6>
-
+          
           <div class="form-group">
             <select class="form-control" id="sellTokenSelect" (change)="selectSellToken($event.target.selectedIndex)">
               <option *ngFor="let token of tokenData">
@@ -648,7 +648,7 @@
               </option>
             </select>
           </div>
-
+          
           <div class="table-responsive">
             <table class="table mb-4">
               <thead>
@@ -671,16 +671,16 @@
             </table>
           </div>
         </div>
-
+        
         <!-- Step 1: confirm transaction -->
         <p class="text-center text-muted mb-5" *ngIf="sellStep == 1">
           Confirm the transaction in your wallet’s interface to save it on the Ethereum blockchain. It's fine to stick with these defaults gas limit and price.
         </p>
-
+        
         <!-- Step 2: transaction broadcasted -->
         <!-- Processing investment body -->
         <div *ngIf="sellStep == 2">
-                  <img class="image-fluid d-block mx-auto mb-4" src="assets/img/animated-logo.svg" alt="Betoken logo" style="width: 88px;">
+          <img class="image-fluid d-block mx-auto mb-4" src="assets/img/animated-logo.svg" alt="Betoken logo" style="width: 88px;">
           <p class="text-center text-muted mb-5">
             Your investment is being saved on the Ethereum blockchain.
           </p>
@@ -691,13 +691,13 @@
               <div class="input-group mb-3">
                 <input type="text" class="form-control form-control-lg" value="{{transactionId}}" aria-label="Transaction ID" aria-describedby="">
                 <div class="input-group-append">
-                  <a class="btn btn-white h-100 d-flex align-items-center" href="https://ropsten.etherscan.io/tx/{{transactionId}}" target="_blank"><i class="fe fe-external-link"></i></a>
+                  <a class="btn btn-white h-100 d-flex align-items-center" href="https://etherscan.io/tx/{{transactionId}}" target="_blank"><i class="fe fe-external-link"></i></a>
                 </div>
               </div>
             </div>
           </form>
         </div>
-
+        
         <!-- Step 3: transaction confirmed -->
         <!-- Sell order confirmed body -->
         <div *ngIf="sellStep == 3">
@@ -714,25 +714,25 @@
               <div class="input-group mb-3">
                 <input type="text" class="form-control form-control-lg" value="{{transactionId}}" aria-label="Transaction ID" aria-describedby="">
                 <div class="input-group-append">
-                  <a class="btn btn-white h-100 d-flex align-items-center" href="https://ropsten.etherscan.io/tx/{{transactionId}}" target="_blank"><i class="fe fe-external-link"></i></a>
+                  <a class="btn btn-white h-100 d-flex align-items-center" href="https://etherscan.io/tx/{{transactionId}}" target="_blank"><i class="fe fe-external-link"></i></a>
                 </div>
               </div>
             </div>
           </form>
         </div>
-
+        
         <!-- Continue button for step 0 -->
         <button type="submit" class="btn btn-block btn-success mt-auto" aria-label="Continue to Sell" *ngIf="sellStep == 0" (click)="sell()">
           Continue
         </button>
-
+        
         <!-- Close button for step 3 -->
         <button type="submit" class="btn btn-block btn-white mt-auto" data-dismiss="modal" aria-label="Close" *ngIf="sellStep == 3">
           Close
         </button>
       </div>
-
-
+      
+      
       <!--Manage phase, selling not allowed-->
       <div class="modal-body" *ngIf="phase == 1">
         <img class="mb-4 image-fluid w-75 mx-auto d-block" src="assets/img/illustrations/undraw_queue_qt30.svg" alt="">
@@ -773,7 +773,7 @@
           </div>
         </div>
       </div>
-
+      
     </div>
   </div>
 </div><!-- / modal -->

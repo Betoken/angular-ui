@@ -164,6 +164,7 @@ export class InvestorComponent implements OnInit {
 
   selectBuyToken(value) {
     this.selectedTokenSymbol = value;
+    this.getTokenBalance(this.selectedTokenSymbol);
     $('#sharesAmountToBuy').val('0');
     this.refreshBuyOrderDetails(0);
   }

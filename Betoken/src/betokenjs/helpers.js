@@ -6,7 +6,7 @@ const Data = require("./data-controller");
 // constants
 const SEND_TX_ERR = "There was an error during sending your transaction to the Ethereum blockchain. Please check that your inputs are valid and try again later.";
 const NO_WEB3_ERR = "Betoken can only be used in a Web3 enabled browser. Please install MetaMask or switch to another browser that supports Web3. You can currently view the fund's data, but cannot make any interactions.";
-const WRONG_NETWORK_ERR = "Please switch to the Ropsten Test network.";
+const WRONG_NETWORK_ERR = "Please switch to the Ethereum Main Network.";
 var error_msg = "";
 
 // exports

@@ -1,6 +1,18 @@
 [
   {
     "symbol": "ETH",
-    "address": "0x0b08007876f7F74a36fb81aA86d55D8b896F8e13"
+    "address": "0x4Ddc2D193948926D02f9B1fE9e1daa0718270ED5"
+  },
+  {
+    "symbol": "BAT",
+    "address": "0x6C8c6b02E7b2BE14d4fA6022Dfd6d75921D90E4E"
+  },
+  {
+    "symbol": "REP",
+    "address": "0x158079Ee67Fce2f58472A96584A73C7Ab9AC95c1"
+  },
+  {
+    "symbol": "ZRX",
+    "address": "0xB3319f5D18Bc0D84dD1b4825Dcde5d5f7266d407"
   }
 ]

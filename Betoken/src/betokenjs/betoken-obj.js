@@ -3,11 +3,11 @@ import BigNumber from "bignumber.js";
 const Web3 = require('web3');
 
 // constants
-export const BETOKEN_PROXY_ADDR = "0x61811b4d420224aeaf118b5849903D24a3DecC3D";
+export const BETOKEN_PROXY_ADDR = "0xE047b84a69e575dA627DC339a555437a29b44145";
 export const ETH_TOKEN_ADDRESS = "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee";
-export const DAI_ADDR = "0xaD6D458402F60fD3Bd25163575031ACDce07538D";
+export const DAI_ADDR = "0x89d24A6b4CcB1B6fAA2625fE562bDD9a23260359";
 export const KYBER_ADDR = "0x818E6FECD516Ecc3849DAf6845e3EC868087B755";
-export const NET_ID = 3; // Ropsten
+export const NET_ID = 1; // Mainnet
 export const PRECISION = 1e18;
 
 // helpers
@@ -107,7 +107,7 @@ export var Betoken = function() {
 
         const netID = await window.web3.eth.net.getId();
         if (netID != NET_ID) {
-            window.web3 = new Web3("wss://ropsten.infura.io/ws/v3/3057a4979e92452bae6afaabed67a724");
+            window.web3 = new Web3("wss://mainnet.infura.io/ws/v3/3057a4979e92452bae6afaabed67a724");
             self.hasWeb3 = false;
             self.wrongNetwork = true;
         }

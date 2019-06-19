@@ -168,7 +168,7 @@ export const loadMetadata = async () => {
 
 export const loadTokenMetadata = async () => {
     // fetch token data from Kyber API
-    let apiStr = `https://ropsten-api.kyber.network/currencies`;
+    let apiStr = `https://api.kyber.network/currencies`;
     let rawData = (await httpsGet(apiStr)).data;
     let tokenData = rawData.map((x) => {
         return {
@@ -226,8 +226,8 @@ export const loadUserData = async () => {
             pre = "Ropsten";
             break;
             case 4:
-            net = "Ropsten Testnet";
-            pre = "Ropsten";
+            net = "Rinkeby Testnet";
+            pre = "Rinkeby";
             break;
             case 42:
             net = "Kovan Testnet";

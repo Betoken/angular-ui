@@ -11,7 +11,7 @@ const DEPLOYED_BLOCK = 5168545;
 const ZERO_ADDR = '0x0000000000000000000000000000000000000000';
 const CTOKENS = require('./compound_tokens.json');
 const STABLECOINS = require('./stablecoins.json');
-const UNSAFE_COL_RATIO = 1.65;
+const UNSAFE_COL_RATIO_MULTIPLIER = 1.1;
 
 // instance variables
 // user info
@@ -347,7 +347,7 @@ export const loadUserData = async () => {
                     o.kroChange = o.ROI.times(o.stake).div(100);
                     o.tokenSymbol = assetCTokenAddressToSymbol(o.compoundTokenAddr);
                     o.currValue = o.stake.plus(o.kroChange);
-                    o.safety = o.collateralRatio.gt(UNSAFE_COL_RATIO);
+                    o.safety = o.collateralRatio.gt(o.minCollateralRatio.times(UNSAFE_COL_RATIO_MULTIPLIER));
                     o.type = "compound";
 
                     if (!o.isSold && o.cycleNumber === cycleNumber.get()) {

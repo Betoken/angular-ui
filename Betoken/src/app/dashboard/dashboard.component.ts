@@ -49,7 +49,7 @@ export class DashboardComponent implements OnInit {
       this.portfolioValueInDAI = '';
 
       this.hasDrawnChart = false;
-      this.chartTabId = 0;
+      this.chartTabId = 1;
     }
 
     ngOnInit() {

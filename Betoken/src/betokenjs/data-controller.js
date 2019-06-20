@@ -365,6 +365,7 @@ export const loadUserData = async () => {
 
                 totalKROChange = totalKROChange.plus(compoundOrders.map((x) => BigNumber(x.kroChange)).reduce((x, y) => x.plus(y), BigNumber(0)));
             }
+
             investmentList.set(investments.concat(compoundOrders));
 
             portfolioValue.set(stake.plus(kairoBalance.get()));

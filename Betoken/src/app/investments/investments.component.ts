@@ -113,7 +113,7 @@ export class InvestmentsComponent implements OnInit {
         this.monthly_pl = user.monthly_roi();
         this.tokenData = tokens.token_data().get().filter((x) => tokens.not_stablecoin(x.symbol));
         this.userValue = user.portfolio_value().toFormat(4);
-        this.portfolioValueInDAI = user.portfolio_value_in_dai().toFormat(2);
+        this.portfolioValueInDAI = user.portfolio_value_in_dai().toFormat(4);
         this.riskTakenPercentage = user.risk_taken_percentage().times(100);
         this.phase = timer.phase();
 

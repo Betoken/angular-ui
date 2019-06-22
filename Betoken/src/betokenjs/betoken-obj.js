@@ -184,7 +184,8 @@ export var Betoken = function() {
             if (web3.utils.toChecksumAddress(_tokenAddr) === DAI_ADDR) {
                 return BigNumber(1);
             }
-            var price = await self.contracts.Kyber.methods.getExpectedRate(_tokenAddr, DAI_ADDR, 1e5).call();
+            let decimals = await self.getTokenDecimals(_tokenAddr);
+            var price = await self.contracts.Kyber.methods.getExpectedRate(_tokenAddr, DAI_ADDR, BigNumber(10).pow(decimals).toString()).call();
             price = price[1];
             return BigNumber(price).div(PRECISION);
         } catch (e) {

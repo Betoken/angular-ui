@@ -210,7 +210,16 @@ export const loadTokenMetadata = async () => {
     // fetch token metadata from CryptoCompare API
     apiStr = `https://min-api.cryptocompare.com/data/coin/generalinfo?fsyms=${tokenData.map((x) => x.symbol).join()}&tsym=BTC`;
     rawData = (await httpsGet(apiStr)).Data;
-    let tokenLogos = rawData.map((x) => `https://cryptocompare.com${x.CoinInfo.ImageUrl}`);
+    let tokenLogos = [];
+    for (let token of tokenData) {
+        let info = rawData.find((x) => x.CoinInfo.Name === token.symbol);
+        if (isUndefined(info)) {
+            // token not on cryptocompare, use filler
+            tokenLogos.push('/assets/img/icons/favicon-32x32.png');
+        } else {
+            tokenLogos.push(`https://cryptocompare.com${info.CoinInfo.ImageUrl}`);
+        }
+    }
     tokenData = tokenData.map((x, i) => {
         x.logoUrl = tokenLogos[i];
         return x;
@@ -499,7 +508,7 @@ export const loadTokenPrices = async () => {
     TOKEN_DATA.set(TOKEN_DATA.get().map((x, i) => {
         x.price = tokenPrices[i];
         return x;
-    }));
+    }).filter((x) => x.price.gt(0)));
 
     loadPriceChanges(1).then((changes) => {
         TOKEN_DATA.set(TOKEN_DATA.get().map((x, i) => {

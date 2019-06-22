@@ -3,7 +3,7 @@ import BigNumber from "bignumber.js";
 const Web3 = require('web3');
 
 // constants
-export const BETOKEN_PROXY_ADDR = "0xdeBfaD2b0BCd3859589342dadEC9a725a21B5F95";
+export const BETOKEN_PROXY_ADDR = "0x20daeB9b6946F430eFBF5FD96028fC02B62a2267";
 export const ETH_TOKEN_ADDRESS = "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee";
 export const DAI_ADDR = "0x89d24A6b4CcB1B6fAA2625fE562bDD9a23260359";
 export const KYBER_ADDR = "0x818E6FECD516Ecc3849DAf6845e3EC868087B755";
@@ -11,18 +11,23 @@ export const NET_ID = 1; // Mainnet
 export const PRECISION = 1e18;
 
 // helpers
-export var getDefaultAccount = async () => {
+export const getDefaultAccount = async () => {
     web3.eth.defaultAccount = (await web3.eth.getAccounts())[0];
 };
 
-export var ERC20 = function(_tokenAddr) {
+export const ERC20 = function(_tokenAddr) {
     // add new token contract
     var erc20ABI = require("./abi/ERC20.json");
     return new web3.eth.Contract(erc20ABI, _tokenAddr);
 };
 
-export var CompoundOrder = function(_addr) {
+export const CompoundOrder = function(_addr) {
     var abi = require("./abi/CompoundOrder.json");
+    return new web3.eth.Contract(abi, _addr);
+};
+
+export const PositionToken = function(_addr) {
+    var abi = require("./abi/PositionToken.json");
     return new web3.eth.Contract(abi, _addr);
 };
 
@@ -182,6 +187,16 @@ export var Betoken = function() {
             var price = await self.contracts.Kyber.methods.getExpectedRate(_tokenAddr, DAI_ADDR, 1e5).call();
             price = price[1];
             return BigNumber(price).div(PRECISION);
+        } catch (e) {
+            return BigNumber(0);
+        }
+    };
+
+    self.getPTokenPrice = async (_tokenAddr) => {
+        try {
+            let pToken = PositionToken(_tokenAddr);
+            let underlyingPerPToken = await pToken.methods.tokenPrice().call();
+            return BigNumber(underlyingPerPToken).div(PRECISION);
         } catch (e) {
             return BigNumber(0);
         }

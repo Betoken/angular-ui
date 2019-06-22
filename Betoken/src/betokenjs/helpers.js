@@ -127,8 +127,11 @@ export const tokens = {
     asset_symbol_to_price: (_symbol) => Data.assetSymbolToPrice(_symbol),
     asset_symbol_to_name: (_symbol) => Data.assetSymbolToName(_symbol),
     asset_symbol_to_logo_url: (_symbol) => Data.assetSymbolToLogoUrl(_symbol),
+    asset_symbol_to_ptokens: (_symbol) => Data.assetSymbolToPTokens(_symbol),
+    get_ptoken_price: (_addr) => betoken.getPTokenPrice(_addr), // returns promise
     not_stablecoin: (_symbol) => Data.notStablecoin(_symbol),
-    is_compound_token: (_symbol) => Data.isCompoundToken(_symbol)
+    is_compound_token: (_symbol) => Data.isCompoundToken(_symbol),
+    is_fulcrum_token: (_symbol) => Data.isFulcrumToken(_symbol)
 }
 
 export const loading = {
@@ -190,8 +193,11 @@ export const investor_actions = {
 
 export const manager_actions = {
     // All amounts must be BigNumber, in floating point (no need to multiply by 1e18)
-    new_investment: async function (tokenSymbol, stakeInKRO, minPrice, maxPrice, pending, confirm) {
+    new_investment_with_symbol: async function (tokenSymbol, stakeInKRO, minPrice, maxPrice, pending, confirm) {
         var tokenAddress = Data.assetSymbolToAddress(tokenSymbol);
+        betoken.createInvestment(tokenAddress, stakeInKRO, minPrice, maxPrice, pending, confirm);
+    },
+    new_investment_with_address: async function (tokenAddress, stakeInKRO, minPrice, maxPrice, pending, confirm) {
         betoken.createInvestment(tokenAddress, stakeInKRO, minPrice, maxPrice, pending, confirm);
     },
     sell_investment: async function (id, percentage, minPrice, maxPrice, pending, confirm) {

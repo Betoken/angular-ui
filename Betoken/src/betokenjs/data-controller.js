@@ -9,8 +9,9 @@ import { isUndefined } from 'util';
 const PRECISION = 1e18;
 const DEPLOYED_BLOCK = 5168545;
 const ZERO_ADDR = '0x0000000000000000000000000000000000000000';
-const CTOKENS = require('./compound_tokens.json');
-const STABLECOINS = require('./stablecoins.json');
+const CTOKENS = require('./json_data/compound_tokens.json'); // Compound cTokens
+const STABLECOINS = require('./json_data/stablecoins.json'); // Stablecoins (managers can't invest)
+const PTOKENS = require('./json_data/fulcrum_tokens.json'); // Fulcrum pTokens
 const UNSAFE_COL_RATIO_MULTIPLIER = 1.1;
 
 // instance variables
@@ -85,8 +86,20 @@ export const assetSymbolToCTokenAddress = (_symbol) => {
     return CTOKENS.find((x) => x.symbol === _symbol).address;
 }
 
+export const assetSymbolToPTokens = (_symbol) => {
+    return PTOKENS.find((x) => x.symbol === _symbol).pTokens;
+}
+
 export const assetCTokenAddressToSymbol = (_addr) => {
     return CTOKENS.find((x) => x.address === _addr).symbol;
+}
+
+export const assetPTokenAddressToSymbol = (_addr) => {
+    return PTOKENS.find((x) => !isUndefined(x.pTokens.find((y) => y.address === _addr))).symbol;
+}
+
+export const assetPTokenAddressToInfo = (_addr) => {
+    return PTOKENS.find((x) => !isUndefined(x.pTokens.find((y) => y.address === _addr))).pTokens.find((y) => y.address === _addr);
 }
 
 export const assetSymbolToDailyPriceChange = function(_symbol) {
@@ -115,6 +128,16 @@ export const notStablecoin = (_symbol) => {
 
 export const isCompoundToken = (_symbol) => {
     const result = CTOKENS.find((x) => x.symbol === _symbol);
+    return !isUndefined(result);
+}
+
+export const isFulcrumToken = (_symbol) => {
+    const result = PTOKENS.find((x) => x.symbol === _symbol);
+    return !isUndefined(result);
+}
+
+export const isFulcrumTokenAddress = (_tokenAddress) => {
+    const result = PTOKENS.find((x) => !isUndefined(x.pTokens.find((y) => y.address === _tokenAddress)));
     return !isUndefined(result);
 }
 
@@ -271,25 +294,54 @@ export const loadUserData = async () => {
             // Get list of user's investments
             var investments = await betoken.getInvestments(userAddr);
             if (investments.length > 0) {
-                const handleProposal = (id) => {
-                    return betoken.getTokenSymbol(investments[id].tokenAddress).then(function(_symbol) {
-                        investments[id].type = "basic";
-                        investments[id].id = id;
-                        investments[id].tokenSymbol = _symbol;
-                        investments[id].stake = BigNumber(investments[id].stake).div(PRECISION);
-                        investments[id].buyPrice = BigNumber(investments[id].buyPrice).div(PRECISION);
-                        investments[id].sellPrice = investments[id].isSold ? BigNumber(investments[id].sellPrice).div(PRECISION) : assetSymbolToPrice(_symbol);
-                        investments[id].ROI = BigNumber(investments[id].sellPrice).minus(investments[id].buyPrice).div(investments[id].buyPrice).times(100);
-                        investments[id].kroChange = BigNumber(investments[id].ROI).times(investments[id].stake).div(100);
-                        investments[id].currValue = BigNumber(investments[id].kroChange).plus(investments[id].stake);
-                        investments[id].buyTime = new Date(+investments[id].buyTime * 1e3);
+                const handleProposal = async (id) => {
+                    let inv = investments[id];
+                    let symbol = "";
+                    if (isFulcrumTokenAddress(inv.tokenAddress)) {
+                        symbol = assetPTokenAddressToSymbol(inv.tokenAddress);
 
-                        if (!investments[id].isSold && +investments[id].cycleNumber === cycleNumber.get()) {
-                            var currentStakeValue = assetSymbolToPrice(assetAddressToSymbol(investments[id].tokenAddress))
-                                .minus(investments[id].buyPrice).div(investments[id].buyPrice).times(investments[id].stake).plus(investments[id].stake);
+                        inv.type = "fulcrum";
+                        inv.id = id;
+                        inv.tokenSymbol = symbol;
+                        inv.stake = BigNumber(inv.stake).div(PRECISION);
+                        inv.buyPrice = BigNumber(inv.buyPrice).div(PRECISION);
+                        inv.sellPrice = inv.isSold ? BigNumber(inv.sellPrice).div(PRECISION) : await betoken.getPTokenPrice(inv.tokenAddress, assetSymbolToPrice(symbol));
+                        inv.ROI = BigNumber(inv.sellPrice).minus(inv.buyPrice).div(inv.buyPrice).times(100);
+                        inv.kroChange = BigNumber(inv.ROI).times(inv.stake).div(100);
+                        inv.currValue = BigNumber(inv.kroChange).plus(inv.stake);
+                        inv.buyTime = new Date(+inv.buyTime * 1e3);
+
+                        let info = assetPTokenAddressToInfo(inv.tokenAddress);
+                        inv.leverage = info.leverage;
+                        inv.orderType = info.type;
+                        inv.safety = true; // TODO
+
+                        if (!inv.isSold && +inv.cycleNumber === cycleNumber.get()) {
+                            var currentStakeValue = inv.sellPrice
+                                .minus(inv.buyPrice).div(inv.buyPrice).times(inv.stake).plus(inv.stake);
                             stake = stake.plus(currentStakeValue);
                         }
-                    });
+                    } else {
+                        symbol = assetAddressToSymbol(inv.tokenAddress);
+
+                        inv.type = "basic";
+                        inv.id = id;
+                        inv.tokenSymbol = symbol;
+                        inv.stake = BigNumber(inv.stake).div(PRECISION);
+                        inv.buyPrice = BigNumber(inv.buyPrice).div(PRECISION);
+                        inv.sellPrice = inv.isSold ? BigNumber(inv.sellPrice).div(PRECISION) : assetSymbolToPrice(symbol);
+                        inv.ROI = BigNumber(inv.sellPrice).minus(inv.buyPrice).div(inv.buyPrice).times(100);
+                        inv.kroChange = BigNumber(inv.ROI).times(inv.stake).div(100);
+                        inv.currValue = BigNumber(inv.kroChange).plus(inv.stake);
+                        inv.buyTime = new Date(+inv.buyTime * 1e3);
+
+                        if (!inv.isSold && +inv.cycleNumber === cycleNumber.get()) {
+                            var currentStakeValue = inv.sellPrice
+                                .minus(inv.buyPrice).div(inv.buyPrice).times(inv.stake).plus(inv.stake);
+                            stake = stake.plus(currentStakeValue);
+                        }
+                    }
+                    investments[id] = inv;
                 };
                 const handleAllProposals = () => {
                     var results = [];
@@ -335,6 +387,7 @@ export const loadUserData = async () => {
                     o.cycleNumber = +o.cycleNumber;
                     o.collateralAmountInDAI = BigNumber(o.collateralAmountInDAI).div(PRECISION);
                     o.buyTime = new Date(+o.buyTime * 1e3);
+
                     o.collateralRatio = BigNumber(o.getCurrentCollateralRatioInDAI).div(PRECISION);
                     o.currProfit = BigNumber(o.getCurrentProfitInDAI._amount).times(o.getCurrentProfitInDAI._isNegative ? -1 : 1).div(PRECISION);
                     o.currCollateral = BigNumber(o.getCurrentCollateralInDAI).div(PRECISION);
@@ -348,6 +401,7 @@ export const loadUserData = async () => {
                     o.tokenSymbol = assetCTokenAddressToSymbol(o.compoundTokenAddr);
                     o.currValue = o.stake.plus(o.kroChange);
                     o.safety = o.collateralRatio.gt(o.minCollateralRatio.times(UNSAFE_COL_RATIO_MULTIPLIER));
+                    o.leverage = o.orderType ? 0.5 : 1.5;
                     o.type = "compound";
 
                     if (!o.isSold && o.cycleNumber === cycleNumber.get()) {
@@ -512,18 +566,23 @@ export const loadRanking = async () => {
             var totalKROChange = BigNumber(0);
             for (var i = 0; i < investments.length; i++) {
                 var inv = investments[i];
+                let symbol = "";
+                if (isFulcrumTokenAddress(inv.tokenAddress)) {
+                    symbol = assetPTokenAddressToSymbol(inv.tokenAddress);
+                } else {
+                    symbol = assetAddressToSymbol(inv.tokenAddress);
+                }
                 // calculate kairo balance
                 if (!inv.isSold && +inv.cycleNumber === cycleNumber.get() && cyclePhase.get() == 1) {
-                    var currentStakeValue = assetSymbolToPrice(assetAddressToSymbol(inv.tokenAddress))
+                    var currentStakeValue = assetSymbolToPrice(symbol)
                         .minus(inv.buyPrice).div(inv.buyPrice).times(inv.stake).plus(inv.stake);
                     stake = stake.plus(currentStakeValue);
                 }
                 // calculate roi
                 if (+inv.cycleNumber === cycleNumber.get() && (cyclePhase.get() == 1 || inv.isSold)) {
-                    var _symbol = await betoken.getTokenSymbol(inv.tokenAddress);
                     var _stake = BigNumber(inv.stake).div(PRECISION);
                     var _buyPrice = BigNumber(inv.buyPrice).div(PRECISION);
-                    var _sellPrice = inv.isSold ? BigNumber(inv.sellPrice).div(PRECISION) : assetSymbolToPrice(_symbol);
+                    var _sellPrice = inv.isSold ? BigNumber(inv.sellPrice).div(PRECISION) : assetSymbolToPrice(symbol);
                     var _ROI = BigNumber(_sellPrice).minus(_buyPrice).div(_buyPrice);
                     var _kroChange = BigNumber(_ROI).times(_stake);
 

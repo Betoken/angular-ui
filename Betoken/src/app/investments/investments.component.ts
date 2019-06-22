@@ -28,9 +28,9 @@ export class InvestmentsComponent implements OnInit {
     selectedTokenSymbol: String;
     stakeAmount: BigNumber;
     transactionId: String;
-    orderType: Number;
-    orderLeverage: Number;
     continueEnabled: Boolean;
+    orderTypes: Array<Object>;
+    selectedOrderType: Object;
 
     sellId: Number;
     sellData: Object;
@@ -56,8 +56,11 @@ export class InvestmentsComponent implements OnInit {
         this.selectedTokenSymbol = 'ETH';
         this.stakeAmount = new BigNumber(0);
         this.transactionId = '';
-        this.orderType = 0;
-        this.orderLeverage = 1;
+        this.selectedOrderType = {
+            text: 'Basic Order',
+            leverage: 1,
+            type: 'basic'
+        };
         this.continueEnabled = false;
 
         this.sellId = 0;
@@ -96,8 +99,11 @@ export class InvestmentsComponent implements OnInit {
     resetModals() {
         this.stakeAmount = new BigNumber(0);
         this.selectedTokenSymbol = this.tokenData[0]['symbol'];
-        this.orderType = 0;
-        this.orderLeverage = 1;
+        this.selectedOrderType = {
+            text: 'Basic Order',
+            leverage: 1,
+            type: 'basic'
+        };
         this.createInvestmentPopupStep = 0;
         this.sellInvestmentPopupStep = 0;
         this.nextPhasePopupStep = 0;
@@ -128,28 +134,58 @@ export class InvestmentsComponent implements OnInit {
 
     // Create investment
 
-    selectOrderType(type) {
-        this.orderType = type;
+    selectInvestmentAsset(symbol) {
+        this.selectedTokenSymbol = symbol;
+        this.createInvestmentPopupStep = 1;
 
-        // set leverage
-        switch (type) {
-            case 0:
-                // basic order
-                this.orderLeverage = 1;
-                break;
-            case 1:
-                // long compound order
-                this.orderLeverage = 1.5;
-                break;
-            case 2:
-                // short compound order
-                this.orderLeverage = -0.5;
-                break
+        // generate list of order types
+        let orderTypes = new Array();
+        const basicOrder = {
+            text: 'Basic Order',
+            leverage: 1,
+            type: 'basic'
+        };
+        orderTypes.push(basicOrder);
+        if (tokens.is_compound_token(symbol)) {
+            const longOrder = {
+                text: 'Long • Leverage 1.5x (Compound)',
+                leverage: 1.5,
+                type: 'compound',
+                isShort: false
+            }
+            const shortOrder = {
+                text: 'Short • Leverage 0.5x (Compound)',
+                leverage: -0.5,
+                type: 'compound',
+                isShort: true
+            }
+            orderTypes.push(longOrder);
+            orderTypes.push(shortOrder);
         }
+        if (tokens.is_fulcrum_token(symbol)) {
+            let pTokens = tokens.asset_symbol_to_ptokens(symbol);
+            for (let pToken of pTokens) {
+                let option = {
+                    text: `${pToken.type ? 'Short' : 'Long'} • Leverage ${pToken.leverage}x (Fulcrum)`,
+                    leverage: pToken.type ? -pToken.leverage : pToken.leverage,
+                    type: 'fulcrum',
+                    tokenAddress: pToken.address
+                }
+                orderTypes.push(option);
+            }
+        }
+
+        this.orderTypes = orderTypes;
     }
 
-    createInvestment() {
+    selectOrderType(typeId) {
+        this.selectedOrderType = this.orderTypes[typeId];
+    }
+
+    async createInvestment() {
         this.stakeAmount = new BigNumber($('#kairo-input').val());
+        let maxAcceptablePriceProp = new BigNumber($('#maxAcceptablePrice').val()).div(100);
+
         this.createInvestmentPopupStep = 2;
 
         let pending = (transactionHash) => {
@@ -166,21 +202,21 @@ export class InvestmentsComponent implements OnInit {
             this.refresh();
         }
 
-        let tokenPrice = this.assetSymbolToPrice(this.selectedTokenSymbol);
-        let maxPrice = tokenPrice.plus(tokenPrice.times($('#maxAcceptablePrice').val()).div(100));
-
-        switch (this.orderType) {
-            case 0:
-                // basic order
-                manager_actions.new_investment(this.selectedTokenSymbol, this.stakeAmount, new BigNumber(0), maxPrice, pending, confirm);
+        switch (this.selectedOrderType['type']) {
+            case 'basic':
+                let tokenPrice = tokens.asset_symbol_to_price(this.selectedTokenSymbol);
+                let maxPrice = tokenPrice.plus(tokenPrice.times(maxAcceptablePriceProp));
+                manager_actions.new_investment_with_symbol(this.selectedTokenSymbol, this.stakeAmount, new BigNumber(0), maxPrice, pending, confirm);
                 break;
-            case 1:
-                // long compound order
-                manager_actions.new_compound_order(false, this.selectedTokenSymbol, this.stakeAmount, new BigNumber(0), maxPrice, pending, confirm);
+            case 'compound':
+                let tokenPrice1 = tokens.asset_symbol_to_price(this.selectedTokenSymbol);
+                let maxPrice1 = tokenPrice1.plus(tokenPrice1.times(maxAcceptablePriceProp));
+                manager_actions.new_compound_order(this.selectedOrderType['isShort'], this.selectedTokenSymbol, this.stakeAmount, new BigNumber(0), maxPrice1, pending, confirm);
                 break;
-            case 2:
-                // short compound order
-                manager_actions.new_compound_order(true, this.selectedTokenSymbol, this.stakeAmount, new BigNumber(0), maxPrice, pending, confirm);
+            case 'fulcrum':
+                let tokenPrice2 = await tokens.get_ptoken_price(this.selectedOrderType['tokenAddress']);
+                let maxPrice2 = tokenPrice2.plus(tokenPrice2.times(maxAcceptablePriceProp));
+                manager_actions.new_investment_with_address(this.selectedOrderType['tokenAddress'], this.stakeAmount, new BigNumber(0), maxPrice2, pending, confirm);
                 break;
         }
     }
@@ -193,7 +229,9 @@ export class InvestmentsComponent implements OnInit {
         this.selectedTokenSymbol = data.tokenSymbol;
     }
 
-    sell() {
+    async sell() {
+        let sellPercentage = new BigNumber($('#sell-percentage-input').val()).div(100);
+        let minAcceptablePriceProp = new BigNumber($('#minAcceptablePrice').val()).div(100);
         this.sellInvestmentPopupStep = 1;
 
         let pendingSell = (transactionHash) => {
@@ -210,27 +248,34 @@ export class InvestmentsComponent implements OnInit {
             this.refresh();
         }
 
-        let tokenPrice = this.assetSymbolToPrice(this.selectedTokenSymbol);
-        let minPrice = tokenPrice.minus(tokenPrice.times($('#minAcceptablePrice').val()).div(100));
-
         switch (this.sellData['type']) {
             case 'basic':
                 // basic order
-                let sellPercentage = new BigNumber($('#sell-percentage-input').val()).div(100);
-                manager_actions.sell_investment(this.sellId, sellPercentage, minPrice, tokenPrice.times(100), pendingSell, confirmSell);
+                let tokenPrice = this.assetSymbolToPrice(this.selectedTokenSymbol);
+                let minPrice = tokenPrice.minus(tokenPrice.times(minAcceptablePriceProp));
+                manager_actions.sell_investment(this.sellId, sellPercentage, minPrice, tokenPrice.times(100000), pendingSell, confirmSell);
+                break;
+            case 'fulcrum':
+                // fulcrum order
+                let tokenPrice1 = await tokens.get_ptoken_price(this.sellData['tokenAddress']);
+                let minPrice1 = tokenPrice1.minus(tokenPrice1.times(minAcceptablePriceProp));
+                manager_actions.sell_investment(this.sellId, sellPercentage, minPrice1, tokenPrice1.times(100000), pendingSell, confirmSell);
                 break;
             case 'compound':
                 // compound order
-                manager_actions.sell_compound_order(this.sellId, minPrice, tokenPrice.times(100), pendingSell, confirmSell);
+                let tokenPrice2 = this.assetSymbolToPrice(this.selectedTokenSymbol);
+                let minPrice2 = tokenPrice2.minus(tokenPrice2.times(minAcceptablePriceProp));
+                manager_actions.sell_compound_order(this.sellId, minPrice2, tokenPrice.times(100000), pendingSell, confirmSell);
                 break;
         }
+
     }
 
     // Top up Compound order
     topup() {
-        this.topupPopupStep = 1;
         let targetColRatio = new BigNumber($('#collateral-ratio-target-input').val()).div(100);
         let repayAmount = this.sellData['currBorrow'].minus(this.sellData['currCollateral'].div(targetColRatio));
+        this.topupPopupStep = 1;
 
         let pending = (transactionHash) => {
             if (this.topupPopupStep !== 0) {
@@ -316,10 +361,10 @@ export class InvestmentsComponent implements OnInit {
     }
 
     isMarginToken(token) {
-        return tokens.is_compound_token(token);
+        return tokens.is_compound_token(token) || tokens.is_fulcrum_token(token);
     }
 
-    isMarginOrder(orderData) {
-        return orderData.type !== "basic";
+    isOrderOfType(orderData, type) {
+        return orderData.type === type;
     }
 }

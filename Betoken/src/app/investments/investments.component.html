@@ -170,9 +170,9 @@
                   </h4>
                 </div>
                 <div class="col-12 col-lg-auto">
-                  <span *ngIf="isMarginOrder(data)">
+                  <span *ngIf="!isOrderOfType(data, 'basic')">
                     <span class="badge" *ngIf="data.safety" [ngClass]="{'badge-soft-success': data.safety, 'badge-soft-danger': !data.safety}">
-                      <span class="text-secondary" *ngIf="!data.orderType">Long 1.5x</span><span class="text-secondary" *ngIf="data.orderType">Short 0.5x</span> • <span *ngIf="data.safety">Safe</span><span *ngIf="!data.safety">In Danger</span>
+                      <span class="text-secondary" *ngIf="!data.orderType">Long {{data.leverage}}x</span><span class="text-secondary" *ngIf="data.orderType">Short {{data.leverage}}x</span> • <span *ngIf="data.safety">Safe</span><span *ngIf="!data.safety">In Danger</span>
                     </span>
                   </span>
                 </div>
@@ -230,7 +230,7 @@
                   </h4>
                 </div>
                 <div class="col-12 col-lg-auto">
-                  <span *ngIf="isMarginOrder(data)">
+                  <span *ngIf="!isOrderOfType(data, 'basic')">
                     <span class="badge badge-soft-secondary" *ngIf="!data.orderType">Long 1.5x</span>
                     <span class="badge badge-soft-secondary" *ngIf="data.orderType">Short 0.5x</span>
                   </span>
@@ -325,7 +325,7 @@
         <!-- Step 0: select asset -->
         <ul class="list-group list-group-flush list" id="asset-list" *ngIf="createInvestmentPopupStep === 0">
           <li class="list-group-item px-0" *ngFor = "let token of tokenData">
-            <a class="text-secondary" href="#/investments" (click)="selectedTokenSymbol = token.symbol; createInvestmentPopupStep = 1;">
+            <a class="text-secondary" href="#/investments" (click)="selectInvestmentAsset(token.symbol)">
               <div class="row align-items-center">
                 <div class="col-auto">
                   <span class="avatar avatar-sm">
@@ -395,9 +395,7 @@
                 <small id="kroBalance" class="form-text text-secondary d-inline-block mb-0 mt-2">{{kairo_balance.toFormat(18)}} KRO available</small>
                 <h6 class="header-pretitle mt-4" *ngIf="isMarginToken(selectedTokenSymbol)">Order type</h6>
                 <select class="form-control form-control-lg" id="orderTypeSelect" (change)="selectOrderType($event.target.selectedIndex)" *ngIf="isMarginToken(selectedTokenSymbol)">
-                  <option selected>Basic order</option>
-                  <option>Long • Leverage 1.5x</option>
-                  <option>Short • Leverage 0.5x</option>
+                  <option *ngFor="let orderType of orderTypes">{{orderType.text}}</option>
                 </select>
               </form>
             </div>
@@ -450,7 +448,7 @@
           </div>
 
           <!-- All the components below are displayed if leveraged or shorted order option is selected -->
-          <div *ngIf="isMarginToken(selectedTokenSymbol) && orderLeverage != 1">
+          <div *ngIf="isMarginToken(selectedTokenSymbol) && selectedOrderType.type !== 'basic'">
             <hr class="mb-4 mt-0">
 
             <!-- order details -->
@@ -460,10 +458,10 @@
                 <h6 class="header-pretitle">
                   Payout
                 </h6>
-                <p>This order <strong>multiplies your returns by {{orderLeverage}}x</strong>.</p>
+                <p>This order <strong>multiplies your returns by {{selectedOrderType.leverage}}x</strong>.</p>
                 <!-- IDEA: leveraged order -->
-                <p>If {{selectedTokenSymbol}}'s price <span class="text-success">+10%</span>, you <span class="text-success" *ngIf="orderLeverage > 0">gain {{10 * orderLeverage}}%</span> <span class="text-danger" *ngIf="0 > orderLeverage">lose {{-10 * orderLeverage}}%</span>.</p>
-                <p>If {{selectedTokenSymbol}}'s price <span class="text-danger">-10%</span>, you <span class="text-danger" *ngIf="orderLeverage > 0">lose {{10 * orderLeverage}}%</span> <span class="text-success" *ngIf="0 > orderLeverage">gain {{-10 * orderLeverage}}%</span>.</p>
+                <p>If {{selectedTokenSymbol}}'s price <span class="text-success">+10%</span>, you <span class="text-success" *ngIf="selectedOrderType.leverage > 0">gain {{10 * selectedOrderType.leverage}}%</span> <span class="text-danger" *ngIf="0 > selectedOrderType.leverage">lose {{-10 * selectedOrderType.leverage}}%</span>.</p>
+                <p>If {{selectedTokenSymbol}}'s price <span class="text-danger">-10%</span>, you <span class="text-danger" *ngIf="selectedOrderType.leverage > 0">lose {{10 * selectedOrderType.leverage}}%</span> <span class="text-success" *ngIf="0 > selectedOrderType.leverage">gain {{-10 * selectedOrderType.leverage}}%</span>.</p>
 
                 <h6 class="header-pretitle">Liquidation</h6>
                 <p>
@@ -541,7 +539,7 @@
               <img src={{getTokenLogoUrl(selectedTokenSymbol)}} alt="logo" class="avatar-img rounded-circle">
             </span>
             {{selectedTokenSymbol}}
-            <span class="text-secondary ml-2" *ngIf="isMarginOrder(sellData)">
+            <span class="text-secondary ml-2" *ngIf="!isOrderOfType(sellData, 'basic')">
               <span *ngIf="!sellData.orderType">Long • Leverage 1.5x</span>
               <span *ngIf="sellData.orderType">Short • Leverage 0.5x</span>
             </span>
@@ -617,7 +615,7 @@
             </div>
           </div>
 
-          <div *ngIf="isMarginOrder(sellData)">
+          <div *ngIf="sellData.type === 'compound'">
             <hr class="my-4">
             <div class="row align-items-center justify-content-center mb-3">
               <div class="col">
@@ -661,7 +659,7 @@
             </div>
           </div>
 
-          <div *ngIf="!isMarginOrder(sellData)">
+          <div *ngIf="isOrderOfType(sellData, 'basic') || isOrderOfType(sellData, 'fulcrum')">
             <hr class="my-4">
 
             <!-- KRO amount to unstake -->
@@ -765,7 +763,7 @@
         </form>
 
         <!-- Continue button for amount to sell Step -->
-        <button type="submit" class="btn btn-block btn-success mt-auto" aria-label="Sell" (click)="sell()" *ngIf="sellInvestmentPopupStep === 0" [disabled]="!continueEnabled && !isMarginOrder(sellData)">
+        <button type="submit" class="btn btn-block btn-success mt-auto" aria-label="Sell" (click)="sell()" *ngIf="sellInvestmentPopupStep === 0" [disabled]="!continueEnabled && isOrderOfType(sellData, 'basic')">
           Sell Investment
         </button>
         <!-- close button panel after Asset being sold -->
@@ -779,7 +777,7 @@
 </div><!-- / modal -->
 
 <!-- Top up collateralization modal -->
-<div class="modal fade fixed-right" id="modalTopUp" tabindex="-1" role="dialog" aria-labelledby="modalTopUp" aria-hidden="true">
+<div class="modal fade fixed-right" id="modalTopUp" tabindex="-1" role="dialog" aria-labelledby="modalTopUp" aria-hidden="true" *ngIf="sellData.type === 'compound'">
   <div class="modal-dialog modal-dialog-vertical bg-white" role="document">
     <div class="modal-content">
       <div class="modal-header border-0">
@@ -830,7 +828,7 @@
                 Safe
               </span>
               <span class="badge badge-soft-danger mb-2" *ngIf="!sellData.safety">
-                Unsafe
+                In Danger
               </span>
               <div class="progress">
                 <div [ngClass]="{'bg-success': sellData.safety, 'bg-danger': !sellData.safety}" class="progress-bar" role="progressbar" [ngStyle]="{'width': sellData.collateralRatio.div(sellData.minCollateralRatio.times(2)).times(100).toFormat(2) + '%'}">{{sellData.collateralRatio.times(100).toFormat(0)}}%</div>

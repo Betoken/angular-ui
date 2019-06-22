@@ -56,7 +56,6 @@ export class CommissionsComponent implements OnInit {
     }
 
     redeemCommission(option) {
-        this.step = 1;
         let cycle = +$('#redeem-commission-cycle-input').val();
 
         let pending = (transactionHash) => {
@@ -71,11 +70,11 @@ export class CommissionsComponent implements OnInit {
 
         var inShares = (option == 0);
         if (cycle == 0) {
-            console.log('normal');
             manager_actions.redeem_commission(inShares, pending, confirm);
         } else {
-            console.log('special');
             manager_actions.redeem_commission_for_cycle(inShares, cycle, pending, confirm);
         }
+
+        this.step = 1;
     }
 }

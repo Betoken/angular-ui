@@ -202,6 +202,16 @@ export var Betoken = function() {
             return BigNumber(0);
         }
     };
+
+    self.getPTokenLiquidationPrice = async (_tokenAddr) => {
+        try {
+            let pToken = PositionToken(_tokenAddr);
+            let underlyingPerPToken = await pToken.methods.liquidationPrice().call();
+            return BigNumber(underlyingPerPToken).div(PRECISION);
+        } catch (e) {
+            return BigNumber(0);
+        }
+    };
     
     /**
     * Gets the Kairo balance of an address

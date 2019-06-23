@@ -140,7 +140,7 @@
             </h6>
             
             <!-- Heading -->
-            <span class="badge badge-xl badge-soft-success">
+            <span class="badge badge-xl" [ngClass]="{'badge-soft-success': +currMoROI >= 0, 'badge-soft-danger': 0 > +currMoROI}">
               {{currMoROI}}%
             </span>
             
@@ -167,7 +167,7 @@
             </h6>
             
             <!-- Heading -->
-            <span class="badge badge-xl badge-soft-success">
+            <span class="badge badge-xl" [ngClass]="{'badge-soft-success': +avgMonthReturn >= 0, 'badge-soft-danger': 0 > +avgMonthReturn}">
               {{avgMonthReturn}}%
             </span>
             

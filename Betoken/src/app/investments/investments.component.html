@@ -171,7 +171,7 @@
                 </div>
                 <div class="col-12 col-lg-auto">
                   <span *ngIf="!isOrderOfType(data, 'basic')">
-                    <span class="badge" *ngIf="data.safety" [ngClass]="{'badge-soft-success': data.safety, 'badge-soft-danger': !data.safety}">
+                    <span class="badge" [ngClass]="{'badge-soft-success': data.safety, 'badge-soft-danger': !data.safety}">
                       <span class="text-secondary" *ngIf="!data.orderType">Long {{data.leverage}}x</span><span class="text-secondary" *ngIf="data.orderType">Short {{data.leverage}}x</span> • <span *ngIf="data.safety">Safe</span><span *ngIf="!data.safety">In Danger</span>
                     </span>
                   </span>
@@ -200,7 +200,7 @@
         </div>
       </div>
       <!-- Past Investments -->
-      <div class="card list-group">
+      <div class="card list-group" *ngIf="inactiveInvestmentList.length > 0">
         <div class="card-header list-group-item border-top-0 border-left-0 border-right-0">
           <div class="row align-items-center">
             <div class="col">
@@ -348,7 +348,9 @@
                   <span>{{token.price.dp(4)}} DAI</span>
                   <br>
 
-                  <span class="badge badge-xl" [ngClass]="{'badge-soft-success': +token.dailyPriceChange >= 0, 'badge-soft-danger': 0 > +token.dailyPriceChange}">{{token.dailyPriceChange.toFormat(4)}}%</span>
+                  <span class="badge badge-xl" [ngClass]="{'badge-soft-success': +getTokenDailyPriceChange(token.symbol) >= 0, 'badge-soft-danger': 0 > +getTokenDailyPriceChange(token.symbol)}">
+                    {{getTokenDailyPriceChange(token.symbol)}}%
+                  </span>
 
                 </div>
               </div>
@@ -540,8 +542,7 @@
             </span>
             {{selectedTokenSymbol}}
             <span class="text-secondary ml-2" *ngIf="!isOrderOfType(sellData, 'basic')">
-              <span *ngIf="!sellData.orderType">Long • Leverage 1.5x</span>
-              <span *ngIf="sellData.orderType">Short • Leverage 0.5x</span>
+              <span *ngIf="!sellData.orderType">Long</span><span *ngIf="sellData.orderType">Short</span> • Leverage {{sellData.leverage}}x
             </span>
           </span>
         </h4>
@@ -777,7 +778,7 @@
 </div><!-- / modal -->
 
 <!-- Top up collateralization modal -->
-<div class="modal fade fixed-right" id="modalTopUp" tabindex="-1" role="dialog" aria-labelledby="modalTopUp" aria-hidden="true" *ngIf="sellData.type === 'compound'">
+<div class="modal fade fixed-right" id="modalTopUp" tabindex="-1" role="dialog" aria-labelledby="modalTopUp" aria-hidden="true" *ngIf="sellData['type'] === 'compound'">
   <div class="modal-dialog modal-dialog-vertical bg-white" role="document">
     <div class="modal-content">
       <div class="modal-header border-0">

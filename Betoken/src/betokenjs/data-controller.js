@@ -215,7 +215,7 @@ export const loadTokenMetadata = async () => {
         let info = rawData.find((x) => x.CoinInfo.Name === token.symbol);
         if (isUndefined(info)) {
             // token not on cryptocompare, use filler
-            tokenLogos.push('/assets/img/icons/favicon-32x32.png');
+            tokenLogos.push('/assets/img/icons/no-logo-asset.svg');
         } else {
             tokenLogos.push(`https://cryptocompare.com${info.CoinInfo.ImageUrl}`);
         }
@@ -231,7 +231,7 @@ export const loadTokenMetadata = async () => {
 export const loadFundData = async () => {
     return Promise.all([
         cycleNumber.set(+((await betoken.getPrimitiveVar("cycleNumber")))),
-        cyclePhase.set(+((await betoken.getPrimitiveVar("cyclePhase")))), 
+        cyclePhase.set(+((await betoken.getPrimitiveVar("cyclePhase")))),
         startTimeOfCyclePhase.set(+((await betoken.getPrimitiveVar("startTimeOfCyclePhase")))),
         sharesTotalSupply.set(BigNumber((await betoken.getShareTotalSupply())).div(PRECISION)),
         totalFunds.set(BigNumber((await betoken.getPrimitiveVar("totalFundsInDAI"))).div(PRECISION)),
@@ -326,7 +326,7 @@ export const loadUserData = async () => {
 
                         inv.liquidationPrice = await betoken.getPTokenLiquidationPrice(inv.tokenAddress);
                         inv.safety = inv.liquidationPrice.minus(inv.sellPrice).div(inv.sellPrice).abs().gt(UNSAFE_COL_RATIO_MULTIPLIER - 1);
-                        
+
 
                         if (!inv.isSold && +inv.cycleNumber === cycleNumber.get()) {
                             var currentStakeValue = inv.sellPrice
@@ -407,7 +407,7 @@ export const loadUserData = async () => {
                     o.currCash = BigNumber(o.getCurrentCashInDAI).div(PRECISION);
                     o.minCollateralRatio = BigNumber(PRECISION).div(o.getMarketCollateralFactor);
                     o.currLiquidity = BigNumber(o.getCurrentLiquidityInDAI._amount).times(o.getCurrentLiquidityInDAI._isNegative ? -1 : 1).div(PRECISION);
-                    
+
                     o.ROI = o.currProfit.div(o.collateralAmountInDAI).times(100);
                     o.kroChange = o.ROI.times(o.stake).div(100);
                     o.tokenSymbol = assetCTokenAddressToSymbol(o.compoundTokenAddr);
@@ -531,7 +531,7 @@ export const loadTokenPrices = async () => {
             return x;
         }));
     });
-    
+
     isLoadingPrices.set(false);
 };
 
@@ -561,7 +561,7 @@ export const loadRanking = async () => {
     // activate loader
     isLoadingRanking.set(true);
     kairoRanking.set([]);
-    
+
     // load NewUser events to get list of users
     var events = await betoken.contracts.BetokenFund.getPastEvents("Register", {
         fromBlock: DEPLOYED_BLOCK
@@ -621,7 +621,7 @@ export const loadRanking = async () => {
         _entry.rank = _id + 1;
         return _entry;
     });
-    
+
     // display ranking
     kairoRanking.set(ranking);
 
@@ -659,7 +659,7 @@ export const loadStats = async () => {
                 // find events emitted before & after the Manage phase of cycle
                 var beforeEvent = events.find((e) => e.returnValues._cycleNumber == cycle && e.returnValues._newPhase == 1);
                 var afterEvent = events.find((e) => e.returnValues._cycleNumber == cycle + 1 && e.returnValues._newPhase == 0);
-                
+
                 if (isUndefined(beforeEvent) || isUndefined(afterEvent)) {
                     break;
                 }
@@ -691,7 +691,7 @@ export const loadStats = async () => {
                 }
                 return tmpArray;
             }
-            
+
             let cumulative = convertToCumulative(rois);
             avgROI.set(cumulative[cumulative.length - 1]);
         });

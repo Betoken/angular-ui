@@ -74,7 +74,8 @@ export class InvestmentsComponent implements OnInit {
             minCollateralRatio: new BigNumber(0),
             currCollateral: new BigNumber(0),
             currBorrow: new BigNumber(0),
-            currCash: new BigNumber(0)
+            currCash: new BigNumber(0),
+            leverage: 0
         };
 
         this.activeInvestmentList = new Array<Object>();
@@ -265,7 +266,7 @@ export class InvestmentsComponent implements OnInit {
                 // compound order
                 let tokenPrice2 = this.assetSymbolToPrice(this.selectedTokenSymbol);
                 let minPrice2 = tokenPrice2.minus(tokenPrice2.times(minAcceptablePriceProp));
-                manager_actions.sell_compound_order(this.sellId, minPrice2, tokenPrice.times(100000), pendingSell, confirmSell);
+                manager_actions.sell_compound_order(this.sellId, minPrice2, tokenPrice2.times(100000), pendingSell, confirmSell);
                 break;
         }
 

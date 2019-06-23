@@ -314,7 +314,7 @@ export const loadUserData = async () => {
                         inv.tokenSymbol = symbol;
                         inv.stake = BigNumber(inv.stake).div(PRECISION);
                         inv.buyPrice = BigNumber(inv.buyPrice).div(PRECISION);
-                        inv.sellPrice = inv.isSold ? BigNumber(inv.sellPrice).div(PRECISION) : await betoken.getPTokenPrice(inv.tokenAddress, assetSymbolToPrice(symbol));
+                        inv.sellPrice = inv.isSold ? BigNumber(inv.sellPrice).div(PRECISION) : await betoken.getPTokenPrice(inv.tokenAddress);
                         inv.ROI = BigNumber(inv.sellPrice).minus(inv.buyPrice).div(inv.buyPrice).times(100);
                         inv.kroChange = BigNumber(inv.ROI).times(inv.stake).div(100);
                         inv.currValue = BigNumber(inv.kroChange).plus(inv.stake);
@@ -323,7 +323,10 @@ export const loadUserData = async () => {
                         let info = assetPTokenAddressToInfo(inv.tokenAddress);
                         inv.leverage = info.leverage;
                         inv.orderType = info.type;
-                        inv.safety = true; // TODO
+
+                        inv.liquidationPrice = await betoken.getPTokenLiquidationPrice(inv.tokenAddress);
+                        inv.safety = inv.liquidationPrice.minus(inv.sellPrice).div(inv.sellPrice).abs().gt(UNSAFE_COL_RATIO_MULTIPLIER - 1);
+                        
 
                         if (!inv.isSold && +inv.cycleNumber === cycleNumber.get()) {
                             var currentStakeValue = inv.sellPrice

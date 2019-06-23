@@ -171,7 +171,7 @@
                 </div>
                 <div class="col-12 col-lg-auto">
                   <span *ngIf="!isOrderOfType(data, 'basic')">
-                    <span class="badge" *ngIf="data.safety" [ngClass]="{'badge-soft-success': data.safety, 'badge-soft-danger': !data.safety}">
+                    <span class="badge" [ngClass]="{'badge-soft-success': data.safety, 'badge-soft-danger': !data.safety}">
                       <span class="text-secondary" *ngIf="!data.orderType">Long {{data.leverage}}x</span><span class="text-secondary" *ngIf="data.orderType">Short {{data.leverage}}x</span> • <span *ngIf="data.safety">Safe</span><span *ngIf="!data.safety">In Danger</span>
                     </span>
                   </span>
@@ -540,8 +540,7 @@
             </span>
             {{selectedTokenSymbol}}
             <span class="text-secondary ml-2" *ngIf="!isOrderOfType(sellData, 'basic')">
-              <span *ngIf="!sellData.orderType">Long • Leverage 1.5x</span>
-              <span *ngIf="sellData.orderType">Short • Leverage 0.5x</span>
+              <span *ngIf="!sellData.orderType">Long</span><span *ngIf="sellData.orderType">Short</span> • Leverage {{sellData.leverage}}x
             </span>
           </span>
         </h4>

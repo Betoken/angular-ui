@@ -42,7 +42,7 @@
               No limits, no hidden fees
             </h6>
             <p>
-              Betoken allows anyone to buy or sell any amount of Betoken Shares, and Betoken's fee structure is completely transparent. <a href="https://betoken.gitbook.io/betoken/what-is-the-fees-structure" target="_blank">More about fees, lockup, and liquidity<i class="fe fe-arrow-right ml-2"></i></a>
+              Betoken allows anyone to buy or sell any amount of Betoken Shares, and Betoken's fee structure is completely transparent. <a href="https://betoken.gitbook.io/docs/connect-your-capital/what-is-the-fees-structure" target="_blank">More about fees, lockup, and liquidity<i class="fe fe-arrow-right ml-2"></i></a>
             </p>
           </div>
         </div>
@@ -138,8 +138,8 @@
               <div class="card-body">
                 Yes. Betoken's protocol is 100% liquid. You can buy and sell BTKS at any time in 2 ways:
                 <ol>
-                  <li>During <a href="https://betoken.gitbook.io/betoken/portal/home#what-are-cycles-and-phases">Betoken's 3 days intermission phase</a> that happens every 27 days, you can buy and sell BTKS directly on the investor dashboard.</li>
-                  <li>(Coming soon) During <a href="https://betoken.gitbook.io/betoken/portal/home#what-are-cycles-and-phases">Betoken's management phase</a> (27 days), BTKS token is freely tradable on decentralized exchanges. Depending of the market conditions, the price may be different from what's displayed on the investor dashboard.</li>
+                  <li>During <a href="https://betoken.gitbook.io/docs/betoken-investment-cycle">Betoken's 3 days intermission phase</a> that happens every 27 days, you can buy and sell BTKS directly on the investor dashboard.</li>
+                  <li>(Coming soon) During <a href="https://betoken.gitbook.io/docs/betoken-investment-cycle">Betoken's management phase</a> (27 days), BTKS token is freely tradable on decentralized exchanges. Depending of the market conditions, the price may be different from what's displayed on the investor dashboard.</li>
                 </ol>
               </div>
             </div>
@@ -221,7 +221,7 @@
           <div class="card-body text-center">
             <h3 class="text-white">Can’t find what you’re looking for?</h3>
             <a class="btn btn-white mr-3" href="https://t.me/betokenfund">Telegram</a>
-            <a class="btn btn-white mr-3" href="https://betoken.gitbook.io/betoken/">Help Center</a>
+            <a class="btn btn-white mr-3" href="https://betoken.gitbook.io/docs/">Help Center</a>
           </div>
         </div>
         <ul class="nav justify-content-center my-4">
@@ -373,7 +373,7 @@
                           <select class="form-control form-control-lg" id="buyTokenSelect" (change)="selectBuyToken($event.target.value)">
                             <option *ngFor="let token of tokenData">{{token.symbol}}</option>
                           </select>
-                        </div> 
+                        </div>
                       </div>
                       <small class="form-text text-secondary d-inline-block mb-0">{{selectedTokenBalance.toFormat(4)}} {{selectedTokenSymbol}} available</small>
                     </form>

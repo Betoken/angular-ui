@@ -348,7 +348,9 @@
                   <span>{{token.price.dp(4)}} DAI</span>
                   <br>
 
-                  <span class="badge badge-xl" [ngClass]="{'badge-soft-success': +token.dailyPriceChange >= 0, 'badge-soft-danger': 0 > +token.dailyPriceChange}">{{token.dailyPriceChange.toFormat(4)}}%</span>
+                  <span class="badge badge-xl" [ngClass]="{'badge-soft-success': +getTokenDailyPriceChange(token.symbol) >= 0, 'badge-soft-danger': 0 > +getTokenDailyPriceChange(token.symbol)}">
+                    {{getTokenDailyPriceChange(token.symbol)}}%
+                  </span>
 
                 </div>
               </div>

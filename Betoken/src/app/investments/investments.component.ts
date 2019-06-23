@@ -355,10 +355,7 @@ export class InvestmentsComponent implements OnInit {
 
     getTokenDailyPriceChange(token) {
         let result = tokens.asset_symbol_to_daily_price_change(token);
-        if (isUndefined(result)) {
-            result = new BigNumber(0);
-        }
-        return result.toFormat(4);
+        return result.isNaN() ? 'Not available' : result.toFormat(4);
     }
 
     isMarginToken(token) {

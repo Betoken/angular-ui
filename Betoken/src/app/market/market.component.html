@@ -88,17 +88,17 @@
                 <td class="align-middle">{{token.price}}</td>
                 <td class="24h-change align-middle">
                   <span class="badge badge-xl" [ngClass]="{'badge-soft-success': +token.dailyPriceChange >= 0, 'badge-soft-danger': 0 > +token.dailyPriceChange}">
-                    {{token.dailyPriceChange.toFormat(4)}}%
+                    {{token.dailyPriceChange.isNaN() ? 'Not available' : token.dailyPriceChange.toFormat(4) + '%'}}
                   </span>
                 </td>
                 <td class="align-middle">
                   <span class="badge badge-xl" [ngClass]="{'badge-soft-success': +token.weeklyPriceChange >= 0, 'badge-soft-danger': 0 > +token.weeklyPriceChange}">
-                    {{token.weeklyPriceChange.toFormat(4)}}%
+                    {{token.weeklyPriceChange.isNaN() ? 'Not available' : token.weeklyPriceChange.toFormat(4) + '%'}}
                   </span>
                 </td>
                 <td class="align-middle">
                   <span class="badge badge-xl" [ngClass]="{'badge-soft-success': +token.monthlyPriceChange >= 0, 'badge-soft-danger': 0 > +token.monthlyPriceChange}">
-                    {{token.monthlyPriceChange.toFormat(4)}}%
+                    {{token.monthlyPriceChange.isNaN() ? 'Not available' : token.monthlyPriceChange.toFormat(4) + '%'}}
                   </span>
                 </td>
               </tr>

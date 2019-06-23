@@ -140,8 +140,8 @@
             </h6>
             
             <!-- Heading -->
-            <span class="badge badge-xl" [ngClass]="{'badge-soft-success': +currMoROI >= 0, 'badge-soft-danger': 0 > +currMoROI}">
-              {{currMoROI}}%
+            <span class="badge badge-xl" [ngClass]="{'badge-soft-success': currMoROI.gte(0), 'badge-soft-danger': currMoROI.lt(0)}">
+              {{currMoROI.toFormat(4)}}%
             </span>
             
           </div>
@@ -167,8 +167,8 @@
             </h6>
             
             <!-- Heading -->
-            <span class="badge badge-xl" [ngClass]="{'badge-soft-success': +avgMonthReturn >= 0, 'badge-soft-danger': 0 > +avgMonthReturn}">
-              {{avgMonthReturn}}%
+            <span class="badge badge-xl" [ngClass]="{'badge-soft-success': avgMonthReturn.gte(0), 'badge-soft-danger': avgMonthReturn.lt(0)}">
+              {{avgMonthReturn.toFormat(4)}}%
             </span>
             
           </div>

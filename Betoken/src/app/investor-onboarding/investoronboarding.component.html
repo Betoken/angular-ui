@@ -73,8 +73,8 @@
           <div class="card-body text-center text-md-left">
             <div *ngIf="user_address == ZERO_ADDR">
               <p class="text-secondary text-center">Please enable Metamask or visit this page in a Web3 browser to interact with Betoken on the Ethereum Mainnet.</p>
-              <a class="btn btn-block btn-lg btn-success" target="__blank" href="https://metamask.io">Get Metamask (Desktop)</a>
-              <a class="btn btn-block btn-lg btn-success" target="__blank" href="https://wallet.coinbase.com/">Get Coinbase Wallet (Mobile)</a>
+              <a class="btn btn-block btn-lg btn-success d-none d-lg-block" target="__blank" href="https://metamask.io">Get Metamask</a>
+              <a class="btn btn-block btn-lg btn-success d-block d-lg-none" target="__blank" href="https://wallet.coinbase.com/">Get Coinbase Wallet</a>
             </div>
             <button class="btn btn-block btn-lg btn-success" type="button" data-toggle="modal" data-target="#modalInvestorBuy" *ngIf="user_address != ZERO_ADDR">Get Started</button>
           </div>

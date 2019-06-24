@@ -513,12 +513,13 @@ export const loadTokenPrices = async () => {
         return x;
     }).filter((x) => x.price.gt(0)));
 
-    loadPriceChanges(1).then((changes) => {
-        TOKEN_DATA.set(TOKEN_DATA.get().map((x, i) => {
-            x.dailyPriceChange = changes[i];
-            return x;
-        }));
-    });
+    let apiStr = "https://api.kyber.network/change24h";
+    let rawData = await httpsGet(apiStr);
+    TOKEN_DATA.set(TOKEN_DATA.get().map((x) => {
+        x.dailyPriceChange = BigNumber(rawData[`ETH_${x.symbol}`].change_usd_24h);
+        return x;
+    }));
+
     loadPriceChanges(7).then((changes) => {
         TOKEN_DATA.set(TOKEN_DATA.get().map((x, i) => {
             x.weeklyPriceChange = changes[i];

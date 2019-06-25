@@ -615,8 +615,31 @@
             </div>
           </div>
 
-          <div *ngIf="sellData.type === 'compound'">
-            <hr class="my-4">
+          <hr class="my-4">
+
+          <div *ngIf="isOrderOfType(sellData, 'fulcrum')">
+            <div class="row align-items-center justify-content-center mb-3">
+              <div class="col">
+                <span class="badge badge-soft-success mb-2" *ngIf="sellData.safety">
+                  Safe
+                </span>
+                <span class="badge badge-soft-danger mb-2" *ngIf="!sellData.safety">
+                  In Danger
+                </span>
+              </div>
+              <div class="col">
+                Margin Position Price: {{sellData.sellPrice.toFormat(4)}}
+              </div>
+              <div class="col">
+                Liquidation Price: {{sellData.liquidationPrice.toFormat(4)}}
+              </div>
+            </div>
+            <div class="row">
+              <p class="text-secondary small mb-0">If the margin position price falls below the liquidation price, this order will be liquidated, which will cause huge losses. When the order is in danger of liquidation, sell it.</p>
+            </div>
+          </div>
+
+          <div *ngIf="isOrderOfType(sellData, 'compound')">
             <div class="row align-items-center justify-content-center mb-3">
               <div class="col">
                 <h6 class="header-pretitle mb-0">
@@ -659,9 +682,9 @@
             </div>
           </div>
 
-          <div *ngIf="isOrderOfType(sellData, 'basic') || isOrderOfType(sellData, 'fulcrum')">
-            <hr class="my-4">
+          <hr class="my-4">
 
+          <div *ngIf="isOrderOfType(sellData, 'basic') || isOrderOfType(sellData, 'fulcrum')">
             <!-- KRO amount to unstake -->
             <!-- hideen when top up feature is activated -->
             <h6 class="header-pretitle">Proportion of assets to sell</h6>
@@ -679,7 +702,6 @@
               </div>
             </div>
           </div>
-
 
           <!-- Min acceptable price -->
           <div class="row justify-content-center mb-4">

@@ -231,8 +231,7 @@
                 </div>
                 <div class="col-12 col-lg-auto">
                   <span *ngIf="!isOrderOfType(data, 'basic')">
-                    <span class="badge badge-soft-secondary" *ngIf="!data.orderType">Long 1.5x</span>
-                    <span class="badge badge-soft-secondary" *ngIf="data.orderType">Short 0.5x</span>
+                    <span class="badge badge-soft-secondary" *ngIf="!data.orderType">Long {{data.leverage}}x</span><span class="badge badge-soft-secondary" *ngIf="data.orderType">Short {{data.leverage}}x</span>
                   </span>
                 </div>
               </div>

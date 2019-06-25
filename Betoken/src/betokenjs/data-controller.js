@@ -13,6 +13,7 @@ const CTOKENS = require('./json_data/compound_tokens.json'); // Compound cTokens
 const STABLECOINS = require('./json_data/stablecoins.json'); // Stablecoins (managers can't invest)
 const PTOKENS = require('./json_data/fulcrum_tokens.json'); // Fulcrum pTokens
 const UNSAFE_COL_RATIO_MULTIPLIER = 1.1;
+const COL_RATIO_MODIFIER = 4 / 3;
 
 // instance variables
 // user info
@@ -413,7 +414,7 @@ export const loadUserData = async () => {
                     o.tokenSymbol = assetCTokenAddressToSymbol(o.compoundTokenAddr);
                     o.currValue = o.stake.plus(o.kroChange);
                     o.safety = o.collateralRatio.gt(o.minCollateralRatio.times(UNSAFE_COL_RATIO_MULTIPLIER));
-                    o.leverage = o.orderType ? 0.5 : 1.5;
+                    o.leverage = o.orderType ? o.minCollateralRatio.times(COL_RATIO_MODIFIER).pow(-1).dp(4).toNumber() : BigNumber(1).plus(o.minCollateralRatio.times(COL_RATIO_MODIFIER).pow(-1)).dp(4).toNumber();
                     o.type = "compound";
 
                     if (!o.isSold && o.cycleNumber === cycleNumber.get()) {

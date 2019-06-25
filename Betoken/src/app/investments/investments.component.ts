@@ -149,14 +149,14 @@ export class InvestmentsComponent implements OnInit {
         orderTypes.push(basicOrder);
         if (tokens.is_compound_token(symbol)) {
             const longOrder = {
-                text: 'Long • Leverage 1.5x (Compound)',
-                leverage: 1.5,
+                text: 'Long • Leverage 1.5625x (Compound)',
+                leverage: 1.5625,
                 type: 'compound',
                 isShort: false
             }
             const shortOrder = {
-                text: 'Short • Leverage 0.5x (Compound)',
-                leverage: -0.5,
+                text: 'Short • Leverage 0.5625x (Compound)',
+                leverage: -0.5625,
                 type: 'compound',
                 isShort: true
             }

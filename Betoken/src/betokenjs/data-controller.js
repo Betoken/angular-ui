@@ -417,7 +417,7 @@ export const loadUserData = async () => {
                     o.leverage = o.orderType ? o.minCollateralRatio.times(COL_RATIO_MODIFIER).pow(-1).dp(4).toNumber() : BigNumber(1).plus(o.minCollateralRatio.times(COL_RATIO_MODIFIER).pow(-1)).dp(4).toNumber();
                     o.type = "compound";
 
-                    if (!o.isSold && o.cycleNumber === cycleNumber.get()) {
+                    if (!o.isSold) {
                         var currentStakeValue = o.stake.times(o.ROI.div(100).plus(1));
                         stake = stake.plus(currentStakeValue);
                     }
@@ -576,33 +576,80 @@ export const loadRanking = async () => {
     // fetch KRO balances
     var ranking = await Promise.all(addresses.map((_addr) => {
         var stake = BigNumber(0);
+        var totalKROChange = BigNumber(0);
         return betoken.getInvestments(_addr).then(async (investments) => {
-            var totalKROChange = BigNumber(0);
             for (var i = 0; i < investments.length; i++) {
                 var inv = investments[i];
                 let symbol = "";
+                let tokenPrice = BigNumber(0);
                 if (isFulcrumTokenAddress(inv.tokenAddress)) {
                     symbol = assetPTokenAddressToSymbol(inv.tokenAddress);
+                    tokenPrice = await betoken.getPTokenPrice(inv.tokenAddress);
                 } else {
                     symbol = assetAddressToSymbol(inv.tokenAddress);
+                    tokenPrice = assetSymbolToPrice(symbol);
                 }
                 // calculate kairo balance
                 if (!inv.isSold && +inv.cycleNumber === cycleNumber.get() && cyclePhase.get() == 1) {
-                    var currentStakeValue = assetSymbolToPrice(symbol)
+                    var currentStakeValue = tokenPrice
                         .minus(inv.buyPrice).div(inv.buyPrice).times(inv.stake).plus(inv.stake);
                     stake = stake.plus(currentStakeValue);
                 }
                 // calculate roi
-                if (+inv.cycleNumber === cycleNumber.get() && (cyclePhase.get() == 1 || inv.isSold)) {
+                if (+inv.cycleNumber === cycleNumber.get()) {
                     var _stake = BigNumber(inv.stake).div(PRECISION);
                     var _buyPrice = BigNumber(inv.buyPrice).div(PRECISION);
-                    var _sellPrice = inv.isSold ? BigNumber(inv.sellPrice).div(PRECISION) : assetSymbolToPrice(symbol);
+                    var _sellPrice = inv.isSold ? BigNumber(inv.sellPrice).div(PRECISION) : tokenPrice;
                     var _ROI = BigNumber(_sellPrice).minus(_buyPrice).div(_buyPrice);
                     var _kroChange = BigNumber(_ROI).times(_stake);
 
                     totalKROChange = totalKROChange.plus(_kroChange);
                 }
             }
+        }).then(async () => {
+            var compoundOrderAddrs = await betoken.getCompoundOrders(_addr);
+            var compoundOrders = new Array(compoundOrderAddrs.length);
+            if (compoundOrderAddrs.length > 0) {
+                const properties = ["stake", "cycleNumber", "collateralAmountInDAI", "isSold", "getCurrentProfitInDAI"];
+                const handleProposal = async (id) => {
+                    const order = await CompoundOrder(compoundOrderAddrs[id]);
+                    let orderData = {"id": id};
+                    compoundOrders[id] = orderData;
+                    let promises = [];
+                    for (let prop of properties) {
+                        promises.push(order.methods[prop]().call().then((x) => orderData[prop] = x));
+                    }
+                    return await Promise.all(promises);
+                };
+                const handleAllProposals = () => {
+                    var results = [];
+                    for (var i = 0; i < compoundOrderAddrs.length; i++) {
+                        results.push(handleProposal(i));
+                    }
+                    return results;
+                };
+                await Promise.all(handleAllProposals());
+
+                // reformat compound order objects
+                compoundOrders = compoundOrders.filter((x) => +x.cycleNumber == cycleNumber.get());
+                for (let o of compoundOrders) {
+                    o.stake = BigNumber(o.stake).div(PRECISION);
+                    o.collateralAmountInDAI = BigNumber(o.collateralAmountInDAI).div(PRECISION);
+                    o.currProfit = BigNumber(o.getCurrentProfitInDAI._amount).times(o.getCurrentProfitInDAI._isNegative ? -1 : 1).div(PRECISION);
+                    o.ROI = o.currProfit.div(o.collateralAmountInDAI).times(100);
+                    o.kroChange = o.ROI.times(o.stake).div(100);
+
+                    if (!o.isSold) {
+                        var currentStakeValue = o.stake.times(o.ROI.div(100).plus(1));
+                        stake = stake.plus(currentStakeValue);
+                    }
+
+                    delete o.getCurrentProfitInDAI;
+                }
+
+                totalKROChange = totalKROChange.plus(compoundOrders.map((x) => BigNumber(x.kroChange)).reduce((x, y) => x.plus(y), BigNumber(0)));
+            }
+            
             var cycleStartKRO = BigNumber(await betoken.getBaseStake(_addr)).div(PRECISION);
             return {
                 // format rank object

@@ -76,6 +76,9 @@ export const assetSymbolToPrice = function(_symbol) {
 };
 
 export const assetAddressToSymbol = function(_addr) {
+    if (isUndefined(TOKEN_DATA.get().find((x) => x.address === _addr))) {
+        console.log(_addr);
+    }
     return TOKEN_DATA.get().find((x) => x.address === _addr).symbol;
 };
 
@@ -315,7 +318,7 @@ export const loadUserData = async () => {
                         inv.tokenSymbol = symbol;
                         inv.stake = BigNumber(inv.stake).div(PRECISION);
                         inv.buyPrice = BigNumber(inv.buyPrice).div(PRECISION);
-                        inv.sellPrice = inv.isSold ? BigNumber(inv.sellPrice).div(PRECISION) : await betoken.getPTokenPrice(inv.tokenAddress);
+                        inv.sellPrice = inv.isSold ? BigNumber(inv.sellPrice).div(PRECISION) : await betoken.getPTokenPrice(inv.tokenAddress, assetSymbolToPrice(symbol));
                         inv.ROI = BigNumber(inv.sellPrice).minus(inv.buyPrice).div(inv.buyPrice).times(100);
                         inv.kroChange = BigNumber(inv.ROI).times(inv.stake).div(100);
                         inv.currValue = BigNumber(inv.kroChange).plus(inv.stake);
@@ -325,7 +328,7 @@ export const loadUserData = async () => {
                         inv.leverage = info.leverage;
                         inv.orderType = info.type;
 
-                        inv.liquidationPrice = await betoken.getPTokenLiquidationPrice(inv.tokenAddress);
+                        inv.liquidationPrice = await betoken.getPTokenLiquidationPrice(inv.tokenAddress, assetSymbolToPrice(symbol));
                         inv.safety = inv.liquidationPrice.minus(inv.sellPrice).div(inv.sellPrice).abs().gt(UNSAFE_COL_RATIO_MULTIPLIER - 1);
 
 
@@ -512,7 +515,7 @@ export const loadTokenPrices = async () => {
     TOKEN_DATA.set(TOKEN_DATA.get().map((x, i) => {
         x.price = tokenPrices[i];
         return x;
-    }).filter((x) => x.price.gt(0)));
+    }));
 
     let apiStr = "https://api.kyber.network/change24h";
     let rawData = await httpsGet(apiStr);
@@ -584,7 +587,7 @@ export const loadRanking = async () => {
                 let tokenPrice = BigNumber(0);
                 if (isFulcrumTokenAddress(inv.tokenAddress)) {
                     symbol = assetPTokenAddressToSymbol(inv.tokenAddress);
-                    tokenPrice = await betoken.getPTokenPrice(inv.tokenAddress);
+                    tokenPrice = await betoken.getPTokenPrice(inv.tokenAddress, assetSymbolToPrice(symbol));
                 } else {
                     symbol = assetAddressToSymbol(inv.tokenAddress);
                     tokenPrice = assetSymbolToPrice(symbol);

@@ -193,21 +193,21 @@ export var Betoken = function() {
         }
     };
 
-    self.getPTokenPrice = async (_tokenAddr) => {
+    self.getPTokenPrice = async (_tokenAddr, _underlyingPrice) => {
         try {
             let pToken = PositionToken(_tokenAddr);
             let underlyingPerPToken = await pToken.methods.tokenPrice().call();
-            return BigNumber(underlyingPerPToken).div(PRECISION);
+            return BigNumber(underlyingPerPToken).div(PRECISION).times(_underlyingPrice);
         } catch (e) {
             return BigNumber(0);
         }
     };
 
-    self.getPTokenLiquidationPrice = async (_tokenAddr) => {
+    self.getPTokenLiquidationPrice = async (_tokenAddr, _underlyingPrice) => {
         try {
             let pToken = PositionToken(_tokenAddr);
             let underlyingPerPToken = await pToken.methods.liquidationPrice().call();
-            return BigNumber(underlyingPerPToken).div(PRECISION);
+            return BigNumber(underlyingPerPToken).div(PRECISION).times(_underlyingPrice);
         } catch (e) {
             return BigNumber(0);
         }

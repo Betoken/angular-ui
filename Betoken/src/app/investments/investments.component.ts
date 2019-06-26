@@ -215,7 +215,7 @@ export class InvestmentsComponent implements OnInit {
                 manager_actions.new_compound_order(this.selectedOrderType['isShort'], this.selectedTokenSymbol, this.stakeAmount, new BigNumber(0), maxPrice1, pending, confirm);
                 break;
             case 'fulcrum':
-                let tokenPrice2 = await tokens.get_ptoken_price(this.selectedOrderType['tokenAddress']);
+                let tokenPrice2 = await tokens.get_ptoken_price(this.selectedOrderType['tokenAddress'], tokens.asset_symbol_to_price(this.selectedTokenSymbol));
                 let maxPrice2 = tokenPrice2.plus(tokenPrice2.times(maxAcceptablePriceProp));
                 manager_actions.new_investment_with_address(this.selectedOrderType['tokenAddress'], this.stakeAmount, new BigNumber(0), maxPrice2, pending, confirm);
                 break;
@@ -258,7 +258,7 @@ export class InvestmentsComponent implements OnInit {
                 break;
             case 'fulcrum':
                 // fulcrum order
-                let tokenPrice1 = await tokens.get_ptoken_price(this.sellData['tokenAddress']);
+                let tokenPrice1 = await tokens.get_ptoken_price(this.sellData['tokenAddress'], tokens.asset_symbol_to_price(this.selectedTokenSymbol));
                 let minPrice1 = tokenPrice1.minus(tokenPrice1.times(minAcceptablePriceProp));
                 manager_actions.sell_investment(this.sellId, sellPercentage, minPrice1, tokenPrice1.times(100000), pendingSell, confirmSell);
                 break;

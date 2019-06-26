@@ -620,6 +620,9 @@
           <div *ngIf="isOrderOfType(sellData, 'fulcrum')">
             <div class="row align-items-center justify-content-center mb-3">
               <div class="col">
+                <h6 class="header-pretitle">
+                  Status:
+                </h6>
                 <span class="badge badge-soft-success mb-2" *ngIf="sellData.safety">
                   Safe
                 </span>
@@ -628,10 +631,16 @@
                 </span>
               </div>
               <div class="col">
-                Margin Position Price: {{sellData.sellPrice.toFormat(4)}}
+                <h6 class="header-pretitle">
+                  Margin Position Price:
+                </h6>
+                <h4 class="mb-0">{{sellData.sellPrice.toFormat(4)}}</h4>
               </div>
               <div class="col">
-                Liquidation Price: {{sellData.liquidationPrice.toFormat(4)}}
+                <h6 class="header-pretitle">
+                  Liquidation Price:
+                </h6>
+                <h4 class="mb-0">{{sellData.liquidationPrice.toFormat(4)}}</h4>
               </div>
             </div>
             <div class="row">

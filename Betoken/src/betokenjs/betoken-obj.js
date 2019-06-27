@@ -186,7 +186,7 @@ export var Betoken = function() {
             }
             let decimals = await self.getTokenDecimals(_tokenAddr);
             var price = await self.contracts.Kyber.methods.getExpectedRate(_tokenAddr, DAI_ADDR, BigNumber(10).pow(decimals).toString()).call();
-            price = price[1];
+            price = price[0];
             return BigNumber(price).div(PRECISION);
         } catch (e) {
             return BigNumber(0);

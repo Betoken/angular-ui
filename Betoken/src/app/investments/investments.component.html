@@ -794,7 +794,7 @@
         </form>
 
         <!-- Continue button for amount to sell Step -->
-        <button type="submit" class="btn btn-block btn-success mt-auto" aria-label="Sell" (click)="sell()" *ngIf="sellInvestmentPopupStep === 0" [disabled]="!continueEnabled && isOrderOfType(sellData, 'basic')">
+        <button type="submit" class="btn btn-block btn-success mt-auto" aria-label="Sell" (click)="sell()" *ngIf="sellInvestmentPopupStep === 0" [disabled]="!continueEnabled && (isOrderOfType(sellData, 'basic') || isOrderOfType(sellData, 'fulcrum'))">
           Sell Investment
         </button>
         <!-- close button panel after Asset being sold -->

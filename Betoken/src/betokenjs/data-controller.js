@@ -76,9 +76,6 @@ export const assetSymbolToPrice = function(_symbol) {
 };
 
 export const assetAddressToSymbol = function(_addr) {
-    if (isUndefined(TOKEN_DATA.get().find((x) => x.address === _addr))) {
-        console.log(_addr);
-    }
     return TOKEN_DATA.get().find((x) => x.address === _addr).symbol;
 };
 
@@ -515,7 +512,7 @@ export const loadTokenPrices = async () => {
     TOKEN_DATA.set(TOKEN_DATA.get().map((x, i) => {
         x.price = tokenPrices[i];
         return x;
-    }));
+    }).filter((x) => x.price.gt(0)));
 
     let apiStr = "https://api.kyber.network/change24h";
     let rawData = await httpsGet(apiStr);

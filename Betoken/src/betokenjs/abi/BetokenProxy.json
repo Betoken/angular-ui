@@ -25,6 +25,18 @@
     "type": "constructor"
   },
   {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "name": "_newFundAddr",
+        "type": "address"
+      }
+    ],
+    "name": "UpdatedFundAddress",
+    "type": "event"
+  },
+  {
     "constant": false,
     "inputs": [],
     "name": "updateBetokenFundAddress",

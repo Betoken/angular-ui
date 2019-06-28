@@ -1245,6 +1245,11 @@
         "indexed": false,
         "name": "_costDAIAmount",
         "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "_tokenAmount",
+        "type": "uint256"
       }
     ],
     "name": "CreatedInvestment",
@@ -1265,8 +1270,13 @@
       },
       {
         "indexed": false,
-        "name": "_investmentId",
+        "name": "_id",
         "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "_tokenAddress",
+        "type": "address"
       },
       {
         "indexed": false,
@@ -1299,6 +1309,11 @@
         "indexed": true,
         "name": "_sender",
         "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "_id",
+        "type": "uint256"
       },
       {
         "indexed": false,
@@ -1344,6 +1359,11 @@
       },
       {
         "indexed": false,
+        "name": "_id",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
         "name": "_order",
         "type": "address"
       },
@@ -1383,6 +1403,11 @@
         "indexed": true,
         "name": "_sender",
         "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "_id",
+        "type": "uint256"
       },
       {
         "indexed": false,
@@ -1446,13 +1471,13 @@
         "type": "address"
       },
       {
-        "indexed": true,
-        "name": "_block",
+        "indexed": false,
+        "name": "_donationInDAI",
         "type": "uint256"
       },
       {
         "indexed": false,
-        "name": "_donationInDAI",
+        "name": "_kairoReceived",
         "type": "uint256"
       }
     ],

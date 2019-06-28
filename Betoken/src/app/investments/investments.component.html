@@ -73,11 +73,19 @@
       <div class="card-body">
         <div class="row align-items-center">
           <div class="col">
-
-            <!-- Title -->
-            <h6 class="card-title text-uppercase text-muted mb-2">
-              Risk Taken
-            </h6>
+            <div class="row no-gutters">
+              <div class="col-auto">
+                <!-- Title -->
+                <h6 class="card-title text-uppercase text-muted mb-0">
+                  Risk Taken
+                </h6>
+              </div>
+              <div class="col-auto mt-n1">
+                <a class="text-muted ml-2" href="https://betoken.gitbook.io/docs/manage-the-fund/how-does-risk-threshold-work" title="Learn more" target="_blank">
+                  <span class="fe fe-help-circle"></span>
+                </a>
+              </div>
+            </div>
 
             <div class="row align-items-center no-gutters">
               <div class="col-auto mb-2">
@@ -372,7 +380,7 @@
               </h4>
             </div>
             <div class="col">
-              <h6 class="header-pretitle">
+              <h6 class="header-pretitle mb-2">
                 24h change
               </h6>
               <span class="badge" [ngClass]="{'badge-soft-success': +getTokenDailyPriceChange(selectedTokenSymbol) >= 0, 'badge-soft-danger': 0 > +getTokenDailyPriceChange(selectedTokenSymbol)}">
@@ -574,125 +582,121 @@
 
       <div class="modal-body pb-5">
         <!--Step 0: enter sell amount-->
+        <time class="header-pretitle h6 mb-0" *ngIf="sellInvestmentPopupStep === 0">OPENED {{sellData.buyTime.toLocaleString()}}</time>
+        <hr class="mb-4" *ngIf="sellInvestmentPopupStep === 0">
+        <!-- Asset price -->
+        <div class="row mb-4" *ngIf="sellInvestmentPopupStep === 0">
+          <div class="col">
+            <h6 class="header-pretitle">
+              Current price in DAI
+            </h6>
+            <h4 class="mb-0">
+              {{assetSymbolToPrice(selectedTokenSymbol)}}
+            </h4>
+          </div>
+          <div class="col">
+            <h6 class="header-pretitle mb-1">
+              ROI
+            </h6>
+            <span class="badge" [ngClass]="{'badge-soft-success': sellData.ROI.gte(0), 'badge-soft-danger': sellData.ROI.lt(0)}">
+              {{sellData.ROI.toFormat(4)}}%
+            </span>
+          </div>
+        </div>
+        <div class="row" *ngIf="sellInvestmentPopupStep === 0">
+          <div class="col">
+            <h6 class="header-pretitle">
+              Staked KRO
+            </h6>
+            <h4 class="mb-0">
+              {{sellData.stake.toFormat(4)}}
+            </h4>
+          </div>
+          <div class="col">
+            <h6 class="header-pretitle">
+              KRO to Redeem
+            </h6>
+            <h4 class="mb-0">
+              {{sellData.currValue.toFormat(4)}}
+            </h4>
+          </div>
+        </div>
         <div *ngIf="sellInvestmentPopupStep === 0">
-          <time class="header-pretitle h6 mb-0" *ngIf="sellInvestmentPopupStep === 0">OPENED {{sellData.buyTime.toLocaleString()}}</time>
-          <hr class="mb-4" *ngIf="sellInvestmentPopupStep === 0">
-          <!-- Asset price -->
-          <div class="row mb-4">
+          <div class="row my-4" *ngIf="isOrderOfType(sellData, 'fulcrum')">
             <div class="col">
               <h6 class="header-pretitle">
-                Current price in DAI
+                Margin Position Price
               </h6>
               <h4 class="mb-0">
-                {{assetSymbolToPrice(selectedTokenSymbol)}}
-              </h4>
-            </div>
-            <div class="col">
-              <h6 class="header-pretitle mb-1">
-                ROI
-              </h6>
-              <span class="badge" [ngClass]="{'badge-soft-success': sellData.ROI.gte(0), 'badge-soft-danger': sellData.ROI.lt(0)}">
-                {{sellData.ROI.toFormat(4)}}%
-              </span>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col">
-              <h6 class="header-pretitle">
-                Staked KRO
-              </h6>
-              <h4 class="mb-0">
-                {{sellData.stake.toFormat(4)}}
-              </h4>
-            </div>
-            <div class="col">
-              <h6 class="header-pretitle">
-                KRO to Redeem
-              </h6>
-              <h4 class="mb-0">
-                {{sellData.currValue.toFormat(4)}}
-              </h4>
-            </div>
-          </div>
-
-          <hr class="my-4">
-
-          <div *ngIf="isOrderOfType(sellData, 'fulcrum')">
-            <div class="row align-items-center justify-content-center mb-3">
-              <div class="col">
-                <h6 class="header-pretitle">
-                  Status:
-                </h6>
-                <span class="badge badge-soft-success mb-2" *ngIf="sellData.safety">
+                {{sellData.sellPrice.toFormat(4)}}
+                <span class="badge badge-soft-success ml-1" *ngIf="sellData.safety">
                   Safe
                 </span>
-                <span class="badge badge-soft-danger mb-2" *ngIf="!sellData.safety">
+                <span class="badge badge-soft-danger ml-1" *ngIf="!sellData.safety">
                   In Danger
                 </span>
-              </div>
-              <div class="col">
-                <h6 class="header-pretitle">
-                  Margin Position Price:
-                </h6>
-                <h4 class="mb-0">{{sellData.sellPrice.toFormat(4)}}</h4>
-              </div>
-              <div class="col">
-                <h6 class="header-pretitle">
-                  Liquidation Price:
-                </h6>
-                <h4 class="mb-0">{{sellData.liquidationPrice.toFormat(4)}}</h4>
-              </div>
+              </h4>
             </div>
-            <div class="row">
+            <div class="col">
+              <h6 class="header-pretitle">
+                Liquidation Price
+              </h6>
+              <h4 class="mb-0">
+                {{sellData.liquidationPrice.toFormat(4)}}
+              </h4>
+            </div>
+          </div>
+          <div class="row" *ngIf="isOrderOfType(sellData, 'fulcrum')">
+            <div class="col">
               <p class="text-secondary small mb-0">If the margin position price falls below the liquidation price, this order will be liquidated, which will cause huge losses. When the order is in danger of liquidation, sell it.</p>
             </div>
           </div>
+        </div>
 
-          <div *ngIf="isOrderOfType(sellData, 'compound')">
-            <div class="row align-items-center justify-content-center mb-3">
-              <div class="col">
-                <h6 class="header-pretitle mb-0">
-                  Collateralization status
-                </h6>
-              </div>
-              <div class="col-auto d-flex align-items-center">
-                <a href="" class="btn btn-sm btn-white" data-toggle="modal" data-target="#modalTopUp">Top up</a>
-              </div>
+        <div *ngIf="isOrderOfType(sellData, 'compound')">
+          <div class="row align-items-center justify-content-center mt-4 mb-3">
+            <div class="col">
+              <h6 class="header-pretitle mb-0">
+                Collateralization status
+              </h6>
             </div>
-            <div class="row align-items-center">
-              <div class="col">
-                <span class="badge badge-soft-success mb-2" *ngIf="sellData.safety">
-                  Safe
-                </span>
-                <span class="badge badge-soft-danger mb-2" *ngIf="!sellData.safety">
-                  In Danger
-                </span>
-                <div class="progress">
-                  <div [ngClass]="{'bg-success': sellData.safety, 'bg-danger': !sellData.safety}" class="progress-bar" role="progressbar" [ngStyle]="{'width': sellData.collateralRatio.div(sellData.minCollateralRatio.times(2)).times(100).toFormat(2) + '%'}">{{sellData.collateralRatio.times(100).toFormat(0)}}%</div>
-                </div>
-                <div class="row no-gutters justify-content-between text-secondary mb-3">
-                  <div class="col text-left">
-                    <small class="h6">0%</small>
-                    <small class="h6 d-block">Unsafe</small>
-                  </div>
-                  <div class="col text-left position-absolute d-block w-auto" style="left: 49.0000%;transform: translateX(-50%);">
-                    <div style="display: flex; flex-direction: column;">
-                      <div style="border: 0.5px dashed #6e84a3; width: 1px; height: 8px; align-self: center;"></div>
-                      <small class="h6">{{sellData.minCollateralRatio.times(100).toFormat(0)}}% • min. collateral ratio</small>
-                    </div>
-                  </div>
-                  <div class="col text-right">
-                    <small class="h6">{{sellData.minCollateralRatio.times(2).times(100).toFormat(0)}}%</small>
-                    <small class="h6 d-block">Safe</small>
-                  </div>
-                </div>
-                <p class="text-secondary small mb-0">If the order's collateral ratio falls below the minimum, it will be liquidated, which will cause huge losses.</p>
-              </div>
+            <div class="col-auto d-flex align-items-center">
+              <a href="" class="btn btn-sm btn-white" data-toggle="modal" data-target="#modalTopUp">Top up</a>
             </div>
           </div>
-
+          <div class="row align-items-center">
+            <div class="col">
+              <span class="badge badge-soft-success mb-2" *ngIf="sellData.safety">
+                Safe
+              </span>
+              <span class="badge badge-soft-danger mb-2" *ngIf="!sellData.safety">
+                In Danger
+              </span>
+              <div class="progress">
+                <div [ngClass]="{'bg-success': sellData.safety, 'bg-danger': !sellData.safety}" class="progress-bar" role="progressbar" [ngStyle]="{'width': sellData.collateralRatio.div(sellData.minCollateralRatio.times(2)).times(100).toFormat(2) + '%'}">{{sellData.collateralRatio.times(100).toFormat(0)}}%</div>
+              </div>
+              <div class="row no-gutters justify-content-between text-secondary mb-3">
+                <div class="col text-left">
+                  <small class="h6">0%</small>
+                  <small class="h6 d-block">Unsafe</small>
+                </div>
+                <div class="col text-left position-absolute d-block w-auto" style="left: 49.0000%;transform: translateX(-50%);">
+                  <div style="display: flex; flex-direction: column;">
+                    <div style="border: 0.5px dashed #6e84a3; width: 1px; height: 8px; align-self: center;"></div>
+                    <small class="h6">{{sellData.minCollateralRatio.times(100).toFormat(0)}}% • min. collateral ratio</small>
+                  </div>
+                </div>
+                <div class="col text-right">
+                  <small class="h6">{{sellData.minCollateralRatio.times(2).times(100).toFormat(0)}}%</small>
+                  <small class="h6 d-block">Safe</small>
+                </div>
+              </div>
+              <p class="text-secondary small mb-0">If the order's collateral ratio falls below the minimum, it will be liquidated, which will cause huge losses.</p>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="sellInvestmentPopupStep === 0">
           <hr class="my-4">
-
           <div *ngIf="isOrderOfType(sellData, 'basic') || isOrderOfType(sellData, 'fulcrum')">
             <!-- KRO amount to unstake -->
             <!-- hideen when top up feature is activated -->
@@ -711,7 +715,6 @@
               </div>
             </div>
           </div>
-
           <!-- Min acceptable price -->
           <div class="row justify-content-center mb-4">
             <div class="col">
@@ -757,7 +760,6 @@
             </div>
           </div>
         </div>
-
         <!--Step 1: confirm tx in wallet-->
         <!-- Confirm tx body -->
         <p class="text-center text-muted mb-5" *ngIf="sellInvestmentPopupStep === 1">

@@ -722,7 +722,7 @@ export const loadStats = async () => {
                 rois.push(ROI.toNumber());
             }
             // Take current cycle's ROI into consideration
-            if (cyclePhase.get() === 1) {
+            if (cyclePhase.get() === 1 && cycleNumber.get() > 0) {
                 var beforeEvent = events.find((e) => e.returnValues._cycleNumber == cycleNumber.get() && e.returnValues._newPhase == 1);
                 var beforeTotalFunds = BigNumber(beforeEvent.returnValues._totalFundsInDAI).div(PRECISION);
                 var currentCycleROI = totalFunds.get().minus(beforeTotalFunds).div(beforeTotalFunds).times(100);

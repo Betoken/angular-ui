@@ -652,49 +652,7 @@
             </div>
           </div>
         </div>
-
-        <div *ngIf="isOrderOfType(sellData, 'compound')">
-          <div class="row align-items-center justify-content-center mt-4 mb-3">
-            <div class="col">
-              <h6 class="header-pretitle mb-0">
-                Collateralization status
-              </h6>
-            </div>
-            <div class="col-auto d-flex align-items-center">
-              <a href="" class="btn btn-sm btn-white" data-toggle="modal" data-target="#modalTopUp">Top up</a>
-            </div>
-          </div>
-          <div class="row align-items-center">
-            <div class="col">
-              <span class="badge badge-soft-success mb-2" *ngIf="sellData.safety">
-                Safe
-              </span>
-              <span class="badge badge-soft-danger mb-2" *ngIf="!sellData.safety">
-                In Danger
-              </span>
-              <div class="progress">
-                <div [ngClass]="{'bg-success': sellData.safety, 'bg-danger': !sellData.safety}" class="progress-bar" role="progressbar" [ngStyle]="{'width': sellData.collateralRatio.div(sellData.minCollateralRatio.times(2)).times(100).toFormat(2) + '%'}">{{sellData.collateralRatio.times(100).toFormat(0)}}%</div>
-              </div>
-              <div class="row no-gutters justify-content-between text-secondary mb-3">
-                <div class="col text-left">
-                  <small class="h6">0%</small>
-                  <small class="h6 d-block">Unsafe</small>
-                </div>
-                <div class="col text-left position-absolute d-block w-auto" style="left: 49.0000%;transform: translateX(-50%);">
-                  <div style="display: flex; flex-direction: column;">
-                    <div style="border: 0.5px dashed #6e84a3; width: 1px; height: 8px; align-self: center;"></div>
-                    <small class="h6">{{sellData.minCollateralRatio.times(100).toFormat(0)}}% • min. collateral ratio</small>
-                  </div>
-                </div>
-                <div class="col text-right">
-                  <small class="h6">{{sellData.minCollateralRatio.times(2).times(100).toFormat(0)}}%</small>
-                  <small class="h6 d-block">Safe</small>
-                </div>
-              </div>
-              <p class="text-secondary small mb-0">If the order's collateral ratio falls below the minimum, it will be liquidated, which will cause huge losses.</p>
-            </div>
-          </div>
-        </div>
+        
         <div *ngIf="sellInvestmentPopupStep === 0">
           <hr class="my-4">
           <div *ngIf="isOrderOfType(sellData, 'basic') || isOrderOfType(sellData, 'fulcrum')">
@@ -712,6 +670,48 @@
                     </div>
                   </div>
                 </form>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="isOrderOfType(sellData, 'compound')">
+            <div class="row align-items-center justify-content-center mt-4 mb-3">
+              <div class="col">
+                <h6 class="header-pretitle mb-0">
+                  Collateralization status
+                </h6>
+              </div>
+              <div class="col-auto d-flex align-items-center">
+                <a href="" class="btn btn-sm btn-white" data-toggle="modal" data-target="#modalTopUp">Top up</a>
+              </div>
+            </div>
+            <div class="row align-items-center">
+              <div class="col">
+                <span class="badge badge-soft-success mb-2" *ngIf="sellData.safety">
+                  Safe
+                </span>
+                <span class="badge badge-soft-danger mb-2" *ngIf="!sellData.safety">
+                  In Danger
+                </span>
+                <div class="progress">
+                  <div [ngClass]="{'bg-success': sellData.safety, 'bg-danger': !sellData.safety}" class="progress-bar" role="progressbar" [ngStyle]="{'width': sellData.collateralRatio.div(sellData.minCollateralRatio.times(2)).times(100).toFormat(2) + '%'}">{{sellData.collateralRatio.times(100).toFormat(0)}}%</div>
+                </div>
+                <div class="row no-gutters justify-content-between text-secondary mb-3">
+                  <div class="col text-left">
+                    <small class="h6">0%</small>
+                    <small class="h6 d-block">Unsafe</small>
+                  </div>
+                  <div class="col text-left position-absolute d-block w-auto" style="left: 49.0000%;transform: translateX(-50%);">
+                    <div style="display: flex; flex-direction: column;">
+                      <div style="border: 0.5px dashed #6e84a3; width: 1px; height: 8px; align-self: center;"></div>
+                      <small class="h6">{{sellData.minCollateralRatio.times(100).toFormat(0)}}% • min. collateral ratio</small>
+                    </div>
+                  </div>
+                  <div class="col text-right">
+                    <small class="h6">{{sellData.minCollateralRatio.times(2).times(100).toFormat(0)}}%</small>
+                    <small class="h6 d-block">Safe</small>
+                  </div>
+                </div>
+                <p class="text-secondary small mb-0">If the order's collateral ratio falls below the minimum, it will be liquidated, which will cause huge losses.</p>
               </div>
             </div>
           </div>

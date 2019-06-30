@@ -74,15 +74,19 @@ export class InvestoronboardingComponent implements OnInit {
     this.user_address = user.address();
     this.sharesPrice = stats.shares_price();
     
+    this.updateTimer();
+    
+    this.getTokenBalance(this.selectedTokenSymbol);
+  }
+  
+  updateTimer() {
     this.days = timer.day();
     this.hours = timer.hour();
     this.minutes = timer.minute();
     this.seconds = timer.second();
     this.phase = timer.phase();
-    
-    this.getTokenBalance(this.selectedTokenSymbol);
   }
-  
+
   resetModals() {
     this.buyStep = 0;
     this.selectedTokenSymbol = this.tokenData[0]['symbol'];

@@ -97,6 +97,7 @@ export class InvestorComponent implements OnInit {
     this.selectedTokenSymbol = this.tokenData[0]['symbol'];
     this.depositWithdrawHistory = user.deposit_withdraw_history().get();
     this.refreshDisplay();
+    setInterval(this.updateTimer, 1000);
     $('[data-toggle="tooltip"]').tooltip();
     $('#modalInvestorBuy').on('hidden.bs.modal', () => {
       this.resetModals();
@@ -125,17 +126,21 @@ export class InvestorComponent implements OnInit {
       this.sharesPrice = new BigNumber(1);
     }
     
-    this.days = timer.day();
-    this.hours = timer.hour();
-    this.minutes = timer.minute();
-    this.seconds = timer.second();
-    this.phase = timer.phase();
+    this.updateTimer();
     
     this.getTokenBalance(this.selectedTokenSymbol);
     
     if (stats.raw_roi_data().length > 0 && !this.hasDrawnChart) {
       this.drawChart();
     }
+  }
+
+  updateTimer() {
+    this.days = timer.day();
+    this.hours = timer.hour();
+    this.minutes = timer.minute();
+    this.seconds = timer.second();
+    this.phase = timer.phase();
   }
 
   refreshBuyOrderDetails(val) {

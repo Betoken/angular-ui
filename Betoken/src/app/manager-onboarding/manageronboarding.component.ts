@@ -76,6 +76,7 @@ export class ManageronboardingComponent implements OnInit {
     this.selectedTokenSymbol = this.tokenData[0]['symbol'];
     this.checkboxes = [false, false, false];
     this.continueEnabled = false;
+    this.getTokenBalance(this.selectedTokenSymbol);
   }
 
   refreshBuyOrderDetails(val) {

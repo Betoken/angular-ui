@@ -186,6 +186,7 @@ export class InvestorComponent implements OnInit {
     this.selectedTokenSymbol = this.tokenData[0]['symbol'];
     this.checkboxes = [false, false, false];
     this.continueEnabled = false;
+    this.getTokenBalance(this.selectedTokenSymbol);
   }
   
   assetSymbolToPrice(symbol) {

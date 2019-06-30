@@ -58,9 +58,9 @@ export const sendTxWithValue = async (func, val, _onTxHash, _onReceipt, _onError
     }
 };
 
-export const sendTxWithToken = async (func, token, amount, _onTxHash, _onReceipt, _onError) => {
-    return sendTx(token.methods.approve(self.contracts.BetokenFund.options.address, 0), () => {
-        sendTx(token.methods.approve(self.contracts.BetokenFund.options.address, amount), () => {
+export const sendTxWithToken = async (func, token, to, amount, _onTxHash, _onReceipt, _onError) => {
+    return sendTx(token.methods.approve(to, 0), () => {
+        sendTx(token.methods.approve(to, amount), () => {
             sendTx(func, _onTxHash, _onReceipt, _onError);
         }, doNothing, doNothing);
     }, doNothing, doNothing);
@@ -413,7 +413,7 @@ export var Betoken = function() {
         var amount = BigNumber(_tokenAmount).times(PRECISION).integerValue().toFixed();
         
         var func = self.contracts.BetokenFund.methods.depositDAI(amount);
-        return sendTxWithToken(func, token, amount, _onTxHash, _onReceipt, _onError);
+        return sendTxWithToken(func, token, self.contracts.BetokenFund.options.address, amount, _onTxHash, _onReceipt, _onError);
     };
 
     /**
@@ -428,7 +428,7 @@ export var Betoken = function() {
         var amount = BigNumber(_tokenAmount).times(BigNumber(10).pow(await self.getTokenDecimals(_tokenAddr))).integerValue().toFixed();
 
         var func = self.contracts.BetokenFund.methods.depositToken(_tokenAddr, amount);
-        return sendTxWithToken(func, token, amount, _onTxHash, _onReceipt, _onError);
+        return sendTxWithToken(func, token, self.contracts.BetokenFund.options.address, amount, _onTxHash, _onReceipt, _onError);
     };
 
     /**
@@ -586,7 +586,7 @@ export var Betoken = function() {
         var amount = BigNumber(_amountInDAI).times(PRECISION).integerValue().toFixed();
         
         var func = self.contracts.BetokenFund.methods.registerWithDAI(amount);
-        return sendTxWithToken(func, token, amount, _onTxHash, _onReceipt, _onError);
+        return sendTxWithToken(func, token, self.contracts.BetokenFund.options.address, amount, _onTxHash, _onReceipt, _onError);
     }
 
     self.registerWithETH = async function(_amountInETH, _onTxHash, _onReceipt, _onError) {
@@ -603,7 +603,7 @@ export var Betoken = function() {
         var amount = BigNumber(_amountInTokens).times(BigNumber(10).pow(await self.getTokenDecimals(_tokenAddr))).integerValue().toFixed();
         
         var func = self.contracts.BetokenFund.methods.registerWithToken(_tokenAddr, amount);
-        return sendTxWithToken(func, token, amount, _onTxHash, _onReceipt, _onError);
+        return sendTxWithToken(func, token, self.contracts.BetokenFund.options.address, amount, _onTxHash, _onReceipt, _onError);
     }
     
     return self;

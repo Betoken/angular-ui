@@ -11,6 +11,7 @@ const ZERO_ADDR = '0x0000000000000000000000000000000000000000';
 const CTOKENS = require('./json_data/compound_tokens.json'); // Compound cTokens
 const STABLECOINS = require('./json_data/stablecoins.json'); // Stablecoins (managers can't invest)
 const PTOKENS = require('./json_data/fulcrum_tokens.json'); // Fulcrum pTokens
+const SUPPORTERS = require('./json_data/betoken_supporters.json');
 const UNSAFE_COL_RATIO_MULTIPLIER = 1.1;
 const COL_RATIO_MODIFIER = 4 / 3;
 
@@ -667,7 +668,8 @@ export const loadRanking = async () => {
                 rank: 0,
                 address: _addr,
                 kairoBalance: BigNumber(await betoken.getKairoBalance(_addr)).div(PRECISION).plus(stake),
-                cycleROI: cycleStartKRO.isZero() ? BigNumber(0) : totalKROChange.div(cycleStartKRO).times(100)
+                cycleROI: cycleStartKRO.isZero() ? BigNumber(0) : totalKROChange.div(cycleStartKRO).times(100),
+                isSupporter: SUPPORTERS.indexOf(_addr) != -1
             };
         });
     }));

@@ -295,6 +295,9 @@ export const loadUserData = async () => {
             let risk = BigNumber(await betoken.getRiskTaken(userAddr)).div(await betoken.getRiskThreshold(userAddr));
             risk = BigNumber.min(risk, 1); // Meaningless after exceeding 1
             riskTakenPercentage = BigNumber(await betoken.getRiskTaken(userAddr)).div(await betoken.getRiskThreshold(userAddr));
+            if (riskTakenPercentage.isNaN()) {
+                riskTakenPercentage = BigNumber(0);
+            }
 
             isLoadingInvestments = true;
             var stake = BigNumber(0);
@@ -504,16 +507,27 @@ export const loadTxHistory = async () => {
 export const loadTokenPrices = async () => {
     isLoadingPrices = true;
 
-    let tokenPrices = await Promise.all(TOKEN_DATA.map(async (_token) => {
-        return betoken.getTokenPrice(_token.address);
-    }));
-    TOKEN_DATA = TOKEN_DATA.map((x, i) => {
-        x.price = tokenPrices[i];
-        return x;
-    }).filter((x) => x.price.gt(0));
-
-    let apiStr = "https://api.kyber.network/change24h";
+    let apiStr = "https://api.kyber.network/market";
     let rawData = await httpsGet(apiStr);
+    if (!rawData.error) {
+        TOKEN_DATA = TOKEN_DATA.map((x) => {
+            if (x.symbol !== 'ETH') {
+                let tokenData = rawData.data.find((y) => y.base_symbol === x.symbol);
+                let daiData = rawData.data.find((y) => y.base_symbol === 'DAI');
+                let tokenPriceInETH = (tokenData.current_bid + tokenData.current_ask) / 2;
+                let daiPriceInETH = (daiData.current_bid + daiData.current_ask) / 2;
+                x.price = BigNumber(tokenPriceInETH).div(daiPriceInETH);
+            } else {
+                let daiData = rawData.data.find((y) => y.base_symbol === 'DAI');
+                let daiPriceInETH = (daiData.current_bid + daiData.current_ask) / 2;
+                x.price = BigNumber(1).div(daiPriceInETH);
+            }
+            return x;
+        }).filter((x) => x.price.gt(0));
+    }
+
+    apiStr = "https://api.kyber.network/change24h";
+    rawData = await httpsGet(apiStr);
     TOKEN_DATA = TOKEN_DATA.map((x) => {
         x.dailyPriceChange = BigNumber(rawData[`ETH_${x.symbol}`].change_usd_24h);
         return x;

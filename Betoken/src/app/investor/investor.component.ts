@@ -93,9 +93,9 @@ export class InvestorComponent implements OnInit {
   }
   
   ngOnInit() {
-    this.tokenData = tokens.token_data().get();
+    this.tokenData = tokens.token_data();
     this.selectedTokenSymbol = this.tokenData[0]['symbol'];
-    this.depositWithdrawHistory = user.deposit_withdraw_history().get();
+    this.depositWithdrawHistory = user.deposit_withdraw_history();
     this.refreshDisplay();
     setInterval(this.updateTimer, 1000);
     $('[data-toggle="tooltip"]').tooltip();
@@ -110,7 +110,7 @@ export class InvestorComponent implements OnInit {
   async refresh() {
     await refresh_actions.records();
     await refresh_actions.stats();
-    this.depositWithdrawHistory = user.deposit_withdraw_history().get();
+    this.depositWithdrawHistory = user.deposit_withdraw_history();
     this.refreshDisplay();
   }
   

@@ -57,7 +57,7 @@ export class ManageronboardingComponent implements OnInit {
     $('#modalBuy').on('hidden.bs.modal', () => {
       this.resetModals();
     });
-    this.tokenData = tokens.token_data().get();
+    this.tokenData = tokens.token_data();
     this.selectedTokenSymbol = this.tokenData[0]['symbol'];
     this.refreshDisplay();
   }

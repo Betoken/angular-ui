@@ -64,7 +64,7 @@ export class InvestoronboardingComponent implements OnInit {
     $('#modalInvestorBuy').on('hidden.bs.modal', () => {
       this.resetModals();
     });
-    this.tokenData = tokens.token_data().get();
+    this.tokenData = tokens.token_data();
     this.selectedTokenSymbol = this.tokenData[0]['symbol'];
     this.refreshDisplay();
     setInterval(() => this.refreshDisplay(), 1000);

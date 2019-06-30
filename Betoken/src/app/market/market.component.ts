@@ -21,7 +21,7 @@ export class MarketComponent implements OnInit {
     }
 
     refreshDisplay() {
-        this.tokenData = tokens.token_data().get().filter((x) => tokens.not_stablecoin(x.symbol));
+        this.tokenData = tokens.token_data().filter((x) => tokens.not_stablecoin(x.symbol));
     }
 
     refresh() {

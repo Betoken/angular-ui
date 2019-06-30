@@ -267,6 +267,10 @@
             <h4 class="modal-title" *ngIf="phase == 1">
               Operation not permitted
             </h4>
+            <!-- Error -->
+            <h4 class="modal-title">
+              That's an error
+            </h4>
             <!-- Close -->
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">×</span>
@@ -463,6 +467,14 @@
                 </form>
               </div>
 
+              <!-- error -->
+              <p class="h1 text-center">
+                <i class="fe fe-alert-circle text-danger"></i>
+              </p>
+              <p class="text-center text-muted mb-5">
+                The operation you requested wasn't created at this time. Please try again.
+              </p>
+
               <!-- Continue button for buyStep 1 -->
               <button type="submit" class="btn btn-block btn-success mt-auto" aria-label="BuyBTKS" *ngIf="buyStep == 0" (click)="buyStep = agreementsChecked() ? 1 : 0" [ngClass]="{'disabled': !agreementsChecked()}">
                 Buy Betoken Shares
@@ -470,6 +482,10 @@
               <!-- Continue button for buyStep 2 -->
               <button type="submit" class="btn btn-block btn-success mt-auto" aria-label="Continue to Buy" *ngIf="buyStep == 1" (click)="deposit();" [disabled]="!continueEnabled">
                 Continue
+              </button>
+              <!-- Try again button for error -->
+              <button type="submit" class="btn btn-block btn-white mt-auto" aria-label="Try again">
+                Try again
               </button>
               <!-- Close button for buyStep 4 -->
               <a class="btn btn-block btn-success mt-auto" href="#/investing-dashboard" target="_blank" *ngIf="buyStep == 4">Investor Dashboard</a>

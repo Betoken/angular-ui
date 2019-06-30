@@ -315,6 +315,10 @@
         <h4 class="modal-title" *ngIf="createInvestmentPopupStep === 4">
           Investment confirmed
         </h4>
+        <!-- Error -->
+        <h4 class="modal-title">
+          That's an error
+        </h4>
         <!-- Close -->
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
@@ -534,6 +538,14 @@
           </div>
         </form>
 
+        <!-- error -->
+        <p class="h1 text-center">
+          <i class="fe fe-alert-circle text-danger"></i>
+        </p>
+        <p class="text-center text-muted mb-5">
+          The operation you requested wasn't created at this time. Please try again.
+        </p>
+
         <!-- Continue button for step 1 -->
         <button type="submit" class="btn btn-block btn-success mt-auto" aria-label="Invest" (click)="createInvestment()" *ngIf="createInvestmentPopupStep === 1" [disabled]="!continueEnabled">
           Continue
@@ -545,6 +557,10 @@
         <!-- Close button for step 4 -->
         <button type="submit" class="btn btn-block btn-white mt-auto" data-dismiss="modal" aria-label="Close" *ngIf="createInvestmentPopupStep === 4">
           Close
+        </button>
+        <!-- Try again button for error -->
+        <button type="submit" class="btn btn-block btn-white mt-auto" aria-label="Try again">
+          Try again
         </button>
       </div>
     </div>
@@ -579,6 +595,10 @@
         <!-- Sell order confirmed title -->
         <h4 class="modal-title" *ngIf="sellInvestmentPopupStep === 3">
           Sell order confirmed
+        </h4>
+        <!-- Error -->
+        <h4 class="modal-title">
+          That's an error
         </h4>
         <!-- Close -->
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -667,7 +687,7 @@
             </div>
           </div>
         </div>
-        
+
         <div *ngIf="sellInvestmentPopupStep === 0">
           <hr class="my-4">
           <div *ngIf="isOrderOfType(sellData, 'basic') || isOrderOfType(sellData, 'fulcrum')">
@@ -810,6 +830,14 @@
           </div>
         </form>
 
+        <!-- error -->
+        <p class="h1 text-center">
+          <i class="fe fe-alert-circle text-danger"></i>
+        </p>
+        <p class="text-center text-muted mb-5">
+          The operation you requested wasn't created at this time. Please try again.
+        </p>
+
         <!-- Continue button for amount to sell Step -->
         <button type="submit" class="btn btn-block btn-success mt-auto" aria-label="Sell" (click)="sell()" *ngIf="sellInvestmentPopupStep === 0" [disabled]="!continueEnabled && (isOrderOfType(sellData, 'basic') || isOrderOfType(sellData, 'fulcrum'))">
           Sell Investment
@@ -818,7 +846,10 @@
         <button type="submit" class="btn btn-block btn-white mt-auto" data-dismiss="modal" aria-label="Close" *ngIf="sellInvestmentPopupStep === 3">
           Close
         </button>
-
+        <!-- Try again button for error -->
+        <button type="submit" class="btn btn-block btn-white mt-auto" aria-label="Try again">
+          Try again
+        </button>
       </div>
     </div>
   </div>
@@ -844,6 +875,10 @@
         <!-- Top up order confirmed title -->
         <h4 class="modal-title" *ngIf="topupPopupStep == 3">
           Top up confirmed
+        </h4>
+        <!-- Error -->
+        <h4 class="modal-title">
+          That's an error
         </h4>
         <!-- Close -->
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -961,6 +996,14 @@
           </div>
         </form>
 
+        <!-- error -->
+        <p class="h1 text-center">
+          <i class="fe fe-alert-circle text-danger"></i>
+        </p>
+        <p class="text-center text-muted mb-5">
+          The operation you requested wasn't created at this time. Please try again.
+        </p>
+
         <!-- Continue button for amount to sell Step -->
         <button type="submit" class="btn btn-block btn-success mt-auto" aria-label="Topup" (click)="topup()" *ngIf="topupPopupStep === 0" [disabled]="!continueEnabled">
           Continue
@@ -968,6 +1011,10 @@
         <!-- close button panel after Asset being sold -->
         <button type="submit" class="btn btn-block btn-white mt-auto" data-dismiss="modal" aria-label="Close" *ngIf="topupPopupStep === 3">
           Close
+        </button>
+        <!-- Try again button for error -->
+        <button type="submit" class="btn btn-block btn-white mt-auto" aria-label="Try again">
+          Try again
         </button>
       </div>
     </div>

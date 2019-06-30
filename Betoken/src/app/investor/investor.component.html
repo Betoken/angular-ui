@@ -353,6 +353,10 @@
             Order confirmed
           </h4>
         </div>
+        <!-- Error -->
+        <h4 class="modal-title">
+          That's an error
+        </h4>
         <!-- Wait until next intermission title -->
         <h4 class="modal-title" *ngIf="phase == 1">
           Operation not permitted
@@ -566,6 +570,15 @@
           </form>
         </div>
 
+        <!-- error -->
+        <p class="h1 text-center">
+          <i class="fe fe-alert-circle text-danger"></i>
+        </p>
+        <p class="text-center text-muted mb-5">
+          The operation you requested wasn't created at this time. Please try again.
+        </p>
+
+
         <!-- Continue button for buyStep 1 -->
         <button type="submit" class="btn btn-block btn-success mt-auto" aria-label="BuyBTKS" *ngIf="buyStep == 0" (click)="buyStep = agreementsChecked() ? 1 : 0" [ngClass]="{'disabled': !agreementsChecked()}">
           Buy Betoken Shares
@@ -577,6 +590,10 @@
         <!-- Close button for buyStep 4 -->
         <button type="submit" class="btn btn-block btn-white mt-auto" data-dismiss="modal" aria-label="Close" *ngIf="buyStep == 4">
           Close
+        </button>
+        <!-- Try again button for error -->
+        <button type="submit" class="btn btn-block btn-white mt-auto" aria-label="Try again">
+          Try again
         </button>
       </div>
     </div>

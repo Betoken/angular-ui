@@ -35,6 +35,8 @@ export class InvestoronboardingComponent implements OnInit {
   minutes: Number;
   seconds: Number;
   phase: Number;
+
+  errorMsg: String;
   
   constructor(private ms: AppComponent, private router: Router) {
     this.user_address = this.ZERO_ADDR;
@@ -53,6 +55,8 @@ export class InvestoronboardingComponent implements OnInit {
     this.minutes = 0;
     this.seconds = 0;
     this.phase = 0;
+
+    this.errorMsg = "";
   }
   
   ngOnInit() {
@@ -123,15 +127,21 @@ export class InvestoronboardingComponent implements OnInit {
         this.buyStep = 4;
       }
     };
+    let error = (e) => {
+      if (this.buyStep != 0) {
+        this.buyStep = -1;
+        this.errorMsg = e.toString();
+      }
+    }
     switch (this.selectedTokenSymbol) {
       case 'ETH':
-        investor_actions.depositETH(payAmount, pending, confirm);
+        investor_actions.depositETH(payAmount, pending, confirm, error);
         break;
       case 'DAI':
-        investor_actions.depositDAI(payAmount, pending, confirm);
+        investor_actions.depositDAI(payAmount, pending, confirm, error);
         break;
       default:
-        investor_actions.depositToken(payAmount, this.selectedTokenSymbol, pending, confirm);
+        investor_actions.depositToken(payAmount, this.selectedTokenSymbol, pending, confirm, error);
         break;
     }
   }

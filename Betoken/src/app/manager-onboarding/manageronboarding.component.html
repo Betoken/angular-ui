@@ -3,7 +3,8 @@
   <div class="container px-lg-7">
     <div class="row justify-content-center my-5">
       <div class="col-11 col-md-12">
-        <img class="image-fluid mb-4" src="assets/img/illustrations/betoken-particuls.svg" alt="Betoken particuls" style="max-width: 88px;">
+        <img class="image-fluid mb-4" src="assets/img/illustrations/betoken-particuls.svg" alt="Betoken particuls"
+          style="max-width: 88px;">
       </div>
     </div>
     <div class="row justify-content-center mb-6">
@@ -12,7 +13,8 @@
           Become a
         </h5>
         <h1 class="display-2 font-weight-bold d-none d-lg-block">Fund Manager</h1>
-        <p class="lead font-weight-bold mb-5 d-none d-lg-block">Connect your crypto-trading expertise to the Betoken's pool of capital and earn commissions!</p>
+        <p class="lead font-weight-bold mb-5 d-none d-lg-block">Connect your crypto-trading expertise to the Betoken's
+          pool of capital and earn commissions!</p>
         <div class="media mb-4 mb-lg-3">
           <i class="fe fe-check text-green mr-3"></i>
           <div class="media-body">
@@ -20,7 +22,13 @@
               The best managers earn the most
             </h6>
             <p>
-              The Betoken protocol recognizes and quantifies the talent of its fund managers by allocating units of reputation to them, denominated in <a href="https://betoken.gitbook.io/docs/manage-the-fund/what-is-kairo" target="_blank">Kairo tokens</a>, and financially rewards them based on their talent and contributions. The more Kairo tokens you have, the more money in the Betoken fund you can manage and the more income you’ll get every month as commissions on your investments. <a href="https://betoken.gitbook.io/docs/manage-the-fund/how-does-the-managers-monthly-commission-work" target="_blank">More about Betoken's commissions structure<i class="fe fe-arrow-right ml-2"></i></a>
+              The Betoken protocol recognizes and quantifies the talent of its fund managers by allocating units of
+              reputation to them, denominated in <a href="https://betoken.gitbook.io/docs/manage-the-fund/what-is-kairo"
+                target="_blank">Kairo tokens</a>, and financially rewards them based on their talent and contributions.
+              The more Kairo tokens you have, the more money in the Betoken fund you can manage and the more income
+              you’ll get every month as commissions on your investments. <a
+                href="https://betoken.gitbook.io/docs/manage-the-fund/how-does-the-managers-monthly-commission-work"
+                target="_blank">More about Betoken's commissions structure<i class="fe fe-arrow-right ml-2"></i></a>
             </p>
           </div>
         </div>
@@ -31,7 +39,9 @@
               Margin trading and instant liquidity
             </h6>
             <p>
-              Betoken uses the full value of the open finance ecosystem like Kyber Network, Compound, Fulcrum by bZx and DAI stable coin. These financial primitives enable margin trading with up to 4x leverage on Betoken and guaranteed liquidity.
+              Betoken uses the full value of the open finance ecosystem like Kyber Network, Compound, Fulcrum by bZx and
+              DAI stable coin. These financial primitives enable margin trading with up to 4x leverage on Betoken and
+              guaranteed liquidity.
             </p>
           </div>
         </div>
@@ -41,31 +51,41 @@
           Become a
         </h5>
         <h1 class="display-4 font-weight-bold d-block d-lg-none">Fund Manager</h1>
-        <p class="lead font-weight-bold mb-4 d-block d-lg-none">Connect your crypto-trading expertise to the Betoken's decentralized pool of capital and actively trade against the market to earn commissions! Get started by buying a manager account.</p>
+        <p class="lead font-weight-bold mb-4 d-block d-lg-none">Connect your crypto-trading expertise to the Betoken's
+          decentralized pool of capital and actively trade against the market to earn commissions! Get started by buying
+          a manager account.</p>
         <div class="card mb-6">
           <div class="card-header d-flex text-center text-md-left">
             <!-- cta -->
-            <span class="text-truncate d-block" *ngIf="user_address !== ZERO_ADDR"><span class="text-success">●</span> {{user_address}}</span>
-            <span class="text-truncate" *ngIf="user_address == ZERO_ADDR"><span class="text-danger">●</span> No Wallet Connected</span>
+            <span class="text-truncate d-block" *ngIf="user_address !== ZERO_ADDR"><span class="text-success">●</span>
+              {{user_address}}</span>
+            <span class="text-truncate" *ngIf="user_address == ZERO_ADDR"><span class="text-danger">●</span> No Wallet
+              Connected</span>
           </div>
           <div class="card-body text-center text-md-left">
             <div *ngIf="user_address == ZERO_ADDR">
-              <p class="text-secondary text-center">Please enable Metamask or visit this page in a Web3 browser to interact with Betoken on the Ethereum Mainnet.</p>
-              <a class="btn btn-block btn-lg btn-success d-none d-lg-block" target="__blank" href="https://metamask.io">Get Metamask</a>
-              <a class="btn btn-block btn-lg btn-success d-block d-lg-none" target="__blank" href="https://wallet.coinbase.com/">Get Coinbase Wallet</a>
+              <p class="text-secondary text-center">Please enable Metamask or visit this page in a Web3 browser to
+                interact with Betoken on the Ethereum Mainnet.</p>
+              <a class="btn btn-block btn-lg btn-success d-none d-lg-block" target="__blank"
+                href="https://metamask.io">Get Metamask</a>
+              <a class="btn btn-block btn-lg btn-success d-block d-lg-none" target="__blank"
+                href="https://wallet.coinbase.com/">Get Coinbase Wallet</a>
             </div>
-            <button class="btn btn-block btn-lg btn-success" type="button" data-toggle="modal" data-target="#modalBuy" *ngIf="user_address != ZERO_ADDR && kairoBalance.eq(0)">Get Started</button>
+            <button class="btn btn-block btn-lg btn-success" type="button" data-toggle="modal" data-target="#modalBuy"
+              *ngIf="user_address != ZERO_ADDR && kairoBalance.eq(0)">Get Started</button>
             <div *ngIf="user_address != ZERO_ADDR && kairoBalance.gt(0)">
               <p class="text-secondary text-center">You are already a manager.</p>
               <a class="btn btn-block btn-lg btn-success" href="#/dashboard">Sign in</a>
             </div>
           </div>
-          <a href="https://github.com/solidified-platform/audits/blob/master/Audit%20Report%20-%20%20Betoken%20%5B20.05.2019%5D.pdf" target="_blank">
+          <a href="https://github.com/solidified-platform/audits/blob/master/Audit%20Report%20-%20%20Betoken%20%5B20.05.2019%5D.pdf"
+            target="_blank">
             <div class="card-footer">
               <div class="row align-items-center">
                 <div class="col-auto">
                   <div class="avatar avatar-sm">
-                    <img class="avatar-img rounded-circle bg-secondary" src="assets/img/solidified-logo.png" alt="Solidified logo">
+                    <img class="avatar-img rounded-circle bg-secondary" src="assets/img/solidified-logo.png"
+                      alt="Solidified logo">
                   </div>
                 </div>
                 <div class="col">
@@ -82,10 +102,14 @@
           <div class="card-body">
             <h3>Disclaimer</h3>
             <p class="text-muted">
-              Nothing herein constitutes an offer to sell, or the solicitation of an offer to buy, any securities or tokens.
+              Nothing herein constitutes an offer to sell, or the solicitation of an offer to buy, any securities or
+              tokens.
             </p>
             <p class="text-muted">
-              Betoken enables capital connection and managing using smart contracts which are open source. Betoken does not take custody of tokens and is only a collaborative hub for investors and managers. Betoken is not a licensed bank, broker-dealer, investment advisor or an exchange. Betoken uses partner protocols (Kyber, Compound, bZx, Maker DAO) to power its own ecosystem.
+              Betoken enables capital connection and managing using smart contracts which are open source. Betoken does
+              not take custody of tokens and is only a collaborative hub for investors and managers. Betoken is not a
+              licensed bank, broker-dealer, investment advisor or an exchange. Betoken uses partner protocols (Kyber,
+              Compound, bZx, Maker DAO) to power its own ecosystem.
             </p>
             <p class="text-danger">
               💀 This project is in beta. Use at your own risk.
@@ -103,7 +127,8 @@
           <!-- question -->
           <div class="card">
             <div class="card-header" id="headingOne">
-              <a href="" class="text-secondary" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+              <a href="" class="text-secondary" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false"
+                aria-controls="collapseOne">
                 <div class="row align-items-center no-gutters">
                   <div class="col mr-auto">
                     <h3 class="card-text">
@@ -118,11 +143,15 @@
             </div>
             <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
               <div class="card-body">
-                <p>Kairo is Betoken's non-transferable reputation token. Managers need to possess Kairo tokens to manage funds on Betoken. Kairo represents how good a manager is at investing. The more Kairo tokens you have, the more money in the Betoken fund you can manage and the more income you’ll get every month as commissions on your investments.</p>
+                <p>Kairo is Betoken's non-transferable reputation token. Managers need to possess Kairo tokens to manage
+                  funds on Betoken. Kairo represents how good a manager is at investing. The more Kairo tokens you have,
+                  the more money in the Betoken fund you can manage and the more income you’ll get every month as
+                  commissions on your investments.</p>
               </div>
             </div>
             <div class="card-header border-bottom" id="headingTwo">
-              <a href="" class="text-secondary" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              <a href="" class="text-secondary" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
+                aria-controls="collapseTwo">
                 <div class="row align-items-center no-gutters">
                   <div class="col mr-auto">
                     <h3 class="card-text">
@@ -137,11 +166,13 @@
             </div>
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
               <div class="card-body">
-                <p>Click on the Get Started button and follow the instructions. You'll be able to use Ether or any of our 70+ supported ERC-20 tokens to buy Kairo tokens (KRO).</p>
+                <p>Click on the Get Started button and follow the instructions. You'll be able to use Ether or any of
+                  our 70+ supported ERC-20 tokens to buy Kairo tokens (KRO).</p>
               </div>
             </div>
             <div class="card-header border-bottom" id="headingSeven">
-              <a href="" class="text-secondary" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+              <a href="" class="text-secondary" data-toggle="collapse" data-target="#collapseSeven"
+                aria-expanded="false" aria-controls="collapseSeven">
                 <div class="row align-items-center no-gutters">
                   <div class="col mr-auto">
                     <h3 class="card-text">
@@ -156,11 +187,13 @@
             </div>
             <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordion">
               <div class="card-body">
-                <p>Yes. The Kairo will be given to your wallet after your purchase transaction has been accepted by the Ethereum blockchain, which may take up to a few minutes.</p>
+                <p>Yes. The Kairo will be given to your wallet after your purchase transaction has been accepted by the
+                  Ethereum blockchain, which may take up to a few minutes.</p>
               </div>
             </div>
             <div class="card-header border-bottom" id="headingThree">
-              <a href="" class="text-secondary" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              <a href="" class="text-secondary" data-toggle="collapse" data-target="#collapseThree"
+                aria-expanded="false" aria-controls="collapseThree">
                 <div class="row align-items-center no-gutters">
                   <div class="col mr-auto">
                     <h3 class="card-text">
@@ -180,11 +213,15 @@
                 <h4>IF the fund is profitable OR not profitable</h4>
                 <p>0.1% of the total Betoken funds is set aside and distributed among fund manager holding Kairo.</p>
                 <h4>ONLY IF the fund is profitable</h4>
-                <p>20% of the total Betoken's monthly profits is set aside as commission and distributed among fund managers holding Kairo proportional to the amount they hold and their <a href="#"></a> risk profile. The commission is taken into account IF and ONLY IF the fund is profitable during the actual investment cycle.</p>
+                <p>20% of the total Betoken's monthly profits is set aside as commission and distributed among fund
+                  managers holding Kairo proportional to the amount they hold and their <a href="#"></a> risk profile.
+                  The commission is taken into account IF and ONLY IF the fund is profitable during the actual
+                  investment cycle.</p>
               </div>
             </div>
             <div class="card-header border-bottom" id="headingFour">
-              <a href="" class="text-secondary" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+              <a href="" class="text-secondary" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false"
+                aria-controls="collapseFour">
                 <div class="row align-items-center no-gutters">
                   <div class="col mr-auto">
                     <h3 class="card-text">
@@ -199,11 +236,13 @@
             </div>
             <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
               <div class="card-body">
-                You have access to a <a href="https://betoken.fund/portal/#/dashboard">Portal</a> where you can view Betoken's fund performances and your manager trading interface.
+                You have access to a <a href="https://betoken.fund/portal/#/dashboard">Portal</a> where you can view
+                Betoken's fund performances and your manager trading interface.
               </div>
             </div>
             <div class="card-header border-bottom" id="headingFive">
-              <a href="" class="text-secondary" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+              <a href="" class="text-secondary" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false"
+                aria-controls="collapseFive">
                 <div class="row align-items-center no-gutters">
                   <div class="col mr-auto">
                     <h3 class="card-text">
@@ -218,11 +257,13 @@
             </div>
             <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
               <div class="card-body">
-                No. Kairo is a non-transferable reputation token, which means that you cannot sell or give your Kairo to someone else.
+                No. Kairo is a non-transferable reputation token, which means that you cannot sell or give your Kairo to
+                someone else.
               </div>
             </div>
             <div class="card-header border-bottom-0" id="headingSix">
-              <a href="" class="text-secondary" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+              <a href="" class="text-secondary" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false"
+                aria-controls="collapseSix">
                 <div class="row align-items-center no-gutters">
                   <div class="col mr-auto">
                     <h3 class="card-text">
@@ -237,7 +278,9 @@
             </div>
             <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordion">
               <div class="card-body">
-                No. You can only buy Kairo tokens once per Ethereum account. <a href="https://github.com/Betoken/Whitepaper/blob/master/BetokenWhitepaper.md#212-continuous-distribution" target="_blank">More about Kairo distribution and price.</a>
+                No. You can only buy Kairo tokens once per Ethereum account. <a
+                  href="https://github.com/Betoken/Whitepaper/blob/master/BetokenWhitepaper.md#212-continuous-distribution"
+                  target="_blank">More about Kairo distribution and price.</a>
               </div>
             </div>
           </div>
@@ -262,12 +305,14 @@
             <a href="https://medium.com/betoken" class="nav-link text-center text-secondary">Blog</a>
           </li>
         </ul>
-        <p class="text-center text-secondary">Contact us at <a class="text-secondary" href="mailto:hello@betoken.fund?subject=Hey">hello@betoken.fund</a></p>
+        <p class="text-center text-secondary">Contact us at <a class="text-secondary"
+            href="mailto:hello@betoken.fund?subject=Hey">hello@betoken.fund</a></p>
       </div>
     </div>
 
     <!-- Buy BTKS modal -->
-    <div class="modal fade fixed-right" id="modalBuy" tabindex="-1" role="dialog" aria-labelledby="modalBuy" aria-hidden="true">
+    <div class="modal fade fixed-right" id="modalBuy" tabindex="-1" role="dialog" aria-labelledby="modalBuy"
+      aria-hidden="true">
       <div class="modal-dialog modal-dialog-vertical bg-white" role="document">
         <div class="modal-content" data-toggle="lists" data-lists-values="[&quot;name&quot;]">
           <div class="modal-header border-0">
@@ -292,7 +337,7 @@
               Order confirmed
             </h4>
             <!-- Error -->
-            <h4 class="modal-title">
+            <h4 class="modal-title" *ngIf="buyStep == -1">
               That's an error
             </h4>
             <!-- Close -->
@@ -303,11 +348,20 @@
 
           <div class="card-header py-0 border-0" style="min-height: 24px;">
             <div class="progress" style="height: 8px;">
-              <div [ngClass]="{'bg-success': buyStep >= 0, 'bg-secondary': buyStep !== 0}" class="progress-bar" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-              <div [ngClass]="{'bg-success': buyStep >= 1, 'bg-secondary': buyStep !== 1}" class="progress-bar border-left" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-              <div [ngClass]="{'bg-success': buyStep >= 2, 'bg-secondary': buyStep !== 2}" class="progress-bar border-left" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-              <div [ngClass]="{'bg-success': buyStep >= 3, 'bg-secondary': buyStep !== 3}" class="progress-bar border-left" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-              <div [ngClass]="{'bg-success': buyStep >= 4, 'bg-secondary': buyStep !== 4}" class="progress-bar border-left" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+              <div [ngClass]="{'bg-success': buyStep >= 0, 'bg-secondary': buyStep !== 0}" class="progress-bar"
+                role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+              <div [ngClass]="{'bg-success': buyStep >= 1, 'bg-secondary': buyStep !== 1}"
+                class="progress-bar border-left" role="progressbar" style="width: 20%" aria-valuenow="20"
+                aria-valuemin="0" aria-valuemax="100"></div>
+              <div [ngClass]="{'bg-success': buyStep >= 2, 'bg-secondary': buyStep !== 2}"
+                class="progress-bar border-left" role="progressbar" style="width: 20%" aria-valuenow="20"
+                aria-valuemin="0" aria-valuemax="100"></div>
+              <div [ngClass]="{'bg-success': buyStep >= 3, 'bg-secondary': buyStep !== 3}"
+                class="progress-bar border-left" role="progressbar" style="width: 20%" aria-valuenow="20"
+                aria-valuemin="0" aria-valuemax="100"></div>
+              <div [ngClass]="{'bg-success': buyStep >= 4, 'bg-secondary': buyStep !== 4}"
+                class="progress-bar border-left" role="progressbar" style="width: 20%" aria-valuenow="20"
+                aria-valuemin="0" aria-valuemax="100"></div>
             </div>
           </div>
 
@@ -315,16 +369,25 @@
             <!-- before starting confirm rules -->
             <div *ngIf="buyStep == 0">
               <div class="custom-control custom-checkbox mb-4">
-                <input type="checkbox" class="custom-control-input" id="rule1" (change)="checkboxes[0] = !checkboxes[0]">
-                <label class="custom-control-label small text-secondary" for="rule1">You are NEITHER a citizen or resident of, NOR currently located in any of the following states or territories, NOR an entity formed under the laws of: Afghanistan, Cuba, Democratic People's Republic of Korea, Iran, Iraq, People’s Republic of China, Russian Federation, Somalia, Sudan, Syria, United Arab Emirates, United States of America, Venezuela, Yemen.</label>
+                <input type="checkbox" class="custom-control-input" id="rule1"
+                  (change)="checkboxes[0] = !checkboxes[0]">
+                <label class="custom-control-label small text-secondary" for="rule1">You are NEITHER a citizen or
+                  resident of, NOR currently located in any of the following states or territories, NOR an entity formed
+                  under the laws of: Afghanistan, Cuba, Democratic People's Republic of Korea, Iran, Iraq, People’s
+                  Republic of China, Russian Federation, Somalia, Sudan, Syria, United Arab Emirates, United States of
+                  America, Venezuela, Yemen.</label>
               </div>
               <div class="custom-control custom-checkbox mb-4">
-                <input type="checkbox" class="custom-control-input" id="rule2" (change)="checkboxes[1] = !checkboxes[1]">
-                <label class="custom-control-label small text-secondary" for="rule2">You have read and understood our <a href="#disclaimer" data-dismiss="modal" aria-label="Close">disclaimer</a>.</label>
+                <input type="checkbox" class="custom-control-input" id="rule2"
+                  (change)="checkboxes[1] = !checkboxes[1]">
+                <label class="custom-control-label small text-secondary" for="rule2">You have read and understood our <a
+                    href="#disclaimer" data-dismiss="modal" aria-label="Close">disclaimer</a>.</label>
               </div>
               <div class="custom-control custom-checkbox mb-4">
-                <input type="checkbox" class="custom-control-input" id="rule3" (change)="checkboxes[2] = !checkboxes[2]">
-                <label class="custom-control-label small text-danger" for="rule3">💀 You understand that Betoken Protocol is in beta. Use at your own risk.</label>
+                <input type="checkbox" class="custom-control-input" id="rule3"
+                  (change)="checkboxes[2] = !checkboxes[2]">
+                <label class="custom-control-label small text-danger" for="rule3">💀 You understand that Betoken
+                  Protocol is in beta. Use at your own risk.</label>
               </div>
             </div>
 
@@ -345,20 +408,30 @@
                     <div class="form-group row mb-2">
                       <div class="col">
                         <div class="input-group">
-                          <input aria-describedby="Betoken Shares Amount to buy" class="form-control form-control-lg pr-0" type="number" placeholder="0.0" id="sharesAmountToBuy" (input)="refreshBuyOrderDetails($event.target.value); continueEnabled = true">
+                          <input aria-describedby="Betoken Shares Amount to buy"
+                            class="form-control form-control-lg pr-0" type="number" placeholder="0.0"
+                            id="sharesAmountToBuy"
+                            (input)="refreshBuyOrderDetails($event.target.value); continueEnabled = true">
                           <div class="input-group-append">
-                            <button class="btn btn-white" name="button" type="button" (click)="maxBuyAmount()">Max</button>
+                            <button class="btn btn-white" name="button" type="button"
+                              (click)="maxBuyAmount()">Max</button>
                           </div>
                         </div>
                       </div>
                       <div class="col">
-                        <select class="form-control form-control-lg" id="buyTokenSelect" (change)="selectBuyToken($event.target.value)">
+                        <select class="form-control form-control-lg" id="buyTokenSelect"
+                          (change)="selectBuyToken($event.target.value)">
                           <option *ngFor="let token of tokenData">{{token.symbol}}</option>
                         </select>
                       </div>
                     </div>
-                    <small class="d-block form-text text-secondary d-inline-block mb-0">{{selectedTokenBalance.toFormat(4)}} {{selectedTokenSymbol}} available</small>
-                    <small class="form-text text-warning d-inline-block mb-0 mt-1">Max purchase: {{getMaxPaymentAmount().toFormat(4)}} {{selectedTokenSymbol}} <a class="text-muted ml-2" href="https://betoken.gitbook.io/docs/manage-the-fund/why-is-there-a-max-kairo-purchase" title="Learn more" target="_blank"><span class="fe fe-help-circle"></span></a></small>
+                    <small
+                      class="d-block form-text text-secondary d-inline-block mb-0">{{selectedTokenBalance.toFormat(4)}}
+                      {{selectedTokenSymbol}} available</small>
+                    <small class="form-text text-warning d-inline-block mb-0 mt-1">Max purchase:
+                      {{getMaxPaymentAmount().toFormat(4)}} {{selectedTokenSymbol}} <a class="text-muted ml-2"
+                        href="https://betoken.gitbook.io/docs/manage-the-fund/why-is-there-a-max-kairo-purchase"
+                        title="Learn more" target="_blank"><span class="fe fe-help-circle"></span></a></small>
                   </form>
                 </div>
               </div>
@@ -396,24 +469,29 @@
 
             <!-- Step 2: confirm transaction -->
             <p class="text-center text-muted mb-5" *ngIf="buyStep == 2">
-              Confirm the transaction in your wallet’s interface to save it on the Ethereum blockchain. It's fine to stick with these defaults gas limit and price.
+              Confirm the transaction in your wallet’s interface to save it on the Ethereum blockchain. It's fine to
+              stick with these defaults gas limit and price.
             </p>
 
             <!-- Step 3: transaction broadcasted -->
             <!-- Processing investment body -->
             <div *ngIf="buyStep == 3">
-              <img class="image-fluid d-block mx-auto mb-4" src="assets/img/animated-logo.svg" alt="Betoken logo" style="width: 88px;">
+              <img class="image-fluid d-block mx-auto mb-4" src="assets/img/animated-logo.svg" alt="Betoken logo"
+                style="width: 88px;">
               <p class="text-center text-muted mb-5">
                 Your order is being saved on the Ethereum blockchain.
               </p>
               <hr>
-              <form >
+              <form>
                 <div class="form-group">
                   <label for="exampleFormControlInput1">Transaction ID</label>
                   <div class="input-group mb-3">
-                    <input type="text" class="form-control form-control-lg" value="{{transactionId}}" aria-label="Transaction ID" aria-describedby="">
+                    <input type="text" class="form-control form-control-lg" value="{{transactionId}}"
+                      aria-label="Transaction ID" aria-describedby="">
                     <div class="input-group-append">
-                      <a class="btn btn-white h-100 d-flex align-items-center" href="https://etherscan.io/tx/{{transactionId}}" target="_blank"><i class="fe fe-external-link"></i></a>
+                      <a class="btn btn-white h-100 d-flex align-items-center"
+                        href="https://etherscan.io/tx/{{transactionId}}" target="_blank"><i
+                          class="fe fe-external-link"></i></a>
                     </div>
                   </div>
                 </div>
@@ -427,9 +505,12 @@
                 <i class="fe fe-check-circle text-success"></i>
               </p>
               <p class="text-center text-muted mb-5">
-                You bought <span class="font-weight-bold text-secondary">{{buyKairoAmount.toFormat(4)}}</span> KRO using <span class="font-weight-bold text-secondary">{{buyTokenAmount.toFormat(6)}}</span> {{selectedTokenSymbol}}.
+                You bought <span class="font-weight-bold text-secondary">{{buyKairoAmount.toFormat(4)}}</span> KRO using
+                <span class="font-weight-bold text-secondary">{{buyTokenAmount.toFormat(6)}}</span>
+                {{selectedTokenSymbol}}.
               </p>
-              <a target="_blank" href="https://twitter.com/intent/tweet?hashtags=Betoken%2C%20DeFi&related=betokenfund&text=I%27ve%20just%20joined%20Betoken%20as%20a%20fund%20manager%2C%20world%27s%20first%20crowd-powered%20cryptoassets%20management%20protocol!&url=https%3A%2F%2Fbetoken.fund&via=betokenfund">
+              <a target="_blank"
+                href="https://twitter.com/intent/tweet?hashtags=Betoken%2C%20DeFi&related=betokenfund&text=I%27ve%20just%20joined%20Betoken%20as%20a%20fund%20manager%2C%20world%27s%20first%20crowd-powered%20cryptoassets%20management%20protocol!&url=https%3A%2F%2Fbetoken.fund&via=betokenfund">
                 <button class="btn btn-twitter btn-block" type="button" name="button">Tweet about it</button>
               </a>
               <hr>
@@ -437,9 +518,12 @@
                 <div class="form-group">
                   <label for="exampleFormControlInput1">Transaction ID</label>
                   <div class="input-group mb-3">
-                    <input type="text" class="form-control form-control-lg" value="{{transactionId}}" aria-label="Transaction ID" aria-describedby="">
+                    <input type="text" class="form-control form-control-lg" value="{{transactionId}}"
+                      aria-label="Transaction ID" aria-describedby="">
                     <div class="input-group-append">
-                      <a class="btn btn-white h-100 d-flex align-items-center" href="https://etherscan.io/tx/{{transactionId}}" target="_blank"><i class="fe fe-external-link"></i></a>
+                      <a class="btn btn-white h-100 d-flex align-items-center"
+                        href="https://etherscan.io/tx/{{transactionId}}" target="_blank"><i
+                          class="fe fe-external-link"></i></a>
                     </div>
                   </div>
                 </div>
@@ -447,27 +531,36 @@
             </div>
 
             <!-- error -->
-            <p class="h1 text-center">
-              <i class="fe fe-alert-circle text-danger"></i>
-            </p>
-            <p class="text-center text-muted mb-5">
-              The operation you requested wasn't created at this time. Please try again.
-            </p>
+            <div *ngIf="sellInvestmentPopupStep == -1">
+              <p class="h1 text-center">
+                <i class="fe fe-alert-circle text-danger"></i>
+              </p>
+              <p class="text-center text-muted mb-5">
+                The operation has resulted in an error. Please try again.
+              </p>
+              <p class="text-center text-muted mb-5">
+                Error message: {{errorMsg}}
+              </p>
+            </div>
 
             <!-- Continue button for buyStep 1 -->
-            <button type="submit" class="btn btn-block btn-success mt-auto" aria-label="BuyBTKS" *ngIf="buyStep == 0" (click)="buyStep = agreementsChecked() ? 1 : 0" [ngClass]="{'disabled': !agreementsChecked()}">
+            <button type="submit" class="btn btn-block btn-success mt-auto" aria-label="BuyBTKS" *ngIf="buyStep == 0"
+              (click)="buyStep = agreementsChecked() ? 1 : 0" [ngClass]="{'disabled': !agreementsChecked()}">
               Buy Kairo tokens
             </button>
             <!-- Continue button for buyStep 2 -->
-            <button type="submit" class="btn btn-block btn-success mt-auto" aria-label="Continue to Buy" *ngIf="buyStep == 1" (click)="register();" [disabled]="!continueEnabled">
+            <button type="submit" class="btn btn-block btn-success mt-auto" aria-label="Continue to Buy"
+              *ngIf="buyStep == 1" (click)="register();" [disabled]="!continueEnabled">
               Continue
             </button>
             <!-- Try again button for error -->
-            <button type="submit" class="btn btn-block btn-white mt-auto" aria-label="Try again">
+            <button type="submit" class="btn btn-block btn-white mt-auto" aria-label="Try again"
+              *ngIf="buyStep == -1" (click)="resetModals()">
               Try again
             </button>
             <!-- Close button for buyStep 4 -->
-            <a class="btn btn-block btn-success mt-auto" href="#/dashboard" target="_blank" *ngIf="buyStep == 4">Manager Portal</a>
+            <a class="btn btn-block btn-success mt-auto" href="#/dashboard" target="_blank" *ngIf="buyStep == 4">Manager
+              Portal</a>
           </div>
         </div>
       </div>

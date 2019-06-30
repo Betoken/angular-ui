@@ -31,6 +31,43 @@ export const PositionToken = function(_addr) {
     return new web3.eth.Contract(abi, _addr);
 };
 
+export const estimateGas = async (func, _onError) => {
+    return Math.floor((await func.estimateGas({
+        from: web3.eth.defaultAccount
+    }).catch(_onError)) * 1.2);
+};
+
+export const sendTx = async (func, _onTxHash, _onReceipt, _onError) => {
+    var gasLimit = await estimateGas(func, _onError);
+    if (!isNaN(gasLimit)) {
+        return func.send({
+            from: web3.eth.defaultAccount,
+            gas: gasLimit
+        }).on("transactionHash", _onTxHash).on("receipt", _onReceipt).on("error", _onError);
+    }
+};
+
+export const sendTxWithValue = async (func, val, _onTxHash, _onReceipt, _onError) => {
+    var gasLimit = await estimateGas(func, _onError);
+    if (!isNaN(gasLimit)) {
+        return func.send({
+            from: web3.eth.defaultAccount,
+            gas: gasLimit,
+            value: val
+        }).on("transactionHash", _onTxHash).on("receipt", _onReceipt).on("error", _onError);
+    }
+};
+
+export const sendTxWithToken = async (func, token, amount, _onTxHash, _onReceipt, _onError) => {
+    return sendTx(token.methods.approve(self.contracts.BetokenFund.options.address, 0), () => {
+        sendTx(token.methods.approve(self.contracts.BetokenFund.options.address, amount), () => {
+            sendTx(func, _onTxHash, _onReceipt, _onError);
+        }, doNothing, doNothing);
+    }, doNothing, doNothing);
+};
+
+export const doNothing = () => {}
+
 // Betoken abstraction
 /**
 * Constructs an abstraction of Betoken contracts
@@ -197,7 +234,7 @@ export var Betoken = function() {
         try {
             let pToken = PositionToken(_tokenAddr);
             let underlyingPerPToken = await pToken.methods.tokenPrice().call();
-            return BigNumber(underlyingPerPToken).div(PRECISION).times(_underlyingPrice);
+            return BigNumber(underlyingPerPToken).div(PRECISION);//.times(_underlyingPrice);
         } catch (e) {
             return BigNumber(0);
         }
@@ -207,7 +244,7 @@ export var Betoken = function() {
         try {
             let pToken = PositionToken(_tokenAddr);
             let underlyingPerPToken = await pToken.methods.liquidationPrice().call();
-            return BigNumber(underlyingPerPToken).div(PRECISION).times(_underlyingPrice);
+            return BigNumber(underlyingPerPToken).div(PRECISION);//.times(_underlyingPrice);
         } catch (e) {
             return BigNumber(0);
         }
@@ -340,11 +377,11 @@ export var Betoken = function() {
     * Ends the current phase
     * @return {Promise} .then(()->)
     */
-    self.nextPhase = async function(_onTxHash, _onReceipt) {
+    self.nextPhase = async function(_onTxHash, _onReceipt, _onError) {
         await getDefaultAccount();
-        return self.contracts.BetokenFund.methods.nextPhase().send({
-            from: web3.eth.defaultAccount
-        }).on("transactionHash", _onTxHash).on("receipt", _onReceipt);
+
+        var func = self.contracts.BetokenFund.methods.nextPhase();
+        return sendTx(func, _onTxHash, _onReceipt, _onError);
     };
     
     
@@ -357,14 +394,12 @@ export var Betoken = function() {
     * @param  {BigNumber} _tokenAmount the deposit token amount
     * @return {Promise}               .then(()->)
     */
-    self.depositETH = async function(_tokenAmount, _onTxHash, _onReceipt) {
+    self.depositETH = async function(_tokenAmount, _onTxHash, _onReceipt, _onError) {
         await getDefaultAccount();
         var amount = BigNumber(_tokenAmount).times(PRECISION).integerValue().toFixed();
         
-        return self.contracts.BetokenFund.methods.depositEther().send({
-            from: web3.eth.defaultAccount,
-            value: amount
-        }).on("transactionHash", _onTxHash).on("receipt", _onReceipt);
+        var func = self.contracts.BetokenFund.methods.depositEther();
+        return sendTxWithValue(func, amount, _onTxHash, _onReceipt, _onError);
     };
 
     /**
@@ -372,22 +407,13 @@ export var Betoken = function() {
     * @param  {BigNumber} _tokenAmount the deposit token amount
     * @return {Promise}               .then(()->)
     */
-    self.depositDAI = async function(_tokenAmount, _onTxHash, _onReceipt) {
+    self.depositDAI = async function(_tokenAmount, _onTxHash, _onReceipt, _onError) {
         await getDefaultAccount();
         var token = ERC20(DAI_ADDR);
         var amount = BigNumber(_tokenAmount).times(PRECISION).integerValue().toFixed();
         
-        token.methods.approve(self.contracts.BetokenFund.options.address, 0).send({
-            from: web3.eth.defaultAccount
-        }).on("transactionHash", () => {
-            token.methods.approve(self.contracts.BetokenFund.options.address, amount).send({
-                from: web3.eth.defaultAccount
-            }).on("transactionHash", () => {
-                self.contracts.BetokenFund.methods.depositDAI(amount).send({
-                    from: web3.eth.defaultAccount
-                }).on("transactionHash", _onTxHash).on("receipt", _onReceipt);
-            });
-        });
+        var func = self.contracts.BetokenFund.methods.depositDAI(amount);
+        return sendTxWithToken(func, token, amount, _onTxHash, _onReceipt, _onError);
     };
 
     /**
@@ -396,22 +422,13 @@ export var Betoken = function() {
     * @param  {BigNumber} _tokenAmount the deposit token amount
     * @return {Promise}               .then(()->)
     */
-    self.depositToken = async function(_tokenAddr, _tokenAmount, _onTxHash, _onReceipt) {
+    self.depositToken = async function(_tokenAddr, _tokenAmount, _onTxHash, _onReceipt, _onError) {
         await getDefaultAccount();
         var token = ERC20(_tokenAddr);
         var amount = BigNumber(_tokenAmount).times(BigNumber(10).pow(await self.getTokenDecimals(_tokenAddr))).integerValue().toFixed();
-        
-        token.methods.approve(self.contracts.BetokenFund.options.address, 0).send({
-            from: web3.eth.defaultAccount
-        }).on("transactionHash", () => {
-            token.methods.approve(self.contracts.BetokenFund.options.address, amount).send({
-                from: web3.eth.defaultAccount
-            }).on("transactionHash", () => {
-                self.contracts.BetokenFund.methods.depositToken(_tokenAddr, amount).send({
-                    from: web3.eth.defaultAccount
-                }).on("transactionHash", _onTxHash).on("receipt", _onReceipt);
-            });
-        });
+
+        var func = self.contracts.BetokenFund.methods.depositToken(_tokenAddr, amount);
+        return sendTxWithToken(func, token, amount, _onTxHash, _onReceipt, _onError);
     };
 
     /**
@@ -419,12 +436,12 @@ export var Betoken = function() {
     * @param  {BigNumber} _amountInDAI the withdrawal amount in DAI
     * @return {Promise}               .then(()->)
     */
-    self.withdrawETH = async function(_amountInDAI, _onTxHash, _onReceipt) {
+    self.withdrawETH = async function(_amountInDAI, _onTxHash, _onReceipt, _onError) {
         await getDefaultAccount();
         var amount = BigNumber(_amountInDAI).times(PRECISION).integerValue().toFixed();
-        return self.contracts.BetokenFund.methods.withdrawEther(amount).send({
-            from: web3.eth.defaultAccount
-        }).on("transactionHash", _onTxHash).on("receipt", _onReceipt);
+
+        var func = self.contracts.BetokenFund.methods.withdrawEther(amount);
+        return sendTx(func, _onTxHash, _onReceipt, _onError);
     };
 
     /**
@@ -432,12 +449,12 @@ export var Betoken = function() {
     * @param  {BigNumber} _amountInDAI the withdrawal amount in DAI
     * @return {Promise}               .then(()->)
     */
-    self.withdrawDAI = async function(_amountInDAI, _onTxHash, _onReceipt) {
+    self.withdrawDAI = async function(_amountInDAI, _onTxHash, _onReceipt, _onError) {
         await getDefaultAccount();
         var amount = BigNumber(_amountInDAI).times(PRECISION).integerValue().toFixed();
-        return self.contracts.BetokenFund.methods.withdrawDAI(amount).send({
-            from: web3.eth.defaultAccount
-        }).on("transactionHash", _onTxHash).on("receipt", _onReceipt);
+
+        var func = self.contracts.BetokenFund.methods.withdrawDAI(amount);
+        return sendTx(func, _onTxHash, _onReceipt, _onError);
     };
     
     /**
@@ -446,12 +463,12 @@ export var Betoken = function() {
     * @param  {BigNumber} _amountInDAI the withdrawal amount in DAI
     * @return {Promise}               .then(()->)
     */
-    self.withdrawToken = async function(_tokenAddr, _amountInDAI, _onTxHash, _onReceipt) {
+    self.withdrawToken = async function(_tokenAddr, _amountInDAI, _onTxHash, _onReceipt, _onError) {
         await getDefaultAccount();
         var amount = BigNumber(_amountInDAI).times(PRECISION).integerValue().toFixed();
-        return self.contracts.BetokenFund.methods.withdrawToken(_tokenAddr, amount).send({
-            from: web3.eth.defaultAccount
-        }).on("transactionHash", _onTxHash).on("receipt", _onReceipt);
+
+        var func = self.contracts.BetokenFund.methods.withdrawToken(_tokenAddr, amount);
+        return sendTx(func, _onTxHash, _onReceipt, _onError);
     };
     
     /*
@@ -466,14 +483,14 @@ export var Betoken = function() {
     * @param  {BigNumber} _maxPrice the max acceptable token price
     * @return {Promise}               .then(()->)
     */
-    self.createInvestment = async function(_tokenAddress, _stakeInKRO, _minPrice, _maxPrice, _onTxHash, _onReceipt) {
+    self.createInvestment = async function(_tokenAddress, _stakeInKRO, _minPrice, _maxPrice, _onTxHash, _onReceipt, _onError) {
         await getDefaultAccount();
         var stake = _stakeInKRO.times(PRECISION).integerValue().toFixed();
         var minPrice = _minPrice.times(PRECISION).integerValue().toFixed();
         var maxPrice = _maxPrice.times(PRECISION).integerValue().toFixed();
-        return self.contracts.BetokenFund.methods.createInvestment(_tokenAddress, stake, minPrice, maxPrice).send({
-            from: web3.eth.defaultAccount
-        }).on("transactionHash", _onTxHash).on("receipt", _onReceipt);
+
+        var func = self.contracts.BetokenFund.methods.createInvestment(_tokenAddress, stake, minPrice, maxPrice);
+        return sendTx(func, _onTxHash, _onReceipt, _onError);
     };
     
     /**
@@ -484,14 +501,14 @@ export var Betoken = function() {
     * @param  {BigNumber} _maxPrice the max acceptable token price
     * @return {Promise}               .then(()->)
     */
-    self.sellAsset = async function(_proposalId, _percentage, _minPrice, _maxPrice, _onTxHash, _onReceipt) {
+    self.sellAsset = async function(_proposalId, _percentage, _minPrice, _maxPrice, _onTxHash, _onReceipt, _onError) {
         await getDefaultAccount();
         var sellTokenAmount = BigNumber((await self.getDoubleMapping("userInvestments", web3.eth.defaultAccount, _proposalId)).tokenAmount).times(_percentage).integerValue().toFixed();
         var minPrice = _minPrice.times(PRECISION).integerValue().toFixed();
         var maxPrice = _maxPrice.times(PRECISION).integerValue().toFixed();
-        return self.contracts.BetokenFund.methods.sellInvestmentAsset(_proposalId, sellTokenAmount, minPrice, maxPrice).send({
-            from: web3.eth.defaultAccount
-        }).on("transactionHash", _onTxHash).on("receipt", _onReceipt);
+
+        var func = self.contracts.BetokenFund.methods.sellInvestmentAsset(_proposalId, sellTokenAmount, minPrice, maxPrice);
+        return sendTx(func, _onTxHash, _onReceipt, _onError);
     };
 
     /**
@@ -503,14 +520,14 @@ export var Betoken = function() {
     * @param  {BigNumber} _maxPrice the max acceptable token price
     * @return {Promise}               .then(()->)
     */
-    self.createCompoundOrder = async function(_orderType, _tokenAddress, _stakeInKRO, _minPrice, _maxPrice, _onTxHash, _onReceipt) {
+    self.createCompoundOrder = async function(_orderType, _tokenAddress, _stakeInKRO, _minPrice, _maxPrice, _onTxHash, _onReceipt, _onError) {
         await getDefaultAccount();
         var stake = _stakeInKRO.times(PRECISION).integerValue().toFixed();
         var minPrice = _minPrice.times(PRECISION).integerValue().toFixed();
         var maxPrice = _maxPrice.times(PRECISION).integerValue().toFixed();
-        return self.contracts.BetokenFund.methods.createCompoundOrder(_orderType, _tokenAddress, stake, minPrice, maxPrice).send({
-            from: web3.eth.defaultAccount
-        }).on("transactionHash", _onTxHash).on("receipt", _onReceipt);
+
+        var func = self.contracts.BetokenFund.methods.createCompoundOrder(_orderType, _tokenAddress, stake, minPrice, maxPrice);
+        return sendTx(func, _onTxHash, _onReceipt, _onError);
     };
 
     /**
@@ -520,13 +537,13 @@ export var Betoken = function() {
     * @param  {BigNumber} _maxPrice the max acceptable token price
     * @return {Promise}               .then(()->)
     */
-    self.sellCompoundOrder = async function(_proposalId, _minPrice, _maxPrice, _onTxHash, _onReceipt) {
+    self.sellCompoundOrder = async function(_proposalId, _minPrice, _maxPrice, _onTxHash, _onReceipt, _onError) {
         await getDefaultAccount();
         var minPrice = _minPrice.times(PRECISION).integerValue().toFixed();
         var maxPrice = _maxPrice.times(PRECISION).integerValue().toFixed();
-        return self.contracts.BetokenFund.methods.sellCompoundOrder(_proposalId, minPrice, maxPrice).send({
-            from: web3.eth.defaultAccount
-        }).on("transactionHash", _onTxHash).on("receipt", _onReceipt);
+
+        var func = self.contracts.BetokenFund.methods.sellCompoundOrder(_proposalId, minPrice, maxPrice);
+        return sendTx(func, _onTxHash, _onReceipt, _onError);
     };
     
     /**
@@ -535,78 +552,58 @@ export var Betoken = function() {
     * @param  {BigNumber} _amountInDAI the amount to repay, in DAI
     * @return {Promise}               .then(()->)
     */
-    self.repayCompoundOrder = async function(_proposalId, _amountInDAI, _onTxHash, _onReceipt) {
+    self.repayCompoundOrder = async function(_proposalId, _amountInDAI, _onTxHash, _onReceipt, _onError) {
         await getDefaultAccount();
         var repayAmount = _amountInDAI.times(PRECISION).integerValue().toFixed();
-        return self.contracts.BetokenFund.methods.repayCompoundOrder(_proposalId, repayAmount).send({
-            from: web3.eth.defaultAccount
-        }).on("transactionHash", _onTxHash).on("receipt", _onReceipt);
+
+        var func = self.contracts.BetokenFund.methods.repayCompoundOrder(_proposalId, repayAmount);
+        return sendTx(func, _onTxHash, _onReceipt, _onError);
     }
     
     /*
     Redeem Commission functions
     */
-    self.redeemCommission = async function(_inShares, _onTxHash, _onReceipt) {
+    self.redeemCommission = async function(_inShares, _onTxHash, _onReceipt, _onError) {
         await getDefaultAccount();
-        return self.contracts.BetokenFund.methods.redeemCommission(_inShares).send({
-            from: web3.eth.defaultAccount
-        }).on("transactionHash", _onTxHash).on("receipt", _onReceipt);
+
+        var func = self.contracts.BetokenFund.methods.redeemCommission(_inShares);
+        return sendTx(func, _onTxHash, _onReceipt, _onError);
     };
 
-    self.redeemCommissionForCycle = async function(_inShares, _cycle, _onTxHash, _onReceipt) {
+    self.redeemCommissionForCycle = async function(_inShares, _cycle, _onTxHash, _onReceipt, _onError) {
         await getDefaultAccount();
-        return self.contracts.BetokenFund.methods.redeemCommissionForCycle(_inShares, _cycle).send({
-            from: web3.eth.defaultAccount
-        }).on("transactionHash", _onTxHash).on("receipt", _onReceipt);
+
+        var func = self.contracts.BetokenFund.methods.redeemCommissionForCycle(_inShares, _cycle);
+        return sendTx(func, _onTxHash, _onReceipt, _onError);
     };
 
     /*
     Manager Registration functions
     */
-    self.registerWithDAI = async function(_amountInDAI, _onTxHash, _onReceipt) {
+    self.registerWithDAI = async function(_amountInDAI, _onTxHash, _onReceipt, _onError) {
         await getDefaultAccount();
         var token = ERC20(DAI_ADDR);
         var amount = BigNumber(_amountInDAI).times(PRECISION).integerValue().toFixed();
         
-        token.methods.approve(self.contracts.BetokenFund.options.address, 0).send({
-            from: web3.eth.defaultAccount
-        }).on("transactionHash", () => {
-            token.methods.approve(self.contracts.BetokenFund.options.address, amount).send({
-                from: web3.eth.defaultAccount
-            }).on("transactionHash", () => {
-                self.contracts.BetokenFund.methods.registerWithDAI(amount).send({
-                    from: web3.eth.defaultAccount
-                }).on("transactionHash", _onTxHash).on("receipt", _onReceipt);
-            });
-        });
+        var func = self.contracts.BetokenFund.methods.registerWithDAI(amount);
+        return sendTxWithToken(func, token, amount, _onTxHash, _onReceipt, _onError);
     }
 
-    self.registerWithETH = async function(_amountInETH, _onTxHash, _onReceipt) {
+    self.registerWithETH = async function(_amountInETH, _onTxHash, _onReceipt, _onError) {
         await getDefaultAccount();
         var amount = BigNumber(_amountInETH).times(PRECISION).integerValue().toFixed();
         
-        return self.contracts.BetokenFund.methods.registerWithETH().send({
-            from: web3.eth.defaultAccount,
-            value: amount
-        }).on("transactionHash", _onTxHash).on("receipt", _onReceipt);
+        var func = self.contracts.BetokenFund.methods.registerWithETH();
+        return sendTxWithValue(func, amount, _onTxHash, _onReceipt, _onError);
     }
 
-    self.registerWithToken = async function(_tokenAddr, _amountInTokens, _onTxHash, _onReceipt) {
+    self.registerWithToken = async function(_tokenAddr, _amountInTokens, _onTxHash, _onReceipt, _onError) {
         await getDefaultAccount();
         var token = ERC20(_tokenAddr);
         var amount = BigNumber(_amountInTokens).times(BigNumber(10).pow(await self.getTokenDecimals(_tokenAddr))).integerValue().toFixed();
         
-        token.methods.approve(self.contracts.BetokenFund.options.address, 0).send({
-            from: web3.eth.defaultAccount
-        }).on("transactionHash", () => {
-            token.methods.approve(self.contracts.BetokenFund.options.address, amount).send({
-                from: web3.eth.defaultAccount
-            }).on("transactionHash", () => {
-                self.contracts.BetokenFund.methods.registerWithToken(_tokenAddr, amount).send({
-                    from: web3.eth.defaultAccount
-                }).on("transactionHash", _onTxHash).on("receipt", _onReceipt);
-            });
-        });
+        var func = self.contracts.BetokenFund.methods.registerWithToken(_tokenAddr, amount);
+        return sendTxWithToken(func, token, amount, _onTxHash, _onReceipt, _onError);
     }
     
     return self;

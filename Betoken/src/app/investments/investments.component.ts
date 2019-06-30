@@ -39,6 +39,8 @@ export class InvestmentsComponent implements OnInit {
     inactiveInvestmentList: Array<Object>;
     tokenData: Array<Object>;
 
+    errorMsg: String;
+
     constructor(private ms: AppComponent) {
         this.createInvestmentPopupStep = 0;
         this.sellInvestmentPopupStep = 0;
@@ -81,6 +83,8 @@ export class InvestmentsComponent implements OnInit {
         this.activeInvestmentList = new Array<Object>();
         this.inactiveInvestmentList = new Array<Object>();
         this.tokenData = new Array<Object>();
+
+        this.errorMsg = "";
     }
 
     ngOnInit() {
@@ -203,21 +207,28 @@ export class InvestmentsComponent implements OnInit {
             this.refresh();
         }
 
+        let error = (e) => {
+            if (this.createInvestmentPopupStep != 0) {
+                this.createInvestmentPopupStep = -1;
+                this.errorMsg = "The stake amount is too small, or the price slippage exceeded the limit (which you can change in the Advanced options)";
+            }
+        }
+
         switch (this.selectedOrderType['type']) {
             case 'basic':
                 let tokenPrice = tokens.asset_symbol_to_price(this.selectedTokenSymbol);
                 let maxPrice = tokenPrice.plus(tokenPrice.times(maxAcceptablePriceProp));
-                manager_actions.new_investment_with_symbol(this.selectedTokenSymbol, this.stakeAmount, new BigNumber(0), maxPrice, pending, confirm);
+                manager_actions.new_investment_with_symbol(this.selectedTokenSymbol, this.stakeAmount, new BigNumber(0), maxPrice, pending, confirm, error);
                 break;
             case 'compound':
                 let tokenPrice1 = tokens.asset_symbol_to_price(this.selectedTokenSymbol);
                 let maxPrice1 = tokenPrice1.plus(tokenPrice1.times(maxAcceptablePriceProp));
-                manager_actions.new_compound_order(this.selectedOrderType['isShort'], this.selectedTokenSymbol, this.stakeAmount, new BigNumber(0), maxPrice1, pending, confirm);
+                manager_actions.new_compound_order(this.selectedOrderType['isShort'], this.selectedTokenSymbol, this.stakeAmount, new BigNumber(0), maxPrice1, pending, confirm, error);
                 break;
             case 'fulcrum':
                 let tokenPrice2 = await tokens.get_ptoken_price(this.selectedOrderType['tokenAddress'], tokens.asset_symbol_to_price(this.selectedTokenSymbol));
                 let maxPrice2 = tokenPrice2.plus(tokenPrice2.times(maxAcceptablePriceProp));
-                manager_actions.new_investment_with_address(this.selectedOrderType['tokenAddress'], this.stakeAmount, new BigNumber(0), maxPrice2, pending, confirm);
+                manager_actions.new_investment_with_address(this.selectedOrderType['tokenAddress'], this.stakeAmount, new BigNumber(0), maxPrice2, pending, confirm, error);
                 break;
         }
     }
@@ -249,24 +260,31 @@ export class InvestmentsComponent implements OnInit {
             this.refresh();
         }
 
+        let error = (e) => {
+            if (this.sellInvestmentPopupStep != 0) {
+                this.sellInvestmentPopupStep = -1;
+                this.errorMsg = "The price slippage exceeded the limit (which you can change in the Advanced options)";
+            }
+        }
+
         switch (this.sellData['type']) {
             case 'basic':
                 // basic order
                 let tokenPrice = this.assetSymbolToPrice(this.selectedTokenSymbol);
                 let minPrice = tokenPrice.minus(tokenPrice.times(minAcceptablePriceProp));
-                manager_actions.sell_investment(this.sellId, sellPercentage, minPrice, tokenPrice.times(100000), pendingSell, confirmSell);
+                manager_actions.sell_investment(this.sellId, sellPercentage, minPrice, tokenPrice.times(100000), pendingSell, confirmSell, error);
                 break;
             case 'fulcrum':
                 // fulcrum order
                 let tokenPrice1 = await tokens.get_ptoken_price(this.sellData['tokenAddress'], tokens.asset_symbol_to_price(this.selectedTokenSymbol));
                 let minPrice1 = tokenPrice1.minus(tokenPrice1.times(minAcceptablePriceProp));
-                manager_actions.sell_investment(this.sellId, sellPercentage, minPrice1, tokenPrice1.times(100000), pendingSell, confirmSell);
+                manager_actions.sell_investment(this.sellId, sellPercentage, minPrice1, tokenPrice1.times(100000), pendingSell, confirmSell, error);
                 break;
             case 'compound':
                 // compound order
                 let tokenPrice2 = this.assetSymbolToPrice(this.selectedTokenSymbol);
                 let minPrice2 = tokenPrice2.minus(tokenPrice2.times(minAcceptablePriceProp));
-                manager_actions.sell_compound_order(this.sellId, minPrice2, tokenPrice2.times(100000), pendingSell, confirmSell);
+                manager_actions.sell_compound_order(this.sellId, minPrice2, tokenPrice2.times(100000), pendingSell, confirmSell, error);
                 break;
         }
 
@@ -293,7 +311,14 @@ export class InvestmentsComponent implements OnInit {
             this.refresh();
         }
 
-        manager_actions.repay_compound_order(this.sellId, repayAmount, pending, confirm);
+        let error = (e) => {
+            if (this.topupPopupStep != 0) {
+                this.topupPopupStep = -1;
+                this.errorMsg = e.toString();
+            }
+        }
+
+        manager_actions.repay_compound_order(this.sellId, repayAmount, pending, confirm, error);
     }
 
     // UI helpers

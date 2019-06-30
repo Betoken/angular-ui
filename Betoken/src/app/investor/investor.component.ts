@@ -51,6 +51,8 @@ export class InvestorComponent implements OnInit {
   continueEnabled: Boolean;
 
   depositWithdrawHistory: Array<Object>;
+
+  errorMsg: String;
   
   constructor(private ms: AppComponent, private route: Router) {
     this.sharesPrice = new BigNumber(0);
@@ -86,6 +88,8 @@ export class InvestorComponent implements OnInit {
     this.continueEnabled = false;
 
     this.depositWithdrawHistory = new Array<Object>();
+
+    this.errorMsg = "";
   }
   
   ngOnInit() {
@@ -221,17 +225,22 @@ export class InvestorComponent implements OnInit {
       if (this.buyStep == 3) {
         this.buyStep = 4;
       }
-      this.refresh();
     };
+    let error = (e) => {
+      if (this.buyStep != 0) {
+        this.buyStep = -1;
+        this.errorMsg = e.toString();
+      }
+    }
     switch (this.selectedTokenSymbol) {
       case 'ETH':
-        investor_actions.depositETH(payAmount, pending, confirm);
+        investor_actions.depositETH(payAmount, pending, confirm, error);
         break;
       case 'DAI':
-        investor_actions.depositDAI(payAmount, pending, confirm);
+        investor_actions.depositDAI(payAmount, pending, confirm, error);
         break;
       default:
-        investor_actions.depositToken(payAmount, this.selectedTokenSymbol, pending, confirm);
+        investor_actions.depositToken(payAmount, this.selectedTokenSymbol, pending, confirm, error);
         break;
     }
   }
@@ -251,15 +260,21 @@ export class InvestorComponent implements OnInit {
       }
       this.refresh();
     };
+    let error = (e) => {
+      if (this.sellStep != 0) {
+        this.sellStep = -1;
+        this.errorMsg = e.toString();
+      }
+    }
     switch (this.selectedTokenSymbol) {
       case 'ETH':
-        investor_actions.withdrawETH(sellAmount, pending, confirm);
+        investor_actions.withdrawETH(sellAmount, pending, confirm, error);
         break;
       case 'DAI':
-        investor_actions.withdrawDAI(sellAmount, pending, confirm);
+        investor_actions.withdrawDAI(sellAmount, pending, confirm, error);
         break;
       default:
-        investor_actions.withdrawToken(sellAmount, this.selectedTokenSymbol, pending, confirm);
+        investor_actions.withdrawToken(sellAmount, this.selectedTokenSymbol, pending, confirm, error);
         break;
     }
   }

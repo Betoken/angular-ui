@@ -33,6 +33,8 @@ export class ManageronboardingComponent implements OnInit {
   buyStep: Number;
   continueEnabled: Boolean;
 
+  errorMsg: String;
+
   constructor(private ms: AppComponent, private router: Router) {
     this.user_address = this.ZERO_ADDR;
     this.buyStep = 0;
@@ -47,6 +49,7 @@ export class ManageronboardingComponent implements OnInit {
     this.kairoTotalSupply = new BigNumber(0);
     this.FALLBACK_MAX_DONATION = new BigNumber(100); // fallback max DAI payment is 100
     this.continueEnabled = false;
+    this.errorMsg = "";
   }
 
   ngOnInit() {
@@ -118,15 +121,21 @@ export class ManageronboardingComponent implements OnInit {
         this.buyStep = 4;
       }
     };
+    let error = (e) => {
+      if (this.buyStep != 0) {
+        this.buyStep = -1;
+        this.errorMsg = e.toString();
+      }
+    }
     switch (this.selectedTokenSymbol) {
       case 'ETH':
-        manager_actions.register_with_ETH(payAmount, pending, confirm);
+        manager_actions.register_with_ETH(payAmount, pending, confirm, error);
         break;
       case 'DAI':
-        manager_actions.register_with_DAI(payAmount, pending, confirm);
+        manager_actions.register_with_DAI(payAmount, pending, confirm, error);
         break;
       default:
-        manager_actions.register_with_token(payAmount, this.selectedTokenSymbol, pending, confirm);
+        manager_actions.register_with_token(payAmount, this.selectedTokenSymbol, pending, confirm, error);
         break;
     }
   }

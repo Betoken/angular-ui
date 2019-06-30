@@ -20,6 +20,7 @@ export class CommissionsComponent implements OnInit {
     transactionId: String;
     step: Number;
     cycle: Number;
+    errorMsg: String;
 
     constructor() {
         this.commissionHistory = new Array<Object>();
@@ -27,6 +28,7 @@ export class CommissionsComponent implements OnInit {
         this.transactionId = '';
         this.step = 0;
         this.cycle = 0;
+        this.errorMsg = "";
     }
 
     ngOnInit() {
@@ -60,19 +62,30 @@ export class CommissionsComponent implements OnInit {
 
         let pending = (transactionHash) => {
             this.transactionId = transactionHash;
-            this.step = 2;
+            if (this.step != 0) {
+                this.step = 2;
+            }
         }
 
         let confirm = () => {
-            this.step = 3;
+            if (this.step != 0) {
+                this.step = 3;
+            }
             refresh_actions.records();
+        }
+
+        let error = (e) => {
+            if (this.step != 0) {
+                this.step = -1;
+                this.errorMsg = e.toString();
+            }
         }
 
         var inShares = (option == 0);
         if (cycle == 0) {
-            manager_actions.redeem_commission(inShares, pending, confirm);
+            manager_actions.redeem_commission(inShares, pending, confirm, error);
         } else {
-            manager_actions.redeem_commission_for_cycle(inShares, cycle, pending, confirm);
+            manager_actions.redeem_commission_for_cycle(inShares, cycle, pending, confirm, error);
         }
 
         this.step = 1;

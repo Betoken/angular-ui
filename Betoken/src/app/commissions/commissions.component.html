@@ -126,7 +126,7 @@
           Commissions Redeemed
         </h4>
         <!-- Error -->
-        <h4 class="modal-title">
+        <h4 class="modal-title" *ngIf="step == -1">
           That's an error
         </h4>
         <!-- Close -->
@@ -257,19 +257,23 @@
         </form>
 
         <!-- error -->
-        <p class="h1 text-center">
-          <i class="fe fe-alert-circle text-danger"></i>
-        </p>
-        <p class="text-center text-muted mb-5">
-          The operation you requested wasn't created at this time. Please try again.
-        </p>
+        <div *ngIf="step == -1">
+          <p class="h1 text-center">
+            <i class="fe fe-alert-circle text-danger"></i>
+          </p>
+          <p class="text-center text-muted mb-5">
+            The operation has resulted in an error. Please try again.
+          </p>
+          <p class="text-center text-muted mb-5">
+            Error message: {{errorMsg}}
+          </p>
+        </div>
 
         <!-- close modal button -->
         <button type="submit" class="btn btn-block btn-white mt-auto" data-dismiss="modal" aria-label="Close" *ngIf="step === 3">
           Close
         </button>
-        <!-- Try again button for error -->
-        <button type="submit" class="btn btn-block btn-white mt-auto" aria-label="Try again">
+        <button type="submit" class="btn btn-block btn-white mt-auto" aria-label="Try again" *ngIf="step == -1" (click)="resetModals()">
           Try again
         </button>
       </div>

@@ -143,15 +143,19 @@ export const loading = {
 
 export const refresh_actions = {
     investments: () => {
+        Data.isLoadingInvestments.set(true);
         return Data.loadTokenPrices().then(Data.loadUserData);
     },
     ranking: () => {
+        Data.isLoadingRanking.set(true);
         return Data.loadTokenPrices().then(Data.loadRanking);
     },
     records: () => {
+        Data.isLoadingRecords.set(true);
         return Data.loadUserData().then(Data.loadTxHistory);
     },
     prices: () => {
+        Data.isLoadingPrices.set(true);
         return Data.loadTokenPrices();
     },
     stats: () => {
@@ -165,25 +169,25 @@ export const refresh_actions = {
 
 export const investor_actions = {
     // All amounts must be BigNumber, in floating point (no need to multiply by 1e18)
-    depositETH: async (amt, pending, confirm) => {
-        betoken.depositETH(amt, pending, confirm);
+    depositETH: async (amt, pending, confirm, error) => {
+        betoken.depositETH(amt, pending, confirm, error);
     },
-    depositDAI: async (amt, pending, confirm) => {
-        betoken.depositDAI(amt, pending, confirm);
+    depositDAI: async (amt, pending, confirm, error) => {
+        betoken.depositDAI(amt, pending, confirm, error);
     },
-    depositToken: async (amt, tokenSymbol, pending, confirm) => {
+    depositToken: async (amt, tokenSymbol, pending, confirm, error) => {
         let tokenAddr = Data.assetSymbolToAddress(tokenSymbol);
-        betoken.depositToken(tokenAddr, amt, pending, confirm);
+        betoken.depositToken(tokenAddr, amt, pending, confirm, error);
     },
-    withdrawETH: async (amt, pending, confirm) => {
-        return betoken.withdrawETH(amt, pending, confirm);
+    withdrawETH: async (amt, pending, confirm, error) => {
+        return betoken.withdrawETH(amt, pending, confirm, error);
     },
-    withdrawDAI: async (amt, pending, confirm) => {
-        return betoken.withdrawDAI(amt, pending, confirm);
+    withdrawDAI: async (amt, pending, confirm, error) => {
+        return betoken.withdrawDAI(amt, pending, confirm, error);
     },
-    withdrawToken: async (amt, tokenSymbol, pending, confirm) => {
+    withdrawToken: async (amt, tokenSymbol, pending, confirm, error) => {
         let tokenAddr = Data.assetSymbolToAddress(tokenSymbol);
-        return betoken.withdrawToken(tokenAddr, amt, pending, confirm);
+        return betoken.withdrawToken(tokenAddr, amt, pending, confirm, error);
     },
     nextPhase: async () => {
         await betoken.nextPhase();
@@ -193,43 +197,43 @@ export const investor_actions = {
 
 export const manager_actions = {
     // All amounts must be BigNumber, in floating point (no need to multiply by 1e18)
-    new_investment_with_symbol: async function (tokenSymbol, stakeInKRO, minPrice, maxPrice, pending, confirm) {
+    new_investment_with_symbol: async function (tokenSymbol, stakeInKRO, minPrice, maxPrice, pending, confirm, error) {
         var tokenAddress = Data.assetSymbolToAddress(tokenSymbol);
-        betoken.createInvestment(tokenAddress, stakeInKRO, minPrice, maxPrice, pending, confirm);
+        betoken.createInvestment(tokenAddress, stakeInKRO, minPrice, maxPrice, pending, confirm, error);
     },
-    new_investment_with_address: async function (tokenAddress, stakeInKRO, minPrice, maxPrice, pending, confirm) {
-        betoken.createInvestment(tokenAddress, stakeInKRO, minPrice, maxPrice, pending, confirm);
+    new_investment_with_address: async function (tokenAddress, stakeInKRO, minPrice, maxPrice, pending, confirm, error) {
+        betoken.createInvestment(tokenAddress, stakeInKRO, minPrice, maxPrice, pending, confirm, error);
     },
-    sell_investment: async function (id, percentage, minPrice, maxPrice, pending, confirm) {
-        return betoken.sellAsset(id, percentage, minPrice, maxPrice, pending, confirm);
+    sell_investment: async function (id, percentage, minPrice, maxPrice, pending, confirm, error) {
+        return betoken.sellAsset(id, percentage, minPrice, maxPrice, pending, confirm, error);
     },
-    new_compound_order: async function (orderType, tokenSymbol, stakeInKRO, minPrice, maxPrice, pending, confirm) {
+    new_compound_order: async function (orderType, tokenSymbol, stakeInKRO, minPrice, maxPrice, pending, confirm, error) {
         var tokenAddress = Data.assetSymbolToCTokenAddress(tokenSymbol);
-        betoken.createCompoundOrder(orderType, tokenAddress, stakeInKRO, minPrice, maxPrice, pending, confirm);
+        betoken.createCompoundOrder(orderType, tokenAddress, stakeInKRO, minPrice, maxPrice, pending, confirm, error);
     },
-    sell_compound_order: async function (id, minPrice, maxPrice, pending, confirm) {
-        return betoken.sellCompoundOrder(id, minPrice, maxPrice, pending, confirm);
+    sell_compound_order: async function (id, minPrice, maxPrice, pending, confirm, error) {
+        return betoken.sellCompoundOrder(id, minPrice, maxPrice, pending, confirm, error);
     },
-    repay_compound_order: async function (id, amountInDAI, pending, confirm) {
-        return betoken.repayCompoundOrder(id, amountInDAI, pending, confirm);
+    repay_compound_order: async function (id, amountInDAI, pending, confirm, error) {
+        return betoken.repayCompoundOrder(id, amountInDAI, pending, confirm, error);
     },
-    redeem_commission: async function (inShares, pending, confirm) {
-        return betoken.redeemCommission(inShares, pending, confirm);
+    redeem_commission: async function (inShares, pending, confirm, error) {
+        return betoken.redeemCommission(inShares, pending, confirm, error);
     },
-    redeem_commission_for_cycle: async function (inShares, cycle, pending, confirm) {
-        return betoken.redeemCommissionForCycle(inShares, cycle, pending, confirm);
+    redeem_commission_for_cycle: async function (inShares, cycle, pending, confirm, error) {
+        return betoken.redeemCommissionForCycle(inShares, cycle, pending, confirm, error);
     },
     nextPhase: async () => {
         await betoken.nextPhase();
         await Data.loadDynamicData();
     },
-    register_with_DAI: async (amountInDAI, pending, confirm) => {
-        return betoken.registerWithDAI(amountInDAI, pending, confirm);
+    register_with_DAI: async (amountInDAI, pending, confirm, error) => {
+        return betoken.registerWithDAI(amountInDAI, pending, confirm, error);
     },
-    register_with_ETH: async (amountInETH, pending, confirm) => {
-        return betoken.registerWithETH(amountInETH, pending, confirm);
+    register_with_ETH: async (amountInETH, pending, confirm, error) => {
+        return betoken.registerWithETH(amountInETH, pending, confirm, error);
     },
-    register_with_token: async (tokenAddr, amountInToken, pending, confirm) => {
-        return betoken.registerWithToken(tokenAddr, amountInToken, pending, confirm);
+    register_with_token: async (tokenAddr, amountInToken, pending, confirm, error) => {
+        return betoken.registerWithToken(tokenAddr, amountInToken, pending, confirm, error);
     }
 }

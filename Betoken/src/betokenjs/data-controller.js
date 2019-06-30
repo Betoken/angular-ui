@@ -191,8 +191,7 @@ export const loadMetadata = async () => {
 
 export const loadTokenMetadata = async () => {
     // fetch token data from Kyber API
-    let apiStr = `https://api.kyber.network/currencies`;
-    let rawData = (await httpsGet(apiStr)).data;
+    let rawData = require('./json_data/kyber_tokens.json').data;
     let tokenData = rawData.map((x) => {
         return {
             name: x.name,
@@ -208,7 +207,7 @@ export const loadTokenMetadata = async () => {
     });
 
     // fetch token metadata from CryptoCompare API
-    apiStr = `https://min-api.cryptocompare.com/data/coin/generalinfo?fsyms=${tokenData.map((x) => x.symbol).join()}&tsym=BTC`;
+    let apiStr = `https://min-api.cryptocompare.com/data/coin/generalinfo?fsyms=${tokenData.map((x) => x.symbol).join()}&tsym=BTC`;
     rawData = (await httpsGet(apiStr)).Data;
     let tokenLogos = [];
     for (let token of tokenData) {

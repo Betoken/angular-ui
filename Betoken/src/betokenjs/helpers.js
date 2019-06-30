@@ -135,27 +135,23 @@ export const tokens = {
 }
 
 export const loading = {
-    investments: () => Data.isLoadingInvestments,
-    ranking: () => Data.isLoadingRanking,
-    records: () => Data.isLoadingRecords,
+    investments: () => Data.isLoadingInvestments || Data.isLoadingPrices,
+    ranking: () => Data.isLoadingRanking || Data.isLoadingPrices,
+    records: () => Data.isLoadingRecords || Data.isLoadingUserData,
     prices: () => Data.isLoadingPrices
 }
 
 export const refresh_actions = {
     investments: () => {
-        Data.isLoadingInvestments = true;
         return Data.loadTokenPrices().then(Data.loadUserData);
     },
     ranking: () => {
-        Data.isLoadingRanking = true;
         return Data.loadTokenPrices().then(Data.loadRanking);
     },
     records: () => {
-        Data.isLoadingRecords = true;
         return Data.loadUserData().then(Data.loadTxHistory);
     },
     prices: () => {
-        Data.isLoadingPrices = true;
         return Data.loadTokenPrices();
     },
     stats: () => {

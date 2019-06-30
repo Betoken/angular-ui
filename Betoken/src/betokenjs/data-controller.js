@@ -65,21 +65,22 @@ export var isLoadingRanking = true;
 export var isLoadingInvestments = true;
 export var isLoadingRecords = true;
 export var isLoadingPrices = true;
+export var isLoadingUserData = true;
 
 // network info
 export var networkName = "";
 export var networkPrefix = "";
 
 // helpers
-export const assetSymbolToPrice = function(_symbol) {
+export const assetSymbolToPrice = function (_symbol) {
     return TOKEN_DATA.find((x) => x.symbol === _symbol).price;
 };
 
-export const assetAddressToSymbol = function(_addr) {
+export const assetAddressToSymbol = function (_addr) {
     return TOKEN_DATA.find((x) => x.address === _addr).symbol;
 };
 
-export const assetSymbolToAddress = function(_symbol) {
+export const assetSymbolToAddress = function (_symbol) {
     return TOKEN_DATA.find((x) => x.symbol === _symbol).address;
 };
 
@@ -103,15 +104,15 @@ export const assetPTokenAddressToInfo = (_addr) => {
     return PTOKENS.find((x) => !isUndefined(x.pTokens.find((y) => y.address === _addr))).pTokens.find((y) => y.address === _addr);
 }
 
-export const assetSymbolToDailyPriceChange = function(_symbol) {
+export const assetSymbolToDailyPriceChange = function (_symbol) {
     return TOKEN_DATA.find((x) => x.symbol === _symbol).dailyPriceChange;
 };
 
-export const assetSymbolToWeeklyPriceChange = function(_symbol) {
+export const assetSymbolToWeeklyPriceChange = function (_symbol) {
     return TOKEN_DATA.find((x) => x.symbol === _symbol).weeklyPriceChange;
 };
 
-export const assetSymbolToMonthlyPriceChange = function(_symbol) {
+export const assetSymbolToMonthlyPriceChange = function (_symbol) {
     return TOKEN_DATA.find((x) => x.symbol === _symbol).monthlyPriceChange;
 };
 
@@ -244,30 +245,31 @@ export const loadFundData = async () => {
 };
 
 export const loadUserData = async () => {
+    isLoadingUserData = true;
     if (betoken.hasWeb3) {
         // get network info
         const netID = (await web3.eth.net.getId());
         var net, pre;
         switch (netID) {
             case 1:
-            net = "Main Ethereum Network";
-            pre = "Main";
-            break;
+                net = "Main Ethereum Network";
+                pre = "Main";
+                break;
             case 3:
-            net = "Ropsten Testnet";
-            pre = "Ropsten";
-            break;
+                net = "Ropsten Testnet";
+                pre = "Ropsten";
+                break;
             case 4:
-            net = "Rinkeby Testnet";
-            pre = "Rinkeby";
-            break;
+                net = "Rinkeby Testnet";
+                pre = "Rinkeby";
+                break;
             case 42:
-            net = "Kovan Testnet";
-            pre = "Kovan";
-            break;
+                net = "Kovan Testnet";
+                pre = "Kovan";
+                break;
             default:
-            net = "Unknown Network";
-            pre = "Unknown";
+                net = "Unknown Network";
+                pre = "Unknown";
         }
         networkName = net;
         networkPrefix = pre;
@@ -378,7 +380,7 @@ export const loadUserData = async () => {
                 const properties = ["stake", "cycleNumber", "collateralAmountInDAI", "compoundTokenAddr", "isSold", "orderType", "buyTime", "getCurrentCollateralRatioInDAI", "getCurrentCollateralInDAI", "getCurrentBorrowInDAI", "getCurrentCashInDAI", "getCurrentProfitInDAI", "getCurrentLiquidityInDAI", "getMarketCollateralFactor"];
                 const handleProposal = async (id) => {
                     const order = await CompoundOrder(compoundOrderAddrs[id]);
-                    let orderData = {"id": id};
+                    let orderData = { "id": id };
                     compoundOrders[id] = orderData;
                     let promises = [];
                     for (let prop of properties) {
@@ -442,6 +444,7 @@ export const loadUserData = async () => {
         }
     }
     isLoadingInvestments = false;
+    isLoadingUserData = false;
 };
 
 export const loadTxHistory = async () => {
@@ -469,7 +472,7 @@ export const loadTxHistory = async () => {
 
         // Get Deposit & Withdraw history
         let depositWithdrawHistoryArray = [];
-        const getDepositWithdrawHistory = async function(_type) {
+        const getDepositWithdrawHistory = async function (_type) {
             var data, entry, event, events, j, len;
             events = (await betoken.contracts.BetokenFund.getPastEvents(_type, {
                 fromBlock: DEPLOYED_BLOCK,
@@ -612,6 +615,7 @@ export const loadRanking = async () => {
                     var _stake = BigNumber(inv.stake).div(PRECISION);
                     var _buyPrice = BigNumber(inv.buyPrice).div(PRECISION);
                     var _sellPrice = inv.isSold ? BigNumber(inv.sellPrice).div(PRECISION) : tokenPrice;
+
                     var _ROI = BigNumber(_sellPrice).minus(_buyPrice).div(_buyPrice);
                     var _kroChange = BigNumber(_ROI).times(_stake);
 
@@ -625,7 +629,7 @@ export const loadRanking = async () => {
                 const properties = ["stake", "cycleNumber", "collateralAmountInDAI", "isSold", "getCurrentProfitInDAI"];
                 const handleProposal = async (id) => {
                     const order = await CompoundOrder(compoundOrderAddrs[id]);
-                    let orderData = {"id": id};
+                    let orderData = { "id": id };
                     compoundOrders[id] = orderData;
                     let promises = [];
                     for (let prop of properties) {
@@ -661,7 +665,7 @@ export const loadRanking = async () => {
 
                 totalKROChange = totalKROChange.plus(compoundOrders.map((x) => BigNumber(x.kroChange)).reduce((x, y) => x.plus(y), BigNumber(0)));
             }
-            
+
             var cycleStartKRO = BigNumber(await betoken.getBaseStake(_addr)).div(PRECISION);
             return {
                 // format rank object
@@ -716,7 +720,7 @@ export const loadStats = async () => {
     return betoken.contracts.BetokenFund.getPastEvents("ChangedPhase",
         {
             fromBlock: DEPLOYED_BLOCK
-        }).then(function(events) {
+        }).then(function (events) {
             for (var cycle = 1; cycle <= cycleNumber; cycle++) {
                 // find events emitted before & after the Manage phase of cycle
                 var beforeEvent = events.find((e) => e.returnValues._cycleNumber == cycle && e.returnValues._newPhase == 1);
@@ -759,7 +763,7 @@ export const loadStats = async () => {
         });
 };
 
-export const loadAllData = async function() {
+export const loadAllData = async function () {
     return loadMetadata().then(loadDynamicData);
 };
 

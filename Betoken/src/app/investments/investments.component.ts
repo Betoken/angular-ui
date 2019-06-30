@@ -210,7 +210,7 @@ export class InvestmentsComponent implements OnInit {
         let error = (e) => {
             if (this.createInvestmentPopupStep != 0) {
                 this.createInvestmentPopupStep = -1;
-                this.errorMsg = "The stake amount is too small, or the price slippage exceeded the limit (which you can change in the Advanced options)";
+                this.errorMsg = e.toString();
             }
         }
 
@@ -263,7 +263,7 @@ export class InvestmentsComponent implements OnInit {
         let error = (e) => {
             if (this.sellInvestmentPopupStep != 0) {
                 this.sellInvestmentPopupStep = -1;
-                this.errorMsg = "The price slippage exceeded the limit (which you can change in the Advanced options)";
+                this.errorMsg = e.toString();
             }
         }
 

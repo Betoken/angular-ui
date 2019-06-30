@@ -15,7 +15,6 @@ export class AppComponent {
 
   constructor() {
     const betoken = new Betoken();
-    setTimeout(() => this.is_loading = false, 12 * 1000);
     betoken.init().then(loadAllData).then(() => {
       setInterval(loadDynamicData, 120 * 1000); // refresh everything every 2 minutes
       this.is_loading = false;

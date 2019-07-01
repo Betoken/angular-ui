@@ -102,7 +102,7 @@ var demoMode = (function() {
   }
 
   function toggleNavColor(navColor) {
-    
+
     if (sidebar && sidebarSmall && topnav) {
 
       if (navColor == 'default') {
@@ -142,14 +142,6 @@ var demoMode = (function() {
     }
   }
 
-  function toggleSidebarSize(sidebarSize) {
-    if (sidebarSize == 'base') {
-      hideNode(sidebarSmall);
-    } else if (sidebarSize == 'small') {
-      hideNode(sidebar);
-    }
-  }
-
   function toggleFormControls(form, colorScheme, navPosition, navColor, sidebarSize) {
     $(form).find('[name="colorScheme"][value="' + colorScheme + '"]').closest('.btn').button('toggle');
     $(form).find('[name="navPosition"][value="' + navPosition + '"]').closest('.btn').button('toggle');
@@ -157,13 +149,6 @@ var demoMode = (function() {
     $(form).find('[name="sidebarSize"][value="' + sidebarSize + '"]').closest('.btn').button('toggle');
   }
 
-  function toggleSidebarSizeCongainer(navPosition) {
-    if (navPosition == 'topnav') {
-      $(sidebarSizeContainer).collapse('hide');
-    } else {
-      $(sidebarSizeContainer).collapse('show');
-    }
-  }
 
   function submitForm(form) {
     var colorScheme = form.querySelector('[name="colorScheme"]:checked').value;
@@ -181,11 +166,6 @@ var demoMode = (function() {
     window.location = window.location.pathname;
   }
 
-  function hideNode(node) {
-    node.setAttribute('style', 'display: none !important');
-  }
-
-
   //
   // Event
   //
@@ -202,34 +182,11 @@ var demoMode = (function() {
   // Toggle sidebar color
   toggleNavColor(config.navColor);
 
-  // Toggle sidebar size
-  toggleSidebarSize(config.sidebarSize);
-
   // Toggle form controls
   toggleFormControls(form, config.colorScheme, config.navPosition, config.navColor, config.sidebarSize);
 
-  // Toggle sidebarSize container
-  toggleSidebarSizeCongainer(config.navPosition);
-
   // Enable body
   document.body.style.display = 'block';
-
-  if (form) {
-
-    // Form submitted
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-      submitForm(form);
-    });
-
-    // Nav position changed
-    [].forEach.call(navPositionToggle, function(el) {
-      el.parentElement.addEventListener('click', function() {
-        var navPosition = el.value;
-        toggleSidebarSizeCongainer(navPosition);
-      });
-    });
-  }
 
 
   //

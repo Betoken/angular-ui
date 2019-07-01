@@ -589,6 +589,7 @@ export const loadRanking = async () => {
 
     // fetch addresses
     var addresses = events.map((_event) => _event.returnValues._manager);
+    addresses =  addresses.concat(require('./json_data/initial_managers.json'));
     addresses = Array.from(new Set(addresses)); // remove duplicates
 
     // fetch KRO balances

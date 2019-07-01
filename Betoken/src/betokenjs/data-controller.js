@@ -674,7 +674,7 @@ export const loadRanking = async () => {
             return {
                 // format rank object
                 rank: 0,
-                address: _addr,
+                address: web3.utils.toChecksumAddress(_addr),
                 kairoBalance: BigNumber(await betoken.getKairoBalance(_addr)).div(PRECISION).plus(stake),
                 cycleROI: cycleStartKRO.isZero() ? BigNumber(0) : totalKROChange.div(cycleStartKRO).times(100),
                 isSupporter: SUPPORTERS.indexOf(_addr) != -1

@@ -484,15 +484,17 @@ export const loadTxHistory = async () => {
                 event = events[j];
                 data = event.returnValues;
                 let daiAmount = data._daiAmount;
-                entry = {
-                    type: _type,
-                    timestamp: +data._timestamp,
-                    token: await betoken.getTokenSymbol(data._tokenAddress),
-                    amount: BigNumber(data._tokenAmount).div(10 ** (+(await betoken.getTokenDecimals(data._tokenAddress)))),
-                    daiAmount: BigNumber(daiAmount).div(10 ** 18),
-                    txHash: event.transactionHash
-                };
-                depositWithdrawHistoryArray.push(entry);
+                if (daiAmount > 0) {
+                    entry = {
+                        type: _type,
+                        timestamp: +data._timestamp,
+                        token: await betoken.getTokenSymbol(data._tokenAddress),
+                        amount: BigNumber(data._tokenAmount).div(10 ** (+(await betoken.getTokenDecimals(data._tokenAddress)))),
+                        daiAmount: BigNumber(daiAmount).div(10 ** 18),
+                        txHash: event.transactionHash
+                    };
+                    depositWithdrawHistoryArray.push(entry);
+                }
             }
         };
         await Promise.all([getDepositWithdrawHistory("Deposit"), getDepositWithdrawHistory("Withdraw")]);

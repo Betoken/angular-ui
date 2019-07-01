@@ -468,6 +468,9 @@
 
 
             <!-- Step 2: confirm transaction -->
+            <!-- loader -->
+            <img class="image-fluid d-block mx-auto mb-4" src="assets/img/animated-logo.svg" alt="Betoken logo"
+              style="width: 88px;" *ngIf="buyStep == 3 || buyStep === 2">
             <p class="text-center text-muted mb-5" *ngIf="buyStep == 2">
               Confirm the transaction in your wallet’s interface to save it on the Ethereum blockchain. It's fine to
               stick with these defaults gas limit and price.
@@ -554,8 +557,8 @@
               Continue
             </button>
             <!-- Try again button for error -->
-            <button type="submit" class="btn btn-block btn-white mt-auto" aria-label="Try again"
-              *ngIf="buyStep == -1" (click)="resetModals()">
+            <button type="submit" class="btn btn-block btn-white mt-auto" aria-label="Try again" *ngIf="buyStep == -1"
+              (click)="resetModals()">
               Try again
             </button>
             <!-- Close button for buyStep 4 -->

@@ -276,7 +276,7 @@ export class InvestmentsComponent implements OnInit {
                 break;
             case 'fulcrum':
                 // fulcrum order
-                let tokenPrice1 = await tokens.get_ptoken_price(this.sellData['tokenAddress'], tokens.asset_symbol_to_price(this.selectedTokenSymbol));
+                let tokenPrice1 = this.sellData['sellPrice'];
                 let minPrice1 = tokenPrice1.minus(tokenPrice1.times(minAcceptablePriceProp));
                 manager_actions.sell_investment(this.sellId, sellPercentage, minPrice1, tokenPrice1.times(100000), pendingSell, confirmSell, error);
                 break;

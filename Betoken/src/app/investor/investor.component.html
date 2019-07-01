@@ -564,6 +564,9 @@
 
 
         <!-- Step 2: confirm transaction -->
+        <!-- loader -->
+        <img class="image-fluid d-block mx-auto mb-4" src="assets/img/animated-logo.svg" alt="Betoken logo"
+          style="width: 88px;" *ngIf="buyStep == 3 || buyStep === 2">
         <p class="text-center text-muted mb-5" *ngIf="buyStep == 2">
           Confirm the transaction in your wallet’s interface to save it on the Ethereum blockchain. It's fine to stick
           with these defaults gas limit and price.
@@ -572,8 +575,6 @@
         <!-- Step 3: transaction broadcasted -->
         <!-- Processing investment body -->
         <div *ngIf="buyStep == 3">
-          <img class="image-fluid d-block mx-auto mb-4" src="assets/img/animated-logo.svg" alt="Betoken logo"
-            style="width: 88px;">
           <p class="text-center text-muted mb-5">
             Your investment is being saved on the Ethereum blockchain.
           </p>
@@ -783,6 +784,9 @@
         </div>
 
         <!-- Step 1: confirm transaction -->
+        <!-- loader -->
+        <img class="image-fluid d-block mx-auto mb-4" src="assets/img/animated-logo.svg" alt="Betoken logo"
+          style="width: 88px;" *ngIf="sellStep == 1 || sellStep === 2">
         <p class="text-center text-muted mb-5" *ngIf="sellStep == 1">
           Confirm the transaction in your wallet’s interface to save it on the Ethereum blockchain. It's fine to stick
           with these defaults gas limit and price.
@@ -791,8 +795,6 @@
         <!-- Step 2: transaction broadcasted -->
         <!-- Processing investment body -->
         <div *ngIf="sellStep == 2">
-          <img class="image-fluid d-block mx-auto mb-4" src="assets/img/animated-logo.svg" alt="Betoken logo"
-            style="width: 88px;">
           <p class="text-center text-muted mb-5">
             Your investment is being saved on the Ethereum blockchain.
           </p>

@@ -1,10 +1,24 @@
 <div class="main-content vh-100" *ngIf="is_loading">
   <div class="container vh-100 justify-content-center d-flex align-content-center flex-wrap">
     <div class="row justify-content-center my-5">
-      <div class="col-12 col-md-12 text-center">
+      <div class="col-12 col-md-6 text-center">
         <img class="image-fluid d-block mx-auto mb-3" src="assets/img/animated-logo.svg" alt="Betoken logo" style="width: 88px;">
         <h3 class="mb-0">Betoken</h3>
         <p class="text-secondary small">Fetching data</p>
+        <div class="progress mb-4">
+          <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+        </div>
+        <div class="card card-inactive mb-0">
+          <div class="card-body">
+            <h3 class="text-white">Hi, welcome!</h3>
+            <p class="text-secondary text-center">Be sure to enable Metamask or visit this page in a Web3 browser to
+              interact with Betoken on the Ethereum Mainnet.</p>
+            <a class="btn btn-block btn-lg btn-white d-none d-lg-block" target="__blank"
+              href="https://metamask.io">Get Metamask</a>
+            <a class="btn btn-block btn-lg btn-white d-block d-lg-none" target="__blank"
+              href="https://trustwallet.com/">Get Trust Wallet</a>
+          </div>
+        </div>
       </div>
     </div>
   </div>

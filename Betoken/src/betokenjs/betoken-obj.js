@@ -63,7 +63,8 @@ export const sendTxWithToken = async (func, token, to, amount, _onTxHash, _onRec
     return sendTx(token.methods.approve(to, 0), () => {
         sendTx(token.methods.approve(to, amount), () => {
             func.send({
-                from: web3.eth.defaultAccount
+                from: web3.eth.defaultAccount,
+                gasLimit: "3000000"
             }).on("transactionHash", _onTxHash).on("receipt", _onReceipt).on("error", _onError);
         }, doNothing, doNothing);
     }, doNothing, doNothing);
@@ -272,7 +273,7 @@ export var Betoken = function () {
 
     self.getKairoBalanceAtCycleStart = async function (_address) {
         let cycleStartBlock = await self.contracts.BetokenFund.methods.managePhaseEndBlock((await self.getPrimitiveVar("cycleNumber")) - 1).call();
-        return self.contracts.Kairo.methods.balanceOfAt(_address, cycleStartBlock).call();
+        return self.contracts.Kairo.methods.balanceOfAt(_address, cycleStartBlock + 1).call();
     };
 
     self.getBaseStake = async (_address) => {

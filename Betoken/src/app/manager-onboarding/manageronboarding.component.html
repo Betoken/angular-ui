@@ -69,7 +69,7 @@
               <a class="btn btn-block btn-lg btn-success d-none d-lg-block" target="__blank"
                 href="https://metamask.io">Get Metamask</a>
               <a class="btn btn-block btn-lg btn-success d-block d-lg-none" target="__blank"
-                href="https://wallet.coinbase.com/">Get Coinbase Wallet</a>
+                href="https://trustwallet.com/">Get Trust Wallet</a>
             </div>
             <button class="btn btn-block btn-lg btn-success" type="button" data-toggle="modal" data-target="#modalBuy"
               *ngIf="user_address != ZERO_ADDR && kairoBalance.eq(0)">Get Started</button>
@@ -560,7 +560,7 @@
               Try again
             </button>
             <!-- Close button for buyStep 4 -->
-            <a class="btn btn-block btn-success mt-auto" href="#/dashboard" target="_blank" *ngIf="buyStep == 4">Manager
+            <a class="btn btn-block btn-success mt-auto" href="#/dashboard" target="_blank" *ngIf="buyStep == 4" data-dismiss="modal">Manager
               Portal</a>
           </div>
         </div>

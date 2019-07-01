@@ -589,7 +589,7 @@ export const loadRanking = async () => {
 
     // fetch addresses
     var addresses = events.map((_event) => _event.returnValues._manager);
-    addresses =  addresses.concat(require('./json_data/initial_managers.json'));
+    addresses = addresses.concat(require('./json_data/initial_managers.json'));
     addresses = Array.from(new Set(addresses)); // remove duplicates
 
     // fetch KRO balances
@@ -767,16 +767,27 @@ export const loadStats = async () => {
         });
 };
 
-export const loadAllData = async function () {
-    return loadMetadata().then(loadDynamicData);
+export const loadAllData = async function (progressCallback) {
+    return loadMetadata().then(() => loadDynamicData(progressCallback));
 };
 
-export const loadDynamicData = async () => {
-    return loadFundData().then(loadTokenPrices).then(() => Promise.all(
+export const loadDynamicData = async (progressCallback) => {
+    let callback = () => {
+        if (!isUndefined(progressCallback)) {
+            progressCallback();
+        }
+    }
+    return loadFundData().then(() => {
+        callback();
+        return loadTokenPrices();
+    }).then(() => Promise.all(
         [
-            loadUserData().then(loadTxHistory),
-            loadRanking(),
-            loadStats()
+            loadUserData().then(() => {
+                callback();
+                return loadTxHistory();
+            }).then(callback),
+            loadRanking().then(callback),
+            loadStats().then(callback)
         ]
     ));
 };

@@ -229,7 +229,8 @@ export const manager_actions = {
     register_with_ETH: async (amountInETH, pending, confirm, error) => {
         return betoken.registerWithETH(amountInETH, pending, confirm, error);
     },
-    register_with_token: async (tokenAddr, amountInToken, pending, confirm, error) => {
+    register_with_token: async (amountInToken, symbol, pending, confirm, error) => {
+        let tokenAddr = Data.assetSymbolToAddress(symbol);
         return betoken.registerWithToken(tokenAddr, amountInToken, pending, confirm, error);
     }
 }

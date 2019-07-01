@@ -66,8 +66,8 @@ export const sendTxWithToken = async (func, token, to, amount, _onTxHash, _onRec
                 from: web3.eth.defaultAccount,
                 gasLimit: "3000000"
             }).on("transactionHash", _onTxHash).on("receipt", _onReceipt).on("error", _onError);
-        }, doNothing, doNothing);
-    }, doNothing, doNothing);
+        }, doNothing, _onError);
+    }, doNothing, _onError);
 };
 
 export const doNothing = () => { }

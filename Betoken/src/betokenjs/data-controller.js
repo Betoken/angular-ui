@@ -216,7 +216,7 @@ export const loadTokenMetadata = async () => {
         let info = rawData.find((x) => x.CoinInfo.Name === token.symbol);
         if (isUndefined(info)) {
             // token not on cryptocompare, use filler
-            tokenLogos.push('/assets/img/icons/no-logo-asset.svg');
+            tokenLogos.push('/portal/assets/img/icons/no-logo-asset.svg');
         } else {
             tokenLogos.push(`https://cryptocompare.com${info.CoinInfo.ImageUrl}`);
         }

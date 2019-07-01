@@ -485,11 +485,12 @@ export const loadTxHistory = async () => {
                 data = event.returnValues;
                 let daiAmount = data._daiAmount;
                 if (daiAmount > 0) {
+                    let symbol = assetAddressToSymbol(data._tokenAddress);
                     entry = {
                         type: _type,
                         timestamp: +data._timestamp,
-                        token: await betoken.getTokenSymbol(data._tokenAddress),
-                        amount: BigNumber(data._tokenAmount).div(10 ** (+(await betoken.getTokenDecimals(data._tokenAddress)))),
+                        token: symbol,
+                        amount: BigNumber(data._tokenAmount).div(10 ** TOKEN_DATA.find((x) => x.symbol === symbol).decimals),
                         daiAmount: BigNumber(daiAmount).div(10 ** 18),
                         txHash: event.transactionHash
                     };

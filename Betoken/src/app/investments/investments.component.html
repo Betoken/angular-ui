@@ -483,6 +483,9 @@
                 <small id="kroBalance"
                   class="form-text text-secondary d-inline-block mb-0 mt-2">{{kairo_balance.toFormat(18)}} KRO
                   available</small>
+                <small class="form-text text-warning d-inline-block mb-0 mt-2" *ngIf="selectedOrderType.type === 'fulcrum'">
+                  Minimum stake: {{fulcrumMinStake.toFormat(18)}} KRO
+                </small>
                 <h6 class="header-pretitle mt-4" *ngIf="isMarginToken(selectedTokenSymbol)">Order type</h6>
                 <select class="form-control form-control-lg" id="orderTypeSelect"
                   (change)="selectOrderType($event.target.selectedIndex)" *ngIf="isMarginToken(selectedTokenSymbol)">
@@ -491,6 +494,7 @@
               </form>
             </div>
           </div>
+
 
           <!-- Max acceptable price -->
           <div class="row justify-content-center">

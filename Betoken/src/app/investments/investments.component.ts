@@ -31,6 +31,7 @@ export class InvestmentsComponent implements OnInit {
     continueEnabled: Boolean;
     orderTypes: Array<Object>;
     selectedOrderType: Object;
+    fulcrumMinStake: BigNumber;
 
     sellId: Number;
     sellData: Object;
@@ -64,6 +65,7 @@ export class InvestmentsComponent implements OnInit {
             type: 'basic'
         };
         this.continueEnabled = false;
+        this.fulcrumMinStake = new BigNumber(0);
 
         this.sellId = 0;
         this.sellData = {
@@ -114,6 +116,7 @@ export class InvestmentsComponent implements OnInit {
         this.nextPhasePopupStep = 0;
         this.topupPopupStep = 0;
         this.continueEnabled = false;
+        this.fulcrumMinStake = new BigNumber(0);
     }
 
     // Refresh info
@@ -185,6 +188,9 @@ export class InvestmentsComponent implements OnInit {
 
     selectOrderType(typeId) {
         this.selectedOrderType = this.orderTypes[typeId];
+        if (this.selectedOrderType['type'] === 'fulcrum') {
+            this.fulcrumMinStake = tokens.fulcrum_min_stake(this.selectedTokenSymbol, (this.selectedOrderType['leverage'] < 0));
+        }
     }
 
     async createInvestment() {

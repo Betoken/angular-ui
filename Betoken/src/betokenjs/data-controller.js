@@ -86,23 +86,23 @@ export const assetSymbolToAddress = function (_symbol) {
 
 export const assetSymbolToCTokenAddress = (_symbol) => {
     return CTOKENS.find((x) => x.symbol === _symbol).address;
-}
+};
 
 export const assetSymbolToPTokens = (_symbol) => {
     return PTOKENS.find((x) => x.symbol === _symbol).pTokens;
-}
+};
 
 export const assetCTokenAddressToSymbol = (_addr) => {
     return CTOKENS.find((x) => x.address === _addr).symbol;
-}
+};
 
 export const assetPTokenAddressToSymbol = (_addr) => {
     return PTOKENS.find((x) => !isUndefined(x.pTokens.find((y) => y.address === _addr))).symbol;
-}
+};
 
 export const assetPTokenAddressToInfo = (_addr) => {
     return PTOKENS.find((x) => !isUndefined(x.pTokens.find((y) => y.address === _addr))).pTokens.find((y) => y.address === _addr);
-}
+};
 
 export const assetSymbolToDailyPriceChange = function (_symbol) {
     return TOKEN_DATA.find((x) => x.symbol === _symbol).dailyPriceChange;
@@ -118,30 +118,43 @@ export const assetSymbolToMonthlyPriceChange = function (_symbol) {
 
 export const assetSymbolToName = (_symbol) => {
     return TOKEN_DATA.find((x) => x.symbol === _symbol).name;
-}
+};
 
 export const assetSymbolToLogoUrl = (_symbol) => {
     return TOKEN_DATA.find((x) => x.symbol === _symbol).logoUrl;
-}
+};
 
 export const notStablecoin = (_symbol) => {
     return !STABLECOINS.includes(_symbol);
-}
+};
 
 export const isCompoundToken = (_symbol) => {
     const result = CTOKENS.find((x) => x.symbol === _symbol);
     return !isUndefined(result);
-}
+};
 
 export const isFulcrumToken = (_symbol) => {
     const result = PTOKENS.find((x) => x.symbol === _symbol);
     return !isUndefined(result);
-}
+};
 
 export const isFulcrumTokenAddress = (_tokenAddress) => {
     const result = PTOKENS.find((x) => !isUndefined(x.pTokens.find((y) => y.address === _tokenAddress)));
     return !isUndefined(result);
-}
+};
+
+export const fulcrumMinStake = (_symbol, _isShort) => {
+    let underlyingPrice;
+    if (_isShort) {
+        // underlying is token
+        underlyingPrice = assetSymbolToPrice(_symbol);
+    } else {
+        // underlying is DAI
+        underlyingPrice = BigNumber(1);
+    }
+    const MIN_AMOUNT = BigNumber(0.001);
+    return MIN_AMOUNT.times(underlyingPrice).div(totalFunds).times(kairoTotalSupply);
+};
 
 export const httpsGet = async (apiStr) => {
     const data = await (new Promise((resolve, reject) => {
@@ -157,7 +170,7 @@ export const httpsGet = async (apiStr) => {
         }).on("error", reject);
     }));
     return data;
-}
+};
 
 const clock = () => {
     const timeKeeper = setInterval(() => {

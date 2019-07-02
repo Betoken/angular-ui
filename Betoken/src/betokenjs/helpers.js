@@ -131,7 +131,8 @@ export const tokens = {
     get_ptoken_price: (_addr, _underlyingPrice) => betoken.getPTokenPrice(_addr, _underlyingPrice), // returns promise
     not_stablecoin: (_symbol) => Data.notStablecoin(_symbol),
     is_compound_token: (_symbol) => Data.isCompoundToken(_symbol),
-    is_fulcrum_token: (_symbol) => Data.isFulcrumToken(_symbol)
+    is_fulcrum_token: (_symbol) => Data.isFulcrumToken(_symbol),
+    fulcrum_min_stake: (_symbol, _isShort) => Data.fulcrumMinStake(_symbol, _isShort)
 }
 
 export const loading = {

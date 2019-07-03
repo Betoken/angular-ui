@@ -307,12 +307,7 @@ export const loadUserData = async () => {
             cycleTotalCommission = BigNumber((await betoken.getMappingOrArrayItem("totalCommissionOfCycle", cycleNumber))).div(PRECISION);
 
             // Get user's risk profile
-            let risk = BigNumber(await betoken.getRiskTaken(userAddr)).div(await betoken.getRiskThreshold(userAddr));
-            risk = BigNumber.min(risk, 1); // Meaningless after exceeding 1
-            riskTakenPercentage = BigNumber(await betoken.getRiskTaken(userAddr)).div(await betoken.getRiskThreshold(userAddr));
-            if (riskTakenPercentage.isNaN()) {
-                riskTakenPercentage = BigNumber(0);
-            }
+            let risk = BigNumber(await betoken.getRiskTaken(userAddr));
 
             isLoadingInvestments = true;
             var stake = BigNumber(0);
@@ -347,9 +342,15 @@ export const loadUserData = async () => {
 
 
                         if (!inv.isSold && +inv.cycleNumber === cycleNumber) {
+                            // add stake
                             var currentStakeValue = inv.sellPrice
                                 .minus(inv.buyPrice).div(inv.buyPrice).times(inv.stake).plus(inv.stake);
                             stake = stake.plus(currentStakeValue);
+
+                            // add risk
+                            let now = Date.now();
+                            let investmentAgeInSeconds = now / 1e3 - (+inv.buyTime);
+                            risk = risk.plus(inv.stake.times(PRECISION).times(investmentAgeInSeconds).integerValue());
                         }
                     } else {
                         symbol = assetAddressToSymbol(inv.tokenAddress);
@@ -366,9 +367,15 @@ export const loadUserData = async () => {
                         inv.buyTime = new Date(+inv.buyTime * 1e3);
 
                         if (!inv.isSold && +inv.cycleNumber === cycleNumber) {
+                            // add stake
                             var currentStakeValue = inv.sellPrice
                                 .minus(inv.buyPrice).div(inv.buyPrice).times(inv.stake).plus(inv.stake);
                             stake = stake.plus(currentStakeValue);
+
+                            // add risk
+                            let now = Date.now();
+                            let investmentAgeInSeconds = now / 1e3 - (+inv.buyTime);
+                            risk = risk.plus(inv.stake.times(PRECISION).times(investmentAgeInSeconds).integerValue());
                         }
                     }
                     investments[id] = inv;
@@ -411,7 +418,7 @@ export const loadUserData = async () => {
                 await Promise.all(handleAllProposals());
 
                 // reformat compound order objects
-                compoundOrders = compoundOrders.filter((x) => +x.cycleNumber == cycleNumber);
+                compoundOrders = compoundOrders.filter((x) => +x.cycleNumber == cycleNumber); // only care about investments in current cycle
                 for (let o of compoundOrders) {
                     o.stake = BigNumber(o.stake).div(PRECISION);
                     o.cycleNumber = +o.cycleNumber;
@@ -435,8 +442,14 @@ export const loadUserData = async () => {
                     o.type = "compound";
 
                     if (!o.isSold) {
+                        // add stake
                         var currentStakeValue = o.stake.times(o.ROI.div(100).plus(1));
                         stake = stake.plus(currentStakeValue);
+
+                        // add risk
+                        let now = Date.now();
+                        let investmentAgeInSeconds = now / 1e3 - o.buyTime.getTime() / 1e3;
+                        risk = risk.plus(o.stake.times(PRECISION).times(investmentAgeInSeconds).integerValue());
                     }
 
                     delete o.getCurrentCollateralRatioInDAI;
@@ -454,6 +467,12 @@ export const loadUserData = async () => {
             portfolioValue = stake.plus(kairoBalance);
             var cycleStartKRO = BigNumber(await betoken.getBaseStake(userAddr)).div(PRECISION);
             managerROI = cycleStartKRO.gt(0) ? totalKROChange.div(cycleStartKRO).times(100) : BigNumber(0);
+
+            riskTakenPercentage = BigNumber(risk).div(await betoken.getRiskThreshold(userAddr));
+            if (riskTakenPercentage.isNaN()) {
+                riskTakenPercentage = BigNumber(0);
+            }
+            riskTakenPercentage = BigNumber.min(riskTakenPercentage, 1); // Meaningless after exceeding 1   
         }
     }
     isLoadingInvestments = false;

@@ -349,7 +349,7 @@ export const loadUserData = async () => {
 
                             // add risk
                             let now = Date.now();
-                            let investmentAgeInSeconds = now / 1e3 - (+inv.buyTime);
+                            let investmentAgeInSeconds = now / 1e3 - inv.buyTime.getTime() / 1e3;
                             risk = risk.plus(inv.stake.times(PRECISION).times(investmentAgeInSeconds).integerValue());
                         }
                     } else {
@@ -374,7 +374,7 @@ export const loadUserData = async () => {
 
                             // add risk
                             let now = Date.now();
-                            let investmentAgeInSeconds = now / 1e3 - (+inv.buyTime);
+                            let investmentAgeInSeconds = now / 1e3 - inv.buyTime.getTime() / 1e3;
                             risk = risk.plus(inv.stake.times(PRECISION).times(investmentAgeInSeconds).integerValue());
                         }
                     }

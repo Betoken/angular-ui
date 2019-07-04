@@ -43,34 +43,14 @@
      "symbol":"WBTC",
      "pTokens":[  
         {  
-           "address":"0x9fC208947d92B1588F7BdE245620439568A8587a",
-           "leverage":1,
-           "type":true
-        },
-        {  
-           "address":"0x671C7886C61A18Fc6E94893A791eaa069D70eBA7",
-           "leverage":2,
-           "type":true
-        },
-        {  
            "address":"0x9fe6854447bB39dc8b78960882831269f9e78408",
            "leverage":2,
            "type":false
         },
         {  
-           "address":"0x849548F5D966017b6b49F6a3A740BBDb78176eDB",
-           "leverage":3,
-           "type":true
-        },
-        {  
            "address":"0x6d08B86002221Dc2fE4e27170fF90e1B92de3254",
            "leverage":3,
            "type":false
-        },
-        {  
-           "address":"0x2fC9F52240F68eF0f178e1B896435D8f64A8DFaa",
-           "leverage":4,
-           "type":true
         },
         {  
            "address":"0x4F4D523C69a47c5C3ef06c53ec64801f11a884Dd",

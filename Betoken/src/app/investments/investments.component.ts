@@ -179,7 +179,9 @@ export class InvestmentsComponent implements OnInit {
                     type: 'fulcrum',
                     tokenAddress: pToken.address
                 }
-                orderTypes.push(option);
+                if (!(pToken.type && symbol === 'WBTC')) {
+                    orderTypes.push(option);
+                }
             }
         }
 

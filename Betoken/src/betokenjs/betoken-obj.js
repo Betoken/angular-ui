@@ -273,7 +273,7 @@ export var Betoken = function () {
 
     self.getKairoBalanceAtCycleStart = async function (_address) {
         let cycleStartBlock = await self.contracts.BetokenFund.methods.managePhaseEndBlock((await self.getPrimitiveVar("cycleNumber")) - 1).call();
-        return self.contracts.Kairo.methods.balanceOfAt(_address, cycleStartBlock + 1).call();
+        return self.contracts.Kairo.methods.balanceOfAt(_address, cycleStartBlock).call();
     };
 
     self.getBaseStake = async (_address) => {

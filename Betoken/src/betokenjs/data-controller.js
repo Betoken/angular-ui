@@ -6,7 +6,7 @@ import { isUndefined } from 'util';
 
 // constants
 const PRECISION = 1e18;
-const DEPLOYED_BLOCK = 5168545;
+const DEPLOYED_BLOCK = 8064049;
 const ZERO_ADDR = '0x0000000000000000000000000000000000000000';
 const CTOKENS = require('./json_data/compound_tokens.json'); // Compound cTokens
 const STABLECOINS = require('./json_data/stablecoins.json'); // Stablecoins (managers can't invest)

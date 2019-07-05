@@ -97,7 +97,7 @@ export class InvestorComponent implements OnInit {
     this.selectedTokenSymbol = this.tokenData[0]['symbol'];
     this.depositWithdrawHistory = user.deposit_withdraw_history();
     this.refreshDisplay();
-    setInterval(this.updateTimer, 1000);
+    setInterval(() => this.updateTimer(), 1000);
     $('[data-toggle="tooltip"]').tooltip();
     $('#modalInvestorBuy').on('hidden.bs.modal', () => {
       this.resetModals();

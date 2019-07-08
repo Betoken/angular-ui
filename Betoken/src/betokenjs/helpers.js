@@ -159,7 +159,7 @@ export const refresh_actions = {
         return Data.loadTokenPrices();
     },
     stats: () => {
-        return Data.loadUserData().then(Data.loadStats);
+        return Data.loadTokenPrices().then(Data.loadRanking).then(Data.loadUserData).then(Data.loadStats);
     },
     reload_all: () => {
         const betoken = new Betoken();

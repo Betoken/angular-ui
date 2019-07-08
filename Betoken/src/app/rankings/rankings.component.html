@@ -103,12 +103,12 @@
                   </span>
                 </td>
                 <td class="align-middle">
-                  {{ranking.kairoBalance.toFormat(4)}}
+                  {{ranking.kairoBalance.toFormat(6)}}
                 </td>
                 <td class="align-middle">
                   <!-- Badge -->
                   <span class="badge badge-xl" [ngClass]="{'badge-soft-success': +ranking.cycleROI >= 0, 'badge-soft-danger': 0 > +ranking.cycleROI}">
-                    {{ranking.cycleROI.toFormat(4)}}%
+                    {{ranking.cycleROI.toFormat(6)}}%
                   </span>
                 </td>
               </tr>

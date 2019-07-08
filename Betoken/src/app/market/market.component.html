@@ -90,7 +90,7 @@
                       </div>
                   </div>
                 </td>
-                <td class="align-middle">{{token.price}}</td>
+                <td class="align-middle">{{token.price.toFormat(6)}}</td>
                 <td class="24h-change align-middle">
                   <span class="badge badge-xl" [ngClass]="{'badge-soft-success': +token.dailyPriceChange >= 0, 'badge-soft-danger': 0 > +token.dailyPriceChange}">
                     {{token.dailyPriceChange.isNaN() ? 'Not available' : token.dailyPriceChange.toFormat(4) + '%'}}

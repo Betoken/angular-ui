@@ -987,6 +987,45 @@
 				"0x05461124C86C0AD7C5d8E012e1499fd9109fFb7d",
 				"0xD6000fda0b38f4Bff4CfAb188E0bd18e8725a5e7"
 			]
+		},
+		{
+			"symbol" : "MYB",
+			"name" : "MyBit",
+			"address" : "0x5d60d8d7ef6d37e16ebabc324de3be57f135e0bc",
+			"decimals" : 18,
+			"id" : "0x5d60d8d7ef6d37e16ebabc324de3be57f135e0bc",
+			"reserves_src" : [
+				"0x1833AD67362249823515B59A8aA8b4f6B4358d1B"
+			],
+			"reserves_dest" : [
+				"0x1833AD67362249823515B59A8aA8b4f6B4358d1B"
+			]
+		},
+		{
+			"symbol" : "BAM",
+			"name" : "Bamboo",
+			"address" : "0x22b3faaa8df978f6bafe18aade18dc2e3dfa0e0c",
+			"decimals" : 18,
+			"id" : "0x22b3faaa8df978f6bafe18aade18dc2e3dfa0e0c",
+			"reserves_src" : [
+				"0x302B35bd0B01312ec2652783c04955D7200C3D9b"
+			],
+			"reserves_dest" : [
+				"0x302B35bd0B01312ec2652783c04955D7200C3D9b"
+			]
+		},
+		{
+			"symbol" : "SPN",
+			"name" : "Sapien Network",
+			"address" : "0x20f7a3ddf244dc9299975b4da1c39f8d5d75f05a",
+			"decimals" : 6,
+			"id" : "0x20f7a3ddf244dc9299975b4da1c39f8d5d75f05a",
+			"reserves_src" : [
+				"0x6b84DBd29643294703dBabf8Ed97cDef74EDD227"
+			],
+			"reserves_dest" : [
+				"0x6b84DBd29643294703dBabf8Ed97cDef74EDD227"
+			]
 		}
 	],
 	"error" : false

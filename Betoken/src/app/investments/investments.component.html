@@ -27,7 +27,7 @@
             </h6>
             <!-- Heading -->
             <span class="h2 mb-0">
-              {{portfolioValueInDAI}}
+              {{portfolioValueInDAI.toFormat(6)}}
             </span>
           </div>
           <div class="col-auto">
@@ -52,7 +52,7 @@
 
             <!-- Heading -->
             <span class="h2 mb-0">
-              {{userValue}}
+              {{userValue.toFormat(6)}}
             </span>
             <!-- Badge -->
             <span class="badge"
@@ -139,7 +139,7 @@
 
             <!-- Heading -->
             <span class="h2 mb-0">
-              {{expected_commission}}
+              {{expected_commission.toFormat(6)}}
             </span>
 
           </div>

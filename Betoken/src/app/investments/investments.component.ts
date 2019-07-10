@@ -17,10 +17,10 @@ export class InvestmentsComponent implements OnInit {
     nextPhasePopupStep: Number;
     topupPopupStep: Number;
 
-    portfolioValueInDAI: String;
+    portfolioValueInDAI: BigNumber;
     riskTakenPercentage: BigNumber;
-    userValue: String;
-    expected_commission: String;
+    userValue: BigNumber;
+    expected_commission: BigNumber;
     kairo_balance: BigNumber;
     monthly_pl: BigNumber;
     phase: Number;
@@ -48,10 +48,10 @@ export class InvestmentsComponent implements OnInit {
         this.nextPhasePopupStep = 0;
         this.topupPopupStep = 0;
 
-        this.portfolioValueInDAI = '';
+        this.portfolioValueInDAI = new BigNumber(0);
         this.riskTakenPercentage = new BigNumber(0);
-        this.userValue = '';
-        this.expected_commission = '';
+        this.userValue = new BigNumber(0);
+        this.expected_commission = new BigNumber(0);
         this.kairo_balance = new BigNumber(0);
         this.monthly_pl = new BigNumber(0);
         this.phase = 0;
@@ -105,7 +105,6 @@ export class InvestmentsComponent implements OnInit {
 
     resetModals() {
         this.stakeAmount = new BigNumber(0);
-        this.selectedTokenSymbol = this.tokenData[0]['symbol'];
         this.selectedOrderType = {
             text: 'Basic Order',
             leverage: 1,
@@ -122,12 +121,12 @@ export class InvestmentsComponent implements OnInit {
     // Refresh info
 
     refreshDisplay() {
-        this.expected_commission = user.expected_commission().toFormat(2);
+        this.expected_commission = user.expected_commission();
         this.kairo_balance = user.kairo_balance();
         this.monthly_pl = user.monthly_roi();
         this.tokenData = tokens.token_data().filter((x) => tokens.not_stablecoin(x.symbol));
-        this.userValue = user.portfolio_value().toFormat(4);
-        this.portfolioValueInDAI = user.portfolio_value_in_dai().toFormat(4);
+        this.userValue = user.portfolio_value();
+        this.portfolioValueInDAI = user.portfolio_value_in_dai();
         this.riskTakenPercentage = user.risk_taken_percentage().times(100);
         this.phase = timer.phase();
 

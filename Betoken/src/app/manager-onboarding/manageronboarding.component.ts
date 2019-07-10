@@ -29,6 +29,7 @@ export class ManageronboardingComponent implements OnInit {
   buyTokenAmount: BigNumber;
   kairoBalance: BigNumber;
   kairoTotalSupply: BigNumber;
+  totalFunds: BigNumber;
 
   buyStep: Number;
   continueEnabled: Boolean;
@@ -50,6 +51,7 @@ export class ManageronboardingComponent implements OnInit {
     this.FALLBACK_MAX_DONATION = new BigNumber(100); // fallback max DAI payment is 100
     this.continueEnabled = false;
     this.errorMsg = "";
+    this.totalFunds = new BigNumber(0);
   }
 
   ngOnInit() {
@@ -65,8 +67,9 @@ export class ManageronboardingComponent implements OnInit {
   refreshDisplay() {
     this.user_address = user.address();
     this.kairoPrice = stats.kairo_price();
-    this.kairoBalance = user.kairo_balance();
+    this.kairoBalance = user.portfolio_value();
     this.kairoTotalSupply = stats.kairo_total_supply();
+    this.totalFunds = stats.total_funds();
 
     this.getTokenBalance(this.selectedTokenSymbol);
   }
@@ -83,6 +86,9 @@ export class ManageronboardingComponent implements OnInit {
     this.buyTokenAmount = new BigNumber(val);
     if (!this.buyTokenAmount.isNaN()) {
       this.buyKairoAmount = this.buyTokenAmount.times(this.assetSymbolToPrice(this.selectedTokenSymbol)).div(this.kairoPrice);
+    } else {
+      this.buyTokenAmount = new BigNumber(0);
+      this.buyKairoAmount = new BigNumber(0);
     }
   }
 

@@ -99,6 +99,9 @@ export class InvestoronboardingComponent implements OnInit {
     this.buyTokenAmount = new BigNumber(val);
     if (!this.buyTokenAmount.isNaN()) {
       this.buySharesAmount = this.buyTokenAmount.times(this.assetSymbolToPrice(this.selectedTokenSymbol)).div(this.sharesPrice);
+    } else {
+      this.buyTokenAmount = new BigNumber(0);
+      this.buySharesAmount = new BigNumber(0);
     }
   }
 

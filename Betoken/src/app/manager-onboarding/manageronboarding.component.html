@@ -381,7 +381,7 @@
                 <input type="checkbox" class="custom-control-input" id="rule2"
                   (change)="checkboxes[1] = !checkboxes[1]">
                 <label class="custom-control-label small text-secondary" for="rule2">You have read and understood our <a
-                    href="#disclaimer" data-dismiss="modal" aria-label="Close">disclaimer</a>.</label>
+                    href="#/disclaimer" data-dismiss="modal" aria-label="Close">disclaimer</a>.</label>
               </div>
               <div class="custom-control custom-checkbox mb-4">
                 <input type="checkbox" class="custom-control-input" id="rule3"
@@ -408,9 +408,9 @@
                     <div class="form-group row mb-2">
                       <div class="col">
                         <div class="input-group">
-                          <input aria-describedby="Betoken Shares Amount to buy"
+                          <input aria-describedby="Kairo Amount to buy"
                             class="form-control form-control-lg pr-0" type="number" placeholder="0.0"
-                            id="sharesAmountToBuy"
+                            id="sharesAmountToBuy" min="0.0"
                             (input)="refreshBuyOrderDetails($event.target.value); continueEnabled = true">
                           <div class="input-group-append">
                             <button class="btn btn-white" name="button" type="button"
@@ -450,7 +450,15 @@
                         Kairo tokens to receive
                       </td>
                       <td class="px-0 text-right small align-baseline">
-                        {{buyKairoAmount.toFormat(4)}} KRO
+                        {{buyKairoAmount.toFormat(6)}} KRO
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="px-0 small align-baseline text-muted">
+                        Amount you will manage
+                      </td>
+                      <td class="px-0 text-right small align-baseline">
+                        {{buyKairoAmount.times(totalFunds).div(kairoTotalSupply).toFormat(6)}} DAI
                       </td>
                     </tr>
                     <tr>

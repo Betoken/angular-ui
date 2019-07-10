@@ -147,6 +147,9 @@ export class InvestorComponent implements OnInit {
     this.buyTokenAmount = new BigNumber(val);
     if (!this.buyTokenAmount.isNaN()) {
       this.buySharesAmount = this.buyTokenAmount.times(this.assetSymbolToPrice(this.selectedTokenSymbol)).div(this.sharesPrice);
+    } else {
+      this.buyTokenAmount = new BigNumber(0);
+      this.buySharesAmount = new BigNumber(0);
     }
   }
   
@@ -154,6 +157,9 @@ export class InvestorComponent implements OnInit {
     this.sellSharesAmount = new BigNumber(val);
     if (!this.sellSharesAmount.isNaN()) {
       this.sellTokenAmount = this.sellSharesAmount.times(this.sharesPrice).div(this.assetSymbolToPrice(this.selectedTokenSymbol));
+    } else {
+      this.sellSharesAmount = new BigNumber(0);
+      this.sellTokenAmount = new BigNumber(0);
     }
   }
 

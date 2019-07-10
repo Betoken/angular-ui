@@ -663,6 +663,12 @@ export const loadRanking = async () => {
                     symbol = assetAddressToSymbol(inv.tokenAddress);
                     tokenPrice = assetSymbolToPrice(symbol);
                 }
+
+                // format data
+                inv.stake = BigNumber(inv.stake).div(PRECISION);
+                inv.buyPrice = BigNumber(inv.buyPrice).div(PRECISION);
+                inv.sellPrice = inv.isSold ? BigNumber(inv.sellPrice).div(PRECISION) : tokenPrice;
+
                 // calculate kairo balance
                 if (!inv.isSold && +inv.cycleNumber === cycleNumber && cyclePhase == 1) {
                     var currentStakeValue = tokenPrice
@@ -671,12 +677,8 @@ export const loadRanking = async () => {
                 }
                 // calculate roi
                 if (+inv.cycleNumber === cycleNumber) {
-                    var _stake = BigNumber(inv.stake).div(PRECISION);
-                    var _buyPrice = BigNumber(inv.buyPrice).div(PRECISION);
-                    var _sellPrice = inv.isSold ? BigNumber(inv.sellPrice).div(PRECISION) : tokenPrice;
-
-                    var _ROI = BigNumber(_sellPrice).minus(_buyPrice).div(_buyPrice);
-                    var _kroChange = BigNumber(_ROI).times(_stake);
+                    var _ROI = BigNumber(inv.sellPrice).minus(inv.buyPrice).div(inv.buyPrice);
+                    var _kroChange = BigNumber(_ROI).times(inv.stake);
 
                     totalKROChange = totalKROChange.plus(_kroChange);
                 }
@@ -726,7 +728,6 @@ export const loadRanking = async () => {
             }
 
             var cycleStartKRO = BigNumber(await betoken.getBaseStake(_addr)).div(PRECISION);
-
 
             let userKairoBalance = BigNumber(await betoken.getKairoBalance(_addr)).div(PRECISION).plus(stake);
             fundTotalKRO = fundTotalKRO.plus(userKairoBalance);

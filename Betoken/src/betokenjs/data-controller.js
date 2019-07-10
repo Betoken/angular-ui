@@ -552,14 +552,36 @@ export const loadTokenPrices = async () => {
             if (x.symbol !== 'ETH') {
                 let tokenData = rawData.data.find((y) => y.base_symbol === x.symbol);
                 let daiData = rawData.data.find((y) => y.base_symbol === 'DAI');
+                if (tokenData.current_bid == 0) {
+                    tokenData.current_bid = tokenData.current_ask;
+                } else if (tokenData.current_ask == 0) {
+                    tokenData.current_ask = tokenData.current_bid;
+                }
+                if (daiData.current_bid == 0) {
+                    daiData.current_bid = daiData.current_ask;
+                } else if (daiData.current_ask == 0) {
+                    daiData.current_ask = daiData.current_bid;
+                }
+
                 let tokenPriceInETH = (tokenData.current_bid + tokenData.current_ask) / 2;
                 let daiPriceInETH = (daiData.current_bid + daiData.current_ask) / 2;
                 x.price = BigNumber(tokenPriceInETH).div(daiPriceInETH);
+
+                x.dailyVolume = BigNumber(tokenData.usd_24h_volume);
             } else {
                 let daiData = rawData.data.find((y) => y.base_symbol === 'DAI');
+                if (daiData.current_bid == 0) {
+                    daiData.current_bid = daiData.current_ask;
+                } else if (daiData.current_ask == 0) {
+                    daiData.current_ask = daiData.current_bid;
+                }
+
                 let daiPriceInETH = (daiData.current_bid + daiData.current_ask) / 2;
                 x.price = BigNumber(1).div(daiPriceInETH);
+
+                x.dailyVolume = BigNumber(rawData.data.reduce((accumulator, curr) => accumulator + curr.usd_24h_volume, 0));
             }
+
             return x;
         }).filter((x) => x.price.gt(0));
     }
@@ -715,7 +737,7 @@ export const loadRanking = async () => {
                 address: web3.utils.toChecksumAddress(_addr),
                 kairoBalance: userKairoBalance,
                 cycleROI: cycleStartKRO.isZero() ? BigNumber(0) : totalKROChange.div(cycleStartKRO).times(100),
-                isSupporter: SUPPORTERS.indexOf(_addr) != -1
+                isSupporter: SUPPORTERS.indexOf(web3.utils.toChecksumAddress(_addr)) != -1
             };
         });
     }));

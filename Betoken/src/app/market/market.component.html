@@ -30,7 +30,7 @@
             </div>
             <div class="col-auto">
               <!-- Refresh -->
-              <button class="btn btn-sm btn-white" type="button" name="button" (click) = "refresh()">
+              <button class="btn btn-sm btn-white" type="button" name="button" (click)="refresh()">
                 <i class="fe fe-refresh-cw align-middle" *ngIf="isLoading() == false"></i>
                 <div class="spinner-grow spinner-grow-sm" role="status" *ngIf="isLoading()">
                   <span class="sr-only">Loading...</span>
@@ -45,7 +45,8 @@
               <!-- Form -->
               <form>
                 <div class="input-group input-group-flush input-group-merge">
-                  <input type="search" class="form-control form-control-prepended search" (keyup)="filterTable($event,'market-table',0)" placeholder="Search">
+                  <input type="search" class="form-control form-control-prepended search"
+                    (keyup)="filterTable($event,'market-table',0)" placeholder="Search">
                   <div class="input-group-prepend">
                     <div class="input-group-text">
                       <span class="fe fe-search"></span>
@@ -61,19 +62,22 @@
             <thead>
               <tr>
                 <th class="text-muted">
-                    Asset
+                  Asset
                 </th>
                 <th class="text-muted">
-                    Price in $DAI
+                  Price ($DAI)
                 </th>
                 <th class="text-muted">
-                    24h Change
+                  24h Change
                 </th>
                 <th class="text-muted">
-                    7d change
+                  24h Volume (USD)
                 </th>
                 <th class="text-muted">
-                    1m change
+                  7d Change
+                </th>
+                <th class="text-muted">
+                  1m Change
                 </th>
               </tr>
             </thead>
@@ -81,28 +85,33 @@
               <tr *ngFor="let token of tokenData">
                 <td class="align-middle pr-0">
                   <div class="media">
-                      <span class="avatar avatar-xs align-self-center mr-3">
-                          <img src={{token.logoUrl}} alt="{{token.symbol}} token logo" class="avatar-img rounded-circle">
-                      </span>
-                      <div class="media-body">
-                          <h5 class="mb-1">{{token.symbol}}</h5>
-                          <span class="small text-muted">{{ token.name.length > 12 ? (token.name | slice:0:12)+'..':(token.name) }}</span>
-                      </div>
+                    <span class="avatar avatar-xs align-self-center mr-3">
+                      <img src={{token.logoUrl}} alt="{{token.symbol}} token logo" class="avatar-img rounded-circle">
+                    </span>
+                    <div class="media-body">
+                      <h5 class="mb-1">{{token.symbol}}</h5>
+                      <span
+                        class="small text-muted">{{ token.name.length > 12 ? (token.name | slice:0:12)+'..':(token.name) }}</span>
+                    </div>
                   </div>
                 </td>
                 <td class="align-middle">{{token.price.toFormat(6)}}</td>
                 <td class="24h-change align-middle">
-                  <span class="badge badge-xl" [ngClass]="{'badge-soft-success': +token.dailyPriceChange >= 0, 'badge-soft-danger': 0 > +token.dailyPriceChange}">
+                  <span class="badge badge-xl"
+                    [ngClass]="{'badge-soft-success': +token.dailyPriceChange >= 0, 'badge-soft-danger': 0 > +token.dailyPriceChange}">
                     {{token.dailyPriceChange.isNaN() ? 'Not available' : token.dailyPriceChange.toFormat(4) + '%'}}
                   </span>
                 </td>
+                <td class="align-middle">{{token.dailyVolume.toFormat(6)}}</td>
                 <td class="align-middle">
-                  <span class="badge badge-xl" [ngClass]="{'badge-soft-success': +token.weeklyPriceChange >= 0, 'badge-soft-danger': 0 > +token.weeklyPriceChange}">
+                  <span class="badge badge-xl"
+                    [ngClass]="{'badge-soft-success': +token.weeklyPriceChange >= 0, 'badge-soft-danger': 0 > +token.weeklyPriceChange}">
                     {{token.weeklyPriceChange.isNaN() ? 'Not available' : token.weeklyPriceChange.toFormat(4) + '%'}}
                   </span>
                 </td>
                 <td class="align-middle">
-                  <span class="badge badge-xl" [ngClass]="{'badge-soft-success': +token.monthlyPriceChange >= 0, 'badge-soft-danger': 0 > +token.monthlyPriceChange}">
+                  <span class="badge badge-xl"
+                    [ngClass]="{'badge-soft-success': +token.monthlyPriceChange >= 0, 'badge-soft-danger': 0 > +token.monthlyPriceChange}">
                     {{token.monthlyPriceChange.isNaN() ? 'Not available' : token.monthlyPriceChange.toFormat(4) + '%'}}
                   </span>
                 </td>
@@ -113,15 +122,18 @@
       </div>
     </div>
   </div> <!-- / .row -->
-  <a href="https://github.com/solidified-platform/audits/blob/master/Audit%20Report%20-%20%20Betoken%20%5B20.05.2019%5D.pdf" target="_blank">
+  <a href="https://github.com/solidified-platform/audits/blob/master/Audit%20Report%20-%20%20Betoken%20%5B20.05.2019%5D.pdf"
+    target="_blank">
     <div class="row align-items-center justify-content-center">
       <div class="col-auto mb-2 mb-lg-0">
         <div class="avatar avatar-sm">
-          <img class="avatar-img rounded-circle bg-secondary" src="assets/img/solidified-logo.png" alt="Solidified logo">
+          <img class="avatar-img rounded-circle bg-secondary" src="assets/img/solidified-logo.png"
+            alt="Solidified logo">
         </div>
       </div>
       <div class="col-auto">
-        <p class="small text-secondary mb-0 text-center">Betoken Smart Contracts are audited and secured by Solidified</p>
+        <p class="small text-secondary mb-0 text-center">Betoken Smart Contracts are audited and secured by Solidified
+        </p>
       </div>
       <div class="col-auto">
         <i class="fe fe-arrow-right text-secondary"></i>

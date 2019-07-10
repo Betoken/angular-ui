@@ -68,8 +68,11 @@ export const user = {
                 return Data.kairoBalance.div(Data.kairoTotalSupply).times(Data.cycleTotalCommission);
             }
             // Expected commission based on previous average ROI
-            var roi = stats.cycle_roi().gt(0) ? stats.cycle_roi() : BigNumber(0);
-            return user.portfolio_value().div(Data.kairoTotalSupply).times(Data.totalFunds).times(roi.div(100).times(Data.commissionRate).plus(Data.assetFeeRate)).times(Data.riskTakenPercentage);
+            let totalProfit = Data.totalFunds.minus(Data.totalFunds.div(stats.cycle_roi().div(100).plus(1)));
+            totalProfit = BigNumber.max(totalProfit, 0);
+            let commission = totalProfit.div(Data.kairoTotalSupply).times(user.portfolio_value()).times(Data.commissionRate);
+            let assetFee = Data.totalFunds.div(Data.kairoTotalSupply).times(user.portfolio_value()).times(Data.assetFeeRate);
+            return commission.plus(assetFee);
         }
         return BigNumber(0);
     },
@@ -156,7 +159,7 @@ export const refresh_actions = {
         return Data.loadTokenPrices();
     },
     stats: () => {
-        return Data.loadUserData().then(Data.loadStats);
+        return Data.loadTokenPrices().then(Data.loadRanking).then(Data.loadUserData).then(Data.loadStats);
     },
     reload_all: () => {
         const betoken = new Betoken();

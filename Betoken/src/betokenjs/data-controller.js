@@ -625,6 +625,7 @@ export const loadRanking = async () => {
     addresses = Array.from(new Set(addresses)); // remove duplicates
 
     // fetch KRO balances
+    let fundTotalKRO = BigNumber(0);
     var ranking = await Promise.all(addresses.map((_addr) => {
         var stake = BigNumber(0);
         var totalKROChange = BigNumber(0);
@@ -703,11 +704,16 @@ export const loadRanking = async () => {
             }
 
             var cycleStartKRO = BigNumber(await betoken.getBaseStake(_addr)).div(PRECISION);
+
+
+            let userKairoBalance = BigNumber(await betoken.getKairoBalance(_addr)).div(PRECISION).plus(stake);
+            fundTotalKRO = fundTotalKRO.plus(userKairoBalance);
+
             return {
                 // format rank object
                 rank: 0,
                 address: web3.utils.toChecksumAddress(_addr),
-                kairoBalance: BigNumber(await betoken.getKairoBalance(_addr)).div(PRECISION).plus(stake),
+                kairoBalance: userKairoBalance,
                 cycleROI: cycleStartKRO.isZero() ? BigNumber(0) : totalKROChange.div(cycleStartKRO).times(100),
                 isSupporter: SUPPORTERS.indexOf(_addr) != -1
             };
@@ -723,6 +729,12 @@ export const loadRanking = async () => {
         _entry.rank = _id + 1;
         return _entry;
     });
+    
+    kairoTotalSupply = BigNumber((await betoken.getKairoTotalSupply())).div(PRECISION)
+    let fundValueInDAI = fundTotalKRO.div(kairoTotalSupply).times(totalFunds);
+    totalFunds = fundValueInDAI;
+
+    kairoTotalSupply = fundTotalKRO;
 
     // display ranking
     kairoRanking = ranking;
@@ -818,8 +830,7 @@ export const loadDynamicData = async (progressCallback) => {
                 callback();
                 return loadTxHistory();
             }).then(callback),
-            loadRanking().then(callback),
-            loadStats().then(callback)
+            loadRanking().then(callback).then(loadStats).then(callback),
         ]
     ));
 };

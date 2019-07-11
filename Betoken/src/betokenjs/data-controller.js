@@ -583,7 +583,7 @@ export const loadTokenPrices = async () => {
             }
 
             return x;
-        }).filter((x) => x.price.gt(0));
+        });
     }
 
     apiStr = "https://api.kyber.network/change24h";

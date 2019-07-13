@@ -636,25 +636,28 @@
             Error message: {{errorMsg}}
           </p>
         </div>
-
+      </div>
+      <div class="modal-footer" *ngIf="createInvestmentPopupStep === 1">
         <!-- Continue button for step 1 -->
-        <button type="submit" class="btn btn-block btn-success mt-auto" aria-label="Invest" (click)="createInvestment()"
-          *ngIf="createInvestmentPopupStep === 1" [disabled]="!continueEnabled">
+        <button type="submit" class="btn btn-block btn-success mt-auto" aria-label="Invest" (click)="createInvestment()" [disabled]="!continueEnabled">
           Continue
         </button>
+      </div>
+      <div class="modal-footer" *ngIf="createInvestmentPopupStep === 3">
         <!-- Close button for step 3 -->
-        <button type="submit" class="btn btn-block btn-white mt-auto" data-dismiss="modal" aria-label="Close"
-          *ngIf="createInvestmentPopupStep === 3">
+        <button type="submit" class="btn btn-block btn-white mt-auto" data-dismiss="modal" aria-label="Close">
           Close
         </button>
+      </div>
+      <div class="modal-footer" *ngIf="createInvestmentPopupStep === 4">
         <!-- Close button for step 4 -->
-        <button type="submit" class="btn btn-block btn-white mt-auto" data-dismiss="modal" aria-label="Close"
-          *ngIf="createInvestmentPopupStep === 4">
+        <button type="submit" class="btn btn-block btn-white mt-auto" data-dismiss="modal" aria-label="Close">
           Close
         </button>
+      </div>
+      <div class="modal-footer" *ngIf="createInvestmentPopupStep == -1">
         <!-- Try again button for error -->
-        <button type="submit" class="btn btn-block btn-white mt-auto" aria-label="Try again"
-          *ngIf="createInvestmentPopupStep == -1" (click)="resetModals()">
+        <button type="submit" class="btn btn-block btn-white mt-auto" aria-label="Try again" (click)="resetModals()">
           Try again
         </button>
       </div>
@@ -969,21 +972,22 @@
             Error message: {{errorMsg}}
           </p>
         </div>
-
+      </div>
+      <div class="modal-footer" *ngIf="sellInvestmentPopupStep === 0">
         <!-- Continue button for amount to sell Step -->
-        <button type="submit" class="btn btn-block btn-success mt-auto" aria-label="Sell" (click)="sell()"
-          *ngIf="sellInvestmentPopupStep === 0"
-          [disabled]="!continueEnabled && (isOrderOfType(sellData, 'basic') || isOrderOfType(sellData, 'fulcrum'))">
+        <button type="submit" class="btn btn-block btn-success mt-auto" aria-label="Sell" (click)="sell()" [disabled]="!continueEnabled && (isOrderOfType(sellData, 'basic') || isOrderOfType(sellData, 'fulcrum'))">
           Sell Investment
         </button>
+      </div>
+      <div class="modal-footer" *ngIf="sellInvestmentPopupStep === 3">
         <!-- close button panel after Asset being sold -->
-        <button type="submit" class="btn btn-block btn-white mt-auto" data-dismiss="modal" aria-label="Close"
-          *ngIf="sellInvestmentPopupStep === 3">
+        <button type="submit" class="btn btn-block btn-white mt-auto" data-dismiss="modal" aria-label="Close">
           Close
         </button>
+      </div>
+      <div class="modal-footer" *ngIf="sellInvestmentPopupStep == -1">
         <!-- Try again button for error -->
-        <button type="submit" class="btn btn-block btn-white mt-auto" aria-label="Try again"
-          *ngIf="sellInvestmentPopupStep == -1" (click)="resetModals()">
+        <button type="submit" class="btn btn-block btn-white mt-auto" aria-label="Try again" (click)="resetModals()">
           Try again
         </button>
       </div>
@@ -1170,20 +1174,22 @@
             Error message: {{errorMsg}}
           </p>
         </div>
-
+      </div>
+      <div class="modal-footer" *ngIf="topupPopupStep === 0">
         <!-- Continue button for amount to sell Step -->
-        <button type="submit" class="btn btn-block btn-success mt-auto" aria-label="Topup" (click)="topup()"
-          *ngIf="topupPopupStep === 0" [disabled]="!continueEnabled">
+        <button type="submit" class="btn btn-block btn-success mt-auto" aria-label="Topup" (click)="topup()" [disabled]="!continueEnabled">
           Continue
         </button>
+      </div>
+      <div class="modal-footer" *ngIf="topupPopupStep === 3">
         <!-- close button panel after Asset being sold -->
-        <button type="submit" class="btn btn-block btn-white mt-auto" data-dismiss="modal" aria-label="Close"
-          *ngIf="topupPopupStep === 3">
+        <button type="submit" class="btn btn-block btn-white mt-auto" data-dismiss="modal" aria-label="Close">
           Close
         </button>
+      </div>
+      <div class="modal-footer" *ngIf="topupPopupStep == -1">
         <!-- Try again button for error -->
-        <button type="submit" class="btn btn-block btn-white mt-auto" aria-label="Try again"
-          *ngIf="topupPopupStep == -1" (click)="topupPopupStep = 0">
+        <button type="submit" class="btn btn-block btn-white mt-auto" aria-label="Try again" (click)="topupPopupStep = 0">
           Try again
         </button>
       </div>

@@ -57,33 +57,33 @@
             </div>
           </div> <!-- / .row -->
         </div>
-        <div class="table-responsive">
+        <div class="table-responsive" data-toggle="lists" data-options='{"valueNames": ["tables-asset", "tables-price", "tables-24h-change", "tables-24h-volume", "tables-7d-change", "tables-1m-change"]}'>
           <table class="table table-sm table-nowrap card-table">
             <thead>
               <tr>
-                <th class="text-muted">
-                  Asset
+                <th scope="col">
+                  <a href="#" class="text-muted sort" data-sort="tables-asset">Asset</a>
                 </th>
-                <th class="text-muted">
-                  Price ($DAI)
+                <th scope="col">
+                  <a href="#" class="text-muted sort" data-sort="tables-price">Price (DAI)</a>
                 </th>
-                <th class="text-muted">
-                  24h Change
+                <th scope="col">
+                  <a href="#" class="text-muted sort" data-sort="tables-24h-volume">24h Volume (USD)</a>
                 </th>
-                <th class="text-muted">
-                  24h Volume (USD)
+                <th scope="col">
+                  <a href="#" class="text-muted sort" data-sort="tables-24h-change">24h Change</a>
                 </th>
-                <th class="text-muted">
-                  7d Change
+                <th scope="col">
+                  <a href="#" class="text-muted sort" data-sort="tables-7d-change">7d Change</a>
                 </th>
-                <th class="text-muted">
-                  1m Change
+                <th scope="col">
+                  <a href="#" class="text-muted sort" data-sort="tables-1m-change">1m Change</a>
                 </th>
               </tr>
             </thead>
             <tbody class="list" id="market-table">
               <tr *ngFor="let token of tokenData">
-                <td class="align-middle pr-0">
+                <td scope="row" class="tables-asset">
                   <div class="media">
                     <span class="avatar avatar-xs align-self-center mr-3">
                       <img src={{token.logoUrl}} alt="{{token.symbol}} token logo" class="avatar-img rounded-circle">
@@ -95,21 +95,25 @@
                     </div>
                   </div>
                 </td>
-                <td class="align-middle">{{token.price.toFormat(6)}}</td>
-                <td class="24h-change align-middle">
+                <td class="tables-price">
+                  {{token.price.toFormat(6)}}
+                </td>
+                <td class="tables-24h-volume">
+                  {{token.dailyVolume.toFormat(6)}}
+                </td>
+                <td class="tables-24h-change">
                   <span class="badge badge-xl"
                     [ngClass]="{'badge-soft-success': +token.dailyPriceChange >= 0, 'badge-soft-danger': 0 > +token.dailyPriceChange}">
                     {{token.dailyPriceChange.isNaN() ? 'Not available' : token.dailyPriceChange.toFormat(4) + '%'}}
                   </span>
                 </td>
-                <td class="align-middle">{{token.dailyVolume.toFormat(6)}}</td>
-                <td class="align-middle">
+                <td class="tables-7d-change">
                   <span class="badge badge-xl"
                     [ngClass]="{'badge-soft-success': +token.weeklyPriceChange >= 0, 'badge-soft-danger': 0 > +token.weeklyPriceChange}">
                     {{token.weeklyPriceChange.isNaN() ? 'Not available' : token.weeklyPriceChange.toFormat(4) + '%'}}
                   </span>
                 </td>
-                <td class="align-middle">
+                <td class="tables-1m-change">
                   <span class="badge badge-xl"
                     [ngClass]="{'badge-soft-success': +token.monthlyPriceChange >= 0, 'badge-soft-danger': 0 > +token.monthlyPriceChange}">
                     {{token.monthlyPriceChange.isNaN() ? 'Not available' : token.monthlyPriceChange.toFormat(4) + '%'}}

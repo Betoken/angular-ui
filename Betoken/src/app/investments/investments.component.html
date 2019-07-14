@@ -168,20 +168,16 @@
             </div>
             <div class="col-auto">
               <!--Tabs-->
-              <div class="btn-group btn-group-sm mr-2" role="group" aria-label="Portfolio view">
-                <ul class="nav nav-pills" id="pills-tab" role="tablist">
-                  <li class="nav-item">
-                    <a class="nav-link btn active" id="pills-investments-tab" data-toggle="pill"
-                      href="#pills-investments" role="tab" aria-controls="pills-investments" aria-selected="true"><i
-                        class="fe fe-list align-middle"></i></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link btn " id="pills-portfolio-tab" data-toggle="pill"
-                      href="#pills-portfolio" role="tab" aria-controls="pills-portfolio" aria-selected="false"><i
-                        class="fe fe-pie-chart align-middle"></i></a>
-                  </li>
-                </ul>
-              </div>
+              <span class="nav nav-pills btn-group btn-group-sm mr-2" role="tablist" aria-label="Portfolio view">
+                <button class="nav-link btn btn-white active" id="pills-investments-tab" data-toggle="pill"
+                  href="#pills-investments" role="tab" aria-controls="pills-investments" aria-selected="true"><i
+                    class="fe fe-list align-middle"></i></button>
+                <button class="nav-link btn btn-white" id="pills-portfolio-tab" data-toggle="pill"
+                  href="#pills-portfolio" role="tab" aria-controls="pills-portfolio" aria-selected="false"><i
+                    class="fe fe-pie-chart align-middle"></i></button>
+              </span>
+            </div>
+            <div class="col-auto">
               <!-- Refresh -->
               <button class="btn btn-sm btn-white" type="button" name="button" (click)="refresh()">
                 <i class="fe fe-refresh-cw align-middle" *ngIf="isLoading() == false"></i>

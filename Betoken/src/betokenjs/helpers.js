@@ -1,6 +1,7 @@
 // imports
 import BigNumber from "bignumber.js";
 import {Betoken} from "./betoken-obj";
+import 'list.js';
 const Data = require("./data-controller");
 
 // constants
@@ -10,6 +11,47 @@ const WRONG_NETWORK_ERR = "Please switch to the Ethereum Main Network.";
 var error_msg = "";
 
 // exports
+
+export const sortTable = () => {
+    //
+    // Variables
+    //
+
+    var toggle = document.querySelectorAll('[data-toggle="lists"]');
+    var toggleSort = document.querySelectorAll('[data-toggle="lists"] [data-sort]');
+
+    //
+    // Functions
+    //
+
+    function init(el) {
+        var options = el.dataset.options;
+        options = options ? JSON.parse(options) : {};
+
+        new List(el, options);
+    }
+
+
+    //
+    // Events
+    //
+    if (typeof List !== 'undefined') {
+
+        if (toggle) {
+            [].forEach.call(toggle, function (el) {
+                init(el);
+            });
+        }
+
+        if (toggleSort) {
+            [].forEach.call(toggleSort, function (el) {
+                el.addEventListener('click', function (e) {
+                    e.preventDefault();
+                });
+            });
+        }
+    }
+};
 
 export const error_notifications = {
     get_error_msg: () => error_msg,
@@ -27,14 +69,14 @@ export const error_notifications = {
             error_notifications.set_error_msg('');
         }
     }
-}
+};
 
 export const network = {
     network_prefix: () => Data.networkPrefix,
     network_name: () => Data.networkName,
     has_web3: () => betoken.hasWeb3,
     wrong_network: () => betoken.wrongNetwork
-}
+};
 
 export const timer = {
     day: () => Data.countdownDay,
@@ -45,7 +87,7 @@ export const timer = {
     phase_start_time: () => Data.startTimeOfCyclePhase,
     phase_lengths: () => Data.phaseLengths,
     cycle: () => Data.cycleNumber
-}
+};
 
 export const user = {
     address: () => Data.userAddress,
@@ -95,7 +137,7 @@ export const user = {
         return Data.portfolioValue.times(Data.totalFunds).div(Data.kairoTotalSupply);
     },
     risk_taken_percentage: () => Data.riskTakenPercentage,
-}
+};
 
 export const stats = {
     cycle_length: () => {
@@ -120,7 +162,7 @@ export const stats = {
     shares_price: () => Data.sharesPrice,
     kairo_price: () => Data.kairoPrice,
     kairo_total_supply: () => Data.kairoTotalSupply
-}
+};
 
 export const tokens = {
     token_data: () => Data.TOKEN_DATA,
@@ -136,14 +178,14 @@ export const tokens = {
     is_compound_token: (_symbol) => Data.isCompoundToken(_symbol),
     is_fulcrum_token: (_symbol) => Data.isFulcrumToken(_symbol),
     fulcrum_min_stake: (_symbol, _isShort) => Data.fulcrumMinStake(_symbol, _isShort)
-}
+};
 
 export const loading = {
     investments: () => Data.isLoadingInvestments || Data.isLoadingPrices,
     ranking: () => Data.isLoadingRanking || Data.isLoadingPrices,
     records: () => Data.isLoadingRecords || Data.isLoadingUserData,
     prices: () => Data.isLoadingPrices
-}
+};
 
 export const refresh_actions = {
     investments: () => {
@@ -165,7 +207,7 @@ export const refresh_actions = {
         const betoken = new Betoken();
         return betoken.init().then(Data.loadDynamicData);
     }
-}
+};
 
 export const investor_actions = {
     // All amounts must be BigNumber, in floating point (no need to multiply by 1e18)
@@ -193,7 +235,7 @@ export const investor_actions = {
         await betoken.nextPhase();
         await Data.loadDynamicData();
     }
-}
+};
 
 export const manager_actions = {
     // All amounts must be BigNumber, in floating point (no need to multiply by 1e18)
@@ -237,4 +279,4 @@ export const manager_actions = {
         let tokenAddr = Data.assetSymbolToAddress(symbol);
         return betoken.registerWithToken(tokenAddr, amountInToken, pending, confirm, error);
     }
-}
+};

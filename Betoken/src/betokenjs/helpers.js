@@ -137,6 +137,7 @@ export const user = {
         return Data.portfolioValue.times(Data.totalFunds).div(Data.kairoTotalSupply);
     },
     risk_taken_percentage: () => Data.riskTakenPercentage,
+    active_portfolio: () => Data.activePortfolio
 };
 
 export const stats = {

@@ -39,6 +39,7 @@ export class InvestmentsComponent implements OnInit {
     activeInvestmentList: Array<Object>;
     inactiveInvestmentList: Array<Object>;
     tokenData: Array<Object>;
+    activePortfolio: Array<Object>;
 
     errorMsg: String;
 
@@ -85,6 +86,7 @@ export class InvestmentsComponent implements OnInit {
         this.activeInvestmentList = new Array<Object>();
         this.inactiveInvestmentList = new Array<Object>();
         this.tokenData = new Array<Object>();
+        this.activePortfolio = new Array<Object>();
 
         this.errorMsg = "";
     }
@@ -132,6 +134,7 @@ export class InvestmentsComponent implements OnInit {
 
         this.activeInvestmentList = user.investment_list().filter((data) => data.isSold === false);
         this.inactiveInvestmentList = user.investment_list().filter((data) => data.isSold === true);
+        this.activePortfolio = user.active_portfolio();
     }
 
     async refresh() {

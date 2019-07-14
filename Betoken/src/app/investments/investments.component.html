@@ -167,6 +167,10 @@
               </h4>
             </div>
             <div class="col-auto">
+              <div class="btn-group btn-group-sm mr-2" role="group" aria-label="Portfolio view">
+                <button type="button" class="btn btn-white border-right-0"><i class="fe fe-list align-middle"></i></button>
+                <button type="button" class="btn btn-white border-left-0 active"><i class="fe fe-pie-chart align-middle"></i></button>
+              </div>
               <!-- Refresh -->
               <button class="btn btn-sm btn-white" type="button" name="button" (click)="refresh()">
                 <i class="fe fe-refresh-cw align-middle" *ngIf="isLoading() == false"></i>
@@ -177,9 +181,52 @@
             </div>
           </div> <!-- / .row -->
         </div>
-        <a class="list-group-item list-group-item-action border-bottom-0 border-left-0 border-right-0" href="#"
-          data-toggle="modal" data-target="#modalSell" (click)="openSellModal(data)"
-          *ngFor="let data of activeInvestmentList">
+        <!-- Portfolio overview -->
+        <div class="list-group-item list-group-item-action border-bottom-0 border-left-0 border-right-0">
+          <div class="row d-flex align-items-center no-gutters">
+            <div class="col-auto">
+              <span class="avatar avatar-xs">
+                <img src="https://cryptocompare.com/media/20646/eth_logo.png" alt="token logo" class="avatar-img rounded-circle">
+              </span>
+            </div>
+            <div class="col pl-3">
+              <div class="row d-flew align-items-center">
+                <div class="col-auto pr-0">
+                  <h4 class="mb-1 mb-lg-0">
+                    ETH<span class="text-secondary d-none d-lg-inline-block ml-1 small font-weight-normal">• Ethereum</span>
+                  </h4>
+                </div>
+              </div>
+            </div>
+            <div class="col d-none d-md-inline-block">
+              <div class="row d-flew align-items-center justify-content-end">
+                <div class="col-12 col-lg-8 order-2 order-lg-1">
+                  <div class="progress progress-sm">
+                    <div class="progress-bar" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div>
+                <div class="col-12 col-lg-4 order-1 order-lg-2">
+                  <span class="font-weight-bold">10%</span>
+                </div>
+              </div>
+            </div>
+            <div class="col text-right">
+              <span class="font-weight-bold">200.0000 KRO</span>
+              <div class="row no-gutters d-flex d-md-none align-items-center justify-content-end">
+                <div class="col-5 mr-1">
+                  <span class="small">10.42%</span>
+                </div>
+                <div class="col-6">
+                  <div class="progress progress-sm">
+                    <div class="progress-bar" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Active investments -->
+        <a class="list-group-item list-group-item-action border-bottom-0 border-left-0 border-right-0" href="#" data-toggle="modal" data-target="#modalSell" (click)="openSellModal(data)" *ngFor="let data of activeInvestmentList">
           <div class="row d-flex align-items-center no-gutters">
             <div class="col-auto">
               <span class="avatar avatar-xs">

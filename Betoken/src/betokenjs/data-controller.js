@@ -28,6 +28,7 @@ export var commissionHistory = [];
 export var depositWithdrawHistory = [];
 export var portfolioValue = BigNumber(0);
 export var riskTakenPercentage = BigNumber(0);
+export var activePortfolio = [];
 
 // fund metadata
 export var kairoTotalSupply = BigNumber(0);
@@ -468,11 +469,39 @@ export const loadUserData = async () => {
             var cycleStartKRO = BigNumber(await betoken.getBaseStake(userAddr)).div(PRECISION);
             managerROI = cycleStartKRO.gt(0) ? totalKROChange.div(cycleStartKRO).times(100) : BigNumber(0);
 
+            // calculate the percentage of risk taken compared to the threshold
             riskTakenPercentage = BigNumber(risk).div(await betoken.getRiskThreshold(userAddr));
             if (riskTakenPercentage.isNaN()) {
                 riskTakenPercentage = BigNumber(0);
             }
-            riskTakenPercentage = BigNumber.min(riskTakenPercentage, 1); // Meaningless after exceeding 1   
+            riskTakenPercentage = BigNumber.min(riskTakenPercentage, 1); // Meaningless after exceeding 1
+
+            // convert active investments into portfolio format
+            activePortfolio = [];
+            let recordStake = (_symbol, _stake) => {
+                let assetIdx = activePortfolio.findIndex((x) => x.symbol === _symbol);
+                if (assetIdx == -1) {
+                    // asset not recorded
+                    activePortfolio.push({
+                        symbol: _symbol,
+                        stake: BigNumber(0)
+                    });
+                    assetIdx = activePortfolio.length - 1;
+                }
+                activePortfolio[assetIdx].stake = activePortfolio[assetIdx].stake.plus(_stake);
+            }
+            for (let inv of investmentList) {
+                if (inv.cycleNumber == cycleNumber && inv.isSold == false) {
+                    recordStake(inv.tokenSymbol, inv.currValue);
+                }
+            }
+            // record unstaked KRO as well
+            activePortfolio.push({
+                symbol: 'DAI',
+                stake: kairoBalance
+            });
+            // sort in descending order of stake
+            activePortfolio.sort((a, b) => b.stake.minus(a.stake).toNumber());
         }
     }
     isLoadingInvestments = false;

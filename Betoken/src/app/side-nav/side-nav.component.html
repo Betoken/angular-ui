@@ -36,7 +36,23 @@
         </h4>
       </div>
       <hr class="navbar-divider my-3 d-lg-none">
-
+      <!-- cta -->
+      <div class="d-none d-md-block" *ngIf="checkRouterURL('/investing-dashboard') === false">
+        <!--Provide onboarding for prospective managers with no Kairo-->
+        <a class="btn btn-success btn-block mb-4" href="#/start-managing" *ngIf="userKairoValue.comparedTo(0) === 0">Become a Manager</a>
+        <!--Provide actions for existing managers-->
+        <span *ngIf="userKairoValue.comparedTo(0) !== 0">
+          <button class="btn btn-success btn-block mb-4" routerLink="/investments" type="button" data-toggle="modal" data-target="#modalBuy" *ngIf="phase == 1"><i class="fe fe-plus mr-1"></i>Make Investments</button>
+          <button class="btn btn-success btn-block mb-4" routerLink="/commissions" type="button" data-toggle="modal" data-target="#modalRedeem" *ngIf="can_redeem_commission"><i class="fe fe-dollar-sign mr-1"></i>Redeem Commission</button>
+        </span>
+        <button class="btn btn-success btn-block mb-4" type="button" *ngIf="days == 0 && hours == 0 && minutes == 0 && 1 >= seconds" (click)="nextPhase()"><i class="fe fe-skip-forward mr-1"></i>Next Phase</button>
+      </div>
+      <!-- cta -->
+      <div class="d-none d-md-block" *ngIf="checkRouterURL('/investing-dashboard') === true">
+        <!--Action buttons-->
+        <button class="btn btn-success mr-2 mb-4" type="button" data-toggle="modal" data-target="#modalInvestorBuy">Buy BTKS</button>
+        <button class="btn btn-white mb-4" type="button" data-toggle="modal" data-target="#modalInvestorSell">Sell BTKS</button>
+      </div>
       <!-- Navigation -->
       <ul class="navbar-nav">
         <li class="nav-item">
@@ -88,20 +104,15 @@
       <!-- Divider -->
       <hr class="navbar-divider my-3">
       <!-- Navigation -->
-      <ul class="navbar-nav mb-md-2">
+      <ul class="nav justify-content-center mb-md-2">
         <li class="nav-item">
-          <a class="nav-link" href="https://betoken.gitbook.io/docs/" target="_blank">
-            <i class="fe fe-clipboard"></i> Help
+          <a class="nav-link text-secondary small" href="https://betoken.gitbook.io/docs/" target="_blank">
+            Help
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="https://betoken.fund" target="_blank">
-            <i class="fe fe-home"></i> Betoken Website
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="https://forms.gle/wMqgREw61Y81r6y27" target="_blank">
-            <i class="fe fe-star"></i> Rate us
+          <a class="nav-link text-secondary small" href="https://forms.gle/wMqgREw61Y81r6y27" target="_blank">
+            Rate us
           </a>
         </li>
       </ul>

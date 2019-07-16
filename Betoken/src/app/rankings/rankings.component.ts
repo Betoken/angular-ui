@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { user, stats, loading, refresh_actions } from '../../betokenjs/helpers';
+import { user, stats, loading, refresh_actions, sortTable } from '../../betokenjs/helpers';
 
 import { } from 'jquery';
 import BigNumber from 'bignumber.js';
@@ -27,6 +27,10 @@ export class RankingsComponent implements OnInit {
 
     ngOnInit() {
         this.refreshDisplay();
+    }
+
+    ngAfterViewInit() {
+        sortTable();
     }
 
     refreshDisplay() {

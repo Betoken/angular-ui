@@ -29,13 +29,13 @@
               </h4>
             </div>
             <div class="col-auto">
-                <!-- Refresh -->
-                <button class="btn btn-sm btn-white" type="button" name="button" (click) = "refresh()">
-                  <i class="fe fe-refresh-cw align-middle" *ngIf="isLoading() == false"></i>
-                  <div class="spinner-grow spinner-grow-sm" role="status" *ngIf="isLoading()">
-                    <span class="sr-only">Loading...</span>
-                  </div>
-                </button>
+              <!-- Refresh -->
+              <button class="btn btn-sm btn-white" type="button" name="button" (click)="refresh()">
+                <i class="fe fe-refresh-cw align-middle" *ngIf="isLoading() == false"></i>
+                <div class="spinner-grow spinner-grow-sm" role="status" *ngIf="isLoading()">
+                  <span class="sr-only">Loading...</span>
+                </div>
+              </button>
             </div>
           </div> <!-- / .row -->
         </div>
@@ -45,7 +45,8 @@
               <!-- Form -->
               <form>
                 <div class="input-group input-group-flush input-group-merge">
-                  <input type="search" class="form-control form-control-prepended search" (keyup)="filterTable($event,'rankings-table',1)" placeholder="Search">
+                  <input type="search" class="form-control form-control-prepended search"
+                    (keyup)="filterTable($event,'rankings-table',1)" placeholder="Search">
                   <div class="input-group-prepend">
                     <div class="input-group-text">
                       <span class="fe fe-search"></span>
@@ -56,21 +57,22 @@
             </div>
           </div> <!-- / .row -->
         </div>
-        <div class="table-responsive">
+        <div class="table-responsive" data-toggle="lists"
+          data-options='{"valueNames": ["tables-rank", "tables-kairo-balance", "tables-roi"]}'>
           <table class="table table-sm table-nowrap card-table">
             <thead>
               <tr>
-                <th class="text-muted">
-                    Rank
+                <th>
+                  <a href="" class="text-muted sort" data-sort="tables-rank">Rank</a>
                 </th>
-                <th class="text-muted">
-                    Manager
+                <th class="text-muted sort">
+                  Manager
                 </th>
-                <th class="text-muted">
-                    Kairo Balance
+                <th>
+                  <a href="" class="text-muted sort" data-sort="tables-kairo-balance">Kairo Balance</a>
                 </th>
-                <th class="text-muted">
-                    Current Monthly ROI
+                <th>
+                  <a href="" class="text-muted sort" data-sort="tables-roi">Current Month ROI</a>
                 </th>
               </tr>
             </thead>
@@ -87,13 +89,14 @@
                 </td>
                 <td class="align-middle">
                   <!-- Badge -->
-                  <span class="badge badge-xl" [ngClass]="{'badge-soft-success': userROI.gt(0), 'badge-soft-danger': !(userROI.gt(0))}">
-                   {{userROI.toFormat(4)}}%
+                  <span class="badge badge-xl"
+                    [ngClass]="{'badge-soft-success': userROI.gt(0), 'badge-soft-danger': !(userROI.gt(0))}">
+                    {{userROI.toFormat(4)}}%
                   </span>
                 </td>
               </tr>
               <tr *ngFor="let ranking of rankingArray">
-                <td class="align-middle">
+                <td class="align-middle tables-rank">
                   <strong>{{ranking.rank}}</strong>
                 </td>
                 <td class="align-middle">
@@ -102,12 +105,13 @@
                     Betoken Evangelist
                   </span>
                 </td>
-                <td class="align-middle">
+                <td class="align-middle tables-kairo-balance">
                   {{ranking.kairoBalance.toFormat(6)}}
                 </td>
-                <td class="align-middle">
+                <td class="align-middle tables-roi">
                   <!-- Badge -->
-                  <span class="badge badge-xl" [ngClass]="{'badge-soft-success': +ranking.cycleROI >= 0, 'badge-soft-danger': 0 > +ranking.cycleROI}">
+                  <span class="badge badge-xl"
+                    [ngClass]="{'badge-soft-success': +ranking.cycleROI >= 0, 'badge-soft-danger': 0 > +ranking.cycleROI}">
                     {{ranking.cycleROI.toFormat(6)}}%
                   </span>
                 </td>
@@ -118,15 +122,18 @@
       </div>
     </div>
   </div> <!-- / .row -->
-  <a href="https://github.com/solidified-platform/audits/blob/master/Audit%20Report%20-%20%20Betoken%20%5B20.05.2019%5D.pdf" target="_blank">
+  <a href="https://github.com/solidified-platform/audits/blob/master/Audit%20Report%20-%20%20Betoken%20%5B20.05.2019%5D.pdf"
+    target="_blank">
     <div class="row align-items-center justify-content-center">
       <div class="col-auto mb-2 mb-lg-0">
         <div class="avatar avatar-sm">
-          <img class="avatar-img rounded-circle bg-secondary" src="assets/img/solidified-logo.png" alt="Solidified logo">
+          <img class="avatar-img rounded-circle bg-secondary" src="assets/img/solidified-logo.png"
+            alt="Solidified logo">
         </div>
       </div>
       <div class="col-auto">
-        <p class="small text-secondary mb-0 text-center">Betoken Smart Contracts are audited and secured by Solidified</p>
+        <p class="small text-secondary mb-0 text-center">Betoken Smart Contracts are audited and secured by Solidified
+        </p>
       </div>
       <div class="col-auto">
         <i class="fe fe-arrow-right text-secondary"></i>

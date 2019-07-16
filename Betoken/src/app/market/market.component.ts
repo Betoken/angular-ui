@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { tokens, loading, refresh_actions } from '../../betokenjs/helpers';
+import { tokens, loading, refresh_actions, sortTable } from '../../betokenjs/helpers';
 import BigNumber from 'bignumber.js';
-import { isUndefined } from 'util';
 
-declare var $ :any;
+declare var $: any;
 
 @Component({
     selector: 'app-market',
@@ -18,6 +17,10 @@ export class MarketComponent implements OnInit {
 
     ngOnInit() {
         this.refreshDisplay();
+    }
+
+    ngAfterViewInit() {
+        sortTable();
     }
 
     refreshDisplay() {

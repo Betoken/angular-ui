@@ -48,10 +48,10 @@
         <button class="btn btn-success btn-block mb-4" type="button" *ngIf="days == 0 && hours == 0 && minutes == 0 && 1 >= seconds" (click)="nextPhase()"><i class="fe fe-skip-forward mr-1"></i>Next Phase</button>
       </div>
       <!-- cta -->
-      <div class="d-none d-md-block" *ngIf="checkRouterURL('/investing-dashboard') === true">
+      <div class="d-none d-md-flex mb-4" *ngIf="checkRouterURL('/investing-dashboard') === true">
         <!--Action buttons-->
-        <button class="btn btn-success mr-2 mb-4" type="button" data-toggle="modal" data-target="#modalInvestorBuy">Buy BTKS</button>
-        <button class="btn btn-white mb-4" type="button" data-toggle="modal" data-target="#modalInvestorSell">Sell BTKS</button>
+        <button class="btn btn-success" type="button" data-toggle="modal" data-target="#modalInvestorBuy">Buy BTKS</button>
+        <button class="btn btn-white ml-auto" type="button" data-toggle="modal" data-target="#modalInvestorSell">Sell BTKS</button>
       </div>
       <!-- Navigation -->
       <ul class="navbar-nav">

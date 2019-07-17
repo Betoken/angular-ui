@@ -166,18 +166,16 @@
                 Active Investments
               </h4>
             </div>
-            <div class="col-auto">
+            <div class="col-auto d-flex">
               <!--Tabs-->
-              <span class="nav nav-pills btn-group btn-group-sm mr-2" role="tablist" aria-label="Portfolio view">
-                <button class="nav-link btn btn-white active" id="pills-investments-tab" data-toggle="pill"
+              <div class="nav nav-pills btn-group btn-group-sm mr-2" role="tablist" aria-label="Portfolio view">
+                <button class="nav-link btn btn-white active border-right-0" id="pills-investments-tab" data-toggle="pill"
                   href="#pills-investments" role="tab" aria-controls="pills-investments" aria-selected="true"><i
                     class="fe fe-list align-middle"></i></button>
-                <button class="nav-link btn btn-white" id="pills-portfolio-tab" data-toggle="pill"
+                <button class="nav-link btn btn-white border-left-0" id="pills-portfolio-tab" data-toggle="pill"
                   href="#pills-portfolio" role="tab" aria-controls="pills-portfolio" aria-selected="false"><i
                     class="fe fe-pie-chart align-middle"></i></button>
-              </span>
-            </div>
-            <div class="col-auto">
+              </div>
               <!-- Refresh -->
               <button class="btn btn-sm btn-white" type="button" name="button" (click)="refresh()">
                 <i class="fe fe-refresh-cw align-middle" *ngIf="isLoading() == false"></i>

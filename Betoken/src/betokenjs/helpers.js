@@ -162,7 +162,8 @@ export const stats = {
     ranking: () => Data.kairoRanking,
     shares_price: () => Data.sharesPrice,
     kairo_price: () => Data.kairoPrice,
-    kairo_total_supply: () => Data.kairoTotalSupply
+    kairo_total_supply: () => Data.kairoTotalSupply,
+    is_supporter: (_addr) => Data.isSupporter(_addr)
 };
 
 export const tokens = {

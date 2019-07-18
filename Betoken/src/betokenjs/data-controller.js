@@ -144,6 +144,8 @@ export const isFulcrumTokenAddress = (_tokenAddress) => {
     return !isUndefined(result);
 };
 
+export const isSupporter = (_addr) => SUPPORTERS.indexOf(web3.utils.toChecksumAddress(_addr)) != -1;
+
 export const fulcrumMinStake = (_symbol, _isShort) => {
     let underlyingPrice;
     if (_isShort) {
@@ -882,7 +884,7 @@ export const loadDynamicData = async (progressCallback) => {
                 callback();
                 return loadTxHistory();
             }).then(callback),
-            loadRanking().then(callback).then(loadStats).then(callback),
+            loadStats().then(callback),
         ]
     ));
 };

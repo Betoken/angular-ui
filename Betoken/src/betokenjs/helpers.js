@@ -179,7 +179,11 @@ export const tokens = {
     not_stablecoin: (_symbol) => Data.notStablecoin(_symbol),
     is_compound_token: (_symbol) => Data.isCompoundToken(_symbol),
     is_fulcrum_token: (_symbol) => Data.isFulcrumToken(_symbol),
-    fulcrum_min_stake: (_symbol, _isShort) => Data.fulcrumMinStake(_symbol, _isShort)
+    fulcrum_min_stake: (_symbol, _isShort) => Data.fulcrumMinStake(_symbol, _isShort),
+    asset_address_to_symbol: (_addr) => Data.assetAddressToSymbol(_addr),
+    ctoken_address_to_symbol: (_addr) => Data.assetCTokenAddressToSymbol(_addr),
+    ptoken_address_to_symbol: (_addr) => Data.assetPTokenAddressToSymbol(_addr),
+    ptoken_address_to_info: (_addr) => Data.assetPTokenAddressToInfo(_addr)
 };
 
 export const loading = {

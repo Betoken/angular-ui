@@ -78,6 +78,7 @@ export const assetSymbolToPrice = function (_symbol) {
 };
 
 export const assetAddressToSymbol = function (_addr) {
+    _addr = web3.utils.toChecksumAddress(_addr);
     return TOKEN_DATA.find((x) => x.address === _addr).symbol;
 };
 
@@ -94,14 +95,17 @@ export const assetSymbolToPTokens = (_symbol) => {
 };
 
 export const assetCTokenAddressToSymbol = (_addr) => {
+    _addr = web3.utils.toChecksumAddress(_addr);
     return CTOKENS.find((x) => x.address === _addr).symbol;
 };
 
 export const assetPTokenAddressToSymbol = (_addr) => {
+    _addr = web3.utils.toChecksumAddress(_addr);
     return PTOKENS.find((x) => !isUndefined(x.pTokens.find((y) => y.address === _addr))).symbol;
 };
 
 export const assetPTokenAddressToInfo = (_addr) => {
+    _addr = web3.utils.toChecksumAddress(_addr);
     return PTOKENS.find((x) => !isUndefined(x.pTokens.find((y) => y.address === _addr))).pTokens.find((y) => y.address === _addr);
 };
 
@@ -246,6 +250,7 @@ export const loadTokenMetadata = async () => {
 }
 
 export const loadFundData = async () => {
+    console.log('loadFundData');
     return Promise.all([
         cycleNumber = +((await betoken.getPrimitiveVar("cycleNumber"))),
         cyclePhase = +((await betoken.getPrimitiveVar("cyclePhase"))),
@@ -261,6 +266,7 @@ export const loadFundData = async () => {
 };
 
 export const loadUserData = async () => {
+    console.log('loadUserData');
     isLoadingUserData = true;
     if (betoken.hasWeb3) {
         // get network info
@@ -508,9 +514,11 @@ export const loadUserData = async () => {
     }
     isLoadingInvestments = false;
     isLoadingUserData = false;
+    console.log('loadedUserData');
 };
 
 export const loadTxHistory = async () => {
+    console.log('loadTxHistory');
     if (userAddress != ZERO_ADDR) {
         isLoadingRecords = true;
         // Get commission history
@@ -574,6 +582,7 @@ export const loadTxHistory = async () => {
 };
 
 export const loadTokenPrices = async () => {
+    console.log('loadTokenPrices');
     isLoadingPrices = true;
 
     let apiStr = "https://api.kyber.network/market";
@@ -798,6 +807,7 @@ export const loadRanking = async () => {
 };
 
 export const loadStats = async () => {
+    console.log('stats');
     if (!sharesTotalSupply.isZero() && userAddress !== ZERO_ADDR) {
         investmentBalance = sharesBalance.div(sharesTotalSupply).times(totalFunds);
     }

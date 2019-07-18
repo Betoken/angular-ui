@@ -1,12 +1,13 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { user, stats, loading, refresh_actions, sortTable } from '../../betokenjs/helpers';
+import { user, stats, sortTable } from '../../betokenjs/helpers';
+
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
+import { Subscription } from 'apollo-client/util/Observable';
 
 import { } from 'jquery';
 import BigNumber from 'bignumber.js';
-import { Subscription } from 'apollo-client/util/Observable';
-import { isUndefined, isNull } from 'util';
+import { isNull } from 'util';
 declare var $: any;
 
 @Component({

@@ -5,8 +5,6 @@ import https from "https";
 import { isUndefined } from 'util';
 
 // constants
-const PRECISION = 1e18;
-const DEPLOYED_BLOCK = 8064049;
 const ZERO_ADDR = '0x0000000000000000000000000000000000000000';
 const CTOKENS = require('./json_data/compound_tokens.json'); // Compound cTokens
 const STABLECOINS = require('./json_data/stablecoins.json'); // Stablecoins (managers can't invest)
@@ -20,11 +18,6 @@ export var userAddress = ZERO_ADDR;
 // fund metadata
 export var commissionRate = BigNumber(0.2);
 export var assetFeeRate = BigNumber(0.01);
-
-// fund stats
-export var currROI = BigNumber(0);
-export var avgROI = BigNumber(0);
-export var ROIArray = [];
 
 // cycle timekeeping
 export var cycleNumber = 0;
@@ -319,57 +312,6 @@ const loadPriceChanges = async (_daysInPast) => {
     }
     return result;
 }
-
-export const loadStats = async () => {
-    // get stats
-    var rois = [];
-    currROI = BigNumber(0);
-    avgROI = BigNumber(0);
-    return betoken.contracts.BetokenFund.getPastEvents("ChangedPhase",
-        {
-            fromBlock: DEPLOYED_BLOCK
-        }).then(function (events) {
-            for (var cycle = 1; cycle <= cycleNumber; cycle++) {
-                // find events emitted before & after the Manage phase of cycle
-                var beforeEvent = events.find((e) => e.returnValues._cycleNumber == cycle && e.returnValues._newPhase == 1);
-                var afterEvent = events.find((e) => e.returnValues._cycleNumber == cycle + 1 && e.returnValues._newPhase == 0);
-
-                if (isUndefined(beforeEvent) || isUndefined(afterEvent)) {
-                    break;
-                }
-
-                var beforeTotalFunds = BigNumber(beforeEvent.returnValues._totalFundsInDAI);
-                var afterTotalFunds = BigNumber(afterEvent.returnValues._totalFundsInDAI);
-                var ROI = afterTotalFunds.minus(beforeTotalFunds).div(beforeTotalFunds).times(100);
-                if (ROI.isNaN()) {
-                    ROI = BigNumber(0);
-                }
-                rois.push(ROI.toNumber());
-            }
-            // Take current cycle's ROI into consideration
-            if (cyclePhase === 1 && cycleNumber > 0) {
-                var beforeEvent = events.find((e) => e.returnValues._cycleNumber == cycleNumber && e.returnValues._newPhase == 1);
-                var beforeTotalFunds = BigNumber(beforeEvent.returnValues._totalFundsInDAI).div(PRECISION);
-                var currentCycleROI = totalFunds.minus(beforeTotalFunds).div(beforeTotalFunds).times(100);
-                currROI = currentCycleROI;
-                rois.push(currentCycleROI);
-            }
-        }).then(() => {
-            ROIArray = rois;
-            const convertToCumulative = (list) => {
-                var tmp = BigNumber(1);
-                var tmpArray = [BigNumber(0)];
-                for (let roi of list) {
-                    tmp = BigNumber(roi).div(100).plus(1).times(tmp);
-                    tmpArray.push(tmp.times(100).minus(100));
-                }
-                return tmpArray;
-            }
-
-            let cumulative = convertToCumulative(rois);
-            avgROI = cumulative[cumulative.length - 1];
-        });
-};
 
 export const loadAllData = async function (progressCallback) {
     return loadMetadata().then(() => loadDynamicData(progressCallback));

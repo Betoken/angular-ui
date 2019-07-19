@@ -72,8 +72,6 @@ export const error_notifications = {
 };
 
 export const network = {
-    network_prefix: () => Data.networkPrefix,
-    network_name: () => Data.networkName,
     has_web3: () => betoken.hasWeb3,
     wrong_network: () => betoken.wrongNetwork
 };
@@ -101,13 +99,6 @@ export const user = {
 };
 
 export const stats = {
-    cycle_length: () => {
-        if (Data.phaseLengths.length > 0) {
-            return BigNumber(Data.phaseLengths.reduce(function (t, n) {
-                return t + n;
-            })).div(24 * 60 * 60).toDigits(3);
-        }
-    },
     is_supporter: (_addr) => Data.isSupporter(_addr)
 };
 

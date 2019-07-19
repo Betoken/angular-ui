@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {
     user,
-    timer,
-    loading,
-    refresh_actions,
     manager_actions
 } from '../../betokenjs/helpers';
+
+import { Apollo } from 'apollo-angular';
+import gql from 'graphql-tag';
+import { Subscription } from 'apollo-client/util/Observable';
 
 import { } from 'jquery';
 import BigNumber from 'bignumber.js';
@@ -22,13 +23,19 @@ export class CommissionsComponent implements OnInit {
     cycle: Number;
     errorMsg: String;
 
-    constructor() {
+    isLoading: Boolean;
+
+    private querySubscription: Subscription;
+
+    constructor(private apollo: Apollo) {
         this.commissionHistory = new Array<Object>();
         this.commissionAmount = new BigNumber(0);
         this.transactionId = '';
         this.step = 0;
         this.cycle = 0;
         this.errorMsg = "";
+
+        this.isLoading = true;
     }
 
     ngOnInit() {
@@ -38,19 +45,70 @@ export class CommissionsComponent implements OnInit {
         });
     }
 
+    ngOnDestroy() {
+        this.querySubscription.unsubscribe();
+    }
+
     refreshDisplay() {
-        this.commissionHistory = user.commission_history();
-        this.commissionAmount = user.expected_commission();
-        this.cycle = timer.cycle();
+        this.isLoading = true;
+
+        let userAddress = user.address().toLowerCase();
+        this.querySubscription = this.apollo
+            .watchQuery({
+                query: gql`
+                    {
+                        fund(id: "BetokenFund") {
+                            kairoTotalSupply
+                            cyclePhase
+                            cycleTotalCommission
+                            aum
+                            totalFundsInDAI
+                            cycleNumber
+                        }
+                        manager(id: "${userAddress}") {
+                            kairoBalanceWithStake
+                            commissionHistory(orderBy: timestamp, orderDirection: desc) {
+                                timestamp
+                                cycleNumber
+                                amountInDAI
+                                txHash
+                            }
+                        }
+                    }
+                `   
+            })
+            .valueChanges.subscribe(({ data, loading }) => {
+                this.isLoading = loading;
+
+                let fund = data['fund'];
+                let manager = data['manager'];
+
+                this.cycle = +fund.cycleNumber;
+                this.commissionHistory = manager.commissionHistory;
+
+                // calculate expected commission
+                if (+fund.kairoTotalSupply > 0) {
+                    let userValue = new BigNumber(manager.kairoBalanceWithStake);
+                    if (fund.cyclePhase === 'INTERMISSION') {
+                        // Actual commission that will be redeemed
+                        return new BigNumber(manager.kairoBalance).div(fund.kairoTotalSupply).times(fund.cycleTotalCommission);
+                    }
+                    // Expected commission based on previous average ROI
+                    let totalProfit = new BigNumber(fund.aum).minus(fund.totalFundsInDAI);
+                    totalProfit = BigNumber.max(totalProfit, 0);
+                    let commission = totalProfit.div(fund.kairoTotalSupply).times(userValue).times(user.commission_rate());
+                    let assetFee = new BigNumber(fund.aum).div(fund.kairoTotalSupply).times(userValue).times(user.asset_fee_rate());
+                    this.commissionAmount = commission.plus(assetFee);
+                }
+            });
     }
 
-    async refresh() {
-        await refresh_actions.records();
-        this.refreshDisplay();
+    toBigNumber(n) {
+        return new BigNumber(n);
     }
 
-    isLoading() {
-        return loading.records();
+    toDateString(unixTimestamp) {
+        return new Date(+unixTimestamp * 1e3).toLocaleString();
     }
 
     resetModals() {
@@ -71,7 +129,7 @@ export class CommissionsComponent implements OnInit {
             if (this.step != 0) {
                 this.step = 3;
             }
-            refresh_actions.records();
+            this.refreshDisplay();
         }
 
         let error = (e) => {

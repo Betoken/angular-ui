@@ -4,12 +4,16 @@ import { AppComponent } from '../app.component';
 import { user, timer, manager_actions } from '../../betokenjs/helpers';
 import { BigNumber } from 'bignumber.js';
 
+import { ApolloEnabled } from '../apollo';
+import { Apollo } from 'apollo-angular';
+import gql from 'graphql-tag';
+
 @Component({
   selector: 'app-side-nav',
   templateUrl: './side-nav.component.html'
 })
 
-export class SideNavComponent implements OnInit {
+export class SideNavComponent extends ApolloEnabled implements OnInit {
   days: Number;
   hours: Number;
   minutes: Number;
@@ -21,7 +25,8 @@ export class SideNavComponent implements OnInit {
   userKairoValue: BigNumber;
   can_redeem_commission: boolean;
   
-  constructor(private ms: AppComponent , private router: Router) {
+  constructor(private router: Router, private apollo: Apollo) {
+    super();
     this.days = 0;
     this.hours = 0;
     this.minutes = 0;
@@ -43,12 +48,32 @@ export class SideNavComponent implements OnInit {
     this.hours = timer.hour();
     this.minutes = timer.minute();
     this.seconds = timer.second();
-    this.phase = timer.phase();
     
-    this.can_redeem_commission = user.can_redeem_commission();
-
     this.user_address = user.address();
-    this.userKairoValue = user.portfolio_value();
+    let userAddress = user.address().toLowerCase();
+    this.querySubscription = this.apollo
+      .watchQuery({
+        query: gql`
+          {
+            fund(id: "BetokenFund") {
+              cyclePhase
+              cycleNumber
+            }
+            manager(id: "${userAddress}") {
+              kairoBalanceWithStake
+              lastCommissionRedemption
+            }
+          }
+        `
+      })
+      .valueChanges.subscribe(({ data, loading }) => {
+        let fund = data['fund'];
+        let manager = data['manager'];
+
+        this.userKairoValue = new BigNumber(manager.kairoBalanceWithStake);
+        this.phase = fund.cyclePhase === 'INTERMISSION' ? 0 : 1;
+        this.can_redeem_commission = this.phase == 0 && +manager.lastCommissionRedemption < +fund.cycleNumber && userAddress !== this.ZERO_ADDR;
+      });
   }
   
   phaseActionText() {

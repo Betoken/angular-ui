@@ -1,21 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { AppComponent } from '../app.component';
 import { Router } from '@angular/router';
-import { isUndefined } from 'util';
+import { isUndefined, isNull } from 'util';
 import BigNumber from 'bignumber.js';
 
 import { } from 'jquery';
 declare var $: any;
 
 import {
-  user, stats, tokens, manager_actions
+  user, tokens, manager_actions
 } from '../../betokenjs/helpers';
+
+import { ApolloEnabled } from '../apollo';
+import { Apollo } from 'apollo-angular';
+import gql from 'graphql-tag';
 
 @Component({
   selector: 'app-account',
   templateUrl: './manageronboarding.component.html'
 })
-export class ManageronboardingComponent implements OnInit {
+export class ManageronboardingComponent extends ApolloEnabled implements OnInit {
   ZERO_ADDR = '0x0000000000000000000000000000000000000000';
   FALLBACK_MAX_DONATION: BigNumber;
   tokenData: Array<Object>;
@@ -27,16 +31,17 @@ export class ManageronboardingComponent implements OnInit {
   kairoPrice: BigNumber;
   buyKairoAmount: BigNumber;
   buyTokenAmount: BigNumber;
-  kairoBalance: BigNumber;
   kairoTotalSupply: BigNumber;
   totalFunds: BigNumber;
+  isManager: Boolean;
 
   buyStep: Number;
   continueEnabled: Boolean;
 
   errorMsg: String;
 
-  constructor(private ms: AppComponent, private router: Router) {
+  constructor(private ms: AppComponent, private router: Router, private apollo: Apollo) {
+    super();
     this.user_address = this.ZERO_ADDR;
     this.buyStep = 0;
     this.checkboxes = [false, false, false];
@@ -46,7 +51,6 @@ export class ManageronboardingComponent implements OnInit {
     this.kairoPrice = new BigNumber(0);
     this.buyKairoAmount = new BigNumber(0);
     this.buyTokenAmount = new BigNumber(0);
-    this.kairoBalance = new BigNumber(0);
     this.kairoTotalSupply = new BigNumber(0);
     this.FALLBACK_MAX_DONATION = new BigNumber(100); // fallback max DAI payment is 100
     this.continueEnabled = false;
@@ -66,12 +70,34 @@ export class ManageronboardingComponent implements OnInit {
 
   refreshDisplay() {
     this.user_address = user.address();
-    this.kairoPrice = stats.kairo_price();
-    this.kairoBalance = user.portfolio_value();
-    this.kairoTotalSupply = stats.kairo_total_supply();
-    this.totalFunds = stats.total_funds();
 
     this.getTokenBalance(this.selectedTokenSymbol);
+
+    let userAddress = user.address().toLowerCase();
+    this.querySubscription = this.apollo
+      .watchQuery({
+        query: gql`
+          {
+            fund(id: "BetokenFund") {
+              totalFundsInDAI
+              kairoPrice
+              kairoTotalSupply
+            }
+            manager(id: "${userAddress}") {
+              id
+            }
+          }
+        `
+      })
+      .valueChanges.subscribe(({ data, loading }) => {
+        let fund = data['fund'];
+        let manager = data['manager'];
+
+        this.isManager = isNull(manager);
+        this.kairoPrice = new BigNumber(fund.kairoPrice);
+        this.kairoTotalSupply = new BigNumber(fund.kairoTotalSupply);
+        this.totalFunds = new BigNumber(fund.totalFundsInDAI);
+      });
   }
 
   resetModals() {

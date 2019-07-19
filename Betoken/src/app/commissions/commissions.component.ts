@@ -4,9 +4,9 @@ import {
     manager_actions
 } from '../../betokenjs/helpers';
 
+import { ApolloEnabled } from '../apollo';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
-import { Subscription } from 'apollo-client/util/Observable';
 
 import { } from 'jquery';
 import BigNumber from 'bignumber.js';
@@ -15,7 +15,7 @@ declare var $: any;
     selector: 'app-account',
     templateUrl: './commissions.component.html'
 })
-export class CommissionsComponent implements OnInit {
+export class CommissionsComponent extends ApolloEnabled implements OnInit {
     commissionHistory: Array<Object>;
     commissionAmount: BigNumber;
     transactionId: String;
@@ -25,9 +25,9 @@ export class CommissionsComponent implements OnInit {
 
     isLoading: Boolean;
 
-    private querySubscription: Subscription;
-
     constructor(private apollo: Apollo) {
+        super();
+
         this.commissionHistory = new Array<Object>();
         this.commissionAmount = new BigNumber(0);
         this.transactionId = '';
@@ -43,10 +43,6 @@ export class CommissionsComponent implements OnInit {
         $('#modalRedeem').on('hidden.bs.modal', () => {
             this.resetModals();
         });
-    }
-
-    ngOnDestroy() {
-        this.querySubscription.unsubscribe();
     }
 
     refreshDisplay() {
@@ -101,14 +97,6 @@ export class CommissionsComponent implements OnInit {
                     this.commissionAmount = commission.plus(assetFee);
                 }
             });
-    }
-
-    toBigNumber(n) {
-        return new BigNumber(n);
-    }
-
-    toDateString(unixTimestamp) {
-        return new Date(+unixTimestamp * 1e3).toLocaleString();
     }
 
     resetModals() {

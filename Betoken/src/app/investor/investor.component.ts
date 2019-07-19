@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AppComponent } from '../app.component';
-import { Router } from '@angular/router';
 import BigNumber from 'bignumber.js';
 import { isUndefined } from 'util';
 import { Chart } from 'chart.js';
@@ -12,15 +10,15 @@ import {
   user, timer, stats, tokens, investor_actions
 } from '../../betokenjs/helpers';
 
+import { ApolloEnabled } from '../apollo';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
-import { Subscription } from 'apollo-client/util/Observable';
 
 @Component({
   selector: 'app-investor',
   templateUrl: './investor.component.html'
 })
-export class InvestorComponent implements OnInit {
+export class InvestorComponent extends ApolloEnabled implements OnInit {
   sharesPrice: BigNumber;
   avgMonthReturn: BigNumber;
   currMoROI: BigNumber;
@@ -60,9 +58,9 @@ export class InvestorComponent implements OnInit {
 
   isLoading: Boolean;
 
-  private querySubscription: Subscription;
-
   constructor(private apollo: Apollo) {
+    super();
+
     this.sharesPrice = new BigNumber(0);
     this.avgMonthReturn = new BigNumber(0);
     this.currMoROI = new BigNumber(0);
@@ -114,26 +112,21 @@ export class InvestorComponent implements OnInit {
     });
   }
 
-  ngOnDestroy() {
-    this.querySubscription.unsubscribe();
-  }
-
   refreshDisplay() {
     this.isLoading = true;
 
     this.tokenData = tokens.token_data();
     this.selectedTokenSymbol = this.tokenData[0]['symbol'];
 
-    this.avgMonthReturn = stats.avg_roi();
+    /*this.avgMonthReturn = stats.avg_roi();
     this.currMoROI = stats.cycle_roi();
+    if (stats.raw_roi_data().length > 0 && !this.hasDrawnChart) {
+      this.drawChart();
+    }*/
 
     this.updateTimer();
 
     this.getTokenBalance(this.selectedTokenSymbol);
-
-    if (stats.raw_roi_data().length > 0 && !this.hasDrawnChart) {
-      this.drawChart();
-    }
 
     let userAddress = user.address().toLowerCase();
     this.querySubscription = this.apollo
@@ -158,7 +151,7 @@ export class InvestorComponent implements OnInit {
       })
       .valueChanges.subscribe(({ data, loading }) => {
         this.isLoading = loading;
-        
+
         let fund = data['fund'];
         let investor = data['investor'];
 
@@ -168,14 +161,6 @@ export class InvestorComponent implements OnInit {
         this.investmentBalance = this.sharesBalance.times(this.sharesPrice);
         this.depositWithdrawHistory = investor.depositWithdrawHistory;
       });
-  }
-
-  toBigNumber(n) {
-    return new BigNumber(n);
-  }
-
-  toDateString(unixTimestamp) {
-    return new Date(+unixTimestamp * 1e3).toLocaleString();
   }
 
   updateTimer() {

@@ -3,9 +3,9 @@ import { user, timer, manager_actions, tokens } from '../../betokenjs/helpers';
 import BigNumber from 'bignumber.js';
 import { isUndefined } from 'util';
 
+import { ApolloEnabled } from '../apollo';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
-import { Subscription } from 'apollo-client/util/Observable';
 
 declare var $: any;
 
@@ -14,7 +14,7 @@ declare var $: any;
     templateUrl: './investments.component.html'
 })
 
-export class InvestmentsComponent implements OnInit {
+export class InvestmentsComponent extends ApolloEnabled implements OnInit {
     COL_RATIO_MODIFIER = 4 / 3;
     UNSAFE_COL_RATIO_MULTIPLIER = 1.1;
 
@@ -51,9 +51,9 @@ export class InvestmentsComponent implements OnInit {
 
     isLoading: Boolean;
 
-    private querySubscription: Subscription;
-
     constructor(private apollo: Apollo) {
+        super();
+
         this.createInvestmentPopupStep = 0;
         this.sellInvestmentPopupStep = 0;
         this.nextPhasePopupStep = 0;
@@ -115,10 +115,6 @@ export class InvestmentsComponent implements OnInit {
         });
         $('[data-toggle="tooltip"]').tooltip();
         this.refreshDisplay();
-    }
-
-    ngOnDestroy() {
-        this.querySubscription.unsubscribe();
     }
 
     resetModals() {
@@ -324,14 +320,6 @@ export class InvestmentsComponent implements OnInit {
 
     formatNumber(n, decimals) {
         return new BigNumber(n).toFormat(decimals);
-    }
-
-    toBigNumber(n) {
-        return new BigNumber(n);
-    }
-
-    toDateString(unixTimestamp) {
-        return new Date(+unixTimestamp * 1e3).toLocaleString();
     }
 
     // Create investment

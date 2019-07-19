@@ -1,9 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { user, stats, sortTable } from '../../betokenjs/helpers';
 
+import { ApolloEnabled } from '../apollo';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
-import { Subscription } from 'apollo-client/util/Observable';
 
 import { } from 'jquery';
 import BigNumber from 'bignumber.js';
@@ -15,16 +15,15 @@ declare var $: any;
     templateUrl: './rankings.component.html'
 })
 
-export class RankingsComponent implements OnInit, OnDestroy {
+export class RankingsComponent extends ApolloEnabled implements OnInit, OnDestroy {
     rankingArray: any;
     userRanking: String;
     userValue: BigNumber;
     userROI: BigNumber;
     isLoading: Boolean;
 
-    private querySubscription: Subscription;
-
     constructor(private apollo: Apollo) {
+        super();
         this.rankingArray = null;
         this.userRanking = '';
         this.userValue = new BigNumber(0);
@@ -34,10 +33,6 @@ export class RankingsComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.refreshDisplay();
-    }
-
-    ngOnDestroy() {
-        this.querySubscription.unsubscribe();
     }
 
     refreshDisplay() {

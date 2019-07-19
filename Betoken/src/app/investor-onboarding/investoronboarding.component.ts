@@ -11,11 +11,15 @@ import {
   user, timer, stats, tokens, investor_actions
 } from '../../betokenjs/helpers';
 
+import { ApolloEnabled } from '../apollo';
+import { Apollo } from 'apollo-angular';
+import gql from 'graphql-tag';
+
 @Component({
   selector: 'app-account',
   templateUrl: './investoronboarding.component.html'
 })
-export class InvestoronboardingComponent implements OnInit {
+export class InvestoronboardingComponent extends ApolloEnabled implements OnInit {
   ZERO_ADDR = '0x0000000000000000000000000000000000000000';
 
   tokenData: Array<Object>;
@@ -38,7 +42,8 @@ export class InvestoronboardingComponent implements OnInit {
 
   errorMsg: String;
   
-  constructor(private ms: AppComponent, private router: Router) {
+  constructor(private router: Router, private apollo: Apollo) {
+    super();
     this.user_address = this.ZERO_ADDR;
     this.buyStep = 0;
     this.checkboxes = [false, false, false];
@@ -67,16 +72,28 @@ export class InvestoronboardingComponent implements OnInit {
     this.tokenData = tokens.token_data();
     this.selectedTokenSymbol = this.tokenData[0]['symbol'];
     this.refreshDisplay();
-    setInterval(() => this.refreshDisplay(), 1000);
+    setInterval(() => this.updateTimer(), 1000);
   }
   
   refreshDisplay() {
     this.user_address = user.address();
-    this.sharesPrice = stats.shares_price();
-    
-    this.updateTimer();
-    
     this.getTokenBalance(this.selectedTokenSymbol);
+
+    this.querySubscription = this.apollo
+      .watchQuery({
+        query: gql`
+          {
+            fund(id: "BetokenFund") {
+              sharesPrice
+            }
+          }
+        `
+      })
+      .valueChanges.subscribe(({ data, loading }) => {
+        let fund = data['fund'];
+
+        this.sharesPrice = new BigNumber(fund.sharesPrice);
+      });
   }
   
   updateTimer() {
@@ -115,6 +132,7 @@ export class InvestoronboardingComponent implements OnInit {
     this.selectedTokenSymbol = value;
     $('#sharesAmountToBuy').val('0');
     this.refreshBuyOrderDetails(0);
+    this.getTokenBalance(this.selectedTokenSymbol);
   }
   
   async getTokenBalance(token) {

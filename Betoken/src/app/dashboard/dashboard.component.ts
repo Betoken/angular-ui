@@ -9,16 +9,16 @@ import {
   user, timer, stats
 } from '../../betokenjs/helpers';
 
+import { ApolloEnabled } from '../apollo';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
-import { Subscription } from 'apollo-client/util/Observable';
 
 @Component({
   selector: 'app-invest',
   templateUrl: './dashboard.component.html'
 })
 
-export class DashboardComponent implements OnInit {
+export class DashboardComponent extends ApolloEnabled implements OnInit {
   userRanking: String;
   userValue: BigNumber;
   userROI: BigNumber;
@@ -37,9 +37,9 @@ export class DashboardComponent implements OnInit {
   chartTabId: Number;
   shouldDrawChart: Boolean;
 
-  private querySubscription: Subscription;
-
   constructor(private apollo: Apollo) {
+    super();
+
     this.userRanking = '';
     this.userValue = new BigNumber(0);
     this.userROI = new BigNumber(0);
@@ -63,21 +63,17 @@ export class DashboardComponent implements OnInit {
     $('[data-toggle="tooltip"]').tooltip();
   }
 
-  ngOnDestroy() {
-    this.querySubscription.unsubscribe();
-  }
-
   refreshDisplay() {
     const NUM_DECIMALS = 4;
 
-    this.avgMonthReturn = stats.avg_roi().toFormat(NUM_DECIMALS);
+    /*this.avgMonthReturn = stats.avg_roi().toFormat(NUM_DECIMALS);
     this.currMoROI = stats.cycle_roi().toFormat(NUM_DECIMALS);
     if (!this.hasROIData()) {
       this.shouldDrawChart = false;
     }
     if (this.hasROIData() && !this.hasDrawnChart) {
       this.drawChart(this.chartTabId);
-    }
+    }*/
 
     let userAddress = user.address().toLowerCase();
     this.querySubscription = this.apollo

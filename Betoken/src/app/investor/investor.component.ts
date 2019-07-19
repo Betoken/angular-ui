@@ -7,7 +7,7 @@ import { } from 'jquery';
 declare var $: any;
 
 import {
-  user, timer, stats, tokens, investor_actions
+  user, timer, tokens, investor_actions
 } from '../../betokenjs/helpers';
 
 import { ApolloEnabled } from '../apollo';
@@ -37,6 +37,7 @@ export class InvestorComponent extends ApolloEnabled implements OnInit {
 
   hasDrawnChart: boolean;
   performanceChart: any;
+  sharesPriceHistory: any;
 
   buyStep: Number;
   sellStep: Number;
@@ -118,12 +119,6 @@ export class InvestorComponent extends ApolloEnabled implements OnInit {
     this.tokenData = tokens.token_data();
     this.selectedTokenSymbol = this.tokenData[0]['symbol'];
 
-    /*this.avgMonthReturn = stats.avg_roi();
-    this.currMoROI = stats.cycle_roi();
-    if (stats.raw_roi_data().length > 0 && !this.hasDrawnChart) {
-      this.drawChart();
-    }*/
-
     this.updateTimer();
 
     this.getTokenBalance(this.selectedTokenSymbol);
@@ -134,8 +129,13 @@ export class InvestorComponent extends ApolloEnabled implements OnInit {
         query: gql`
           {
             fund(id: "BetokenFund") {
+              totalFundsAtPhaseStart
               aum
               sharesPrice
+              sharesPriceHistory(orderBy: timestamp, orderDirection: asc, skip: 10, first: 1000) {
+                timestamp
+                value
+              }
             }
             investor(id: "${userAddress}") {
               sharesBalance
@@ -160,6 +160,12 @@ export class InvestorComponent extends ApolloEnabled implements OnInit {
         this.sharesPrice = new BigNumber(fund.sharesPrice);
         this.investmentBalance = this.sharesBalance.times(this.sharesPrice);
         this.depositWithdrawHistory = investor.depositWithdrawHistory;
+        this.currMoROI = this.AUM.div(fund.totalFundsAtPhaseStart).minus(1).times(100);
+
+        // draw chart
+        this.sharesPriceHistory = fund.sharesPriceHistory;
+        this.calcStats();
+        this.chartDraw();
       });
   }
 
@@ -324,20 +330,10 @@ export class InvestorComponent extends ApolloEnabled implements OnInit {
     return true;
   }
 
-  drawChart = () => {
+  calcStats() {
     let BONDS_MONTHLY_INTEREST = 2.4662697e-3 // 3% annual interest rate
     let NUM_DECIMALS = 4;
-    let betokenROIList = stats.raw_roi_data();
-
-    const convertToCumulative = (list) => {
-      var tmp = new BigNumber(1);
-      var tmpArray = [new BigNumber(0)];
-      for (let roi of list) {
-        tmp = new BigNumber(roi).div(100).plus(1).times(tmp);
-        tmpArray.push(tmp.times(100).minus(100).dp(NUM_DECIMALS));
-      }
-      return tmpArray;
-    }
+    let sharesPriceList = this.sharesPriceHistory.map((x) => new BigNumber(x.value).dp(NUM_DECIMALS));
 
     // calculate stats for Betoken
     let calcMean = function (list) {
@@ -346,92 +342,43 @@ export class InvestorComponent extends ApolloEnabled implements OnInit {
       }, new BigNumber(0)).div(list.length);
     };
     let calcSampleStd = function (list) {
-      var mean, sampleStd, sampleVar;
+      var mean, sampleVar;
       mean = calcMean(list);
       sampleVar = list.reduce(function (accumulator, curr) {
         return new BigNumber(accumulator).plus(new BigNumber(curr - mean).pow(2));
-      }, 0).div(list.length - 1);
-      return sampleStd = sampleVar.sqrt();
+      }, new BigNumber(0)).div(list.length - 1);
+      return sampleVar.sqrt();
     };
     let calcDownsideStd = (list, minAcceptableRate) => {
       let sampleVar = list.reduce(
         (accumulator, curr) => (new BigNumber(accumulator)).plus(new BigNumber(BigNumber.min(curr - minAcceptableRate, 0)).pow(2))
-        , 0).div(list.length - 1);
+        , new BigNumber(0)).div(list.length - 1);
       let sampleStd = sampleVar.sqrt();
       return sampleStd;
     }
 
-    // Sortino Ratio (against bonds, since inception)
-    let meanExcessReturn = calcMean(betokenROIList).minus(BONDS_MONTHLY_INTEREST);
-    let excessReturnStd = calcDownsideStd(betokenROIList, BONDS_MONTHLY_INTEREST);
-    this.sortinoRatio = meanExcessReturn.div(excessReturnStd).dp(NUM_DECIMALS);
-
     // Get cumulative data & calc std
-    let cumBetokenROIList = convertToCumulative(betokenROIList);
-    this.standardDeviation = calcSampleStd(cumBetokenROIList).dp(NUM_DECIMALS);
+    this.standardDeviation = calcSampleStd(sharesPriceList).dp(NUM_DECIMALS);
 
-    // Convert to 4 decimals
-    betokenROIList = betokenROIList.map((x) => new BigNumber(x).dp(NUM_DECIMALS));
-
-    // Compute timestamps
-    let phase = timer.phase();
-    let now = Math.floor(new Date().getTime() / 1000);
-    let phaseStart = timer.phase_start_time();
-    let phaseLengths = timer.phase_lengths();
-    let timestamps = new Array(betokenROIList.length);
-    switch (phase) {
-      case 0:
-        // intermission phase
-        // use last cycle's data
-        timestamps[timestamps.length - 1] = {
-          end: phaseStart,
-          start: phaseStart - phaseLengths[1]
-        }
-        break;
-      case 1:
-        // manage phase
-        // use current data
-        timestamps[timestamps.length - 1] = {
-          end: now,
-          start: phaseStart
-        }
-        break;
+    if (sharesPriceList.length > 0) {
+      this.avgMonthReturn = sharesPriceList[sharesPriceList.length - 1].div(sharesPriceList[0]).minus(1).times(100);
     }
-    for (let i = timestamps.length - 2; i >= 0; i--) {
-      timestamps[i] = {
-        start: 0,
-        end: 0
-      }
-      timestamps[i].end = timestamps[i + 1].start - phaseLengths[0];
-      timestamps[i].start = timestamps[i].end - phaseLengths[1];
-    }
+  }
 
-    let MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-
-    var timestampStrs = [];
-    for (var i = 0; i < timestamps.length; i++) {
-      timestampStrs.push(new Date(timestamps[i].start * 1e3).toLocaleDateString());
-    }
-    timestampStrs.push(new Date(timestamps[timestamps.length - 1].end * 1e3).toLocaleDateString());
-
-    var xLabels = [];
-    for (var i = 0; i < timestamps.length; i++) {
-      var date = new Date(timestamps[i].start * 1e3);
-      var formattedString = `${MONTHS[date.getMonth()]} ${date.getFullYear()}`;
-      xLabels.push(formattedString);
-    }
-    xLabels.push("Now");
+  chartDraw() {
+    let NUM_DECIMALS = 4;
+    let sharesPriceList = this.sharesPriceHistory.map((x) => new BigNumber(x.value).dp(NUM_DECIMALS));
 
     // draw chart
     if (!this.hasDrawnChart) {
+      this.hasDrawnChart = true;
+
       const canvas: any = document.getElementById('roi-chart');
       const ctx = canvas.getContext('2d');
       var gradientFill = ctx.createLinearGradient(0, 0, 0, 200);
-      gradientFill.addColorStop(0, 'rgba(44, 123, 229, 0.5)');
-      gradientFill.addColorStop(0.5, 'rgba(44, 123, 229, 0.25)');
-      gradientFill.addColorStop(1, 'rgba(44, 123, 229, 0)');
-
-      var $toggle = $('[data-toggle="chart"]');
+      gradientFill.addColorStop(0, 'rgba(0, 217, 126, 0.5)');
+      gradientFill.addColorStop(0.5, 'rgba(0, 217, 126, 0.25)');
+      gradientFill.addColorStop(1, 'rgba(0, 217, 126, 0)');
 
       // Config
 
@@ -463,14 +410,14 @@ export class InvestorComponent extends ApolloEnabled implements OnInit {
 
         type: 'line',
         data: {
-          labels: xLabels,
+          labels: this.sharesPriceHistory.map((x) => this.toDateString(x.timestamp)),
           datasets: [
             {
-              label: 'Betoken Share BTKS',
-              borderColor: '#2c7be5',
+              label: 'Betoken',
+              borderColor: '#22c88a',
               fill: true,
               backgroundColor: gradientFill,
-              data: cumBetokenROIList
+              data: sharesPriceList
             }
           ]
         },
@@ -503,10 +450,10 @@ export class InvestorComponent extends ApolloEnabled implements OnInit {
                 zeroLineBorderDashOffset: [2]
               },
               ticks: {
-                beginAtZero: true,
+                beginAtZero: false,
                 padding: 10,
                 callback: function (value, index, values) {
-                  return value + '%';
+                  return value;
                 }
               }
             }]
@@ -630,25 +577,17 @@ export class InvestorComponent extends ApolloEnabled implements OnInit {
                 var content = '';
 
                 if (data.datasets.length > 1) {
-                  content += '<span class="popover-body-label mr-auto">' + label + '%' + '</span>';
+                  content += '<span class="popover-body-label mr-auto">' + label + '</span>';
                 }
 
-                content += '<span class="popover-body-value">' + yLabel + '%' + '</span>';
+                content += '<span class="popover-body-value">' + yLabel + '</span>';
                 return content;
               }
             },
-
-
           }
         }
       });
 
-    } else {
-      this.performanceChart.data.datasets[0].data = cumBetokenROIList;
-      this.performanceChart.data.labels = xLabels;
-      this.performanceChart.update();
     }
-
-    this.hasDrawnChart = true;
   }
 }

@@ -42,7 +42,7 @@ export class RankingsComponent extends ApolloEnabled implements OnInit, OnDestro
             .watchQuery({
                 query: gql`
                     {
-                        managers(orderBy: kairoBalanceWithStake, orderDirection: desc) {
+                        managers(orderBy: kairoBalanceWithStake, orderDirection: desc, first: 1000) {
                             id
                             kairoBalanceWithStake
                             baseStake

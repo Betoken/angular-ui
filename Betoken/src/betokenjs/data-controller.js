@@ -18,8 +18,8 @@ const SUPPORTERS = require('./json_data/betoken_supporters.json');
 export var userAddress = ZERO_ADDR;
 
 // fund metadata
-export var commissionRate = BigNumber(0);
-export var assetFeeRate = BigNumber(0);
+export var commissionRate = BigNumber(0.2);
+export var assetFeeRate = BigNumber(0.01);
 
 // fund stats
 export var currROI = BigNumber(0);
@@ -29,7 +29,7 @@ export var ROIArray = [];
 // cycle timekeeping
 export var cycleNumber = 0;
 export var cyclePhase = 0;
-export var phaseLengths = [];
+export var phaseLengths = [3 * 24 * 60 * 60, 27 * 24 * 60 * 60];
 export var startTimeOfCyclePhase = 0;
 export var countdownDay = 0;
 export var countdownHour = 0;
@@ -169,13 +169,7 @@ const clock = () => {
 
 // data loaders
 export const loadMetadata = async () => {
-    return Promise.all([
-        // get params
-        phaseLengths = ((await betoken.getPrimitiveVar("getPhaseLengths"))).map(x => +x),
-        commissionRate = BigNumber((await betoken.getPrimitiveVar("COMMISSION_RATE"))).div(PRECISION),
-        assetFeeRate = BigNumber((await betoken.getPrimitiveVar("ASSET_FEE_RATE"))).div(PRECISION),
-        loadTokenMetadata()
-    ]);
+    return loadTokenMetadata();
 };
 
 export const loadTokenMetadata = async () => {
@@ -217,7 +211,6 @@ export const loadTokenMetadata = async () => {
 }
 
 export const loadFundData = async () => {
-    console.log('loadFundData');
     return Promise.all([
         cycleNumber = +((await betoken.getPrimitiveVar("cycleNumber"))),
         cyclePhase = +((await betoken.getPrimitiveVar("cyclePhase"))),
@@ -230,7 +223,6 @@ export const loadFundData = async () => {
 };
 
 export const loadUserData = async () => {
-    console.log('loadUserData');
     if (betoken.hasWeb3) {
         // Get user address
         await getDefaultAccount();
@@ -241,12 +233,9 @@ export const loadUserData = async () => {
             userAddress = ZERO_ADDR;
         }
     }
-    console.log('loadedUserData');
 };
 
 export const loadTokenPrices = async () => {
-    console.log('loadTokenPrices');
-
     let apiStr = "https://api.kyber.network/market";
     let rawData = await httpsGet(apiStr);
     if (!rawData.error) {
@@ -332,7 +321,6 @@ const loadPriceChanges = async (_daysInPast) => {
 }
 
 export const loadStats = async () => {
-    console.log('stats');
     // get stats
     var rois = [];
     currROI = BigNumber(0);

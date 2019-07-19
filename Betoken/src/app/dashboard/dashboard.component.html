@@ -142,22 +142,22 @@
           <ul class="nav nav-tabs header-tabs">
 
             <li class="nav-item" data-toggle="chart">
-              <a href="#" class="nav-link active" data-toggle="tab" (click)="switchChartTab(1)">
+              <a href="#" class="nav-link active" data-toggle="tab" (click)="switchChartTab(0)">
                 <h6 class="header-pretitle text-secondary">
-                  ROI Since Inception
+                  Betoken Shares Price
                 </h6>
                 <h3 class="text-white mb-0">
-                  {{avgMonthReturn}}%
+                  {{sharesPrice.toFormat(4)}} DAI
                 </h3>
               </a>
             </li>
             <li class="nav-item" data-toggle="chart">
-              <a href="#" class="nav-link" data-toggle="tab" (click)="switchChartTab(0)">
+              <a href="#" class="nav-link" data-toggle="tab" (click)="switchChartTab(1)">
                 <h6 class="header-pretitle text-secondary">
-                  ROI (1M)
+                  AUM
                 </h6>
                 <h3 class="text-white mb-0">
-                  {{currMoROI}}%
+                  {{AUM.toFormat(4)}} DAI
                 </h3>
               </a>
             </li>
@@ -251,7 +251,7 @@
 
             <!-- Heading -->
             <span class="h2 mb-0">
-              {{standardDeviation}}%
+              {{standardDeviation}}
             </span>
 
           </div>

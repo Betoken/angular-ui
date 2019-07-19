@@ -56,8 +56,8 @@
             </span>
             <!-- Badge -->
             <span class="badge"
-              [ngClass]="{'badge-soft-success': monthly_pl.gte(0), 'badge-soft-danger': monthly_pl.lt(0)}">
-              {{monthly_pl.toFormat(4)}}%
+              [ngClass]="{'badge-soft-success': userROI.gte(0), 'badge-soft-danger': userROI.lt(0)}">
+              {{userROI.toFormat(4)}}%
             </span>
 
           </div>
@@ -139,7 +139,7 @@
 
             <!-- Heading -->
             <span class="h2 mb-0">
-              {{expected_commission.toFormat(6)}}
+              {{expectedCommission.toFormat(6)}}
             </span>
 
           </div>
@@ -544,7 +544,7 @@
             <div class="col">
               <form>
                 <div class="input-group mb-2">
-                  <input type="number" min="0.0" max={{kairo_balance.toFormat(18)}} class="form-control form-control-lg"
+                  <input type="number" min="0.0" max={{kairoBalance.toFormat(18)}} class="form-control form-control-lg"
                     aria-describedby="KRO Token Amount to stake" placeholder="0.0 KRO" id="kairo-input"
                     (input)="continueEnabled = true">
                   <div class="input-group-append">
@@ -552,7 +552,7 @@
                   </div>
                 </div>
                 <small id="kroBalance"
-                  class="form-text text-secondary d-inline-block mb-0 mt-2">{{kairo_balance.toFormat(18)}} KRO
+                  class="form-text text-secondary d-inline-block mb-0 mt-2">{{kairoBalance.toFormat(18)}} KRO
                   available</small>
                 <small class="form-text text-warning d-inline-block mb-0 mt-2"
                   *ngIf="selectedOrderType.type === 'fulcrum'">

@@ -26,7 +26,7 @@
 
                 <!-- Heading -->
                 <span class="h2 mb-0">
-                  {{portfolioValueInDAI}}
+                  {{portfolioValueInDAI.toFormat(4)}}
                 </span>
 
               </div>
@@ -53,12 +53,12 @@
 
                 <!-- Heading -->
                 <span class="h2 mb-0">
-                  {{kairo_balance}}
+                  {{userValue.toFormat(4)}}
                 </span>
 
                 <!-- Badge -->
-                <span class="badge" [ngClass]="{'badge-soft-success': monthly_pl.gte(0), 'badge-soft-danger': monthly_pl.lt(0)}">
-                  {{monthly_pl.toFormat(4)}}%
+                <span class="badge" [ngClass]="{'badge-soft-success': userROI.gte(0), 'badge-soft-danger': userROI.lt(0)}">
+                  {{userROI.toFormat(4)}}%
                 </span>
 
               </div>
@@ -85,7 +85,7 @@
 
                 <!-- Heading -->
                 <span class="h2 mb-0">
-                  {{expected_commission}}
+                  {{expectedCommission.toFormat(4)}}
                 </span>
 
               </div>
@@ -197,7 +197,7 @@
 
             <!-- Heading -->
             <span class="h2 mb-0">
-              {{AUM}}
+              {{AUM.toFormat(4)}}
             </span>
 
           </div>

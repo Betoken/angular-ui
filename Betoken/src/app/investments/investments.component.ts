@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { user, timer, manager_actions, loading, tokens, refresh_actions } from '../../betokenjs/helpers';
+import { user, timer, manager_actions, tokens } from '../../betokenjs/helpers';
 import BigNumber from 'bignumber.js';
 import { isUndefined } from 'util';
 
@@ -26,9 +26,9 @@ export class InvestmentsComponent implements OnInit {
     portfolioValueInDAI: BigNumber;
     riskTakenPercentage: BigNumber;
     userValue: BigNumber;
-    expected_commission: BigNumber;
-    kairo_balance: BigNumber;
-    monthly_pl: BigNumber;
+    expectedCommission: BigNumber;
+    kairoBalance: BigNumber;
+    userROI: BigNumber;
     phase: Number;
 
     selectedTokenSymbol: String;
@@ -62,9 +62,9 @@ export class InvestmentsComponent implements OnInit {
         this.portfolioValueInDAI = new BigNumber(0);
         this.riskTakenPercentage = new BigNumber(0);
         this.userValue = new BigNumber(0);
-        this.expected_commission = new BigNumber(0);
-        this.kairo_balance = new BigNumber(0);
-        this.monthly_pl = new BigNumber(0);
+        this.expectedCommission = new BigNumber(0);
+        this.kairoBalance = new BigNumber(0);
+        this.userROI = new BigNumber(0);
         this.phase = 0;
 
         this.selectedTokenSymbol = 'ETH';
@@ -227,23 +227,24 @@ export class InvestmentsComponent implements OnInit {
                 let manager = data['manager'];
 
                 this.userValue = new BigNumber(manager.kairoBalanceWithStake);
-                this.monthly_pl = this.userValue.div(manager.baseStake).minus(1).times(100);
+                this.userROI = this.userValue.div(manager.baseStake).minus(1).times(100);
                 this.riskTakenPercentage = BigNumber.min(new BigNumber(manager.riskTaken).div(manager.riskThreshold).times(100), 100);
                 this.portfolioValueInDAI = this.userValue.div(fund.kairoTotalSupply).times(fund.totalFundsInDAI);
-                this.kairo_balance = new BigNumber(manager.kairoBalance);
+                this.kairoBalance = new BigNumber(manager.kairoBalance);
                 this.phase = fund.cyclePhase === 'INTERMISSION' ? 0 : 1;
 
+                // calculate expected commission
                 if (+fund.kairoTotalSupply > 0) {
                     if (this.phase == 0) {
                         // Actual commission that will be redeemed
-                        return this.kairo_balance.div(fund.kairoTotalSupply).times(fund.cycleTotalCommission);
+                        return this.kairoBalance.div(fund.kairoTotalSupply).times(fund.cycleTotalCommission);
                     }
                     // Expected commission based on previous average ROI
-                    let totalProfit = new BigNumber(fund.aum).div(fund.totalFundsInDAI);
+                    let totalProfit = new BigNumber(fund.aum).minus(fund.totalFundsInDAI);
                     totalProfit = BigNumber.max(totalProfit, 0);
-                    let commission = totalProfit.div(fund.kairoTotalSupply).times(user.portfolio_value()).times(user.commission_rate());
-                    let assetFee = new BigNumber(fund.aum).div(fund.kairoTotalSupply).times(user.portfolio_value()).times(user.asset_fee_rate());
-                    this.expected_commission = commission.plus(assetFee);
+                    let commission = totalProfit.div(fund.kairoTotalSupply).times(this.userValue).times(user.commission_rate());
+                    let assetFee = new BigNumber(fund.aum).div(fund.kairoTotalSupply).times(this.userValue).times(user.asset_fee_rate());
+                    this.expectedCommission = commission.plus(assetFee);
                 }
 
                 let activeBasicOrders = data['activeBasicOrders'].map((x) => {
@@ -314,7 +315,7 @@ export class InvestmentsComponent implements OnInit {
                 // record unstaked KRO as well
                 this.activePortfolio.push({
                     symbol: 'DAI',
-                    stake: this.kairo_balance
+                    stake: this.kairoBalance
                 });
                 // sort in descending order of stake
                 this.activePortfolio.sort((a, b) => new BigNumber(b['stake']).minus(a['stake']).toNumber());
@@ -525,7 +526,7 @@ export class InvestmentsComponent implements OnInit {
     // UI helpers
 
     maxStake() {
-        $('#kairo-input').val(this.kairo_balance.toString());
+        $('#kairo-input').val(this.kairoBalance.toString());
         this.continueEnabled = true;
     }
 

@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AppComponent } from '../app.component';
-import { Router } from '@angular/router';
 import { BigNumber } from 'bignumber.js';
 import { Chart } from 'chart.js';
 
@@ -11,6 +9,10 @@ import {
   user, timer, stats
 } from '../../betokenjs/helpers';
 
+import { Apollo } from 'apollo-angular';
+import gql from 'graphql-tag';
+import { Subscription } from 'apollo-client/util/Observable';
+
 @Component({
   selector: 'app-invest',
   templateUrl: './dashboard.component.html'
@@ -18,36 +20,38 @@ import {
 
 export class DashboardComponent implements OnInit {
   userRanking: String;
-  kairo_balance: String;
-  monthly_pl: BigNumber;
-  expected_commission: String;
+  userValue: BigNumber;
+  userROI: BigNumber;
+  expectedCommission: BigNumber;
   sharePrice: String;
   avgMonthReturn: String;
   currMoROI: String;
   totalUser: Number;
-  AUM: String;
+  AUM: BigNumber;
   sortinoRatio: BigNumber;
   standardDeviation: BigNumber;
-  portfolioValueInDAI: String;
+  portfolioValueInDAI: BigNumber;
 
   hasDrawnChart: boolean;
   performanceChart: any;
   chartTabId: Number;
   shouldDrawChart: Boolean;
 
-  constructor(private ms: AppComponent, private route: Router) {
+  private querySubscription: Subscription;
+
+  constructor(private apollo: Apollo) {
     this.userRanking = '';
-    this.kairo_balance = '';
-    this.monthly_pl = new BigNumber(0);
-    this.expected_commission = '';
+    this.userValue = new BigNumber(0);
+    this.userROI = new BigNumber(0);
+    this.expectedCommission = new BigNumber(0);
     this.sharePrice = '';
     this.avgMonthReturn = '';
     this.currMoROI = '';
     this.totalUser = 0;
-    this.AUM = '';
+    this.AUM = new BigNumber(0);
     this.sortinoRatio = new BigNumber(0);
     this.standardDeviation = new BigNumber(0);
-    this.portfolioValueInDAI = '';
+    this.portfolioValueInDAI = new BigNumber(0);
 
     this.hasDrawnChart = false;
     this.chartTabId = 1;
@@ -59,24 +63,71 @@ export class DashboardComponent implements OnInit {
     $('[data-toggle="tooltip"]').tooltip();
   }
 
+  ngOnDestroy() {
+    this.querySubscription.unsubscribe();
+  }
+
   refreshDisplay() {
     const NUM_DECIMALS = 4;
 
-    this.kairo_balance = user.portfolio_value().toFormat(NUM_DECIMALS);
-    this.monthly_pl = user.monthly_roi();
-    this.expected_commission = user.expected_commission().toFormat(NUM_DECIMALS);
     this.avgMonthReturn = stats.avg_roi().toFormat(NUM_DECIMALS);
     this.currMoROI = stats.cycle_roi().toFormat(NUM_DECIMALS);
-    this.AUM = stats.total_funds().toFormat(NUM_DECIMALS);
-    this.userRanking = user.rank();
-    this.portfolioValueInDAI = user.portfolio_value_in_dai().toFormat(NUM_DECIMALS);
-    this.totalUser = stats.ranking().length;
     if (!this.hasROIData()) {
       this.shouldDrawChart = false;
     }
     if (this.hasROIData() && !this.hasDrawnChart) {
       this.drawChart(this.chartTabId);
     }
+
+    let userAddress = user.address().toLowerCase();
+    this.querySubscription = this.apollo
+      .watchQuery({
+        query: gql`
+          {
+            fund(id: "BetokenFund") {
+              aum
+              kairoTotalSupply
+              totalFundsInDAI
+              cyclePhase
+              cycleTotalCommission
+            }
+            manager(id: "${userAddress}") {
+              kairoBalance
+              kairoBalanceWithStake
+              baseStake
+            }
+            managers(orderBy: kairoBalanceWithStake, orderDirection: desc) {
+              id
+            }
+          }
+        `
+      })
+      .valueChanges.subscribe(({ data, loading }) => {
+        let fund = data['fund'];
+        let manager = data['manager'];
+        let managers = data['managers'];
+
+        this.userValue = new BigNumber(manager.kairoBalanceWithStake);
+        this.userROI = this.userValue.div(manager.baseStake).minus(1).times(100);
+        this.portfolioValueInDAI = this.userValue.div(fund.kairoTotalSupply).times(fund.totalFundsInDAI);
+        this.AUM = new BigNumber(fund.aum);
+        this.userRanking = managers.findIndex((x) => x.id === userAddress) + 1;
+        this.totalUser = managers.length;
+
+        // calculate expected commission
+        if (+fund.kairoTotalSupply > 0) {
+          if (fund.cyclePhase === 'INTERMISSION') {
+            // Actual commission that will be redeemed
+            return new BigNumber(manager.kairoBalance).div(fund.kairoTotalSupply).times(fund.cycleTotalCommission);
+          }
+          // Expected commission based on previous average ROI
+          let totalProfit = new BigNumber(fund.aum).minus(fund.totalFundsInDAI);
+          totalProfit = BigNumber.max(totalProfit, 0);
+          let commission = totalProfit.div(fund.kairoTotalSupply).times(this.userValue).times(user.commission_rate());
+          let assetFee = new BigNumber(fund.aum).div(fund.kairoTotalSupply).times(this.userValue).times(user.asset_fee_rate());
+          this.expectedCommission = commission.plus(assetFee);
+        }
+      });
   }
 
   hasROIData() {

@@ -64,22 +64,22 @@
             <thead>
               <tr>
                 <th scope="col">
-                  <a class="text-muted">Asset</a>
+                  <a class="text-muted" i18n>Asset</a>
                 </th>
                 <th scope="col">
-                  <a href="" class="text-muted sort" data-sort="tables-price">Price (DAI)</a>
+                  <a href="" class="text-muted sort" data-sort="tables-price" i18n>Price (DAI)</a>
                 </th>
                 <th scope="col">
-                  <a href="" class="text-muted sort" data-sort="tables-24h-volume">24h Volume (USD)</a>
+                  <a href="" class="text-muted sort" data-sort="tables-24h-volume" i18n>24h Volume (USD)</a>
                 </th>
                 <th scope="col">
-                  <a href="" class="text-muted sort" data-sort="tables-24h-change">24h Change</a>
+                  <a href="" class="text-muted sort" data-sort="tables-24h-change" i18n>24h Change</a>
                 </th>
                 <th scope="col">
-                  <a href="" class="text-muted sort" data-sort="tables-7d-change">7d Change</a>
+                  <a href="" class="text-muted sort" data-sort="tables-7d-change" i18n>7d Change</a>
                 </th>
                 <th scope="col">
-                  <a href="" class="text-muted sort" data-sort="tables-1m-change">1m Change</a>
+                  <a href="" class="text-muted sort" data-sort="tables-1m-change" i18n>1m Change</a>
                 </th>
               </tr>
             </thead>
@@ -105,19 +105,19 @@
                 </td>
                 <td class="tables-24h-change">
                   <span class="badge badge-xl"
-                    [ngClass]="{'badge-soft-success': +token.dailyPriceChange >= 0, 'badge-soft-danger': 0 > +token.dailyPriceChange}">
+                    [ngClass]="{'badge-soft-success': +token.dailyPriceChange >= 0, 'badge-soft-danger': 0 > +token.dailyPriceChange}" i18n>
                     {{token.dailyPriceChange.isNaN() ? 'Not available' : token.dailyPriceChange.toFixed(4) + '%'}}
                   </span>
                 </td>
                 <td class="tables-7d-change">
                   <span class="badge badge-xl"
-                    [ngClass]="{'badge-soft-success': +token.weeklyPriceChange >= 0, 'badge-soft-danger': 0 > +token.weeklyPriceChange}">
+                    [ngClass]="{'badge-soft-success': +token.weeklyPriceChange >= 0, 'badge-soft-danger': 0 > +token.weeklyPriceChange}" i18n>
                     {{token.weeklyPriceChange.isNaN() ? 'Not available' : token.weeklyPriceChange.toFixed(4) + '%'}}
                   </span>
                 </td>
                 <td class="tables-1m-change">
                   <span class="badge badge-xl"
-                    [ngClass]="{'badge-soft-success': +token.monthlyPriceChange >= 0, 'badge-soft-danger': 0 > +token.monthlyPriceChange}">
+                    [ngClass]="{'badge-soft-success': +token.monthlyPriceChange >= 0, 'badge-soft-danger': 0 > +token.monthlyPriceChange}" i18n>
                     {{token.monthlyPriceChange.isNaN() ? 'Not available' : token.monthlyPriceChange.toFixed(4) + '%'}}
                   </span>
                 </td>
@@ -138,7 +138,7 @@
         </div>
       </div>
       <div class="col-auto">
-        <p class="small text-secondary mb-0 text-center">Betoken Smart Contracts are audited and secured by Solidified
+        <p class="small text-secondary mb-0 text-center" i18n>Betoken Smart Contracts are audited and secured by Solidified
         </p>
       </div>
       <div class="col-auto">

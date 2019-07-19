@@ -2,10 +2,10 @@
   <div class="container-fluid px-md-5">
 
     <div class="navbar-text p-0">
-      <h6 class="header-pretitle text-muted mb-1 time-left-title">
+      <h6 class="header-pretitle text-muted mb-1 time-left-title" i18n>
         Time left {{phaseActionText()}}
       </h6>
-      <h4 class="header-title text-secondary time-left-value">
+      <h4 class="header-title text-secondary time-left-value" i18n>
         {{days}}d {{hours}}h {{minutes}}m {{seconds}}s
       </h4>
     </div>
@@ -22,7 +22,7 @@
       </div>
       <!--Account display-->
       <button class="btn btn-white text-truncate" style="width: 12rem;" (click)="reloadAll()" *ngIf="user_address !== ZERO_ADDR"><span class="text-success">●</span> {{user_address}}</button>
-      <button class="btn btn-white text-truncate" (click)="reloadAll()" *ngIf="user_address == ZERO_ADDR"><span class="text-danger">●</span> Connect Wallet </button>
+      <button class="btn btn-white text-truncate" (click)="reloadAll()" *ngIf="user_address == ZERO_ADDR" i18n><span class="text-danger">●</span> Connect Wallet </button>
     </div>
   </div>
 </nav>
@@ -30,21 +30,21 @@
 <!-- PREHADER
 ================================================== -->
 <div *ngIf="errorMsg !== '' ">
-  <div class="alert alert-warning rounded-0 mb-0">
+  <div class="alert alert-warning rounded-0 mb-0" i18n>
     {{errorMsg}}
   </div>
 </div>
 
 <!-- Get Updates modal -->
-<div class="modal fade fixed-right" id="modalEmailUpdates" tabindex="-1" role="dialog" aria-labelledby="Get update modal by email" aria-hidden="true">
+<div class="modal fade fixed-right" id="modalEmailUpdates" tabindex="-1" role="dialog" i18n-aria-labelledby aria-describedby="Get update modal by email" aria-hidden="true">
   <div class="modal-dialog modal-dialog-vertical bg-white" role="document">
     <div class="modal-content">
       <div class="modal-header border-0">
-        <h4 class="modal-title">
+        <h4 class="modal-title" i18n>
           Get notified by e-mail
         </h4>
         <!-- Close -->
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" data-dismiss="modal" i18n-aria-label aria-label="Close">
           <span aria-hidden="true">×</span>
         </button>
       </div>
@@ -52,19 +52,19 @@
         <div class="media mb-4 mb-lg-3">
           <i class="fe fe-check text-green mr-3"></i>
           <div class="media-body">
-            <h6 class="header-pretitle">
+            <h6 class="header-pretitle" i18n>
               Capital connection
             </h6>
-            <p>Get updated when you can connect or withdraw your capital.</p>
+            <p i18n>Get updated when you can connect or withdraw your capital.</p>
           </div>
         </div>
         <div class="media mb-4 mb-lg-3">
           <i class="fe fe-check text-green mr-3"></i>
           <div class="media-body">
-            <h6 class="header-pretitle">
+            <h6 class="header-pretitle" i18n>
               Monthly performance results
             </h6>
-            <p>
+            <p i18n>
               Get insights into how your holdings perform month by month.
             </p>
           </div>
@@ -72,17 +72,17 @@
         <div class="media mb-4 mb-lg-3">
           <i class="fe fe-check text-green mr-3"></i>
           <div class="media-body">
-            <h6 class="header-pretitle">
+            <h6 class="header-pretitle" i18n>
               Manager commissions
             </h6>
-            <p>
+            <p i18n>
               Be the first to know when to redeem your manager's commissions.
             </p>
           </div>
         </div>
         <form action="https://fund.us17.list-manage.com/subscribe/post?u=9c0647dcb587985ed6121cdf6&amp;id=150e0f091e" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate col mb-5" target="_blank" novalidate>
           <div class="input-group input-group-lg">
-            <input class="form-control" type="email" value="" name="EMAIL" id="mce-EMAIL" placeholder="myemail@address.com" required>
+            <input class="form-control" type="email" value="" name="EMAIL" id="mce-EMAIL" i18n-placeholder placeholder="myemail@address.com" required>
             <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_9c0647dcb587985ed6121cdf6_150e0f091e" tabindex="-1" value=""></div>
             <div class="input-group-append bg-black">
               <button class="btn btn-dark btn-lg btn-block" name="subscribe" id="mc-embedded-subscribe">

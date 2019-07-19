@@ -132,7 +132,7 @@ export class InvestorComponent extends ApolloEnabled implements OnInit {
               totalFundsAtPhaseStart
               aum
               sharesPrice
-              sharesPriceHistory(orderBy: timestamp, orderDirection: asc, skip: 10, first: 1000) {
+              sharesPriceHistory(orderBy: timestamp, orderDirection: asc, first: 1000) {
                 timestamp
                 value
               }

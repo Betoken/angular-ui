@@ -185,26 +185,27 @@
 <div class="container-fluid mt-n6 pb-6 px-md-5">
   <div class="card-deck mb-0 mb-md-4">
     <!-- Card -->
-    <div class="card" data-toggle="tooltip" data-html="true" title="Assets Under Management. The amount of money managed by Betoken managers community.">
+    <div class="card">
       <div class="card-body">
         <div class="row align-items-center">
           <div class="col">
 
             <!-- Title -->
             <h6 class="card-title text-uppercase text-muted mb-2">
-              Betoken AUM ($DAI)
+              Return on Investment (Current Cycle)
             </h6>
 
             <!-- Heading -->
-            <span class="h2 mb-0">
-              {{AUM.toFormat(4)}}
+            <span class="badge badge-xl"
+              [ngClass]="{'badge-soft-success': currMoROI.gte(0), 'badge-soft-danger': currMoROI.lt(0)}">
+              {{currMoROI.toFormat(4)}}%
             </span>
 
           </div>
           <div class="col-auto">
 
             <!-- Icon -->
-            <span class="h2 fe fe-disc text-muted mb-0"></span>
+            <span class="h2 fe fe-activity text-muted mb-0"></span>
 
           </div>
         </div> <!-- / .row -->
@@ -212,26 +213,27 @@
       </div>
     </div>
     <!-- Card -->
-    <div class="card" data-toggle="tooltip" data-html="true" title="Sortino ratio is a way to examine the performance of an investment by adjusting for its risk. The risk-free rate used here is 3% per year, an approximation of the US 10Y treasury bond's interest rate.">
+    <div class="card">
       <div class="card-body">
         <div class="row align-items-center">
           <div class="col">
 
             <!-- Title -->
             <h6 class="card-title text-uppercase text-muted mb-2">
-              Sortino Ratio
+              Return on Investment (Since Inception)
             </h6>
 
             <!-- Heading -->
-            <span class="h2 mb-0">
-              {{sortinoRatio.isNaN() ? 'Not available' : sortinoRatio.toFormat(4)}}
+            <span class="badge badge-xl"
+              [ngClass]="{'badge-soft-success': avgMonthReturn.gte(0), 'badge-soft-danger': avgMonthReturn.lt(0)}">
+              {{avgMonthReturn.toFormat(4)}}%
             </span>
 
           </div>
           <div class="col-auto">
 
             <!-- Icon -->
-            <span class="h2 fe fe-shield text-muted mb-0"></span>
+            <span class="h2 fe fe-activity text-muted mb-0"></span>
 
           </div>
         </div> <!-- / .row -->

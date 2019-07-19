@@ -3,7 +3,7 @@ import {ApolloModule, APOLLO_OPTIONS} from 'apollo-angular';
 import {HttpLinkModule, HttpLink} from 'apollo-angular-link-http';
 import {InMemoryCache} from 'apollo-cache-inmemory';
 
-const uri = 'https://api.thegraph.com/subgraphs/name/zeframlou/betoken-subgraph'; // <-- add the URL of the GraphQL server here
+const uri = 'https://api.thegraph.com/subgraphs/id/QmSk3n8SXWESqofpjjPdqVs61Vxa6RzSPbH2PungrU5b8h'; // <-- add the URL of the GraphQL server here
 export function createApollo(httpLink: HttpLink) {
   return {
     link: httpLink.create({uri}),

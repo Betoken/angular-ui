@@ -24,7 +24,7 @@ export class DashboardComponent extends ApolloEnabled implements OnInit {
   userROI: BigNumber;
   expectedCommission: BigNumber;
   sharesPrice: BigNumber;
-  avgMonthReturn: String;
+  avgMonthReturn: BigNumber;
   currMoROI: BigNumber;
   totalUser: Number;
   AUM: BigNumber;
@@ -47,7 +47,7 @@ export class DashboardComponent extends ApolloEnabled implements OnInit {
     this.userROI = new BigNumber(0);
     this.expectedCommission = new BigNumber(0);
     this.sharesPrice = new BigNumber(0);
-    this.avgMonthReturn = '';
+    this.avgMonthReturn = new BigNumber(0);
     this.currMoROI = new BigNumber(0);
     this.totalUser = 0;
     this.AUM = new BigNumber(0);
@@ -81,11 +81,11 @@ export class DashboardComponent extends ApolloEnabled implements OnInit {
               cycleTotalCommission
               totalFundsAtPhaseStart
               sharesPrice
-              sharesPriceHistory(orderBy: timestamp, orderDirection: asc, skip: 10, first: 1000) {
+              sharesPriceHistory(orderBy: timestamp, orderDirection: asc, first: 1000) {
                 timestamp
                 value
               }
-              aumHistory(orderBy: timestamp, orderDirection: asc, skip: 10, first: 1000) {
+              aumHistory(orderBy: timestamp, orderDirection: asc, first: 1000) {
                 timestamp
                 value
               }
@@ -122,7 +122,7 @@ export class DashboardComponent extends ApolloEnabled implements OnInit {
             return new BigNumber(manager.kairoBalance).div(fund.kairoTotalSupply).times(fund.cycleTotalCommission);
           }
           // Expected commission based on previous average ROI
-          let totalProfit = new BigNumber(fund.aum).minus(fund.totalFundsInDAI);
+          let totalProfit = new BigNumber(fund.aum).minus(fund.totalFundsAtPhaseStart);
           totalProfit = BigNumber.max(totalProfit, 0);
           let commission = totalProfit.div(fund.kairoTotalSupply).times(this.userValue).times(user.commission_rate());
           let assetFee = new BigNumber(fund.aum).div(fund.kairoTotalSupply).times(this.userValue).times(user.asset_fee_rate());

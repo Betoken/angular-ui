@@ -149,6 +149,7 @@ export class InvestmentsComponent extends ApolloEnabled implements OnInit {
                             totalFundsInDAI
                             kairoTotalSupply
                             cycleTotalCommission
+                            totalFundsAtPhaseStart
                         }
                         manager(id: "${userAddress}") {
                             kairoBalance
@@ -236,7 +237,7 @@ export class InvestmentsComponent extends ApolloEnabled implements OnInit {
                         return this.kairoBalance.div(fund.kairoTotalSupply).times(fund.cycleTotalCommission);
                     }
                     // Expected commission based on previous average ROI
-                    let totalProfit = new BigNumber(fund.aum).minus(fund.totalFundsInDAI);
+                    let totalProfit = new BigNumber(fund.aum).minus(fund.totalFundsAtPhaseStart);
                     totalProfit = BigNumber.max(totalProfit, 0);
                     let commission = totalProfit.div(fund.kairoTotalSupply).times(this.userValue).times(user.commission_rate());
                     let assetFee = new BigNumber(fund.aum).div(fund.kairoTotalSupply).times(this.userValue).times(user.asset_fee_rate());

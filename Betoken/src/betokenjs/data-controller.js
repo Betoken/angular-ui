@@ -696,8 +696,7 @@ export const loadDynamicData = async (progressCallback) => {
         [
             loadUserData().then(() => {
                 callback();
-                return loadTxHistory();
-            }).then(callback),
+            }),
             loadStats().then(callback),
         ]
     ));

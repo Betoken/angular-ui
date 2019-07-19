@@ -7,8 +7,6 @@ declare var $: any;
 import {
   user, timer, error_notifications, manager_actions, refresh_actions
 } from '../../betokenjs/helpers';
-import BigNumber from 'bignumber.js';
-import { isNull } from 'util';
 
 import { ApolloEnabled } from '../apollo';
 import { Apollo } from 'apollo-angular';
@@ -29,9 +27,6 @@ export class HeaderComponent extends ApolloEnabled implements OnInit {
   phase: Number;
 
   user_address: String;
-  userKairoValue: BigNumber;
-
-  can_redeem_commission: boolean;
 
   errorMsg: String;
 
@@ -52,9 +47,6 @@ export class HeaderComponent extends ApolloEnabled implements OnInit {
     this.phase = -1;
 
     this.user_address = this.ZERO_ADDR;
-    this.userKairoValue = new BigNumber(0);
-
-    this.can_redeem_commission = true;
 
     this.errorMsg = '';
   }
@@ -80,29 +72,20 @@ export class HeaderComponent extends ApolloEnabled implements OnInit {
     error_notifications.check_dependency();
     this.errorMsg = error_notifications.get_error_msg();
 
-    let userAddress = user.address().toLowerCase();
     this.querySubscription = this.apollo
       .watchQuery({
         query: gql`
           {
             fund(id: "BetokenFund") {
-              cycleNumber
               cyclePhase
-            }
-            manager(id: "${userAddress}") {
-              kairoBalanceWithStake
-              lastCommissionRedemption
             }
           }
         `
       })
       .valueChanges.subscribe(({ data, loading }) => {
         let fund = data['fund'];
-        let manager = data['manager'];
 
         this.phase = fund.cyclePhase === 'INTERMISSION' ? 0 : 1;
-        this.userKairoValue = new BigNumber(manager.kairoBalanceWithStake);
-        this.can_redeem_commission = this.phase == 0 && +manager.lastCommissionRedemption < +fund.cycleNumber && userAddress !== this.ZERO_ADDR;
       });
   }
 

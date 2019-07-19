@@ -12,6 +12,7 @@ import {
 import { ApolloEnabled } from '../apollo';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
+import { isNull } from 'util';
 
 @Component({
   selector: 'app-invest',
@@ -66,8 +67,6 @@ export class DashboardComponent extends ApolloEnabled implements OnInit {
   }
 
   refreshDisplay() {
-    const NUM_DECIMALS = 4;
-
     let userAddress = user.address().toLowerCase();
     this.querySubscription = this.apollo
       .watchQuery({
@@ -106,28 +105,30 @@ export class DashboardComponent extends ApolloEnabled implements OnInit {
         let manager = data['manager'];
         let managers = data['managers'];
 
-        this.userValue = new BigNumber(manager.kairoBalanceWithStake);
-        this.userROI = this.userValue.div(manager.baseStake).minus(1).times(100);
-        this.portfolioValueInDAI = this.userValue.div(fund.kairoTotalSupply).times(fund.totalFundsInDAI);
+        if (!isNull(manager)) {
+          this.userValue = new BigNumber(manager.kairoBalanceWithStake);
+          this.userROI = this.userValue.div(manager.baseStake).minus(1).times(100);
+          // calculate expected commission
+          if (+fund.kairoTotalSupply > 0) {
+            if (fund.cyclePhase === 'INTERMISSION') {
+              // Actual commission that will be redeemed
+              this.expectedCommission = new BigNumber(manager.kairoBalance).div(fund.kairoTotalSupply).times(fund.cycleTotalCommission);
+            }
+            // Expected commission based on previous average ROI
+            let totalProfit = new BigNumber(fund.aum).minus(fund.totalFundsAtPhaseStart);
+            totalProfit = BigNumber.max(totalProfit, 0);
+            let commission = totalProfit.div(fund.kairoTotalSupply).times(this.userValue).times(user.commission_rate());
+            let assetFee = new BigNumber(fund.aum).div(fund.kairoTotalSupply).times(this.userValue).times(user.asset_fee_rate());
+            this.expectedCommission = commission.plus(assetFee);
+          }
+        }
+
         this.AUM = new BigNumber(fund.aum);
         this.userRanking = managers.findIndex((x) => x.id === userAddress) + 1;
         this.totalUser = managers.length;
         this.sharesPrice = new BigNumber(fund.sharesPrice);
         this.currMoROI = this.AUM.div(fund.totalFundsAtPhaseStart).minus(1).times(100);
-
-        // calculate expected commission
-        if (+fund.kairoTotalSupply > 0) {
-          if (fund.cyclePhase === 'INTERMISSION') {
-            // Actual commission that will be redeemed
-            return new BigNumber(manager.kairoBalance).div(fund.kairoTotalSupply).times(fund.cycleTotalCommission);
-          }
-          // Expected commission based on previous average ROI
-          let totalProfit = new BigNumber(fund.aum).minus(fund.totalFundsAtPhaseStart);
-          totalProfit = BigNumber.max(totalProfit, 0);
-          let commission = totalProfit.div(fund.kairoTotalSupply).times(this.userValue).times(user.commission_rate());
-          let assetFee = new BigNumber(fund.aum).div(fund.kairoTotalSupply).times(this.userValue).times(user.asset_fee_rate());
-          this.expectedCommission = commission.plus(assetFee);
-        }
+        this.portfolioValueInDAI = this.userValue.div(fund.kairoTotalSupply).times(fund.totalFundsInDAI);
 
         // draw chart
         this.sharesPriceHistory = fund.sharesPriceHistory;

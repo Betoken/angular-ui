@@ -10,6 +10,7 @@ import gql from 'graphql-tag';
 
 import { } from 'jquery';
 import BigNumber from 'bignumber.js';
+import { isNull } from 'util';
 declare var $: any;
 @Component({
     selector: 'app-account',
@@ -72,7 +73,7 @@ export class CommissionsComponent extends ApolloEnabled implements OnInit {
                             }
                         }
                     }
-                `   
+                `
             })
             .valueChanges.subscribe(({ data, loading }) => {
                 this.isLoading = loading;
@@ -81,22 +82,26 @@ export class CommissionsComponent extends ApolloEnabled implements OnInit {
                 let manager = data['manager'];
 
                 this.cycle = +fund.cycleNumber;
-                this.commissionHistory = manager.commissionHistory;
 
-                // calculate expected commission
-                if (+fund.kairoTotalSupply > 0) {
-                    let userValue = new BigNumber(manager.kairoBalanceWithStake);
-                    if (fund.cyclePhase === 'INTERMISSION') {
-                        // Actual commission that will be redeemed
-                        return new BigNumber(manager.kairoBalance).div(fund.kairoTotalSupply).times(fund.cycleTotalCommission);
+                if (!isNull(manager)) {
+                    this.commissionHistory = manager.commissionHistory;
+
+                    // calculate expected commission
+                    if (+fund.kairoTotalSupply > 0) {
+                        let userValue = new BigNumber(manager.kairoBalanceWithStake);
+                        if (fund.cyclePhase === 'INTERMISSION') {
+                            // Actual commission that will be redeemed
+                            this.commissionAmount = new BigNumber(manager.kairoBalance).div(fund.kairoTotalSupply).times(fund.cycleTotalCommission);
+                        }
+                        // Expected commission based on previous average ROI
+                        let totalProfit = new BigNumber(fund.aum).minus(fund.totalFundsAtPhaseStart);
+                        totalProfit = BigNumber.max(totalProfit, 0);
+                        let commission = totalProfit.div(fund.kairoTotalSupply).times(userValue).times(user.commission_rate());
+                        let assetFee = new BigNumber(fund.aum).div(fund.kairoTotalSupply).times(userValue).times(user.asset_fee_rate());
+                        this.commissionAmount = commission.plus(assetFee);
                     }
-                    // Expected commission based on previous average ROI
-                    let totalProfit = new BigNumber(fund.aum).minus(fund.totalFundsAtPhaseStart);
-                    totalProfit = BigNumber.max(totalProfit, 0);
-                    let commission = totalProfit.div(fund.kairoTotalSupply).times(userValue).times(user.commission_rate());
-                    let assetFee = new BigNumber(fund.aum).div(fund.kairoTotalSupply).times(userValue).times(user.asset_fee_rate());
-                    this.commissionAmount = commission.plus(assetFee);
                 }
+
             });
     }
 

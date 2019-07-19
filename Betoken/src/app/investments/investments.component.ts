@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { user, timer, manager_actions, tokens } from '../../betokenjs/helpers';
 import BigNumber from 'bignumber.js';
-import { isUndefined } from 'util';
+import { isUndefined, isNull } from 'util';
 
 import { ApolloEnabled } from '../apollo';
 import { Apollo } from 'apollo-angular';
@@ -223,25 +223,27 @@ export class InvestmentsComponent extends ApolloEnabled implements OnInit {
                 let fund = data['fund'];
                 let manager = data['manager'];
 
-                this.userValue = new BigNumber(manager.kairoBalanceWithStake);
-                this.userROI = this.userValue.div(manager.baseStake).minus(1).times(100);
-                this.riskTakenPercentage = BigNumber.min(new BigNumber(manager.riskTaken).div(manager.riskThreshold).times(100), 100);
-                this.portfolioValueInDAI = this.userValue.div(fund.kairoTotalSupply).times(fund.totalFundsInDAI);
-                this.kairoBalance = new BigNumber(manager.kairoBalance);
                 this.phase = fund.cyclePhase === 'INTERMISSION' ? 0 : 1;
 
-                // calculate expected commission
-                if (+fund.kairoTotalSupply > 0) {
-                    if (this.phase == 0) {
-                        // Actual commission that will be redeemed
-                        return this.kairoBalance.div(fund.kairoTotalSupply).times(fund.cycleTotalCommission);
+                if (!isNull(manager)) {
+                    this.userValue = new BigNumber(manager.kairoBalanceWithStake);
+                    this.userROI = this.userValue.div(manager.baseStake).minus(1).times(100);
+                    this.riskTakenPercentage = BigNumber.min(new BigNumber(manager.riskTaken).div(manager.riskThreshold).times(100), 100);
+                    this.portfolioValueInDAI = this.userValue.div(fund.kairoTotalSupply).times(fund.totalFundsInDAI);
+                    this.kairoBalance = new BigNumber(manager.kairoBalance);
+                    // calculate expected commission
+                    if (+fund.kairoTotalSupply > 0) {
+                        if (this.phase == 0) {
+                            // Actual commission that will be redeemed
+                            this.expectedCommission = this.kairoBalance.div(fund.kairoTotalSupply).times(fund.cycleTotalCommission);
+                        }
+                        // Expected commission based on previous average ROI
+                        let totalProfit = new BigNumber(fund.aum).minus(fund.totalFundsAtPhaseStart);
+                        totalProfit = BigNumber.max(totalProfit, 0);
+                        let commission = totalProfit.div(fund.kairoTotalSupply).times(this.userValue).times(user.commission_rate());
+                        let assetFee = new BigNumber(fund.aum).div(fund.kairoTotalSupply).times(this.userValue).times(user.asset_fee_rate());
+                        this.expectedCommission = commission.plus(assetFee);
                     }
-                    // Expected commission based on previous average ROI
-                    let totalProfit = new BigNumber(fund.aum).minus(fund.totalFundsAtPhaseStart);
-                    totalProfit = BigNumber.max(totalProfit, 0);
-                    let commission = totalProfit.div(fund.kairoTotalSupply).times(this.userValue).times(user.commission_rate());
-                    let assetFee = new BigNumber(fund.aum).div(fund.kairoTotalSupply).times(this.userValue).times(user.asset_fee_rate());
-                    this.expectedCommission = commission.plus(assetFee);
                 }
 
                 let activeBasicOrders = data['activeBasicOrders'].map((x) => {

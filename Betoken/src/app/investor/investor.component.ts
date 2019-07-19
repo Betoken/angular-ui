@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import BigNumber from 'bignumber.js';
-import { isUndefined } from 'util';
+import { isUndefined, isNull } from 'util';
 import { Chart } from 'chart.js';
 
 import { } from 'jquery';
@@ -155,11 +155,14 @@ export class InvestorComponent extends ApolloEnabled implements OnInit {
         let fund = data['fund'];
         let investor = data['investor'];
 
+        if (!isNull(investor)) {
+          this.sharesBalance = new BigNumber(investor.sharesBalance);
+          this.depositWithdrawHistory = investor.depositWithdrawHistory;
+          this.investmentBalance = this.sharesBalance.times(this.sharesPrice);
+        }
+
         this.AUM = new BigNumber(fund.aum);
-        this.sharesBalance = new BigNumber(investor.sharesBalance);
         this.sharesPrice = new BigNumber(fund.sharesPrice);
-        this.investmentBalance = this.sharesBalance.times(this.sharesPrice);
-        this.depositWithdrawHistory = investor.depositWithdrawHistory;
         this.currMoROI = this.AUM.div(fund.totalFundsAtPhaseStart).minus(1).times(100);
 
         // draw chart

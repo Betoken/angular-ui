@@ -5,7 +5,7 @@
     <!-- Body -->
     <div class="header-body">
       <!-- Title -->
-      <h1 class="header-title text-white">
+      <h1 class="header-title text-white" i18n>
         Your Stats
       </h1>
     </div>
@@ -14,13 +14,13 @@
     <div class="header-body">
       <div class="card-deck mb-4">
         <!-- Card -->
-        <div class="card" data-toggle="tooltip" data-html="true" title="Amount of Betoken's AUM you manage. The more Kairo you own, the more money you will manage.">
+        <div class="card" data-toggle="tooltip" data-html="true" i18n-title title="Amount of Betoken's AUM you manage. The more Kairo you own, the more money you will manage.">
           <div class="card-body">
             <div class="row align-items-center">
               <div class="col">
 
                 <!-- Title -->
-                <h6 class="card-title text-uppercase text-muted mb-2">
+                <h6 class="card-title text-uppercase text-muted mb-2" i18n>
                   Your Portfolio Value ($DAI)
                 </h6>
 
@@ -41,13 +41,13 @@
           </div>
         </div>
         <!-- Card -->
-        <div class="card" data-toggle="tooltip" data-html="true" title="The more Kairo you own, the more money you will manage, the more commission you will receive. You will be able to earn Kairo by making profitable investments for the Betoken fund.">
+        <div class="card" data-toggle="tooltip" data-html="true"  i18n-title title="The more Kairo you own, the more money you will manage, the more commission you will receive. You will be able to earn Kairo by making profitable investments for the Betoken fund.">
           <div class="card-body">
             <div class="row align-items-center">
               <div class="col">
 
                 <!-- Title -->
-                <h6 class="card-title text-uppercase text-muted mb-2">
+                <h6 class="card-title text-uppercase text-muted mb-2" i18n>
                   Your KRO Balance
                 </h6>
 
@@ -73,13 +73,13 @@
           </div>
         </div>
         <!-- Card -->
-        <div class="card" data-toggle="tooltip" data-html="true" title="<strong>20%</strong> of the fund's profit and <strong>0.1%</strong> of the AUM is set aside as commissions every month, which is paid to managers proportional to the Kairo they hold. The estimate displayed here is calculated using the current fund ROI.">
+        <div class="card" data-toggle="tooltip" data-html="true"  i18n-title title="<strong>20%</strong> of the fund's profit and <strong>0.1%</strong> of the AUM is set aside as commissions every month, which is paid to managers proportional to the Kairo they hold. The estimate displayed here is calculated using the current fund ROI.">
           <div class="card-body">
             <div class="row align-items-center">
               <div class="col">
 
                 <!-- Title -->
-                <h6 class="card-title text-uppercase text-muted mb-2">
+                <h6 class="card-title text-uppercase text-muted mb-2" i18n>
                   Your Estimated Commission This Month ($DAI)
                 </h6>
 
@@ -101,13 +101,13 @@
         </div>
         <!-- Card -->
         <div class="card">
-          <div data-toggle="tooltip" title="Your ranking among Betoken's managers based on your Kairo balance">
+          <div data-toggle="tooltip"  i18n-title title="Your ranking among Betoken's managers based on your Kairo balance">
             <div class="card-body">
               <div class="row align-items-center">
                 <div class="col">
 
                   <!-- Title -->
-                  <h6 class="card-title text-uppercase text-muted mb-2">
+                  <h6 class="card-title text-uppercase text-muted mb-2" i18n>
                     Your Ranking
                   </h6>
 
@@ -132,7 +132,7 @@
       <div class="row align-items-end">
         <div class="col">
           <!-- Title -->
-          <h1 class="header-title text-white">
+          <h1 class="header-title text-white" i18n>
             Betoken Stats
           </h1>
         </div>
@@ -143,7 +143,7 @@
 
             <li class="nav-item" data-toggle="chart">
               <a href="#" class="nav-link active" data-toggle="tab" (click)="switchChartTab(0)">
-                <h6 class="header-pretitle text-secondary">
+                <h6 class="header-pretitle text-secondary" i18n>
                   Betoken Shares Price
                 </h6>
                 <h3 class="text-white mb-0">
@@ -153,7 +153,7 @@
             </li>
             <li class="nav-item" data-toggle="chart">
               <a href="#" class="nav-link" data-toggle="tab" (click)="switchChartTab(1)">
-                <h6 class="header-pretitle text-secondary">
+                <h6 class="header-pretitle text-secondary" i18n>
                   AUM
                 </h6>
                 <h3 class="text-white mb-0">
@@ -185,13 +185,13 @@
 <div class="container-fluid mt-n6 pb-6 px-md-5">
   <div class="card-deck mb-0 mb-md-4">
     <!-- Card -->
-    <div class="card">
+    <div class="card" data-toggle="tooltip" data-html="true" i18n-title title="Assets Under Management. The amount of money managed by Betoken managers community.">
       <div class="card-body">
         <div class="row align-items-center">
           <div class="col">
 
             <!-- Title -->
-            <h6 class="card-title text-uppercase text-muted mb-2">
+            <h6 class="card-title text-uppercase text-muted mb-2" i18n>
               Return on Investment (Current Cycle)
             </h6>
 
@@ -213,13 +213,13 @@
       </div>
     </div>
     <!-- Card -->
-    <div class="card">
+    <div class="card" data-toggle="tooltip" data-html="true" i18n-title title="Sortino ratio is a way to examine the performance of an investment by adjusting for its risk. The risk-free rate used here is 3% per year, an approximation of the US 10Y treasury bond's interest rate.">
       <div class="card-body">
         <div class="row align-items-center">
           <div class="col">
 
             <!-- Title -->
-            <h6 class="card-title text-uppercase text-muted mb-2">
+            <h6 class="card-title text-uppercase text-muted mb-2" i18n>
               Return on Investment (Since Inception)
             </h6>
 
@@ -241,13 +241,13 @@
       </div>
     </div>
     <!-- Card -->
-    <div class="card" data-toggle="tooltip" data-html="true" title="Standard deviation represents the volatility of an asset. The number shown here is the downside sample standard deviation of Betoken's cumulative ROI since inception.">
+    <div class="card" data-toggle="tooltip" data-html="true" i18n-title title="Standard deviation represents the volatility of an asset. The number shown here is the downside sample standard deviation of Betoken's cumulative ROI since inception.">
       <div class="card-body">
         <div class="row align-items-center">
           <div class="col">
 
             <!-- Title -->
-            <h6 class="card-title text-uppercase text-muted mb-2">
+            <h6 class="card-title text-uppercase text-muted mb-2" i18n>
               Standard Deviation
             </h6>
 
@@ -268,13 +268,13 @@
       </div>
     </div>
     <!-- Card -->
-    <div class="card" data-toggle="tooltip" data-html="true" title="Talented Fund Managers actively managing the Betoken AUM.">
+    <div class="card" data-toggle="tooltip" data-html="true" i18n-title title="Talented Fund Managers actively managing the Betoken AUM.">
       <div class="card-body">
         <div class="row align-items-center">
           <div class="col">
 
             <!-- Title -->
-            <h6 class="card-title text-uppercase text-muted mb-2">
+            <h6 class="card-title text-uppercase text-muted mb-2" i18n>
               Total fund managers
             </h6>
 
@@ -303,7 +303,7 @@
         </div>
       </div>
       <div class="col-auto">
-        <p class="small text-secondary mb-0 text-center">Betoken Smart Contracts are audited and secured by Solidified</p>
+        <p class="small text-secondary mb-0 text-center" i18n>Betoken Smart Contracts are audited and secured by Solidified</p>
       </div>
       <div class="col-auto">
         <i class="fe fe-arrow-right text-secondary"></i>

@@ -6,7 +6,7 @@
       <div class="row align-items-end">
         <div class="col">
           <!-- Title -->
-          <h1 class="header-title">
+          <h1 class="header-title" i18n>
             Commissions
           </h1>
         </div>
@@ -27,7 +27,7 @@
             <div class="col">
 
               <!-- Title -->
-              <h4 class="card-header-title">
+              <h4 class="card-header-title" i18n>
                 Your Commission History
               </h4>
 
@@ -37,7 +37,7 @@
                 <button class="btn btn-sm btn-white" type="button" name="button" (click) = "refreshDisplay()">
                   <i class="fe fe-refresh-cw align-middle" *ngIf="isLoading == false"></i>
                   <div class="spinner-grow spinner-grow-sm" role="status" *ngIf="isLoading">
-                    <span class="sr-only">Loading...</span>
+                    <span class="sr-only" i18n>Loading...</span>
                   </div>
                 </button>
             </div>
@@ -47,16 +47,16 @@
           <table class="table table-sm table-nowrap card-table">
             <thead>
               <tr>
-                <th class="text-muted">
+                <th class="text-muted" i18n>
                     Cycle Number
                 </th>
-                <th class="text-muted">
+                <th class="text-muted" i18n>
                     Commission Amount ($DAI)
                 </th>
-                <th class="text-muted">
+                <th class="text-muted" i18n>
                     Timestamp
                 </th>
-                <th class="text-muted">
+                <th class="text-muted" i18n>
                     Transaction
                 </th>
               </tr>
@@ -80,7 +80,7 @@
               </tr>
               <tr *ngIf="commissionHistory.length == 0">
                 <td colspan="4" class="text-center">
-                  <h3 class="my-4">You have not received any commission yet</h3>
+                  <h3 class="my-4" i18n>You have not received any commission yet</h3>
                   <img class="w-50 mx-auto d-block" src="assets/img/illustrations/undraw_empty_xct9.svg" alt="zero-state-illustration">
                 </td>
               </tr>
@@ -98,7 +98,7 @@
         </div>
       </div>
       <div class="col-auto">
-        <p class="small text-secondary mb-0 text-center">Betoken Smart Contracts are audited and secured by Solidified</p>
+        <p class="small text-secondary mb-0 text-center" i18n>Betoken Smart Contracts are audited and secured by Solidified</p>
       </div>
       <div class="col-auto">
         <i class="fe fe-arrow-right text-secondary"></i>
@@ -113,27 +113,27 @@
     <div class="modal-content">
       <div class="modal-header border-0">
         <!-- Select Asset title -->
-        <h4 class="modal-title" *ngIf="step == 0">
+        <h4 class="modal-title" *ngIf="step == 0" i18n>
           Redeem your commissions
         </h4>
         <!-- BTKS Confirm buy title -->
-        <h4 class="modal-title" *ngIf="step == 1">
+        <h4 class="modal-title" *ngIf="step == 1" i18n>
           Confirm Redeem
         </h4>
         <!-- BTKS Processing buy title -->
-        <h4 class="modal-title" *ngIf="step == 2">
+        <h4 class="modal-title" *ngIf="step == 2" i18n>
           Processing Redeem
         </h4>
         <!-- BTKS confirmed buy title -->
-        <h4 class="modal-title" *ngIf="step == 3">
+        <h4 class="modal-title" *ngIf="step == 3" i18n>
           Commissions Redeemed
         </h4>
         <!-- Error -->
-        <h4 class="modal-title" *ngIf="step == -1">
+        <h4 class="modal-title" *ngIf="step == -1" i18n>
           That's an error
         </h4>
         <!-- Close -->
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" data-dismiss="modal" i18n-aria-label aria-label="Close" i18n>
           <span aria-hidden="true">×</span>
         </button>
       </div>
@@ -150,7 +150,7 @@
         <!-- commissions amount -->
         <div class="row" *ngIf="step === 0">
           <div class="col">
-            <h6 class="header-pretitle text-secondary">
+            <h6 class="header-pretitle text-secondary" i18n>
               This month's commission
             </h6>
             <h3 class="display-3 mb-0">
@@ -168,7 +168,7 @@
                   <a href="" class="text-secondary" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
                     <div class="row align-items-center no-gutters">
                       <div class="col mr-auto">
-                        <span class="card-text text-muted small">
+                        <span class="card-text text-muted small" i18n>
                           Advanced
                         </span>
                       </div>
@@ -182,12 +182,12 @@
                   <div class="card-body p-0 pb-4">
                     <div class="row align-items-center">
                       <div class="col">
-                        <h6 class="header-pretitle">
+                        <h6 class="header-pretitle" i18n>
                           Redeem commisssion for a particular cycle
                         </h6>
-                        <p class="small">Only use this when normal redemption fails</p>
+                        <p class="small" i18n>Only use this when normal redemption fails</p>
                         <form>
-                          <input type="number" min="0" [max]="cycle - 1" class="form-control form-control-lg mb-2" aria-describedby="cycle for which to redeem commission" placeholder="0" id="redeem-commission-cycle-input">
+                          <input type="number" min="0" [max]="cycle - 1" class="form-control form-control-lg mb-2"  i18n-aria-describedby aria-describedby="cycle for which to redeem commission" placeholder="0" id="redeem-commission-cycle-input">
                         </form>
                       </div>
                     </div>
@@ -197,21 +197,21 @@
             </div>
           </div>
         </div>
-        <button type="submit" class="btn btn-success btn-lg btn-block mb-2" aria-label="Redeem in BTKS" (click)="redeemCommission(1)" *ngIf="step === 0">
+        <button type="submit" class="btn btn-success btn-lg btn-block mb-2" aria-label="Redeem in BTKS" (click)="redeemCommission(1)" *ngIf="step === 0" i18n>
           Redeem in $BTKS
         </button>
-        <button type="submit" class="btn btn-white btn-lg btn-block" aria-label="Redeem in DAI" (click)="redeemCommission(0)" *ngIf="step === 0">
+        <button type="submit" class="btn btn-white btn-lg btn-block" aria-label="Redeem in DAI" (click)="redeemCommission(0)" *ngIf="step === 0" i18n>
           Redeem in $DAI
         </button>
         <!-- Do you know section step 1 -->
         <div class="card bg-light border mt-4 mb-0" *ngIf="step === 0">
           <div class="card-body">
 
-            <h4 class="mb-2">
+            <h4 class="mb-2" i18n>
               Do you know?
             </h4>
 
-            <p class="small text-muted mb-0">
+            <p class="small text-muted mb-0" i18n>
               You can redeem your commissions in Betoken fund shares (BTKS) - meaning you swap your commissions for an equivalent number of shares in the fund. By doing so, you will make the fund Assets Under Management (AUM) grow quicker. A bigger AUM means more money to manage in the next cycle, and more commissions for you.
             </p>
 
@@ -221,19 +221,19 @@
         <img class="image-fluid d-block mx-auto mb-4" src="assets/img/animated-logo.svg" alt="Betoken logo" style="width: 88px;" *ngIf="step == 1 || step === 2">
 
         <!-- Confirm redeem body -->
-        <p class="text-center text-muted mb-5" *ngIf="step === 1">
+        <p class="text-center text-muted mb-5" *ngIf="step === 1" i18n>
           Confirm the transaction in your wallet’s interface to save it on the Ethereum blockchain. It's fine to stick with these defaults gas limit and price.
         </p>
         <!-- Processing redeem body -->
-        <p class="text-center text-muted mb-5" *ngIf="step === 2">
+        <p class="text-center text-muted mb-5" *ngIf="step === 2" i18n>
           Your commissions is being saved on the Ethereum blockchain.
         </p>
         <hr *ngIf="step === 2">
         <form *ngIf="step === 2">
           <div class="form-group">
-            <label for="exampleFormControlInput1">Transaction ID</label>
+            <label for="exampleFormControlInput1" i18n>Transaction ID</label>
             <div class="input-group mb-3">
-              <input type="text" class="form-control form-control-lg" value="{{transactionId}}" aria-label="Transaction ID" aria-describedby="">
+              <input type="text" class="form-control form-control-lg" value="{{transactionId}}"  i18n-aria-label aria-label="Transaction ID" aria-describedby="">
               <div class="input-group-append">
                 <a class="btn btn-white h-100 d-flex align-items-center" href="https://etherscan.io/tx/{{transactionId}}" target="_blank"><i class="fe fe-external-link"></i></a>
               </div>
@@ -244,13 +244,13 @@
         <p class="h1 text-center" *ngIf="step === 3">
           <i class="fe fe-check-circle text-success"></i>
         </p>
-        <p class="text-center text-muted mb-5" *ngIf="step === 3">
+        <p class="text-center text-muted mb-5" *ngIf="step === 3" i18n>
           You redeeemed <span class="text-secondary">{{commissionAmount}}</span> $DAI (or equivalent Betoken Shares).
         </p>
         <hr *ngIf="step === 3">
         <form *ngIf="step === 3">
           <div class="form-group">
-            <label for="exampleFormControlInput1">Transaction ID</label>
+            <label for="exampleFormControlInput1" i18n>Transaction ID</label>
             <div class="input-group mb-3">
               <input type="text" class="form-control form-control-lg" value="{{transactionId}}" aria-label="Transaction ID" aria-describedby="">
               <div class="input-group-append">
@@ -265,19 +265,19 @@
           <p class="h1 text-center">
             <i class="fe fe-alert-circle text-danger"></i>
           </p>
-          <p class="text-center text-muted mb-5">
+          <p class="text-center text-muted mb-5" i18n>
             The operation has resulted in an error. Please try again.
           </p>
-          <p class="text-center text-muted mb-5">
+          <p class="text-center text-muted mb-5" i18n>
             Error message: {{errorMsg}}
           </p>
         </div>
 
         <!-- close modal button -->
-        <button type="submit" class="btn btn-block btn-white mt-auto" data-dismiss="modal" aria-label="Close" *ngIf="step === 3">
+        <button type="submit" class="btn btn-block btn-white mt-auto" data-dismiss="modal" i18n-aria-label aria-label="Close" *ngIf="step === 3" i18n>
           Close
         </button>
-        <button type="submit" class="btn btn-block btn-white mt-auto" aria-label="Try again" *ngIf="step == -1" (click)="resetModals()">
+        <button type="submit" class="btn btn-block btn-white mt-auto" aria-label="Try again" *ngIf="step == -1" (click)="resetModals()" i18n>
           Try again
         </button>
       </div>

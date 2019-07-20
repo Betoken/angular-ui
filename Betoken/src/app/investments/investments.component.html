@@ -750,7 +750,7 @@
             <span class="avatar avatar-xs align-middle mr-2">
               <img src={{getTokenLogoUrl(selectedTokenSymbol)}} alt="logo" class="avatar-img rounded-circle">
             </span>
-            {{selectedTokenSymbol}
+            {{selectedTokenSymbol}}
             <span class="text-secondary ml-2" *ngIf="!isOrderOfType(sellData, 'BasicOrder')" i18n>
               <span *ngIf="!sellData.isShort">Long</span><span *ngIf="sellData.isShort">Short</span> • Leverage
               {{sellData.leverage}}x

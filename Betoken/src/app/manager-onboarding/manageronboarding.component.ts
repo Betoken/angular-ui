@@ -56,6 +56,7 @@ export class ManageronboardingComponent extends ApolloEnabled implements OnInit 
     this.continueEnabled = false;
     this.errorMsg = "";
     this.totalFunds = new BigNumber(0);
+    this.isManager = false;
   }
 
   ngOnInit() {
@@ -93,7 +94,7 @@ export class ManageronboardingComponent extends ApolloEnabled implements OnInit 
         let fund = data['fund'];
         let manager = data['manager'];
 
-        this.isManager = isNull(manager);
+        this.isManager = !isNull(manager);
         this.kairoPrice = new BigNumber(fund.kairoPrice);
         this.kairoTotalSupply = new BigNumber(fund.kairoTotalSupply);
         this.totalFunds = new BigNumber(fund.totalFundsInDAI);

@@ -72,8 +72,6 @@ export const error_notifications = {
 };
 
 export const network = {
-    network_prefix: () => Data.networkPrefix,
-    network_name: () => Data.networkName,
     has_web3: () => betoken.hasWeb3,
     wrong_network: () => betoken.wrongNetwork
 };
@@ -91,78 +89,17 @@ export const timer = {
 
 export const user = {
     address: () => Data.userAddress,
-    shares_balance: () => Data.sharesBalance,
-    investment_balance: () => Data.investmentBalance,
-    kairo_balance: () => Data.kairoBalance,
     token_balance: async (tokenSymbol) => {
         let balance = await betoken.getTokenBalance(Data.assetSymbolToAddress(tokenSymbol), Data.userAddress);
         let decimals = Data.TOKEN_DATA.find((x) => x.symbol === tokenSymbol).decimals;
         return BigNumber(balance).div(Math.pow(10, decimals));
     },
-    monthly_roi: () => Data.managerROI,
-    can_redeem_commission: () => {
-        return betoken.hasWeb3 && Data.cyclePhase === 0 && Data.lastCommissionRedemption < Data.cycleNumber;
-    },
-    expected_commission: function () {
-        if (Data.kairoTotalSupply.gt(0)) {
-            if (Data.cyclePhase === 0) {
-                // Actual commission that will be redeemed
-                return Data.kairoBalance.div(Data.kairoTotalSupply).times(Data.cycleTotalCommission);
-            }
-            // Expected commission based on previous average ROI
-            let totalProfit = Data.totalFunds.minus(Data.totalFunds.div(stats.cycle_roi().div(100).plus(1)));
-            totalProfit = BigNumber.max(totalProfit, 0);
-            let commission = totalProfit.div(Data.kairoTotalSupply).times(user.portfolio_value()).times(Data.commissionRate);
-            let assetFee = Data.totalFunds.div(Data.kairoTotalSupply).times(user.portfolio_value()).times(Data.assetFeeRate);
-            return commission.plus(assetFee);
-        }
-        return BigNumber(0);
-    },
-    commission_history: () => Data.commissionHistory,
-    deposit_withdraw_history: () => Data.depositWithdrawHistory,
-    investment_list: () => Data.cyclePhase == 1 ? Data.investmentList : [],
-    rank: () => {
-        var entry, j, len, ref;
-        ref = Data.kairoRanking;
-        for (j = 0, len = ref.length; j < len; j++) {
-            entry = ref[j];
-            if (entry.address === Data.userAddress) {
-                return entry.rank;
-            }
-        }
-        return "N/A";
-    },
-    portfolio_value: () => Data.portfolioValue,
-    portfolio_value_in_dai: () => {
-        return Data.portfolioValue.times(Data.totalFunds).div(Data.kairoTotalSupply);
-    },
-    risk_taken_percentage: () => Data.riskTakenPercentage,
-    active_portfolio: () => Data.activePortfolio
+    commission_rate: () => Data.commissionRate,
+    asset_fee_rate: () => Data.assetFeeRate
 };
 
 export const stats = {
-    cycle_length: () => {
-        if (Data.phaseLengths.length > 0) {
-            return BigNumber(Data.phaseLengths.reduce(function (t, n) {
-                return t + n;
-            })).div(24 * 60 * 60).toDigits(3);
-        }
-    },
-    total_funds: () => Data.totalFunds,
-    avg_roi: () => Data.avgROI,
-    cycle_roi: () => {
-        switch (Data.cyclePhase) {
-            case 0:
-            return BigNumber(0);
-            case 1:
-            return Data.currROI;
-        }
-    },
-    raw_roi_data: () => Data.ROIArray,
-    ranking: () => Data.kairoRanking,
-    shares_price: () => Data.sharesPrice,
-    kairo_price: () => Data.kairoPrice,
-    kairo_total_supply: () => Data.kairoTotalSupply
+    is_supporter: (_addr) => Data.isSupporter(_addr)
 };
 
 export const tokens = {
@@ -178,31 +115,20 @@ export const tokens = {
     not_stablecoin: (_symbol) => Data.notStablecoin(_symbol),
     is_compound_token: (_symbol) => Data.isCompoundToken(_symbol),
     is_fulcrum_token: (_symbol) => Data.isFulcrumToken(_symbol),
-    fulcrum_min_stake: (_symbol, _isShort) => Data.fulcrumMinStake(_symbol, _isShort)
+    fulcrum_min_stake: (_symbol, _isShort) => Data.fulcrumMinStake(_symbol, _isShort),
+    asset_address_to_symbol: (_addr) => Data.assetAddressToSymbol(_addr),
+    ctoken_address_to_symbol: (_addr) => Data.assetCTokenAddressToSymbol(_addr),
+    ptoken_address_to_symbol: (_addr) => Data.assetPTokenAddressToSymbol(_addr),
+    ptoken_address_to_info: (_addr) => Data.assetPTokenAddressToInfo(_addr)
 };
 
 export const loading = {
-    investments: () => Data.isLoadingInvestments || Data.isLoadingPrices,
-    ranking: () => Data.isLoadingRanking || Data.isLoadingPrices,
-    records: () => Data.isLoadingRecords || Data.isLoadingUserData,
     prices: () => Data.isLoadingPrices
 };
 
 export const refresh_actions = {
-    investments: () => {
-        return Data.loadTokenPrices().then(Data.loadUserData);
-    },
-    ranking: () => {
-        return Data.loadTokenPrices().then(Data.loadRanking);
-    },
-    records: () => {
-        return Data.loadUserData().then(Data.loadTxHistory);
-    },
     prices: () => {
         return Data.loadTokenPrices();
-    },
-    stats: () => {
-        return Data.loadTokenPrices().then(Data.loadRanking).then(Data.loadUserData).then(Data.loadStats);
     },
     reload_all: () => {
         const betoken = new Betoken();

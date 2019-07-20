@@ -19,6 +19,8 @@ import { InvestorComponent } from './investor/investor.component';
 import { ManageronboardingComponent } from './manager-onboarding/manageronboarding.component';
 import { InvestoronboardingComponent } from './investor-onboarding/investoronboarding.component';
 import { MarketComponent } from './market/market.component';
+import { GraphQLModule } from './graphql.module';
+import { HttpClientModule } from '@angular/common/http';
 
 const routes: Routes = [
   {
@@ -99,7 +101,9 @@ const routes: Routes = [
      BrowserModule,
      CollapseModule.forRoot(),
      BrowserAnimationsModule,
-     RouterModule.forRoot(routes)
+     RouterModule.forRoot(routes),
+     GraphQLModule,
+     HttpClientModule
   ],
   providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]

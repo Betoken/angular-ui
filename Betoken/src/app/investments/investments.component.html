@@ -56,8 +56,8 @@
             </span>
             <!-- Badge -->
             <span class="badge"
-              [ngClass]="{'badge-soft-success': monthly_pl.gte(0), 'badge-soft-danger': monthly_pl.lt(0)}">
-              {{monthly_pl.toFormat(4)}}%
+              [ngClass]="{'badge-soft-success': userROI.gte(0), 'badge-soft-danger': userROI.lt(0)}">
+              {{userROI.toFormat(4)}}%
             </span>
 
           </div>
@@ -139,7 +139,7 @@
 
             <!-- Heading -->
             <span class="h2 mb-0">
-              {{expected_commission.toFormat(6)}}
+              {{expectedCommission.toFormat(6)}}
             </span>
 
           </div>
@@ -177,9 +177,9 @@
                     class="fe fe-pie-chart align-middle"></i></button>
               </div>
               <!-- Refresh -->
-              <button class="btn btn-sm btn-white" type="button" name="button" (click)="refresh()">
-                <i class="fe fe-refresh-cw align-middle" *ngIf="isLoading() == false"></i>
-                <div class="spinner-grow spinner-grow-sm" role="status" *ngIf="isLoading()">
+              <button class="btn btn-sm btn-white" type="button" name="button" (click)="refreshDisplay()">
+                <i class="fe fe-refresh-cw align-middle" *ngIf="isLoading == false"></i>
+                <div class="spinner-grow spinner-grow-sm" role="status" *ngIf="isLoading">
                   <span class="sr-only" i18n>Loading...</span>
                 </div>
               </button>
@@ -211,11 +211,11 @@
                       </h4>
                     </div>
                     <div class="col-12 col-lg-auto">
-                      <span *ngIf="!isOrderOfType(data, 'basic')">
+                      <span *ngIf="!isOrderOfType(data, 'BasicOrder')">
                         <span class="badge"
                           [ngClass]="{'badge-soft-success': data.safety, 'badge-soft-danger': !data.safety}">
-                          <span class="text-secondary" *ngIf="!data.orderType" i18n>Long {{data.leverage}}x</span><span
-                            class="text-secondary" *ngIf="data.orderType" i18n>Short {{data.leverage}}x</span> • <span
+                          <span class="text-secondary" *ngIf="!data.isShort" i18n>Long {{data.leverage}}x</span><span
+                            class="text-secondary" *ngIf="data.isShort" i18n>Short {{data.leverage}}x</span> • <span
                             *ngIf="data.safety" i18n>Safe</span><span *ngIf="!data.safety" i18n>In Danger</span>
                         </span>
                       </span>
@@ -316,9 +316,9 @@
             </div>
             <div class="col-auto">
               <!-- Refresh -->
-              <button class="btn btn-sm btn-white" type="button" name="button" (click)="refresh()">
-                <i class="fe fe-refresh-cw align-middle" *ngIf="isLoading() == false"></i>
-                <div class="spinner-grow spinner-grow-sm" role="status" *ngIf="isLoading()">
+              <button class="btn btn-sm btn-white" type="button" name="button" (click)="refreshDisplay()">
+                <i class="fe fe-refresh-cw align-middle" *ngIf="isLoading == false"></i>
+                <div class="spinner-grow spinner-grow-sm" role="status" *ngIf="isLoading">
                   <span class="sr-only" i18n>Loading...</span>
                 </div>
               </button>
@@ -344,9 +344,9 @@
                   </h4>
                 </div>
                 <div class="col-12 col-lg-auto">
-                  <span *ngIf="!isOrderOfType(data, 'basic')">
-                    <span class="badge badge-soft-secondary" *ngIf="!data.orderType" i18n>Long {{data.leverage}}x</span><span
-                      class="badge badge-soft-secondary" *ngIf="data.orderType" i18n>Short {{data.leverage}}x</span>
+                  <span *ngIf="!isOrderOfType(data, 'BasicOrder')">
+                    <span class="badge badge-soft-secondary" *ngIf="!data.isShort" i18n>Long {{data.leverage}}x</span><span
+                      class="badge badge-soft-secondary" *ngIf="data.isShort" i18n>Short {{data.leverage}}x</span>
                   </span>
                 </div>
               </div>
@@ -544,7 +544,7 @@
             <div class="col">
               <form>
                 <div class="input-group mb-2">
-                  <input type="number" min="0.0" max={{kairo_balance.toFormat(18)}} class="form-control form-control-lg"
+                  <input type="number" min="0.0" max={{kairoBalance.toFormat(18)}} class="form-control form-control-lg"
                     aria-describedby="KRO Token Amount to stake" placeholder="0.0 KRO" id="kairo-input"
                     (input)="continueEnabled = true">
                   <div class="input-group-append">
@@ -552,7 +552,7 @@
                   </div>
                 </div>
                 <small id="kroBalance"
-                  class="form-text text-secondary d-inline-block mb-0 mt-2" i18n>{{kairo_balance.toFormat(18)}} KRO
+                  class="form-text text-secondary d-inline-block mb-0 mt-2" i18n>{{kairoBalance.toFormat(18)}} KRO
                   available</small>
                 <small class="form-text text-warning d-inline-block mb-0 mt-2"
                   *ngIf="selectedOrderType.type === 'fulcrum'" i18n>
@@ -750,9 +750,9 @@
             <span class="avatar avatar-xs align-middle mr-2">
               <img src={{getTokenLogoUrl(selectedTokenSymbol)}} alt="logo" class="avatar-img rounded-circle">
             </span>
-            {{selectedTokenSymbol}}
-            <span class="text-secondary ml-2" *ngIf="!isOrderOfType(sellData, 'basic')" i18n>
-              <span *ngIf="!sellData.orderType">Long</span><span *ngIf="sellData.orderType">Short</span> • Leverage
+            {{selectedTokenSymbol}
+            <span class="text-secondary ml-2" *ngIf="!isOrderOfType(sellData, 'BasicOrder')" i18n>
+              <span *ngIf="!sellData.isShort">Long</span><span *ngIf="sellData.isShort">Short</span> • Leverage
               {{sellData.leverage}}x
             </span>
           </span>
@@ -799,7 +799,7 @@
       <div class="modal-body pb-5">
         <!--Step 0: enter sell amount-->
         <time class="header-pretitle h6 mb-0" *ngIf="sellInvestmentPopupStep === 0" i18n>OPENED
-          {{sellData.buyTime.toLocaleString()}}</time>
+          {{toDateString(sellData.buyTime)}}</time>
         <hr class="mb-4" *ngIf="sellInvestmentPopupStep === 0">
         <!-- Asset price -->
         <div class="row mb-4" *ngIf="sellInvestmentPopupStep === 0">
@@ -827,7 +827,7 @@
               Staked KRO
             </h6>
             <h4 class="mb-0">
-              {{sellData.stake.toFormat(4)}}
+              {{formatNumber(sellData.stake, 4)}}
             </h4>
           </div>
           <div class="col">
@@ -840,13 +840,13 @@
           </div>
         </div>
         <div *ngIf="sellInvestmentPopupStep === 0">
-          <div class="row my-4" *ngIf="isOrderOfType(sellData, 'fulcrum')">
+          <div class="row my-4" *ngIf="isOrderOfType(sellData, 'FulcrumOrder')">
             <div class="col">
               <h6 class="header-pretitle" i18n>
                 Margin Position Price
               </h6>
               <h4 class="mb-0">
-                {{sellData.sellPrice.toFormat(4)}}
+                {{formatNumber(sellData.sellPrice, 4)}}
                 <span class="badge badge-soft-success ml-1" *ngIf="sellData.safety" i18n>
                   Safe
                 </span>
@@ -860,11 +860,11 @@
                 Liquidation Price
               </h6>
               <h4 class="mb-0">
-                {{sellData.liquidationPrice.toFormat(4)}}
+                {{formatNumber(sellData.liquidationPrice, 4)}}
               </h4>
             </div>
           </div>
-          <div class="row" *ngIf="isOrderOfType(sellData, 'fulcrum')">
+          <div class="row" *ngIf="isOrderOfType(sellData, 'FulcrumOrder')">
             <div class="col">
               <p class="text-secondary small mb-0" i18n>If the margin position price falls below the liquidation price, this
                 order will be liquidated, which will cause huge losses. When the order is in danger of liquidation, sell
@@ -875,7 +875,7 @@
 
         <div *ngIf="sellInvestmentPopupStep === 0">
           <hr class="my-4">
-          <div *ngIf="isOrderOfType(sellData, 'basic') || isOrderOfType(sellData, 'fulcrum')">
+          <div *ngIf="isOrderOfType(sellData, 'BasicOrder') || isOrderOfType(sellData, 'FulcrumOrder')">
             <!-- KRO amount to unstake -->
             <!-- hideen when top up feature is activated -->
             <h6 class="header-pretitle" i18n>Proportion of assets to sell</h6>
@@ -895,7 +895,7 @@
               </div>
             </div>
           </div>
-          <div *ngIf="isOrderOfType(sellData, 'compound')">
+          <div *ngIf="isOrderOfType(sellData, 'CompoundOrder')">
             <div class="row align-items-center justify-content-center mt-4 mb-3">
               <div class="col">
                 <h6 class="header-pretitle mb-0" i18n>
@@ -917,8 +917,8 @@
                 <div class="progress">
                   <div [ngClass]="{'bg-success': sellData.safety, 'bg-danger': !sellData.safety}" class="progress-bar"
                     role="progressbar"
-                    [ngStyle]="{'width': sellData.collateralRatio.div(sellData.minCollateralRatio.times(2)).times(100).toFormat(2) + '%'}">
-                    {{sellData.collateralRatio.times(100).toFormat(0)}}%</div>
+                    [ngStyle]="{'width': toBigNumber(sellData.collateralRatio).div(sellData.minCollateralRatio).div(2).times(100).toFormat(2) + '%'}">
+                    {{toBigNumber(sellData.collateralRatio).times(100).toFormat(0)}}%</div>
                 </div>
                 <div class="row no-gutters justify-content-between text-secondary mb-3">
                   <div class="col text-left">
@@ -1049,7 +1049,7 @@
       <div class="modal-footer" *ngIf="sellInvestmentPopupStep === 0">
         <!-- Continue button for amount to sell Step -->
         <button type="submit" class="btn btn-block btn-success mt-auto" aria-label="Sell" (click)="sell()"
-          [disabled]="!continueEnabled && (isOrderOfType(sellData, 'basic') || isOrderOfType(sellData, 'fulcrum'))" i18n>
+          [disabled]="!continueEnabled && (isOrderOfType(sellData, 'BasicOrder') || isOrderOfType(sellData, 'FulcrumOrder'))" i18n>
           Sell Investment
         </button>
       </div>
@@ -1071,7 +1071,7 @@
 
 <!-- Top up collateralization modal -->
 <div class="modal fade fixed-right" id="modalTopUp" tabindex="-1" role="dialog" aria-labelledby="modalTopUp"
-  aria-hidden="true" *ngIf="sellData['type'] === 'compound'">
+  aria-hidden="true" *ngIf="isOrderOfType(sellData, 'CompoundOrder')">
   <div class="modal-dialog modal-dialog-vertical bg-white" role="document">
     <div class="modal-content">
       <div class="modal-header border-0">
@@ -1139,8 +1139,8 @@
               <div class="progress">
                 <div [ngClass]="{'bg-success': sellData.safety, 'bg-danger': !sellData.safety}" class="progress-bar"
                   role="progressbar"
-                  [ngStyle]="{'width': sellData.collateralRatio.div(sellData.minCollateralRatio.times(2)).times(100).toFormat(2) + '%'}">
-                  {{sellData.collateralRatio.times(100).toFormat(0)}}%</div>
+                  [ngStyle]="{'width': toBigNumber(sellData.collateralRatio).div(sellData.minCollateralRatio).div(2).times(100).toFormat(2) + '%'}">
+                  {{toBigNumber(sellData.collateralRatio).times(100).toFormat(0)}}%</div>
               </div>
               <div class="row no-gutters justify-content-between text-secondary mb-3">
                 <div class="col text-left">
@@ -1180,11 +1180,11 @@
                     <span class="input-group-text border-left-0 border-right-0"
                       id="desiredCollateralizationUnit">%</span>
                     <button class="btn btn-white" name="button" type="button"
-                      *ngIf="sellData.currCash.lt(sellData.currBorrow)" (click)="maxTopupTarget()" i18n>Max</button>
+                      *ngIf="toBigNumber(sellData.currCash).lt(sellData.currBorrow)" (click)="maxTopupTarget()" i18n>Max</button>
                   </div>
                 </div>
                 <small id="kroBalance" class="form-text text-secondary d-inline-block mb-0 mt-1"
-                  *ngIf="sellData.currCash.lt(sellData.currBorrow)" i18n>{{sellData.currCollateral.div(sellData.currBorrow.minus(sellData.currCash)).times(100).toFormat(0)}}%
+                  *ngIf="toBigNumber(sellData.currCash).lt(sellData.currBorrow)" i18n>{{toBigNumber(sellData.currCollateral).div(toBigNumber(sellData.currBorrow).minus(sellData.currCash)).times(100).toFormat(0)}}%
                   • Max possible collateral ratio</small>
               </form>
             </div>

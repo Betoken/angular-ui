@@ -72,8 +72,8 @@
                 href="https://trustwallet.com/" i18n>Get Trust Wallet</a>
             </div>
             <button class="btn btn-block btn-lg btn-success" type="button" data-toggle="modal" data-target="#modalBuy"
-              *ngIf="user_address != ZERO_ADDR && kairoBalance.eq(0)" i18n>Get Started</button>
-            <div *ngIf="user_address != ZERO_ADDR && kairoBalance.gt(0)">
+              *ngIf="user_address != ZERO_ADDR && !isManager" i18n>Get Started</button>
+            <div *ngIf="user_address != ZERO_ADDR && isManager">
               <p class="text-secondary text-center" i18n>You are already a manager.</p>
               <a class="btn btn-block btn-lg btn-success" href="#/dashboard" i18n>Sign in</a>
             </div>

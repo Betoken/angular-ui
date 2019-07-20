@@ -218,7 +218,7 @@
 
             <!-- Heading -->
             <span class="h2 mb-0">
-              {{standardDeviation}}%
+              {{standardDeviation}}
             </span>
 
           </div>
@@ -253,9 +253,9 @@
             </div>
             <div class="col-auto">
               <!-- Refresh -->
-              <button class="btn btn-sm btn-white" type="button" name="button" (click) = "refresh()">
-                <i class="fe fe-refresh-cw align-middle" *ngIf="isLoading() == false"></i>
-                <div class="spinner-grow spinner-grow-sm" role="status" *ngIf="isLoading()">
+              <button class="btn btn-sm btn-white" type="button" name="button" (click) = "refreshDisplay()">
+                <i class="fe fe-refresh-cw align-middle" *ngIf="isLoading == false"></i>
+                <div class="spinner-grow spinner-grow-sm" role="status" *ngIf="isLoading">
                   <span class="sr-only" i18n>Loading...</span>
                 </div>
               </button>
@@ -283,18 +283,18 @@
             <tbody class="list">
               <tr *ngFor="let entry of depositWithdrawHistory">
                 <td class="align-middle">
-                  <span class="badge badge-soft-success" *ngIf="entry.type === 'Deposit'" i18n>
+                  <span class="badge badge-soft-success" *ngIf="entry.isDeposit" i18n>
                     Deposit
                   </span>
-                  <span class="badge badge-soft-danger" *ngIf="entry.type === 'Withdraw'" i18n>
+                  <span class="badge badge-soft-danger" *ngIf="!entry.isDeposit" i18n>
                     Withdraw
                   </span>
                 </td>
                 <td class="align-middle">
-                  {{entry.daiAmount.toFormat(4)}}
+                  {{toBigNumber(entry.amountInDAI).toFormat(4)}}
                 </td>
                 <td class="align-middle">
-                  {{entry.timestamp}}
+                  {{toDateString(entry.timestamp)}}
                 </td>
                 <td class="align-middle">
                   <div class="input-group-append">

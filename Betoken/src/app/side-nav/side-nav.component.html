@@ -39,9 +39,9 @@
       <!-- cta -->
       <div class="d-none d-md-block" *ngIf="checkRouterURL('/investing-dashboard') === false">
         <!--Provide onboarding for prospective managers with no Kairo-->
-        <a class="btn btn-success btn-block mb-4" href="#/start-managing" *ngIf="userKairoValue.comparedTo(0) === 0" i18n>Become a Manager</a>
+        <a class="btn btn-success btn-block mb-4" href="#/start-managing" *ngIf="!isManager" i18n>Become a Manager</a>
         <!--Provide actions for existing managers-->
-        <span *ngIf="userKairoValue.comparedTo(0) !== 0">
+        <span *ngIf="isManager">
           <button class="btn btn-success btn-block mb-4" routerLink="/investments" type="button" data-toggle="modal" data-target="#modalBuy" *ngIf="phase == 1" i18n><i class="fe fe-plus mr-1"></i>Make Investments</button>
           <button class="btn btn-success btn-block mb-4" routerLink="/commissions" type="button" data-toggle="modal" data-target="#modalRedeem" *ngIf="can_redeem_commission" i18n><i class="fe fe-dollar-sign mr-1"></i>Redeem Commission</button>
         </span>
@@ -138,15 +138,15 @@
 <nav class="navbar fixed-bottom d-md-none" *ngIf="checkRouterURL('/investing-dashboard') === false">
   <div class="container px-0">
     <!--Provide onboarding for prospective managers with no Kairo-->
-    <a class="btn btn-success btn-block" href="#/start-managing" *ngIf="userKairoValue.comparedTo(0) === 0" i18n>
+    <a class="btn btn-success btn-block" href="#/start-managing" *ngIf="!isManager" i18n>
       Become a Manager
     </a>
 
     <!--Provide actions for existing managers-->
-    <button class="btn btn-success btn-block" routerLink="/investments" type="button" data-toggle="modal" data-target="#modalBuy" *ngIf="phase == 1 && userKairoValue.comparedTo(0) !== 0" i18n>Make Investments</button>
-    <button class="btn btn-success btn-block" routerLink="/commissions" type="button" data-toggle="modal" data-target="#modalRedeem" *ngIf="can_redeem_commission && userKairoValue.comparedTo(0) !== 0" i18n>Redeem Commission</button>
+    <button class="btn btn-success btn-block" routerLink="/investments" type="button" data-toggle="modal" data-target="#modalBuy" *ngIf="phase == 1 && isManager" i18n>Make Investments</button>
+    <button class="btn btn-success btn-block" routerLink="/commissions" type="button" data-toggle="modal" data-target="#modalRedeem" *ngIf="can_redeem_commission && isManager" i18n>Redeem Commission</button>
 
-    <button class="btn btn-success btn-block" type="button" *ngIf="days == 0 && hours == 0 && minutes == 0 && 1 >= seconds" (click)="nextPhase()" i18n>Next Phase</button>
+    <button class="btn btn-success btn-block" type="button" *ngIf="days == 0 && hours == 0 && minutes == 0 && 1 >= seconds && isManager" (click)="nextPhase()" i18n>Next Phase</button>
   </div>
 </nav>
 <nav class="navbar fixed-bottom d-md-none" *ngIf="checkRouterURL('/investing-dashboard') === true">

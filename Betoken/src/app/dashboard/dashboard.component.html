@@ -25,8 +25,8 @@
                 </h6>
 
                 <!-- Heading -->
-                <span class="h2 mb-0" i18n>
-                  {{portfolioValueInDAI}}
+                <span class="h2 mb-0">
+                  {{portfolioValueInDAI.toFormat(4)}}
                 </span>
 
               </div>
@@ -53,12 +53,12 @@
 
                 <!-- Heading -->
                 <span class="h2 mb-0">
-                  {{kairo_balance}}
+                  {{userValue.toFormat(4)}}
                 </span>
 
                 <!-- Badge -->
-                <span class="badge" [ngClass]="{'badge-soft-success': monthly_pl.gte(0), 'badge-soft-danger': monthly_pl.lt(0)}">
-                  {{monthly_pl.toFormat(4)}}%
+                <span class="badge" [ngClass]="{'badge-soft-success': userROI.gte(0), 'badge-soft-danger': userROI.lt(0)}">
+                  {{userROI.toFormat(4)}}%
                 </span>
 
               </div>
@@ -85,7 +85,7 @@
 
                 <!-- Heading -->
                 <span class="h2 mb-0">
-                  {{expected_commission}}
+                  {{expectedCommission.toFormat(4)}}
                 </span>
 
               </div>
@@ -142,22 +142,22 @@
           <ul class="nav nav-tabs header-tabs">
 
             <li class="nav-item" data-toggle="chart">
-              <a href="#" class="nav-link active" data-toggle="tab" (click)="switchChartTab(1)">
+              <a href="#" class="nav-link active" data-toggle="tab" (click)="switchChartTab(0)">
                 <h6 class="header-pretitle text-secondary" i18n>
-                  ROI Since Inception
+                  Betoken Shares Price
                 </h6>
                 <h3 class="text-white mb-0">
-                  {{avgMonthReturn}}%
+                  {{sharesPrice.toFormat(4)}} DAI
                 </h3>
               </a>
             </li>
             <li class="nav-item" data-toggle="chart">
-              <a href="#" class="nav-link" data-toggle="tab" (click)="switchChartTab(0)">
+              <a href="#" class="nav-link" data-toggle="tab" (click)="switchChartTab(1)">
                 <h6 class="header-pretitle text-secondary" i18n>
-                  ROI (1M)
+                  AUM
                 </h6>
                 <h3 class="text-white mb-0">
-                  {{currMoROI}}%
+                  {{AUM.toFormat(4)}} DAI
                 </h3>
               </a>
             </li>
@@ -192,19 +192,20 @@
 
             <!-- Title -->
             <h6 class="card-title text-uppercase text-muted mb-2" i18n>
-              Betoken AUM ($DAI)
+              Return on Investment (Current Cycle)
             </h6>
 
             <!-- Heading -->
-            <span class="h2 mb-0">
-              {{AUM}}
+            <span class="badge badge-xl"
+              [ngClass]="{'badge-soft-success': currMoROI.gte(0), 'badge-soft-danger': currMoROI.lt(0)}">
+              {{currMoROI.toFormat(4)}}%
             </span>
 
           </div>
           <div class="col-auto">
 
             <!-- Icon -->
-            <span class="h2 fe fe-disc text-muted mb-0"></span>
+            <span class="h2 fe fe-activity text-muted mb-0"></span>
 
           </div>
         </div> <!-- / .row -->
@@ -219,19 +220,20 @@
 
             <!-- Title -->
             <h6 class="card-title text-uppercase text-muted mb-2" i18n>
-              Sortino Ratio
+              Return on Investment (Since Inception)
             </h6>
 
             <!-- Heading -->
-            <span class="h2 mb-0" i18n>
-              {{sortinoRatio.isNaN() ? 'Not available' : sortinoRatio.toFormat(4)}}
+            <span class="badge badge-xl"
+              [ngClass]="{'badge-soft-success': avgMonthReturn.gte(0), 'badge-soft-danger': avgMonthReturn.lt(0)}">
+              {{avgMonthReturn.toFormat(4)}}%
             </span>
 
           </div>
           <div class="col-auto">
 
             <!-- Icon -->
-            <span class="h2 fe fe-shield text-muted mb-0"></span>
+            <span class="h2 fe fe-activity text-muted mb-0"></span>
 
           </div>
         </div> <!-- / .row -->
@@ -251,7 +253,7 @@
 
             <!-- Heading -->
             <span class="h2 mb-0">
-              {{standardDeviation}}%
+              {{standardDeviation}}
             </span>
 
           </div>

@@ -1,21 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import {AppComponent} from '../app.component';
+import { AppComponent } from '../app.component';
 
 import { } from 'jquery';
 declare var $: any;
 import {
   user, timer, error_notifications, manager_actions, refresh_actions
 } from '../../betokenjs/helpers';
-import BigNumber from 'bignumber.js';
-import { isNull } from 'util';
+
+import { ApolloEnabled } from '../apollo';
+import { Apollo } from 'apollo-angular';
+import gql from 'graphql-tag';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html'
 })
 
-export class HeaderComponent implements OnInit {
+export class HeaderComponent extends ApolloEnabled implements OnInit {
   ZERO_ADDR = '0x0000000000000000000000000000000000000000';
 
   days: Number;
@@ -25,20 +27,19 @@ export class HeaderComponent implements OnInit {
   phase: Number;
 
   user_address: String;
-  userKairoValue: BigNumber;
-
-  can_redeem_commission: boolean;
 
   errorMsg: String;
 
   /* To copy Text from Textbox */
-  copyInputMessage(inputElement){
+  copyInputMessage(inputElement) {
     inputElement.select();
     document.execCommand('copy');
     inputElement.setSelectionRange(0, 0);
   }
- 
-  constructor(private ms: AppComponent, private router: Router ) {
+
+  constructor(private ms: AppComponent, private router: Router, private apollo: Apollo) {
+    super();
+    
     this.days = 0;
     this.hours = 0;
     this.minutes = 0;
@@ -46,9 +47,6 @@ export class HeaderComponent implements OnInit {
     this.phase = -1;
 
     this.user_address = this.ZERO_ADDR;
-    this.userKairoValue = new BigNumber(0);
-
-    this.can_redeem_commission = true;
 
     this.errorMsg = '';
   }
@@ -57,27 +55,38 @@ export class HeaderComponent implements OnInit {
     this.refreshHeaderSidebarDisplay();
     error_notifications.set_error_msg("");
     this.refreshDisplay();
-    setInterval(() => this.refreshDisplay(), 1000);
+    setInterval(() => this.updateTimer(), 1000);
+    setInterval(() => this.refreshHeaderSidebarDisplay(), 1000);
   }
 
-  refreshDisplay() {
+  updateTimer() {
     this.days = timer.day();
     this.hours = timer.hour();
     this.minutes = timer.minute();
     this.seconds = timer.second();
-    this.phase = timer.phase();
+  }
 
+  refreshDisplay() {
     this.user_address = user.address();
-    if (isNull(user.address())) {
-      this.user_address = this.ZERO_ADDR;
-    }
-    this.userKairoValue = user.portfolio_value();
-    this.can_redeem_commission = user.can_redeem_commission();
-
+    
     error_notifications.check_dependency();
     this.errorMsg = error_notifications.get_error_msg();
 
-    this.refreshHeaderSidebarDisplay();
+    this.querySubscription = this.apollo
+      .watchQuery({
+        query: gql`
+          {
+            fund(id: "BetokenFund") {
+              cyclePhase
+            }
+          }
+        `
+      })
+      .valueChanges.subscribe(({ data, loading }) => {
+        let fund = data['fund'];
+
+        this.phase = fund.cyclePhase === 'INTERMISSION' ? 0 : 1;
+      });
   }
 
   refreshHeaderSidebarDisplay() {
@@ -103,7 +112,8 @@ export class HeaderComponent implements OnInit {
     manager_actions.nextPhase();
   }
 
-  reloadAll() {
-    refresh_actions.reload_all();
+  async reloadAll() {
+    await refresh_actions.reload_all();
+    this.refreshDisplay();
   }
 }

@@ -34,9 +34,9 @@
             </div>
             <div class="col-auto">
                 <!-- Refresh -->
-                <button class="btn btn-sm btn-white" type="button" name="button" (click) = "refresh()">
-                  <i class="fe fe-refresh-cw align-middle" *ngIf="isLoading() == false"></i>
-                  <div class="spinner-grow spinner-grow-sm" role="status" *ngIf="isLoading()">
+                <button class="btn btn-sm btn-white" type="button" name="button" (click) = "refreshDisplay()">
+                  <i class="fe fe-refresh-cw align-middle" *ngIf="isLoading == false"></i>
+                  <div class="spinner-grow spinner-grow-sm" role="status" *ngIf="isLoading">
                     <span class="sr-only" i18n>Loading...</span>
                   </div>
                 </button>
@@ -64,13 +64,13 @@
             <tbody class="list" id="commissions-table">
               <tr *ngFor="let entry of commissionHistory">
                 <td class="align-middle">
-                  {{entry.cycle}}
+                  {{entry.cycleNumber}}
                 </td>
                 <td class="align-middle">
-                  {{entry.amount.toFormat(18)}}
+                  {{toBigNumber(entry.amountInDAI).toFormat(18)}}
                 </td>
                 <td class="align-middle">
-                  {{entry.timestamp}}
+                  {{toDateString(entry.timestamp)}}
                 </td>
                 <td class="align-middle">
                   <div class="input-group-append">

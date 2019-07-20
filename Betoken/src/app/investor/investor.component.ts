@@ -364,7 +364,7 @@ export class InvestorComponent extends ApolloEnabled implements OnInit {
     this.standardDeviation = calcSampleStd(sharesPriceList).dp(NUM_DECIMALS);
 
     if (sharesPriceList.length > 0) {
-      this.avgMonthReturn = sharesPriceList[sharesPriceList.length - 1].div(sharesPriceList[0]).minus(1).times(100);
+      this.avgMonthReturn = this.sharesPrice.div(sharesPriceList[0]).minus(1).times(100);
     }
   }
 

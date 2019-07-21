@@ -371,6 +371,7 @@ export class InvestorComponent extends ApolloEnabled implements OnInit {
   chartDraw() {
     let NUM_DECIMALS = 4;
     let sharesPriceList = this.sharesPriceHistory.map((x) => new BigNumber(x.value).dp(NUM_DECIMALS));
+    sharesPriceList.push(this.sharesPrice.dp(NUM_DECIMALS));
 
     // draw chart
     if (!this.hasDrawnChart) {
@@ -413,7 +414,7 @@ export class InvestorComponent extends ApolloEnabled implements OnInit {
 
         type: 'line',
         data: {
-          labels: this.sharesPriceHistory.map((x) => this.toDateString(x.timestamp)),
+          labels: this.sharesPriceHistory.map((x) => this.toDateString(x.timestamp)).concat([(new Date()).toLocaleString()]),
           datasets: [
             {
               label: 'Betoken',

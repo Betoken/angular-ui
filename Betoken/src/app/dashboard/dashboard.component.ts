@@ -181,6 +181,7 @@ export class DashboardComponent extends ApolloEnabled implements OnInit {
   chartDraw(id) {
     let NUM_DECIMALS = 4;
     let sharesPriceList = this.sharesPriceHistory.map((x) => new BigNumber(x.value).dp(NUM_DECIMALS));
+    sharesPriceList.push(this.sharesPrice.dp(NUM_DECIMALS));
 
     // draw chart
     if (!this.hasDrawnChart) {
@@ -223,14 +224,14 @@ export class DashboardComponent extends ApolloEnabled implements OnInit {
 
         type: 'line',
         data: {
-          labels: id === 0 ? this.sharesPriceHistory.map((x) => this.toDateString(x.timestamp)) : this.aumHistory.map((x) => this.toDateString(x.timestamp)),
+          labels: id === 0 ? this.sharesPriceHistory.map((x) => this.toDateString(x.timestamp)).concat([(new Date()).toLocaleString()]) : this.aumHistory.map((x) => this.toDateString(x.timestamp)).concat([(new Date()).toLocaleString()]),
           datasets: [
             {
               label: 'Betoken',
               borderColor: '#22c88a',
               fill: true,
               backgroundColor: gradientFill,
-              data: id === 0 ? sharesPriceList : this.aumHistory.map((x) => new BigNumber(x.value).dp(NUM_DECIMALS))
+              data: id === 0 ? sharesPriceList : this.aumHistory.map((x) => new BigNumber(x.value).dp(NUM_DECIMALS)).concat([this.AUM.dp(NUM_DECIMALS)])
             }
           ]
         },
@@ -402,8 +403,8 @@ export class DashboardComponent extends ApolloEnabled implements OnInit {
       });
 
     } else {
-      this.performanceChart.data.datasets[0].data = id == 0 ? sharesPriceList : this.aumHistory.map((x) => new BigNumber(x.value).dp(NUM_DECIMALS));
-      this.performanceChart.data.labels = id == 0 ? this.sharesPriceHistory.map((x) => this.toDateString(x.timestamp)) : this.aumHistory.map((x) => this.toDateString(x.timestamp));
+      this.performanceChart.data.datasets[0].data = id == 0 ? sharesPriceList : this.aumHistory.map((x) => new BigNumber(x.value).dp(NUM_DECIMALS)).concat([this.AUM.dp(NUM_DECIMALS)]);
+      this.performanceChart.data.labels = id == 0 ? this.sharesPriceHistory.map((x) => this.toDateString(x.timestamp)).concat([(new Date()).toLocaleString()]) : this.aumHistory.map((x) => this.toDateString(x.timestamp)).concat([(new Date()).toLocaleString()]);
       this.performanceChart.update();
     }
   }

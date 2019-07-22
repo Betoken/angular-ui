@@ -183,12 +183,14 @@ export class InvestmentsComponent extends ApolloEnabled implements OnInit {
                             sellPrice
                             buyTime
                             liquidationPrice
+                            isShort
                         }
                         inactiveFulcrumOrders: fulcrumOrders(where: {owner: "${userAddress}", cycleNumber: "${timer.cycle()}", isSold: true}) {
                             tokenAddress
                             stake
                             buyPrice
                             sellPrice
+                            isShort
                         }
                         activeCompoundOrders: compoundOrders(where: {owner: "${userAddress}", cycleNumber: "${timer.cycle()}", isSold: false}) {
                             idx

@@ -706,7 +706,6 @@ export const loadRanking = async () => {
 
                     // ignore short WBTC
                     if (isFulcrumTokenAddress(inv.tokenAddress) && assetPTokenAddressToInfo(inv.tokenAddress).type && symbol === 'WBTC') {
-                        console.log(_addr);
                         shortWBTCStake = shortWBTCStake.plus(inv.stake);
                     } else {
                         stake = stake.plus(currentStakeValue);

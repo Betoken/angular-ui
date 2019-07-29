@@ -680,6 +680,7 @@ export const loadRanking = async () => {
     var ranking = await Promise.all(addresses.map((_addr) => {
         var stake = BigNumber(0);
         var totalKROChange = BigNumber(0);
+        let shortWBTCStake = BigNumber(0);
         return betoken.getInvestments(_addr).then(async (investments) => {
             for (var i = 0; i < investments.length; i++) {
                 var inv = investments[i];
@@ -702,14 +703,24 @@ export const loadRanking = async () => {
                 if (!inv.isSold && +inv.cycleNumber === cycleNumber && cyclePhase == 1) {
                     var currentStakeValue = tokenPrice
                         .minus(inv.buyPrice).div(inv.buyPrice).times(inv.stake).plus(inv.stake);
-                    stake = stake.plus(currentStakeValue);
+
+                    // ignore short WBTC
+                    if (isFulcrumTokenAddress(inv.tokenAddress) && assetPTokenAddressToInfo(inv.tokenAddress).type && symbol === 'WBTC') {
+                        console.log(_addr);
+                        shortWBTCStake = shortWBTCStake.plus(inv.stake);
+                    } else {
+                        stake = stake.plus(currentStakeValue);
+                    }
                 }
                 // calculate roi
                 if (+inv.cycleNumber === cycleNumber) {
                     var _ROI = BigNumber(inv.sellPrice).minus(inv.buyPrice).div(inv.buyPrice);
                     var _kroChange = BigNumber(_ROI).times(inv.stake);
 
-                    totalKROChange = totalKROChange.plus(_kroChange);
+                    // ignore short WBTC
+                    if (!(isFulcrumTokenAddress(inv.tokenAddress) && assetPTokenAddressToInfo(inv.tokenAddress).type && symbol === 'WBTC')) {
+                        totalKROChange = totalKROChange.plus(_kroChange);
+                    }
                 }
             }
         }).then(async () => {
@@ -756,7 +767,7 @@ export const loadRanking = async () => {
                 totalKROChange = totalKROChange.plus(compoundOrders.map((x) => BigNumber(x.kroChange)).reduce((x, y) => x.plus(y), BigNumber(0)));
             }
 
-            var cycleStartKRO = BigNumber(await betoken.getBaseStake(_addr)).div(PRECISION);
+            var cycleStartKRO = BigNumber(await betoken.getBaseStake(_addr)).div(PRECISION).minus(shortWBTCStake);
 
             let userKairoBalance = BigNumber(await betoken.getKairoBalance(_addr)).div(PRECISION).plus(stake);
             fundTotalKRO = fundTotalKRO.plus(userKairoBalance);

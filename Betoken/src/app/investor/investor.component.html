@@ -179,19 +179,19 @@
       </div>
     </div>
     <!-- Card -->
-    <div class="card" data-toggle="tooltip" data-html="true" i18n-title title="Sortino ratio is a way to examine the performance of an investment by adjusting for its risk. The risk-free rate used here is 3% per year, an approximation of the US 10Y treasury bond's interest rate.">
+    <div class="card" data-toggle="tooltip" data-html="true" i18n-title title="A maximum drawdown (MDD) is the maximum observed loss from a peak to a trough of a portfolio, before a new peak is attained. Maximum drawdown is an indicator of downside risk over a specified time period.">
       <div class="card-body">
         <div class="row align-items-center">
           <div class="col">
 
             <!-- Title -->
             <h6 class="card-title text-uppercase text-muted mb-2" i18n>
-              Sortino Ratio
+              Max Drawdown
             </h6>
 
             <!-- Heading -->
             <span class="h2 mb-0" i18n>
-              {{sortinoRatio.isNaN() ? 'Not available' : sortinoRatio.toFormat(4)}}
+              {{maxDrawdown.toFormat(4)}}%
             </span>
 
           </div>

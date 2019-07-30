@@ -13,6 +13,7 @@ import {
 import { ApolloEnabled } from '../apollo';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
+import { share } from 'rxjs/operators';
 
 @Component({
   selector: 'app-investor',
@@ -23,7 +24,7 @@ export class InvestorComponent extends ApolloEnabled implements OnInit {
   avgMonthReturn: BigNumber;
   currMoROI: BigNumber;
   AUM: BigNumber;
-  sortinoRatio: BigNumber;
+  maxDrawdown: BigNumber;
   standardDeviation: BigNumber;
   tokenData: Array<Object>;
 
@@ -66,7 +67,7 @@ export class InvestorComponent extends ApolloEnabled implements OnInit {
     this.avgMonthReturn = new BigNumber(0);
     this.currMoROI = new BigNumber(0);
     this.AUM = new BigNumber(0);
-    this.sortinoRatio = new BigNumber(0);
+    this.maxDrawdown = new BigNumber(0);
     this.standardDeviation = new BigNumber(0);
     this.tokenData = new Array<Object>();
 
@@ -336,7 +337,7 @@ export class InvestorComponent extends ApolloEnabled implements OnInit {
   calcStats() {
     let BONDS_MONTHLY_INTEREST = 2.4662697e-3 // 3% annual interest rate
     let NUM_DECIMALS = 4;
-    let sharesPriceList = this.sharesPriceHistory.map((x) => new BigNumber(x.value).dp(NUM_DECIMALS));
+    let sharesPriceList: Array<BigNumber> = this.sharesPriceHistory.map((x) => new BigNumber(x.value).dp(NUM_DECIMALS));
 
     // calculate stats for Betoken
     let calcMean = function (list) {
@@ -365,6 +366,16 @@ export class InvestorComponent extends ApolloEnabled implements OnInit {
 
     if (sharesPriceList.length > 0) {
       this.avgMonthReturn = this.sharesPrice.div(sharesPriceList[0]).minus(1).times(100);
+    }
+
+    // max drawdown
+    this.maxDrawdown = new BigNumber(0);
+    for (let i = 0; i < sharesPriceList.length; i++) {
+      let cumulativeMax = sharesPriceList.slice(0, i+1).reduce((accumulator, curr) => BigNumber.max(accumulator, curr), new BigNumber(0)); // max of sharesPriceList[:i+1]
+      let drawdown = sharesPriceList[i].minus(cumulativeMax).div(cumulativeMax).times(100);
+      if (drawdown.lt(this.maxDrawdown)) {
+        this.maxDrawdown = drawdown;
+      }
     }
   }
 

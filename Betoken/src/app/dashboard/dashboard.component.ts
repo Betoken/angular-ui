@@ -179,6 +179,7 @@ export class DashboardComponent extends ApolloEnabled implements OnInit {
   }
 
   chartDraw(id) {
+    let self = this;
     let NUM_DECIMALS = 4;
     let sharesPriceList = this.sharesPriceHistory.map((x) => new BigNumber(x.value).dp(NUM_DECIMALS));
     sharesPriceList.push(this.sharesPrice.dp(NUM_DECIMALS));
@@ -193,6 +194,7 @@ export class DashboardComponent extends ApolloEnabled implements OnInit {
       gradientFill.addColorStop(0, 'rgba(0, 217, 126, 0.5)');
       gradientFill.addColorStop(0.5, 'rgba(0, 217, 126, 0.25)');
       gradientFill.addColorStop(1, 'rgba(0, 217, 126, 0)');
+      let now = new Date();
 
       // Config
 
@@ -224,7 +226,7 @@ export class DashboardComponent extends ApolloEnabled implements OnInit {
 
         type: 'line',
         data: {
-          labels: id === 0 ? this.sharesPriceHistory.map((x) => this.toDateTimeString(x.timestamp)).concat([(new Date()).toLocaleString()]) : this.aumHistory.map((x) => this.toDateTimeString(x.timestamp)).concat([(new Date()).toLocaleString()]),
+          labels: id === 0 ? this.sharesPriceHistory.map((x) => this.toDateString(x.timestamp)).concat([now.toLocaleDateString()]) : this.aumHistory.map((x) => this.toDateString(x.timestamp)).concat([now.toLocaleDateString()]),
           datasets: [
             {
               label: 'Betoken',
@@ -396,6 +398,14 @@ export class DashboardComponent extends ApolloEnabled implements OnInit {
 
                 content += '<span class="popover-body-value">' + yLabel + '</span>';
                 return content;
+              },
+              title: function (items, data) {
+                let i = items[0].index;
+                if (i < self.sharesPriceHistory.length) {
+                  return self.toDateTimeString(self.sharesPriceHistory[items[0].index].timestamp);
+                } else {
+                  return now.toLocaleString();
+                }
               }
             },
           }

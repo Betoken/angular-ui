@@ -383,9 +383,11 @@ export class InvestorComponent extends ApolloEnabled implements OnInit {
     if (!this.hasDrawnChart) {
       this.hasDrawnChart = true;
 
+      let self = this;
       let NUM_DECIMALS = 4;
       let sharesPriceList = this.sharesPriceHistory.map((x) => new BigNumber(x.value).minus(1).times(100).dp(NUM_DECIMALS));
       sharesPriceList.push(this.sharesPrice.minus(1).times(100).dp(NUM_DECIMALS));
+      let now = new Date();
 
       // fetch historical ETH & BTC prices
       let etherPriceHistory: Array<BigNumber> = await Promise.all(this.sharesPriceHistory.map((x) => tokens.getAssetPriceAtTimestamp('ETH', x.timestamp)));
@@ -432,7 +434,7 @@ export class InvestorComponent extends ApolloEnabled implements OnInit {
 
         type: 'line',
         data: {
-          labels: this.sharesPriceHistory.map((x) => this.toDateTimeString(x.timestamp)).concat([(new Date()).toLocaleString()]),
+          labels: this.sharesPriceHistory.map((x) => this.toDateString(x.timestamp)).concat([now.toLocaleDateString()]),
           datasets: [
             {
               label: 'Betoken',
@@ -615,6 +617,14 @@ export class InvestorComponent extends ApolloEnabled implements OnInit {
 
                 content += '<span class="popover-body-value">' + yLabel + '%' + '</span>';
                 return content;
+              },
+              title: function (items, data) {
+                let i = items[0].index;
+                if (i < self.sharesPriceHistory.length) {
+                  return self.toDateTimeString(self.sharesPriceHistory[items[0].index].timestamp);
+                } else {
+                  return now.toLocaleString();
+                }
               }
             },
           }

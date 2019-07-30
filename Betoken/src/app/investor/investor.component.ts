@@ -371,7 +371,7 @@ export class InvestorComponent extends ApolloEnabled implements OnInit {
     // max drawdown
     this.maxDrawdown = new BigNumber(0);
     for (let i = 0; i < sharesPriceList.length; i++) {
-      let cumulativeMax = sharesPriceList.slice(0, i+1).reduce((accumulator, curr) => BigNumber.max(accumulator, curr), new BigNumber(0)); // max of sharesPriceList[:i+1]
+      let cumulativeMax = sharesPriceList.slice(0, i + 1).reduce((accumulator, curr) => BigNumber.max(accumulator, curr), new BigNumber(0)); // max of sharesPriceList[:i+1]
       let drawdown = sharesPriceList[i].minus(cumulativeMax).div(cumulativeMax).times(100);
       if (drawdown.lt(this.maxDrawdown)) {
         this.maxDrawdown = drawdown;
@@ -379,14 +379,21 @@ export class InvestorComponent extends ApolloEnabled implements OnInit {
     }
   }
 
-  chartDraw() {
-    let NUM_DECIMALS = 4;
-    let sharesPriceList = this.sharesPriceHistory.map((x) => new BigNumber(x.value).dp(NUM_DECIMALS));
-    sharesPriceList.push(this.sharesPrice.dp(NUM_DECIMALS));
-
-    // draw chart
+  async chartDraw() {
     if (!this.hasDrawnChart) {
       this.hasDrawnChart = true;
+
+      let NUM_DECIMALS = 4;
+      let sharesPriceList = this.sharesPriceHistory.map((x) => new BigNumber(x.value).minus(1).times(100).dp(NUM_DECIMALS));
+      sharesPriceList.push(this.sharesPrice.minus(1).times(100).dp(NUM_DECIMALS));
+
+      // fetch historical ETH & BTC prices
+      let etherPriceHistory: Array<BigNumber> = await Promise.all(this.sharesPriceHistory.map((x) => tokens.getAssetPriceAtTimestamp('ETH', x.timestamp)));
+      etherPriceHistory.push(this.assetSymbolToPrice('ETH'));
+      etherPriceHistory = etherPriceHistory.map((x) => x.div(etherPriceHistory[0]).minus(1).times(100).dp(NUM_DECIMALS));
+      let bitcoinPriceHistory: Array<BigNumber> = await Promise.all(this.sharesPriceHistory.map((x) => tokens.getAssetPriceAtTimestamp('BTC', x.timestamp)));
+      bitcoinPriceHistory.push(this.assetSymbolToPrice('WBTC'));
+      bitcoinPriceHistory = bitcoinPriceHistory.map((x) => x.div(bitcoinPriceHistory[0]).minus(1).times(100).dp(NUM_DECIMALS));
 
       const canvas: any = document.getElementById('roi-chart');
       const ctx = canvas.getContext('2d');
@@ -419,20 +426,31 @@ export class InvestorComponent extends ApolloEnabled implements OnInit {
         transparent: 'transparent',
       };
 
-      var colorScheme = (getComputedStyle(document.body).backgroundColor == 'rgb(249, 251, 253)') ? 'light' : 'dark';
+      var colorScheme = (getComputedStyle(document.body).backgroundColor === 'rgb(249, 251, 253)') ? 'light' : 'dark';
       Chart.defaults.global.defaultFontColor = colors.gray[300];
       this.performanceChart = new Chart(ctx, {
 
         type: 'line',
         data: {
-          labels: this.sharesPriceHistory.map((x) => this.toDateString(x.timestamp)).concat([(new Date()).toLocaleString()]),
+          labels: this.sharesPriceHistory.map((x) => this.toDateTimeString(x.timestamp)).concat([(new Date()).toLocaleString()]),
           datasets: [
             {
               label: 'Betoken',
               borderColor: '#22c88a',
-              fill: true,
-              backgroundColor: gradientFill,
+              fill: false,
               data: sharesPriceList
+            },
+            {
+              label: 'Ether',
+              borderColor: '#8A91B6',
+              fill: false,
+              data: etherPriceHistory
+            },
+            {
+              label: 'Bitcoin',
+              borderColor: '#FF9500',
+              fill: false,
+              data: bitcoinPriceHistory
             }
           ]
         },
@@ -468,7 +486,7 @@ export class InvestorComponent extends ApolloEnabled implements OnInit {
                 beginAtZero: false,
                 padding: 10,
                 callback: function (value, index, values) {
-                  return value;
+                  return value + '%';
                 }
               }
             }]
@@ -595,7 +613,7 @@ export class InvestorComponent extends ApolloEnabled implements OnInit {
                   content += '<span class="popover-body-label mr-auto">' + label + '</span>';
                 }
 
-                content += '<span class="popover-body-value">' + yLabel + '</span>';
+                content += '<span class="popover-body-value">' + yLabel + '%' + '</span>';
                 return content;
               }
             },

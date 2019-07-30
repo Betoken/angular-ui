@@ -16,7 +16,11 @@ export class ApolloEnabled implements OnDestroy {
     return new BigNumber(n);
   }
 
-  toDateString(unixTimestamp) {
+  toDateTimeString(unixTimestamp) {
     return new Date(+unixTimestamp * 1e3).toLocaleString();
+  }
+
+  toDateString(unixTimestamp) {
+    return new Date(+unixTimestamp * 1e3).toLocaleDateString();
   }
 }

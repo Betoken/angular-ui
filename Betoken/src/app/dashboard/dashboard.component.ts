@@ -224,7 +224,7 @@ export class DashboardComponent extends ApolloEnabled implements OnInit {
 
         type: 'line',
         data: {
-          labels: id === 0 ? this.sharesPriceHistory.map((x) => this.toDateString(x.timestamp)).concat([(new Date()).toLocaleString()]) : this.aumHistory.map((x) => this.toDateString(x.timestamp)).concat([(new Date()).toLocaleString()]),
+          labels: id === 0 ? this.sharesPriceHistory.map((x) => this.toDateTimeString(x.timestamp)).concat([(new Date()).toLocaleString()]) : this.aumHistory.map((x) => this.toDateTimeString(x.timestamp)).concat([(new Date()).toLocaleString()]),
           datasets: [
             {
               label: 'Betoken',
@@ -404,7 +404,6 @@ export class DashboardComponent extends ApolloEnabled implements OnInit {
 
     } else {
       this.performanceChart.data.datasets[0].data = id == 0 ? sharesPriceList : this.aumHistory.map((x) => new BigNumber(x.value).dp(NUM_DECIMALS)).concat([this.AUM.dp(NUM_DECIMALS)]);
-      this.performanceChart.data.labels = id == 0 ? this.sharesPriceHistory.map((x) => this.toDateString(x.timestamp)).concat([(new Date()).toLocaleString()]) : this.aumHistory.map((x) => this.toDateString(x.timestamp)).concat([(new Date()).toLocaleString()]);
       this.performanceChart.update();
     }
   }

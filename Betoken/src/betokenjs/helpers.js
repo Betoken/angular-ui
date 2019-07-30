@@ -119,7 +119,8 @@ export const tokens = {
     asset_address_to_symbol: (_addr) => Data.assetAddressToSymbol(_addr),
     ctoken_address_to_symbol: (_addr) => Data.assetCTokenAddressToSymbol(_addr),
     ptoken_address_to_symbol: (_addr) => Data.assetPTokenAddressToSymbol(_addr),
-    ptoken_address_to_info: (_addr) => Data.assetPTokenAddressToInfo(_addr)
+    ptoken_address_to_info: (_addr) => Data.assetPTokenAddressToInfo(_addr),
+    getAssetPriceAtTimestamp: (symbol, timestamp) => Data.getAssetPriceAtTimestamp(symbol, timestamp)
 };
 
 export const loading = {

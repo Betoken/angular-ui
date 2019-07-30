@@ -123,6 +123,13 @@ export const fulcrumMinStake = (_symbol, _isShort) => {
     return MIN_AMOUNT.times(underlyingPrice).div(totalFunds).times(kairoTotalSupply);
 };
 
+export const getAssetPriceAtTimestamp = async (symbol, timestamp) => {
+    const apiStr = `https://min-api.cryptocompare.com/data/pricehistorical?fsym=DAI&tsyms=${symbol}&ts=${timestamp}`;
+    const data = await httpsGet(apiStr);
+    const pastPrice = BigNumber(1).div(data.DAI[symbol]);
+    return pastPrice;
+}
+
 export const httpsGet = async (apiStr) => {
     const data = await (new Promise((resolve, reject) => {
         https.get(apiStr, (res) => {

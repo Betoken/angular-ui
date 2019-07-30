@@ -799,7 +799,7 @@
       <div class="modal-body pb-5">
         <!--Step 0: enter sell amount-->
         <time class="header-pretitle h6 mb-0" *ngIf="sellInvestmentPopupStep === 0" i18n>OPENED
-          {{toDateString(sellData.buyTime)}}</time>
+          {{toDateTimeString(sellData.buyTime)}}</time>
         <hr class="mb-4" *ngIf="sellInvestmentPopupStep === 0">
         <!-- Asset price -->
         <div class="row mb-4" *ngIf="sellInvestmentPopupStep === 0">

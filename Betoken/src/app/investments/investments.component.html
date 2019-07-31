@@ -168,7 +168,7 @@
             </div>
             <div class="col-auto d-flex">
               <!--Tabs-->
-              <div class="nav nav-pills btn-group btn-group-sm mr-2" role="tablist" i18n-aria-label aria-label="Portfolio view">
+              <div class="nav nav-pills btn-group btn-group-sm mr-2" role="tablist" i18n-aria-label aria-label="Portfolio view" *ngIf="activeInvestmentList.length > 0">
                 <button class="nav-link btn btn-white active border-right-0" id="pills-investments-tab" data-toggle="pill"
                   href="#pills-investments" role="tab" aria-controls="pills-investments" aria-selected="true"><i
                     class="fe fe-list align-middle"></i></button>

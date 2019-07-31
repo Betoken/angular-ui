@@ -156,15 +156,15 @@ export class InvestorComponent extends ApolloEnabled implements OnInit {
         let fund = data['fund'];
         let investor = data['investor'];
 
+        this.AUM = new BigNumber(fund.aum);
+        this.sharesPrice = new BigNumber(fund.sharesPrice);
+        this.currMoROI = this.AUM.div(fund.totalFundsAtPhaseStart).minus(1).times(100);
+
         if (!isNull(investor)) {
           this.sharesBalance = new BigNumber(investor.sharesBalance);
           this.depositWithdrawHistory = investor.depositWithdrawHistory;
           this.investmentBalance = this.sharesBalance.times(this.sharesPrice);
         }
-
-        this.AUM = new BigNumber(fund.aum);
-        this.sharesPrice = new BigNumber(fund.sharesPrice);
-        this.currMoROI = this.AUM.div(fund.totalFundsAtPhaseStart).minus(1).times(100);
 
         // draw chart
         this.sharesPriceHistory = fund.sharesPriceHistory;
@@ -389,13 +389,7 @@ export class InvestorComponent extends ApolloEnabled implements OnInit {
       sharesPriceList.push(this.sharesPrice.minus(1).times(100).dp(NUM_DECIMALS));
       let now = new Date();
 
-      // fetch historical ETH & BTC prices
-      let etherPriceHistory: Array<BigNumber> = await Promise.all(this.sharesPriceHistory.map((x) => tokens.getAssetPriceAtTimestamp('ETH', x.timestamp)));
-      etherPriceHistory.push(this.assetSymbolToPrice('ETH'));
-      etherPriceHistory = etherPriceHistory.map((x) => x.div(etherPriceHistory[0]).minus(1).times(100).dp(NUM_DECIMALS));
-      let bitcoinPriceHistory: Array<BigNumber> = await Promise.all(this.sharesPriceHistory.map((x) => tokens.getAssetPriceAtTimestamp('BTC', x.timestamp)));
-      bitcoinPriceHistory.push(this.assetSymbolToPrice('WBTC'));
-      bitcoinPriceHistory = bitcoinPriceHistory.map((x) => x.div(bitcoinPriceHistory[0]).minus(1).times(100).dp(NUM_DECIMALS));
+
 
       const canvas: any = document.getElementById('roi-chart');
       const ctx = canvas.getContext('2d');
@@ -431,28 +425,15 @@ export class InvestorComponent extends ApolloEnabled implements OnInit {
       var colorScheme = (getComputedStyle(document.body).backgroundColor === 'rgb(249, 251, 253)') ? 'light' : 'dark';
       Chart.defaults.global.defaultFontColor = colors.gray[300];
       this.performanceChart = new Chart(ctx, {
-
         type: 'line',
         data: {
-          labels: this.sharesPriceHistory.map((x) => this.toDateString(x.timestamp)).concat([now.toLocaleDateString()]),
+          labels: this.sharesPriceHistory.map((x) => this.toDateObject(x.timestamp)).concat([now]),
           datasets: [
             {
               label: 'Betoken',
               borderColor: '#22c88a',
               fill: false,
               data: sharesPriceList
-            },
-            {
-              label: 'Ether',
-              borderColor: '#8A91B6',
-              fill: false,
-              data: etherPriceHistory
-            },
-            {
-              label: 'Bitcoin',
-              borderColor: '#FF9500',
-              fill: false,
-              data: bitcoinPriceHistory
             }
           ]
         },
@@ -462,6 +443,7 @@ export class InvestorComponent extends ApolloEnabled implements OnInit {
           maintainAspectRatio: false,
           scales: {
             xAxes: [{
+              type: 'time',
               gridLines: {
                 display: false
               },
@@ -617,20 +599,39 @@ export class InvestorComponent extends ApolloEnabled implements OnInit {
 
                 content += '<span class="popover-body-value">' + yLabel + '%' + '</span>';
                 return content;
-              },
-              title: function (items, data) {
-                let i = items[0].index;
-                if (i < self.sharesPriceHistory.length) {
-                  return self.toDateTimeString(self.sharesPriceHistory[items[0].index].timestamp);
-                } else {
-                  return now.toLocaleString();
-                }
               }
             },
           }
         }
       });
 
+
+      // fetch historical ETH & BTC prices
+      let etherPriceHistory: Array<BigNumber> = await Promise.all(this.sharesPriceHistory.map((x) => tokens.getAssetPriceAtTimestamp('ETH', x.timestamp)));
+      etherPriceHistory.push(this.assetSymbolToPrice('ETH'));
+      etherPriceHistory = etherPriceHistory.map((x) => x.div(etherPriceHistory[0]).minus(1).times(100).dp(NUM_DECIMALS));
+      let bitcoinPriceHistory: Array<BigNumber> = await Promise.all(this.sharesPriceHistory.map((x) => tokens.getAssetPriceAtTimestamp('BTC', x.timestamp)));
+      bitcoinPriceHistory.push(this.assetSymbolToPrice('WBTC'));
+      bitcoinPriceHistory = bitcoinPriceHistory.map((x) => x.div(bitcoinPriceHistory[0]).minus(1).times(100).dp(NUM_DECIMALS));
+
+      // add ETH & BTC prices to chart
+      this.performanceChart.data.datasets.push(
+        {
+          label: 'Ether',
+          borderColor: '#8A91B6',
+          fill: false,
+          data: etherPriceHistory
+        }
+      );
+      this.performanceChart.data.datasets.push(
+        {
+          label: 'Bitcoin',
+          borderColor: '#FF9500',
+          fill: false,
+          data: bitcoinPriceHistory
+        }
+      );
+      this.performanceChart.update();
     }
   }
 }

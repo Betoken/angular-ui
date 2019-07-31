@@ -13,6 +13,7 @@ import { ApolloEnabled } from '../apollo';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 import { isNull } from 'util';
+import { timeInterval } from 'rxjs/operators';
 
 @Component({
   selector: 'app-invest',
@@ -226,7 +227,7 @@ export class DashboardComponent extends ApolloEnabled implements OnInit {
 
         type: 'line',
         data: {
-          labels: id === 0 ? this.sharesPriceHistory.map((x) => this.toDateString(x.timestamp)).concat([now.toLocaleDateString()]) : this.aumHistory.map((x) => this.toDateString(x.timestamp)).concat([now.toLocaleDateString()]),
+          labels: this.sharesPriceHistory.map((x) => this.toDateObject(x.timestamp)).concat([now]),
           datasets: [
             {
               label: 'Betoken',
@@ -243,6 +244,7 @@ export class DashboardComponent extends ApolloEnabled implements OnInit {
           maintainAspectRatio: false,
           scales: {
             xAxes: [{
+              type: 'time',
               gridLines: {
                 display: false
               },
@@ -398,14 +400,6 @@ export class DashboardComponent extends ApolloEnabled implements OnInit {
 
                 content += '<span class="popover-body-value">' + yLabel + '</span>';
                 return content;
-              },
-              title: function (items, data) {
-                let i = items[0].index;
-                if (i < self.sharesPriceHistory.length) {
-                  return self.toDateTimeString(self.sharesPriceHistory[items[0].index].timestamp);
-                } else {
-                  return now.toLocaleString();
-                }
               }
             },
           }

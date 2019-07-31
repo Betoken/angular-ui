@@ -29,6 +29,8 @@ export var countdownHour = 0;
 export var countdownMin = 0;
 export var countdownSec = 0;
 
+export var isLoadingPrices = true;
+
 // token data
 export var TOKEN_DATA = [];
 
@@ -236,6 +238,8 @@ export const loadUserData = async () => {
 };
 
 export const loadTokenPrices = async () => {
+    isLoadingPrices = true;
+
     let apiStr = "https://api.kyber.network/market";
     let rawData = await httpsGet(apiStr);
     if (!rawData.error) {
@@ -296,6 +300,8 @@ export const loadTokenPrices = async () => {
             return x;
         });
     });
+
+    isLoadingPrices = false;
 };
 
 const loadPriceChanges = async (_daysInPast) => {

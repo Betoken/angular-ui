@@ -85,13 +85,13 @@
                   <i class="fe fe-star text-warning ml-2"></i> You
                 </td>
                 <td class="align-middle">
-                  {{userValue.toFormat(18)}}
+                  {{userValue.toFormat(6)}}
                 </td>
                 <td class="align-middle">
                   <!-- Badge -->
                   <span class="badge badge-xl"
                     [ngClass]="{'badge-soft-success': userROI.gt(0), 'badge-soft-danger': !(userROI.gt(0))}">
-                    {{userROI.toFormat(4)}}%
+                    {{userROI.toFormat(6)}}%
                   </span>
                 </td>
               </tr>

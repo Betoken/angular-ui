@@ -23,4 +23,8 @@ export class ApolloEnabled implements OnDestroy {
   toDateString(unixTimestamp) {
     return new Date(+unixTimestamp * 1e3).toLocaleDateString();
   }
+
+  toDateObject(unixTimestamp) {
+    return new Date(+unixTimestamp * 1e3);
+  }
 }

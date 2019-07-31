@@ -20,6 +20,7 @@ export class RankingsComponent extends ApolloEnabled implements OnInit, OnDestro
     userRanking: String;
     userValue: BigNumber;
     userROI: BigNumber;
+    userTotalCommission: BigNumber;
     isLoading: Boolean;
 
     constructor(private apollo: Apollo) {
@@ -28,6 +29,7 @@ export class RankingsComponent extends ApolloEnabled implements OnInit, OnDestro
         this.userRanking = '';
         this.userValue = new BigNumber(0);
         this.userROI = new BigNumber(0);
+        this.userTotalCommission = new BigNumber(0);
         this.isLoading = true;
     }
 
@@ -46,10 +48,12 @@ export class RankingsComponent extends ApolloEnabled implements OnInit, OnDestro
                             id
                             kairoBalanceWithStake
                             baseStake
+                            totalCommissionReceived
                         }
                         manager(id: "${userAddress}") {
                             kairoBalanceWithStake
                             baseStake
+                            totalCommissionReceived
                         }
                     }
                 `
@@ -64,6 +68,7 @@ export class RankingsComponent extends ApolloEnabled implements OnInit, OnDestro
                 if (!isNull(userData)) {
                     this.userValue = new BigNumber(userData.kairoBalanceWithStake);
                     this.userROI = this.userValue.div(userData.baseStake).minus(1).times(100);
+                    this.userTotalCommission = new BigNumber(userData.totalCommissionReceived);
                 }
             });
     }

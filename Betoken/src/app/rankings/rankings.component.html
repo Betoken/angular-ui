@@ -58,7 +58,7 @@
           </div> <!-- / .row -->
         </div>
         <div class="table-responsive" data-toggle="lists"
-          data-options='{"valueNames": ["tables-rank", "tables-kairo-balance", "tables-roi"]}'>
+          data-options='{"valueNames": ["tables-rank", "tables-kairo-balance", "tables-roi", "tables-commission"]}'>
           <table class="table table-sm table-nowrap card-table">
             <thead>
               <tr>
@@ -73,6 +73,9 @@
                 </th>
                 <th>
                   <a href="" class="text-muted sort" data-sort="tables-roi" i18n>Current Month ROI</a>
+                </th>
+                <th>
+                  <a href="" class="text-muted sort" data-sort="tables-commission" i18n>Total Commission Received (DAI)</a>
                 </th>
               </tr>
             </thead>
@@ -94,6 +97,9 @@
                     {{userROI.toFormat(6)}}%
                   </span>
                 </td>
+                <td class="align-middle">
+                  {{userTotalCommission.toFormat(6)}}
+                </td>
               </tr>
               <tr *ngFor="let ranking of rankingArray; let i=index">
                 <td class="align-middle tables-rank">
@@ -114,6 +120,9 @@
                     [ngClass]="{'badge-soft-success': +ranking.kairoBalanceWithStake >= +ranking.baseStake, 'badge-soft-danger': +ranking.baseStake > +ranking.kairoBalanceWithStake}">
                     {{formatNumber(+ranking.kairoBalanceWithStake / +ranking.baseStake * 100 - 100)}}%
                   </span>
+                </td>
+                <td class="align-middle tables-commission">
+                  {{formatNumber(ranking.totalCommissionReceived)}}
                 </td>
               </tr>
             </tbody>

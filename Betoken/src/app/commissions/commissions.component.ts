@@ -19,6 +19,7 @@ declare var $: any;
 export class CommissionsComponent extends ApolloEnabled implements OnInit {
     commissionHistory: Array<Object>;
     commissionAmount: BigNumber;
+    totalCommissionReceived: BigNumber;
     transactionId: String;
     step: Number;
     cycle: Number;
@@ -31,6 +32,7 @@ export class CommissionsComponent extends ApolloEnabled implements OnInit {
 
         this.commissionHistory = new Array<Object>();
         this.commissionAmount = new BigNumber(0);
+        this.totalCommissionReceived = new BigNumber(0);
         this.transactionId = '';
         this.step = 0;
         this.cycle = 0;
@@ -44,6 +46,7 @@ export class CommissionsComponent extends ApolloEnabled implements OnInit {
         $('#modalRedeem').on('hidden.bs.modal', () => {
             this.resetModals();
         });
+        $('[data-toggle="tooltip"]').tooltip();
     }
 
     refreshDisplay() {
@@ -64,6 +67,8 @@ export class CommissionsComponent extends ApolloEnabled implements OnInit {
                             totalFundsAtPhaseStart
                         }
                         manager(id: "${userAddress}") {
+                            kairoBalance
+                            totalCommissionReceived
                             kairoBalanceWithStake
                             commissionHistory(orderBy: timestamp, orderDirection: desc) {
                                 timestamp
@@ -84,6 +89,7 @@ export class CommissionsComponent extends ApolloEnabled implements OnInit {
                 this.cycle = +fund.cycleNumber;
 
                 if (!isNull(manager)) {
+                    this.totalCommissionReceived = new BigNumber(manager.totalCommissionReceived);
                     this.commissionHistory = manager.commissionHistory;
 
                     // calculate expected commission

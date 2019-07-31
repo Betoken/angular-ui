@@ -6,14 +6,13 @@ import { } from 'jquery';
 declare var $: any;
 
 import {
-  user
+  user, timer
 } from '../../betokenjs/helpers';
 
 import { ApolloEnabled } from '../apollo';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 import { isNull } from 'util';
-import { timeInterval } from 'rxjs/operators';
 
 @Component({
   selector: 'app-invest',
@@ -95,7 +94,7 @@ export class DashboardComponent extends ApolloEnabled implements OnInit {
               kairoBalanceWithStake
               baseStake
             }
-            managers(orderBy: kairoBalanceWithStake, orderDirection: desc, first: 1000) {
+            managers(orderBy: "${timer.phase() == 0 ? 'kairoBalance' : 'kairoBalanceWithStake'}", orderDirection: desc, first: 1000) {
               id
             }
           }
@@ -107,7 +106,7 @@ export class DashboardComponent extends ApolloEnabled implements OnInit {
         let managers = data['managers'];
 
         if (!isNull(manager)) {
-          this.userValue = new BigNumber(manager.kairoBalanceWithStake);
+          this.userValue = this.getManagerKairoBalance(manager);
           this.userROI = this.userValue.div(manager.baseStake).minus(1).times(100);
           // calculate expected commission
           if (+fund.kairoTotalSupply > 0) {

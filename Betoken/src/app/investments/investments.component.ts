@@ -228,7 +228,7 @@ export class InvestmentsComponent extends ApolloEnabled implements OnInit {
                 this.phase = fund.cyclePhase === 'INTERMISSION' ? 0 : 1;
 
                 if (!isNull(manager)) {
-                    this.userValue = new BigNumber(manager.kairoBalanceWithStake);
+                    this.userValue = this.getManagerKairoBalance(manager);
                     this.userROI = this.userValue.div(manager.baseStake).minus(1).times(100);
                     this.riskTakenPercentage = BigNumber.min(new BigNumber(manager.riskTaken).div(manager.riskThreshold).times(100), 100);
                     this.portfolioValueInDAI = this.userValue.div(fund.kairoTotalSupply).times(fund.totalFundsInDAI);

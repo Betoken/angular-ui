@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { user, stats, sortTable } from '../../betokenjs/helpers';
+import { user, stats, sortTable, timer } from '../../betokenjs/helpers';
 
 import { ApolloEnabled } from '../apollo';
 import { Apollo } from 'apollo-angular';
@@ -44,13 +44,15 @@ export class RankingsComponent extends ApolloEnabled implements OnInit, OnDestro
             .watchQuery({
                 query: gql`
                     {
-                        managers(orderBy: kairoBalanceWithStake, orderDirection: desc, first: 1000) {
+                        managers(orderBy: "${timer.phase() == 0 ? 'kairoBalance' : 'kairoBalanceWithStake'}", orderDirection: desc, first: 1000) {
                             id
+                            kairoBalance
                             kairoBalanceWithStake
                             baseStake
                             totalCommissionReceived
                         }
                         manager(id: "${userAddress}") {
+                            kairoBalance
                             kairoBalanceWithStake
                             baseStake
                             totalCommissionReceived
@@ -66,7 +68,7 @@ export class RankingsComponent extends ApolloEnabled implements OnInit, OnDestro
                 this.userRanking = this.rankingArray.findIndex((x) => x.id === userAddress) + 1;
                 let userData = result.data['manager'];
                 if (!isNull(userData)) {
-                    this.userValue = new BigNumber(userData.kairoBalanceWithStake);
+                    this.userValue = this.getManagerKairoBalance(userData);
                     this.userROI = this.userValue.div(userData.baseStake).minus(1).times(100);
                     this.userTotalCommission = new BigNumber(userData.totalCommissionReceived);
                 }
@@ -79,6 +81,13 @@ export class RankingsComponent extends ApolloEnabled implements OnInit, OnDestro
 
     isSupporter(_addr) {
         return stats.is_supporter(_addr);
+    }
+
+    handleNaN(n) {
+        if (n === 'NaN') {
+            return '0.000000';
+        }
+        return n;
     }
 
     filterTable = (event, tableID, searchID) => {

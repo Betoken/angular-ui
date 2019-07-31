@@ -131,6 +131,9 @@ export class DashboardComponent extends ApolloEnabled implements OnInit {
         this.totalUser = managers.length;
         this.sharesPrice = new BigNumber(fund.sharesPrice);
         this.currMoROI = this.AUM.div(fund.totalFundsAtPhaseStart).minus(1).times(100);
+        if (fund.cyclePhase === 'INTERMISSION') {
+          this.currMoROI = new BigNumber(0);
+        }
         this.portfolioValueInDAI = this.userValue.div(fund.kairoTotalSupply).times(fund.totalFundsInDAI);
 
         // draw chart

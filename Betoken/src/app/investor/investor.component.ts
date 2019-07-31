@@ -130,6 +130,7 @@ export class InvestorComponent extends ApolloEnabled implements OnInit {
         query: gql`
           {
             fund(id: "BetokenFund") {
+              cyclePhase
               totalFundsAtPhaseStart
               aum
               sharesPrice
@@ -159,6 +160,9 @@ export class InvestorComponent extends ApolloEnabled implements OnInit {
         this.AUM = new BigNumber(fund.aum);
         this.sharesPrice = new BigNumber(fund.sharesPrice);
         this.currMoROI = this.AUM.div(fund.totalFundsAtPhaseStart).minus(1).times(100);
+        if (fund.cyclePhase === 'INTERMISSION') {
+          this.currMoROI = new BigNumber(0);
+        }
 
         if (!isNull(investor)) {
           this.sharesBalance = new BigNumber(investor.sharesBalance);

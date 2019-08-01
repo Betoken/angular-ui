@@ -104,6 +104,7 @@ export class InvestorComponent extends ApolloEnabled implements OnInit {
 
   ngOnInit() {
     this.refreshDisplay();
+    this.selectedTokenSymbol = this.tokenData[0]['symbol'];
     setInterval(() => this.updateTimer(), 1000);
     $('[data-toggle="tooltip"]').tooltip();
     $('#modalInvestorBuy').on('hidden.bs.modal', () => {
@@ -118,7 +119,6 @@ export class InvestorComponent extends ApolloEnabled implements OnInit {
     this.isLoading = true;
 
     this.tokenData = tokens.token_data();
-    this.selectedTokenSymbol = this.tokenData[0]['symbol'];
 
     this.updateTimer();
 
@@ -141,7 +141,7 @@ export class InvestorComponent extends ApolloEnabled implements OnInit {
             }
             investor(id: "${userAddress}") {
               sharesBalance
-              depositWithdrawHistory {
+              depositWithdrawHistory(orderBy: timestamp, orderDirection: desc, first: 1000) {
                 timestamp
                 isDeposit
                 amountInDAI

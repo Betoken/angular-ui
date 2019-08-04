@@ -79,7 +79,7 @@
             <!-- cta -->
             <span class="text-truncate d-block" *ngIf="user_address !== ZERO_ADDR"><span class="text-success">●</span>
               {{user_address}}</span>
-            <span class="text-truncate" *ngIf="user_address == ZERO_ADDR" i18n="@@investorOnboarding"><span class="text-danger">●</span> <ng-container i18n="@@investorOnboardingConnectStatus">No Wallet Connected</ng-container></span>
+            <span class="text-truncate" *ngIf="user_address == ZERO_ADDR"><span class="text-danger">●</span> <ng-container i18n="@@investorOnboardingConnectStatus">No Wallet Connected</ng-container></span>
           </div>
           <div class="card-body text-center text-md-left">
             <div *ngIf="user_address == ZERO_ADDR">

@@ -2,10 +2,10 @@
   <div class="container-fluid px-md-5">
 
     <div class="navbar-text p-0">
-      <h6 class="header-pretitle text-muted mb-1 time-left-title" i18n>
+      <h6 class="header-pretitle text-muted mb-1 time-left-title" i18n="@@headerTimeCounterTitle">
         Time left {{phaseActionText()}}
       </h6>
-      <h4 class="header-title text-secondary time-left-value" i18n>
+      <h4 class="header-title text-secondary time-left-value" i18n="@@headerTimeCounterUnits">
         {{days}}d {{hours}}h {{minutes}}m {{seconds}}s
       </h4>
     </div>
@@ -22,7 +22,7 @@
       </div>
       <!--Account display-->
       <button class="btn btn-white text-truncate" style="width: 12rem;" (click)="reloadAll()" *ngIf="user_address !== ZERO_ADDR"><span class="text-success">●</span> {{user_address}}</button>
-      <button class="btn btn-white text-truncate" (click)="reloadAll()" *ngIf="user_address == ZERO_ADDR" i18n><span class="text-danger">●</span> Connect Wallet </button>
+      <button class="btn btn-white text-truncate" (click)="reloadAll()" *ngIf="user_address == ZERO_ADDR" i18n="@@header"><span class="text-danger">●</span> Connect Wallet </button>
     </div>
   </div>
 </nav>
@@ -30,7 +30,7 @@
 <!-- PREHADER
 ================================================== -->
 <div *ngIf="errorMsg !== '' ">
-  <div class="alert alert-warning rounded-0 mb-0" i18n>
+  <div class="alert alert-warning rounded-0 mb-0" i18n="@@headerErrorMsg">
     {{errorMsg}}
   </div>
 </div>
@@ -40,7 +40,7 @@
   <div class="modal-dialog modal-dialog-vertical bg-white" role="document">
     <div class="modal-content">
       <div class="modal-header border-0">
-        <h4 class="modal-title" i18n>
+        <h4 class="modal-title" i18n="@@headerGetUpdateModalTitle">
           Get notified by e-mail
         </h4>
         <!-- Close -->
@@ -52,19 +52,19 @@
         <div class="media mb-4 mb-lg-3">
           <i class="fe fe-check text-green mr-3"></i>
           <div class="media-body">
-            <h6 class="header-pretitle" i18n>
+            <h6 class="header-pretitle" i18n="@@headerGetUpdateModalSubtitle1">
               Capital connection
             </h6>
-            <p i18n>Get updated when you can connect or withdraw your capital.</p>
+            <p i18n="@@headerGetUpdateModalText1">Get updated when you can connect or withdraw your capital.</p>
           </div>
         </div>
         <div class="media mb-4 mb-lg-3">
           <i class="fe fe-check text-green mr-3"></i>
           <div class="media-body">
-            <h6 class="header-pretitle" i18n>
+            <h6 class="header-pretitle" i18n="@@headerGetUpdateModalSubtitle2">
               Monthly performance results
             </h6>
-            <p i18n>
+            <p i18n="@@headerGetUpdateModalText2">
               Get insights into how your holdings perform month by month.
             </p>
           </div>
@@ -72,10 +72,10 @@
         <div class="media mb-4 mb-lg-3">
           <i class="fe fe-check text-green mr-3"></i>
           <div class="media-body">
-            <h6 class="header-pretitle" i18n>
+            <h6 class="header-pretitle" i18n="@@headerGetUpdateModalSubtitle3">
               Manager commissions
             </h6>
-            <p i18n>
+            <p i18n="@@headerGetUpdateModalText3">
               Be the first to know when to redeem your manager's commissions.
             </p>
           </div>

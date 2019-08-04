@@ -2,21 +2,21 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="en" datatype="plaintext" original="ng2.template">
     <body>
-      <trans-unit id="a43ce6d625ce7fa39e6e8a37a352bd28b3fa1949" datatype="html">
+      <trans-unit id="appFetchingText" datatype="html">
         <source>Fetching data</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/app.component.html</context>
           <context context-type="linenumber">8</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1d9c489311566cb99018d072e9728be6871f7eec" datatype="html">
+      <trans-unit id="appHiTitle" datatype="html">
         <source>Hi, welcome!</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/app.component.html</context>
           <context context-type="linenumber">17</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="074e3b5ed1a444e0c2109dba7756ececeb4b9911" datatype="html">
+      <trans-unit id="appWeb3Warning" datatype="html">
         <source>Be sure to enable Metamask or visit this page in a Web3 browser to
               interact with Betoken on the Ethereum Mainnet.</source>
         <context-group purpose="location">
@@ -24,7 +24,7 @@
           <context context-type="linenumber">18</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="80a8eebc6412b015eb41e69c25da35a5659f42bf" datatype="html">
+      <trans-unit id="appCtaMetamask" datatype="html">
         <source>Get
               Metamask</source>
         <context-group purpose="location">
@@ -32,7 +32,7 @@
           <context context-type="linenumber">20</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="717c5ccaa60445041977b2425d0d2d680b795b13" datatype="html">
+      <trans-unit id="appCtaTrust" datatype="html">
         <source>Get Trust Wallet</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/app.component.html</context>

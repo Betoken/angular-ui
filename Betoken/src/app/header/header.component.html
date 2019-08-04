@@ -14,6 +14,14 @@
     <div class="navbar-user">
       <div class="mr-4 d-none d-md-flex">
         <!-- Toggle -->
+        <a class="text-muted" data-toggle="modal" href="#modalLanguage">
+          <span class="icon">
+            <img src="assets/img/icons/baseline-translate-24px.svg" alt="">
+          </span>
+        </a>
+      </div>
+      <div class="mr-4 d-none d-md-flex">
+        <!-- Toggle -->
         <a class="text-muted mt-3" data-toggle="modal" href="#modalEmailUpdates">
           <span class="icon active">
             <i class="fe fe-bell"></i>
@@ -106,6 +114,37 @@
               <img class="mx-auto" src="assets/img/icons/github.svg" alt="medium logo" height="20">
             </a>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div><!-- / modal -->
+
+<!-- Languages modal -->
+<div class="modal fade fixed-right" id="modalLanguage" tabindex="-1" role="dialog" i18n-aria-labelledby aria-hidden="true">
+  <div class="modal-dialog modal-dialog-vertical bg-white" role="document">
+    <div class="modal-content">
+      <div class="modal-header border-0">
+        <h4 class="modal-title" i18n="@@headerLanguageModalTitle">
+          Switch to another language
+        </h4>
+        <!-- Close -->
+        <button type="button" class="close" data-dismiss="modal" i18n-aria-label aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body pb-5">
+        <div class="custom-control custom-radio mb-4">
+          <input type="radio" id="English" name="customRadio" class="custom-control-input" checked>
+          <label class="custom-control-label" for="English">English</label>
+        </div>
+        <div class="custom-control custom-radio mb-4">
+          <input type="radio" id="Chinese" name="customRadio" class="custom-control-input">
+          <label class="custom-control-label" for="Chinese">Chinese</label>
+        </div>
+        <div class="custom-control custom-radio">
+          <input type="radio" id="French" name="customRadio" class="custom-control-input">
+          <label class="custom-control-label" for="French">French</label>
         </div>
       </div>
     </div>

@@ -64,15 +64,6 @@
           <context context-type="linenumber">33</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="headerErrorMsg" datatype="html">
-        <source>
-    <x id="INTERPOLATION" equiv-text="{{errorMsg}}"/>
-  </source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/header/header.component.html</context>
-          <context context-type="linenumber">41</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="headerGetUpdateModalTitle" datatype="html">
         <source>
           Get notified by e-mail

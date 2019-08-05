@@ -20,7 +20,7 @@
 <div class="container-fluid pb-6 px-md-5">
   <div class="card-deck mb-4">
     <!-- Card -->
-    <div class="card" data-toggle="tooltip" data-html="true" i18n-title
+    <div class="card" data-toggle="tooltip" data-html="true" i18n-title="@@commissionsExpectedCommissionThisMonthAttrTitle"
       title="<strong>20%</strong> of the fund's profit and <strong>0.1%</strong> of the AUM is set aside as commissions every month, which is paid to managers proportional to the Kairo they hold. The estimate displayed here is calculated using the current fund ROI.">
       <div class="card-body">
         <div class="row align-items-center">
@@ -48,7 +48,7 @@
       </div>
     </div>
     <!-- Card -->
-    <div class="card" data-toggle="tooltip" data-html="true" i18n-title
+    <div class="card" data-toggle="tooltip" data-html="true" i18n-title="@@commissionsTotalCommissionsReceivedAttrTitle"
       title="The total amount of commission you have received throughout your manager career.">
       <div class="card-body">
         <div class="row align-items-center">
@@ -198,7 +198,7 @@
           That's an error
         </h4>
         <!-- Close -->
-        <button type="button" class="close" data-dismiss="modal" i18n-aria-label aria-label="Close">
+        <button type="button" class="close" data-dismiss="modal" i18n-aria-label="@@commissionsRedeemModalAriaLabelClose" aria-label="Close">
           <span aria-hidden="true">×</span>
         </button>
       </div>
@@ -258,7 +258,7 @@
                         <p class="small" i18n="@@commissionsRedeemModalAdvancedOptionText">Only use this when normal redemption fails</p>
                         <form>
                           <input type="number" min="0" [max]="cycle - 1" class="form-control form-control-lg mb-2"
-                            i18n-aria-describedby aria-describedby="cycle for which to redeem commission"
+                            i18n-aria-describedby="@@commissionsRedeemModalAdvancedOptionTextAriaDescribedby" aria-describedby="cycle for which to redeem commission"
                             placeholder="0" id="redeem-commission-cycle-input">
                         </form>
                       </div>
@@ -311,7 +311,7 @@
           <div class="form-group">
             <label for="exampleFormControlInput1" i18n="@@commissionsRedeemModalBodyTxHashStep2">Transaction hash</label>
             <div class="input-group mb-3">
-              <input type="text" class="form-control form-control-lg" value="{{transactionId}}" i18n-aria-label
+              <input type="text" class="form-control form-control-lg" value="{{transactionId}}" i18n-aria-label="@@commissionsRedeemModalBodyTxHashStep2ArialLabel"
                 aria-label="Transaction hash">
               <div class="input-group-append">
                 <a class="btn btn-white h-100 d-flex align-items-center"

@@ -16,7 +16,7 @@
 <div class="container-fluid pb-6 px-md-5">
   <div class="card-deck mb-5">
     <!-- Card -->
-    <div class="card" data-toggle="tooltip" data-html="true" i18n-title title="Amount of Betoken's AUM you manage. The more Kairo you own, the more money you will manage.">
+    <div class="card" data-toggle="tooltip" data-html="true" i18n-title="@@investmentsPortfolioValueAttrTitle" title="Amount of Betoken's AUM you manage. The more Kairo you own, the more money you will manage.">
       <div class="card-body">
         <div class="row align-items-center">
           <div class="col">
@@ -38,7 +38,7 @@
       </div>
     </div>
     <!-- Card -->
-    <div class="card" data-toggle="tooltip" data-html="true" i18n-title title="The more Kairo you own, the more money you will manage, the more commission you will receive. You can earn Kairo by making profitable investments for the Betoken fund.">
+    <div class="card" data-toggle="tooltip" data-html="true" i18n-title="@@investmentsKroBalanceAttrTitle" title="The more Kairo you own, the more money you will manage, the more commission you will receive. You can earn Kairo by making profitable investments for the Betoken fund.">
       <div class="card-body">
         <div class="row align-items-center">
           <div class="col">
@@ -70,7 +70,7 @@
       </div>
     </div>
     <!-- Card -->
-    <div class="card" data-toggle="tooltip" data-html="true" i18n-title title="The more Kairo you stake, the more of Betoken's money you put at work, the more commissions you earn.">
+    <div class="card" data-toggle="tooltip" data-html="true" i18n-title="@@investmentsRiskTakenAttrTitle" title="The more Kairo you stake, the more of Betoken's money you put at work, the more commissions you earn.">
       <div class="card-body">
         <div class="row align-items-center">
           <div class="col">
@@ -123,7 +123,7 @@
       </div>
     </div>
     <!-- Card -->
-    <div class="card" data-toggle="tooltip" data-html="true" i18n-title title="<strong>20%</strong> of the fund's profit and <strong>0.1%</strong> of the AUM is set aside as commissions every month, which is paid to managers proportional to the Kairo they hold. The estimate displayed here is calculated using the current fund ROI.">
+    <div class="card" data-toggle="tooltip" data-html="true" i18n-title="@@investmentsEstimateCommissionAttrTitle" title="<strong>20%</strong> of the fund's profit and <strong>0.1%</strong> of the AUM is set aside as commissions every month, which is paid to managers proportional to the Kairo they hold. The estimate displayed here is calculated using the current fund ROI.">
       <div class="card-body">
         <div class="row align-items-center">
           <div class="col">
@@ -164,7 +164,7 @@
             </div>
             <div class="col-auto d-flex">
               <!--Tabs-->
-              <div class="nav nav-pills btn-group btn-group-sm mr-2" role="tablist" i18n-aria-label aria-label="Portfolio view" *ngIf="activeInvestmentList.length > 0">
+              <div class="nav nav-pills btn-group btn-group-sm mr-2" role="tablist" i18n-aria-label="@@investmentsActiveInvestmentsPortfolioViewAriaLabel" aria-label="Portfolio view" *ngIf="activeInvestmentList.length > 0">
                 <button class="nav-link btn btn-white active border-right-0" id="pills-investments-tab" data-toggle="pill"
                   href="#pills-investments" role="tab" aria-controls="pills-investments" aria-selected="true"><i
                     class="fe fe-list align-middle"></i></button>
@@ -427,7 +427,7 @@
           That's an error
         </h4>
         <!-- Close -->
-        <button type="button" class="close" data-dismiss="modal" i18n-aria-label aria-label="Close">
+        <button type="button" class="close" data-dismiss="modal" i18n-aria-label="@@investmentsBuyModalCloseAriaLabel" aria-label="Close">
           <span aria-hidden="true">×</span>
         </button>
       </div>
@@ -460,7 +460,7 @@
       <div class="card-header" *ngIf="createInvestmentPopupStep === 0">
         <form>
           <div class="input-group input-group-flush input-group-merge">
-            <input type="search" class="form-control form-control-prepended search" i18n-placeholder placeholder="Search"
+            <input type="search" class="form-control form-control-prepended search" i18n-placeholder="@@investmentsSearchListAssetsPlaceholder" placeholder="Search"
               (keyup)="filterList($event, 'asset-list', 0)">
             <div class="input-group-prepend">
               <div class="input-group-text">
@@ -720,7 +720,7 @@
       </div>
       <div class="modal-footer" *ngIf="createInvestmentPopupStep === 4">
         <!-- Close button for step 4 -->
-        <button type="submit" class="btn btn-block btn-white mt-auto" data-dismiss="modal" i18n-aria-label aria-label="Close" i18n="@@investmentsModalBuyCloseStep4">
+        <button type="submit" class="btn btn-block btn-white mt-auto" data-dismiss="modal" i18n-aria-label="@@investmentsModalBuyCloseStep4AriaLabel" aria-label="Close" i18n="@@investmentsModalBuyCloseStep4">
           Close
         </button>
       </div>
@@ -770,7 +770,7 @@
           That's an error
         </h4>
         <!-- Close -->
-        <button type="button" class="close" data-dismiss="modal" i18n-aria-label aria-label="Close">
+        <button type="button" class="close" data-dismiss="modal" i18n-aria-label="@@investmentsModalSellCloseAriaLabel" aria-label="Close">
           <span aria-hidden="true">×</span>
         </button>
       </div>
@@ -1051,7 +1051,7 @@
       </div>
       <div class="modal-footer" *ngIf="sellInvestmentPopupStep === 3">
         <!-- close button panel after Asset being sold -->
-        <button type="submit" class="btn btn-block btn-white mt-auto" data-dismiss="modal" i18n-aria-label aria-label="Close" i18n="@@investmentsModalSellCtaClose">
+        <button type="submit" class="btn btn-block btn-white mt-auto" data-dismiss="modal" i18n-aria-label="@@investmentsModalSellCtaCloseAriaLabel" aria-label="Close" i18n="@@investmentsModalSellCtaClose">
           Close
         </button>
       </div>
@@ -1092,7 +1092,7 @@
           That's an error
         </h4>
         <!-- Close -->
-        <button type="button" class="close" data-dismiss="modal" i18n-aria-label aria-label="Close">
+        <button type="button" class="close" data-dismiss="modal" i18n-aria-label="@@investmentsModalTopUpCloseAriaLabel" aria-label="Close">
           <span aria-hidden="true">×</span>
         </button>
       </div>
@@ -1254,7 +1254,7 @@
       </div>
       <div class="modal-footer" *ngIf="topupPopupStep === 3">
         <!-- close button panel after Asset being sold -->
-        <button type="submit" class="btn btn-block btn-white mt-auto" data-dismiss="modal" i18n-aria-label aria-label="Close" i18n="@@investmentsModalTopUpCtaClose">
+        <button type="submit" class="btn btn-block btn-white mt-auto" data-dismiss="modal" i18n-aria-label="@@investmentsModalTopUpCtaCloseAriaLabel" aria-label="Close" i18n="@@investmentsModalTopUpCtaClose">
           Close
         </button>
       </div>

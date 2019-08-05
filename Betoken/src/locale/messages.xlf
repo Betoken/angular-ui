@@ -73,83 +73,11 @@
           <context context-type="linenumber">51</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="f4e529ae5ffd73001d1ff4bbdeeb0a72e342e5c8" datatype="html">
+      <trans-unit id="headerGetUpdateModalAriaLabel" datatype="html">
         <source>Close</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/header/header.component.html</context>
           <context context-type="linenumber">55</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/header/header.component.html</context>
-          <context context-type="linenumber">132</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">430</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">723</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">773</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">1054</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">1095</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">1257</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/commissions/commissions.component.html</context>
-          <context context-type="linenumber">201</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/investor/investor.component.html</context>
-          <context context-type="linenumber">370</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/investor/investor.component.html</context>
-          <context context-type="linenumber">420</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/investor/investor.component.html</context>
-          <context context-type="linenumber">641</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/investor/investor.component.html</context>
-          <context context-type="linenumber">689</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/investor/investor.component.html</context>
-          <context context-type="linenumber">853</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
-          <context context-type="linenumber">315</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
-          <context context-type="linenumber">367</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
-          <context context-type="linenumber">409</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
-          <context context-type="linenumber">343</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
-          <context context-type="linenumber">383</context>
         </context-group>
       </trans-unit>
       <trans-unit id="headerGetUpdateModalSubtitle1" datatype="html">
@@ -204,23 +132,18 @@
           <context context-type="linenumber">86</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5d49190b692514ec7d12f0a3d3decba96b364226" datatype="html">
+      <trans-unit id="headerGetUpdateModalPlaceholder" datatype="html">
         <source>myemail@address.com</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/header/header.component.html</context>
           <context context-type="linenumber">93</context>
         </context-group>
+      </trans-unit>
+      <trans-unit id="headerGetUpdateModalAriaDescribedby" datatype="html">
+        <source>Get update modal by email</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/investor/investor.component.html</context>
-          <context context-type="linenumber">392</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/investor/investor.component.html</context>
-          <context context-type="linenumber">883</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
-          <context context-type="linenumber">339</context>
+          <context context-type="sourcefile">app/header/header.component.html</context>
+          <context context-type="linenumber">47</context>
         </context-group>
       </trans-unit>
       <trans-unit id="headerLanguageModalTitle" datatype="html">
@@ -232,7 +155,25 @@
           <context context-type="linenumber">128</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="319e0745bcbc132451569294fa2fa21bf10f555a" datatype="html">
+      <trans-unit id="f4e529ae5ffd73001d1ff4bbdeeb0a72e342e5c8" datatype="html">
+        <source>Close</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/header/header.component.html</context>
+          <context context-type="linenumber">132</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">689</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="headerLanguageModalAriaDescribedby" datatype="html">
+        <source>Switch to another language</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/header/header.component.html</context>
+          <context context-type="linenumber">124</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="sidebarBurgerIconAriaLabel" datatype="html">
         <source>Toggle navigation</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/side-nav/side-nav.component.html</context>
@@ -396,14 +337,14 @@
           <context context-type="linenumber">120</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="9c8783d708e50b5fd6a09c34125bbef9b6d46624" datatype="html">
+      <trans-unit id="sidebarColorSchemeValueLight" datatype="html">
         <source>light</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/side-nav/side-nav.component.html</context>
           <context context-type="linenumber">128</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="32b06a6e7ec66638fab3ba510c70bd80e4fe97c2" datatype="html">
+      <trans-unit id="sidebarColorSchemeValueDark" datatype="html">
         <source>dark</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/side-nav/side-nav.component.html</context>
@@ -472,15 +413,11 @@
           <context context-type="linenumber">23</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="c2593f242a22f562573bbd15e018f1d864843174" datatype="html">
+      <trans-unit id="dashboardPortfolioValueAttrTitle" datatype="html">
         <source>Amount of Betoken&apos;s AUM you manage. The more Kairo you own, the more money you will manage.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/dashboard/dashboard.component.html</context>
           <context context-type="linenumber">17</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">19</context>
         </context-group>
       </trans-unit>
       <trans-unit id="dashboardKroBalanceTitle" datatype="html">
@@ -492,7 +429,7 @@
           <context context-type="linenumber">50</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="db00962f6bc436eed12fbdc4785e4f4a6293fe39" datatype="html">
+      <trans-unit id="dashboardKroBalanceAttrTitle" datatype="html">
         <source>The more Kairo you own, the more money you will manage, the more commission you will receive. You will be able to earn Kairo by making profitable investments for the Betoken fund.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/dashboard/dashboard.component.html</context>
@@ -508,19 +445,11 @@
           <context context-type="linenumber">82</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="56a61a2b8f3273c6d10c44db61cf85c667424275" datatype="html">
+      <trans-unit id="dashboardEstimateCommissionAttrTitle" datatype="html">
         <source>&lt;strong&gt;20%&lt;/strong&gt; of the fund&apos;s profit and &lt;strong&gt;0.1%&lt;/strong&gt; of the AUM is set aside as commissions every month, which is paid to managers proportional to the Kairo they hold. The estimate displayed here is calculated using the current fund ROI.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/dashboard/dashboard.component.html</context>
           <context context-type="linenumber">76</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">126</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/commissions/commissions.component.html</context>
-          <context context-type="linenumber">24</context>
         </context-group>
       </trans-unit>
       <trans-unit id="dashboardYourRankingTitle" datatype="html">
@@ -532,7 +461,7 @@
           <context context-type="linenumber">110</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8b84c3f76920c6cf5fa02f7798d0e0ac5a288d17" datatype="html">
+      <trans-unit id="dashboardYourRankingAttrTitle" datatype="html">
         <source>Your ranking among Betoken&apos;s managers based on your Kairo balance</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/dashboard/dashboard.component.html</context>
@@ -593,15 +522,11 @@
           <context context-type="linenumber">250</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="aaf8ec33860386addad88fb8bd5fbae438b3074a" datatype="html">
+      <trans-unit id="dashboardStdDeviationAttrTitle" datatype="html">
         <source>Standard deviation represents the volatility of an asset. The number shown here is the sample standard deviation of Betoken Shares&apos; price since inception.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/dashboard/dashboard.component.html</context>
           <context context-type="linenumber">244</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/investor/investor.component.html</context>
-          <context context-type="linenumber">209</context>
         </context-group>
       </trans-unit>
       <trans-unit id="dashboardTotalFundManagersTitle" datatype="html">
@@ -613,7 +538,7 @@
           <context context-type="linenumber">277</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="e6dbd7ed2cda80c95a9e267f38805c9d7f1adb9b" datatype="html">
+      <trans-unit id="dashboardTotalFundManagersAttrTitle" datatype="html">
         <source>Number of fund managers actively managing Betoken&apos;s assets.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/dashboard/dashboard.component.html</context>
@@ -645,6 +570,13 @@
           <context context-type="linenumber">24</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="investmentsPortfolioValueAttrTitle" datatype="html">
+        <source>Amount of Betoken&apos;s AUM you manage. The more Kairo you own, the more money you will manage.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="investmentsKroBalanceTitle" datatype="html">
         <source>
               Your Kairo Balance
@@ -654,7 +586,7 @@
           <context context-type="linenumber">47</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="f893be84b6a7c76ed06de7b96458ec55d1bafc40" datatype="html">
+      <trans-unit id="investmentsKroBalanceAttrTitle" datatype="html">
         <source>The more Kairo you own, the more money you will manage, the more commission you will receive. You can earn Kairo by making profitable investments for the Betoken fund.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
@@ -670,7 +602,7 @@
           <context context-type="linenumber">80</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="77dd0a140b9cdba7cead2c192ef4ab7d3830830e" datatype="html">
+      <trans-unit id="investmentsRiskTakenAttrTitle" datatype="html">
         <source>The more Kairo you stake, the more of Betoken&apos;s money you put at work, the more commissions you earn.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
@@ -686,6 +618,13 @@
           <context context-type="linenumber">132</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="investmentsEstimateCommissionAttrTitle" datatype="html">
+        <source>&lt;strong&gt;20%&lt;/strong&gt; of the fund&apos;s profit and &lt;strong&gt;0.1%&lt;/strong&gt; of the AUM is set aside as commissions every month, which is paid to managers proportional to the Kairo they hold. The estimate displayed here is calculated using the current fund ROI.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">126</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="investmentsActiveInvestmentsTableTitle" datatype="html">
         <source>
                 Active Investments
@@ -695,7 +634,7 @@
           <context context-type="linenumber">161</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="70905830ea6a6206fafd4e9e0b996f488ab5f2c7" datatype="html">
+      <trans-unit id="investmentsActiveInvestmentsPortfolioViewAriaLabel" datatype="html">
         <source>Portfolio view</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
@@ -841,15 +780,18 @@
           <context context-type="linenumber">426</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7e892ba15f2c6c17e83510e273b3e10fc32ea016" datatype="html">
+      <trans-unit id="investmentsBuyModalCloseAriaLabel" datatype="html">
+        <source>Close</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">430</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investmentsSearchListAssetsPlaceholder" datatype="html">
         <source>Search</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
           <context context-type="linenumber">463</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/rankings/rankings.component.html</context>
-          <context context-type="linenumber">49</context>
         </context-group>
       </trans-unit>
       <trans-unit id="investmentsBuyModalAssetLabelMarginTrading" datatype="html">
@@ -1071,6 +1013,13 @@
           <context context-type="linenumber">723</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="investmentsModalBuyCloseStep4AriaLabel" datatype="html">
+        <source>Close</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">723</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="investmentsModalBuyErrorTryAgain" datatype="html">
         <source>
           Try again
@@ -1135,6 +1084,13 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
           <context context-type="linenumber">769</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investmentsModalSellCloseAriaLabel" datatype="html">
+        <source>Close</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">773</context>
         </context-group>
       </trans-unit>
       <trans-unit id="investmentsModalSellOrderBuyTime" datatype="html">
@@ -1400,6 +1356,13 @@
           <context context-type="linenumber">1054</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="investmentsModalSellCtaCloseAriaLabel" datatype="html">
+        <source>Close</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">1054</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="investmentsModalSellErrorCtaTryAgain" datatype="html">
         <source>
           Try again
@@ -1452,6 +1415,13 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
           <context context-type="linenumber">1091</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investmentsModalTopUpCloseAriaLabel" datatype="html">
+        <source>Close</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">1095</context>
         </context-group>
       </trans-unit>
       <trans-unit id="investmentsModalTopUpCollStatus" datatype="html">
@@ -1596,6 +1566,13 @@
           <context context-type="linenumber">1257</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="investmentsModalTopUpCtaCloseAriaLabel" datatype="html">
+        <source>Close</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">1257</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="investmentsModalTopUpCtaTryAgain" datatype="html">
         <source>
           Try again
@@ -1655,7 +1632,7 @@
           <context context-type="linenumber">41</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="f5fa61994f2167f8636034791988f8e1572f1d92" datatype="html">
+      <trans-unit id="upgradeCardTimeLeftIllustrationAttrAlt" datatype="html">
         <source>illustration Woman and dog with a active spinner</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/upgrade/upgrade.component.html</context>
@@ -1687,6 +1664,13 @@
           <context context-type="linenumber">30</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="commissionsExpectedCommissionThisMonthAttrTitle" datatype="html">
+        <source>&lt;strong&gt;20%&lt;/strong&gt; of the fund&apos;s profit and &lt;strong&gt;0.1%&lt;/strong&gt; of the AUM is set aside as commissions every month, which is paid to managers proportional to the Kairo they hold. The estimate displayed here is calculated using the current fund ROI.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/commissions/commissions.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="commissionsTotalCommissionsReceived" datatype="html">
         <source>
               Total Commission Received
@@ -1696,7 +1680,7 @@
           <context context-type="linenumber">58</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="e7dec66d3f1aad57c96919899a93eb86bc82eb77" datatype="html">
+      <trans-unit id="commissionsTotalCommissionsReceivedAttrTitle" datatype="html">
         <source>The total amount of commission you have received throughout your manager career.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/commissions/commissions.component.html</context>
@@ -1815,6 +1799,13 @@
           <context context-type="linenumber">197</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="commissionsRedeemModalAriaLabelClose" datatype="html">
+        <source>Close</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/commissions/commissions.component.html</context>
+          <context context-type="linenumber">201</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="commissionsRedeemModalBodyStep1Title" datatype="html">
         <source>
               This month&apos;s commission
@@ -1849,7 +1840,7 @@
           <context context-type="linenumber">258</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8acf0a0e5037a82799a421dfa59c53a79cf286aa" datatype="html">
+      <trans-unit id="commissionsRedeemModalAdvancedOptionTextAriaDescribedby" datatype="html">
         <source>cycle for which to redeem commission</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/commissions/commissions.component.html</context>
@@ -1920,27 +1911,11 @@
           <context context-type="linenumber">312</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="201ab57435f901ed644f55a97267a9be93ad7146" datatype="html">
+      <trans-unit id="commissionsRedeemModalBodyTxHashStep2ArialLabel" datatype="html">
         <source>Transaction hash</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/commissions/commissions.component.html</context>
           <context context-type="linenumber">315</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/investor/investor.component.html</context>
-          <context context-type="linenumber">794</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
-          <context context-type="linenumber">511</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
-          <context context-type="linenumber">542</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
-          <context context-type="linenumber">529</context>
         </context-group>
       </trans-unit>
       <trans-unit id="commissionsRedeemModalBodyTextStep3" datatype="html">
@@ -2027,6 +2002,13 @@
           <context context-type="linenumber">36</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="rankingsSearchPlaceholder" datatype="html">
+        <source>Search</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/rankings/rankings.component.html</context>
+          <context context-type="linenumber">49</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="rankingsThRank" datatype="html">
         <source>Rank</source>
         <context-group purpose="location">
@@ -2099,7 +2081,7 @@
           <context context-type="linenumber">22</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8f27ab1163ec68fab1944f612572a27ec423449e" datatype="html">
+      <trans-unit id="investorBtksBalanceAttrTitle" datatype="html">
         <source>The amount of Betoken Shares (BTKS) you own.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investor/investor.component.html</context>
@@ -2115,7 +2097,7 @@
           <context context-type="linenumber">49</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="f7180491e05e70a906d451150b4a589c075ba1d0" datatype="html">
+      <trans-unit id="investorBtksTotalValueDaiAttrTitle" datatype="html">
         <source>The value of your Betoken Shares, in DAI Stablecoin.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investor/investor.component.html</context>
@@ -2131,7 +2113,7 @@
           <context context-type="linenumber">76</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="db635a8d177216ef7658e3450149bb6e410bab48" datatype="html">
+      <trans-unit id="investorBtksPriceAttrTitle" datatype="html">
         <source>The price of 1 Betoken Share token.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investor/investor.component.html</context>
@@ -2174,7 +2156,7 @@
           <context context-type="linenumber">188</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="aa7dbd7328ae60adcae4668b248471f0ad82ca69" datatype="html">
+      <trans-unit id="investorMaxDrawdownAttrTitle" datatype="html">
         <source>A maximum drawdown (MDD) is the maximum observed loss from a peak to a trough of a portfolio, before a new peak is attained. Maximum drawdown is an indicator of downside risk over a specified time period.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investor/investor.component.html</context>
@@ -2188,6 +2170,13 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/investor/investor.component.html</context>
           <context context-type="linenumber">215</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorStandardDeviationAttrTitle" datatype="html">
+        <source>Standard deviation represents the volatility of an asset. The number shown here is the sample standard deviation of Betoken Shares&apos; price since inception.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">209</context>
         </context-group>
       </trans-unit>
       <trans-unit id="investorDepositWithdrawHistoryTitle" datatype="html">
@@ -2331,6 +2320,13 @@
           <context context-type="linenumber">366</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="investorBuyBtksModalOperationNonPermittedAriaLabel" datatype="html">
+        <source>Close</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">370</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="investorBuyBtksModalTimeLeftUntilPermission" datatype="html">
         <source>
           Time left until operation allowed
@@ -2349,15 +2345,11 @@
           <context context-type="linenumber">382</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="e2dcf27db9c6a5e249960c576014aa40b3883360" datatype="html">
+      <trans-unit id="investorBuyBtksModalTimeleftCountDownLearnMoreAttrTitle" datatype="html">
         <source>Learn more</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investor/investor.component.html</context>
           <context context-type="linenumber">384</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/investor/investor.component.html</context>
-          <context context-type="linenumber">875</context>
         </context-group>
       </trans-unit>
       <trans-unit id="investorBuyBtksModalEmailNotifLabel" datatype="html">
@@ -2365,6 +2357,13 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/investor/investor.component.html</context>
           <context context-type="linenumber">390</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorBuyBtksModalEmailNotifPlaceholder" datatype="html">
+        <source>myemail@address.com</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">392</context>
         </context-group>
       </trans-unit>
       <trans-unit id="investorBuyBtksModalFollow" datatype="html">
@@ -2378,6 +2377,13 @@
         <source>
           Close
         </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">420</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorBuyBtksModalNotAllowedCtaCloseAriaLabel" datatype="html">
+        <source>Close</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investor/investor.component.html</context>
           <context context-type="linenumber">420</context>
@@ -2572,7 +2578,7 @@
           <context context-type="linenumber">632</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2e3a591376e8d325cdeb7f98d566b763fe6e9e12" datatype="html">
+      <trans-unit id="investorBuyBtksModalCtaBuyAriaLabel" datatype="html">
         <source>BuyBTKS</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investor/investor.component.html</context>
@@ -2588,7 +2594,7 @@
           <context context-type="linenumber">637</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="a9842fcbc1847547a2c485870d20d2a1924f27b3" datatype="html">
+      <trans-unit id="investorBuyBtksModalCtaContinueAriaLabel" datatype="html">
         <source>Continue to Buy</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investor/investor.component.html</context>
@@ -2604,6 +2610,13 @@
           <context context-type="linenumber">642</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="investorBuyBtksModalCtaCloseAriaLabel" datatype="html">
+        <source>Close</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">641</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="investorBuyBtksModalCtaTryAgain" datatype="html">
         <source>
           Try again
@@ -2613,7 +2626,7 @@
           <context context-type="linenumber">647</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="bc22a9b838eed800a62c38fcb16425d8e255c7d1" datatype="html">
+      <trans-unit id="investorBuyBtksModalCtaTryAgainAriaLabel" datatype="html">
         <source>Try again</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investor/investor.component.html</context>
@@ -2753,6 +2766,13 @@
           <context context-type="linenumber">792</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="investorSellBtksModalTxHashStep2AriaLabel" datatype="html">
+        <source>Transaction hash</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">794</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="investorSellBtksModalTextStep3" datatype="html">
         <source>
             You sold <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span&gt;"/><x id="INTERPOLATION" equiv-text="{{sellSharesAmount.toFormat(6)}}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> BTKS for
@@ -2807,6 +2827,13 @@
           <context context-type="linenumber">854</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="investorSellBtksModalCtaCloseAriaLabel" datatype="html">
+        <source>Close</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">853</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="investorSellBtksModalCtaTryAgain" datatype="html">
         <source>
           Try again
@@ -2834,11 +2861,25 @@
           <context context-type="linenumber">873</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="investorSellBtksModalTimeLeftUnitsLearnMoreAttrTitle" datatype="html">
+        <source>Learn more</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">875</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="investorSellBtksModalEmailNotificationLabel" datatype="html">
         <source>Be notified by email 👇.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investor/investor.component.html</context>
           <context context-type="linenumber">881</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorSellBtksModalEmailNotificationPlaceholder" datatype="html">
+        <source>myemail@address.com</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">883</context>
         </context-group>
       </trans-unit>
       <trans-unit id="investorSellBtksModalFollowUs" datatype="html">
@@ -3293,6 +3334,13 @@
           <context context-type="linenumber">311</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="investorOnboardingBuyBtksModalCloseAriaLabel" datatype="html">
+        <source>Close</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">315</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="investorOnboardingBuyBtksModalTimeLeftTitle" datatype="html">
         <source>
               Time left until operation allowed
@@ -3318,6 +3366,13 @@
           <context context-type="linenumber">336</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="investorOnboardingBuyBtksModalEmailNotificationPlaceholder" datatype="html">
+        <source>myemail@address.com</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">339</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="investorOnboardingBuyBtksModalFollowUs" datatype="html">
         <source>Or follow us</source>
         <context-group purpose="location">
@@ -3329,6 +3384,13 @@
         <source>
               Close
             </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">367</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorOnboardingBuyBtksModalEmailNotificationCloseAriaLabel" datatype="html">
+        <source>Close</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
           <context context-type="linenumber">367</context>
@@ -3351,6 +3413,13 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
           <context context-type="linenumber">408</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorOnboardingBuyBtksModalRule2GoToDisclaimerAriaLabel" datatype="html">
+        <source>Close</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">409</context>
         </context-group>
       </trans-unit>
       <trans-unit id="investorOnboardingBuyBtksModalRule3" datatype="html">
@@ -3442,6 +3511,13 @@
           <context context-type="linenumber">508</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="investorOnboardingBuyBtksModalTxHashStep3AriaLabel" datatype="html">
+        <source>Transaction hash</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">511</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="investorOnboardingBuyBtksModalTextStep4" datatype="html">
         <source>
                   You bought <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span&gt;"/><x id="INTERPOLATION" equiv-text="{{buySharesAmount.toFormat(4)}}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> BTKS
@@ -3460,7 +3536,7 @@
           <context context-type="linenumber">534</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8a1138b41de76e997e04c11d134187b5bab24aa3" datatype="html">
+      <trans-unit id="investorOnboardingBuyBtksModalTweet" datatype="html">
         <source>https://twitter.com/intent/tweet?hashtags=Betoken%2C%20DeFi&amp;related=betokenfund&amp;text=I%27ve%20just%20connected%20my%20capital%20to%20Betoken%2C%20world%27s%20first%20crowd-powered%20cryptoassets%20management%20protocol!&amp;url=https%3A%2F%2Fbetoken.fund&amp;via=betokenfund</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
@@ -3472,6 +3548,13 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
           <context context-type="linenumber">539</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorOnboardingBuyBtksModalTxHashStep4AriaLabel" datatype="html">
+        <source>Transaction hash</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">542</context>
         </context-group>
       </trans-unit>
       <trans-unit id="investorOnboardingBuyBtksModalTextError" datatype="html">
@@ -3976,6 +4059,13 @@
           <context context-type="linenumber">339</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="managerOnboardingBuyBtksModalCloseAriaLabel" datatype="html">
+        <source>Close</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">343</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="managerOnboardingBuyBtksModalRule1" datatype="html">
         <source>You are NEITHER a citizen or
                   resident of, NOR currently located in any of the following states or territories, NOR an entity formed
@@ -3992,6 +4082,13 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
           <context context-type="linenumber">382</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="managerOnboardingBuyBtksModalRule2GoToDisclaimerAriaLabel" datatype="html">
+        <source>Close</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">383</context>
         </context-group>
       </trans-unit>
       <trans-unit id="managerOnboardingBuyBtksModalRule3" datatype="html">
@@ -4111,14 +4208,14 @@
           <context context-type="linenumber">515</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="managerOnboardingBuyBtksModalTweetIt" datatype="html">
+      <trans-unit id="managerOnboardingBuyBtksModalCtaTweet" datatype="html">
         <source>Tweet about it</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
           <context context-type="linenumber">521</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5f85fbbbfb899b42f7face9d552c6e39c1f85fd3" datatype="html">
+      <trans-unit id="managerOnboardingBuyBtksModalTweet" datatype="html">
         <source>https://twitter.com/intent/tweet?hashtags=Betoken%2C%20DeFi&amp;related=betokenfund&amp;text=I%27ve%20just%20joined%20Betoken%20as%20a%20fund%20manager%2C%20world%27s%20first%20crowd-powered%20cryptoassets%20management%20protocol!&amp;url=https%3A%2F%2Fbetoken.fund&amp;via=betokenfund</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
@@ -4130,6 +4227,13 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
           <context context-type="linenumber">526</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="managerOnboardingBuyBtksModalStep4TxHashAriaLabel" datatype="html">
+        <source>Transaction hash</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">529</context>
         </context-group>
       </trans-unit>
       <trans-unit id="managerOnboardingBuyBtksModalTextError" datatype="html">

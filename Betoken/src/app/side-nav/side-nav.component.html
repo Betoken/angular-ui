@@ -4,7 +4,7 @@
   <div class="container-fluid">
 
     <!-- Toggler -->
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidebarCollapse" aria-controls="sidebarCollapse" aria-expanded="false" i18n-aria-label aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidebarCollapse" aria-controls="sidebarCollapse" aria-expanded="false" i18n-aria-label="@@sidebarBurgerIconAriaLabel" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -15,7 +15,7 @@
     </a>
 
     <!-- notification -->
-    <div class="navbar-toggler d-flex align-items-center">
+    <div class="navbar-toggler d-flex d-md-none align-items-center">
       <!-- Toggle -->
       <a class="d-inline block mr-4" data-toggle="modal" href="#modalLanguage">
         <span class="icon">
@@ -125,10 +125,10 @@
       <form id="switchColor">
         <div class="btn-group-toggle d-flex btn-group-sm py-4 py-md-2" data-toggle="buttons">
           <label class="btn btn-white col">
-            <input type="radio" name="colorScheme" id="colorSchemeLight" i18n-value value="light" onchange="document.getElementById('switchColor').submit()"> <i class="fe fe-sun align-middle"></i>
+            <input type="radio" name="colorScheme" id="colorSchemeLight" i18n-value="@@sidebarColorSchemeValueLight" value="light" onchange="document.getElementById('switchColor').submit()"> <i class="fe fe-sun align-middle"></i>
           </label>
           <label class="btn btn-white col ml-2">
-            <input type="radio" name="colorScheme" id="colorSchemeDark" i18n-value value="dark" onchange="document.getElementById('switchColor').submit()"> <i class="fe fe-moon align-middle"></i>
+            <input type="radio" name="colorScheme" id="colorSchemeDark" i18n-value="@@sidebarColorSchemeValueDark" value="dark" onchange="document.getElementById('switchColor').submit()"> <i class="fe fe-moon align-middle"></i>
           </label>
         </div>
       </form>

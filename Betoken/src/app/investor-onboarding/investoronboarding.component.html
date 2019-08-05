@@ -312,7 +312,7 @@
               That's an error
             </h4>
             <!-- Close -->
-            <button type="button" class="close" data-dismiss="modal" i18n-aria-label aria-label="Close">
+            <button type="button" class="close" data-dismiss="modal" i18n-aria-label="@@investorOnboardingBuyBtksModalCloseAriaLabel" aria-label="Close">
               <span aria-hidden="true">×</span>
             </button>
           </div>
@@ -336,7 +336,7 @@
               <label class="text-secondary" for="mce-EMAIL" i18n="@@investorOnboardingBuyBtksModalEmailNotification">Be notified by email 👇</label>
               <div class="input-group input-group-lg">
                 <input class="form-control" type="email" value="" name="EMAIL" id="mce-EMAIL"
-                 i18n-placeholder placeholder="myemail@address.com" required>
+                 i18n-placeholder="@@investorOnboardingBuyBtksModalEmailNotificationPlaceholder" placeholder="myemail@address.com" required>
                 <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text"
                     name="b_9c0647dcb587985ed6121cdf6_150e0f091e" tabindex="-1" value=""></div>
                 <div class="input-group-append bg-black">
@@ -364,7 +364,7 @@
               </div>
             </div>
             <!-- Close button for buyStep 5 and buying not allowed page -->
-            <button type="submit" class="btn btn-block btn-white mt-auto" data-dismiss="modal" i18n-aria-label aria-label="Close" i18n="@@investorOnboardingBuyBtksModalCtaClose">
+            <button type="submit" class="btn btn-block btn-white mt-auto" data-dismiss="modal" i18n-aria-label="@@investorOnboardingBuyBtksModalEmailNotificationCloseAriaLabel" aria-label="Close" i18n="@@investorOnboardingBuyBtksModalCtaClose">
               Close
             </button>
           </div>
@@ -406,7 +406,7 @@
                   <input type="checkbox" class="custom-control-input" id="rule2"
                     (change)="checkboxes[1] = !checkboxes[1]">
                   <label class="custom-control-label small text-secondary" for="rule2" i18n="@@investorOnboardingBuyBtksModalRule2">You have read and understood our
-                    <a href="#/disclaimer" data-dismiss="modal" i18n-aria-label aria-label="Close">disclaimer</a>.</label>
+                    <a href="#/disclaimer" data-dismiss="modal" i18n-aria-label="@@investorOnboardingBuyBtksModalRule2GoToDisclaimerAriaLabel" aria-label="Close">disclaimer</a>.</label>
                 </div>
                 <div class="custom-control custom-checkbox mb-4">
                   <input type="checkbox" class="custom-control-input" id="rule3"
@@ -508,7 +508,7 @@
                     <label for="exampleFormControlInput1" i18n="@@investorOnboardingBuyBtksModalTxHashStep3">Transaction hash</label>
                     <div class="input-group mb-3">
                       <input type="text" class="form-control form-control-lg" value="{{transactionId}}"
-                       i18n-aria-label aria-label="Transaction hash">
+                       i18n-aria-label="@@investorOnboardingBuyBtksModalTxHashStep3AriaLabel" aria-label="Transaction hash">
                       <div class="input-group-append">
                         <a class="btn btn-white h-100 d-flex align-items-center"
                           href="https://etherscan.io/tx/{{transactionId}}" target="_blank"><i
@@ -530,7 +530,7 @@
                   using <span class="font-weight-bold text-secondary">{{buyTokenAmount.toFormat(4)}}</span>
                   {{selectedTokenSymbol}}.
                 </p>
-                <a target="_blank" i18n-href href="https://twitter.com/intent/tweet?hashtags=Betoken%2C%20DeFi&related=betokenfund&text=I%27ve%20just%20connected%20my%20capital%20to%20Betoken%2C%20world%27s%20first%20crowd-powered%20cryptoassets%20management%20protocol!&url=https%3A%2F%2Fbetoken.fund&via=betokenfund">
+                <a target="_blank" i18n-href="@@investorOnboardingBuyBtksModalTweet" href="https://twitter.com/intent/tweet?hashtags=Betoken%2C%20DeFi&related=betokenfund&text=I%27ve%20just%20connected%20my%20capital%20to%20Betoken%2C%20world%27s%20first%20crowd-powered%20cryptoassets%20management%20protocol!&url=https%3A%2F%2Fbetoken.fund&via=betokenfund">
                   <button class="btn btn-twitter btn-block" type="button" name="button" i18n="@@investorOnboardingBuyBtksModalCtaTweet">Tweet about it</button>
                 </a>
                 <hr>
@@ -539,7 +539,7 @@
                     <label for="exampleFormControlInput1" i18n="@@investorOnboardingBuyBtksModalTxHashStep4">Transaction hash</label>
                     <div class="input-group mb-3">
                       <input type="text" class="form-control form-control-lg" value="{{transactionId}}"
-                       i18n-aria-label aria-label="Transaction hash">
+                       i18n-aria-label="@@investorOnboardingBuyBtksModalTxHashStep4AriaLabel" aria-label="Transaction hash">
                       <div class="input-group-append">
                         <a class="btn btn-white h-100 d-flex align-items-center"
                           href="https://etherscan.io/tx/{{transactionId}}" target="_blank"><i

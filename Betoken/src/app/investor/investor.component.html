@@ -13,7 +13,7 @@
     <div class="header-body">
       <div class="card-deck mb-5">
         <!-- Card -->
-        <div class="card" data-toggle="tooltip" data-html="true" i18n-title title="The amount of Betoken Shares (BTKS) you own.">
+        <div class="card" data-toggle="tooltip" data-html="true" i18n-title="@@investorBtksBalanceAttrTitle" title="The amount of Betoken Shares (BTKS) you own.">
           <div class="card-body">
             <div class="row align-items-center">
               <div class="col">
@@ -40,7 +40,7 @@
           </div>
         </div>
         <!-- Card -->
-        <div class="card" data-toggle="tooltip" data-html="true" i18n-title title="The value of your Betoken Shares, in DAI Stablecoin.">
+        <div class="card" data-toggle="tooltip" data-html="true" i18n-title="@@investorBtksTotalValueDaiAttrTitle" title="The value of your Betoken Shares, in DAI Stablecoin.">
           <div class="card-body">
             <div class="row align-items-center">
               <div class="col">
@@ -67,7 +67,7 @@
           </div>
         </div>
         <!-- Card -->
-        <div class="card" data-toggle="tooltip" data-html="true" i18n-title title="The price of 1 Betoken Share token.">
+        <div class="card" data-toggle="tooltip" data-html="true" i18n-title="@@investorBtksPriceAttrTitle" title="The price of 1 Betoken Share token.">
           <div class="card-body">
             <div class="row align-items-center">
               <div class="col">
@@ -179,7 +179,7 @@
       </div>
     </div>
     <!-- Card -->
-    <div class="card" data-toggle="tooltip" data-html="true" i18n-title title="A maximum drawdown (MDD) is the maximum observed loss from a peak to a trough of a portfolio, before a new peak is attained. Maximum drawdown is an indicator of downside risk over a specified time period.">
+    <div class="card" data-toggle="tooltip" data-html="true" i18n-title="@@investorMaxDrawdownAttrTitle" title="A maximum drawdown (MDD) is the maximum observed loss from a peak to a trough of a portfolio, before a new peak is attained. Maximum drawdown is an indicator of downside risk over a specified time period.">
       <div class="card-body">
         <div class="row align-items-center">
           <div class="col">
@@ -206,7 +206,7 @@
       </div>
     </div>
     <!-- Card -->
-    <div class="card" data-toggle="tooltip" data-html="true" i18n-title title="Standard deviation represents the volatility of an asset. The number shown here is the sample standard deviation of Betoken Shares' price since inception.">
+    <div class="card" data-toggle="tooltip" data-html="true" i18n-title="@@investorStandardDeviationAttrTitle" title="Standard deviation represents the volatility of an asset. The number shown here is the sample standard deviation of Betoken Shares' price since inception.">
       <div class="card-body">
         <div class="row align-items-center">
           <div class="col">
@@ -367,7 +367,7 @@
           Operation not permitted
         </h4>
         <!-- Close -->
-        <button type="button" class="close" data-dismiss="modal" i18n-aria-label aria-label="Close">
+        <button type="button" class="close" data-dismiss="modal" i18n-aria-label="@@investorBuyBtksModalOperationNonPermittedAriaLabel" aria-label="Close">
           <span aria-hidden="true">×</span>
         </button>
       </div>
@@ -381,7 +381,7 @@
         </h6>
         <h4 class="header-title mb-4 text-center" i18n="@@investorBuyBtksModalTimeleftCountDown">
           {{days}}d {{hours}}h {{minutes}}m {{seconds}}s <a class="text-muted ml-2"
-            href="https://betoken.gitbook.io/docs/betoken-investment-cycle" i18n-title title="Learn more" target="_blank"><span
+            href="https://betoken.gitbook.io/docs/betoken-investment-cycle" i18n-title="@@investorBuyBtksModalTimeleftCountDownLearnMoreAttrTitle" title="Learn more" target="_blank"><span
               class="fe fe-help-circle"></span></a>
         </h4>
         <form action="https://fund.us17.list-manage.com/subscribe/post?u=9c0647dcb587985ed6121cdf6&amp;id=150e0f091e"
@@ -389,7 +389,7 @@
           class="validate mb-4 text-center" target="_blank" novalidate>
           <label class="text-secondary" for="mce-EMAIL" i18n="@@investorBuyBtksModalEmailNotifLabel">Be notified by email 👇.</label>
           <div class="input-group input-group-lg">
-            <input class="form-control" type="email" value="" name="EMAIL" id="mce-EMAIL" i18n-placeholder placeholder="myemail@address.com" required>
+            <input class="form-control" type="email" value="" name="EMAIL" id="mce-EMAIL" i18n-placeholder="@@investorBuyBtksModalEmailNotifPlaceholder" placeholder="myemail@address.com" required>
             <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text"
                 name="b_9c0647dcb587985ed6121cdf6_150e0f091e" tabindex="-1" value=""></div>
             <div class="input-group-append bg-black">
@@ -417,7 +417,7 @@
           </div>
         </div>
         <!-- Close button for buyStep 5 and buying not allowed page -->
-        <button type="submit" class="btn btn-block btn-white mt-auto" data-dismiss="modal" i18n-aria-label aria-label="Close" i18n="@@investorBuyBtksModalNotAllowedCtaClose">
+        <button type="submit" class="btn btn-block btn-white mt-auto" data-dismiss="modal" i18n-aria-label="@@investorBuyBtksModalNotAllowedCtaCloseAriaLabel" aria-label="Close" i18n="@@investorBuyBtksModalNotAllowedCtaClose">
           Close
         </button>
       </div>
@@ -628,22 +628,22 @@
 
 
         <!-- Continue button for buyStep 1 -->
-        <button type="submit" class="btn btn-block btn-success mt-auto" i18n-aria-label aria-label="BuyBTKS" *ngIf="buyStep == 0"
+        <button type="submit" class="btn btn-block btn-success mt-auto" i18n-aria-label="@@investorBuyBtksModalCtaBuyAriaLabel" aria-label="BuyBTKS" *ngIf="buyStep == 0"
           (click)="buyStep = agreementsChecked() ? 1 : 0" [ngClass]="{'disabled': !agreementsChecked()}" i18n="@@investorBuyBtksModalCtaBuy">
           Buy Betoken Shares
         </button>
         <!-- Continue button for buyStep 2 -->
-        <button type="submit" class="btn btn-block btn-success mt-auto" i18n-aria-label aria-label="Continue to Buy"
+        <button type="submit" class="btn btn-block btn-success mt-auto" i18n-aria-label="@@investorBuyBtksModalCtaContinueAriaLabel" aria-label="Continue to Buy"
           *ngIf="buyStep == 1" (click)="deposit();" [disabled]="!continueEnabled" i18n="@@investorBuyBtksModalCtaContinue">
           Continue
         </button>
         <!-- Close button for buyStep 4 -->
-        <button type="submit" class="btn btn-block btn-white mt-auto" data-dismiss="modal" i18n-aria-label aria-label="Close"
+        <button type="submit" class="btn btn-block btn-white mt-auto" data-dismiss="modal" i18n-aria-label="@@investorBuyBtksModalCtaCloseAriaLabel" aria-label="Close"
           *ngIf="buyStep == 4" i18n="@@investorBuyBtksModalCtaClose">
           Close
         </button>
         <!-- Try again button for error -->
-        <button type="submit" class="btn btn-block btn-white mt-auto" i18n-aria-label aria-label="Try again" *ngIf="buyStep == -1"
+        <button type="submit" class="btn btn-block btn-white mt-auto" i18n-aria-label="@@investorBuyBtksModalCtaTryAgainAriaLabel" aria-label="Try again" *ngIf="buyStep == -1"
           (click)="resetModals()" i18n="@@investorBuyBtksModalCtaTryAgain">
           Try again
         </button>
@@ -686,7 +686,7 @@
           </h4>
         </div>
         <!-- Close -->
-        <button type="button" class="close" data-dismiss="modal"  i18n-aria-label aria-label="Close">
+        <button type="button" class="close" data-dismiss="modal"  i18n-aria-label="@investorSellBtksModalCloseAriaLabel" aria-label="Close">
           <span aria-hidden="true">×</span>
         </button>
       </div>
@@ -791,7 +791,7 @@
             <div class="form-group">
               <label for="exampleFormControlInput1" i18n="@@investorSellBtksModalTxHashStep2">Transaction hash</label>
               <div class="input-group mb-3">
-                <input type="text" class="form-control form-control-lg" value="{{transactionId}}"  i18n-aria-label aria-label="Transaction hash">
+                <input type="text" class="form-control form-control-lg" value="{{transactionId}}"  i18n-aria-label="@@investorSellBtksModalTxHashStep2AriaLabel" aria-label="Transaction hash">
                 <div class="input-group-append">
                   <a class="btn btn-white h-100 d-flex align-items-center"
                     href="https://etherscan.io/tx/{{transactionId}}" target="_blank"><i
@@ -850,7 +850,7 @@
         </button>
 
         <!-- Close button for step 3 -->
-        <button type="submit" class="btn btn-block btn-white mt-auto" data-dismiss="modal" i18n-aria-label aria-label="Close"
+        <button type="submit" class="btn btn-block btn-white mt-auto" data-dismiss="modal" i18n-aria-label="@@investorSellBtksModalCtaCloseAriaLabel" aria-label="Close"
           *ngIf="sellStep == 3" i18n="@@investorSellBtksModalCtaClose">
           Close
         </button>
@@ -872,7 +872,7 @@
         </h6>
         <h4 class="header-title mb-4 text-center" i18n="@@investorSellBtksModalTimeLeftUnits">
           {{days}}d {{hours}}h {{minutes}}m {{seconds}}s <a class="text-muted ml-2"
-            href="https://betoken.gitbook.io/docs/betoken-investment-cycle" i18n-title title="Learn more" target="_blank"><span
+            href="https://betoken.gitbook.io/docs/betoken-investment-cycle" i18n-title="@@investorSellBtksModalTimeLeftUnitsLearnMoreAttrTitle" title="Learn more" target="_blank"><span
               class="fe fe-help-circle"></span></a>
         </h4>
         <form action="https://fund.us17.list-manage.com/subscribe/post?u=9c0647dcb587985ed6121cdf6&amp;id=150e0f091e"
@@ -880,7 +880,7 @@
           class="validate mb-4 text-center" target="_blank" novalidate>
           <label class="text-secondary" for="mce-EMAIL" i18n="@@investorSellBtksModalEmailNotificationLabel">Be notified by email 👇.</label>
           <div class="input-group input-group-lg">
-            <input class="form-control" type="email" value="" name="EMAIL" id="mce-EMAIL" i18n-placeholder placeholder="myemail@address.com" required>
+            <input class="form-control" type="email" value="" name="EMAIL" id="mce-EMAIL" i18n-placeholder="@@investorSellBtksModalEmailNotificationPlaceholder" placeholder="myemail@address.com" required>
             <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text"
                 name="b_9c0647dcb587985ed6121cdf6_150e0f091e" tabindex="-1" value=""></div>
             <div class="input-group-append bg-black">

@@ -215,6 +215,7 @@ export class InvestmentsComponent extends ApolloEnabled implements OnInit {
                             currProfit
                             outputAmount
                             isShort
+                            marketCollateralFactor
                         }
                     }
                 `

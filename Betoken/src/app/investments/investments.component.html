@@ -808,7 +808,7 @@
               Current price in DAI
             </h6>
             <h4 class="mb-0">
-              {{toBigNumber(sellData.sellPrice).toFormat(6)}}
+              {{isOrderOfType(sellData, 'CompoundOrder') ? assetSymbolToPrice(sellData.tokenSymbol).toFormat(6) : toBigNumber(sellData.sellPrice).toFormat(6)}}
             </h4>
             <span class="badge"
               [ngClass]="{'badge-soft-success': sellData.ROI.gte(0), 'badge-soft-danger': sellData.ROI.lt(0)}"

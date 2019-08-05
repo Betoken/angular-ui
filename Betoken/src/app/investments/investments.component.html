@@ -808,7 +808,7 @@
               Current price in DAI
             </h6>
             <h4 class="mb-0">
-              {{sellData.sellPrice.toFormat(10)}}
+              {{sellData.sellPrice.toFormat(6)}}
             </h4>
             <span class="badge"
               [ngClass]="{'badge-soft-success': sellData.ROI.gte(0), 'badge-soft-danger': sellData.ROI.lt(0)}"
@@ -821,7 +821,7 @@
               Asset buy price
             </h6>
             <h4 class="mb-0">
-              {{toBigNumber(sellData.buyPrice).toFormat(10)}}
+              {{toBigNumber(sellData.buyPrice).toFormat(6)}}
             </h4>
           </div>
           <div class="col" *ngIf="!isOrderOfType(sellData, 'BasicOrder')">

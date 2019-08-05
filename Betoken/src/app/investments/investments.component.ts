@@ -30,6 +30,7 @@ export class InvestmentsComponent extends ApolloEnabled implements OnInit {
     kairoBalance: BigNumber;
     userROI: BigNumber;
     phase: Number;
+    kairoPrice: BigNumber;
 
     selectedTokenSymbol: String;
     stakeAmount: BigNumber;
@@ -66,6 +67,7 @@ export class InvestmentsComponent extends ApolloEnabled implements OnInit {
         this.kairoBalance = new BigNumber(0);
         this.userROI = new BigNumber(0);
         this.phase = 0;
+        this.kairoPrice = new BigNumber(0);
 
         this.selectedTokenSymbol = 'ETH';
         this.stakeAmount = new BigNumber(0);
@@ -150,6 +152,7 @@ export class InvestmentsComponent extends ApolloEnabled implements OnInit {
                             kairoTotalSupply
                             cycleTotalCommission
                             totalFundsAtPhaseStart
+                            kairoPrice
                         }
                         manager(id: "${userAddress}") {
                             kairoBalance
@@ -227,6 +230,7 @@ export class InvestmentsComponent extends ApolloEnabled implements OnInit {
                 let manager = data['manager'];
 
                 this.phase = fund.cyclePhase === 'INTERMISSION' ? 0 : 1;
+                this.kairoPrice = new BigNumber(fund.kairoPrice);
 
                 if (!isNull(manager)) {
                     this.userValue = this.getManagerKairoBalance(manager);
@@ -381,7 +385,7 @@ export class InvestmentsComponent extends ApolloEnabled implements OnInit {
     selectOrderType(typeId) {
         this.selectedOrderType = this.orderTypes[typeId];
         if (this.selectedOrderType['type'] === 'fulcrum') {
-            this.fulcrumMinStake = tokens.fulcrum_min_stake(this.selectedTokenSymbol, (this.selectedOrderType['leverage'] < 0));
+            this.fulcrumMinStake = tokens.fulcrum_min_stake(this.selectedTokenSymbol, (this.selectedOrderType['leverage'] < 0), this.kairoPrice);
         }
     }
 

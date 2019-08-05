@@ -112,7 +112,7 @@ export const isFulcrumTokenAddress = (_tokenAddress) => {
 
 export const isSupporter = (_addr) => SUPPORTERS.indexOf(web3.utils.toChecksumAddress(_addr)) != -1;
 
-export const fulcrumMinStake = (_symbol, _isShort) => {
+export const fulcrumMinStake = (_symbol, _isShort, _kairoPrice) => {
     let underlyingPrice;
     if (_isShort) {
         // underlying is token
@@ -122,7 +122,7 @@ export const fulcrumMinStake = (_symbol, _isShort) => {
         underlyingPrice = BigNumber(1);
     }
     const MIN_AMOUNT = BigNumber(0.001);
-    return MIN_AMOUNT.times(underlyingPrice).div(totalFunds).times(kairoTotalSupply);
+    return MIN_AMOUNT.times(underlyingPrice).div(_kairoPrice);
 };
 
 export const getAssetPriceAtTimestamp = async (symbol, timestamp) => {

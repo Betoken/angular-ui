@@ -112,10 +112,6 @@
           <context context-type="linenumber">201</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/commissions/commissions.component.html</context>
-          <context context-type="linenumber">362</context>
-        </context-group>
-        <context-group purpose="location">
           <context context-type="sourcefile">app/investor/investor.component.html</context>
           <context context-type="linenumber">370</context>
         </context-group>
@@ -1985,6 +1981,13 @@
         <source>
           Close
         </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/commissions/commissions.component.html</context>
+          <context context-type="linenumber">362</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="commissionsRedeemModalCloseAriaLabel" datatype="html">
+        <source>Close</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/commissions/commissions.component.html</context>
           <context context-type="linenumber">362</context>

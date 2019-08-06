@@ -103,9 +103,6 @@ export class InvestorComponent extends ApolloEnabled implements OnInit {
   }
 
   ngOnInit() {
-    this.refreshDisplay();
-    this.selectedTokenSymbol = this.tokenData[0]['symbol'];
-    setInterval(() => this.updateTimer(), 1000);
     $('[data-toggle="tooltip"]').tooltip();
     $('#modalInvestorBuy').on('hidden.bs.modal', () => {
       this.resetModals();
@@ -113,20 +110,21 @@ export class InvestorComponent extends ApolloEnabled implements OnInit {
     $('#modalInvestorSell').on('hidden.bs.modal', () => {
       this.resetModals();
     });
-  }
-
-  refreshDisplay() {
-    this.isLoading = true;
 
     this.tokenData = tokens.token_data();
-
     this.updateTimer();
-
     this.getTokenBalance(this.selectedTokenSymbol);
+    this.selectedTokenSymbol = this.tokenData[0]['symbol'];
+    setInterval(() => this.updateTimer(), 1000);
+    this.createQuery();
+  }
 
+  createQuery() {
     let userAddress = user.address().toLowerCase();
-    this.querySubscription = this.apollo
+    this.query = this.apollo
       .watchQuery({
+        pollInterval: 300000,
+        fetchPolicy: 'cache-and-network',
         query: gql`
           {
             fund(id: "BetokenFund") {
@@ -150,31 +148,40 @@ export class InvestorComponent extends ApolloEnabled implements OnInit {
             }
           }
         `
-      })
-      .valueChanges.subscribe(({ data, loading }) => {
-        this.isLoading = loading;
-
-        let fund = data['fund'];
-        let investor = data['investor'];
-
-        this.AUM = new BigNumber(fund.aum);
-        this.sharesPrice = new BigNumber(fund.sharesPrice);
-        this.currMoROI = this.AUM.div(fund.totalFundsAtPhaseStart).minus(1).times(100);
-        if (fund.cyclePhase === 'INTERMISSION') {
-          this.currMoROI = new BigNumber(0);
-        }
-
-        if (!isNull(investor)) {
-          this.sharesBalance = new BigNumber(investor.sharesBalance);
-          this.depositWithdrawHistory = investor.depositWithdrawHistory;
-          this.investmentBalance = this.sharesBalance.times(this.sharesPrice);
-        }
-
-        // draw chart
-        this.sharesPriceHistory = fund.sharesPriceHistory;
-        this.calcStats();
-        this.chartDraw();
       });
+    this.querySubscription = this.query.valueChanges.subscribe((result) => this.handleQuery(result));
+  }
+
+  handleQuery({ data, loading }) {
+    this.isLoading = loading || isUndefined(loading);
+
+    if (!loading) {
+      let fund = data['fund'];
+      let investor = data['investor'];
+
+      this.AUM = new BigNumber(fund.aum);
+      this.sharesPrice = new BigNumber(fund.sharesPrice);
+      this.currMoROI = this.AUM.div(fund.totalFundsAtPhaseStart).minus(1).times(100);
+      if (fund.cyclePhase === 'INTERMISSION') {
+        this.currMoROI = new BigNumber(0);
+      }
+
+      if (!isNull(investor)) {
+        this.sharesBalance = new BigNumber(investor.sharesBalance);
+        this.depositWithdrawHistory = investor.depositWithdrawHistory;
+        this.investmentBalance = this.sharesBalance.times(this.sharesPrice);
+      }
+
+      // draw chart
+      this.sharesPriceHistory = fund.sharesPriceHistory;
+      this.calcStats();
+      this.chartDraw();
+    }
+  }
+
+  refreshDisplay() {
+    this.isLoading = true;
+    this.query.refetch().then((result) => this.handleQuery(result));
   }
 
   updateTimer() {

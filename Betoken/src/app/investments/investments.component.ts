@@ -92,7 +92,8 @@ export class InvestmentsComponent extends ApolloEnabled implements OnInit {
             currCollateral: new BigNumber(0),
             currBorrow: new BigNumber(0),
             currCash: new BigNumber(0),
-            leverage: 0
+            leverage: 0,
+            tokenSymbol: "ETH"
         };
 
         this.activeInvestmentList = new Array<Object>();
@@ -116,7 +117,9 @@ export class InvestmentsComponent extends ApolloEnabled implements OnInit {
             this.resetModals();
         });
         $('[data-toggle="tooltip"]').tooltip();
-        this.refreshDisplay();
+
+        this.tokenData = tokens.token_data().filter((x) => tokens.not_stablecoin(x.symbol));
+        this.createQuery();
     }
 
     resetModals() {
@@ -136,13 +139,12 @@ export class InvestmentsComponent extends ApolloEnabled implements OnInit {
 
     // Refresh info
 
-    refreshDisplay() {
-        this.isLoading = true;
-        this.tokenData = tokens.token_data().filter((x) => tokens.not_stablecoin(x.symbol));
-
+    createQuery() {
         let userAddress = user.address().toLowerCase();
-        this.querySubscription = this.apollo
+        this.query = this.apollo
             .watchQuery({
+                pollInterval: 300000,
+                fetchPolicy: 'cache-and-network',
                 query: gql`
                     {
                         fund(id: "BetokenFund") {
@@ -222,112 +224,122 @@ export class InvestmentsComponent extends ApolloEnabled implements OnInit {
                         }
                     }
                 `
-            })
-            .valueChanges.subscribe(({ data, loading }) => {
-                this.isLoading = loading;
-
-                let fund = data['fund'];
-                let manager = data['manager'];
-
-                this.phase = fund.cyclePhase === 'INTERMISSION' ? 0 : 1;
-                this.kairoPrice = new BigNumber(fund.kairoPrice);
-
-                if (!isNull(manager)) {
-                    this.userValue = this.getManagerKairoBalance(manager);
-                    this.userROI = this.userValue.div(manager.baseStake).minus(1).times(100);
-                    this.riskTakenPercentage = BigNumber.min(new BigNumber(manager.riskTaken).div(manager.riskThreshold).times(100), 100);
-                    this.portfolioValueInDAI = this.userValue.div(fund.kairoTotalSupply).times(fund.totalFundsInDAI);
-                    this.kairoBalance = new BigNumber(manager.kairoBalance);
-                    // calculate expected commission
-                    if (+fund.kairoTotalSupply > 0) {
-                        if (this.phase == 0) {
-                            // Actual commission that will be redeemed
-                            this.expectedCommission = this.kairoBalance.div(fund.kairoTotalSupply).times(fund.cycleTotalCommission);
-                        } else {
-                            // Expected commission based on previous average ROI
-                            let actualKairoSupply = new BigNumber(fund.kairoTotalSupply).div(fund.totalFundsInDAI).times(fund.aum);
-                            let totalProfit = new BigNumber(fund.aum).minus(fund.totalFundsAtPhaseStart);
-                            totalProfit = BigNumber.max(totalProfit, 0);
-                            let commission = totalProfit.div(actualKairoSupply).times(this.userValue).times(user.commission_rate());
-                            let assetFee = new BigNumber(fund.aum).div(actualKairoSupply).times(this.userValue).times(user.asset_fee_rate());
-                            this.expectedCommission = commission.plus(assetFee);
-                        }
-                    }
-                }
-
-                let activeBasicOrders = data['activeBasicOrders'].map((x) => {
-                    x.tokenSymbol = this.getOrderTokenSymbol(x);
-                    x.ROI = new BigNumber(x.sellPrice).div(x.buyPrice).minus(1).times(100);
-                    x.currValue = new BigNumber(x.stake).times(x.ROI.div(100).plus(1));
-                    return x;
-                });
-                let activeFulcrumOrders = data['activeFulcrumOrders'].map((x) => {
-                    x.tokenSymbol = this.getOrderTokenSymbol(x);
-                    x.ROI = new BigNumber(x.sellPrice).div(x.buyPrice).minus(1).times(100);
-                    x.currValue = new BigNumber(x.stake).times(x.ROI.div(100).plus(1));
-                    x.leverage = tokens.ptoken_address_to_info(x.tokenAddress).leverage;
-                    x.safety = new BigNumber(x.liquidationPrice).minus(x.sellPrice).div(x.sellPrice).abs().gt(this.UNSAFE_COL_RATIO_MULTIPLIER - 1);
-                    return x;
-                });
-                let activeCompoundOrders = data['activeCompoundOrders'].map((x) => {
-                    x.tokenSymbol = this.getOrderTokenSymbol(x);
-                    x.ROI = new BigNumber(x.currProfit).div(x.collateralAmountInDAI).times(100);
-                    x.currValue = new BigNumber(x.stake).times(x.ROI.div(100).plus(1));
-                    x.minCollateralRatio = new BigNumber(1).div(x.marketCollateralFactor);
-                    x.leverage = x.isShort ? x.minCollateralRatio.times(this.COL_RATIO_MODIFIER).pow(-1).dp(4).toNumber() : new BigNumber(1).plus(x.minCollateralRatio.times(this.COL_RATIO_MODIFIER).pow(-1)).dp(4).toNumber();
-                    x.safety = new BigNumber(x.collateralRatio).gt(x.minCollateralRatio.times(this.UNSAFE_COL_RATIO_MULTIPLIER));
-                    return x;
-                });
-                let inactiveBasicOrders = data['inactiveBasicOrders'].map((x) => {
-                    x.tokenSymbol = this.getOrderTokenSymbol(x);
-                    x.ROI = new BigNumber(x.sellPrice).div(x.buyPrice).minus(1).times(100);
-                    x.currValue = new BigNumber(x.stake).times(x.ROI.div(100).plus(1));
-                    return x;
-                });
-                let inactiveFulcrumOrders = data['inactiveFulcrumOrders'].map((x) => {
-                    x.tokenSymbol = this.getOrderTokenSymbol(x);
-                    x.ROI = new BigNumber(x.sellPrice).div(x.buyPrice).minus(1).times(100);
-                    x.currValue = new BigNumber(x.stake).times(x.ROI.div(100).plus(1));
-                    x.leverage = tokens.ptoken_address_to_info(x.tokenAddress).leverage;
-                    return x;
-                });
-                let inactiveCompoundOrders = data['inactiveCompoundOrders'].map((x) => {
-                    x.tokenSymbol = this.getOrderTokenSymbol(x);
-                    x.ROI = new BigNumber(x.currProfit).div(x.collateralAmountInDAI).times(100);
-                    x.currValue = new BigNumber(x.stake).times(x.ROI.div(100).plus(1));
-                    let minCollateralRatio = new BigNumber(1).div(x.marketCollateralFactor);
-                    x.leverage = x.isShort ? minCollateralRatio.times(this.COL_RATIO_MODIFIER).pow(-1).dp(4).toNumber() : new BigNumber(1).plus(minCollateralRatio.times(this.COL_RATIO_MODIFIER).pow(-1)).dp(4).toNumber();
-                    return x;
-                });
-
-                this.activeInvestmentList = activeBasicOrders.concat(activeFulcrumOrders).concat(activeCompoundOrders).sort((a, b) => new BigNumber(b['buyTime']).minus(a['buyTime']).toNumber());
-                this.inactiveInvestmentList = inactiveBasicOrders.concat(inactiveFulcrumOrders).concat(inactiveCompoundOrders).sort((a, b) => new BigNumber(b['buyTime']).minus(a['buyTime']).toNumber());
-
-                // convert active investments into portfolio format
-                this.activePortfolio = [];
-                let recordStake = (_symbol, _stake) => {
-                    let assetIdx = this.activePortfolio.findIndex((x) => x['symbol'] === _symbol);
-                    if (assetIdx == -1) {
-                        // asset not recorded
-                        this.activePortfolio.push({
-                            symbol: _symbol,
-                            stake: new BigNumber(0)
-                        });
-                        assetIdx = this.activePortfolio.length - 1;
-                    }
-                    this.activePortfolio[assetIdx]['stake'] = this.activePortfolio[assetIdx]['stake'].plus(_stake);
-                }
-                for (let inv of this.activeInvestmentList) {
-                    recordStake(inv['tokenSymbol'], inv['currValue']);
-                }
-                // record unstaked KRO as well
-                this.activePortfolio.push({
-                    symbol: 'DAI',
-                    stake: this.kairoBalance
-                });
-                // sort in descending order of stake
-                this.activePortfolio.sort((a, b) => new BigNumber(b['stake']).minus(a['stake']).toNumber());
             });
+        this.querySubscription = this.query.valueChanges.subscribe((result) => this.handleQuery(result));
+    }
+
+    handleQuery({ data, loading }) {
+        this.isLoading = isUndefined(loading) || loading;
+
+        if (!loading) {
+            let fund = data['fund'];
+            let manager = data['manager'];
+
+            this.phase = fund.cyclePhase === 'INTERMISSION' ? 0 : 1;
+            this.kairoPrice = new BigNumber(fund.kairoPrice);
+
+            if (!isNull(manager)) {
+                this.userValue = this.getManagerKairoBalance(manager);
+                this.userROI = this.userValue.div(manager.baseStake).minus(1).times(100);
+                this.riskTakenPercentage = BigNumber.min(new BigNumber(manager.riskTaken).div(manager.riskThreshold).times(100), 100);
+                this.portfolioValueInDAI = this.userValue.div(fund.kairoTotalSupply).times(fund.totalFundsInDAI);
+                this.kairoBalance = new BigNumber(manager.kairoBalance);
+                // calculate expected commission
+                if (+fund.kairoTotalSupply > 0) {
+                    if (this.phase == 0) {
+                        // Actual commission that will be redeemed
+                        this.expectedCommission = this.kairoBalance.div(fund.kairoTotalSupply).times(fund.cycleTotalCommission);
+                    } else {
+                        // Expected commission based on previous average ROI
+                        let actualKairoSupply = new BigNumber(fund.kairoTotalSupply).div(fund.totalFundsInDAI).times(fund.aum);
+                        let totalProfit = new BigNumber(fund.aum).minus(fund.totalFundsAtPhaseStart);
+                        totalProfit = BigNumber.max(totalProfit, 0);
+                        let commission = totalProfit.div(actualKairoSupply).times(this.userValue).times(user.commission_rate());
+                        let assetFee = new BigNumber(fund.aum).div(actualKairoSupply).times(this.userValue).times(user.asset_fee_rate());
+                        this.expectedCommission = commission.plus(assetFee);
+                    }
+                }
+            }
+
+            let activeBasicOrders = data['activeBasicOrders'].map((x) => {
+                x.tokenSymbol = this.getOrderTokenSymbol(x);
+                x.ROI = new BigNumber(x.sellPrice).div(x.buyPrice).minus(1).times(100);
+                x.currValue = new BigNumber(x.stake).times(x.ROI.div(100).plus(1));
+                return x;
+            });
+            let activeFulcrumOrders = data['activeFulcrumOrders'].map((x) => {
+                x.tokenSymbol = this.getOrderTokenSymbol(x);
+                x.ROI = new BigNumber(x.sellPrice).div(x.buyPrice).minus(1).times(100);
+                x.currValue = new BigNumber(x.stake).times(x.ROI.div(100).plus(1));
+                x.leverage = tokens.ptoken_address_to_info(x.tokenAddress).leverage;
+                x.safety = new BigNumber(x.liquidationPrice).minus(x.sellPrice).div(x.sellPrice).abs().gt(this.UNSAFE_COL_RATIO_MULTIPLIER - 1);
+                return x;
+            });
+            let activeCompoundOrders = data['activeCompoundOrders'].map((x) => {
+                x.tokenSymbol = this.getOrderTokenSymbol(x);
+                x.ROI = new BigNumber(x.currProfit).div(x.collateralAmountInDAI).times(100);
+                x.currValue = new BigNumber(x.stake).times(x.ROI.div(100).plus(1));
+                x.minCollateralRatio = new BigNumber(1).div(x.marketCollateralFactor);
+                x.leverage = x.isShort ? x.minCollateralRatio.times(this.COL_RATIO_MODIFIER).pow(-1).dp(4).toNumber() : new BigNumber(1).plus(x.minCollateralRatio.times(this.COL_RATIO_MODIFIER).pow(-1)).dp(4).toNumber();
+                x.safety = new BigNumber(x.collateralRatio).gt(x.minCollateralRatio.times(this.UNSAFE_COL_RATIO_MULTIPLIER));
+                return x;
+            });
+            let inactiveBasicOrders = data['inactiveBasicOrders'].map((x) => {
+                x.tokenSymbol = this.getOrderTokenSymbol(x);
+                x.ROI = new BigNumber(x.sellPrice).div(x.buyPrice).minus(1).times(100);
+                x.currValue = new BigNumber(x.stake).times(x.ROI.div(100).plus(1));
+                return x;
+            });
+            let inactiveFulcrumOrders = data['inactiveFulcrumOrders'].map((x) => {
+                x.tokenSymbol = this.getOrderTokenSymbol(x);
+                x.ROI = new BigNumber(x.sellPrice).div(x.buyPrice).minus(1).times(100);
+                x.currValue = new BigNumber(x.stake).times(x.ROI.div(100).plus(1));
+                x.leverage = tokens.ptoken_address_to_info(x.tokenAddress).leverage;
+                return x;
+            });
+            let inactiveCompoundOrders = data['inactiveCompoundOrders'].map((x) => {
+                x.tokenSymbol = this.getOrderTokenSymbol(x);
+                x.ROI = new BigNumber(x.currProfit).div(x.collateralAmountInDAI).times(100);
+                x.currValue = new BigNumber(x.stake).times(x.ROI.div(100).plus(1));
+                let minCollateralRatio = new BigNumber(1).div(x.marketCollateralFactor);
+                x.leverage = x.isShort ? minCollateralRatio.times(this.COL_RATIO_MODIFIER).pow(-1).dp(4).toNumber() : new BigNumber(1).plus(minCollateralRatio.times(this.COL_RATIO_MODIFIER).pow(-1)).dp(4).toNumber();
+                return x;
+            });
+
+            this.activeInvestmentList = activeBasicOrders.concat(activeFulcrumOrders).concat(activeCompoundOrders).sort((a, b) => new BigNumber(b['buyTime']).minus(a['buyTime']).toNumber());
+            this.inactiveInvestmentList = inactiveBasicOrders.concat(inactiveFulcrumOrders).concat(inactiveCompoundOrders).sort((a, b) => new BigNumber(b['buyTime']).minus(a['buyTime']).toNumber());
+
+            // convert active investments into portfolio format
+            this.activePortfolio = [];
+            let recordStake = (_symbol, _stake) => {
+                let assetIdx = this.activePortfolio.findIndex((x) => x['symbol'] === _symbol);
+                if (assetIdx == -1) {
+                    // asset not recorded
+                    this.activePortfolio.push({
+                        symbol: _symbol,
+                        stake: new BigNumber(0)
+                    });
+                    assetIdx = this.activePortfolio.length - 1;
+                }
+                this.activePortfolio[assetIdx]['stake'] = this.activePortfolio[assetIdx]['stake'].plus(_stake);
+            }
+            for (let inv of this.activeInvestmentList) {
+                recordStake(inv['tokenSymbol'], inv['currValue']);
+            }
+            // record unstaked KRO as well
+            this.activePortfolio.push({
+                symbol: 'DAI',
+                stake: this.kairoBalance
+            });
+            // sort in descending order of stake
+            this.activePortfolio.sort((a, b) => new BigNumber(b['stake']).minus(a['stake']).toNumber());
+        }
+    }
+
+    refreshDisplay() {
+        this.isLoading = true;
+
+        this.query.refetch().then((result) => this.handleQuery(result));
     }
 
     formatNumber(n, decimals) {

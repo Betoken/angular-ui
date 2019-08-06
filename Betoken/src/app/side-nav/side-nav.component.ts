@@ -23,7 +23,7 @@ export class SideNavComponent extends ApolloEnabled implements OnInit {
   ZERO_ADDR = '0x0000000000000000000000000000000000000000';
   can_redeem_commission: boolean;
   isManager: Boolean;
-  
+
   constructor(private router: Router, private apollo: Apollo) {
     super();
     this.days = 0;
@@ -35,7 +35,7 @@ export class SideNavComponent extends ApolloEnabled implements OnInit {
     this.isManager = true;
     this.can_redeem_commission = false;
   }
-  
+
   ngOnInit() {
     this.refreshDisplay();
     setInterval(() => this.updateTimer(), 1000);
@@ -47,11 +47,13 @@ export class SideNavComponent extends ApolloEnabled implements OnInit {
     this.minutes = timer.minute();
     this.seconds = timer.second();
   }
-  
+
   refreshDisplay() {
     let userAddress = user.address().toLowerCase();
     this.querySubscription = this.apollo
       .watchQuery({
+        pollInterval: 300000,
+        fetchPolicy: 'cache-and-network',
         query: gql`
           {
             fund(id: "BetokenFund") {
@@ -65,26 +67,28 @@ export class SideNavComponent extends ApolloEnabled implements OnInit {
         `
       })
       .valueChanges.subscribe(({ data, loading }) => {
-        let fund = data['fund'];
-        let manager = data['manager'];
+        if (!loading) {
+          let fund = data['fund'];
+          let manager = data['manager'];
 
-        this.isManager = !isNull(manager);
-        this.phase = fund.cyclePhase === 'INTERMISSION' ? 0 : 1;
+          this.isManager = !isNull(manager);
+          this.phase = fund.cyclePhase === 'INTERMISSION' ? 0 : 1;
 
-        if (this.isManager) {
-          this.can_redeem_commission = this.phase == 0 && +manager.lastCommissionRedemption < +fund.cycleNumber && userAddress !== this.ZERO_ADDR;
+          if (this.isManager) {
+            this.can_redeem_commission = this.phase == 0 && +manager.lastCommissionRedemption < +fund.cycleNumber && userAddress !== this.ZERO_ADDR;
+          }
         }
       });
   }
-  
+
   phaseActionText() {
     switch (this.phase) {
       case 0:
-      return 'until managing begins';
+        return 'until managing begins';
       case 1:
-      return 'to manage';
+        return 'to manage';
       case 2:
-      return 'to redeem commission';
+        return 'to redeem commission';
     }
   }
 

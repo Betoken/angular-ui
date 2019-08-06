@@ -62,14 +62,16 @@ export class DashboardComponent extends ApolloEnabled implements OnInit {
   }
 
   ngOnInit() {
-    this.refreshDisplay();
+    this.createQuery();
     $('[data-toggle="tooltip"]').tooltip();
   }
 
-  refreshDisplay() {
+  createQuery() {
     let userAddress = user.address().toLowerCase();
-    this.querySubscription = this.apollo
+    this.query = this.apollo
       .watchQuery({
+        pollInterval: 300000,
+        fetchPolicy: 'cache-and-network',
         query: gql`
           {
             fund(id: "BetokenFund") {
@@ -99,48 +101,57 @@ export class DashboardComponent extends ApolloEnabled implements OnInit {
             }
           }
         `
-      })
-      .valueChanges.subscribe(({ data, loading }) => {
-        let fund = data['fund'];
-        let manager = data['manager'];
-        let managers = data['managers'];
+      });
+    this.querySubscription = this.query.valueChanges.subscribe((result) => this.handleQuery(result));
+  }
 
-        if (!isNull(manager)) {
-          this.userValue = this.getManagerKairoBalance(manager);
-          this.userROI = this.userValue.div(manager.baseStake).minus(1).times(100);
-          // calculate expected commission
-          if (+fund.kairoTotalSupply > 0) {
-            if (fund.cyclePhase === 'INTERMISSION') {
-              // Actual commission that will be redeemed
-              this.expectedCommission = new BigNumber(manager.kairoBalance).div(fund.kairoTotalSupply).times(fund.cycleTotalCommission);
-            } else {
-              // Expected commission based on previous average ROI
-              let actualKairoSupply = new BigNumber(fund.kairoTotalSupply).div(fund.totalFundsInDAI).times(fund.aum);
-              let totalProfit = new BigNumber(fund.aum).minus(fund.totalFundsAtPhaseStart);
-              totalProfit = BigNumber.max(totalProfit, 0);
-              let commission = totalProfit.div(actualKairoSupply).times(this.userValue).times(user.commission_rate());
-              let assetFee = new BigNumber(fund.aum).div(actualKairoSupply).times(this.userValue).times(user.asset_fee_rate());
-              this.expectedCommission = commission.plus(assetFee);
-            }
+  handleQuery({ data, loading }) {
+    if (!loading) {
+      let fund = data['fund'];
+      let manager = data['manager'];
+      let managers = data['managers'];
+
+      if (!isNull(manager)) {
+        this.userValue = this.getManagerKairoBalance(manager);
+        this.userROI = this.userValue.div(manager.baseStake).minus(1).times(100);
+        // calculate expected commission
+        if (+fund.kairoTotalSupply > 0) {
+          if (fund.cyclePhase === 'INTERMISSION') {
+            // Actual commission that will be redeemed
+            this.expectedCommission = new BigNumber(manager.kairoBalance).div(fund.kairoTotalSupply).times(fund.cycleTotalCommission);
+          } else {
+            // Expected commission based on previous average ROI
+            let actualKairoSupply = new BigNumber(fund.kairoTotalSupply).div(fund.totalFundsInDAI).times(fund.aum);
+            let totalProfit = new BigNumber(fund.aum).minus(fund.totalFundsAtPhaseStart);
+            totalProfit = BigNumber.max(totalProfit, 0);
+            let commission = totalProfit.div(actualKairoSupply).times(this.userValue).times(user.commission_rate());
+            let assetFee = new BigNumber(fund.aum).div(actualKairoSupply).times(this.userValue).times(user.asset_fee_rate());
+            this.expectedCommission = commission.plus(assetFee);
           }
         }
+      }
 
-        this.AUM = new BigNumber(fund.aum);
-        this.userRanking = managers.findIndex((x) => x.id === userAddress) + 1;
-        this.totalUser = managers.length;
-        this.sharesPrice = new BigNumber(fund.sharesPrice);
-        this.currMoROI = this.AUM.div(fund.totalFundsAtPhaseStart).minus(1).times(100);
-        if (fund.cyclePhase === 'INTERMISSION') {
-          this.currMoROI = new BigNumber(0);
-        }
-        this.portfolioValueInDAI = this.userValue.div(fund.kairoTotalSupply).times(fund.totalFundsInDAI);
+      this.AUM = new BigNumber(fund.aum);
+      let userAddress = user.address().toLowerCase();
+      this.userRanking = managers.findIndex((x) => x.id === userAddress) + 1;
+      this.totalUser = managers.length;
+      this.sharesPrice = new BigNumber(fund.sharesPrice);
+      this.currMoROI = this.AUM.div(fund.totalFundsAtPhaseStart).minus(1).times(100);
+      if (fund.cyclePhase === 'INTERMISSION') {
+        this.currMoROI = new BigNumber(0);
+      }
+      this.portfolioValueInDAI = this.userValue.div(fund.kairoTotalSupply).times(fund.totalFundsInDAI);
 
-        // draw chart
-        this.sharesPriceHistory = fund.sharesPriceHistory;
-        this.aumHistory = fund.aumHistory;
-        this.calcStats();
-        this.chartDraw(this.chartTabId);
-      });
+      // draw chart
+      this.sharesPriceHistory = fund.sharesPriceHistory;
+      this.aumHistory = fund.aumHistory;
+      this.calcStats();
+      this.chartDraw(this.chartTabId);
+    }
+  }
+
+  refreshDisplay() {
+    this.query.refetch().then((result) => this.handleQuery(result));
   }
 
   switchChartTab(id) {

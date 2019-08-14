@@ -385,9 +385,7 @@ export class InvestmentsComponent extends ApolloEnabled implements OnInit {
                     type: 'fulcrum',
                     tokenAddress: pToken.address
                 }
-                if (!(pToken.type && symbol === 'WBTC')) {
-                    orderTypes.push(option);
-                }
+                orderTypes.push(option);
             }
         }
 

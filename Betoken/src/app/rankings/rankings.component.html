@@ -107,9 +107,9 @@
                 </td>
                 <td class="align-middle">
                   <span class="d-block text-truncate" style="width: 6rem;">{{ranking.id}}</span>
-                  <span class="badge badge-soft-primary" *ngIf="isSupporter(ranking.id)" i18n="@@rankingsFriendsOfBetokenBadge">
+                  <a href="https://betoken.fund/friends" class="badge badge-soft-primary" *ngIf="isSupporter(ranking.id)" i18n="@@rankingsFriendsOfBetokenBadge" target="_blank">
                     Betoken Evangelist
-                  </span>
+                  </a>
                 </td>
                 <td class="align-middle tables-kairo-balance">
                   {{getManagerKairoBalance(ranking).toFixed(6)}}

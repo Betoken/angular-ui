@@ -246,6 +246,11 @@ export const loadTokenPrices = async () => {
         TOKEN_DATA = TOKEN_DATA.map((x) => {
             if (x.symbol !== 'ETH') {
                 let tokenData = rawData.data.find((y) => y.base_symbol === x.symbol);
+                if (isUndefined(tokenData)) {
+                    x.price = BigNumber(0);
+                    x.dailyVolume = BigNumber(0);
+                    return x;
+                }
                 let daiData = rawData.data.find((y) => y.base_symbol === 'DAI');
                 if (tokenData.current_bid == 0) {
                     tokenData.current_bid = tokenData.current_ask;
@@ -284,7 +289,8 @@ export const loadTokenPrices = async () => {
     apiStr = "https://api.kyber.network/change24h";
     rawData = await httpsGet(apiStr);
     TOKEN_DATA = TOKEN_DATA.map((x) => {
-        x.dailyPriceChange = BigNumber(rawData[`ETH_${x.symbol}`].change_usd_24h);
+        let rawPrice = rawData[`ETH_${x.symbol}`];
+        x.dailyPriceChange = isUndefined(rawPrice) ? BigNumber(0) : BigNumber(rawPrice.change_usd_24h);
         return x;
     });
 

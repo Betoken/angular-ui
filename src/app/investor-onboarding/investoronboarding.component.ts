@@ -5,7 +5,7 @@ import { isUndefined } from 'util';
 import BigNumber from 'bignumber.js';
 
 import { } from 'jquery';
-import $ from 'jquery';
+declare var $: any;;
 
 import {
   user, timer, stats, tokens, investor_actions

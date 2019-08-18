@@ -3,8 +3,7 @@ import BigNumber from 'bignumber.js';
 import { isUndefined, isNull } from 'util';
 import { Chart } from 'chart.js';
 
-import { } from 'jquery';
-import $ from 'jquery';
+declare var $: any;;
 
 import {
   user, timer, tokens, investor_actions
@@ -13,7 +12,6 @@ import {
 import { ApolloEnabled } from '../apollo';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
-import { share } from 'rxjs/operators';
 
 @Component({
   selector: 'app-investor',

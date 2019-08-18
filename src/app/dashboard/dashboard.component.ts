@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BigNumber } from 'bignumber.js';
 import { Chart } from 'chart.js';
 
-import { } from 'jquery';
-import $ from 'jquery';
+declare var $: any;;
 
 import {
   user, timer
@@ -63,7 +62,7 @@ export class DashboardComponent extends ApolloEnabled implements OnInit {
 
   ngOnInit() {
     this.createQuery();
-    //$('[data-toggle="tooltip"]').tooltip();
+    $('[data-toggle="tooltip"]').tooltip();
   }
 
   createQuery() {

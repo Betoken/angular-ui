@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { AppComponent } from '../app.component';
 
 import { } from 'jquery';
-import $ from 'jquery';
+declare var $: any;;
 import {
   user, timer, error_notifications, manager_actions, refresh_actions
 } from '../../betokenjs/helpers';

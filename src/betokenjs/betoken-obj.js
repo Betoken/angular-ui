@@ -91,7 +91,7 @@ export var Betoken = function () {
     self.hasWeb3 = false;
     self.wrongNetwork = false;
     self.assistInstance = null;
-    self.apiKey = "239ccd50-62da-4e2f-aaf4-b33d39a3a0a6";
+    self.apiKey = "902e9643-ad7b-44dc-a130-778bd3b29b95";
 
     /*
     Object Initialization

@@ -11,7 +11,7 @@ import gql from 'graphql-tag';
 import { } from 'jquery';
 import BigNumber from 'bignumber.js';
 import { isNull, isUndefined } from 'util';
-declare var $: any;
+import $ from 'jquery';
 @Component({
     selector: 'app-account',
     templateUrl: './commissions.component.html'

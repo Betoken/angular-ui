@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { tokens, loading, refresh_actions, sortTable } from '../../betokenjs/helpers';
 import BigNumber from 'bignumber.js';
 
-declare var $: any;
+import $ from 'jquery';
 
 @Component({
     selector: 'app-market',

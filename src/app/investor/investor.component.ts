@@ -4,7 +4,7 @@ import { isUndefined, isNull } from 'util';
 import { Chart } from 'chart.js';
 
 import { } from 'jquery';
-declare var $: any;
+import $ from 'jquery';
 
 import {
   user, timer, tokens, investor_actions

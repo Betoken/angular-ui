@@ -5,7 +5,7 @@ import { isUndefined, isNull } from 'util';
 import BigNumber from 'bignumber.js';
 
 import { } from 'jquery';
-declare var $: any;
+import $ from 'jquery';
 
 import {
   user, tokens, manager_actions

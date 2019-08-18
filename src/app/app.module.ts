@@ -1,10 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
-import { AccordionModule } from 'ngx-bootstrap';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { AccordionModule, TooltipModule } from 'ngx-bootstrap';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
-import {HashLocationStrategy, LocationStrategy} from '@angular/common';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -27,57 +27,57 @@ const routes: Routes = [
     path: '',
     redirectTo: '/dashboard',
     pathMatch: 'full'
-},
+  },
   {
     path: 'dashboard',
     component: DashboardComponent,
     pathMatch: 'full'
-},
-{
-  path: 'investments',
-  component: InvestmentsComponent,
-  pathMatch: 'full'
-},
-{
-  path: 'upgrades',
-  component: UpgradeComponent,
-  pathMatch: 'full'
-},
-{
-  path: 'commissions',
-  component: CommissionsComponent,
-  pathMatch: 'full'
-},
-{
-  path: 'rankings',
-  component: RankingsComponent,
-  pathMatch: 'full'
-},
-{
-  path: 'invest',
-  component: InvestorComponent,
-  pathMatch: 'full'
-},
-{
-  path: 'market',
-  component: MarketComponent,
-  pathMatch: 'full'
-},
-{
-  path: 'investing-dashboard',
-  component: InvestorComponent,
-  pathMatch: 'full'
-},
-{
-  path: 'start',
-  component: InvestoronboardingComponent,
-  pathMatch: 'full'
-},
-{
-  path: 'start-managing',
-  component: ManageronboardingComponent,
-  pathMatch: 'full'
-}
+  },
+  {
+    path: 'investments',
+    component: InvestmentsComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'upgrades',
+    component: UpgradeComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'commissions',
+    component: CommissionsComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'rankings',
+    component: RankingsComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'invest',
+    component: InvestorComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'market',
+    component: MarketComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'investing-dashboard',
+    component: InvestorComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'start',
+    component: InvestoronboardingComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'start-managing',
+    component: ManageronboardingComponent,
+    pathMatch: 'full'
+  }
 
 ];
 
@@ -97,15 +97,16 @@ const routes: Routes = [
     MarketComponent,
   ],
   imports: [
-     AccordionModule.forRoot(),
-     BrowserModule,
-     CollapseModule.forRoot(),
-     BrowserAnimationsModule,
-     RouterModule.forRoot(routes),
-     GraphQLModule,
-     HttpClientModule
+    AccordionModule.forRoot(),
+    BrowserModule,
+    CollapseModule.forRoot(),
+    TooltipModule.forRoot(),
+    BrowserAnimationsModule,
+    RouterModule.forRoot(routes),
+    GraphQLModule,
+    HttpClientModule
   ],
-  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy}],
+  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

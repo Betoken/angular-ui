@@ -7,7 +7,7 @@ import { ApolloEnabled } from '../apollo';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 
-declare var $: any;
+import $ from 'jquery';
 
 @Component({
     selector: 'app-proposal',
@@ -116,7 +116,7 @@ export class InvestmentsComponent extends ApolloEnabled implements OnInit {
         $('#modalTopUp').on('hidden.bs.modal', () => {
             this.resetModals();
         });
-        $('[data-toggle="tooltip"]').tooltip();
+        //$('[data-toggle="tooltip"]').tooltip();
 
         this.tokenData = tokens.token_data().filter((x) => tokens.not_stablecoin(x.symbol));
         this.createQuery();

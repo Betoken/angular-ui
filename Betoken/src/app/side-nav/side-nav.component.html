@@ -11,7 +11,7 @@
     <!-- Brand -->
     <a class="navbar-brand d-flex align-items-center pt-lg-3 pb-lg-4" href="https://betoken.fund/#/dashboard">
       <img src="assets/img/logo.svg" alt="Betoken logo" class="navbar-brand-img" height="36">
-      <span class="ml-2 h3 mb-0 d-none d-lg-inline-block" i18n="@@sidebarLogoName">Betoken</span>
+      <span class="ml-2 h3 mb-0 d-none d-lg-inline-block">Betoken</span>
     </a>
 
     <!-- notification -->
@@ -34,10 +34,10 @@
     <div class="collapse navbar-collapse" id="sidebarCollapse">
       <!-- Mobile time count-down -->
       <div class="navbar-text px-3 pb-0 pb-2 w-100 justify-content-center text-center d-md-none">
-        <h6 class="header-pretitle mb-1" i18n="@@sidebarTimeLeft">
+        <h6 class="header-pretitle mb-1" i18n="@@timeCounterTitle">
           Time left {{phaseActionText()}}
         </h6>
-        <h4 class="header-title" i18n="@@sidebarTimeLeftUnits">
+        <h4 class="header-title" i18n="@@timeCounterUnits">
           {{days}}d {{hours}}h {{minutes}}m {{seconds}}s
         </h4>
       </div>
@@ -45,19 +45,19 @@
       <!-- cta -->
       <div class="d-none d-md-block" *ngIf="checkRouterURL('/investing-dashboard') === false">
         <!--Provide onboarding for prospective managers with no Kairo-->
-        <a class="btn btn-success btn-block mb-4" href="#/start-managing" *ngIf="!isManager" i18n="@@sidebarCtaBecomeManager">Become a Manager</a>
+        <a class="btn btn-success btn-block mb-4" href="#/start-managing" *ngIf="!isManager" i18n="@@ctaBecomeManager">Become a Manager</a>
         <!--Provide actions for existing managers-->
         <span *ngIf="isManager">
-          <button class="btn btn-success btn-block mb-4" routerLink="/investments" type="button" data-toggle="modal" data-target="#modalBuy" *ngIf="phase == 1" i18n="@@sidebarCtaMakeInvestments"><i class="fe fe-plus mr-1"></i>Make Investments</button>
-          <button class="btn btn-success btn-block mb-4" routerLink="/commissions" type="button" data-toggle="modal" data-target="#modalRedeem" *ngIf="can_redeem_commission" i18n="@@sidebarCtaRedeemCommissions"><i class="fe fe-dollar-sign mr-1"></i>Redeem Commission</button>
+          <button class="btn btn-success btn-block mb-4" routerLink="/investments" type="button" data-toggle="modal" data-target="#modalBuy" *ngIf="phase == 1" i18n="@@ctaMakeInvestments"><i class="fe fe-plus mr-1"></i>Make Investments</button>
+          <button class="btn btn-success btn-block mb-4" routerLink="/commissions" type="button" data-toggle="modal" data-target="#modalRedeem" *ngIf="can_redeem_commission" i18n="@@ctaRedeemCommissions"><i class="fe fe-dollar-sign mr-1"></i>Redeem Commission</button>
         </span>
-        <button class="btn btn-success btn-block mb-4" type="button" *ngIf="days == 0 && hours == 0 && minutes == 0 && 1 >= seconds" (click)="nextPhase()" i18n="@@sidebarCtaNextPhase"><i class="fe fe-skip-forward mr-1"></i>Next Phase</button>
+        <button class="btn btn-success btn-block mb-4" type="button" *ngIf="days == 0 && hours == 0 && minutes == 0 && 1 >= seconds" (click)="nextPhase()" i18n="@@ctaNextPhase"><i class="fe fe-skip-forward mr-1"></i>Next Phase</button>
       </div>
       <!-- cta -->
       <div class="d-none d-md-flex mb-4" *ngIf="checkRouterURL('/investing-dashboard') === true">
         <!--Action buttons-->
-        <button class="btn btn-success" type="button" data-toggle="modal" data-target="#modalInvestorBuy" i18n="@@sidebarCtaBuyBtks">Buy BTKS</button>
-        <button class="btn btn-white ml-auto" type="button" data-toggle="modal" data-target="#modalInvestorSell" i18n="@@sidebarCtaSellBtks">Sell BTKS</button>
+        <button class="btn btn-success" type="button" data-toggle="modal" data-target="#modalInvestorBuy" i18n="@@ctaBuyBtks">Buy BTKS</button>
+        <button class="btn btn-white ml-auto" type="button" data-toggle="modal" data-target="#modalInvestorSell" i18n="@@ctaSellBtks">Sell BTKS</button>
       </div>
       <!-- Navigation -->
       <ul class="navbar-nav">
@@ -144,20 +144,20 @@
 <nav class="navbar fixed-bottom d-md-none" *ngIf="checkRouterURL('/investing-dashboard') === false">
   <div class="container px-0">
     <!--Provide onboarding for prospective managers with no Kairo-->
-    <a class="btn btn-success btn-block" href="#/start-managing" *ngIf="!isManager" i18n="@@sidebarCtaBecomeManagerMobile">
+    <a class="btn btn-success btn-block" href="#/start-managing" *ngIf="!isManager" i18n="@@ctaBecomeManager">
       Become a Manager
     </a>
 
     <!--Provide actions for existing managers-->
-    <button class="btn btn-success btn-block" routerLink="/investments" type="button" data-toggle="modal" data-target="#modalBuy" *ngIf="phase == 1 && isManager" i18n="@@sidebarCtaMakeInvestmentsMobile">Make Investments</button>
-    <button class="btn btn-success btn-block" routerLink="/commissions" type="button" data-toggle="modal" data-target="#modalRedeem" *ngIf="can_redeem_commission && isManager" i18n="@@sidebarCtaRedeemCommissionsMobile">Redeem Commission</button>
+    <button class="btn btn-success btn-block" routerLink="/investments" type="button" data-toggle="modal" data-target="#modalBuy" *ngIf="phase == 1 && isManager" i18n="@@ctaMakeInvestments">Make Investments</button>
+    <button class="btn btn-success btn-block" routerLink="/commissions" type="button" data-toggle="modal" data-target="#modalRedeem" *ngIf="can_redeem_commission && isManager" i18n="@@ctaRedeemCommissions">Redeem Commission</button>
 
-    <button class="btn btn-success btn-block" type="button" *ngIf="days == 0 && hours == 0 && minutes == 0 && 1 >= seconds && isManager" (click)="nextPhase()" i18n="@@sidebarCtaNextPhaseMobile">Next Phase</button>
+    <button class="btn btn-success btn-block" type="button" *ngIf="days == 0 && hours == 0 && minutes == 0 && 1 >= seconds && isManager" (click)="nextPhase()" i18n="@@ctaNextPhase">Next Phase</button>
   </div>
 </nav>
 <nav class="navbar fixed-bottom d-md-none" *ngIf="checkRouterURL('/investing-dashboard') === true">
   <div class="btn-group btn-block" role="group" aria-label="Basic example">
-    <button class="btn btn-success w-50" type="button" data-toggle="modal" data-target="#modalInvestorBuy" i18n="@@sidebarCtaBuyBtksMobile">Buy BTKS</button>
-    <button class="btn btn-white w-50 " type="button" data-toggle="modal" data-target="#modalInvestorSell" i18n="@@sidebarCtaSellBtksMobile">Sell BTKS</button>
+    <button class="btn btn-success w-50" type="button" data-toggle="modal" data-target="#modalInvestorBuy" i18n="@@ctaBuyBtks">Buy BTKS</button>
+    <button class="btn btn-white w-50 " type="button" data-toggle="modal" data-target="#modalInvestorSell" i18n="@@ctaSellBtks">Sell BTKS</button>
   </div>
 </nav>

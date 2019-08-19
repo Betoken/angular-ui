@@ -68,10 +68,10 @@
         </div>
       </div>
       <div class="col-11 col-lg-6 pl-lg-4 order-1 order-lg-2">
-        <h5 class="header-pretitle d-block d-lg-none" i18n="@@investorOnboardingHeaderPreTitleMobile">
+        <h5 class="header-pretitle d-block d-lg-none" i18n="@@investorOnboardingHeaderPreTitle">
           Welcome To
         </h5>
-        <h1 class="display-4 font-weight-bold d-block d-lg-none" i18n="@@investorOnboardingHeaderTitleMobile">Betoken Fund</h1>
+        <h1 class="display-4 font-weight-bold d-block d-lg-none" i18n="@@investorOnboardingHeaderTitle">Betoken Fund</h1>
         <p class="lead font-weight-bold mb-4 d-block d-lg-none" i18n="@@investorOnboardingHeaderSubtitle">If you think 2 brains are better than one...How about
           hundreds of talented asset managers working for you? Worldwide! Get started by connecting your capital!</p>
         <div class="card mb-6">
@@ -82,16 +82,8 @@
             <span class="text-truncate" *ngIf="user_address == ZERO_ADDR"><span class="text-danger">●</span> <ng-container i18n="@@investorOnboardingConnectStatus">No Wallet Connected</ng-container></span>
           </div>
           <div class="card-body text-center text-md-left">
-            <div *ngIf="user_address == ZERO_ADDR">
-              <p class="text-secondary text-center" i18n="@@investorOnboardingWeb3Warning">Please enable Metamask or visit this page in a Web3 browser to
-                interact with Betoken on the Ethereum Mainnet.</p>
-              <a class="btn btn-block btn-lg btn-success d-none d-lg-block" target="__blank"
-                href="https://metamask.io" i18n="@@investorOnboardingCtaGetMetamask">Get Metamask</a>
-              <a class="btn btn-block btn-lg btn-success d-block d-lg-none" target="__blank"
-                href="https://trustwallet.com/" i18n="@@investorOnboardingCtaGetTrust">Get Trust Wallet</a>
-            </div>
             <button class="btn btn-block btn-lg btn-success" type="button" data-toggle="modal"
-              data-target="#modalInvestorBuy" *ngIf="user_address != ZERO_ADDR" i18n="@@investorOnboardingCtaGetStarted">Get Started</button>
+              data-target="#modalInvestorBuy" *ngIf="user_address != ZERO_ADDR" i18n="@@ctaGetStarted">Get Started</button>
           </div>
           <a href="https://github.com/solidified-platform/audits/blob/master/Audit%20Report%20-%20%20Betoken%20%5B20.05.2019%5D.pdf"
             target="_blank">
@@ -104,7 +96,7 @@
                   </div>
                 </div>
                 <div class="col">
-                  <p class="small text-secondary mb-0" i18n="@@investorOnboardingSolidifiedAudit">Betoken Smart Contracts are audited and secured by Solidified</p>
+                  <p class="small text-secondary mb-0" i18n="@@solidifiedAudit">Betoken Smart Contracts are audited and secured by Solidified</p>
                 </div>
                 <div class="col-auto">
                   <i class="fe fe-arrow-right text-secondary"></i>
@@ -115,18 +107,18 @@
         </div>
         <div class="card card-inactive mb-6">
           <div class="card-body">
-            <h3 id="disclaimer" i18n="@@investorOnboardingDisclaimerTitle">Disclaimer</h3>
-            <p class="text-muted" i18n="@@investorOnboardingDisclaimertext1">
+            <h3 id="disclaimer" i18n="@@disclaimerTitle">Disclaimer</h3>
+            <p class="text-muted" i18n="@@disclaimertext1">
               Nothing herein constitutes an offer to sell, or the solicitation of an offer to buy, any securities or
               tokens.
             </p>
-            <p class="text-muted" i18n="@@investorOnboardingDisclaimertext2">
+            <p class="text-muted" i18n="@@disclaimertext2">
               Betoken enables capital connection and managing using smart contracts which are open source. Betoken does
               not take custody of tokens and is only a collaborative hub for investors and managers. Betoken is not a
               licensed bank, broker-dealer, investment advisor or an exchange. Betoken uses partner protocols (Kyber,
               Compound, bZx, Maker DAO) to power its own ecosystem.
             </p>
-            <p class="text-danger" i18n="@@investorOnboardingDisclaimerText3">
+            <p class="text-danger" i18n="@@disclaimertext3">
               💀 This project is in beta. Use at your own risk.
             </p>
           </div>
@@ -137,7 +129,7 @@
   <div class="container mt-3">
     <div class="row justify-content-center">
       <div class="col-11 col-lg-6">
-        <h1 class="text-center" i18n="@@investorOnboardingFaqTitle">Frequently asked questions</h1>
+        <h1 class="text-center" i18n="@@faqTitle">Frequently asked questions</h1>
         <div id="accordion">
           <!-- question -->
           <div class="card">
@@ -257,20 +249,20 @@
       <div class="col-11 col-lg-6">
         <div class="card bg-green">
           <div class="card-body text-center">
-            <h3 class="text-white" i18n="@@investorOnboardingFaqNeedHelp">Can’t find what you’re looking for?</h3>
+            <h3 class="text-white" i18n="@@faqGetHelptitle">Can’t find what you’re looking for?</h3>
             <a class="btn btn-white mr-3" href="https://t.me/betokenfund">Telegram</a>
-            <a class="btn btn-white mr-3" href="https://betoken.gitbook.io/docs/" i18n="@@investorOnboardingFaqCtaHelpCenter">Help Center</a>
+            <a class="btn btn-white mr-3" href="https://betoken.gitbook.io/docs/" i18n="@@faqCtaHelpCenter">Help Center</a>
           </div>
         </div>
         <ul class="nav justify-content-center my-4">
           <li class="nav-item">
-            <a href="https://betoken.fund" class="nav-link text-center text-secondary" i18n="@@investorOnboardingFooterNavHome">Home</a>
+            <a href="https://betoken.fund" class="nav-link text-center text-secondary" i18n="@@footerNavHome">Home</a>
           </li>
           <li class="nav-item">
-            <a href="https://medium.com/betoken" class="nav-link text-center text-secondary" i18n="@@investorOnboardingFooterNavBlog">Blog</a>
+            <a href="https://medium.com/betoken" class="nav-link text-center text-secondary" i18n="@@footerNavBlog">Blog</a>
           </li>
         </ul>
-        <p class="text-center text-secondary" i18n="@@investorOnboardingContactUs@">Contact us at <a class="text-secondary"
+        <p class="text-center text-secondary"><ng-container i18n="@@contactUs">Contact us at</ng-container> <a class="text-secondary"
             href="mailto:hello@betoken.fund?subject=Hey">hello@betoken.fund</a></p>
       </div>
     </div>
@@ -283,36 +275,36 @@
           <div class="modal-header border-0">
             <div *ngIf="phase == 0">
               <!-- Confirm rules title -->
-              <h4 class="modal-title" *ngIf="buyStep == 0" i18n="@@investorOnboardingBuyBtksModalTitleStep0">
+              <h4 class="modal-title" *ngIf="buyStep == 0" i18n="@@modalTitleConfirmRules">
                 Please confirm before continuing
               </h4>
               <!-- BTKS amount title -->
-              <h4 class="modal-title" *ngIf="buyStep == 1" i18n="@@investorOnboardingBuyBtksModalTitleStep1">
+              <h4 class="modal-title" *ngIf="buyStep == 1" i18n="@@modalTitleBtksAmount">
                 How many shares do you want to buy?
               </h4>
               <!-- BTKS Confirm buy title -->
-              <h4 class="modal-title" *ngIf="buyStep == 2" i18n="@@investorOnboardingBuyBtksModalTitleStep2">
-                Confirm order
+              <h4 class="modal-title" *ngIf="buyStep == 2" i18n="@@modalTitleConfirmTx">
+                Confirm transaction
               </h4>
               <!-- BTKS Processing buy title -->
-              <h4 class="modal-title" *ngIf="buyStep == 3" i18n="@@investorOnboardingBuyBtksModalTitleStep3">
-                Processing order
+              <h4 class="modal-title" *ngIf="buyStep == 3" i18n="@@modalTitleProcessingTx">
+                Processing transaction
               </h4>
               <!-- BTKS confirmed buy title -->
-              <h4 class="modal-title" *ngIf="buyStep == 4" i18n="@@investorOnboardingBuyBtksModalTitleStep4">
-                Order confirmed
+              <h4 class="modal-title" *ngIf="buyStep == 4" i18n="@@modalTitleTxConfirmed">
+                Transaction confirmed
               </h4>
             </div>
             <!-- Wait until next intermission title -->
-            <h4 class="modal-title" *ngIf="phase == 1" i18n="@@investorOnboardingBuyBtksModalTitleNotPermitted">
+            <h4 class="modal-title" *ngIf="phase == 1" i18n="@@modalTitleOpNotPermitted">
               Operation not permitted
             </h4>
             <!-- Error -->
-            <h4 class="modal-title" *ngIf="buyStep == -1" i18n="@@investorOnboardingBuyBtksModalTitleError">
+            <h4 class="modal-title" *ngIf="buyStep == -1" i18n="@@modalTitleError">
               That's an error
             </h4>
             <!-- Close -->
-            <button type="button" class="close" data-dismiss="modal" i18n-aria-label="@@investorOnboardingBuyBtksModalCloseAriaLabel" aria-label="Close">
+            <button type="button" class="close" data-dismiss="modal" i18n-aria-label="@@modalAriaLabelClose" aria-label="Close">
               <span aria-hidden="true">×</span>
             </button>
           </div>
@@ -321,22 +313,22 @@
             <img class="mb-4 image-fluid w-75 mx-auto d-block" src="assets/img/illustrations/undraw_queue_qt30.svg"
               alt="">
             <!-- Time left until operation allowed -->
-            <h6 class="header-pretitle text-secondary mb-2 text-center" i18n="@@investorOnboardingBuyBtksModalTimeLeftTitle">
+            <h6 class="header-pretitle text-secondary mb-2 text-center" i18n="@@modalSubtitleTimeLeft">
               Time left until operation allowed
             </h6>
-            <h4 class="header-title mb-4 text-center" i18n="@@investorOnboardingBuyBtksModalTimeLeftUnits">
+            <h4 class="header-title mb-4 text-center" i18n="@@modalTimeLeftUnits">
               {{days}}d {{hours}}h {{minutes}}m {{seconds}}s <a class="text-muted ml-2"
-                href="https://betoken.gitbook.io/docs/betoken-investment-cycle" title="Learn more" target="_blank"><span
+                href="https://betoken.gitbook.io/docs/betoken-investment-cycle" i18n-title="@@modalTimeLeftUnitsTitleAttribute" title="Learn more" target="_blank"><span
                   class="fe fe-help-circle"></span></a>
             </h4>
             <form
               action="https://fund.us17.list-manage.com/subscribe/post?u=9c0647dcb587985ed6121cdf6&amp;id=150e0f091e"
               method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form"
               class="validate mb-4 text-center" target="_blank" novalidate>
-              <label class="text-secondary" for="mce-EMAIL" i18n="@@investorOnboardingBuyBtksModalEmailNotification">Be notified by email 👇</label>
+              <label class="text-secondary" for="mce-EMAIL" i18n="@@modalBeNotifiedByEmail">Be notified by email 👇</label>
               <div class="input-group input-group-lg">
                 <input class="form-control" type="email" value="" name="EMAIL" id="mce-EMAIL"
-                 i18n-placeholder="@@investorOnboardingBuyBtksModalEmailNotificationPlaceholder" placeholder="myemail@address.com" required>
+                 i18n-placeholder="@@modalEmailPlaceholder" placeholder="myemail@address.com" required>
                 <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text"
                     name="b_9c0647dcb587985ed6121cdf6_150e0f091e" tabindex="-1" value=""></div>
                 <div class="input-group-append bg-black">
@@ -348,7 +340,7 @@
             </form>
             <div class="row text-center mb-4">
               <div class="col">
-                <p class="text-secondary mb-2 text-center" i18n="@@investorOnboardingBuyBtksModalFollowUs">Or follow us</p>
+                <p class="text-secondary mb-2 text-center" i18n="@@modalFollowUs">Or follow us</p>
                 <a href="https://t.me/betokenfund" class="btn btn-rounded-circle btn-white mr-3" target="_blank">
                   <img class="mx-auto" src="assets/img/icons/telegram.svg" alt="telegram logo" height="20">
                 </a>
@@ -364,7 +356,7 @@
               </div>
             </div>
             <!-- Close button for buyStep 5 and buying not allowed page -->
-            <button type="submit" class="btn btn-block btn-white mt-auto" data-dismiss="modal" i18n-aria-label="@@investorOnboardingBuyBtksModalEmailNotificationCloseAriaLabel" aria-label="Close" i18n="@@investorOnboardingBuyBtksModalCtaClose">
+            <button type="submit" class="btn btn-block btn-white mt-auto" data-dismiss="modal" i18n-aria-label="@@modalAriaLabelClose" aria-label="Close" i18n="@@modalCtaClose">
               Close
             </button>
           </div>
@@ -396,7 +388,7 @@
                 <div class="custom-control custom-checkbox mb-4">
                   <input type="checkbox" class="custom-control-input" id="rule1"
                     (change)="checkboxes[0] = !checkboxes[0]">
-                  <label class="custom-control-label small text-secondary" for="rule1" i18n="@@investorOnboardingBuyBtksModalRule1">You are NEITHER a citizen or
+                  <label class="custom-control-label small text-secondary" for="rule1" i18n="@@modalRule1">You are NEITHER a citizen or
                     resident of, NOR currently located in any of the following states or territories, NOR an entity
                     formed under the laws of: Afghanistan, Cuba, Democratic People's Republic of Korea, Iran, Iraq,
                     People’s Republic of China, Russian Federation, Somalia, Sudan, Syria, United Arab Emirates, United
@@ -405,13 +397,13 @@
                 <div class="custom-control custom-checkbox mb-4">
                   <input type="checkbox" class="custom-control-input" id="rule2"
                     (change)="checkboxes[1] = !checkboxes[1]">
-                  <label class="custom-control-label small text-secondary" for="rule2" i18n="@@investorOnboardingBuyBtksModalRule2">You have read and understood our
-                    <a href="#/disclaimer" data-dismiss="modal" i18n-aria-label="@@investorOnboardingBuyBtksModalRule2GoToDisclaimerAriaLabel" aria-label="Close">disclaimer</a>.</label>
+                  <label class="custom-control-label small text-secondary" for="rule2"><ng-container i18n="@@modalRule2">You have read and understood our </ng-container>
+                    <a href="#/disclaimer" data-dismiss="modal" i18n-aria-label="@@modalAriaLabelClose" aria-label="Close" i18n="@@modalDisclaimerCta">disclaimer</a>.</label>
                 </div>
                 <div class="custom-control custom-checkbox mb-4">
                   <input type="checkbox" class="custom-control-input" id="rule3"
                     (change)="checkboxes[2] = !checkboxes[2]">
-                  <label class="custom-control-label small text-danger" for="rule3" i18n="@@investorOnboardingBuyBtksModalRule3">💀 You understand that Betoken
+                  <label class="custom-control-label small text-danger" for="rule3" i18n="@@modalRule3">💀 You understand that Betoken
                     Protocol is in beta. Use at your own risk.</label>
                 </div>
               </div>
@@ -420,11 +412,11 @@
 
               <!-- Quantity of share to buy -->
               <div *ngIf="buyStep == 1">
-                <h6 class="header-pretitle" i18n="@@investorOnboardingBuyBtksModalCurrentBtksPrice">
-                  Current Betoken Share Price
+                <h6 class="header-pretitle" i18n="@@price">
+                  Price (DAI)
                 </h6>
                 <h4 class="mb-5">
-                  {{sharesPrice.toFormat(4)}} DAI/BTKS
+                  {{sharesPrice.toFormat(4)}}
                 </h4>
                 <h6 class="header-pretitle text-secondary" i18n="@@investorOnboardingBuyBtksModalIWantToBuyWith">I want to buy Betoken Shares with</h6>
                 <div class="row justify-content-center mb-4">
@@ -439,7 +431,7 @@
                               (input)="refreshBuyOrderDetails($event.target.value); continueEnabled = true;">
                             <div class="input-group-append">
                               <button class="btn btn-white" name="button" type="button"
-                                (click)="maxBuyAmount()" i18n="@@investorOnboardingBuyBtksModalCtaMaxBuyAmount">Max</button>
+                                (click)="maxBuyAmount()" i18n="@@modalCtaMax">Max</button>
                             </div>
                           </div>
                         </div>
@@ -451,7 +443,7 @@
                         </div>
                       </div>
                       <small class="form-text text-secondary d-inline-block mb-0">{{selectedTokenBalance.toFormat(4)}}
-                        {{selectedTokenSymbol}} <ng-container i18n="@@investorOnboardingBuyBtksModalBalanceAvailable">available</ng-container></small>
+                        {{selectedTokenSymbol}} <ng-container i18n="@@modalBalanceAvailable">available</ng-container></small>
                     </form>
                   </div>
                 </div>
@@ -460,13 +452,13 @@
                     <thead>
                       <tr>
                         <th class="px-0 bg-transparent border-top-0">
-                          <span class="h6" i18n="@@investorOnboardingBuyBtksModalOrderDetails">Order Details</span>
+                          <span class="h6" i18n="@@modalTitleOrderDetail">Order Details</span>
                         </th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
-                        <td class="px-0 small align-baseline text-muted" i18n="@@investorOnboardingBuyBtksModalBtksToReceive">
+                        <td class="px-0 small align-baseline text-muted" i18n="@@modalBtksToReceive">
                           Betoken Shares to receive
                         </td>
                         <td class="px-0 text-right small align-baseline">
@@ -474,7 +466,7 @@
                         </td>
                       </tr>
                       <tr>
-                        <td class="px-0 small align-baseline text-muted" i18n="@@investorOnboardingBuyBtksModalTotalCost">
+                        <td class="px-0 small align-baseline text-muted" i18n="@@modalTotalCost">
                           Total cost
                         </td>
                         <td class="px-0 text-right h3 align-baseline">
@@ -491,21 +483,21 @@
               <!-- loader -->
               <img class="image-fluid d-block mx-auto mb-4" src="assets/img/animated-logo.svg" alt="Betoken logo"
                 style="width: 88px;" *ngIf="buyStep == 2 || buyStep === 3">
-              <p class="text-center text-muted mb-5" *ngIf="buyStep == 2" i18n="@@investorOnboardingBuyBtksModalTextStep2">
+              <p class="text-center text-muted mb-5" *ngIf="buyStep == 2" i18n="@@modalBodyTextStep1">
                 Confirm the transaction in your wallet’s interface to save it on the Ethereum blockchain. It's fine to
                 stick with these defaults gas limit and price.
               </p>
 
               <!-- Step 3: transaction broadcasted -->
-              <!-- Processing investment body -->
+              <!-- Processing transaction body -->
               <div *ngIf="buyStep == 3">
-                <p class="text-center text-muted mb-5" i18n="@@investorOnboardingBuyBtksModalTextStep3">
-                  Your investment is being saved on the Ethereum blockchain.
+                <p class="text-center text-muted mb-5" i18n="@@modalBodyTextTxBroadcasted">
+                  Your transaction is being saved on the Ethereum blockchain.
                 </p>
                 <hr>
                 <form>
                   <div class="form-group">
-                    <label for="exampleFormControlInput1" i18n="@@investorOnboardingBuyBtksModalTxHashStep3">Transaction hash</label>
+                    <label for="exampleFormControlInput1" i18n="@@modalBodyTxHash">Transaction hash</label>
                     <div class="input-group mb-3">
                       <input type="text" class="form-control form-control-lg" value="{{transactionId}}"
                        i18n-aria-label="@@investorOnboardingBuyBtksModalTxHashStep3AriaLabel" aria-label="Transaction hash">
@@ -536,7 +528,7 @@
                 <hr>
                 <form>
                   <div class="form-group">
-                    <label for="exampleFormControlInput1" i18n="@@investorOnboardingBuyBtksModalTxHashStep4">Transaction hash</label>
+                    <label for="exampleFormControlInput1" i18n="@@modalBodyTxHash">Transaction hash</label>
                     <div class="input-group mb-3">
                       <input type="text" class="form-control form-control-lg" value="{{transactionId}}"
                        i18n-aria-label="@@investorOnboardingBuyBtksModalTxHashStep4AriaLabel" aria-label="Transaction hash">
@@ -555,10 +547,10 @@
                 <p class="h1 text-center">
                   <i class="fe fe-alert-circle text-danger"></i>
                 </p>
-                <p class="text-center text-muted mb-5" i18n="@@investorOnboardingBuyBtksModalTextError">
+                <p class="text-center text-muted mb-5" i18n="@@modalErrorText">
                   The operation has resulted in an error. Please try again.
                 </p>
-                <p class="text-center text-muted mb-5" i18n="@@investorOnboardingBuyBtksModalTextErrorMsg">
+                <p class="text-center text-muted mb-5" i18n="@@modalErrorMsg">
                   Error message: {{errorMsg}}
                 </p>
               </div>
@@ -570,12 +562,12 @@
               </button>
               <!-- Continue button for buyStep 2 -->
               <button type="submit" class="btn btn-block btn-success mt-auto" aria-label="Continue to Buy"
-                *ngIf="buyStep == 1" (click)="deposit();" [disabled]="!continueEnabled" i18n="@@investorOnboardingBuyBtksModalCtaContinue">
+                *ngIf="buyStep == 1" (click)="deposit();" [disabled]="!continueEnabled" i18n="@@modalCtaContinue">
                 Continue
               </button>
               <!-- Try again button for error -->
-              <button type="submit" class="btn btn-block btn-white mt-auto" aria-label="Try again" *ngIf="buyStep == -1"
-                (click)="resetModals()" i18n="@@investorOnboardingBuyBtksModalCtaTryAgain">
+              <button type="submit" class="btn btn-block btn-white mt-auto" i18n="@@modalTryAgainAriaLabel" aria-label="Try again" *ngIf="buyStep == -1"
+                (click)="resetModals()" i18n="@@modalTryAgain">
                 Try again
               </button>
               <!-- Close button for buyStep 4 -->

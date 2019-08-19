@@ -2,10 +2,10 @@
   <div class="container-fluid px-md-5">
 
     <div class="navbar-text p-0">
-      <h6 class="header-pretitle text-muted mb-1 time-left-title" i18n="@@headerTimeCounterTitle">
+      <h6 class="header-pretitle text-muted mb-1 time-left-title" i18n="@@timeCounterTitle">
         Time left {{phaseActionText()}}
       </h6>
-      <h4 class="header-title text-secondary time-left-value" i18n="@@headerTimeCounterUnits">
+      <h4 class="header-title text-secondary time-left-value" i18n="@@timeCounterUnits">
         {{days}}d {{hours}}h {{minutes}}m {{seconds}}s
       </h4>
     </div>
@@ -48,11 +48,11 @@
   <div class="modal-dialog modal-dialog-vertical bg-white" role="document">
     <div class="modal-content">
       <div class="modal-header border-0">
-        <h4 class="modal-title" i18n="@@headerGetUpdateModalTitle">
-          Get notified by e-mail
+        <h4 class="modal-title" i18n="@@modalBeNotifiedByEmail">
+          Be notified by email
         </h4>
         <!-- Close -->
-        <button type="button" class="close" data-dismiss="modal" i18n-aria-label="@@headerGetUpdateModalAriaLabel" aria-label="Close">
+        <button type="button" class="close" data-dismiss="modal" i18n-aria-label="@@modalAriaLabelClose" aria-label="Close">
           <span aria-hidden="true">×</span>
         </button>
       </div>
@@ -90,7 +90,7 @@
         </div>
         <form action="https://fund.us17.list-manage.com/subscribe/post?u=9c0647dcb587985ed6121cdf6&amp;id=150e0f091e" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate col mb-5" target="_blank" novalidate>
           <div class="input-group input-group-lg">
-            <input class="form-control" type="email" value="" name="EMAIL" id="mce-EMAIL" i18n-placeholder="@@headerGetUpdateModalPlaceholder" placeholder="myemail@address.com" required>
+            <input class="form-control" type="email" value="" name="EMAIL" id="mce-EMAIL" i18n-placeholder="@@modalEmailPlaceholder" placeholder="myemail@address.com" required>
             <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_9c0647dcb587985ed6121cdf6_150e0f091e" tabindex="-1" value=""></div>
             <div class="input-group-append bg-black">
               <button class="btn btn-dark btn-lg btn-block" name="subscribe" id="mc-embedded-subscribe">
@@ -129,24 +129,72 @@
           Switch to another language
         </h4>
         <!-- Close -->
-        <button type="button" class="close" data-dismiss="modal" i18n-aria-label aria-label="Close">
+        <button type="button" class="close" data-dismiss="modal" i18n-aria-label="@@modalAriaLabelClose" aria-label="Close">
           <span aria-hidden="true">×</span>
         </button>
       </div>
       <div class="modal-body pb-5">
         <div class="custom-control custom-radio mb-4">
           <input type="radio" id="English" name="customRadio" class="custom-control-input" checked>
-          <label class="custom-control-label" for="English">English</label>
+          <label class="custom-control-label" for="English" i18n="@@switchToEN">English</label>
         </div>
         <div class="custom-control custom-radio mb-4">
           <input type="radio" id="Chinese" name="customRadio" class="custom-control-input">
-          <label class="custom-control-label" for="Chinese">Chinese</label>
+          <label class="custom-control-label" for="Chinese" i18n="@@switchToCN">Chinese</label>
         </div>
         <div class="custom-control custom-radio">
           <input type="radio" id="French" name="customRadio" class="custom-control-input">
-          <label class="custom-control-label" for="French">French</label>
+          <label class="custom-control-label" for="French" i18n="@@switchToFR">French</label>
+        </div>
+        <div class="custom-control custom-radio">
+          <input type="radio" id="Russian" name="customRadio" class="custom-control-input">
+          <label class="custom-control-label" for="Russian" i18n="@@switchToRU">Russian</label>
+        </div>
+        <div class="custom-control custom-radio">
+          <input type="radio" id="Japanese" name="customRadio" class="custom-control-input">
+          <label class="custom-control-label" for="Japanese" i18n="@@switchToJP">Japanese</label>
+        </div>
+        <div class="custom-control custom-radio">
+          <input type="radio" id="Spanish" name="customRadio" class="custom-control-input">
+          <label class="custom-control-label" for="Spanish" i18n="@@switchToES">Spanish</label>
+        </div>
+        <div class="custom-control custom-radio">
+          <input type="radio" id="Javanese" name="customRadio" class="custom-control-input">
+          <label class="custom-control-label" for="Javanese" i18n="@@switchToJavanese">Javanese</label>
+        </div>
+        <div class="custom-control custom-radio">
+          <input type="radio" id="Indonesian" name="customRadio" class="custom-control-input">
+          <label class="custom-control-label" for="Indonesian" i18n="@@switchToIndonesian">Indonesian</label>
+        </div>
+        <div class="custom-control custom-radio">
+          <input type="radio" id="Portuguese" name="customRadio" class="custom-control-input">
+          <label class="custom-control-label" for="Portuguese" i18n="@@switchToPT">Portuguese</label>
+        </div>
+        <div class="custom-control custom-radio">
+          <input type="radio" id="Sundanese" name="customRadio" class="custom-control-input">
+          <label class="custom-control-label" for="Sundanese" i18n="@@switchToSundanese">Sundanese</label>
+        </div>
+        <div class="custom-control custom-radio">
+          <input type="radio" id="Italian" name="customRadio" class="custom-control-input">
+          <label class="custom-control-label" for="Italian" i18n="@@switchToIT">Italian</label>
+        </div>
+        <div class="custom-control custom-radio">
+          <input type="radio" id="Korean" name="customRadio" class="custom-control-input">
+          <label class="custom-control-label" for="Korean" i18n="@@switchToKorean">Korean</label>
+        </div>
+        <div class="custom-control custom-radio">
+          <input type="radio" id="Hindi" name="customRadio" class="custom-control-input">
+          <label class="custom-control-label" for="Hindi" i18n="@@switchToHindi">Hindi</label>
+        </div>
+        <div class="custom-control custom-radio">
+          <input type="radio" id="Thai" name="customRadio" class="custom-control-input">
+          <label class="custom-control-label" for="Thai" i18n="@@switchToThai">Thai</label>
+        </div>
+        </div>
+        <div class="custom-control custom-radio">
+          <input type="radio" id="Vietnamese" name="customRadio" class="custom-control-input">
+          <label class="custom-control-label" for="Vietnamese" i18n="@@switchToVietnamese">Vietnamese</label>
         </div>
       </div>
     </div>
   </div>
-</div><!-- / modal -->

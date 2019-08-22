@@ -5,7 +5,7 @@
     <!-- Body -->
     <div class="header-body">
       <!-- Title -->
-      <h1 class="header-title text-white" i18n>
+      <h1 class="header-title text-white" i18n="@@investorHeaderTitle">
         Your Stats
       </h1>
     </div>
@@ -13,13 +13,13 @@
     <div class="header-body">
       <div class="card-deck mb-5">
         <!-- Card -->
-        <div class="card" data-toggle="tooltip" data-html="true" i18n-title title="The amount of Betoken Shares (BTKS) you own.">
+        <div class="card" data-toggle="tooltip" data-html="true" i18n-title="@@investorBtksBalanceAttrTitle" title="The amount of Betoken Shares (BTKS) you own.">
           <div class="card-body">
             <div class="row align-items-center">
               <div class="col">
 
                 <!-- Title -->
-                <h6 class="card-title text-uppercase text-muted mb-2" i18n>
+                <h6 class="card-title text-uppercase text-muted mb-2" i18n="@@investorBtksBalance">
                   Betoken Shares Balance
                 </h6>
 
@@ -40,13 +40,13 @@
           </div>
         </div>
         <!-- Card -->
-        <div class="card" data-toggle="tooltip" data-html="true" i18n-title title="The value of your Betoken Shares, in DAI Stablecoin.">
+        <div class="card" data-toggle="tooltip" data-html="true" i18n-title="@@investorBtksTotalValueDaiAttrTitle" title="The value of your Betoken Shares, in DAI Stablecoin.">
           <div class="card-body">
             <div class="row align-items-center">
               <div class="col">
 
                 <!-- Title -->
-                <h6 class="card-title text-uppercase text-muted mb-2" i18n>
+                <h6 class="card-title text-uppercase text-muted mb-2" i18n="@@investorBtksTotalValueDai">
                   Total value
                 </h6>
 
@@ -67,13 +67,13 @@
           </div>
         </div>
         <!-- Card -->
-        <div class="card" data-toggle="tooltip" data-html="true" i18n-title title="The price of 1 Betoken Share token.">
+        <div class="card" data-toggle="tooltip" data-html="true" i18n-title="@@investorBtksPriceAttrTitle" title="The price of 1 Betoken Share token.">
           <div class="card-body">
             <div class="row align-items-center">
               <div class="col">
 
                 <!-- Title -->
-                <h6 class="card-title text-uppercase text-muted mb-2" i18n>
+                <h6 class="card-title text-uppercase text-muted mb-2" i18n="@@btksPriceTitle">
                   Betoken Shares Price
                 </h6>
 
@@ -97,7 +97,7 @@
       <div class="row align-items-end">
         <div class="col">
           <!-- Title -->
-          <h1 class="header-title text-white" i18n>
+          <h1 class="header-title text-white" i18n="@@investorBetokenHistoricalReturn">
             Betoken Historical Returns
           </h1>
         </div>
@@ -129,7 +129,7 @@
           <div class="col">
 
             <!-- Title -->
-            <h6 class="card-title text-uppercase text-muted mb-2" i18n>
+            <h6 class="card-title text-uppercase text-muted mb-2" i18n="@@investorPriceChange">
               Price Change (Current Cycle)
             </h6>
 
@@ -157,7 +157,7 @@
           <div class="col">
 
             <!-- Title -->
-            <h6 class="card-title text-uppercase text-muted mb-2" i18n>
+            <h6 class="card-title text-uppercase text-muted mb-2" i18n="@@investorPriceChangeSinceInception">
               Price Change (Since Inception)
             </h6>
 
@@ -179,18 +179,18 @@
       </div>
     </div>
     <!-- Card -->
-    <div class="card" data-toggle="tooltip" data-html="true" i18n-title title="A maximum drawdown (MDD) is the maximum observed loss from a peak to a trough of a portfolio, before a new peak is attained. Maximum drawdown is an indicator of downside risk over a specified time period.">
+    <div class="card" data-toggle="tooltip" data-html="true" i18n-title="@@investorMaxDrawdownAttrTitle" title="A maximum drawdown (MDD) is the maximum observed loss from a peak to a trough of a portfolio, before a new peak is attained. Maximum drawdown is an indicator of downside risk over a specified time period.">
       <div class="card-body">
         <div class="row align-items-center">
           <div class="col">
 
             <!-- Title -->
-            <h6 class="card-title text-uppercase text-muted mb-2" i18n>
+            <h6 class="card-title text-uppercase text-muted mb-2" i18n="@@investorMaxDrawdown">
               Max Drawdown
             </h6>
 
             <!-- Heading -->
-            <span class="h2 mb-0" i18n>
+            <span class="h2 mb-0">
               {{maxDrawdown.toFormat(4)}}%
             </span>
 
@@ -206,19 +206,19 @@
       </div>
     </div>
     <!-- Card -->
-    <div class="card" data-toggle="tooltip" data-html="true" i18n-title title="Standard deviation represents the volatility of an asset. The number shown here is the sample standard deviation of Betoken Shares' price since inception.">
+    <div class="card" data-toggle="tooltip" data-html="true" i18n-title="@@standardDeviationAttrTitle" title="Standard deviation represents the volatility of an asset. The number shown here is the sample standard deviation of Betoken Shares' price since inception.">
       <div class="card-body">
         <div class="row align-items-center">
           <div class="col">
 
             <!-- Title -->
-            <h6 class="card-title text-uppercase text-muted mb-2" i18n>
+            <h6 class="card-title text-uppercase text-muted mb-2" i18n="@@standardDeviation">
               Standard Deviation
             </h6>
 
             <!-- Heading -->
             <span class="h2 mb-0">
-              {{standardDeviation}}
+              {{standardDeviation}}%
             </span>
 
           </div>
@@ -246,7 +246,7 @@
             <div class="col">
 
               <!-- Title -->
-              <h4 class="card-header-title" i18n>
+              <h4 class="card-header-title" i18n="@@investorDepositWithdrawHistoryTitle">
                 Your Deposit & Withdraw History
               </h4>
 
@@ -256,7 +256,7 @@
               <button class="btn btn-sm btn-white" type="button" name="button" (click) = "refreshDisplay()">
                 <i class="fe fe-refresh-cw align-middle" *ngIf="isLoading == false"></i>
                 <div class="spinner-grow spinner-grow-sm" role="status" *ngIf="isLoading">
-                  <span class="sr-only" i18n>Loading...</span>
+                  <span class="sr-only" i18n="@@refreshBtnLoad">Loading...</span>
                 </div>
               </button>
             </div>
@@ -266,16 +266,16 @@
           <table class="table table-sm table-nowrap card-table" id="historyTable">
             <thead>
               <tr>
-                <th class="text-muted" i18n>
+                <th class="text-muted" i18n="@@investorDepositWithdrawHistoryType">
                   Type
                 </th>
-                <th class="text-muted" i18n>
+                <th class="text-muted" i18n="@@amount">
                   Amount (DAI)
                 </th>
-                <th class="text-muted" i18n>
+                <th class="text-muted" i18n="@@timeStamp">
                   Timestamp
                 </th>
-                <th class="text-muted" i18n>
+                <th class="text-muted" i18n="@@transaction">
                   Transaction
                 </th>
               </tr>
@@ -283,10 +283,10 @@
             <tbody class="list">
               <tr *ngFor="let entry of depositWithdrawHistory">
                 <td class="align-middle">
-                  <span class="badge badge-soft-success" *ngIf="entry.isDeposit" i18n>
+                  <span class="badge badge-soft-success" *ngIf="entry.isDeposit" i18n="@@investorDepositBadge">
                     Deposit
                   </span>
-                  <span class="badge badge-soft-danger" *ngIf="!entry.isDeposit" i18n>
+                  <span class="badge badge-soft-danger" *ngIf="!entry.isDeposit" i18n="@@investorWithdrawBadge">
                     Withdraw
                   </span>
                 </td>
@@ -320,7 +320,7 @@
         </div>
       </div>
       <div class="col-auto">
-        <p class="small text-secondary mb-0 text-center" i18n>Betoken Smart Contracts are audited and secured by Solidified
+        <p class="small text-secondary mb-0 text-center" i18n="@@solidifiedAudit">Betoken Smart Contracts are audited and secured by Solidified
         </p>
       </div>
       <div class="col-auto">
@@ -338,36 +338,36 @@
       <div class="modal-header border-0">
         <div *ngIf="phase == 0">
           <!-- Confirm rules title -->
-          <h4 class="modal-title" *ngIf="buyStep == 0" i18n>
+          <h4 class="modal-title" *ngIf="buyStep == 0" i18n="@@modalTitleConfirmRules">
             Please confirm before continuing
           </h4>
           <!-- BTKS amount title -->
-          <h4 class="modal-title" *ngIf="buyStep == 1" i18n>
+          <h4 class="modal-title" *ngIf="buyStep == 1" i18n="@@modalTitleBtksAmount">
             How many shares do you want to buy?
           </h4>
           <!-- BTKS Confirm buy title -->
-          <h4 class="modal-title" *ngIf="buyStep == 2" i18n>
-            Confirm order
+          <h4 class="modal-title" *ngIf="buyStep == 2" i18n="@@modalTitleConfirmTx">
+            Confirm transaction
           </h4>
           <!-- BTKS Processing buy title -->
-          <h4 class="modal-title" *ngIf="buyStep == 3" i18n>
-            Processing order
+          <h4 class="modal-title" *ngIf="buyStep == 3" i18n="@@modalTitleProcessingTx">
+            Processing transaction
           </h4>
           <!-- BTKS confirmed buy title -->
-          <h4 class="modal-title" *ngIf="buyStep == 4" i18n>
-            Order confirmed
+          <h4 class="modal-title" *ngIf="buyStep == 4" i18n="@@modalTitleTxConfirmed">
+            Transaction confirmed
           </h4>
           <!-- Error -->
-          <h4 class="modal-title" *ngIf="buyStep == -1" i18n>
+          <h4 class="modal-title" *ngIf="buyStep == -1" i18n="@@modalTitleError">
             That's an error
           </h4>
         </div>
         <!-- Wait until next intermission title -->
-        <h4 class="modal-title" *ngIf="phase == 1">
+        <h4 class="modal-title" *ngIf="phase == 1" i18n="@@modalTitleOpNotPermitted">
           Operation not permitted
         </h4>
         <!-- Close -->
-        <button type="button" class="close" data-dismiss="modal" i18n-aria-label aria-label="Close">
+        <button type="button" class="close" data-dismiss="modal" i18n-aria-label="@@modalAriaLabelClose" aria-label="Close">
           <span aria-hidden="true">×</span>
         </button>
       </div>
@@ -376,20 +376,20 @@
       <div class="modal-body" *ngIf="phase == 1">
         <img class="mb-4 image-fluid w-75 mx-auto d-block" src="assets/img/illustrations/undraw_queue_qt30.svg" alt="">
         <!-- Time left until operation allowed -->
-        <h6 class="header-pretitle text-secondary mb-2 text-center" i18n>
+        <h6 class="header-pretitle text-secondary mb-2 text-center" i18n="@@modalSubtitleTimeLeft">
           Time left until operation allowed
         </h6>
-        <h4 class="header-title mb-4 text-center" i18n>
+        <h4 class="header-title mb-4 text-center" i18n="@@modalTimeLeftUnits">
           {{days}}d {{hours}}h {{minutes}}m {{seconds}}s <a class="text-muted ml-2"
-            href="https://betoken.gitbook.io/docs/betoken-investment-cycle" i18n-title title="Learn more" target="_blank"><span
+            href="https://betoken.gitbook.io/docs/betoken-investment-cycle" i18n-title="@@modalTimeLeftUnitsTitleAttribute" title="Learn more" target="_blank"><span
               class="fe fe-help-circle"></span></a>
         </h4>
         <form action="https://fund.us17.list-manage.com/subscribe/post?u=9c0647dcb587985ed6121cdf6&amp;id=150e0f091e"
           method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form"
           class="validate mb-4 text-center" target="_blank" novalidate>
-          <label class="text-secondary" for="mce-EMAIL" i18n>Be notified by email 👇.</label>
+          <label class="text-secondary" for="mce-EMAIL" i18n="@@modalBeNotifiedByEmail">Be notified by email 👇.</label>
           <div class="input-group input-group-lg">
-            <input class="form-control" type="email" value="" name="EMAIL" id="mce-EMAIL" i18n-placeholder placeholder="myemail@address.com" required>
+            <input class="form-control" type="email" value="" name="EMAIL" id="mce-EMAIL" i18n-placeholder="@@modalEmailPlaceholder" placeholder="myemail@address.com" required>
             <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text"
                 name="b_9c0647dcb587985ed6121cdf6_150e0f091e" tabindex="-1" value=""></div>
             <div class="input-group-append bg-black">
@@ -401,7 +401,7 @@
         </form>
         <div class="row text-center mb-4">
           <div class="col">
-            <p class="text-secondary mb-2 text-center" i18n>Or follow us</p>
+            <p class="text-secondary mb-2 text-center" i18n="@@modalFollowUs">Or follow us</p>
             <a href="https://t.me/betokenfund" class="btn btn-rounded-circle btn-white mr-3" target="_blank">
               <img class="mx-auto" src="assets/img/icons/telegram.svg" alt="telegram logo" height="20">
             </a>
@@ -417,7 +417,7 @@
           </div>
         </div>
         <!-- Close button for buyStep 5 and buying not allowed page -->
-        <button type="submit" class="btn btn-block btn-white mt-auto" data-dismiss="modal" i18n-aria-label aria-label="Close" i18n>
+        <button type="submit" class="btn btn-block btn-white mt-auto" data-dismiss="modal" i18n-aria-label="@@modalAriaLabelClose" aria-label="Close" i18n="@@modalCtaClose">
           Close
         </button>
       </div>
@@ -443,7 +443,7 @@
         <div *ngIf="buyStep == 0">
           <div class="custom-control custom-checkbox mb-4">
             <input type="checkbox" class="custom-control-input" id="rule1" (change)="checkboxes[0] = !checkboxes[0]">
-            <label class="custom-control-label small text-secondary" for="rule1" i18n>You are NEITHER a citizen or resident
+            <label class="custom-control-label small text-secondary" for="rule1" i18n="@@modalRule1">You are NEITHER a citizen or resident
               of, NOR currently located in any of the following states or territories, NOR an entity formed under the
               laws of: Afghanistan, Cuba, Democratic People's Republic of Korea, Iran, Iraq, People’s Republic of China,
               Russian Federation, Somalia, Sudan, Syria, United Arab Emirates, United States of America, Venezuela,
@@ -451,22 +451,22 @@
           </div>
           <div class="custom-control custom-checkbox mb-4">
             <input type="checkbox" class="custom-control-input" id="rule2" (change)="checkboxes[1] = !checkboxes[1]">
-            <label class="custom-control-label small text-secondary" for="rule2" i18n>You have read and understood our
+            <label class="custom-control-label small text-secondary" for="rule2" i18n="@@modalRule2">You have read and understood our
               disclaimer below.</label>
           </div>
           <div class="custom-control custom-checkbox mb-4">
             <input type="checkbox" class="custom-control-input" id="rule3" (change)="checkboxes[2] = !checkboxes[2]">
-            <label class="custom-control-label small text-danger" for="rule3" i18n>💀 You understand that Betoken Protocol is
+            <label class="custom-control-label small text-danger" for="rule3" i18n="@@modalRule3">💀 You understand that Betoken Protocol is
               in beta. Use at your own risk.</label>
           </div>
           <div class="card card-inactive mb-4">
             <div class="card-body">
-              <h3 i18n>Disclaimer</h3>
-              <p class="text-muted" i18n>
+              <h3 i18n="@@disclaimerTitle">Disclaimer</h3>
+              <p class="text-muted" i18n="@@disclaimertext1">
                 Nothing herein constitutes an offer to sell, or the solicitation of an offer to buy, any securities or
                 tokens.
               </p>
-              <p class="text-muted" i18n>
+              <p class="text-muted" i18n="@@disclaimertext2">
                 Betoken enables capital connection and managing using smart contracts which are open source. Betoken
                 does not take custody of tokens and is only a collaborative hub for investors and managers. Betoken is
                 not a licensed bank, broker-dealer, investment advisor or an exchange. Betoken uses partner protocols
@@ -480,13 +480,13 @@
 
         <!-- Quantity of share to buy -->
         <div *ngIf="buyStep == 1">
-          <h6 class="header-pretitle" i18n>
-            Current Betoken Share Price
+          <h6 class="header-pretitle" i18n="@@price">
+            Price (DAI)
           </h6>
           <h4 class="mb-5">
-            {{sharesPrice.toFormat(4)}} DAI/BTKS
+            {{sharesPrice.toFormat(4)}}
           </h4>
-          <h6 class="header-pretitle text-secondary" i18n>I want to buy Betoken Shares with</h6>
+          <h6 class="header-pretitle text-secondary" i18n="@@investorBuyBtksModalIWantToBuyWith">I want to buy Betoken Shares with</h6>
           <div class="row justify-content-center mb-4">
             <div class="col">
               <div class="row align-items-center">
@@ -501,7 +501,7 @@
                             (input)="refreshBuyOrderDetails($event.target.value); continueEnabled = true">
                           <div class="input-group-append">
                             <button class="btn btn-white" name="button" type="button"
-                              (click)="maxBuyAmount()" i18n>Max</button>
+                              (click)="maxBuyAmount()" i18n="@@modalCtaMax">Max</button>
                           </div>
                         </div>
                       </div>
@@ -512,8 +512,8 @@
                         </select>
                       </div>
                     </div>
-                    <small class="form-text text-secondary d-inline-block mb-0" i18n>{{selectedTokenBalance.toFormat(4)}}
-                      {{selectedTokenSymbol}} available</small>
+                    <small class="form-text text-secondary d-inline-block mb-0">{{selectedTokenBalance.toFormat(4)}}
+                      {{selectedTokenSymbol}} <ng-container i18n="@@modalBalanceAvailable">available</ng-container></small>
                   </form>
                 </div>
               </div>
@@ -524,13 +524,13 @@
               <thead>
                 <tr>
                   <th class="px-0 bg-transparent border-top-0">
-                    <span class="h6" i18n>Order Details</span>
+                    <span class="h6" i18n="@@modalTitleOrderDetail">Order Details</span>
                   </th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td class="px-0 small align-baseline text-muted" i18n>
+                  <td class="px-0 small align-baseline text-muted" i18n="@@modalBtksToReceive">
                     Betoken Shares to receive
                   </td>
                   <td class="px-0 text-right small align-baseline">
@@ -538,7 +538,7 @@
                   </td>
                 </tr>
                 <tr>
-                  <td class="px-0 small align-baseline text-muted" i18n>
+                  <td class="px-0 small align-baseline text-muted" i18n="@@modalTotalCost">
                     Total cost
                   </td>
                   <td class="px-0 text-right h3 align-baseline">
@@ -555,24 +555,24 @@
         <!-- loader -->
         <img class="image-fluid d-block mx-auto mb-4" src="assets/img/animated-logo.svg" alt="Betoken logo"
           style="width: 88px;" *ngIf="buyStep == 3 || buyStep === 2">
-        <p class="text-center text-muted mb-5" *ngIf="buyStep == 2" i18n>
+        <p class="text-center text-muted mb-5" *ngIf="buyStep == 2" i18n="@@modalBodyTextStep1">
           Confirm the transaction in your wallet’s interface to save it on the Ethereum blockchain. It's fine to stick
           with these defaults gas limit and price.
         </p>
 
         <!-- Step 3: transaction broadcasted -->
-        <!-- Processing investment body -->
+        <!-- Processing transaction body -->
         <div *ngIf="buyStep == 3">
-          <p class="text-center text-muted mb-5" i18n>
-            Your investment is being saved on the Ethereum blockchain.
+          <p class="text-center text-muted mb-5" i18n="@@modalBodyTextTxBroadcasted">
+            Your transaction is being saved on the Ethereum blockchain.
           </p>
           <hr>
           <form>
             <div class="form-group">
-              <label for="exampleFormControlInput1" i18n>Transaction ID</label>
+              <label for="exampleFormControlInput1" i18n="@@modalBodyTxHash">Transaction hash</label>
               <div class="input-group mb-3">
                 <input type="text" class="form-control form-control-lg" value="{{transactionId}}"
-                  aria-label="Transaction ID" aria-describedby="">
+                  aria-label="Transaction hash" aria-describedby="">
                 <div class="input-group-append">
                   <a class="btn btn-white h-100 d-flex align-items-center"
                     href="https://etherscan.io/tx/{{transactionId}}" target="_blank"><i
@@ -589,20 +589,20 @@
           <p class="h1 text-center">
             <i class="fe fe-check-circle text-success"></i>
           </p>
-          <p class="text-center text-muted mb-5" i18n>
+          <p class="text-center text-muted mb-5" i18n="@@investorBuyBtksModalTextStep4">
             You bought <span class="font-weight-bold text-secondary">{{buySharesAmount.toFormat(4)}}</span> BTKS using
             <span class="font-weight-bold text-secondary">{{buyTokenAmount.toFormat(4)}}</span> {{selectedTokenSymbol}}.
           </p>
           <a class="btn btn-twitter btn-block" target="__blank"
-            href="https://twitter.com/intent/tweet?hashtags=Betoken%2C%20DeFi&related=betokenfund&text=I%27ve%20just%20connected%20my%20capital%20to%20Betoken%2C%20world%27s%20first%20crowd-powered%20cryptoassets%20management%20protocol!&url=https%3A%2F%2Fbetoken.fund&via=betokenfund" i18n>Tweet
+            href="https://twitter.com/intent/tweet?hashtags=Betoken%2C%20DeFi&related=betokenfund&text=I%27ve%20just%20connected%20my%20capital%20to%20Betoken%2C%20world%27s%20first%20crowd-powered%20cryptoassets%20management%20protocol!&url=https%3A%2F%2Fbetoken.fund&via=betokenfund" i18n="@@investorBuyBtksModalTweet">Tweet
             about it</a>
           <hr>
           <form>
             <div class="form-group">
-              <label for="exampleFormControlInput1" i18n>Transaction ID</label>
+              <label for="exampleFormControlInput1" i18n="@@modalBodyTxHash">Transaction hash</label>
               <div class="input-group mb-3">
                 <input type="text" class="form-control form-control-lg" value="{{transactionId}}"
-                  aria-label="Transaction ID" aria-describedby="">
+                  aria-label="Transaction hash" aria-describedby="">
                 <div class="input-group-append">
                   <a class="btn btn-white h-100 d-flex align-items-center"
                     href="https://etherscan.io/tx/{{transactionId}}" target="_blank"><i
@@ -618,33 +618,33 @@
           <p class="h1 text-center">
             <i class="fe fe-alert-circle text-danger"></i>
           </p>
-          <p class="text-center text-muted mb-5" i18n>
+          <p class="text-center text-muted mb-5" i18n="@@modalErrorText">
             The operation has resulted in an error. Please try again.
           </p>
-          <p class="text-center text-muted mb-5" i18n>
+          <p class="text-center text-muted mb-5" i18n="@@modalErrorMsg">
             Error message: {{errorMsg}}
           </p>
         </div>
 
 
         <!-- Continue button for buyStep 1 -->
-        <button type="submit" class="btn btn-block btn-success mt-auto" i18n-aria-label aria-label="BuyBTKS" *ngIf="buyStep == 0"
-          (click)="buyStep = agreementsChecked() ? 1 : 0" [ngClass]="{'disabled': !agreementsChecked()}" i18n>
+        <button type="submit" class="btn btn-block btn-success mt-auto" i18n-aria-label="@@investorBuyBtksModalCtaBuyAriaLabel" aria-label="BuyBTKS" *ngIf="buyStep == 0"
+          (click)="buyStep = agreementsChecked() ? 1 : 0" [ngClass]="{'disabled': !agreementsChecked()}" i18n="@@investorBuyBtksModalCtaBuy">
           Buy Betoken Shares
         </button>
         <!-- Continue button for buyStep 2 -->
-        <button type="submit" class="btn btn-block btn-success mt-auto" i18n-aria-label aria-label="Continue to Buy"
-          *ngIf="buyStep == 1" (click)="deposit();" [disabled]="!continueEnabled" i18n>
+        <button type="submit" class="btn btn-block btn-success mt-auto" i18n-aria-label="@@modalCtaContinueAriaLabel" aria-label="Continue to Buy"
+          *ngIf="buyStep == 1" (click)="deposit();" [disabled]="!continueEnabled" i18n="@@modalCtaContinue">
           Continue
         </button>
         <!-- Close button for buyStep 4 -->
-        <button type="submit" class="btn btn-block btn-white mt-auto" data-dismiss="modal" i18n-aria-label aria-label="Close"
-          *ngIf="buyStep == 4" i18n>
+        <button type="submit" class="btn btn-block btn-white mt-auto" data-dismiss="modal" i18n-aria-label="@@modalAriaLabelClose" aria-label="Close"
+          *ngIf="buyStep == 4" i18n="@@modalCtaClose">
           Close
         </button>
         <!-- Try again button for error -->
-        <button type="submit" class="btn btn-block btn-white mt-auto" i18n-aria-label aria-label="Try again" *ngIf="buyStep == -1"
-          (click)="resetModals()" i18n>
+        <button type="submit" class="btn btn-block btn-white mt-auto" i18n="@@modalTryAgainAriaLabel" aria-label="Try again" *ngIf="buyStep == -1"
+          (click)="resetModals()" i18n="@@modalTryAgain">
           Try again
         </button>
       </div>
@@ -660,33 +660,33 @@
       <div class="modal-header border-0">
         <div *ngIf="phase == 0">
           <!-- BTKS amount title -->
-          <h4 class="modal-title" *ngIf="sellStep == 0" i18n>
+          <h4 class="modal-title" *ngIf="sellStep == 0" i18n="@@investorSellBtksModalTitleStep0">
             How many shares do you want to sell?
           </h4>
           <!-- BTKS Confirm Sell title -->
-          <h4 class="modal-title" *ngIf="sellStep == 1" i18n>
-            Confirm Sell Order
+          <h4 class="modal-title" *ngIf="sellStep == 1" i18n="@@modalTitleConfirmTx">
+            Confirm transaction
           </h4>
           <!-- BTKS Processing Sell title -->
-          <h4 class="modal-title" *ngIf="sellStep == 2" i18n>
-            Processing Sell Order
+          <h4 class="modal-title" *ngIf="sellStep == 2" i18n="@@modalTitleProcessingTx">
+            Processing transaction
           </h4>
           <!-- BTKS confirmed Sell title -->
-          <h4 class="modal-title" *ngIf="sellStep == 3" i18n>
-            Sell Order Confirmed
+          <h4 class="modal-title" *ngIf="sellStep == 3" i18n="@@modalTitleTxConfirmed">
+            Transaction Confirmed
           </h4>
           <!-- Error -->
-          <h4 class="modal-title" *ngIf="sellStep == -1" i18n>
+          <h4 class="modal-title" *ngIf="sellStep == -1" i18n="@@modalTitleError">
             That's an error
           </h4>
         </div>
         <div *ngIf="phase == 1">
-          <h4 class="modal-title" i18n>
+          <h4 class="modal-title" i18n="@@investorSellBtksModalTitleOperationNonPermitted">
             Operation not permitted
           </h4>
         </div>
         <!-- Close -->
-        <button type="button" class="close" data-dismiss="modal"  i18n-aria-label aria-label="Close">
+        <button type="button" class="close" data-dismiss="modal"  i18n-aria-label="@modalAriaLabelClose" aria-label="Close">
           <span aria-hidden="true">×</span>
         </button>
       </div>
@@ -710,14 +710,14 @@
       <div class="modal-body" *ngIf="phase == 0">
         <!-- Step 0: enter amount of shares to sell -->
         <div *ngIf="sellStep == 0">
-          <h6 class="header-pretitle" i18n>
-            Current Betoken Share Price
+          <h6 class="header-pretitle" i18n="@@price">
+            Price (DAI)
           </h6>
           <h4 class="mb-5">
-            {{sharesPrice.toFormat(4)}} DAI/BTKS
+            {{sharesPrice.toFormat(4)}}
           </h4>
 
-          <h6 class="header-pretitle text-secondary" i18n>I want to sell</h6>
+          <h6 class="header-pretitle text-secondary" i18n="@@investorSellBtksModalIWantToSell">I want to sell</h6>
 
           <div class="row justify-content-center mb-4">
             <div class="col">
@@ -729,16 +729,16 @@
                     (input)="refreshSellOrderDetails($event.target.value)">
                   <div class="input-group-append">
                     <span class="input-group-text border-left-0 border-right-0" id="maxSellPercentUnit">BTKS</span>
-                    <button class="btn btn-white" name="button" type="button" (click)="maxSellAmount()" i18n>Max</button>
+                    <button class="btn btn-white" name="button" type="button" (click)="maxSellAmount()" i18n="@@modalCtaMax">Max</button>
                   </div>
                 </div>
-                <small class="form-text text-secondary d-inline-block mb-0" i18n>{{sharesBalance.toFormat(4)}} BTKS
-                  available</small>
+                <small class="form-text text-secondary d-inline-block mb-0">{{sharesBalance.toFormat(4)}} BTKS
+                  <ng-container i18n="@@modalBalanceAvailable">available</ng-container></small>
               </form>
             </div>
           </div>
 
-          <h6 class="header-pretitle text-secondary" i18n>I want to receive</h6>
+          <h6 class="header-pretitle text-secondary" i18n="@@investorSellBtksModalIWantToReceive">I want to receive</h6>
 
           <div class="form-group">
             <select class="form-control" id="sellTokenSelect" (change)="selectSellToken($event.target.selectedIndex)">
@@ -753,13 +753,13 @@
               <thead>
                 <tr>
                   <th class="px-0 bg-transparent border-top-0">
-                    <span class="h6" i18n>Order Details</span>
+                    <span class="h6" i18n="@@modalTitleOrderDetail">Order Details</span>
                   </th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td class="px-0 small align-baseline text-muted" i18n>
+                  <td class="px-0 small align-baseline text-muted" i18n="@@investorSellBtksModalSellBtksFor">
                     Sell BTKS for
                   </td>
                   <td class="px-0 text-right h3 align-baseline">
@@ -775,23 +775,23 @@
         <!-- loader -->
         <img class="image-fluid d-block mx-auto mb-4" src="assets/img/animated-logo.svg" alt="Betoken logo"
           style="width: 88px;" *ngIf="sellStep == 1 || sellStep === 2">
-        <p class="text-center text-muted mb-5" *ngIf="sellStep == 1" i18n>
+        <p class="text-center text-muted mb-5" *ngIf="sellStep == 1" i18n="@@modalBodyTextStep1">
           Confirm the transaction in your wallet’s interface to save it on the Ethereum blockchain. It's fine to stick
           with these defaults gas limit and price.
         </p>
 
         <!-- Step 2: transaction broadcasted -->
-        <!-- Processing investment body -->
+        <!-- Processing transaction body -->
         <div *ngIf="sellStep == 2">
-          <p class="text-center text-muted mb-5" i18n>
-            Your investment is being saved on the Ethereum blockchain.
+          <p class="text-center text-muted mb-5" i18n="@@modalBodyTextTxBroadcasted">
+            Your transaction is being saved on the Ethereum blockchain.
           </p>
           <hr>
           <form>
             <div class="form-group">
-              <label for="exampleFormControlInput1" i18n>Transaction ID</label>
+              <label for="exampleFormControlInput1" i18n="@@modalBodyTxHash">Transaction hash</label>
               <div class="input-group mb-3">
-                <input type="text" class="form-control form-control-lg" value="{{transactionId}}"  i18n-aria-label aria-label="Transaction ID" aria-describedby="">
+                <input type="text" class="form-control form-control-lg" value="{{transactionId}}"  i18n-aria-label="@@investorSellBtksModalTxHashStep2AriaLabel" aria-label="Transaction hash">
                 <div class="input-group-append">
                   <a class="btn btn-white h-100 d-flex align-items-center"
                     href="https://etherscan.io/tx/{{transactionId}}" target="_blank"><i
@@ -808,7 +808,7 @@
           <p class="h1 text-center">
             <i class="fe fe-check-circle text-success"></i>
           </p>
-          <p class="text-center text-muted mb-5" i18n>
+          <p class="text-center text-muted mb-5" i18n="@@investorSellBtksModalTextStep3">
             You sold <span class="font-weight-bold text-secondary">{{sellSharesAmount.toFormat(6)}}</span> BTKS for
             <span class="font-weight-bold text-secondary">{{sellTokenAmount.toFormat(6)}}</span>
             {{selectedTokenSymbol}}.
@@ -816,10 +816,10 @@
           <hr>
           <form>
             <div class="form-group">
-              <label for="exampleFormControlInput1" i18n>Transaction ID</label>
+              <label for="exampleFormControlInput1" i18n="@@modalBodyTxHash">Transaction hash</label>
               <div class="input-group mb-3">
                 <input type="text" class="form-control form-control-lg" value="{{transactionId}}"
-                  aria-label="Transaction ID" i18-aria-label aria-describedby="">
+                  aria-label="Transaction hash" i18-aria-label>
                 <div class="input-group-append">
                   <a class="btn btn-white h-100 d-flex align-items-center"
                     href="https://etherscan.io/tx/{{transactionId}}" target="_blank"><i
@@ -835,29 +835,29 @@
           <p class="h1 text-center">
             <i class="fe fe-alert-circle text-danger"></i>
           </p>
-          <p class="text-center text-muted mb-5" i18n>
+          <p class="text-center text-muted mb-5" i18n="@@modalErrorText">
             The operation has resulted in an error. Please try again.
           </p>
-          <p class="text-center text-muted mb-5" i18n>
+          <p class="text-center text-muted mb-5" i18n="@@modalErrorMsg">
             Error message: {{errorMsg}}
           </p>
         </div>
 
         <!-- Continue button for step 0 -->
         <button type="submit" class="btn btn-block btn-success mt-auto" aria-label="Continue to Sell"
-          *ngIf="sellStep == 0" (click)="sell()" i18n>
+          *ngIf="sellStep == 0" (click)="sell()" i18n="@@modalCtaContinue">
           Continue
         </button>
 
         <!-- Close button for step 3 -->
-        <button type="submit" class="btn btn-block btn-white mt-auto" data-dismiss="modal" i18n-aria-label aria-label="Close"
-          *ngIf="sellStep == 3" i18n>
+        <button type="submit" class="btn btn-block btn-white mt-auto" data-dismiss="modal" i18n-aria-label="@@modalAriaLabelClose" aria-label="Close"
+          *ngIf="sellStep == 3" i18n="@@modalCtaClose">
           Close
         </button>
 
         <!-- Try again button for error -->
-        <button type="submit" class="btn btn-block btn-white mt-auto" aria-label="Try again"
-          *ngIf="sellStep == -1" (click)="resetModals()" i18n>
+        <button type="submit" class="btn btn-block btn-white mt-auto" i18n="@@modalTryAgainAriaLabel" aria-label="Try again"
+          *ngIf="sellStep == -1" (click)="resetModals()" i18n="@@modalTryAgain">
           Try again
         </button>
       </div>
@@ -867,20 +867,20 @@
       <div class="modal-body" *ngIf="phase == 1">
         <img class="mb-4 image-fluid w-75 mx-auto d-block" src="assets/img/illustrations/undraw_queue_qt30.svg" alt="">
         <!-- Time left until next intermission phase -->
-        <h6 class="header-pretitle text-secondary mb-2 text-center" i18n>
+        <h6 class="header-pretitle text-secondary mb-2 text-center" i18n="@@modalSubtitleTimeLeft">
           Time left until operation allowed
         </h6>
-        <h4 class="header-title mb-4 text-center" i18n>
+        <h4 class="header-title mb-4 text-center" i18n="@@modalTimeLeftUnits">
           {{days}}d {{hours}}h {{minutes}}m {{seconds}}s <a class="text-muted ml-2"
-            href="https://betoken.gitbook.io/docs/betoken-investment-cycle" i18n-title title="Learn more" target="_blank"><span
+            href="https://betoken.gitbook.io/docs/betoken-investment-cycle" i18n-title="@@modalTimeLeftUnitsTitleAttribute" title="Learn more" target="_blank"><span
               class="fe fe-help-circle"></span></a>
         </h4>
         <form action="https://fund.us17.list-manage.com/subscribe/post?u=9c0647dcb587985ed6121cdf6&amp;id=150e0f091e"
           method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form"
           class="validate mb-4 text-center" target="_blank" novalidate>
-          <label class="text-secondary" for="mce-EMAIL" i18n>Be notified by email 👇.</label>
+          <label class="text-secondary" for="mce-EMAIL" i18n="@@modalBeNotifiedByEmail">Be notified by email 👇.</label>
           <div class="input-group input-group-lg">
-            <input class="form-control" type="email" value="" name="EMAIL" id="mce-EMAIL" i18n-placeholder placeholder="myemail@address.com" required>
+            <input class="form-control" type="email" value="" name="EMAIL" id="mce-EMAIL" i18n-placeholder="@@investorSellBtksModalEmailNotificationPlaceholder" placeholder="myemail@address.com" required>
             <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text"
                 name="b_9c0647dcb587985ed6121cdf6_150e0f091e" tabindex="-1" value=""></div>
             <div class="input-group-append bg-black">
@@ -892,7 +892,7 @@
         </form>
         <div class="row text-center mb-4">
           <div class="col">
-            <p class="text-secondary mb-2 text-center" i18n>Or follow us</p>
+            <p class="text-secondary mb-2 text-center" i18n="@@modalFollowUs">Or follow us</p>
             <a href="https://t.me/betokenfund" class="btn btn-rounded-circle btn-white mr-3" target="_blank">
               <img class="mx-auto" src="assets/img/icons/telegram.svg" alt="telegram logo" height="20">
             </a>

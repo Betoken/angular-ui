@@ -1,5 +1,6 @@
 // imports
 import BigNumber from "bignumber.js";
+import { isNull } from "util";
 const Web3 = require('web3');
 const bnc = require('bnc-assist');
 
@@ -10,6 +11,7 @@ export const DAI_ADDR = "0x89d24A6b4CcB1B6fAA2625fE562bDD9a23260359";
 export const KYBER_ADDR = "0x818E6FECD516Ecc3849DAf6845e3EC868087B755";
 export const NET_ID = 1; // Mainnet
 export const PRECISION = 1e18;
+export const CHECK_RECEIPT_INTERVAL = 3e3; // in milliseconds
 
 // helpers
 export const getDefaultAccount = async () => {
@@ -45,7 +47,20 @@ export const sendTx = async (func, _onTxHash, _onReceipt, _onError) => {
         return func.send({
             from: web3Instance.eth.defaultAccount,
             gas: gasLimit
-        }).on("transactionHash", _onTxHash).on("receipt", _onReceipt).on("error", _onError);
+        }).on("transactionHash", (hash) => {
+            _onTxHash(hash);
+            let listener = setInterval(async () => {
+                let receipt = await web3Instance.eth.getTransaction(hash);
+                if (!isNull(receipt)) {
+                    _onReceipt(receipt);
+                    clearInterval(listener);
+                }
+            }, CHECK_RECEIPT_INTERVAL);
+        }).on("error", (e) => {
+            if (!e.toString().contains('newBlockHeaders')) {
+                _onError(e);
+            }
+        });
     }
 };
 
@@ -56,7 +71,20 @@ export const sendTxWithValue = async (func, val, _onTxHash, _onReceipt, _onError
             from: web3Instance.eth.defaultAccount,
             gas: gasLimit,
             value: val
-        }).on("transactionHash", _onTxHash).on("receipt", _onReceipt).on("error", _onError);
+        }).on("transactionHash", (hash) => {
+            _onTxHash(hash);
+            let listener = setInterval(async () => {
+                let receipt = await web3Instance.eth.getTransaction(hash);
+                if (!isNull(receipt)) {
+                    _onReceipt(receipt);
+                    clearInterval(listener);
+                }
+            }, CHECK_RECEIPT_INTERVAL);
+        }).on("error", (e) => {
+            if (!e.toString().contains('newBlockHeaders')) {
+                _onError(e);
+            }
+        });
     }
 };
 
@@ -66,7 +94,20 @@ export const sendTxWithToken = async (func, token, to, amount, _onTxHash, _onRec
             func.send({
                 from: web3Instance.eth.defaultAccount,
                 gasLimit: "3000000"
-            }).on("transactionHash", _onTxHash).on("receipt", _onReceipt).on("error", _onError);
+            }).on("transactionHash", (hash) => {
+                _onTxHash(hash);
+                let listener = setInterval(async () => {
+                    let receipt = await web3Instance.eth.getTransaction(hash);
+                    if (!isNull(receipt)) {
+                        _onReceipt(receipt);
+                        clearInterval(listener);
+                    }
+                }, CHECK_RECEIPT_INTERVAL);
+            }).on("error", (e) => {
+                if (!e.toString().contains('newBlockHeaders')) {
+                    _onError(e);
+                }
+            });
         }, doNothing, _onError);
     }, doNothing, _onError);
 };

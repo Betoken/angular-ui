@@ -5,7 +5,7 @@ import { isUndefined, isNull } from 'util';
 import BigNumber from 'bignumber.js';
 
 import { } from 'jquery';
-declare var $: any;
+declare var $: any;;
 
 import {
   user, tokens, manager_actions
@@ -77,6 +77,8 @@ export class ManageronboardingComponent extends ApolloEnabled implements OnInit 
     let userAddress = user.address().toLowerCase();
     this.querySubscription = this.apollo
       .watchQuery({
+        pollInterval: 300000,
+        fetchPolicy: 'cache-and-network',
         query: gql`
           {
             fund(id: "BetokenFund") {
@@ -91,13 +93,15 @@ export class ManageronboardingComponent extends ApolloEnabled implements OnInit 
         `
       })
       .valueChanges.subscribe(({ data, loading }) => {
-        let fund = data['fund'];
-        let manager = data['manager'];
+        if (!loading) {
+          let fund = data['fund'];
+          let manager = data['manager'];
 
-        this.isManager = !isNull(manager);
-        this.kairoPrice = new BigNumber(fund.kairoPrice);
-        this.kairoTotalSupply = new BigNumber(fund.kairoTotalSupply);
-        this.totalFunds = new BigNumber(fund.totalFundsInDAI);
+          this.isManager = !isNull(manager);
+          this.kairoPrice = new BigNumber(fund.kairoPrice);
+          this.kairoTotalSupply = new BigNumber(fund.kairoTotalSupply);
+          this.totalFunds = new BigNumber(fund.totalFundsInDAI);
+        }
       });
   }
 

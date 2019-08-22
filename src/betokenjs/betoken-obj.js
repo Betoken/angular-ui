@@ -1,6 +1,7 @@
 // imports
 import BigNumber from "bignumber.js";
 const Web3 = require('web3');
+const bnc = require('bnc-assist');
 
 // constants
 export const BETOKEN_PROXY_ADDR = "0xC7CbB403D1722EE3E4ae61f452Dc36d71E8800DE";
@@ -12,28 +13,28 @@ export const PRECISION = 1e18;
 
 // helpers
 export const getDefaultAccount = async () => {
-    web3.eth.defaultAccount = (await web3.eth.getAccounts())[0];
+    web3Instance.eth.defaultAccount = (await web3Instance.eth.getAccounts())[0];
 };
 
 export const ERC20 = function (_tokenAddr) {
     // add new token contract
     var erc20ABI = require("./abi/ERC20.json");
-    return new web3.eth.Contract(erc20ABI, _tokenAddr);
+    return new web3Instance.eth.Contract(erc20ABI, _tokenAddr);
 };
 
 export const CompoundOrder = function (_addr) {
     var abi = require("./abi/CompoundOrder.json");
-    return new web3.eth.Contract(abi, _addr);
+    return new web3Instance.eth.Contract(abi, _addr);
 };
 
 export const PositionToken = function (_addr) {
     var abi = require("./abi/PositionToken.json");
-    return new web3.eth.Contract(abi, _addr);
+    return new web3Instance.eth.Contract(abi, _addr);
 };
 
 export const estimateGas = async (func, val, _onError) => {
     return Math.floor((await func.estimateGas({
-        from: web3.eth.defaultAccount,
+        from: web3Instance.eth.defaultAccount,
         value: val
     }).catch(_onError)) * 1.2);
 };
@@ -42,7 +43,7 @@ export const sendTx = async (func, _onTxHash, _onReceipt, _onError) => {
     var gasLimit = await estimateGas(func, 0, _onError);
     if (!isNaN(gasLimit)) {
         return func.send({
-            from: web3.eth.defaultAccount,
+            from: web3Instance.eth.defaultAccount,
             gas: gasLimit
         }).on("transactionHash", _onTxHash).on("receipt", _onReceipt).on("error", _onError);
     }
@@ -52,7 +53,7 @@ export const sendTxWithValue = async (func, val, _onTxHash, _onReceipt, _onError
     var gasLimit = await estimateGas(func, val, _onError);
     if (!isNaN(gasLimit)) {
         return func.send({
-            from: web3.eth.defaultAccount,
+            from: web3Instance.eth.defaultAccount,
             gas: gasLimit,
             value: val
         }).on("transactionHash", _onTxHash).on("receipt", _onReceipt).on("error", _onError);
@@ -63,7 +64,7 @@ export const sendTxWithToken = async (func, token, to, amount, _onTxHash, _onRec
     return sendTx(token.methods.approve(to, 0), () => {
         sendTx(token.methods.approve(to, amount), () => {
             func.send({
-                from: web3.eth.defaultAccount,
+                from: web3Instance.eth.defaultAccount,
                 gasLimit: "3000000"
             }).on("transactionHash", _onTxHash).on("receipt", _onReceipt).on("error", _onError);
         }, doNothing, _onError);
@@ -89,6 +90,8 @@ export var Betoken = function () {
     };
     self.hasWeb3 = false;
     self.wrongNetwork = false;
+    self.assistInstance = null;
+    self.apiKey = "902e9643-ad7b-44dc-a130-778bd3b29b95";
 
     /*
     Object Initialization
@@ -99,7 +102,7 @@ export var Betoken = function () {
 
         // Initialize BetokenProxy contract
         var betokenProxyABI = require("./abi/BetokenProxy.json");
-        var BetokenProxy = new web3.eth.Contract(betokenProxyABI, BETOKEN_PROXY_ADDR);
+        var BetokenProxy = new web3Instance.eth.Contract(betokenProxyABI, BETOKEN_PROXY_ADDR);
         self.contracts.BetokenProxy = BetokenProxy;
 
         // Fetch address of BetokenFund
@@ -107,12 +110,12 @@ export var Betoken = function () {
 
         // Initialize BetokenFund contract
         var betokenFundABI = require("./abi/BetokenFund.json");
-        var BetokenFund = new web3.eth.Contract(betokenFundABI, betokenAddr);
+        var BetokenFund = new web3Instance.eth.Contract(betokenFundABI, betokenAddr);
         self.contracts.BetokenFund = BetokenFund;
 
         // Initialize KyberNetwork contract
         var kyberABI = require("./abi/KyberNetwork.json");
-        var Kyber = new web3.eth.Contract(kyberABI, KYBER_ADDR);
+        var Kyber = new web3Instance.eth.Contract(kyberABI, KYBER_ADDR);
         self.contracts.Kyber = Kyber;
 
         // Initialize token contracts
@@ -120,11 +123,11 @@ export var Betoken = function () {
         await Promise.all([
             BetokenFund.methods.controlTokenAddr().call().then(function (_addr) {
                 // Initialize Kairo contract
-                self.contracts.Kairo = new web3.eth.Contract(minimeABI, _addr);
+                self.contracts.Kairo = new web3Instance.eth.Contract(minimeABI, _addr);
             }),
             BetokenFund.methods.shareTokenAddr().call().then(function (_addr) {
                 // Initialize Shares contract
-                self.contracts.Shares = new web3.eth.Contract(minimeABI, _addr);
+                self.contracts.Shares = new web3Instance.eth.Contract(minimeABI, _addr);
             })
         ]);
 
@@ -140,23 +143,60 @@ export var Betoken = function () {
             try {
                 await ethereum.enable();
                 self.hasWeb3 = true;
-                window.web3 = new Web3(ethereum);
+                window.web3Instance = new Web3(ethereum);
             } catch (error1) { }
-        } else if (typeof window.web3 !== 'undefined') {
-            // legacy metamask
-            window.web3 = new Web3(web3.currentProvider);
-            self.hasWeb3 = true;
         } else {
-            // non-dapp browsers
-            window.web3 = new Web3("wss://mainnet.infura.io/ws/v3/3057a4979e92452bae6afaabed67a724");
+            // legacy metamask
+            window.web3Instance = new Web3(Web3.givenProvider);
+            self.hasWeb3 = true;
         }
 
-        const netID = await window.web3.eth.net.getId();
-        if (netID != NET_ID) {
-            window.web3 = new Web3("wss://mainnet.infura.io/ws/v3/3057a4979e92452bae6afaabed67a724");
-            self.hasWeb3 = false;
-            self.wrongNetwork = true;
-        }
+        var bncAssistConfig = {
+            dappId: self.apiKey,
+            networkId: 1,
+            web3: window.web3Instance,
+            recommendedWallets: {
+                desktop: [
+                    {
+                        name: 'MetaMask',
+                        link: 'https://metamask.io/',
+                        icon: 'https://metamask.io/img/metamask.png'
+                    },
+                    {
+                        name: 'Opera',
+                        link: 'https://www.opera.com/',
+                        icon: 'https://images-na.ssl-images-amazon.com/images/I/71Y2mhDkBNL.png'
+                    }
+                    // other desktop wallets your dapp supports here
+                ],
+                mobile: [
+                    {
+                        name: 'Coinbase',
+                        link: 'https://wallet.coinbase.com/',
+                        icon: 'https://cdn-images-1.medium.com/max/1200/1*7ywNS48PnonfsvvMu1tTsA.png'
+                    },
+                    {
+                        name: 'Trust',
+                        link: 'https://trustwallet.com/',
+                        icon: 'https://uploads-ssl.webflow.com/5a88babea6e0f90001b39b0d/5a8cf5a81df25e0001d5c78d_logo_solid_square_blue%20(2).png'
+                    },
+                    {
+                        name: 'Opera Touch',
+                        link: 'https://www.opera.com/mobile/touch',
+                        icon: 'https://apps.goodereader.com/wp-content/uploads/icons/1525044654.png'
+                    },
+                    {
+                        name: 'Status',
+                        link: 'https://dev.status.im/get/',
+                        icon: 'https://cdn.investinblockchain.com/wp-content/uploads/2017/12/status-2-300x300.png?x88891'
+                    }
+                    // other mobile wallets your dapp supports here
+                ]
+            }
+        };
+        self.assistInstance = bnc.init(bncAssistConfig);
+
+        await self.assistInstance.onboard();
     }
 
     /*
@@ -194,7 +234,7 @@ export var Betoken = function () {
     };
 
     self.getTokenSymbol = function (_tokenAddr) {
-        _tokenAddr = web3.utils.toHex(_tokenAddr);
+        _tokenAddr = web3Instance.utils.toHex(_tokenAddr);
         if (_tokenAddr === ETH_TOKEN_ADDRESS) {
             return Promise.resolve().then(function () {
                 return "ETH";
@@ -204,7 +244,7 @@ export var Betoken = function () {
     };
 
     self.getTokenDecimals = function (_tokenAddr) {
-        _tokenAddr = web3.utils.toHex(_tokenAddr);
+        _tokenAddr = web3Instance.utils.toHex(_tokenAddr);
         if (_tokenAddr === ETH_TOKEN_ADDRESS) {
             return Promise.resolve().then(function () {
                 return 18;
@@ -214,15 +254,15 @@ export var Betoken = function () {
     };
 
     self.getTokenBalance = function (_tokenAddr, _addr) {
-        if (_tokenAddr === web3.utils.toChecksumAddress(ETH_TOKEN_ADDRESS)) {
-            return web3.eth.getBalance(_addr);
+        if (_tokenAddr === web3Instance.utils.toChecksumAddress(ETH_TOKEN_ADDRESS)) {
+            return web3Instance.eth.getBalance(_addr);
         }
         return ERC20(_tokenAddr).methods.balanceOf(_addr).call();
     };
 
     self.getTokenPrice = async (_tokenAddr) => {
         try {
-            if (web3.utils.toChecksumAddress(_tokenAddr) === DAI_ADDR) {
+            if (web3Instance.utils.toChecksumAddress(_tokenAddr) === DAI_ADDR) {
                 return BigNumber(1);
             }
             let decimals = await self.getTokenDecimals(_tokenAddr);
@@ -515,7 +555,7 @@ export var Betoken = function () {
     */
     self.sellAsset = async function (_proposalId, _percentage, _minPrice, _maxPrice, _onTxHash, _onReceipt, _onError) {
         await getDefaultAccount();
-        var sellTokenAmount = BigNumber((await self.getDoubleMapping("userInvestments", web3.eth.defaultAccount, _proposalId)).tokenAmount).times(_percentage).integerValue().toFixed();
+        var sellTokenAmount = BigNumber((await self.getDoubleMapping("userInvestments", web3Instance.eth.defaultAccount, _proposalId)).tokenAmount).times(_percentage).integerValue().toFixed();
         var minPrice = _minPrice.times(PRECISION).integerValue().toFixed();
         var maxPrice = _maxPrice.times(PRECISION).integerValue().toFixed();
 

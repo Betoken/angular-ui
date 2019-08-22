@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { AppComponent } from '../app.component';
 
 import { } from 'jquery';
-declare var $: any;
+declare var $: any;;
 import {
   user, timer, error_notifications, manager_actions, refresh_actions
 } from '../../betokenjs/helpers';
@@ -39,7 +39,7 @@ export class HeaderComponent extends ApolloEnabled implements OnInit {
 
   constructor(private ms: AppComponent, private router: Router, private apollo: Apollo) {
     super();
-    
+
     this.days = 0;
     this.hours = 0;
     this.minutes = 0;
@@ -68,40 +68,15 @@ export class HeaderComponent extends ApolloEnabled implements OnInit {
 
   refreshDisplay() {
     this.user_address = user.address();
-    
+
     error_notifications.check_dependency();
     this.errorMsg = error_notifications.get_error_msg();
 
-    this.querySubscription = this.apollo
-      .watchQuery({
-        query: gql`
-          {
-            fund(id: "BetokenFund") {
-              cyclePhase
-            }
-          }
-        `
-      })
-      .valueChanges.subscribe(({ data, loading }) => {
-        let fund = data['fund'];
-
-        this.phase = fund.cyclePhase === 'INTERMISSION' ? 0 : 1;
-      });
+    this.phase = timer.phase();
   }
 
   refreshHeaderSidebarDisplay() {
     this.ms.setHeaderSidebarDisplay(!this.checkRouterURL('/start') && !this.checkRouterURL('/start-managing'));
-  }
-
-  phaseActionText() {
-    switch (this.phase) {
-      case 0:
-        return 'until managing begins';
-      case 1:
-        return 'to manage';
-      case 2:
-        return 'to redeem commission';
-    }
   }
 
   checkRouterURL(route) {

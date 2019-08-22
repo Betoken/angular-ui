@@ -5,7 +5,7 @@ import { isUndefined } from 'util';
 import BigNumber from 'bignumber.js';
 
 import { } from 'jquery';
-declare var $: any;
+declare var $: any;;
 
 import {
   user, timer, stats, tokens, investor_actions
@@ -32,7 +32,7 @@ export class InvestoronboardingComponent extends ApolloEnabled implements OnInit
   buySharesAmount: BigNumber;
   buyTokenAmount: BigNumber;
   continueEnabled: Boolean;
-  
+
   buyStep: Number;
   days: Number;
   hours: Number;
@@ -41,7 +41,7 @@ export class InvestoronboardingComponent extends ApolloEnabled implements OnInit
   phase: Number;
 
   errorMsg: String;
-  
+
   constructor(private router: Router, private apollo: Apollo) {
     super();
     this.user_address = this.ZERO_ADDR;
@@ -54,7 +54,7 @@ export class InvestoronboardingComponent extends ApolloEnabled implements OnInit
     this.buySharesAmount = new BigNumber(0);
     this.buyTokenAmount = new BigNumber(0);
     this.continueEnabled = false;
-    
+
     this.days = 0;
     this.hours = 0;
     this.minutes = 0;
@@ -63,7 +63,7 @@ export class InvestoronboardingComponent extends ApolloEnabled implements OnInit
 
     this.errorMsg = "";
   }
-  
+
   ngOnInit() {
     $('[data-toggle="tooltip"]').tooltip();
     $('#modalInvestorBuy').on('hidden.bs.modal', () => {
@@ -74,13 +74,15 @@ export class InvestoronboardingComponent extends ApolloEnabled implements OnInit
     this.refreshDisplay();
     setInterval(() => this.updateTimer(), 1000);
   }
-  
+
   refreshDisplay() {
     this.user_address = user.address();
     this.getTokenBalance(this.selectedTokenSymbol);
 
     this.querySubscription = this.apollo
       .watchQuery({
+        pollInterval: 300000,
+        fetchPolicy: 'cache-and-network',
         query: gql`
           {
             fund(id: "BetokenFund") {
@@ -90,12 +92,14 @@ export class InvestoronboardingComponent extends ApolloEnabled implements OnInit
         `
       })
       .valueChanges.subscribe(({ data, loading }) => {
-        let fund = data['fund'];
+        if (!loading) {
+          let fund = data['fund'];
 
-        this.sharesPrice = new BigNumber(fund.sharesPrice);
+          this.sharesPrice = new BigNumber(fund.sharesPrice);
+        }
       });
   }
-  
+
   updateTimer() {
     this.days = timer.day();
     this.hours = timer.hour();
@@ -111,7 +115,7 @@ export class InvestoronboardingComponent extends ApolloEnabled implements OnInit
     this.continueEnabled = false;
     this.getTokenBalance(this.selectedTokenSymbol);
   }
-  
+
   refreshBuyOrderDetails(val) {
     this.buyTokenAmount = new BigNumber(val);
     if (!this.buyTokenAmount.isNaN()) {
@@ -134,11 +138,11 @@ export class InvestoronboardingComponent extends ApolloEnabled implements OnInit
     this.refreshBuyOrderDetails(0);
     this.getTokenBalance(this.selectedTokenSymbol);
   }
-  
+
   async getTokenBalance(token) {
     this.selectedTokenBalance = await user.token_balance(token);
   }
-  
+
   deposit() {
     this.buyStep = 2;
     var payAmount = this.buyTokenAmount;
@@ -171,11 +175,11 @@ export class InvestoronboardingComponent extends ApolloEnabled implements OnInit
         break;
     }
   }
-  
+
   assetSymbolToPrice(symbol) {
     return tokens.asset_symbol_to_price(symbol);
   }
-  
+
   getTokenName(token) {
     let result = tokens.asset_symbol_to_name(token);
     if (isUndefined(result)) {
@@ -183,11 +187,11 @@ export class InvestoronboardingComponent extends ApolloEnabled implements OnInit
     }
     return result;
   }
-  
+
   checkRouterURL(route) {
     return this.router.url === route;
   }
-  
+
   agreementsChecked() {
     for (var checked of this.checkboxes) {
       if (!checked) {

@@ -7,8 +7,8 @@ import gql from 'graphql-tag';
 
 import { } from 'jquery';
 import BigNumber from 'bignumber.js';
-import { isNull } from 'util';
-declare var $: any;
+import { isNull, isUndefined } from 'util';
+declare var $: any;;
 
 @Component({
     selector: 'app-rankings',
@@ -34,14 +34,15 @@ export class RankingsComponent extends ApolloEnabled implements OnInit, OnDestro
     }
 
     ngOnInit() {
-        this.refreshDisplay();
+        this.createQuery();
     }
 
-    refreshDisplay() {
-        this.isLoading = true;
+    createQuery() {
         let userAddress = user.address().toLowerCase();
-        this.querySubscription = this.apollo
+        this.query = this.apollo
             .watchQuery({
+                pollInterval: 300000,
+                fetchPolicy: 'cache-and-network',
                 query: gql`
                     {
                         managers(orderBy: "${timer.phase() == 0 ? 'kairoBalance' : 'kairoBalanceWithStake'}", orderDirection: desc, first: 1000) {
@@ -59,20 +60,31 @@ export class RankingsComponent extends ApolloEnabled implements OnInit, OnDestro
                         }
                     }
                 `
-            })
-            .valueChanges.subscribe((result) => {
-                this.isLoading = result.loading;
-                this.rankingArray = result.data['managers'];
-                setTimeout(sortTable, 100);
-
-                this.userRanking = this.rankingArray.findIndex((x) => x.id === userAddress) + 1;
-                let userData = result.data['manager'];
-                if (!isNull(userData)) {
-                    this.userValue = this.getManagerKairoBalance(userData);
-                    this.userROI = this.userValue.div(userData.baseStake).minus(1).times(100);
-                    this.userTotalCommission = new BigNumber(userData.totalCommissionReceived);
-                }
             });
+        this.querySubscription = this.query.valueChanges.subscribe((result) => this.handleQuery(result));
+    }
+
+    handleQuery({ data, loading }) {
+        this.isLoading = loading || isUndefined(loading);
+        if (!loading) {
+            this.rankingArray = data['managers'];
+            setTimeout(sortTable, 100);
+            let userAddress = user.address().toLowerCase();
+
+            this.userRanking = this.rankingArray.findIndex((x) => x.id === userAddress) + 1;
+            let userData = data['manager'];
+            if (!isNull(userData)) {
+                this.userValue = this.getManagerKairoBalance(userData);
+                this.userROI = this.userValue.div(userData.baseStake).minus(1).times(100);
+                this.userTotalCommission = new BigNumber(userData.totalCommissionReceived);
+            }
+        }
+    }
+
+    refreshDisplay() {
+        this.isLoading = true;
+
+        this.query.refetch().then((result) => this.handleQuery(result));
     }
 
     formatNumber(n) {

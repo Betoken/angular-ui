@@ -40,7 +40,7 @@ export const assetSymbolToPrice = function (_symbol) {
 };
 
 export const assetAddressToSymbol = function (_addr) {
-    _addr = web3.utils.toChecksumAddress(_addr);
+    _addr = web3Instance.utils.toChecksumAddress(_addr);
     return TOKEN_DATA.find((x) => x.address === _addr).symbol;
 };
 
@@ -57,17 +57,17 @@ export const assetSymbolToPTokens = (_symbol) => {
 };
 
 export const assetCTokenAddressToSymbol = (_addr) => {
-    _addr = web3.utils.toChecksumAddress(_addr);
+    _addr = web3Instance.utils.toChecksumAddress(_addr);
     return CTOKENS.find((x) => x.address === _addr).symbol;
 };
 
 export const assetPTokenAddressToSymbol = (_addr) => {
-    _addr = web3.utils.toChecksumAddress(_addr);
+    _addr = web3Instance.utils.toChecksumAddress(_addr);
     return PTOKENS.find((x) => !isUndefined(x.pTokens.find((y) => y.address === _addr))).symbol;
 };
 
 export const assetPTokenAddressToInfo = (_addr) => {
-    _addr = web3.utils.toChecksumAddress(_addr);
+    _addr = web3Instance.utils.toChecksumAddress(_addr);
     return PTOKENS.find((x) => !isUndefined(x.pTokens.find((y) => y.address === _addr))).pTokens.find((y) => y.address === _addr);
 };
 
@@ -110,9 +110,9 @@ export const isFulcrumTokenAddress = (_tokenAddress) => {
     return !isUndefined(result);
 };
 
-export const isSupporter = (_addr) => SUPPORTERS.indexOf(web3.utils.toChecksumAddress(_addr)) != -1;
+export const isSupporter = (_addr) => SUPPORTERS.indexOf(web3Instance.utils.toChecksumAddress(_addr)) != -1;
 
-export const fulcrumMinStake = (_symbol, _isShort) => {
+export const fulcrumMinStake = (_symbol, _isShort, _kairoPrice) => {
     let underlyingPrice;
     if (_isShort) {
         // underlying is token
@@ -122,7 +122,7 @@ export const fulcrumMinStake = (_symbol, _isShort) => {
         underlyingPrice = BigNumber(1);
     }
     const MIN_AMOUNT = BigNumber(0.001);
-    return MIN_AMOUNT.times(underlyingPrice).div(totalFunds).times(kairoTotalSupply);
+    return MIN_AMOUNT.times(underlyingPrice).div(_kairoPrice);
 };
 
 export const getAssetPriceAtTimestamp = async (symbol, timestamp) => {
@@ -181,7 +181,7 @@ export const loadTokenMetadata = async () => {
         return {
             name: x.name,
             symbol: x.symbol,
-            address: web3.utils.toChecksumAddress(x.address),
+            address: web3Instance.utils.toChecksumAddress(x.address),
             decimals: x.decimals,
             logoUrl: '',
             price: BigNumber(0),
@@ -199,7 +199,7 @@ export const loadTokenMetadata = async () => {
         let info = rawData.find((x) => x.CoinInfo.Name === token.symbol);
         if (isUndefined(info)) {
             // token not on cryptocompare, use filler
-            tokenLogos.push('/portal/assets/img/icons/no-logo-asset.svg');
+            tokenLogos.push('assets/img/icons/no-logo-asset.svg');
         } else {
             tokenLogos.push(`https://cryptocompare.com${info.CoinInfo.ImageUrl}`);
         }
@@ -228,7 +228,7 @@ export const loadUserData = async () => {
     if (betoken.hasWeb3) {
         // Get user address
         await getDefaultAccount();
-        const userAddr = web3.eth.defaultAccount;
+        const userAddr = web3Instance.eth.defaultAccount;
         if (typeof userAddr !== "undefined") {
             userAddress = userAddr;
         } else {
@@ -246,6 +246,11 @@ export const loadTokenPrices = async () => {
         TOKEN_DATA = TOKEN_DATA.map((x) => {
             if (x.symbol !== 'ETH') {
                 let tokenData = rawData.data.find((y) => y.base_symbol === x.symbol);
+                if (isUndefined(tokenData)) {
+                    x.price = BigNumber(0);
+                    x.dailyVolume = BigNumber(0);
+                    return x;
+                }
                 let daiData = rawData.data.find((y) => y.base_symbol === 'DAI');
                 if (tokenData.current_bid == 0) {
                     tokenData.current_bid = tokenData.current_ask;
@@ -284,7 +289,8 @@ export const loadTokenPrices = async () => {
     apiStr = "https://api.kyber.network/change24h";
     rawData = await httpsGet(apiStr);
     TOKEN_DATA = TOKEN_DATA.map((x) => {
-        x.dailyPriceChange = BigNumber(rawData[`ETH_${x.symbol}`].change_usd_24h);
+        let rawPrice = rawData[`ETH_${x.symbol}`];
+        x.dailyPriceChange = isUndefined(rawPrice) ? BigNumber(0) : BigNumber(rawPrice.change_usd_24h);
         return x;
     });
 

@@ -3,7 +3,9 @@
 
     <div class="navbar-text p-0">
       <h6 class="header-pretitle text-muted mb-1 time-left-title" i18n="@@timeCounterTitle">
-        Time left {{phaseActionText()}}
+        Time left 
+        <ng-container *ngIf="phase == 0" i18n="@@timeCounterActionIntermission">until managing begins</ng-container>
+        <ng-container *ngIf="phase == 1" i18n="@@timeCounterActionManage">to manage</ng-container>
       </h6>
       <h4 class="header-title text-secondary time-left-value" i18n="@@timeCounterUnits">
         {{days}}d {{hours}}h {{minutes}}m {{seconds}}s
@@ -29,8 +31,10 @@
         </a>
       </div>
       <!--Account display-->
-      <button class="btn btn-white text-truncate" style="width: 12rem;" (click)="reloadAll()" *ngIf="user_address !== ZERO_ADDR"><span class="text-success">●</span> {{user_address}}</button>
-      <button class="btn btn-white text-truncate" (click)="reloadAll()" *ngIf="user_address == ZERO_ADDR" i18n="@@header"><span class="text-danger">●</span> Connect Wallet </button>
+      <button class="btn btn-white text-truncate" style="width: 12rem;" (click)="reloadAll()"
+        *ngIf="user_address !== ZERO_ADDR"><span class="text-success">●</span> {{user_address}}</button>
+      <button class="btn btn-white text-truncate" (click)="reloadAll()" *ngIf="user_address == ZERO_ADDR"
+        i18n="@@header"><span class="text-danger">●</span> Connect Wallet </button>
     </div>
   </div>
 </nav>
@@ -44,7 +48,9 @@
 </div>
 
 <!-- Get Updates modal -->
-<div class="modal fade fixed-right" id="modalEmailUpdates" tabindex="-1" role="dialog" i18n-aria-describedby="@@headerGetUpdateModalAriaDescribedby" aria-describedby="Get update modal by email" aria-hidden="true">
+<div class="modal fade fixed-right" id="modalEmailUpdates" tabindex="-1" role="dialog"
+  i18n-aria-describedby="@@headerGetUpdateModalAriaDescribedby" aria-describedby="Get update modal by email"
+  aria-hidden="true">
   <div class="modal-dialog modal-dialog-vertical bg-white" role="document">
     <div class="modal-content">
       <div class="modal-header border-0">
@@ -52,7 +58,8 @@
           Be notified by email
         </h4>
         <!-- Close -->
-        <button type="button" class="close" data-dismiss="modal" i18n-aria-label="@@modalAriaLabelClose" aria-label="Close">
+        <button type="button" class="close" data-dismiss="modal" i18n-aria-label="@@modalAriaLabelClose"
+          aria-label="Close">
           <span aria-hidden="true">×</span>
         </button>
       </div>
@@ -88,13 +95,17 @@
             </p>
           </div>
         </div>
-        <form action="https://fund.us17.list-manage.com/subscribe/post?u=9c0647dcb587985ed6121cdf6&amp;id=150e0f091e" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate col mb-5" target="_blank" novalidate>
+        <form action="https://fund.us17.list-manage.com/subscribe/post?u=9c0647dcb587985ed6121cdf6&amp;id=150e0f091e"
+          method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate col mb-5"
+          target="_blank" novalidate>
           <div class="input-group input-group-lg">
-            <input class="form-control" type="email" value="" name="EMAIL" id="mce-EMAIL" i18n-placeholder="@@modalEmailPlaceholder" placeholder="myemail@address.com" required>
-            <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_9c0647dcb587985ed6121cdf6_150e0f091e" tabindex="-1" value=""></div>
+            <input class="form-control" type="email" value="" name="EMAIL" id="mce-EMAIL"
+              i18n-placeholder="@@modalEmailPlaceholder" placeholder="myemail@address.com" required>
+            <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text"
+                name="b_9c0647dcb587985ed6121cdf6_150e0f091e" tabindex="-1" value=""></div>
             <div class="input-group-append bg-black">
               <button class="btn btn-dark btn-lg btn-block" name="subscribe" id="mc-embedded-subscribe">
-                  <span class="fe fe-send"></span>
+                <span class="fe fe-send"></span>
               </button>
             </div>
           </div>
@@ -121,7 +132,9 @@
 </div><!-- / modal -->
 
 <!-- Languages modal -->
-<div class="modal fade fixed-right" id="modalLanguage" tabindex="-1" role="dialog" i18n-aria-describedby="@@headerLanguageModalAriaDescribedby" aria-describedby="Switch to another language" aria-hidden="true">
+<div class="modal fade fixed-right" id="modalLanguage" tabindex="-1" role="dialog"
+  i18n-aria-describedby="@@headerLanguageModalAriaDescribedby" aria-describedby="Switch to another language"
+  aria-hidden="true">
   <div class="modal-dialog modal-dialog-vertical bg-white" role="document">
     <div class="modal-content">
       <div class="modal-header border-0">
@@ -129,7 +142,8 @@
           Switch to another language
         </h4>
         <!-- Close -->
-        <button type="button" class="close" data-dismiss="modal" i18n-aria-label="@@modalAriaLabelClose" aria-label="Close">
+        <button type="button" class="close" data-dismiss="modal" i18n-aria-label="@@modalAriaLabelClose"
+          aria-label="Close">
           <span aria-hidden="true">×</span>
         </button>
       </div>
@@ -190,7 +204,6 @@
           <input type="radio" id="Thai" name="customRadio" class="custom-control-input">
           <label class="custom-control-label" for="Thai" i18n="@@switchToThai">Thai</label>
         </div>
-        </div>
         <div class="custom-control custom-radio">
           <input type="radio" id="Vietnamese" name="customRadio" class="custom-control-input">
           <label class="custom-control-label" for="Vietnamese" i18n="@@switchToVietnamese">Vietnamese</label>
@@ -198,3 +211,4 @@
       </div>
     </div>
   </div>
+</div>

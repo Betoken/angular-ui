@@ -10,8 +10,8 @@ import gql from 'graphql-tag';
 
 import { } from 'jquery';
 import BigNumber from 'bignumber.js';
-import { isNull } from 'util';
-declare var $: any;
+import { isNull, isUndefined } from 'util';
+declare var $: any;;
 @Component({
     selector: 'app-account',
     templateUrl: './commissions.component.html'
@@ -42,19 +42,19 @@ export class CommissionsComponent extends ApolloEnabled implements OnInit {
     }
 
     ngOnInit() {
-        this.refreshDisplay();
         $('#modalRedeem').on('hidden.bs.modal', () => {
             this.resetModals();
         });
         $('[data-toggle="tooltip"]').tooltip();
+        this.createQuery();
     }
 
-    refreshDisplay() {
-        this.isLoading = true;
-
+    createQuery() {
         let userAddress = user.address().toLowerCase();
-        this.querySubscription = this.apollo
+        this.query = this.apollo
             .watchQuery({
+                pollInterval: 300000,
+                fetchPolicy: 'cache-and-network',
                 query: gql`
                     {
                         fund(id: "BetokenFund") {
@@ -79,37 +79,46 @@ export class CommissionsComponent extends ApolloEnabled implements OnInit {
                         }
                     }
                 `
-            })
-            .valueChanges.subscribe(({ data, loading }) => {
-                this.isLoading = loading;
+            });
+        this.querySubscription = this.query.valueChanges.subscribe((result) => this.handleQuery(result));
+    }
 
-                let fund = data['fund'];
-                let manager = data['manager'];
+    handleQuery({ data, loading }) {
+        this.isLoading = isUndefined(loading) || loading;
 
-                this.cycle = +fund.cycleNumber;
+        if (!loading) {
+            let fund = data['fund'];
+            let manager = data['manager'];
 
-                if (!isNull(manager)) {
-                    this.totalCommissionReceived = new BigNumber(manager.totalCommissionReceived);
-                    this.commissionHistory = manager.commissionHistory;
+            this.cycle = +fund.cycleNumber;
 
-                    // calculate expected commission
-                    if (+fund.kairoTotalSupply > 0) {
-                        let userValue = new BigNumber(manager.kairoBalanceWithStake);
-                        if (fund.cyclePhase === 'INTERMISSION') {
-                            // Actual commission that will be redeemed
-                            this.commissionAmount = new BigNumber(manager.kairoBalance).div(fund.kairoTotalSupply).times(fund.cycleTotalCommission);
-                        } else {
-                            // Expected commission based on previous average ROI
-                            let actualKairoSupply = new BigNumber(fund.kairoTotalSupply).div(fund.totalFundsInDAI).times(fund.aum);
-                            let totalProfit = new BigNumber(fund.aum).minus(fund.totalFundsAtPhaseStart);
-                            totalProfit = BigNumber.max(totalProfit, 0);
-                            let commission = totalProfit.div(actualKairoSupply).times(userValue).times(user.commission_rate());
-                            let assetFee = new BigNumber(fund.aum).div(actualKairoSupply).times(userValue).times(user.asset_fee_rate());
-                            this.commissionAmount = commission.plus(assetFee);
-                        }
+            if (!isNull(manager)) {
+                this.totalCommissionReceived = new BigNumber(manager.totalCommissionReceived);
+                this.commissionHistory = manager.commissionHistory;
+
+                // calculate expected commission
+                if (+fund.kairoTotalSupply > 0) {
+                    let userValue = new BigNumber(manager.kairoBalanceWithStake);
+                    if (fund.cyclePhase === 'INTERMISSION') {
+                        // Actual commission that will be redeemed
+                        this.commissionAmount = new BigNumber(manager.kairoBalance).div(fund.kairoTotalSupply).times(fund.cycleTotalCommission);
+                    } else {
+                        // Expected commission based on previous average ROI
+                        let actualKairoSupply = new BigNumber(fund.kairoTotalSupply).div(fund.totalFundsInDAI).times(fund.aum);
+                        let totalProfit = new BigNumber(fund.aum).minus(fund.totalFundsAtPhaseStart);
+                        totalProfit = BigNumber.max(totalProfit, 0);
+                        let commission = totalProfit.div(actualKairoSupply).times(userValue).times(user.commission_rate());
+                        let assetFee = new BigNumber(fund.aum).div(actualKairoSupply).times(userValue).times(user.asset_fee_rate());
+                        this.commissionAmount = commission.plus(assetFee);
                     }
                 }
-            });
+            }
+        }
+    }
+
+    refreshDisplay() {
+        this.isLoading = true;
+        this.query.refetch().then((result) => this.handleQuery(result));
     }
 
     resetModals() {

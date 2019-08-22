@@ -5,6 +5,7 @@ import { timer } from '../betokenjs/helpers';
 
 export class ApolloEnabled implements OnDestroy {
   querySubscription: Subscription;
+  query: any;
 
   constructor() {
   }

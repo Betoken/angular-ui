@@ -2,16 +2,26 @@
   <div class="container-fluid px-md-5">
 
     <div class="navbar-text p-0">
-      <h6 class="header-pretitle text-muted mb-1 time-left-title" i18n>
-        Time left {{phaseActionText()}}
+      <h6 class="header-pretitle text-muted mb-1 time-left-title" i18n="@@timeCounterTitle">
+        Time left 
+        <ng-container *ngIf="phase == 0" i18n="@@timeCounterActionIntermission">until managing begins</ng-container>
+        <ng-container *ngIf="phase == 1" i18n="@@timeCounterActionManage">to manage</ng-container>
       </h6>
-      <h4 class="header-title text-secondary time-left-value" i18n>
+      <h4 class="header-title text-secondary time-left-value" i18n="@@timeCounterUnits">
         {{days}}d {{hours}}h {{minutes}}m {{seconds}}s
       </h4>
     </div>
 
     <!-- User -->
     <div class="navbar-user">
+      <div class="mr-4 d-none d-md-flex">
+        <!-- Toggle -->
+        <a data-toggle="modal" href="#modalLanguage">
+          <span class="icon">
+            <img src="assets/img/icons/baseline-translate-24px.svg" alt="">
+          </span>
+        </a>
+      </div>
       <div class="mr-4 d-none d-md-flex">
         <!-- Toggle -->
         <a class="text-muted mt-3" data-toggle="modal" href="#modalEmailUpdates">
@@ -21,8 +31,10 @@
         </a>
       </div>
       <!--Account display-->
-      <button class="btn btn-white text-truncate" style="width: 12rem;" (click)="reloadAll()" *ngIf="user_address !== ZERO_ADDR"><span class="text-success">●</span> {{user_address}}</button>
-      <button class="btn btn-white text-truncate" (click)="reloadAll()" *ngIf="user_address == ZERO_ADDR" i18n><span class="text-danger">●</span> Connect Wallet </button>
+      <button class="btn btn-white text-truncate" style="width: 12rem;" (click)="reloadAll()"
+        *ngIf="user_address !== ZERO_ADDR"><span class="text-success">●</span> {{user_address}}</button>
+      <button class="btn btn-white text-truncate" (click)="reloadAll()" *ngIf="user_address == ZERO_ADDR"
+        i18n="@@header"><span class="text-danger">●</span> Connect Wallet </button>
     </div>
   </div>
 </nav>
@@ -30,21 +42,24 @@
 <!-- PREHADER
 ================================================== -->
 <div *ngIf="errorMsg !== '' ">
-  <div class="alert alert-warning rounded-0 mb-0" i18n>
+  <div class="alert alert-warning rounded-0 mb-0">
     {{errorMsg}}
   </div>
 </div>
 
 <!-- Get Updates modal -->
-<div class="modal fade fixed-right" id="modalEmailUpdates" tabindex="-1" role="dialog" i18n-aria-labelledby aria-describedby="Get update modal by email" aria-hidden="true">
+<div class="modal fade fixed-right" id="modalEmailUpdates" tabindex="-1" role="dialog"
+  i18n-aria-describedby="@@headerGetUpdateModalAriaDescribedby" aria-describedby="Get update modal by email"
+  aria-hidden="true">
   <div class="modal-dialog modal-dialog-vertical bg-white" role="document">
     <div class="modal-content">
       <div class="modal-header border-0">
-        <h4 class="modal-title" i18n>
-          Get notified by e-mail
+        <h4 class="modal-title" i18n="@@modalBeNotifiedByEmail">
+          Be notified by email
         </h4>
         <!-- Close -->
-        <button type="button" class="close" data-dismiss="modal" i18n-aria-label aria-label="Close">
+        <button type="button" class="close" data-dismiss="modal" i18n-aria-label="@@modalAriaLabelClose"
+          aria-label="Close">
           <span aria-hidden="true">×</span>
         </button>
       </div>
@@ -52,19 +67,19 @@
         <div class="media mb-4 mb-lg-3">
           <i class="fe fe-check text-green mr-3"></i>
           <div class="media-body">
-            <h6 class="header-pretitle" i18n>
+            <h6 class="header-pretitle" i18n="@@headerGetUpdateModalSubtitle1">
               Capital connection
             </h6>
-            <p i18n>Get updated when you can connect or withdraw your capital.</p>
+            <p i18n="@@headerGetUpdateModalText1">Get updated when you can connect or withdraw your capital.</p>
           </div>
         </div>
         <div class="media mb-4 mb-lg-3">
           <i class="fe fe-check text-green mr-3"></i>
           <div class="media-body">
-            <h6 class="header-pretitle" i18n>
+            <h6 class="header-pretitle" i18n="@@headerGetUpdateModalSubtitle2">
               Monthly performance results
             </h6>
-            <p i18n>
+            <p i18n="@@headerGetUpdateModalText2">
               Get insights into how your holdings perform month by month.
             </p>
           </div>
@@ -72,21 +87,25 @@
         <div class="media mb-4 mb-lg-3">
           <i class="fe fe-check text-green mr-3"></i>
           <div class="media-body">
-            <h6 class="header-pretitle" i18n>
+            <h6 class="header-pretitle" i18n="@@headerGetUpdateModalSubtitle3">
               Manager commissions
             </h6>
-            <p i18n>
+            <p i18n="@@headerGetUpdateModalText3">
               Be the first to know when to redeem your manager's commissions.
             </p>
           </div>
         </div>
-        <form action="https://fund.us17.list-manage.com/subscribe/post?u=9c0647dcb587985ed6121cdf6&amp;id=150e0f091e" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate col mb-5" target="_blank" novalidate>
+        <form action="https://fund.us17.list-manage.com/subscribe/post?u=9c0647dcb587985ed6121cdf6&amp;id=150e0f091e"
+          method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate col mb-5"
+          target="_blank" novalidate>
           <div class="input-group input-group-lg">
-            <input class="form-control" type="email" value="" name="EMAIL" id="mce-EMAIL" i18n-placeholder placeholder="myemail@address.com" required>
-            <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_9c0647dcb587985ed6121cdf6_150e0f091e" tabindex="-1" value=""></div>
+            <input class="form-control" type="email" value="" name="EMAIL" id="mce-EMAIL"
+              i18n-placeholder="@@modalEmailPlaceholder" placeholder="myemail@address.com" required>
+            <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text"
+                name="b_9c0647dcb587985ed6121cdf6_150e0f091e" tabindex="-1" value=""></div>
             <div class="input-group-append bg-black">
               <button class="btn btn-dark btn-lg btn-block" name="subscribe" id="mc-embedded-subscribe">
-                  <span class="fe fe-send"></span>
+                <span class="fe fe-send"></span>
               </button>
             </div>
           </div>
@@ -111,3 +130,85 @@
     </div>
   </div>
 </div><!-- / modal -->
+
+<!-- Languages modal -->
+<div class="modal fade fixed-right" id="modalLanguage" tabindex="-1" role="dialog"
+  i18n-aria-describedby="@@headerLanguageModalAriaDescribedby" aria-describedby="Switch to another language"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-vertical bg-white" role="document">
+    <div class="modal-content">
+      <div class="modal-header border-0">
+        <h4 class="modal-title" i18n="@@headerLanguageModalTitle">
+          Switch to another language
+        </h4>
+        <!-- Close -->
+        <button type="button" class="close" data-dismiss="modal" i18n-aria-label="@@modalAriaLabelClose"
+          aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body pb-5">
+        <div class="custom-control custom-radio mb-4">
+          <input type="radio" id="English" name="customRadio" class="custom-control-input" checked>
+          <label class="custom-control-label" for="English" i18n="@@switchToEN">English</label>
+        </div>
+        <div class="custom-control custom-radio mb-4">
+          <input type="radio" id="Chinese" name="customRadio" class="custom-control-input">
+          <label class="custom-control-label" for="Chinese" i18n="@@switchToCN">Chinese</label>
+        </div>
+        <div class="custom-control custom-radio">
+          <input type="radio" id="French" name="customRadio" class="custom-control-input">
+          <label class="custom-control-label" for="French" i18n="@@switchToFR">French</label>
+        </div>
+        <div class="custom-control custom-radio">
+          <input type="radio" id="Russian" name="customRadio" class="custom-control-input">
+          <label class="custom-control-label" for="Russian" i18n="@@switchToRU">Russian</label>
+        </div>
+        <div class="custom-control custom-radio">
+          <input type="radio" id="Japanese" name="customRadio" class="custom-control-input">
+          <label class="custom-control-label" for="Japanese" i18n="@@switchToJP">Japanese</label>
+        </div>
+        <div class="custom-control custom-radio">
+          <input type="radio" id="Spanish" name="customRadio" class="custom-control-input">
+          <label class="custom-control-label" for="Spanish" i18n="@@switchToES">Spanish</label>
+        </div>
+        <div class="custom-control custom-radio">
+          <input type="radio" id="Javanese" name="customRadio" class="custom-control-input">
+          <label class="custom-control-label" for="Javanese" i18n="@@switchToJavanese">Javanese</label>
+        </div>
+        <div class="custom-control custom-radio">
+          <input type="radio" id="Indonesian" name="customRadio" class="custom-control-input">
+          <label class="custom-control-label" for="Indonesian" i18n="@@switchToIndonesian">Indonesian</label>
+        </div>
+        <div class="custom-control custom-radio">
+          <input type="radio" id="Portuguese" name="customRadio" class="custom-control-input">
+          <label class="custom-control-label" for="Portuguese" i18n="@@switchToPT">Portuguese</label>
+        </div>
+        <div class="custom-control custom-radio">
+          <input type="radio" id="Sundanese" name="customRadio" class="custom-control-input">
+          <label class="custom-control-label" for="Sundanese" i18n="@@switchToSundanese">Sundanese</label>
+        </div>
+        <div class="custom-control custom-radio">
+          <input type="radio" id="Italian" name="customRadio" class="custom-control-input">
+          <label class="custom-control-label" for="Italian" i18n="@@switchToIT">Italian</label>
+        </div>
+        <div class="custom-control custom-radio">
+          <input type="radio" id="Korean" name="customRadio" class="custom-control-input">
+          <label class="custom-control-label" for="Korean" i18n="@@switchToKorean">Korean</label>
+        </div>
+        <div class="custom-control custom-radio">
+          <input type="radio" id="Hindi" name="customRadio" class="custom-control-input">
+          <label class="custom-control-label" for="Hindi" i18n="@@switchToHindi">Hindi</label>
+        </div>
+        <div class="custom-control custom-radio">
+          <input type="radio" id="Thai" name="customRadio" class="custom-control-input">
+          <label class="custom-control-label" for="Thai" i18n="@@switchToThai">Thai</label>
+        </div>
+        <div class="custom-control custom-radio">
+          <input type="radio" id="Vietnamese" name="customRadio" class="custom-control-input">
+          <label class="custom-control-label" for="Vietnamese" i18n="@@switchToVietnamese">Vietnamese</label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

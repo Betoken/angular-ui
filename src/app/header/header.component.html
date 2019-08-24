@@ -46,6 +46,11 @@
     {{errorMsg}}
   </div>
 </div>
+<div *ngIf="phase == 1 && 7 > days && !checkRouterURL('/invest')">
+  <div class="alert alert-warning rounded-0 mb-0" i18n="@@managerAlert">
+    Please note you have only {{days}} days left to manage. You MUST sell all of your investments during this time, or you WILL LOSE your staked Kairo.
+  </div>
+</div>
 
 <!-- Get Updates modal -->
 <div class="modal fade fixed-right" id="modalEmailUpdates" tabindex="-1" role="dialog"

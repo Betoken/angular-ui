@@ -81,17 +81,6 @@ export class SideNavComponent extends ApolloEnabled implements OnInit {
       });
   }
 
-  phaseActionText() {
-    switch (this.phase) {
-      case 0:
-        return 'until managing begins';
-      case 1:
-        return 'to manage';
-      case 2:
-        return 'to redeem commission';
-    }
-  }
-
   checkRouterURL(route) {
     return this.router.url === route;
   }

@@ -1060,7 +1060,7 @@
           Sell Investment
         </button>
       </div>
-      <div class="modal-footer" *ngIf="sellInvestmentPopupStep === 3">
+      <div class="modal-footer" *ngIf="sellInvestmentPopupStep === 2 || sellInvestmentPopupStep === 3">
         <!-- close button panel after Asset being sold -->
         <button type="submit" class="btn btn-block btn-white mt-auto" data-dismiss="modal" i18n-aria-label="@@modalAriaLabelClose" aria-label="Close" i18n="@@modalCtaClose">
           Close
@@ -1260,7 +1260,7 @@
           Continue
         </button>
       </div>
-      <div class="modal-footer" *ngIf="topupPopupStep === 3">
+      <div class="modal-footer" *ngIf="topupPopupStep === 2 || topupPopupStep === 3">
         <!-- close button panel after Asset being sold -->
         <button type="submit" class="btn btn-block btn-white mt-auto" data-dismiss="modal" i18n-aria-label="@@modalAriaLabelClose" aria-label="Close" i18n="@@modalCtaClose">
           Close

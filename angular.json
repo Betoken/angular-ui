@@ -48,7 +48,8 @@
               "src/assets/js/navbar.js",
               "src/assets/js/popover.js",
               "src/assets/js/select2.js",
-              "src/assets/js/tooltip.js"
+              "src/assets/js/tooltip.js",
+              "src/assets/js/demo.js"
             ]
           },
           "configurations": {

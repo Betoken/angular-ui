@@ -1,0 +1,1077 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
+  <file original="ng2.template" datatype="plaintext" xml:space="preserve" source-language="en" target-language="zh-Hans">
+    <header>
+      <tool tool-id="poeditor.com" tool-name="POEditor"/>
+    </header>
+    <body>
+      <trans-unit id="header">
+        <source>● Connect Wallet</source>
+        <target>● 请登录钱包</target>
+      </trans-unit>
+      <trans-unit id="headerGetUpdateModalSubtitle1">
+        <source>Capital connection</source>
+        <target>资产链接</target>
+      </trans-unit>
+      <trans-unit id="headerGetUpdateModalText1">
+        <source>Get updated when you can connect or withdraw your capital.</source>
+        <target>获取有关何时能存入/取出您的资产的通知</target>
+      </trans-unit>
+      <trans-unit id="headerGetUpdateModalSubtitle2">
+        <source>Monthly performance results</source>
+        <target>每月收益报告</target>
+      </trans-unit>
+      <trans-unit id="headerGetUpdateModalText2">
+        <source>Get insights into how your holdings perform month by month.</source>
+        <target>获取您的资产收益状况</target>
+      </trans-unit>
+      <trans-unit id="headerGetUpdateModalSubtitle3">
+        <source>Manager commissions</source>
+        <target>操盘手工资</target>
+      </trans-unit>
+      <trans-unit id="headerGetUpdateModalText3">
+        <source>Be the first to know when to redeem your manager's commissions.</source>
+        <target>抢先了解何时能取出您的操盘手工资</target>
+      </trans-unit>
+      <trans-unit id="headerLanguageModalTitle">
+        <source>Switch to another language</source>
+        <target>切换语言</target>
+      </trans-unit>
+      <trans-unit id="sidebarToggleManage">
+        <source>Manage</source>
+        <target>操盘</target>
+      </trans-unit>
+      <trans-unit id="sidebarNavDashboard">
+        <source>Dashboard</source>
+        <target>主页</target>
+      </trans-unit>
+      <trans-unit id="sidebarNavInvestments">
+        <source>Investments</source>
+        <target>投资项目</target>
+      </trans-unit>
+      <trans-unit id="sidebarNavMarket">
+        <source>Market</source>
+        <target>市场</target>
+      </trans-unit>
+      <trans-unit id="sidebarNavRankings">
+        <source>Rankings</source>
+        <target>排行</target>
+      </trans-unit>
+      <trans-unit id="sidebarNavCommissions">
+        <source>Commissions</source>
+        <target>工资</target>
+      </trans-unit>
+      <trans-unit id="sidebarNavUpgrade">
+        <source>Upgrade Governance</source>
+        <target>参政</target>
+      </trans-unit>
+      <trans-unit id="sidebarToggleInvest">
+        <source>Invest</source>
+        <target>基金投资</target>
+      </trans-unit>
+      <trans-unit id="sidebarNavHelp">
+        <source>Help</source>
+        <target>帮助</target>
+      </trans-unit>
+      <trans-unit id="sidebarNavRateUs">
+        <source>Rate us</source>
+        <target>给我们评分</target>
+      </trans-unit>
+      <trans-unit id="dashboardHeaderTitle">
+        <source>Your Stats</source>
+        <target>您的信息</target>
+      </trans-unit>
+      <trans-unit id="dashboardYourRankingTitle">
+        <source>Your Ranking</source>
+        <target>您的排名</target>
+      </trans-unit>
+      <trans-unit id="dashboardBetokenStatsTitle">
+        <source>Betoken Stats</source>
+        <target>Betoken信息</target>
+      </trans-unit>
+      <trans-unit id="dashboardRoiTitle">
+        <source>Return on Investment (Current Cycle)</source>
+        <target>收益（本周期）</target>
+      </trans-unit>
+      <trans-unit id="dashboardRoiSinceInceptionTitle">
+        <source>Return on Investment (Since Inception)</source>
+        <target>收益（从创立）</target>
+      </trans-unit>
+      <trans-unit id="dashboardTotalFundManagersTitle">
+        <source>Total fund managers</source>
+        <target>操盘手人数</target>
+      </trans-unit>
+      <trans-unit id="investmentsHeaderTitle">
+        <source>Your Investments</source>
+        <target>您的投资项目</target>
+      </trans-unit>
+      <trans-unit id="investmentsRiskTakenTitle">
+        <source>Risk Taken</source>
+        <target>已承受的风险</target>
+      </trans-unit>
+      <trans-unit id="investmentsActiveInvestmentsTableTitle">
+        <source>Active Investments</source>
+        <target>活跃的投资项目</target>
+      </trans-unit>
+      <trans-unit id="investmentsNoActiveInvestments">
+        <source>You have no active investments</source>
+        <target>你没有活跃的投资项目</target>
+      </trans-unit>
+      <trans-unit id="investmentsPastInvestmentsTableTitle">
+        <source>Past Investments</source>
+        <target>过往投资项目</target>
+      </trans-unit>
+      <trans-unit id="investmentsBuyModalTitleStep0">
+        <source>Select An Asset</source>
+        <target>选择要投资的虚拟货币</target>
+      </trans-unit>
+      <trans-unit id="investmentsBuyModalTitleStep1">
+        <source>Buy</source>
+        <target>投资</target>
+      </trans-unit>
+      <trans-unit id="investmentsBuyModalAssetLabelMarginTrading">
+        <source>Margin Trading</source>
+        <target>保证金交易</target>
+      </trans-unit>
+      <trans-unit id="investmentsBuyModalIWantToBuy">
+        <source>I want to buy by staking</source>
+        <target>投资赌注</target>
+      </trans-unit>
+      <trans-unit id="investmentsBuyModalFulcrumMinStake">
+        <source>Minimum stake: KRO</source>
+        <target>最低赌注： KRO</target>
+      </trans-unit>
+      <trans-unit id="investmentsBuyModalOrderTypeSelect">
+        <source>Order type</source>
+        <target>投资类型</target>
+      </trans-unit>
+      <trans-unit id="investmentsBuyModalAdvancedOptionSubTitle">
+        <source>Max acceptable price</source>
+        <target>最高可承受价格</target>
+      </trans-unit>
+      <trans-unit id="investmentsBuyModalMarginTradingPayoutTitle">
+        <source>Payout</source>
+        <target>收益说明</target>
+      </trans-unit>
+      <trans-unit id="investmentsBuyModalMarginTradingPayoutText1">
+        <source>This order multiplies your returns by x.</source>
+        <target>此种投资会对收益有 x倍增</target>
+      </trans-unit>
+      <trans-unit id="investmentsBuyModalMarginTradingPayoutText2">
+        <source>If 's price +10%, you gain % lose %.</source>
+        <target>如果 的价格增长10%，你会</target>
+      </trans-unit>
+      <trans-unit id="investmentsBuyModalMarginTradingPayoutText3">
+        <source>If 's price -10%, you lose % gain %.</source>
+        <target>如果 的价格 -10%，您将赔 % 赚 %</target>
+      </trans-unit>
+      <trans-unit id="investmentsBuyModalMarginTradingLiquidationTitle">
+        <source>Liquidation</source>
+        <target>清算</target>
+      </trans-unit>
+      <trans-unit id="investmentsBuyModalMarginTradingLiquidationText">
+        <source>This order could be liquidated if its losses exceed a certain threshold (which will be displayed). If that happens, a large portion of your stake will be lost. Learn More</source>
+        <target>本投资当损失超过一定限额（会有显示）时会被清算。清算时您将损失大部分赌注。了解更多</target>
+      </trans-unit>
+      <trans-unit id="investmentsBuyModalTxConfirmed">
+        <source>You staked KRO to invest in .</source>
+        <target>您赌了 KRO 来投资 。</target>
+      </trans-unit>
+      <trans-unit id="investmentsModalSellOrderLeverage">
+        <source>Leverage</source>
+        <target>杠杆</target>
+      </trans-unit>
+      <trans-unit id="investmentsModalSellOrderBuyTime">
+        <source>OPENED</source>
+        <target>创建于</target>
+      </trans-unit>
+      <trans-unit id="investmentsModalSellStakedKro">
+        <source>Staked KRO</source>
+        <target>Kairo 赌注</target>
+      </trans-unit>
+      <trans-unit id="investmentsModalSellKroToRedeem">
+        <source>KRO to Redeem</source>
+        <target>现投资价值</target>
+      </trans-unit>
+      <trans-unit id="investmentsModalSellMarginPositionPrice">
+        <source>Margin Position Price</source>
+        <target>保证金头寸价格</target>
+      </trans-unit>
+      <trans-unit id="investmentsModalSellFulcrumLiquidationPrice">
+        <source>Liquidation Price</source>
+        <target>保证金头寸清算价格</target>
+      </trans-unit>
+      <trans-unit id="investmentsModalSellFulcrumLiquidationText">
+        <source>If the margin position price falls below the liquidation price, this order will be liquidated, which will cause huge losses. When the order is in danger of liquidation, sell it.</source>
+        <target>如果头寸价格低于清算价格，本投资将被清算，这意味着您将有大量损失。当本投资有被清算风险时，请卖掉它。</target>
+      </trans-unit>
+      <trans-unit id="investmentsModalSellProportionAssetsToSell">
+        <source>Proportion of assets to sell</source>
+        <target>卖掉投资比例</target>
+      </trans-unit>
+      <trans-unit id="investmentsModalSellAdvancedOptionSubtite">
+        <source>Min acceptable price</source>
+        <target>最低可接受价格</target>
+      </trans-unit>
+      <trans-unit id="investmentsModalSellTextStep3">
+        <source>You have successfully sold the investment and redeemed your Kairo.</source>
+        <target>您成功地卖掉了该投资，并拿回了Kairo赌注。</target>
+      </trans-unit>
+      <trans-unit id="investmentsModalSellCtaContinue">
+        <source>Sell Investment</source>
+        <target>抛售投资</target>
+      </trans-unit>
+      <trans-unit id="investmentsModalTopUpStep0">
+        <source>Top up your order</source>
+        <target>充值抵押金</target>
+      </trans-unit>
+      <trans-unit id="investmentsModalTopUpCollateralTarget">
+        <source>Collateralization target</source>
+        <target>目标抵押比例</target>
+      </trans-unit>
+      <trans-unit id="investmentsModalTopUpMaxPossibleCollRatio">
+        <source>Max possible collateral ratio</source>
+        <target>可能的最高抵押比例</target>
+      </trans-unit>
+      <trans-unit id="investmentsModalTopUpTextStep3">
+        <source>You have successfully topped up the order.</source>
+        <target>您成功地给该投资充值了抵押金。</target>
+      </trans-unit>
+      <trans-unit id="upgradeHeaderTitle">
+        <source>Upgrade Governance</source>
+        <target>参政</target>
+      </trans-unit>
+      <trans-unit id="upgradeCardTitle">
+        <source>Upgrade proposals</source>
+        <target>升级提议</target>
+      </trans-unit>
+      <trans-unit id="upgradeCardSubtitle">
+        <source>No active upgrade proposals</source>
+        <target>没有活跃的升级提议</target>
+      </trans-unit>
+      <trans-unit id="upgradeCardText">
+        <source>During the Intermission phase of each cycle, the managers may decide to initiate an upgrade via a simple majority vote using their Kairo tokens. If the vote passed, then during the Manage phase, managers may use their Kairo to vote on which smart contract should be accepted as the new version. Learn more</source>
+        <target>在每个投资周期的 “幕间休息” 阶段，操盘手们可以用他们的 Kairo 点数来进行多数投票，从而决定启动智能合约升级的过程。如果投票通过，那么在 “操盘” 阶段操盘手们可以用他们的 Kairo 点数来投票决定升级至哪个智能合约。了解更多</target>
+      </trans-unit>
+      <trans-unit id="upgradeCardSubtitle2">
+        <source>Time of the upgrade governance system's activation</source>
+        <target>升级参政系统上线时间</target>
+      </trans-unit>
+      <trans-unit id="upgradeCardTimeLeft">
+        <source>7:30AM UTC, September 29th, 2019</source>
+        <target>2019年9月29日上午7：30（UTC时间）</target>
+      </trans-unit>
+      <trans-unit id="commissionsHeaderTitle">
+        <source>Commissions</source>
+        <target>工资</target>
+      </trans-unit>
+      <trans-unit id="commissionsExpectedCommissionThisMonth">
+        <source>Your Expected Commission This Month</source>
+        <target>您的本月预计工资</target>
+      </trans-unit>
+      <trans-unit id="commissionsHistoryTitle">
+        <source>Your Commission History</source>
+        <target>您的工资历史</target>
+      </trans-unit>
+      <trans-unit id="commissionsTheadCycleNb">
+        <source>Cycle Number</source>
+        <target>周期号</target>
+      </trans-unit>
+      <trans-unit id="commissionsNoComYet">
+        <source>You have not received any commission yet</source>
+        <target>您还没有领取过工资</target>
+      </trans-unit>
+      <trans-unit id="commissionsRedeemModalStep0Title">
+        <source>Redeem your commissions</source>
+        <target>领取您的工资</target>
+      </trans-unit>
+      <trans-unit id="commissionsRedeemModalBodyStep1Title">
+        <source>This month's commission</source>
+        <target>本月工资</target>
+      </trans-unit>
+      <trans-unit id="commissionsRedeemModalAdvancedOptionSubtitle">
+        <source>Redeem commisssion for a particular cycle</source>
+        <target>领取某周期的工资</target>
+      </trans-unit>
+      <trans-unit id="commissionsRedeemModalAdvancedOptionText">
+        <source>Only use this when normal redemption fails</source>
+        <target>只有当正常领取工资失败时才用本功能</target>
+      </trans-unit>
+      <trans-unit id="commissionsRedeemModalCtaRedeemBtks">
+        <source>Redeem in $BTKS</source>
+        <target>领取 Betoken Shares</target>
+      </trans-unit>
+      <trans-unit id="commissionsRedeemModalCtaRedeemDAI">
+        <source>Redeem in $DAI</source>
+        <target>领取 DAI</target>
+      </trans-unit>
+      <trans-unit id="commissionsDoYouKnowTitle">
+        <source>Do you know?</source>
+        <target>你知道吗？</target>
+      </trans-unit>
+      <trans-unit id="commissionsDoYouKnowText">
+        <source>You can redeem your commissions in Betoken fund shares (BTKS) - meaning you swap your commissions for an equivalent number of shares in the fund. By doing so, you will make the fund Assets Under Management (AUM) grow quicker. A bigger AUM means more money to manage in the next cycle, and more commissions for you.</source>
+        <target>您可以 Betoken 基金股份（BTKS）的形式获得您的工资---这意味着您会用您的工资兑换同等价值的股份。您这样做会让基金的管理资产更快增长。更多管理资产意味着下个投资周期您能管理的资产也会更多，您的工资也会上涨。</target>
+      </trans-unit>
+      <trans-unit id="commissionsRedeemModalBodyTextStep3">
+        <source>You redeeemed $DAI (or equivalent Betoken Shares).</source>
+        <target>您成功领取了工资</target>
+      </trans-unit>
+      <trans-unit id="rankingsHeaderTitle">
+        <source>Managers Ranking</source>
+        <target>操盘手排行</target>
+      </trans-unit>
+      <trans-unit id="rankingsKroBalance&amp;Return">
+        <source>Kairo Balances &amp; Current Return</source>
+        <target>Kairo余额 &amp; 收益状况</target>
+      </trans-unit>
+      <trans-unit id="rankingsThRank">
+        <source>Rank</source>
+        <target>排名</target>
+      </trans-unit>
+      <trans-unit id="rankingsThWalletAddress">
+        <source>Manager</source>
+        <target>操盘手</target>
+      </trans-unit>
+      <trans-unit id="rankingsKroBalance">
+        <source>Kairo Balance</source>
+        <target>Kairo余额</target>
+      </trans-unit>
+      <trans-unit id="rankingsThCurrentMoRoi">
+        <source>Current Month ROI</source>
+        <target>本月收益</target>
+      </trans-unit>
+      <trans-unit id="rankingsFriendsOfBetokenBadge">
+        <source>Betoken Evangelist</source>
+        <target>Betoken支持者</target>
+      </trans-unit>
+      <trans-unit id="investorHeaderTitle">
+        <source>Your Stats</source>
+        <target>您的数据</target>
+      </trans-unit>
+      <trans-unit id="investorBtksBalance">
+        <source>Betoken Shares Balance</source>
+        <target>Betoken Shares 余额</target>
+      </trans-unit>
+      <trans-unit id="investorBtksTotalValueDai">
+        <source>Total value</source>
+        <target>总价值</target>
+      </trans-unit>
+      <trans-unit id="investorBetokenHistoricalReturn">
+        <source>Betoken Historical Returns</source>
+        <target>Betoken收益历史</target>
+      </trans-unit>
+      <trans-unit id="investorPriceChange">
+        <source>Price Change (Current Cycle)</source>
+        <target>收益（本投资周期）</target>
+      </trans-unit>
+      <trans-unit id="investorPriceChangeSinceInception">
+        <source>Price Change (Since Inception)</source>
+        <target>收益（从诞生）</target>
+      </trans-unit>
+      <trans-unit id="investorMaxDrawdown">
+        <source>Max Drawdown</source>
+        <target>最大亏损</target>
+      </trans-unit>
+      <trans-unit id="investorDepositWithdrawHistoryTitle">
+        <source>Your Deposit &amp; Withdraw History</source>
+        <target>您的资产存入/取出历史</target>
+      </trans-unit>
+      <trans-unit id="investorDepositWithdrawHistoryType">
+        <source>Type</source>
+        <target>类型</target>
+      </trans-unit>
+      <trans-unit id="investorDepositBadge">
+        <source>Deposit</source>
+        <target>存入</target>
+      </trans-unit>
+      <trans-unit id="investorWithdrawBadge">
+        <source>Withdraw</source>
+        <target>取出</target>
+      </trans-unit>
+      <trans-unit id="investorBuyBtksModalIWantToBuyWith">
+        <source>I want to buy Betoken Shares with</source>
+        <target>我想买入 Betoken 股份，通过虚拟货币</target>
+      </trans-unit>
+      <trans-unit id="investorBuyBtksModalTextStep4">
+        <source>You bought BTKS using .</source>
+        <target>您成功购买了 Betoken 股份，通过虚拟货币 。</target>
+      </trans-unit>
+      <trans-unit id="investorBuyBtksModalTweet">
+        <source>Tweet about it</source>
+        <target>发推特</target>
+      </trans-unit>
+      <trans-unit id="investorBuyBtksModalCtaBuy">
+        <source>Buy Betoken Shares</source>
+        <target>买入 Betoken 股份</target>
+      </trans-unit>
+      <trans-unit id="investorSellBtksModalTitleStep0">
+        <source>How many shares do you want to sell?</source>
+        <target>您希望卖出多少股份？</target>
+      </trans-unit>
+      <trans-unit id="investorSellBtksModalTitleOperationNonPermitted">
+        <source>Operation not permitted</source>
+        <target>还不能执行该行为</target>
+      </trans-unit>
+      <trans-unit id="investorSellBtksModalIWantToSell">
+        <source>I want to sell</source>
+        <target>我希望卖出</target>
+      </trans-unit>
+      <trans-unit id="investorSellBtksModalIWantToReceive">
+        <source>I want to receive</source>
+        <target>我希望得到</target>
+      </trans-unit>
+      <trans-unit id="investorSellBtksModalSellBtksFor">
+        <source>Sell BTKS for</source>
+        <target>您将得到</target>
+      </trans-unit>
+      <trans-unit id="investorSellBtksModalTextStep3">
+        <source>You sold BTKS for .</source>
+      </trans-unit>
+      <trans-unit id="investorOnboardingHeaderPreTitle">
+        <source>Welcome To</source>
+        <target>欢迎来到</target>
+      </trans-unit>
+      <trans-unit id="investorOnboardingHeaderTitle">
+        <source>Betoken Fund</source>
+        <target>Betoken 基金</target>
+      </trans-unit>
+      <trans-unit id="investorOnboardingHeaderSubtitle">
+        <source>If you think 2 brains are better than one...How about hundreds of talented asset managers working for you? Worldwide!</source>
+        <target>如果你认为三个臭皮匠能胜过诸葛亮，上百个来自世界各地的的操盘手帮你赚钱听起来如何？</target>
+      </trans-unit>
+      <trans-unit id="investorOnboardingIntroSubtitle1">
+        <source>Crowd-powered finance</source>
+        <target>利用人民群众力量的金融产品</target>
+      </trans-unit>
+      <trans-unit id="investorOnboardingIntroText1">
+        <source>Your capital is automatically distributed among Betoken’s community of managers. The best of them will have the most influence over how that capital is put to work.</source>
+      </trans-unit>
+      <trans-unit id="investorOnboardingIntroSubtitle2">
+        <source>70+ assets</source>
+        <target>70+ 虚拟货币</target>
+      </trans-unit>
+      <trans-unit id="investorOnboardingIntroText2">
+        <source>By connecting your capital to Betoken protocol, you gain exposure to ETH, WBTC, BAT, MKR and 70+ ERC20 tokens.</source>
+      </trans-unit>
+      <trans-unit id="investorOnboardingIntroSubtitle3">
+        <source>No limits, no hidden fees</source>
+        <target>没有限额，没有隐藏的费用</target>
+      </trans-unit>
+      <trans-unit id="investorOnboardingIntroText3">
+        <source>Betoken allows anyone to buy or sell any amount of Betoken Shares, and Betoken's fee structure is completely transparent. More about fees, lockup, and liquidity</source>
+      </trans-unit>
+      <trans-unit id="investorOnboardingIntroSubtitle4">
+        <source>Non-custodial</source>
+        <target>无需保管人</target>
+      </trans-unit>
+      <trans-unit id="investorOnboardingIntroText4">
+        <source>You always stay in control, it’s written on the blockchain. All user funds are locked in smart contracts, no one but you has direct access to those funds.</source>
+      </trans-unit>
+      <trans-unit id="investorOnboardingConnectStatus">
+        <source>No Wallet Connected</source>
+        <target>没有连接钱包</target>
+      </trans-unit>
+      <trans-unit id="investorOnboardingFaqQ1">
+        <source>Can I buy and sell Betoken Shares at any time?</source>
+      </trans-unit>
+      <trans-unit id="investorOnboardingFaqA1">
+        <source>Yes. Betoken's protocol is 100% liquid. You can buy and sell BTKS at any time in 2 ways: During Betoken's 3 days intermission phase that happens every 27 days, you can buy and sell BTKS directly on the investor dashboard. (Coming soon) During Betoken's management phase (27 days), BTKS token is freely tradable on decentralized exchanges. Depending of the market conditions, the price may be different from what's displayed on the investor dashboard.</source>
+      </trans-unit>
+      <trans-unit id="investorOnboardingFaqQ2">
+        <source>How can I buy Betoken Shares?</source>
+        <target>怎样购买 Betoken 基金股份？</target>
+      </trans-unit>
+      <trans-unit id="investorOnboardingFaqA2">
+        <source>Click on the Get Started button and follow the instructions. You'll be able to use Ether or any of our 70+ supported ERC-20 tokens to buy Betoken Shares (BTKS).</source>
+      </trans-unit>
+      <trans-unit id="investorOnboardingFaqQ3">
+        <source>What is the fees structure?</source>
+        <target>费用结构是怎样？</target>
+      </trans-unit>
+      <trans-unit id="investorOnboardingFaqA3Title1">
+        <source>Management fees</source>
+      </trans-unit>
+      <trans-unit id="investorOnboardingFaqA3Text1">
+        <source>After the management phase is over (every 27 days):</source>
+      </trans-unit>
+      <trans-unit id="investorOnboardingFaqA3Title2">
+        <source>IF the fund is profitable OR not profitable</source>
+      </trans-unit>
+      <trans-unit id="investorOnboardingFaqA3Text2">
+        <source>0.1% of the total Betoken funds is set aside and distributed among fund manager holding Kairo. In order to provide funding for its maintenance and future development, Betoken protocol will mint Betoken Shares and send them to the current development team. The amount will be equal to 0.1% of the current Betoken Shares total supply, and it will occur at the end of every investment cycle.</source>
+      </trans-unit>
+      <trans-unit id="investorOnboardingFaqA3Title3">
+        <source>ONLY IF the fund is profitable</source>
+      </trans-unit>
+      <trans-unit id="investorOnboardingFaqA3text3">
+        <source>20% of the total Betoken's monthly profits is set aside as commission and distributed among fund managers holding Kairo proportional to the amount they hold and their risk profile. The commission is taken into account IF and ONLY IF the fund is profitable during the actual investment cycle.</source>
+      </trans-unit>
+      <trans-unit id="investorOnboardingFaqA3Title4">
+        <source>Redemptions fee</source>
+      </trans-unit>
+      <trans-unit id="investorOnboardingFaqA3Text4">
+        <source>Redemptions incur no withdrawal fee.</source>
+      </trans-unit>
+      <trans-unit id="investorOnboardingFaqQ4">
+        <source>How can I follow the activity of the fund?</source>
+      </trans-unit>
+      <trans-unit id="investorOnboardingFaqA4">
+        <source>You have access to a dashboard where you can view your capital account.</source>
+      </trans-unit>
+      <trans-unit id="appFetchingText">
+        <source>Fetching data</source>
+      </trans-unit>
+      <trans-unit id="investorOnboardingBuyBtksModalIWantToBuyWith">
+        <source>I want to buy Betoken Shares with</source>
+      </trans-unit>
+      <trans-unit id="investorOnboardingBuyBtksModalTextStep4">
+        <source>You bought BTKS using .</source>
+      </trans-unit>
+      <trans-unit id="investorOnboardingBuyBtksModalCtaTweet">
+        <source>Tweet about it</source>
+        <target>发推特</target>
+      </trans-unit>
+      <trans-unit id="investorOnboardingBuyBtksModalCtaBuy">
+        <source>Buy Betoken Shares</source>
+      </trans-unit>
+      <trans-unit id="investorOnboardingBuyBtksModalCtaGoToDashboard">
+        <source>Investor Dashboard</source>
+      </trans-unit>
+      <trans-unit id="managerOnboardingHeaderPretitle">
+        <source>Become a</source>
+        <target>成为一个</target>
+      </trans-unit>
+      <trans-unit id="managerOnboardingHeaderTitle">
+        <source>Fund Manager</source>
+        <target>基金操盘手</target>
+      </trans-unit>
+      <trans-unit id="managerOnboardingHeaderSubtitle">
+        <source>Connect your crypto-trading expertise to the Betoken's pool of capital and earn commissions!</source>
+      </trans-unit>
+      <trans-unit id="managerOnboardingIntroSubTitle1">
+        <source>The best managers earn the most</source>
+      </trans-unit>
+      <trans-unit id="managerOnboardingIntroSubText1">
+        <source>The Betoken protocol recognizes and quantifies the talent of its fund managers by allocating units of reputation to them, denominated in Kairo tokens, and financially rewards them based on their talent and contributions. The more Kairo tokens you have, the more money in the Betoken fund you can manage and the more income you’ll get every month as commissions on your investments. More about Betoken's commissions structure</source>
+      </trans-unit>
+      <trans-unit id="managerOnboardingIntroSubTitle2">
+        <source>Margin trading and instant liquidity</source>
+      </trans-unit>
+      <trans-unit id="managerOnboardingIntroSubText2">
+        <source>Betoken uses the full value of the open finance ecosystem like Kyber Network, Compound, Fulcrum by bZx and DAI stable coin. These financial primitives enable margin trading with up to 4x leverage on Betoken and guaranteed liquidity.</source>
+      </trans-unit>
+      <trans-unit id="managerOnboardingConnectStatus">
+        <source>No Wallet Connected</source>
+        <target>没有连接钱包</target>
+      </trans-unit>
+      <trans-unit id="managerOnboardingAlreadyManagerText">
+        <source>You are already a manager.</source>
+        <target>你已经是操盘手了</target>
+      </trans-unit>
+      <trans-unit id="managerOnboardingCtaSignIn">
+        <source>Sign in</source>
+        <target>登录</target>
+      </trans-unit>
+      <trans-unit id="managerOnboardingFaqQ1">
+        <source>What is Kairo?</source>
+        <target>Kairo 点数是什么？</target>
+      </trans-unit>
+      <trans-unit id="managerOnboardingFaqA1">
+        <source>Kairo is Betoken's non-transferable reputation token. Managers need to possess Kairo tokens to manage funds on Betoken. Kairo represents how good a manager is at investing. The more Kairo tokens you have, the more money in the Betoken fund you can manage and the more income you’ll get every month as commissions on your investments.</source>
+      </trans-unit>
+      <trans-unit id="managerOnboardingFaqQ2">
+        <source>How can I buy Kairo tokens?</source>
+        <target>我怎么买 Kairo 点数？</target>
+      </trans-unit>
+      <trans-unit id="managerOnboardingFaqA2">
+        <source>Click on the Get Started button and follow the instructions. You'll be able to use Ether or any of our 70+ supported ERC-20 tokens to buy Kairo tokens (KRO).</source>
+      </trans-unit>
+      <trans-unit id="managerOnboardingFaqQ3">
+        <source>Do I receive my Kairo immediately after purchase?</source>
+      </trans-unit>
+      <trans-unit id="managerOnboardingFaqA3">
+        <source>Yes. The Kairo will be given to your wallet after your purchase transaction has been accepted by the Ethereum blockchain, which may take up to a few minutes.</source>
+      </trans-unit>
+      <trans-unit id="managerOnboardingFaqQ4">
+        <source>What is the commissions structure?</source>
+      </trans-unit>
+      <trans-unit id="managerOnboardingFaqA4Title1">
+        <source>Management commissions</source>
+      </trans-unit>
+      <trans-unit id="managerOnboardingFaqA4Text1">
+        <source>After the management phase is over (every 27 days):</source>
+      </trans-unit>
+      <trans-unit id="managerOnboardingFaqA4Title2">
+        <source>IF the fund is profitable OR not profitable</source>
+      </trans-unit>
+      <trans-unit id="managerOnboardingFaqA4Text2">
+        <source>0.1% of the total Betoken funds is set aside and distributed among fund manager holding Kairo.</source>
+      </trans-unit>
+      <trans-unit id="managerOnboardingFaqA4Title3">
+        <source>ONLY IF the fund is profitable</source>
+      </trans-unit>
+      <trans-unit id="managerOnboardingFaqA4Text3">
+        <source>20% of the total Betoken's monthly profits is set aside as commission and distributed among fund managers holding Kairo proportional to the amount they hold and their risk profile. The commission is taken into account IF and ONLY IF the fund is profitable during the actual investment cycle.</source>
+      </trans-unit>
+      <trans-unit id="managerOnboardingFaqQ5">
+        <source>How can I manage and follow the activity of the fund?</source>
+      </trans-unit>
+      <trans-unit id="managerOnboardingFaqA5">
+        <source>You have access to a Portal where you can view Betoken's fund performances and your manager trading interface.</source>
+      </trans-unit>
+      <trans-unit id="managerOnboardingFaqQ6">
+        <source>Can I sell my Kairo tokens?</source>
+        <target>我能卖 Kairo 点数吗？</target>
+      </trans-unit>
+      <trans-unit id="managerOnboardingFaqA6">
+        <source>No. Kairo is a non-transferable reputation token, which means that you cannot sell or give your Kairo to someone else.</source>
+      </trans-unit>
+      <trans-unit id="managerOnboardingFaqQ7">
+        <source>Can I buy more Kairo after with the same Wallet address?</source>
+        <target>我能用同一账户多次购买 Kairo 点数吗？</target>
+      </trans-unit>
+      <trans-unit id="managerOnboardingFaqA7">
+        <source>No. You can only buy Kairo tokens once per Ethereum account. More about Kairo distribution and price.</source>
+      </trans-unit>
+      <trans-unit id="managerOnboardingBuyBtksModalTitleStep1">
+        <source>How many Kairo do you want to buy?</source>
+      </trans-unit>
+      <trans-unit id="managerOnboardingBuyBtksModalIWantToBuyWith">
+        <source>I want to buy Kairo with</source>
+      </trans-unit>
+      <trans-unit id="managerOnboardingBuyBtksModalMaxPaymentAmount">
+        <source>Maximum purchase:</source>
+      </trans-unit>
+      <trans-unit id="managerOnboardingBuyBtksModalKroToreceive">
+        <source>Kairo tokens to receive</source>
+      </trans-unit>
+      <trans-unit id="managerOnboardingBuyBtksModalAmountToManage">
+        <source>Amount you will manage</source>
+      </trans-unit>
+      <trans-unit id="managerOnboardingBuyBtksModalTextStep4">
+        <source>You bought KRO using .</source>
+      </trans-unit>
+      <trans-unit id="managerOnboardingBuyBtksModalCtaBuy">
+        <source>Buy Kairo tokens</source>
+      </trans-unit>
+      <trans-unit id="managerOnboardingBuyBtksModalManagerDashboard">
+        <source>Manager Portal</source>
+      </trans-unit>
+      <trans-unit id="marketHeaderTitle">
+        <source>Market</source>
+        <target>市场</target>
+      </trans-unit>
+      <trans-unit id="marketPrice&amp;Trends">
+        <source>Prices &amp; Trends</source>
+        <target>价格和走势</target>
+      </trans-unit>
+      <trans-unit id="marketThAsset">
+        <source>Asset</source>
+        <target>虚拟货币</target>
+      </trans-unit>
+      <trans-unit id="marketTh24hVol">
+        <source>24h Volume (USD)</source>
+        <target>24小时交易额（美元）</target>
+      </trans-unit>
+      <trans-unit id="marketTh7dChange">
+        <source>7d Change</source>
+        <target>7日走势</target>
+      </trans-unit>
+      <trans-unit id="marketTh1mChange">
+        <source>1m Change</source>
+        <target>30日走势</target>
+      </trans-unit>
+      <trans-unit id="market">
+        <source></source>
+        <target>市场</target>
+      </trans-unit>
+      <trans-unit id="headerGetUpdateModalAriaDescribedby">
+        <source>Get update modal by email</source>
+      </trans-unit>
+      <trans-unit id="headerLanguageModalAriaDescribedby">
+        <source>Switch to another language</source>
+        <target>切换语言</target>
+      </trans-unit>
+      <trans-unit id="sidebarBurgerIconAriaLabel">
+        <source>Toggle navigation</source>
+      </trans-unit>
+      <trans-unit id="sidebarColorSchemeValueLight">
+        <source>light</source>
+      </trans-unit>
+      <trans-unit id="sidebarColorSchemeValueDark">
+        <source>dark</source>
+      </trans-unit>
+      <trans-unit id="dashboardYourRankingAttrTitle">
+        <source>Your ranking among Betoken's managers based on your Kairo balance</source>
+      </trans-unit>
+      <trans-unit id="dashboardTotalFundManagersAttrTitle">
+        <source>Number of fund managers actively managing Betoken's assets.</source>
+      </trans-unit>
+      <trans-unit id="investmentsRiskTakenAttrTitle">
+        <source>The more Kairo you stake, the more of Betoken's money you put at work, the more commissions you earn.</source>
+      </trans-unit>
+      <trans-unit id="investmentsActiveInvestmentsPortfolioViewAriaLabel">
+        <source>Portfolio view</source>
+      </trans-unit>
+      <trans-unit id="investmentsSearchListAssetsPlaceholder">
+        <source>Search</source>
+        <target>搜索</target>
+      </trans-unit>
+      <trans-unit id="upgradeCardTimeLeftIllustrationAttrAlt">
+        <source>illustration Woman and dog with a active spinner</source>
+      </trans-unit>
+      <trans-unit id="commissionsExpectedCommissionThisMonthAttrTitle">
+        <source>&lt;strong&gt;20%&lt;/strong&gt; of the fund's profit and &lt;strong&gt;0.1%&lt;/strong&gt; of the AUM is set aside as commissions every month, which is paid to managers proportional to the Kairo they hold. The estimate displayed here is calculated using the current fund ROI.</source>
+      </trans-unit>
+      <trans-unit id="commissionsTotalCommissionsReceivedAttrTitle">
+        <source>The total amount of commission you have received throughout your manager career.</source>
+      </trans-unit>
+      <trans-unit id="commissionsRedeemModalAdvancedOptionTextAriaDescribedby">
+        <source>cycle for which to redeem commission</source>
+      </trans-unit>
+      <trans-unit id="commissionsRedeemModalBodyTxHashStep2ArialLabel">
+        <source>Transaction hash</source>
+        <target>交易ID</target>
+      </trans-unit>
+      <trans-unit id="rankingsSearchPlaceholder">
+        <source>Search</source>
+        <target>搜索</target>
+      </trans-unit>
+      <trans-unit id="investorBtksBalanceAttrTitle">
+        <source>The amount of Betoken Shares (BTKS) you own.</source>
+      </trans-unit>
+      <trans-unit id="investorBtksTotalValueDaiAttrTitle">
+        <source>The value of your Betoken Shares, in DAI Stablecoin.</source>
+      </trans-unit>
+      <trans-unit id="investorBtksPriceAttrTitle">
+        <source>The price of 1 Betoken Share token.</source>
+      </trans-unit>
+      <trans-unit id="investorMaxDrawdownAttrTitle">
+        <source>A maximum drawdown (MDD) is the maximum observed loss from a peak to a trough of a portfolio, before a new peak is attained. Maximum drawdown is an indicator of downside risk over a specified time period.</source>
+      </trans-unit>
+      <trans-unit id="investorBuyBtksModalCtaBuyAriaLabel">
+        <source>BuyBTKS</source>
+      </trans-unit>
+      <trans-unit id="investorSellBtksModalTxHashStep2AriaLabel">
+        <source>Transaction hash</source>
+        <target>交易ID</target>
+      </trans-unit>
+      <trans-unit id="investorSellBtksModalEmailNotificationPlaceholder">
+        <source>myemail@address.com</source>
+      </trans-unit>
+      <trans-unit id="investorOnboardingBuyBtksModalTxHashStep3AriaLabel">
+        <source>Transaction hash</source>
+        <target>交易ID</target>
+      </trans-unit>
+      <trans-unit id="investorOnboardingBuyBtksModalTweet">
+        <source>https://twitter.com/intent/tweet?hashtags=Betoken%2C%20DeFi&amp;related=betokenfund&amp;text=I%27ve%20just%20connected%20my%20capital%20to%20Betoken%2C%20world%27s%20first%20crowd-powered%20cryptoassets%20management%20protocol!&amp;url=https%3A%2F%2Fbetoken.fund&amp;via=betokenfund</source>
+      </trans-unit>
+      <trans-unit id="investorOnboardingBuyBtksModalTxHashStep4AriaLabel">
+        <source>Transaction hash</source>
+        <target>交易ID</target>
+      </trans-unit>
+      <trans-unit id="managerOnboardingBuyBtksModalCtaTweet">
+        <source>Tweet about it</source>
+      </trans-unit>
+      <trans-unit id="managerOnboardingBuyBtksModalTweet">
+        <source>https://twitter.com/intent/tweet?hashtags=Betoken%2C%20DeFi&amp;related=betokenfund&amp;text=I%27ve%20just%20joined%20Betoken%20as%20a%20fund%20manager%2C%20world%27s%20first%20crowd-powered%20cryptoassets%20management%20protocol!&amp;url=https%3A%2F%2Fbetoken.fund&amp;via=betokenfund</source>
+      </trans-unit>
+      <trans-unit id="managerOnboardingBuyBtksModalStep4TxHashAriaLabel">
+        <source>Transaction hash</source>
+        <target>交易ID</target>
+      </trans-unit>
+      <trans-unit id="timeCounterTitle">
+        <source>Time left</source>
+      </trans-unit>
+      <trans-unit id="timeCounterUnits">
+        <source>d h m s</source>
+        <target>d h m s</target>
+      </trans-unit>
+      <trans-unit id="modalBeNotifiedByEmail">
+        <source>Be notified by email</source>
+      </trans-unit>
+      <trans-unit id="modalAriaLabelClose">
+        <source>Close</source>
+      </trans-unit>
+      <trans-unit id="modalEmailPlaceholder">
+        <source>myemail@address.com</source>
+      </trans-unit>
+      <trans-unit id="switchToEN">
+        <source>English</source>
+      </trans-unit>
+      <trans-unit id="switchToCN">
+        <source>Chinese</source>
+      </trans-unit>
+      <trans-unit id="switchToFR">
+        <source>French</source>
+      </trans-unit>
+      <trans-unit id="switchToRU">
+        <source>Russian</source>
+      </trans-unit>
+      <trans-unit id="switchToJP">
+        <source>Japanese</source>
+      </trans-unit>
+      <trans-unit id="switchToES">
+        <source>Spanish</source>
+      </trans-unit>
+      <trans-unit id="switchToJavanese">
+        <source>Javanese</source>
+      </trans-unit>
+      <trans-unit id="switchToIndonesian">
+        <source>Indonesian</source>
+      </trans-unit>
+      <trans-unit id="switchToPT">
+        <source>Portuguese</source>
+      </trans-unit>
+      <trans-unit id="switchToSundanese">
+        <source>Sundanese</source>
+      </trans-unit>
+      <trans-unit id="switchToIT">
+        <source>Italian</source>
+      </trans-unit>
+      <trans-unit id="switchToKorean">
+        <source>Korean</source>
+      </trans-unit>
+      <trans-unit id="switchToHindi">
+        <source>Hindi</source>
+      </trans-unit>
+      <trans-unit id="switchToThai">
+        <source>Thai</source>
+      </trans-unit>
+      <trans-unit id="switchToVietnamese">
+        <source>Vietnamese</source>
+      </trans-unit>
+      <trans-unit id="ctaBecomeManager">
+        <source>Become a Manager</source>
+      </trans-unit>
+      <trans-unit id="ctaMakeInvestments">
+        <source>Make Investments</source>
+      </trans-unit>
+      <trans-unit id="ctaRedeemCommissions">
+        <source>Redeem Commission</source>
+      </trans-unit>
+      <trans-unit id="ctaNextPhase">
+        <source>Next Phase</source>
+      </trans-unit>
+      <trans-unit id="ctaBuyBtks">
+        <source>Buy BTKS</source>
+      </trans-unit>
+      <trans-unit id="ctaSellBtks">
+        <source>Sell BTKS</source>
+      </trans-unit>
+      <trans-unit id="portfolioValueTitle">
+        <source>Your Portfolio Value</source>
+      </trans-unit>
+      <trans-unit id="portfolioValueAttrTitle">
+        <source>Amount of Betoken's AUM you manage. The more Kairo you own, the more money you will manage.</source>
+      </trans-unit>
+      <trans-unit id="kroBalanceTitle">
+        <source>Your KRO Balance</source>
+      </trans-unit>
+      <trans-unit id="kroBalanceAttrTitle">
+        <source>The more Kairo you own, the more money you will manage, the more commission you will receive. You will be able to earn Kairo by making profitable investments for the Betoken fund.</source>
+      </trans-unit>
+      <trans-unit id="estimateCommissionTitle">
+        <source>Your Estimated Commission This Month</source>
+      </trans-unit>
+      <trans-unit id="estimateCommissionAttrTitle">
+        <source>&lt;strong&gt;20%&lt;/strong&gt; of the fund's profit and &lt;strong&gt;0.1%&lt;/strong&gt; of the AUM is set aside as commissions every month, which is paid to managers proportional to the Kairo they hold. The estimate displayed here is calculated using the current fund ROI.</source>
+      </trans-unit>
+      <trans-unit id="btksPriceTitle">
+        <source>Betoken Shares Price</source>
+      </trans-unit>
+      <trans-unit id="aumTitle">
+        <source>AUM</source>
+      </trans-unit>
+      <trans-unit id="standardDeviation">
+        <source>Standard Deviation</source>
+      </trans-unit>
+      <trans-unit id="standardDeviationAttrTitle">
+        <source>Standard deviation represents the volatility of an asset. The number shown here is the sample standard deviation of Betoken Shares' price since inception.</source>
+      </trans-unit>
+      <trans-unit id="solidifiedAudit">
+        <source>Betoken Smart Contracts are audited and secured by Solidified</source>
+      </trans-unit>
+      <trans-unit id="refreshBtnLoad">
+        <source>Loading...</source>
+      </trans-unit>
+      <trans-unit id="orderOfTypeLong">
+        <source>Long</source>
+      </trans-unit>
+      <trans-unit id="orderOfTypeShort">
+        <source>Short</source>
+      </trans-unit>
+      <trans-unit id="orderSafetySafe">
+        <source>Safe</source>
+      </trans-unit>
+      <trans-unit id="orderSafetyInDanger">
+        <source>In Danger</source>
+      </trans-unit>
+      <trans-unit id="modalTitleConfirmTx">
+        <source>Confirm transaction</source>
+      </trans-unit>
+      <trans-unit id="modalTitleProcessingTx">
+        <source>Processing transaction</source>
+      </trans-unit>
+      <trans-unit id="modalTitleTxConfirmed">
+        <source>Transaction confirmed</source>
+      </trans-unit>
+      <trans-unit id="modalTitleError">
+        <source>That's an error</source>
+      </trans-unit>
+      <trans-unit id="price">
+        <source>Price (DAI)</source>
+      </trans-unit>
+      <trans-unit id="24hChange">
+        <source>24h change</source>
+      </trans-unit>
+      <trans-unit id="modalCtaMax">
+        <source>Max</source>
+        <target>Max</target>
+      </trans-unit>
+      <trans-unit id="modalBalanceAvailable">
+        <source>available</source>
+      </trans-unit>
+      <trans-unit id="modalAdvancedOptionTitle">
+        <source>Advanced</source>
+      </trans-unit>
+      <trans-unit id="modalAdvancedOptionText">
+        <source>Your order won't be executed if the price goes up by more than:</source>
+      </trans-unit>
+      <trans-unit id="modalBodyTextStep1">
+        <source>Confirm the transaction in your wallet’s interface to save it on the Ethereum blockchain. It's fine to stick with these defaults gas limit and price.</source>
+      </trans-unit>
+      <trans-unit id="modalBodyTextTxBroadcasted">
+        <source>Your transaction is being saved on the Ethereum blockchain.</source>
+      </trans-unit>
+      <trans-unit id="modalBodyTxHash">
+        <source>Transaction hash</source>
+      </trans-unit>
+      <trans-unit id="modalErrorText">
+        <source>The operation has resulted in an error. Please try again.</source>
+      </trans-unit>
+      <trans-unit id="modalErrorMsg">
+        <source>Error message:</source>
+      </trans-unit>
+      <trans-unit id="modalCtaContinue">
+        <source>Continue</source>
+      </trans-unit>
+      <trans-unit id="modalCtaClose">
+        <source>Close</source>
+      </trans-unit>
+      <trans-unit id="modalTryAgainAriaLabel">
+        <source>Try again</source>
+      </trans-unit>
+      <trans-unit id="modalRoi">
+        <source>ROI</source>
+      </trans-unit>
+      <trans-unit id="modalCollateralStatusTitle">
+        <source>Collateralization status</source>
+      </trans-unit>
+      <trans-unit id="modalCtaTopUp">
+        <source>Top up</source>
+      </trans-unit>
+      <trans-unit id="modalMinCollRatio">
+        <source>min. collateral ratio</source>
+      </trans-unit>
+      <trans-unit id="modalTopUpCollateralLiquidationText">
+        <source>If the order's collateral ratio falls below the minimum, it will be liquidated, which will cause huge losses.</source>
+      </trans-unit>
+      <trans-unit id="totalCommissionsReceived">
+        <source>Total Commission Received</source>
+      </trans-unit>
+      <trans-unit id="amount">
+        <source>Amount ($DAI)</source>
+      </trans-unit>
+      <trans-unit id="timeStamp">
+        <source>Timestamp</source>
+      </trans-unit>
+      <trans-unit id="transaction">
+        <source>Transaction</source>
+      </trans-unit>
+      <trans-unit id="modalTitleConfirmRules">
+        <source>Please confirm before continuing</source>
+      </trans-unit>
+      <trans-unit id="modalTitleBtksAmount">
+        <source>How many shares do you want to buy?</source>
+      </trans-unit>
+      <trans-unit id="modalTitleOpNotPermitted">
+        <source>Operation not permitted</source>
+      </trans-unit>
+      <trans-unit id="modalSubtitleTimeLeft">
+        <source>Time left until operation allowed</source>
+      </trans-unit>
+      <trans-unit id="modalTimeLeftUnits">
+        <source>d h m s</source>
+        <target>d h m s</target>
+      </trans-unit>
+      <trans-unit id="modalTimeLeftUnitsTitleAttribute">
+        <source>Learn more</source>
+      </trans-unit>
+      <trans-unit id="modalFollowUs">
+        <source>Or follow us</source>
+      </trans-unit>
+      <trans-unit id="modalRule1">
+        <source>You are NEITHER a citizen or resident of, NOR currently located in any of the following states or territories, NOR an entity formed under the laws of: Afghanistan, Cuba, Democratic People's Republic of Korea, Iran, Iraq, People’s Republic of China, Russian Federation, Somalia, Sudan, Syria, United Arab Emirates, United States of America, Venezuela, Yemen.</source>
+      </trans-unit>
+      <trans-unit id="modalRule2">
+        <source>You have read and understood our disclaimer below.</source>
+      </trans-unit>
+      <trans-unit id="modalRule3">
+        <source>💀 You understand that Betoken Protocol is in beta. Use at your own risk.</source>
+      </trans-unit>
+      <trans-unit id="disclaimerTitle">
+        <source>Disclaimer</source>
+      </trans-unit>
+      <trans-unit id="disclaimertext1">
+        <source>Nothing herein constitutes an offer to sell, or the solicitation of an offer to buy, any securities or tokens.</source>
+      </trans-unit>
+      <trans-unit id="disclaimertext2">
+        <source>Betoken enables capital connection and managing using smart contracts which are open source. Betoken does not take custody of tokens and is only a collaborative hub for investors and managers. Betoken is not a licensed bank, broker-dealer, investment advisor or an exchange. Betoken uses partner protocols (Kyber, Compound, bZx, Maker DAO) to power its own ecosystem.</source>
+      </trans-unit>
+      <trans-unit id="modalTitleOrderDetail">
+        <source>Order Details</source>
+      </trans-unit>
+      <trans-unit id="modalBtksToReceive">
+        <source>Betoken Shares to receive</source>
+      </trans-unit>
+      <trans-unit id="modalTotalCost">
+        <source>Total cost</source>
+      </trans-unit>
+      <trans-unit id="modalCtaContinueAriaLabel">
+        <source>Continue to Buy</source>
+      </trans-unit>
+      <trans-unit id="ctaGetStarted">
+        <source>Get Started</source>
+      </trans-unit>
+      <trans-unit id="disclaimertext3">
+        <source>💀 This project is in beta. Use at your own risk.</source>
+      </trans-unit>
+      <trans-unit id="faqTitle">
+        <source>Frequently asked questions</source>
+      </trans-unit>
+      <trans-unit id="faqGetHelptitle">
+        <source>Can’t find what you’re looking for?</source>
+      </trans-unit>
+      <trans-unit id="faqCtaHelpCenter">
+        <source>Help Center</source>
+      </trans-unit>
+      <trans-unit id="footerNavHome">
+        <source>Home</source>
+      </trans-unit>
+      <trans-unit id="footerNavBlog">
+        <source>Blog</source>
+      </trans-unit>
+      <trans-unit id="contactUs">
+        <source>Contact us at</source>
+      </trans-unit>
+      <trans-unit id="modalDisclaimerCta">
+        <source>disclaimer</source>
+      </trans-unit>
+      <trans-unit id="disclaimertext13">
+        <source>💀 This project is in beta. Use at your own risk.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

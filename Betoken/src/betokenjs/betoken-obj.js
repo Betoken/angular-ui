@@ -43,12 +43,12 @@ export const sendTx = async (func, _onTxHash, _onReceipt, _onError) => {
     var gasLimit = await estimateGas(func, 0, _onError);
     if (!isNaN(gasLimit)) {
         return func.send({
-            from: web3Instance.eth.defaultAccount,
+            from: web3.eth.defaultAccount,
             gas: gasLimit
         }).on("transactionHash", (hash) => {
             _onTxHash(hash);
             let listener = setInterval(async () => {
-                let receipt = await web3Instance.eth.getTransaction(hash);
+                let receipt = await web3.eth.getTransaction(hash);
                 if (!isNull(receipt)) {
                     _onReceipt(receipt);
                     clearInterval(listener);
@@ -66,13 +66,13 @@ export const sendTxWithValue = async (func, val, _onTxHash, _onReceipt, _onError
     var gasLimit = await estimateGas(func, val, _onError);
     if (!isNaN(gasLimit)) {
         return func.send({
-            from: web3Instance.eth.defaultAccount,
+            from: web3.eth.defaultAccount,
             gas: gasLimit,
             value: val
         }).on("transactionHash", (hash) => {
             _onTxHash(hash);
             let listener = setInterval(async () => {
-                let receipt = await web3Instance.eth.getTransaction(hash);
+                let receipt = await web3.eth.getTransaction(hash);
                 if (!isNull(receipt)) {
                     _onReceipt(receipt);
                     clearInterval(listener);
@@ -90,12 +90,12 @@ export const sendTxWithToken = async (func, token, to, amount, _onTxHash, _onRec
     return sendTx(token.methods.approve(to, 0), () => {
         sendTx(token.methods.approve(to, amount), () => {
             func.send({
-                from: web3Instance.eth.defaultAccount,
+                from: web3.eth.defaultAccount,
                 gasLimit: "3000000"
             }).on("transactionHash", (hash) => {
                 _onTxHash(hash);
                 let listener = setInterval(async () => {
-                    let receipt = await web3Instance.eth.getTransaction(hash);
+                    let receipt = await web3.eth.getTransaction(hash);
                     if (!isNull(receipt)) {
                         _onReceipt(receipt);
                         clearInterval(listener);

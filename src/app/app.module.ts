@@ -65,7 +65,7 @@ const routes: Routes = [
   },
   {
     path: 'investing-dashboard',
-    component: InvestorComponent,
+    redirectTo: '/invest',
     pathMatch: 'full'
   },
   {

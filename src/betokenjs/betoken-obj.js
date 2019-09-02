@@ -89,7 +89,7 @@ export const sendTxWithValue = async (func, val, _onTxHash, _onReceipt, _onError
 };
 
 export const sendTxWithToken = async (func, token, to, amount, _onTxHash, _onReceipt, _onError) => {
-    let allowance = new BigNumber(await token.methods.allowance(web3.eth.defaultAccount, to).call());
+    let allowance = new BigNumber(await token.methods.allowance(web3Instance.eth.defaultAccount, to).call());
     if (allowance.gt(0)) {
         if (allowance.gte(amount)) {
             return this.sendTx(func, _onTxHash, _onReceipt, _onError);
@@ -97,12 +97,12 @@ export const sendTxWithToken = async (func, token, to, amount, _onTxHash, _onRec
         return sendTx(token.methods.approve(to, 0), () => {
             sendTx(token.methods.approve(to, amount), () => {
                 func.send({
-                    from: web3.eth.defaultAccount,
+                    from: web3Instance.eth.defaultAccount,
                     gasLimit: "3000000"
                 }).on("transactionHash", (hash) => {
                     _onTxHash(hash);
                     let listener = setInterval(async () => {
-                        let receipt = await web3.eth.getTransaction(hash);
+                        let receipt = await web3Instance.eth.getTransaction(hash);
                         if (!isNull(receipt)) {
                             _onReceipt(receipt);
                             clearInterval(listener);
@@ -118,12 +118,12 @@ export const sendTxWithToken = async (func, token, to, amount, _onTxHash, _onRec
     } else {
         return sendTx(token.methods.approve(to, amount), () => {
             func.send({
-                from: web3.eth.defaultAccount,
+                from: web3Instance.eth.defaultAccount,
                 gasLimit: "3000000"
             }).on("transactionHash", (hash) => {
                 _onTxHash(hash);
                 let listener = setInterval(async () => {
-                    let receipt = await web3.eth.getTransaction(hash);
+                    let receipt = await web3Instance.eth.getTransaction(hash);
                     if (!isNull(receipt)) {
                         _onReceipt(receipt);
                         clearInterval(listener);

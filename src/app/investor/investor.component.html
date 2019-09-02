@@ -379,8 +379,8 @@
         <h6 class="header-pretitle text-secondary mb-2 text-center" i18n="@@modalSubtitleTimeLeft">
           Time left until operation allowed
         </h6>
-        <h4 class="header-title mb-4 text-center" i18n="@@modalTimeLeftUnits">
-          {{days}}d {{hours}}h {{minutes}}m {{seconds}}s <a class="text-muted ml-2"
+        <h4 class="header-title mb-4 text-center">
+          {{days}}<ng-container i18n="@@timeLeftInDays">d</ng-container> {{hours}}<ng-container i18n="@@timeLeftInHours">h</ng-container> {{minutes}}<ng-container i18n="@@timeLeftInMinutes">m</ng-container> {{seconds}}<ng-container i18n="@@timeLeftInSeconds">s</ng-container> <a class="text-muted ml-2"
             href="https://betoken.gitbook.io/docs/betoken-investment-cycle" i18n-title="@@modalTimeLeftUnitsTitleAttribute" title="Learn more" target="_blank"><span
               class="fe fe-help-circle"></span></a>
         </h4>
@@ -589,8 +589,8 @@
           <p class="h1 text-center">
             <i class="fe fe-check-circle text-success"></i>
           </p>
-          <p class="text-center text-muted mb-5" i18n="@@investorBuyBtksModalTextStep4">
-            You bought <span class="font-weight-bold text-secondary">{{buySharesAmount.toFormat(4)}}</span> BTKS using
+          <p class="text-center text-muted mb-5">
+            <ng-container i18n="@@investorBuyBtksModalTextStep4a">You bought</ng-container> <span class="font-weight-bold text-secondary">{{buySharesAmount.toFormat(4)}}</span> BTKS <ng-container i18n="@@investorBuyBtksModalTextStep4b">using</ng-container>
             <span class="font-weight-bold text-secondary">{{buyTokenAmount.toFormat(4)}}</span> {{selectedTokenSymbol}}.
           </p>
           <a class="btn btn-twitter btn-block" target="__blank"
@@ -621,8 +621,8 @@
           <p class="text-center text-muted mb-5" i18n="@@modalErrorText">
             The operation has resulted in an error. Please try again.
           </p>
-          <p class="text-center text-muted mb-5" i18n="@@modalErrorMsg">
-            Error message: {{errorMsg}}
+          <p class="text-center text-muted mb-5">
+            <ng-container i18n="@@modalErrorMsg">Error message:</ng-container> {{errorMsg}}
           </p>
         </div>
 
@@ -808,8 +808,8 @@
           <p class="h1 text-center">
             <i class="fe fe-check-circle text-success"></i>
           </p>
-          <p class="text-center text-muted mb-5" i18n="@@investorSellBtksModalTextStep3">
-            You sold <span class="font-weight-bold text-secondary">{{sellSharesAmount.toFormat(6)}}</span> BTKS for
+          <p class="text-center text-muted mb-5">
+            <ng-container i18n="@@investorSellBtksModalTextStep3a">You sold</ng-container> <span class="font-weight-bold text-secondary">{{sellSharesAmount.toFormat(6)}}</span> BTKS <ng-container i18n="@@investorSellBtksModalTextStep3b">for</ng-container>
             <span class="font-weight-bold text-secondary">{{sellTokenAmount.toFormat(6)}}</span>
             {{selectedTokenSymbol}}.
           </p>
@@ -838,8 +838,8 @@
           <p class="text-center text-muted mb-5" i18n="@@modalErrorText">
             The operation has resulted in an error. Please try again.
           </p>
-          <p class="text-center text-muted mb-5" i18n="@@modalErrorMsg">
-            Error message: {{errorMsg}}
+          <p class="text-center text-muted mb-5">
+            <ng-container i18n="@@modalErrorMsg">Error message:</ng-container> {{errorMsg}}
           </p>
         </div>
 
@@ -870,8 +870,8 @@
         <h6 class="header-pretitle text-secondary mb-2 text-center" i18n="@@modalSubtitleTimeLeft">
           Time left until operation allowed
         </h6>
-        <h4 class="header-title mb-4 text-center" i18n="@@modalTimeLeftUnits">
-          {{days}}d {{hours}}h {{minutes}}m {{seconds}}s <a class="text-muted ml-2"
+        <h4 class="header-title mb-4 text-center">
+          {{days}}<ng-container i18n="@@timeLeftInDays">d</ng-container> {{hours}}<ng-container i18n="@@timeLeftInHours">h</ng-container> {{minutes}}<ng-container i18n="@@timeLeftInMinutes">m</ng-container> {{seconds}}<ng-container i18n="@@timeLeftInSeconds">s</ng-container> <a class="text-muted ml-2"
             href="https://betoken.gitbook.io/docs/betoken-investment-cycle" i18n-title="@@modalTimeLeftUnitsTitleAttribute" title="Learn more" target="_blank"><span
               class="fe fe-help-circle"></span></a>
         </h4>

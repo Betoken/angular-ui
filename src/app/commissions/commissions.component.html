@@ -325,8 +325,8 @@
         <p class="h1 text-center" *ngIf="step === 3">
           <i class="fe fe-check-circle text-success"></i>
         </p>
-        <p class="text-center text-muted mb-5" *ngIf="step === 3" i18n="@@commissionsRedeemModalBodyTextStep3">
-          You redeeemed <span class="text-secondary">{{commissionAmount}}</span> $DAI (or equivalent Betoken Shares).
+        <p class="text-center text-muted mb-5" *ngIf="step === 3">
+          <ng-container i18n="@@commissionsRedeemModalBodyTextStep3a">You redeeemed</ng-container> <span class="text-secondary">{{commissionAmount}}</span> $DAI <ng-container i18n="@@@@commissionsRedeemModalBodyTextStep3b">(or equivalent Betoken Shares)</ng-container>.
         </p>
         <hr *ngIf="step === 3">
         <form *ngIf="step === 3">

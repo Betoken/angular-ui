@@ -21,14 +21,13 @@
             <h6 class="header-pretitle" i18n="@@managerOnboardingIntroSubTitle1">
               The best managers earn the most
             </h6>
-            <p i18n="@@managerOnboardingIntroSubText1">
-              The Betoken protocol recognizes and quantifies the talent of its fund managers by allocating units of
-              reputation to them, denominated in <a href="https://betoken.gitbook.io/docs/manage-the-fund/what-is-kairo"
-                target="_blank">Kairo tokens</a>, and financially rewards them based on their talent and contributions.
+            <p>
+              <ng-container i18n="@@managerOnboardingIntroSubText1a">The Betoken protocol recognizes and quantifies the talent of its fund managers by allocating units of
+              reputation to them, denominated in Kairo tokens, and financially rewards them based on their talent and contributions.
               The more Kairo tokens you have, the more money in the Betoken fund you can manage and the more income
-              you’ll get every month as commissions on your investments. <a
+              you’ll get every month as commissions on your investments.</ng-container> <a
                 href="https://betoken.gitbook.io/docs/manage-the-fund/how-does-the-managers-monthly-commission-work"
-                target="_blank">More about Betoken's commissions structure<i class="fe fe-arrow-right ml-2"></i></a>
+                target="_blank"><ng-container i18n="@@managerOnboardingIntroSubText1b">More about Betoken's commissions structure</ng-container><i class="fe fe-arrow-right ml-2"></i></a>
             </p>
           </div>
         </div>
@@ -204,7 +203,7 @@
                 <p i18n="@@managerOnboardingFaqA4Text2">0.1% of the total Betoken funds is set aside and distributed among fund manager holding Kairo.</p>
                 <h4 i18n="@@managerOnboardingFaqA4Title3">ONLY IF the fund is profitable</h4>
                 <p i18n="@@managerOnboardingFaqA4Text3">20% of the total Betoken's monthly profits is set aside as commission and distributed among fund
-                  managers holding Kairo proportional to the amount they hold and their <a href="#"></a> risk profile.
+                  managers holding Kairo proportional to the amount they hold and their risk profile.
                   The commission is taken into account IF and ONLY IF the fund is profitable during the actual
                   investment cycle.</p>
               </div>
@@ -226,7 +225,7 @@
             </div>
             <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
               <div class="card-body" i18n="@@managerOnboardingFaqA5">
-                You have access to a <a href="https://betoken.fund/portal/#/dashboard">Portal</a> where you can view
+                You have access to a Portal where you can view
                 Betoken's fund performances and your manager trading interface.
               </div>
             </div>
@@ -268,9 +267,7 @@
             </div>
             <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordion">
               <div class="card-body" i18n="@@managerOnboardingFaqA7">
-                No. You can only buy Kairo tokens once per Ethereum account. <a
-                  href="https://github.com/Betoken/Whitepaper/blob/master/BetokenWhitepaper.md#212-continuous-distribution"
-                  target="_blank">More about Kairo distribution and price.</a>
+                No. You can only buy Kairo tokens once per Ethereum account.
               </div>
             </div>
           </div>
@@ -501,8 +498,8 @@
               <p class="h1 text-center">
                 <i class="fe fe-check-circle text-success"></i>
               </p>
-              <p class="text-center text-muted mb-5" i18n="@@managerOnboardingBuyBtksModalTextStep4">
-                You bought <span class="font-weight-bold text-secondary">{{buyKairoAmount.toFormat(4)}}</span> KRO using
+              <p class="text-center text-muted mb-5">
+                <ng-container i18n="@@managerOnboardingBuyBtksModalTextStep4a">You bought</ng-container> <span class="font-weight-bold text-secondary">{{buyKairoAmount.toFormat(4)}}</span> KRO <ng-container i18n="@@managerOnboardingBuyBtksModalTextStep4b">using</ng-container>
                 <span class="font-weight-bold text-secondary">{{buyTokenAmount.toFormat(6)}}</span>
                 {{selectedTokenSymbol}}.
               </p>
@@ -534,8 +531,8 @@
               <p class="text-center text-muted mb-5" i18n="@@modalErrorText">
                 The operation has resulted in an error. Please try again.
               </p>
-              <p class="text-center text-muted mb-5" i18n="@@modalErrorMsg">
-                Error message: {{errorMsg}}
+              <p class="text-center text-muted mb-5">
+                <ng-container i18n="@@modalErrorMsg">Error message:</ng-container> {{errorMsg}}
               </p>
             </div>
 

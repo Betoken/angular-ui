@@ -2,13 +2,13 @@
   <div class="container-fluid px-md-5">
 
     <div class="navbar-text p-0">
-      <h6 class="header-pretitle text-muted mb-1 time-left-title" i18n="@@timeCounterTitle">
-        Time left 
+      <h6 class="header-pretitle text-muted mb-1 time-left-title">
+        <ng-container i18n="@@timeCounterTitle">Time left </ng-container>
         <ng-container *ngIf="phase == 0" i18n="@@timeCounterActionIntermission">until managing begins</ng-container>
         <ng-container *ngIf="phase == 1" i18n="@@timeCounterActionManage">to manage</ng-container>
       </h6>
-      <h4 class="header-title text-secondary time-left-value" i18n="@@timeCounterUnits">
-        {{days}}d {{hours}}h {{minutes}}m {{seconds}}s
+      <h4 class="header-title text-secondary time-left-value">
+        {{days}}<ng-container i18n="@@timeLeftInDays">d</ng-container> {{hours}}<ng-container i18n="@@timeLeftInHours">h</ng-container> {{minutes}}<ng-container i18n="@@timeLeftInMinutes">m</ng-container> {{seconds}}<ng-container i18n="@@timeLeftInSeconds">s</ng-container>
       </h4>
     </div>
 
@@ -33,8 +33,7 @@
       <!--Account display-->
       <button class="btn btn-white text-truncate" style="width: 12rem;" (click)="reloadAll()"
         *ngIf="user_address !== ZERO_ADDR"><span class="text-success">●</span> {{user_address}}</button>
-      <button class="btn btn-white text-truncate" (click)="reloadAll()" *ngIf="user_address == ZERO_ADDR"
-        i18n="@@header"><span class="text-danger">●</span> Connect Wallet </button>
+      <button class="btn btn-white text-truncate" (click)="reloadAll()" *ngIf="user_address == ZERO_ADDR"><span class="text-danger">●</span> <ng-container i18n="@@headerConnectWalletCTA">Connect Wallet</ng-container></button>
     </div>
   </div>
 </nav>
@@ -47,8 +46,8 @@
   </div>
 </div>
 <div *ngIf="phase == 1 && 7 > days && !checkRouterURL('/invest')">
-  <div class="alert alert-warning rounded-0 mb-0" i18n="@@managerAlert">
-    Please note you have only {{days}} days left to manage. You MUST sell all of your investments during this time, or you WILL LOSE your staked Kairo.
+  <div class="alert alert-warning rounded-0 mb-0">
+    <ng-container i18n="@@managerAlert1">Please note you have only</ng-container> {{days}} <ng-container i18n="@@managerAlert2">days left to manage. You MUST sell all of your investments during this time, or you WILL LOSE your staked Kairo.</ng-container>
   </div>
 </div>
 
@@ -161,55 +160,55 @@
           <input type="radio" id="Chinese" name="customRadio" class="custom-control-input">
           <label class="custom-control-label" for="Chinese" i18n="@@switchToCN">Chinese</label>
         </div>
-        <div class="custom-control custom-radio">
+        <div class="custom-control custom-radio mb-4 d-none">
           <input type="radio" id="French" name="customRadio" class="custom-control-input">
           <label class="custom-control-label" for="French" i18n="@@switchToFR">French</label>
         </div>
-        <div class="custom-control custom-radio">
+        <div class="custom-control custom-radio mb-4 d-none">
           <input type="radio" id="Russian" name="customRadio" class="custom-control-input">
           <label class="custom-control-label" for="Russian" i18n="@@switchToRU">Russian</label>
         </div>
-        <div class="custom-control custom-radio">
+        <div class="custom-control custom-radio mb-4">
           <input type="radio" id="Japanese" name="customRadio" class="custom-control-input">
           <label class="custom-control-label" for="Japanese" i18n="@@switchToJP">Japanese</label>
         </div>
-        <div class="custom-control custom-radio">
+        <div class="custom-control custom-radio mb-4 d-none">
           <input type="radio" id="Spanish" name="customRadio" class="custom-control-input">
           <label class="custom-control-label" for="Spanish" i18n="@@switchToES">Spanish</label>
         </div>
-        <div class="custom-control custom-radio">
+        <div class="custom-control custom-radio mb-4 d-none">
           <input type="radio" id="Javanese" name="customRadio" class="custom-control-input">
           <label class="custom-control-label" for="Javanese" i18n="@@switchToJavanese">Javanese</label>
         </div>
-        <div class="custom-control custom-radio">
+        <div class="custom-control custom-radio mb-4 d-none">
           <input type="radio" id="Indonesian" name="customRadio" class="custom-control-input">
           <label class="custom-control-label" for="Indonesian" i18n="@@switchToIndonesian">Indonesian</label>
         </div>
-        <div class="custom-control custom-radio">
+        <div class="custom-control custom-radio mb-4">
           <input type="radio" id="Portuguese" name="customRadio" class="custom-control-input">
-          <label class="custom-control-label" for="Portuguese" i18n="@@switchToPT">Portuguese</label>
+          <label class="custom-control-label" for="Portuguese" i18n="@@switchToPT">Portuguese (BR)</label>
         </div>
-        <div class="custom-control custom-radio">
+        <div class="custom-control custom-radio mb-4 d-none">
           <input type="radio" id="Sundanese" name="customRadio" class="custom-control-input">
           <label class="custom-control-label" for="Sundanese" i18n="@@switchToSundanese">Sundanese</label>
         </div>
-        <div class="custom-control custom-radio">
+        <div class="custom-control custom-radio mb-4 d-none">
           <input type="radio" id="Italian" name="customRadio" class="custom-control-input">
           <label class="custom-control-label" for="Italian" i18n="@@switchToIT">Italian</label>
         </div>
-        <div class="custom-control custom-radio">
+        <div class="custom-control custom-radio mb-4 d-none">
           <input type="radio" id="Korean" name="customRadio" class="custom-control-input">
           <label class="custom-control-label" for="Korean" i18n="@@switchToKorean">Korean</label>
         </div>
-        <div class="custom-control custom-radio">
+        <div class="custom-control custom-radio mb-4 d-none">
           <input type="radio" id="Hindi" name="customRadio" class="custom-control-input">
           <label class="custom-control-label" for="Hindi" i18n="@@switchToHindi">Hindi</label>
         </div>
-        <div class="custom-control custom-radio">
+        <div class="custom-control custom-radio mb-4 d-none">
           <input type="radio" id="Thai" name="customRadio" class="custom-control-input">
           <label class="custom-control-label" for="Thai" i18n="@@switchToThai">Thai</label>
         </div>
-        <div class="custom-control custom-radio">
+        <div class="custom-control custom-radio d-none">
           <input type="radio" id="Vietnamese" name="customRadio" class="custom-control-input">
           <label class="custom-control-label" for="Vietnamese" i18n="@@switchToVietnamese">Vietnamese</label>
         </div>

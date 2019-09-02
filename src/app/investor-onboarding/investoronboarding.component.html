@@ -21,10 +21,10 @@
             <h6 class="header-pretitle" i18n="@@investorOnboardingIntroSubtitle1">
               Crowd-powered finance
             </h6>
-            <p i18n="@@investorOnboardingIntroText1">
-              Your capital is automatically distributed among <a href="https://betoken.fund/portal/#/rankings"
-                target="_blank">Betoken’s community of managers</a>. The best of them will have the most influence over
-              how that capital is put to work.
+            <p>
+              <ng-container i18n="@@investorOnboardingIntroText1a">Your capital is automatically distributed among</ng-container> <a href="https://betoken.fund/portal/#/rankings"
+                target="_blank"><ng-container i18n="@@investorOnboardingIntroText1b">Betoken’s community of managers</ng-container></a>. <ng-container i18n="@@investorOnboardingIntroText1c">The best of them will have the most influence over
+              how that capital is put to work.</ng-container>
             </p>
           </div>
         </div>
@@ -46,11 +46,11 @@
             <h6 class="header-pretitle" i18n="@@investorOnboardingIntroSubtitle3">
               No limits, no hidden fees
             </h6>
-            <p i18n="@@investorOnboardingIntroText3">
-              Betoken allows anyone to buy or sell any amount of Betoken Shares, and Betoken's fee structure is
-              completely transparent. <a
+            <p>
+              <ng-container i18n="@@investorOnboardingIntroText3a">Betoken allows anyone to buy or sell any amount of Betoken Shares, and Betoken's fee structure is
+              completely transparent.</ng-container> <a
                 href="https://betoken.gitbook.io/docs/connect-your-capital/what-is-the-fees-structure"
-                target="_blank">More about fees, lockup, and liquidity<i class="fe fe-arrow-right ml-2"></i></a>
+                target="_blank"><ng-container i18n="@@investorOnboardingIntroText3b">More about fees, lockup, and liquidity</ng-container><i class="fe fe-arrow-right ml-2"></i></a>
             </p>
           </div>
         </div>
@@ -149,16 +149,15 @@
               </a>
             </div>
             <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-              <div class="card-body" i18n="@@investorOnboardingFaqA1">
-                Yes. Betoken's protocol is 100% liquid. You can buy and sell BTKS at any time in 2 ways:
+              <div class="card-body">
+                <ng-container i18n="@@investorOnboardingFaqA1a">Yes. Betoken's protocol is 100% liquid. You can buy and sell BTKS at any time in 2 ways:</ng-container>
                 <ol>
-                  <li>During <a href="https://betoken.gitbook.io/docs/betoken-investment-cycle">Betoken's 3 days
-                      intermission phase</a> that happens every 27 days, you can buy and sell BTKS directly on the
-                    investor dashboard.</li>
-                  <li>(Coming soon) During <a href="https://betoken.gitbook.io/docs/betoken-investment-cycle">Betoken's
-                      management phase</a> (27 days), BTKS token is freely tradable on decentralized exchanges.
+                  <li><ng-container i18n="@@investorOnboardingFaqA1b">During Betoken's 3 days
+                      intermission phase that happens every 27 days, you can buy and sell BTKS directly on the
+                    investor dashboard.</ng-container></li>
+                  <li><ng-container i18n="@@investorOnboardingFaqA1c">During Betoken's management phase (27 days), BTKS token is freely tradable on decentralized exchanges (Fork Delta, Uniswap).
                     Depending of the market conditions, the price may be different from what's displayed on the investor
-                    dashboard.</li>
+                    dashboard.</ng-container></li>
                 </ol>
               </div>
             </div>
@@ -236,7 +235,7 @@
             </div>
             <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
               <div class="card-body" i18n="@@investorOnboardingFaqA4">
-                You have access to a <a href="https://betoken.fund/portal/#/investing-dashboard">dashboard</a> where you
+                You have access to a dashboard where you
                 can view your capital account.
               </div>
             </div>
@@ -317,7 +316,7 @@
               Time left until operation allowed
             </h6>
             <h4 class="header-title mb-4 text-center" i18n="@@modalTimeLeftUnits">
-              {{days}}d {{hours}}h {{minutes}}m {{seconds}}s <a class="text-muted ml-2"
+              {{days}}<ng-container i18n="@@timeLeftInDays">d</ng-container> {{hours}}<ng-container i18n="@@timeLeftInHours">h</ng-container> {{minutes}}<ng-container i18n="@@timeLeftInMinutes">m</ng-container> {{seconds}}<ng-container i18n="@@timeLeftInSeconds">s</ng-container> <a class="text-muted ml-2"
                 href="https://betoken.gitbook.io/docs/betoken-investment-cycle" i18n-title="@@modalTimeLeftUnitsTitleAttribute" title="Learn more" target="_blank"><span
                   class="fe fe-help-circle"></span></a>
             </h4>
@@ -517,9 +516,9 @@
                 <p class="h1 text-center">
                   <i class="fe fe-check-circle text-success"></i>
                 </p>
-                <p class="text-center text-muted mb-5" i18n="@@investorOnboardingBuyBtksModalTextStep4">
-                  You bought <span class="font-weight-bold text-secondary">{{buySharesAmount.toFormat(4)}}</span> BTKS
-                  using <span class="font-weight-bold text-secondary">{{buyTokenAmount.toFormat(4)}}</span>
+                <p class="text-center text-muted mb-5">
+                  <ng-container i18n="@@investorOnboardingBuyBtksModalTextStep4a">You bought</ng-container> <span class="font-weight-bold text-secondary">{{buySharesAmount.toFormat(4)}}</span> BTKS
+                  <ng-container i18n="@@investorOnboardingBuyBtksModalTextStep4b">using</ng-container> <span class="font-weight-bold text-secondary">{{buyTokenAmount.toFormat(4)}}</span>
                   {{selectedTokenSymbol}}.
                 </p>
                 <a target="_blank" i18n-href="@@investorOnboardingBuyBtksModalTweet" href="https://twitter.com/intent/tweet?hashtags=Betoken%2C%20DeFi&related=betokenfund&text=I%27ve%20just%20connected%20my%20capital%20to%20Betoken%2C%20world%27s%20first%20crowd-powered%20cryptoassets%20management%20protocol!&url=https%3A%2F%2Fbetoken.fund&via=betokenfund">
@@ -550,8 +549,8 @@
                 <p class="text-center text-muted mb-5" i18n="@@modalErrorText">
                   The operation has resulted in an error. Please try again.
                 </p>
-                <p class="text-center text-muted mb-5" i18n="@@modalErrorMsg">
-                  Error message: {{errorMsg}}
+                <p class="text-center text-muted mb-5">
+                  <ng-container i18n="@@modalErrorMsg">Error message:</ng-container> {{errorMsg}}
                 </p>
               </div>
 

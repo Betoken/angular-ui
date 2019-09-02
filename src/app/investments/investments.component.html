@@ -535,7 +535,7 @@
           <hr class="my-4">
 
           <!-- KRO amount to stake -->
-          <h6 class="header-pretitle" i18n="@@investmentsBuyModalIWantToBuy">I want to buy {{getTokenName(selectedTokenSymbol)}} by staking</h6>
+          <h6 class="header-pretitle"><ng-container i18n="@@investmentsBuyModalIWantToBuy1">I want to buy</ng-container> {{getTokenName(selectedTokenSymbol)}} <ng-container i18n="@@investmentsBuyModalIWantToBuy2">by staking</ng-container></h6>
           <div class="row justify-content-center">
             <div class="col">
               <form>
@@ -550,8 +550,8 @@
                 <small id="kroBalance"
                   class="form-text text-secondary d-inline-block mb-0 mt-2">{{kairoBalance.toFormat(18)}} KRO <ng-container i18n="@@modalBalanceAvailable">available</ng-container></small>
                 <small class="form-text text-warning d-inline-block mb-0 mt-2"
-                  *ngIf="selectedOrderType.type === 'fulcrum'" i18n="@@investmentsBuyModalFulcrumMinStake">
-                  Minimum stake: {{fulcrumMinStake.toFormat(18)}} KRO
+                  *ngIf="selectedOrderType.type === 'fulcrum'">
+                  <ng-container i18n="@@investmentsBuyModalFulcrumMinStake">Minimum stake:</ng-container> {{fulcrumMinStake.toFormat(18)}} KRO
                 </small>
                 <h6 class="header-pretitle mt-4" *ngIf="isMarginToken(selectedTokenSymbol)" i18n="@@investmentsBuyModalOrderTypeSelect">Order type</h6>
                 <select class="form-control form-control-lg" id="orderTypeSelect"
@@ -591,7 +591,7 @@
                           <h6 class="header-pretitle" i18n="@@investmentsBuyModalAdvancedOptionSubTitle">
                             Max acceptable price
                           </h6>
-                          <p i18n="@@modalAdvancedOptionText">Your order <strong>won't</strong> be executed if the price goes up by more than:</p>
+                          <p i18n="@@modalAdvancedOptionText">Your order WON'T be executed if the price goes up by more than:</p>
                           <form>
                             <div class="input-group input-group-lg">
                               <input type="number" class="form-control border-right-0"
@@ -623,23 +623,23 @@
                 <h6 class="header-pretitle" i18n="@@investmentsBuyModalMarginTradingPayoutTitle">
                   Payout
                 </h6>
-                <p i18n="@@investmentsBuyModalMarginTradingPayoutText1">This order <strong>multiplies your returns by {{selectedOrderType.leverage}}x</strong>.</p>
+                <p><ng-container i18n="@@investmentsBuyModalMarginTradingPayoutText1">This order multiplies your returns by</ng-container> {{selectedOrderType.leverage}}x.</p>
                 <!-- IDEA: leveraged order -->
-                <p i18n="@@investmentsBuyModalMarginTradingPayoutText2">If {{selectedTokenSymbol}}'s price <span class="text-success">+10%</span>, you <span
-                    class="text-success" *ngIf="selectedOrderType.leverage > 0">gain
+                <p><ng-container i18n="@@investmentsBuyModalMarginTradingPayoutText2a">If</ng-container> {{selectedTokenSymbol}}<ng-container i18n="@@investmentsBuyModalMarginTradingPayoutText2b">'s price</ng-container> <span class="text-success">+10%</span>, <ng-container i18n="@@investmentsBuyModalMarginTradingPayoutText2c">you</ng-container> <span
+                    class="text-success" *ngIf="selectedOrderType.leverage > 0"><ng-container i18n="@@investmentsBuyModalMarginTradingPayoutText2d">gain</ng-container>
                     {{10 * selectedOrderType.leverage}}%</span> <span class="text-danger"
-                    *ngIf="0 > selectedOrderType.leverage">lose {{-10 * selectedOrderType.leverage}}%</span>.</p>
-                <p i18n="@@investmentsBuyModalMarginTradingPayoutText3">If {{selectedTokenSymbol}}'s price <span class="text-danger">-10%</span>, you <span
-                    class="text-danger" *ngIf="selectedOrderType.leverage > 0">lose
+                    *ngIf="0 > selectedOrderType.leverage"><ng-container i18n="@@investmentsBuyModalMarginTradingPayoutText2e">lose</ng-container> {{-10 * selectedOrderType.leverage}}%</span>.</p>
+                <p><ng-container i18n="@@investmentsBuyModalMarginTradingPayoutText3a">If</ng-container> {{selectedTokenSymbol}}<ng-container i18n="@@investmentsBuyModalMarginTradingPayoutText3b">'s price</ng-container> <span class="text-danger">-10%</span>, <ng-container i18n="@@investmentsBuyModalMarginTradingPayoutText3c">you</ng-container> <span
+                    class="text-danger" *ngIf="selectedOrderType.leverage > 0"><ng-container i18n="@@investmentsBuyModalMarginTradingPayoutText3d">lose</ng-container>
                     {{10 * selectedOrderType.leverage}}%</span> <span class="text-success"
-                    *ngIf="0 > selectedOrderType.leverage">gain {{-10 * selectedOrderType.leverage}}%</span>.</p>
+                    *ngIf="0 > selectedOrderType.leverage"><ng-container i18n="@@investmentsBuyModalMarginTradingPayoutText3e">gain</ng-container> {{-10 * selectedOrderType.leverage}}%</span>.</p>
 
                 <h6 class="header-pretitle" i18n="@@investmentsBuyModalMarginTradingLiquidationTitle">Liquidation</h6>
-                <p i18n="@@investmentsBuyModalMarginTradingLiquidationText">
-                  This order could be liquidated if its losses exceed a certain threshold (which will be displayed). If
-                  that happens, a large portion of your stake will be lost. <a
+                <p>
+                  <ng-container i18n="@@investmentsBuyModalMarginTradingLiquidationText1">This order could be liquidated if its losses exceed a certain threshold (which will be displayed). If
+                  that happens, a large portion of your stake will be lost.</ng-container> <a
                     href="https://betoken.gitbook.io/docs/manage-the-fund/what-would-cause-a-position-of-mine-to-get-liquidated"
-                    target="_blank">Learn More</a>
+                    target="_blank"><ng-container i18n="@@investmentsBuyModalMarginTradingLiquidationText2">Learn More</ng-container></a>
                 </p>
               </div>
             </div>
@@ -667,8 +667,8 @@
           <p class="h1 text-center">
             <i class="fe fe-check-circle text-success"></i>
           </p>
-          <p class="text-center text-muted mb-5" i18n="@@investmentsBuyModalTxConfirmed">
-            You staked <span class="font-weight-bold text-secondary">{{stakeAmount}}</span> KRO to invest in <span
+          <p class="text-center text-muted mb-5">
+            <ng-container i18n="@@investmentsBuyModalTxConfirmed1">You staked</ng-container> <span class="font-weight-bold text-secondary">{{stakeAmount}}</span> <ng-container i18n="@@investmentsBuyModalTxConfirmed2"> KRO to invest in</ng-container> <span
               class="font-weight-bold text-secondary">{{getTokenName(selectedTokenSymbol)}}</span>.
           </p>
 
@@ -699,8 +699,8 @@
           <p class="text-center text-muted mb-5" i18n="@@modalErrorText">
             The operation has resulted in an error. Please try again.
           </p>
-          <p class="text-center text-muted mb-5" i18n="@@modalErrorMsg">
-            Error message: {{errorMsg}}
+          <p class="text-center text-muted mb-5">
+            <ng-container i18n="@@modalErrorMsg">Error message:</ng-container> {{errorMsg}}
           </p>
         </div>
       </div>
@@ -793,8 +793,7 @@
 
       <div class="modal-body pb-5">
         <!--Step 0: enter sell amount-->
-        <time class="header-pretitle h6 mb-0" *ngIf="sellInvestmentPopupStep === 0" i18n="@@investmentsModalSellOrderBuyTime">OPENED
-          {{toDateTimeString(sellData.buyTime)}}</time>
+        <time class="header-pretitle h6 mb-0" *ngIf="sellInvestmentPopupStep === 0"><ng-container i18n="@@investmentsModalSellOrderBuyTime">OPENED</ng-container> {{toDateTimeString(sellData.buyTime)}}</time>
         <hr class="mb-4" *ngIf="sellInvestmentPopupStep === 0">
         <!-- Asset price -->
         <div class="row mb-4" *ngIf="sellInvestmentPopupStep === 0">
@@ -978,7 +977,7 @@
                           <h6 class="header-pretitle" i18n="@@investmentsModalSellAdvancedOptionSubtite">
                             Min acceptable price
                           </h6>
-                          <p i18n="@@modalAdvancedOptionText">Your order <strong>won't</strong> be executed if the price goes down by more than:</p>
+                          <p i18n="@@modalAdvancedOptionText">Your order WON'T be executed if the price goes down by more than:</p>
                           <form>
                             <div class="input-group input-group-lg">
                               <input type="number" min="0.0" max="100.0" class="form-control border-right-0"
@@ -1048,8 +1047,8 @@
           <p class="text-center text-muted mb-5" i18n="@@modalErrorText">
             The operation has resulted in an error. Please try again.
           </p>
-          <p class="text-center text-muted mb-5" i18n="@@modalErrorMsg">
-            Error message: {{errorMsg}}
+          <p class="text-center text-muted mb-5">
+            <ng-container i18n="@@modalErrorMsg">Error message:</ng-container> {{errorMsg}}
           </p>
         </div>
       </div>
@@ -1248,8 +1247,8 @@
           <p class="text-center text-muted mb-5" i18n="@@modalErrorText">
             The operation has resulted in an error. Please try again.
           </p>
-          <p class="text-center text-muted mb-5" i18n="@@modalErrorMsg">
-            Error message: {{errorMsg}}
+          <p class="text-center text-muted mb-5">
+            <ng-container i18n="@@modalErrorMsg">Error message:</ng-container> {{errorMsg}}
           </p>
         </div>
       </div>

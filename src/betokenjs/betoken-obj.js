@@ -92,7 +92,7 @@ export const sendTxWithToken = async (func, token, to, amount, _onTxHash, _onRec
     let allowance = new BigNumber(await token.methods.allowance(web3Instance.eth.defaultAccount, to).call());
     if (allowance.gt(0)) {
         if (allowance.gte(amount)) {
-            return this.sendTx(func, _onTxHash, _onReceipt, _onError);
+            return sendTx(func, _onTxHash, _onReceipt, _onError);
         }
         return sendTx(token.methods.approve(to, 0), () => {
             sendTx(token.methods.approve(to, amount), () => {

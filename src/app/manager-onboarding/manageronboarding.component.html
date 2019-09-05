@@ -25,7 +25,7 @@
               <ng-container i18n="@@managerOnboardingIntroSubText1a">The Betoken protocol recognizes and quantifies the talent of its fund managers by allocating units of
               reputation to them, denominated in Kairo tokens, and financially rewards them based on their talent and contributions.
               The more Kairo tokens you have, the more money in the Betoken fund you can manage and the more income
-              you’ll get every month as commissions on your investments.</ng-container> <a
+              you’ll get every month as commissions on your investments.</ng-container>&nbsp;<a
                 href="https://betoken.gitbook.io/docs/manage-the-fund/how-does-the-managers-monthly-commission-work"
                 target="_blank"><ng-container i18n="@@managerOnboardingIntroSubText1b">More about Betoken's commissions structure</ng-container><i class="fe fe-arrow-right ml-2"></i></a>
             </p>
@@ -58,7 +58,7 @@
             <!-- cta -->
             <span class="text-truncate d-block" *ngIf="user_address !== ZERO_ADDR"><span class="text-success">●</span>
               {{user_address}}</span>
-            <span class="text-truncate" *ngIf="user_address == ZERO_ADDR"><span class="text-danger">●</span> <ng-container i18n="@@managerOnboardingConnectStatus">No Wallet Connected</ng-container></span>
+            <span class="text-truncate" *ngIf="user_address == ZERO_ADDR"><span class="text-danger">●</span>&nbsp;<ng-container i18n="@@managerOnboardingConnectStatus">No Wallet Connected</ng-container></span>
           </div>
           <div class="card-body text-center text-md-left">
             <button class="btn btn-block btn-lg btn-success" type="button" data-toggle="modal" data-target="#modalBuy" *ngIf="user_address != ZERO_ADDR && !isManager" i18n="@@ctaGetStarted">Get Started</button>
@@ -292,7 +292,7 @@
             <a href="https://medium.com/betoken" class="nav-link text-center text-secondary" i18n="@@footerNavBlog">Blog</a>
           </li>
         </ul>
-        <p class="text-center text-secondary"><ng-container i18n="@@contactUs">Contact us at</ng-container> <a class="text-secondary"
+        <p class="text-center text-secondary"><ng-container i18n="@@contactUs">Contact us at</ng-container>&nbsp;<a class="text-secondary"
             href="mailto:hello@betoken.fund?subject=Hey">hello@betoken.fund</a></p>
       </div>
     </div>
@@ -367,7 +367,7 @@
               <div class="custom-control custom-checkbox mb-4">
                 <input type="checkbox" class="custom-control-input" id="rule2"
                   (change)="checkboxes[1] = !checkboxes[1]">
-                <label class="custom-control-label small text-secondary" for="rule2"><ng-container i18n="@@modalRule2">You have read and understood our </ng-container> <a
+                <label class="custom-control-label small text-secondary" for="rule2"><ng-container i18n="@@modalRule2">You have read and understood our</ng-container>&nbsp;<a
                     href="#/disclaimer" data-dismiss="modal" i18n-aria-label="@@modalAriaLabelClose" aria-label="Close" i18n="@@modalDisclaimerCta">disclaimer</a>.</label>
               </div>
               <div class="custom-control custom-checkbox mb-4">
@@ -413,7 +413,7 @@
                   </div>
                   <small
                     class="d-block form-text text-secondary d-inline-block mb-0">{{selectedTokenBalance.toFormat(4)}}
-                    {{selectedTokenSymbol}} <ng-container i18n="@@modalBalanceAvailable">available</ng-container></small>
+                    {{selectedTokenSymbol}}&nbsp;<ng-container i18n="@@modalBalanceAvailable">available</ng-container></small>
                   <small class="form-text text-warning d-inline-block mb-0 mt-1" i18n="@@managerOnboardingBuyBtksModalMaxPaymentAmount">Maximum purchase:
                     {{getMaxPaymentAmount().toFormat(4)}} {{selectedTokenSymbol}} <a class="text-muted ml-2"
                       href="https://betoken.gitbook.io/docs/manage-the-fund/why-is-there-a-max-kairo-purchase"
@@ -499,9 +499,7 @@
                 <i class="fe fe-check-circle text-success"></i>
               </p>
               <p class="text-center text-muted mb-5">
-                <ng-container i18n="@@managerOnboardingBuyBtksModalTextStep4a">You bought</ng-container> <span class="font-weight-bold text-secondary">{{buyKairoAmount.toFormat(4)}}</span> KRO <ng-container i18n="@@managerOnboardingBuyBtksModalTextStep4b">using</ng-container>
-                <span class="font-weight-bold text-secondary">{{buyTokenAmount.toFormat(6)}}</span>
-                {{selectedTokenSymbol}}.
+                <ng-container i18n="@@managerOnboardingBuyBtksModalTextStep4a">You bought</ng-container>&nbsp;<span class="font-weight-bold text-secondary">{{buyKairoAmount.toFormat(4)}}</span>&nbsp;KRO&nbsp;<ng-container i18n="@@managerOnboardingBuyBtksModalTextStep4b">using</ng-container>&nbsp;<span class="font-weight-bold text-secondary">{{buyTokenAmount.toFormat(6)}}</span>&nbsp;{{selectedTokenSymbol}}.
               </p>
               <a target="_blank" i18n-href="@@managerOnboardingBuyBtksModalTweet" href="https://twitter.com/intent/tweet?hashtags=Betoken%2C%20DeFi&related=betokenfund&text=I%27ve%20just%20joined%20Betoken%20as%20a%20fund%20manager%2C%20world%27s%20first%20crowd-powered%20cryptoassets%20management%20protocol!&url=https%3A%2F%2Fbetoken.fund&via=betokenfund">
                 <button class="btn btn-twitter btn-block" type="button" name="button" i18n="@@managerOnboardingBuyBtksModalCtaTweet">Tweet about it</button>
@@ -532,7 +530,7 @@
                 The operation has resulted in an error. Please try again.
               </p>
               <p class="text-center text-muted mb-5">
-                <ng-container i18n="@@modalErrorMsg">Error message:</ng-container> {{errorMsg}}
+                <ng-container i18n="@@modalErrorMsg">Error message:</ng-container>&nbsp;{{errorMsg}}
               </p>
             </div>
 

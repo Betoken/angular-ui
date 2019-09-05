@@ -3,12 +3,10 @@
 
     <div class="navbar-text p-0">
       <h6 class="header-pretitle text-muted mb-1 time-left-title">
-        <ng-container i18n="@@timeCounterTitle">Time left </ng-container>
-        <ng-container *ngIf="phase == 0" i18n="@@timeCounterActionIntermission">until managing begins</ng-container>
-        <ng-container *ngIf="phase == 1" i18n="@@timeCounterActionManage">to manage</ng-container>
+        <ng-container i18n="@@timeCounterTitle">Time left</ng-container>&nbsp;<ng-container *ngIf="phase == 0" i18n="@@timeCounterActionIntermission">until managing begins</ng-container><ng-container *ngIf="phase == 1" i18n="@@timeCounterActionManage">to manage</ng-container>
       </h6>
       <h4 class="header-title text-secondary time-left-value">
-        {{days}}<ng-container i18n="@@timeLeftInDays">d</ng-container> {{hours}}<ng-container i18n="@@timeLeftInHours">h</ng-container> {{minutes}}<ng-container i18n="@@timeLeftInMinutes">m</ng-container> {{seconds}}<ng-container i18n="@@timeLeftInSeconds">s</ng-container>
+        {{days}}<ng-container i18n="@@timeLeftInDays">d</ng-container>&nbsp;{{hours}}<ng-container i18n="@@timeLeftInHours">h</ng-container>&nbsp;{{minutes}}<ng-container i18n="@@timeLeftInMinutes">m</ng-container>&nbsp;{{seconds}}<ng-container i18n="@@timeLeftInSeconds">s</ng-container>
       </h4>
     </div>
 
@@ -33,7 +31,7 @@
       <!--Account display-->
       <button class="btn btn-white text-truncate" style="width: 12rem;" (click)="reloadAll()"
         *ngIf="user_address !== ZERO_ADDR"><span class="text-success">●</span> {{user_address}}</button>
-      <button class="btn btn-white text-truncate" (click)="reloadAll()" *ngIf="user_address == ZERO_ADDR"><span class="text-danger">●</span> <ng-container i18n="@@headerConnectWalletCTA">Connect Wallet</ng-container></button>
+      <button class="btn btn-white text-truncate" (click)="reloadAll()" *ngIf="user_address == ZERO_ADDR"><span class="text-danger">●</span>&nbsp;<ng-container i18n="@@headerConnectWalletCTA">Connect Wallet</ng-container></button>
     </div>
   </div>
 </nav>
@@ -47,7 +45,7 @@
 </div>
 <div *ngIf="phase == 1 && 7 > days && !checkRouterURL('/invest')">
   <div class="alert alert-warning rounded-0 mb-0">
-    <ng-container i18n="@@managerAlert1">Please note you have only</ng-container> {{days}} <ng-container i18n="@@managerAlert2">days left to manage. You MUST sell all of your investments during this time, or you WILL LOSE your staked Kairo.</ng-container>
+    <ng-container i18n="@@managerAlert1">Please note you have only</ng-container>&nbsp;{{days}}&nbsp;<ng-container i18n="@@managerAlert2">days left to manage. You MUST sell all of your investments during this time, or you WILL LOSE your staked Kairo.</ng-container>
   </div>
 </div>
 

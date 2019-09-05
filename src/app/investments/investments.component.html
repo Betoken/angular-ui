@@ -210,8 +210,8 @@
                       <span *ngIf="!isOrderOfType(data, 'BasicOrder')">
                         <span class="badge"
                           [ngClass]="{'badge-soft-success': data.safety, 'badge-soft-danger': !data.safety}">
-                          <span class="text-secondary" *ngIf="!data.isShort"><ng-container i18n="@@orderOfTypeLong">Long</ng-container> {{data.leverage}}x</span><span
-                            class="text-secondary" *ngIf="data.isShort"><ng-container i18n="@@orderOfTypeShort">Short</ng-container> {{data.leverage}}x</span> • <span
+                          <span class="text-secondary" *ngIf="!data.isShort"><ng-container i18n="@@orderOfTypeLong">Long</ng-container>&nbsp;{{data.leverage}}x</span><span
+                            class="text-secondary" *ngIf="data.isShort"><ng-container i18n="@@orderOfTypeShort">Short</ng-container>&nbsp;{{data.leverage}}x</span> • <span
                             *ngIf="data.safety" i18n="@@orderSafetySafe">Safe</span><span *ngIf="!data.safety" i18n="@@orderSafetyInDanger">In Danger</span>
                         </span>
                       </span>
@@ -341,8 +341,8 @@
                 </div>
                 <div class="col-12 col-lg-auto">
                   <span *ngIf="!isOrderOfType(data, 'BasicOrder')">
-                    <span class="badge badge-soft-secondary" *ngIf="!data.isShort"><ng-container i18n="@@orderOfTypeLong">Long</ng-container> {{data.leverage}}x</span><span
-                      class="badge badge-soft-secondary" *ngIf="data.isShort"><ng-container i18n="@@orderOfTypeShort">Short</ng-container> {{data.leverage}}x</span>
+                    <span class="badge badge-soft-secondary" *ngIf="!data.isShort"><ng-container i18n="@@orderOfTypeLong">Long</ng-container>&nbsp;{{data.leverage}}x</span><span
+                      class="badge badge-soft-secondary" *ngIf="data.isShort"><ng-container i18n="@@orderOfTypeShort">Short</ng-container>&nbsp;{{data.leverage}}x</span>
                   </span>
                 </div>
               </div>
@@ -407,7 +407,7 @@
             <span class="avatar avatar-xs align-middle mr-2">
               <img src={{getTokenLogoUrl(selectedTokenSymbol)}} alt="logo" class="avatar-img rounded-circle">
             </span>
-            <ng-container i18n="@@investmentsBuyModalTitleStep1">Buy</ng-container> {{getTokenName(selectedTokenSymbol)}}
+            <ng-container i18n="@@investmentsBuyModalTitleStep1">Buy</ng-container>&nbsp;{{getTokenName(selectedTokenSymbol)}}
           </h4>
         </a>
         <!-- Confirm asset investment title -->
@@ -535,7 +535,7 @@
           <hr class="my-4">
 
           <!-- KRO amount to stake -->
-          <h6 class="header-pretitle"><ng-container i18n="@@investmentsBuyModalIWantToBuy1">I want to buy</ng-container> {{getTokenName(selectedTokenSymbol)}} <ng-container i18n="@@investmentsBuyModalIWantToBuy2">by staking</ng-container></h6>
+          <h6 class="header-pretitle"><ng-container i18n="@@investmentsBuyModalIWantToBuy1">I want to buy</ng-container>&nbsp;{{getTokenName(selectedTokenSymbol)}}&nbsp;<ng-container i18n="@@investmentsBuyModalIWantToBuy2">by staking</ng-container></h6>
           <div class="row justify-content-center">
             <div class="col">
               <form>
@@ -548,10 +548,10 @@
                   </div>
                 </div>
                 <small id="kroBalance"
-                  class="form-text text-secondary d-inline-block mb-0 mt-2">{{kairoBalance.toFormat(18)}} KRO <ng-container i18n="@@modalBalanceAvailable">available</ng-container></small>
+                  class="form-text text-secondary d-inline-block mb-0 mt-2">{{kairoBalance.toFormat(18)}}&nbsp;KRO&nbsp;<ng-container i18n="@@modalBalanceAvailable">available</ng-container></small>
                 <small class="form-text text-warning d-inline-block mb-0 mt-2"
                   *ngIf="selectedOrderType.type === 'fulcrum'">
-                  <ng-container i18n="@@investmentsBuyModalFulcrumMinStake">Minimum stake:</ng-container> {{fulcrumMinStake.toFormat(18)}} KRO
+                  <ng-container i18n="@@investmentsBuyModalFulcrumMinStake">Minimum stake:</ng-container>&nbsp;{{fulcrumMinStake.toFormat(18)}} KRO
                 </small>
                 <h6 class="header-pretitle mt-4" *ngIf="isMarginToken(selectedTokenSymbol)" i18n="@@investmentsBuyModalOrderTypeSelect">Order type</h6>
                 <select class="form-control form-control-lg" id="orderTypeSelect"
@@ -623,22 +623,21 @@
                 <h6 class="header-pretitle" i18n="@@investmentsBuyModalMarginTradingPayoutTitle">
                   Payout
                 </h6>
-                <p><ng-container i18n="@@investmentsBuyModalMarginTradingPayoutText1">This order multiplies your returns by</ng-container> {{selectedOrderType.leverage}}x.</p>
+                <p><ng-container i18n="@@investmentsBuyModalMarginTradingPayoutText1">This order multiplies your returns by</ng-container>&nbsp;{{selectedOrderType.leverage}}x.</p>
                 <!-- IDEA: leveraged order -->
-                <p><ng-container i18n="@@investmentsBuyModalMarginTradingPayoutText2a">If</ng-container> {{selectedTokenSymbol}}<ng-container i18n="@@investmentsBuyModalMarginTradingPayoutText2b">'s price</ng-container> <span class="text-success">+10%</span>, <ng-container i18n="@@investmentsBuyModalMarginTradingPayoutText2c">you</ng-container> <span
-                    class="text-success" *ngIf="selectedOrderType.leverage > 0"><ng-container i18n="@@investmentsBuyModalMarginTradingPayoutText2d">gain</ng-container>
-                    {{10 * selectedOrderType.leverage}}%</span> <span class="text-danger"
-                    *ngIf="0 > selectedOrderType.leverage"><ng-container i18n="@@investmentsBuyModalMarginTradingPayoutText2e">lose</ng-container> {{-10 * selectedOrderType.leverage}}%</span>.</p>
-                <p><ng-container i18n="@@investmentsBuyModalMarginTradingPayoutText3a">If</ng-container> {{selectedTokenSymbol}}<ng-container i18n="@@investmentsBuyModalMarginTradingPayoutText3b">'s price</ng-container> <span class="text-danger">-10%</span>, <ng-container i18n="@@investmentsBuyModalMarginTradingPayoutText3c">you</ng-container> <span
-                    class="text-danger" *ngIf="selectedOrderType.leverage > 0"><ng-container i18n="@@investmentsBuyModalMarginTradingPayoutText3d">lose</ng-container>
-                    {{10 * selectedOrderType.leverage}}%</span> <span class="text-success"
-                    *ngIf="0 > selectedOrderType.leverage"><ng-container i18n="@@investmentsBuyModalMarginTradingPayoutText3e">gain</ng-container> {{-10 * selectedOrderType.leverage}}%</span>.</p>
+                <p><ng-container i18n="@@investmentsBuyModalMarginTradingPayoutText2a">
+                  If</ng-container>&nbsp;{{selectedTokenSymbol}}<ng-container i18n="@@investmentsBuyModalMarginTradingPayoutText2b">'s price</ng-container>&nbsp;<span class="text-success">+10%</span>,&nbsp;
+                  <ng-container i18n="@@investmentsBuyModalMarginTradingPayoutText2c">you</ng-container>&nbsp;<span class="text-success" *ngIf="selectedOrderType.leverage > 0"><ng-container i18n="@@investmentsBuyModalMarginTradingPayoutText2d">gain</ng-container>&nbsp;{{10 * selectedOrderType.leverage}}%</span><span class="text-danger" *ngIf="0 > selectedOrderType.leverage"><ng-container i18n="@@investmentsBuyModalMarginTradingPayoutText2e">lose</ng-container>&nbsp;{{-10 * selectedOrderType.leverage}}%</span>.
+                </p>
+                <p>
+                  <ng-container i18n="@@investmentsBuyModalMarginTradingPayoutText3a">If</ng-container>&nbsp;{{selectedTokenSymbol}}<ng-container i18n="@@investmentsBuyModalMarginTradingPayoutText3b">'s price</ng-container>&nbsp;<span class="text-danger">-10%</span>,&nbsp;<ng-container i18n="@@investmentsBuyModalMarginTradingPayoutText3c">you</ng-container>&nbsp;
+                  <span class="text-danger" *ngIf="selectedOrderType.leverage > 0"><ng-container i18n="@@investmentsBuyModalMarginTradingPayoutText3d">lose</ng-container>&nbsp;{{10 * selectedOrderType.leverage}}%</span> <span class="text-success" *ngIf="0 > selectedOrderType.leverage"><ng-container i18n="@@investmentsBuyModalMarginTradingPayoutText3e">gain</ng-container>&nbsp;{{-10 * selectedOrderType.leverage}}%</span>.
+                </p>
 
                 <h6 class="header-pretitle" i18n="@@investmentsBuyModalMarginTradingLiquidationTitle">Liquidation</h6>
                 <p>
                   <ng-container i18n="@@investmentsBuyModalMarginTradingLiquidationText1">This order could be liquidated if its losses exceed a certain threshold (which will be displayed). If
-                  that happens, a large portion of your stake will be lost.</ng-container> <a
-                    href="https://betoken.gitbook.io/docs/manage-the-fund/what-would-cause-a-position-of-mine-to-get-liquidated"
+                  that happens, a large portion of your stake will be lost.</ng-container>&nbsp;<a href="https://betoken.gitbook.io/docs/manage-the-fund/what-would-cause-a-position-of-mine-to-get-liquidated"
                     target="_blank"><ng-container i18n="@@investmentsBuyModalMarginTradingLiquidationText2">Learn More</ng-container></a>
                 </p>
               </div>
@@ -668,8 +667,7 @@
             <i class="fe fe-check-circle text-success"></i>
           </p>
           <p class="text-center text-muted mb-5">
-            <ng-container i18n="@@investmentsBuyModalTxConfirmed1">You staked</ng-container> <span class="font-weight-bold text-secondary">{{stakeAmount}}</span> <ng-container i18n="@@investmentsBuyModalTxConfirmed2"> KRO to invest in</ng-container> <span
-              class="font-weight-bold text-secondary">{{getTokenName(selectedTokenSymbol)}}</span>.
+            <ng-container i18n="@@investmentsBuyModalTxConfirmed1">You staked</ng-container>&nbsp;<span class="font-weight-bold text-secondary">{{stakeAmount}}</span>&nbsp;<ng-container i18n="@@investmentsBuyModalTxConfirmed2">KRO to invest in</ng-container>&nbsp;<span class="font-weight-bold text-secondary">{{getTokenName(selectedTokenSymbol)}}</span>.
           </p>
 
         </div>
@@ -700,7 +698,7 @@
             The operation has resulted in an error. Please try again.
           </p>
           <p class="text-center text-muted mb-5">
-            <ng-container i18n="@@modalErrorMsg">Error message:</ng-container> {{errorMsg}}
+            <ng-container i18n="@@modalErrorMsg">Error message:</ng-container>&nbsp;{{errorMsg}}
           </p>
         </div>
       </div>
@@ -747,7 +745,7 @@
             </span>
             {{selectedTokenSymbol}}
             <span class="text-secondary ml-2" *ngIf="!isOrderOfType(sellData, 'BasicOrder')">
-              <span *ngIf="!sellData.isShort" i18n="@@orderOfTypeLong">Long</span><span *ngIf="sellData.isShort" i18n="@@orderOfTypeShort">Short</span> • <ng-container i18n="@@investmentsModalSellOrderLeverage">Leverage</ng-container>
+              <span *ngIf="!sellData.isShort" i18n="@@orderOfTypeLong">Long</span><span *ngIf="sellData.isShort" i18n="@@orderOfTypeShort">Short</span>&nbsp;•&nbsp;<ng-container i18n="@@investmentsModalSellOrderLeverage">Leverage</ng-container>
               {{sellData.leverage}}x
             </span>
           </span>
@@ -793,7 +791,7 @@
 
       <div class="modal-body pb-5">
         <!--Step 0: enter sell amount-->
-        <time class="header-pretitle h6 mb-0" *ngIf="sellInvestmentPopupStep === 0"><ng-container i18n="@@investmentsModalSellOrderBuyTime">OPENED</ng-container> {{toDateTimeString(sellData.buyTime)}}</time>
+        <time class="header-pretitle h6 mb-0" *ngIf="sellInvestmentPopupStep === 0"><ng-container i18n="@@investmentsModalSellOrderBuyTime">OPENED</ng-container>&nbsp;{{toDateTimeString(sellData.buyTime)}}</time>
         <hr class="mb-4" *ngIf="sellInvestmentPopupStep === 0">
         <!-- Asset price -->
         <div class="row mb-4" *ngIf="sellInvestmentPopupStep === 0">
@@ -936,7 +934,7 @@
                     style="left: 49.0000%;transform: translateX(-50%);">
                     <div style="display: flex; flex-direction: column;">
                       <div style="border: 0.5px dashed #6e84a3; width: 1px; height: 8px; align-self: center;"></div>
-                      <small class="h6">{{sellData.minCollateralRatio.times(100).toFormat(0)}}% • <ng-container i18n="@@modalMinCollRatio">min. collateral ratio</ng-container></small>
+                      <small class="h6">{{sellData.minCollateralRatio.times(100).toFormat(0)}}%&nbsp;•&nbsp;<ng-container i18n="@@modalMinCollRatio">min. collateral ratio</ng-container></small>
                     </div>
                   </div>
                   <div class="col text-right">
@@ -1048,7 +1046,7 @@
             The operation has resulted in an error. Please try again.
           </p>
           <p class="text-center text-muted mb-5">
-            <ng-container i18n="@@modalErrorMsg">Error message:</ng-container> {{errorMsg}}
+            <ng-container i18n="@@modalErrorMsg">Error message:</ng-container>&nbsp;{{errorMsg}}
           </p>
         </div>
       </div>
@@ -1157,7 +1155,7 @@
                   style="left: 49.0000%;transform: translateX(-50%);">
                   <div style="display: flex; flex-direction: column;">
                     <div style="border: 0.5px dashed #6e84a3; width: 1px; height: 8px; align-self: center;"></div>
-                    <small class="h6">{{sellData.minCollateralRatio.times(100).toFormat(0)}}% • <ng-container i18n="@@modalMinCollRatio">min. collateral ratio</ng-container></small>
+                    <small class="h6">{{sellData.minCollateralRatio.times(100).toFormat(0)}}%&nbsp;•&nbsp;<ng-container i18n="@@modalMinCollRatio">min. collateral ratio</ng-container></small>
                   </div>
                 </div>
                 <div class="col text-right">
@@ -1189,8 +1187,7 @@
                   </div>
                 </div>
                 <small id="kroBalance" class="form-text text-secondary d-inline-block mb-0 mt-1"
-                  *ngIf="toBigNumber(sellData.currCash).lt(sellData.currBorrow)">{{toBigNumber(sellData.currCollateral).div(toBigNumber(sellData.currBorrow).minus(sellData.currCash)).times(100).toFormat(0)}}%
-                  • <ng-container i18n="@@investmentsModalTopUpMaxPossibleCollRatio">Max possible collateral ratio</ng-container></small>
+                  *ngIf="toBigNumber(sellData.currCash).lt(sellData.currBorrow)">{{toBigNumber(sellData.currCollateral).div(toBigNumber(sellData.currBorrow).minus(sellData.currCash)).times(100).toFormat(0)}}%&nbsp;•&nbsp;<ng-container i18n="@@investmentsModalTopUpMaxPossibleCollRatio">Max possible collateral ratio</ng-container></small>
               </form>
             </div>
           </div>
@@ -1248,7 +1245,7 @@
             The operation has resulted in an error. Please try again.
           </p>
           <p class="text-center text-muted mb-5">
-            <ng-container i18n="@@modalErrorMsg">Error message:</ng-container> {{errorMsg}}
+            <ng-container i18n="@@modalErrorMsg">Error message:</ng-container>&nbsp;{{errorMsg}}
           </p>
         </div>
       </div>

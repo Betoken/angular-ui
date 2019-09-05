@@ -13,7 +13,7 @@
     <div class="header-body">
       <div class="card-deck mb-5">
         <!-- Card -->
-        <div class="card" data-toggle="tooltip" data-html="true" i18n-title="@@investorBtksBalanceAttrTitle" title="The amount of Betoken Shares (BTKS) you own.">
+        <div class="card" data-toggle="tooltip" data-html="true" i18n-title="@@investorBtksBalanceAttrTitle" title="The amount of Betoken Shares tokens (BTKS) you own.">
           <div class="card-body">
             <div class="row align-items-center">
               <div class="col">
@@ -343,7 +343,7 @@
           </h4>
           <!-- BTKS amount title -->
           <h4 class="modal-title" *ngIf="buyStep == 1" i18n="@@modalTitleBtksAmount">
-            How many shares do you want to buy?
+            How many Betoken shares do you want to buy?
           </h4>
           <!-- BTKS Confirm buy title -->
           <h4 class="modal-title" *ngIf="buyStep == 2" i18n="@@modalTitleConfirmTx">
@@ -486,7 +486,7 @@
           <h4 class="mb-5">
             {{sharesPrice.toFormat(4)}}
           </h4>
-          <h6 class="header-pretitle text-secondary" i18n="@@investorBuyBtksModalIWantToBuyWith">I want to buy Betoken Shares with</h6>
+          <h6 class="header-pretitle text-secondary" i18n="@@investorBuyBtksModalIWantToBuyWith">I want to buy Betoken shares with</h6>
           <div class="row justify-content-center mb-4">
             <div class="col">
               <div class="row align-items-center">
@@ -531,7 +531,7 @@
               <tbody>
                 <tr>
                   <td class="px-0 small align-baseline text-muted" i18n="@@modalBtksToReceive">
-                    Betoken Shares to receive
+                    Betoken shares to receive
                   </td>
                   <td class="px-0 text-right small align-baseline">
                     {{buySharesAmount.toFormat(4)}} BTKS
@@ -628,7 +628,7 @@
         <!-- Continue button for buyStep 1 -->
         <button type="submit" class="btn btn-block btn-success mt-auto" i18n-aria-label="@@investorBuyBtksModalCtaBuyAriaLabel" aria-label="BuyBTKS" *ngIf="buyStep == 0"
           (click)="buyStep = agreementsChecked() ? 1 : 0" [ngClass]="{'disabled': !agreementsChecked()}" i18n="@@investorBuyBtksModalCtaBuy">
-          Buy Betoken Shares
+          Buy Betoken shares
         </button>
         <!-- Continue button for buyStep 2 -->
         <button type="submit" class="btn btn-block btn-success mt-auto" i18n-aria-label="@@modalCtaContinueAriaLabel" aria-label="Continue to Buy"
@@ -659,7 +659,7 @@
         <div *ngIf="phase == 0">
           <!-- BTKS amount title -->
           <h4 class="modal-title" *ngIf="sellStep == 0" i18n="@@investorSellBtksModalTitleStep0">
-            How many shares do you want to sell?
+            How many Betoken shares do you want to sell?
           </h4>
           <!-- BTKS Confirm Sell title -->
           <h4 class="modal-title" *ngIf="sellStep == 1" i18n="@@modalTitleConfirmTx">
@@ -730,7 +730,7 @@
                     <button class="btn btn-white" name="button" type="button" (click)="maxSellAmount()" i18n="@@modalCtaMax">Max</button>
                   </div>
                 </div>
-                <small class="form-text text-secondary d-inline-block mb-0">{{sharesBalance.toFormat(4)}} BTKS&nbsp;<ng-container i18n="@@modalBalanceAvailable">available</ng-container></small>
+                <small class="form-text text-secondary d-inline-block mb-0">{{sharesBalance.toFormat(4)}}&nbsp;BTKS&nbsp;<ng-container i18n="@@modalBalanceAvailable">available</ng-container></small>
               </form>
             </div>
           </div>
@@ -757,7 +757,7 @@
               <tbody>
                 <tr>
                   <td class="px-0 small align-baseline text-muted" i18n="@@investorSellBtksModalSellBtksFor">
-                    Sell BTKS for
+                    Sell Betoken shares for
                   </td>
                   <td class="px-0 text-right h3 align-baseline">
                     {{sellTokenAmount.toFormat(6)}} {{selectedTokenSymbol}}

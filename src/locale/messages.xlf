@@ -149,7 +149,7 @@
         </context-group>
       </trans-unit>
       <trans-unit id="managerAlert2" datatype="html">
-        <source>days left to manage. You MUST sell all of your investments during this time, or you WILL LOSE your staked Kairo.</source>
+        <source>days left to manage. You MUST sell all of your investments during this time, or you WILL LOSE your staked Kairo tokens.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/header/header.component.html</context>
           <context context-type="linenumber">48</context>
@@ -654,7 +654,7 @@
         </context-group>
       </trans-unit>
       <trans-unit id="portfolioValueAttrTitle" datatype="html">
-        <source>Amount of Betoken&apos;s AUM you manage. The more Kairo you own, the more money you will manage.</source>
+        <source>Amount of Betoken&apos;s AUM you manage. The more Kairo tokens you own, the more money you will manage.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/dashboard/dashboard.component.html</context>
           <context context-type="linenumber">17</context>
@@ -666,7 +666,7 @@
       </trans-unit>
       <trans-unit id="kroBalanceTitle" datatype="html">
         <source>
-                  Your KRO Balance
+                  Your Kairo Balance
                 </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/dashboard/dashboard.component.html</context>
@@ -678,7 +678,7 @@
         </context-group>
       </trans-unit>
       <trans-unit id="kroBalanceAttrTitle" datatype="html">
-        <source>The more Kairo you own, the more money you will manage, the more commission you will receive. You will be able to earn Kairo by making profitable investments for the Betoken fund.</source>
+        <source>The more Kairo tokens you own, the more money you will manage, the more commission you will receive. You will be able to earn Kairo tokens by making profitable investments for the Betoken fund.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/dashboard/dashboard.component.html</context>
           <context context-type="linenumber">44</context>
@@ -702,7 +702,7 @@
         </context-group>
       </trans-unit>
       <trans-unit id="estimateCommissionAttrTitle" datatype="html">
-        <source>&lt;strong&gt;20%&lt;/strong&gt; of the fund&apos;s profit and &lt;strong&gt;0.1%&lt;/strong&gt; of the AUM is set aside as commissions every month, which is paid to managers proportional to the Kairo they hold. The estimate displayed here is calculated using the current fund ROI.</source>
+        <source>&lt;strong&gt;20%&lt;/strong&gt; of the fund&apos;s profit and &lt;strong&gt;0.1%&lt;/strong&gt; of the AUM is set aside as commissions every month, which is paid to managers proportional to the Kairo tokens they hold. The estimate displayed here is calculated using the current fund ROI.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/dashboard/dashboard.component.html</context>
           <context context-type="linenumber">76</context>
@@ -722,7 +722,7 @@
         </context-group>
       </trans-unit>
       <trans-unit id="dashboardYourRankingAttrTitle" datatype="html">
-        <source>Your ranking among Betoken&apos;s managers based on your Kairo balance</source>
+        <source>Your ranking among Betoken&apos;s managers based on your Kairo tokens balance</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/dashboard/dashboard.component.html</context>
           <context context-type="linenumber">104</context>
@@ -875,7 +875,7 @@
         </context-group>
       </trans-unit>
       <trans-unit id="investmentsRiskTakenAttrTitle" datatype="html">
-        <source>The more Kairo you stake, the more of Betoken&apos;s money you put at work, the more commissions you earn.</source>
+        <source>The more Kairo tokens you stake, the more of Betoken&apos;s money you put at work, the more commissions you earn.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
           <context context-type="linenumber">73</context>
@@ -1939,7 +1939,7 @@
       </trans-unit>
       <trans-unit id="investmentsModalSellTextStep3" datatype="html">
         <source>
-          You have successfully sold the investment and redeemed your Kairo.
+          You have successfully sold the investment and redeemed your Kairo tokens.
         </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
@@ -2013,7 +2013,7 @@
         </context-group>
       </trans-unit>
       <trans-unit id="upgradeCardText" datatype="html">
-        <source>During the Intermission phase of each cycle, the managers may decide to initiate an upgrade via a simple majority vote using their Kairo tokens. If the vote passed, then during the Manage phase, managers may use their Kairo to vote on which smart contract should be accepted as the new version. <x id="START_LINK" ctype="x-a" equiv-text="&lt;a&gt;"/>Learn more<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></source>
+        <source>During the Intermission phase of each cycle, the managers may decide to initiate an upgrade via a simple majority vote using their Kairo tokens. If the vote passed, then during the Manage phase, managers may use their Kairo tokens to vote on which smart contract should be accepted as the new version. <x id="START_LINK" ctype="x-a" equiv-text="&lt;a&gt;"/>Learn more<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/upgrade/upgrade.component.html</context>
           <context context-type="linenumber">36</context>
@@ -2063,7 +2063,7 @@
         </context-group>
       </trans-unit>
       <trans-unit id="commissionsExpectedCommissionThisMonthAttrTitle" datatype="html">
-        <source>&lt;strong&gt;20%&lt;/strong&gt; of the fund&apos;s profit and &lt;strong&gt;0.1%&lt;/strong&gt; of the AUM is set aside as commissions every month, which is paid to managers proportional to the Kairo they hold. The estimate displayed here is calculated using the current fund ROI.</source>
+        <source>&lt;strong&gt;20%&lt;/strong&gt; of the fund&apos;s profit and &lt;strong&gt;0.1%&lt;/strong&gt; of the AUM is set aside as commissions every month, which is paid to managers proportional to the Kairo tokens they hold. The estimate displayed here is calculated using the current fund ROI.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/commissions/commissions.component.html</context>
           <context context-type="linenumber">24</context>
@@ -2264,7 +2264,7 @@
       </trans-unit>
       <trans-unit id="rankingsKroBalance&amp;Return" datatype="html">
         <source>
-                Kairo Balances &amp; Current Return
+                Kairo balance &amp; current ROI
               </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/rankings/rankings.component.html</context>
@@ -2336,7 +2336,7 @@
         </context-group>
       </trans-unit>
       <trans-unit id="investorBtksBalanceAttrTitle" datatype="html">
-        <source>The amount of Betoken Shares (BTKS) you own.</source>
+        <source>The amount of Betoken Shares tokens (BTKS) you own.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investor/investor.component.html</context>
           <context context-type="linenumber">16</context>
@@ -2463,7 +2463,7 @@
       </trans-unit>
       <trans-unit id="modalTitleBtksAmount" datatype="html">
         <source>
-            How many shares do you want to buy?
+            How many Betoken shares do you want to buy?
           </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investor/investor.component.html</context>
@@ -2639,7 +2639,7 @@
         </context-group>
       </trans-unit>
       <trans-unit id="investorBuyBtksModalIWantToBuyWith" datatype="html">
-        <source>I want to buy Betoken Shares with</source>
+        <source>I want to buy Betoken shares with</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investor/investor.component.html</context>
           <context context-type="linenumber">489</context>
@@ -2666,7 +2666,7 @@
       </trans-unit>
       <trans-unit id="modalBtksToReceive" datatype="html">
         <source>
-                    Betoken Shares to receive
+                    Betoken shares to receive
                   </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investor/investor.component.html</context>
@@ -2718,7 +2718,7 @@
       </trans-unit>
       <trans-unit id="investorBuyBtksModalCtaBuy" datatype="html">
         <source>
-          Buy Betoken Shares
+          Buy Betoken shares
         </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investor/investor.component.html</context>
@@ -2741,7 +2741,7 @@
       </trans-unit>
       <trans-unit id="investorSellBtksModalTitleStep0" datatype="html">
         <source>
-            How many shares do you want to sell?
+            How many Betoken shares do you want to sell?
           </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investor/investor.component.html</context>
@@ -2781,7 +2781,7 @@
       </trans-unit>
       <trans-unit id="investorSellBtksModalSellBtksFor" datatype="html">
         <source>
-                    Sell BTKS for
+                    Sell Betoken shares for
                   </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investor/investor.component.html</context>
@@ -2894,7 +2894,7 @@
       </trans-unit>
       <trans-unit id="investorOnboardingIntroText2" datatype="html">
         <source>
-              By connecting your capital to Betoken protocol, you gain exposure to ETH, WBTC, BAT, MKR and 70+ ERC20
+              By depositing your capital on Betoken protocol, you gain exposure to ETH, WBTC, BAT, MKR and 70+ ERC20
               tokens.
             </source>
         <context-group purpose="location">
@@ -2993,7 +2993,7 @@
         </context-group>
       </trans-unit>
       <trans-unit id="investorOnboardingFaqA1a" datatype="html">
-        <source>Yes. Betoken&apos;s protocol is 100% liquid. You can buy and sell BTKS at any time in 2 ways:</source>
+        <source>Yes. Betoken&apos;s protocol is 100% liquid. You can buy and sell Betoken shares at any time in 2 ways:</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
           <context context-type="linenumber">153</context>
@@ -3001,7 +3001,7 @@
       </trans-unit>
       <trans-unit id="investorOnboardingFaqA1b" datatype="html">
         <source>During Betoken&apos;s 3 days
-                      intermission phase that happens every 27 days, you can buy and sell BTKS directly on the
+                      intermission phase that happens every 27 days, you can buy and sell Betoken shares directly on the
                     investor dashboard.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
@@ -3009,7 +3009,7 @@
         </context-group>
       </trans-unit>
       <trans-unit id="investorOnboardingFaqA1c" datatype="html">
-        <source>During Betoken&apos;s management phase (27 days), BTKS token is freely tradable on decentralized exchanges (Fork Delta, Uniswap).
+        <source>During Betoken&apos;s management phase (27 days), Betoken shares token is freely tradable on decentralized exchanges (Fork Delta, Uniswap).
                     Depending of the market conditions, the price may be different from what&apos;s displayed on the investor
                     dashboard.</source>
         <context-group purpose="location">
@@ -3029,7 +3029,7 @@
       <trans-unit id="investorOnboardingFaqA2" datatype="html">
         <source>
                 <x id="START_PARAGRAPH" ctype="x-p" equiv-text="&lt;p&gt;"/>Click on the Get Started button and follow the instructions. You&apos;ll be able to use Ether or any of
-                  our 70+ supported ERC-20 tokens to buy Betoken Shares (BTKS).<x id="CLOSE_PARAGRAPH" ctype="x-p" equiv-text="&lt;/p&gt;"/>
+                  our 70+ supported ERC-20 tokens to buy Betoken Shares.<x id="CLOSE_PARAGRAPH" ctype="x-p" equiv-text="&lt;/p&gt;"/>
               </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
@@ -3068,7 +3068,7 @@
       </trans-unit>
       <trans-unit id="investorOnboardingFaqA3Text2" datatype="html">
         <source>
-                  <x id="START_LIST_ITEM" ctype="x-li" equiv-text="&lt;li&gt;"/>0.1% of the total Betoken funds is set aside and distributed among fund manager holding Kairo.
+                  <x id="START_LIST_ITEM" ctype="x-li" equiv-text="&lt;li&gt;"/>0.1% of the total Betoken funds is set aside and distributed among fund manager holding Kairo tokens.
                   <x id="CLOSE_LIST_ITEM" ctype="x-li" equiv-text="&lt;/li&gt;"/>
                   <x id="START_LIST_ITEM" ctype="x-li" equiv-text="&lt;li&gt;"/>In order to provide funding for its maintenance and future development, Betoken protocol will mint
                     Betoken Shares and send them to the current development team. The amount will be equal to 0.1% of
@@ -3089,7 +3089,7 @@
       </trans-unit>
       <trans-unit id="investorOnboardingFaqA3text3" datatype="html">
         <source>20% of the total Betoken&apos;s monthly profits is set aside as commission and distributed among fund
-                  managers holding Kairo proportional to the amount they hold and their risk profile. The commission is
+                  managers holding Kairo tokens proportional to the amount they hold and their risk profile. The commission is
                   taken into account IF and ONLY IF the fund is profitable during the actual investment cycle.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
@@ -3196,7 +3196,7 @@
         </context-group>
       </trans-unit>
       <trans-unit id="investorOnboardingBuyBtksModalIWantToBuyWith" datatype="html">
-        <source>I want to buy Betoken Shares with</source>
+        <source>I want to buy Betoken shares with</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
           <context context-type="linenumber">419</context>
@@ -3246,7 +3246,7 @@
       </trans-unit>
       <trans-unit id="investorOnboardingBuyBtksModalCtaBuy" datatype="html">
         <source>
-                Buy Betoken Shares
+                Buy Betoken shares
               </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
@@ -3374,7 +3374,7 @@
       </trans-unit>
       <trans-unit id="managerOnboardingFaqQ1" datatype="html">
         <source>
-                      What is Kairo?
+                      What is Kairo token?
                     </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
@@ -3384,7 +3384,7 @@
       <trans-unit id="managerOnboardingFaqA1" datatype="html">
         <source>
                 <x id="START_PARAGRAPH" ctype="x-p" equiv-text="&lt;p&gt;"/>Kairo is Betoken&apos;s non-transferable reputation token. Managers need to possess Kairo tokens to manage
-                  funds on Betoken. Kairo represents how good a manager is at investing. The more Kairo tokens you have,
+                  funds on Betoken. They represent how good a manager is at investing. The more Kairo tokens you have,
                   the more money in the Betoken fund you can manage and the more income you’ll get every month as
                   commissions on your investments.<x id="CLOSE_PARAGRAPH" ctype="x-p" equiv-text="&lt;/p&gt;"/>
               </source>
@@ -3405,7 +3405,7 @@
       <trans-unit id="managerOnboardingFaqA2" datatype="html">
         <source>
                 <x id="START_PARAGRAPH" ctype="x-p" equiv-text="&lt;p&gt;"/>Click on the Get Started button and follow the instructions. You&apos;ll be able to use Ether or any of
-                  our 70+ supported ERC-20 tokens to buy Kairo tokens (KRO).<x id="CLOSE_PARAGRAPH" ctype="x-p" equiv-text="&lt;/p&gt;"/>
+                  our 70+ supported ERC-20 tokens to buy Kairo tokens.<x id="CLOSE_PARAGRAPH" ctype="x-p" equiv-text="&lt;/p&gt;"/>
               </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
@@ -3414,7 +3414,7 @@
       </trans-unit>
       <trans-unit id="managerOnboardingFaqQ3" datatype="html">
         <source>
-                      Do I receive my Kairo immediately after purchase?
+                      Do I receive my Kairo tokens immediately after purchase?
                     </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
@@ -3423,7 +3423,7 @@
       </trans-unit>
       <trans-unit id="managerOnboardingFaqA3" datatype="html">
         <source>
-                <x id="START_PARAGRAPH" ctype="x-p" equiv-text="&lt;p&gt;"/>Yes. The Kairo will be given to your wallet after your purchase transaction has been accepted by the
+                <x id="START_PARAGRAPH" ctype="x-p" equiv-text="&lt;p&gt;"/>Yes. The Kairo tokens will be given to your wallet after your purchase transaction has been accepted by the
                   Ethereum blockchain, which may take up to a few minutes.<x id="CLOSE_PARAGRAPH" ctype="x-p" equiv-text="&lt;/p&gt;"/>
               </source>
         <context-group purpose="location">
@@ -3462,7 +3462,7 @@
         </context-group>
       </trans-unit>
       <trans-unit id="managerOnboardingFaqA4Text2" datatype="html">
-        <source>0.1% of the total Betoken funds is set aside and distributed among fund manager holding Kairo.</source>
+        <source>0.1% of the total Betoken funds is set aside and distributed among fund manager holding Kairo tokens.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
           <context context-type="linenumber">203</context>
@@ -3477,7 +3477,7 @@
       </trans-unit>
       <trans-unit id="managerOnboardingFaqA4Text3" datatype="html">
         <source>20% of the total Betoken&apos;s monthly profits is set aside as commission and distributed among fund
-                  managers holding Kairo proportional to the amount they hold and their risk profile.
+                  managers holding Kairo tokens proportional to the amount they hold and their risk profile.
                   The commission is taken into account IF and ONLY IF the fund is profitable during the actual
                   investment cycle.</source>
         <context-group purpose="location">
@@ -3515,7 +3515,7 @@
       </trans-unit>
       <trans-unit id="managerOnboardingFaqA6" datatype="html">
         <source>
-                No. Kairo is a non-transferable reputation token, which means that you cannot sell or give your Kairo to
+                No. Kairo is a non-transferable reputation token, which means that you cannot sell or give your Kairo tokens to
                 someone else.
               </source>
         <context-group purpose="location">
@@ -3525,7 +3525,7 @@
       </trans-unit>
       <trans-unit id="managerOnboardingFaqQ7" datatype="html">
         <source>
-                      Can I buy more Kairo after with the same Wallet address?
+                      Can I buy more Kairo tokens after with the same Wallet address?
                     </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
@@ -3543,7 +3543,7 @@
       </trans-unit>
       <trans-unit id="managerOnboardingBuyBtksModalTitleStep1" datatype="html">
         <source>
-              How many Kairo do you want to buy?
+              How many Kairo tokens do you want to buy?
             </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
@@ -3551,7 +3551,7 @@
         </context-group>
       </trans-unit>
       <trans-unit id="managerOnboardingBuyBtksModalIWantToBuyWith" datatype="html">
-        <source>I want to buy Kairo with</source>
+        <source>I want to buy Kairo tokens with</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
           <context context-type="linenumber">390</context>
@@ -3576,7 +3576,7 @@
       </trans-unit>
       <trans-unit id="managerOnboardingBuyBtksModalAmountToManage" datatype="html">
         <source>
-                      Amount you will manage
+                      Assets under your management
                     </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>

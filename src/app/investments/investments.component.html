@@ -16,7 +16,7 @@
 <div class="container-fluid pb-6 px-md-5">
   <div class="card-deck mb-5">
     <!-- Card -->
-    <div class="card" data-toggle="tooltip" data-html="true" i18n-title="@@portfolioValueAttrTitle" title="Amount of Betoken's AUM you manage. The more Kairo you own, the more money you will manage.">
+    <div class="card" data-toggle="tooltip" data-html="true" i18n-title="@@portfolioValueAttrTitle" title="Amount of Betoken's AUM you manage. The more Kairo tokens you own, the more money you will manage.">
       <div class="card-body">
         <div class="row align-items-center">
           <div class="col">
@@ -38,14 +38,14 @@
       </div>
     </div>
     <!-- Card -->
-    <div class="card" data-toggle="tooltip" data-html="true" i18n-title="@@kroBalanceAttrTitle" title="The more Kairo you own, the more money you will manage, the more commission you will receive. You can earn Kairo by making profitable investments for the Betoken fund.">
+    <div class="card" data-toggle="tooltip" data-html="true" i18n-title="@@kroBalanceAttrTitle" title="The more Kairo tokens you own, the more money you will manage, the more commission you will receive. You can earn Kairo tokens by making profitable investments for the Betoken fund.">
       <div class="card-body">
         <div class="row align-items-center">
           <div class="col">
 
             <!-- Title -->
             <h6 class="card-title text-uppercase text-muted mb-2" i18n="@@kroBalanceTitle">
-              Your KRO Balance
+              Your Kairo tokens Balance
             </h6>
 
             <!-- Heading -->
@@ -70,7 +70,7 @@
       </div>
     </div>
     <!-- Card -->
-    <div class="card" data-toggle="tooltip" data-html="true" i18n-title="@@investmentsRiskTakenAttrTitle" title="The more Kairo you stake, the more of Betoken's money you put at work, the more commissions you earn.">
+    <div class="card" data-toggle="tooltip" data-html="true" i18n-title="@@investmentsRiskTakenAttrTitle" title="The more Kairo tokens you stake, the more of Betoken's money you put at work, the more commissions you earn.">
       <div class="card-body">
         <div class="row align-items-center">
           <div class="col">
@@ -123,7 +123,7 @@
       </div>
     </div>
     <!-- Card -->
-    <div class="card" data-toggle="tooltip" data-html="true" i18n-title="@@estimateCommissionAttrTitle" title="<strong>20%</strong> of the fund's profit and <strong>0.1%</strong> of the AUM is set aside as commissions every month, which is paid to managers proportional to the Kairo they hold. The estimate displayed here is calculated using the current fund ROI.">
+    <div class="card" data-toggle="tooltip" data-html="true" i18n-title="@@estimateCommissionAttrTitle" title="<strong>20%</strong> of the fund's profit and <strong>0.1%</strong> of the AUM is set aside as commissions every month, which is paid to managers proportional to the Kairo tokens they hold. The estimate displayed here is calculated using the current fund ROI.">
       <div class="card-body">
         <div class="row align-items-center">
           <div class="col">
@@ -541,7 +541,7 @@
               <form>
                 <div class="input-group mb-2">
                   <input type="number" min="0.0" max={{kairoBalance.toFormat(18)}} class="form-control form-control-lg"
-                    aria-describedby="KRO Token Amount to stake" placeholder="0.0 KRO" id="kairo-input"
+                    aria-describedby="Kairo token amount to stake" placeholder="0.0 KRO" id="kairo-input"
                     (input)="continueEnabled = true">
                   <div class="input-group-append">
                     <button class="btn btn-white" name="button" type="button" (click)="maxStake()" i18n="@@modalCtaMax">Max</button>
@@ -1019,7 +1019,7 @@
           <i class="fe fe-check-circle text-success"></i>
         </p>
         <p class="text-center text-muted mb-5" *ngIf="sellInvestmentPopupStep === 3" i18n="@@investmentsModalSellTextStep3">
-          You have successfully sold the investment and redeemed your Kairo.
+          You have successfully sold the investment and redeemed your Kairo tokens.
         </p>
         <hr *ngIf="sellInvestmentPopupStep === 2 || sellInvestmentPopupStep === 3">
         <form *ngIf="sellInvestmentPopupStep === 2 || sellInvestmentPopupStep === 3">

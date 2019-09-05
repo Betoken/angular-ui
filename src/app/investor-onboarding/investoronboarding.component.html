@@ -35,7 +35,7 @@
               70+ assets
             </h6>
             <p i18n="@@investorOnboardingIntroText2">
-              By connecting your capital to Betoken protocol, you gain exposure to ETH, WBTC, BAT, MKR and 70+ ERC20
+              By depositing your capital on Betoken protocol, you gain exposure to ETH, WBTC, BAT, MKR and 70+ ERC20
               tokens.
             </p>
           </div>
@@ -49,7 +49,7 @@
             <p>
               <ng-container i18n="@@investorOnboardingIntroText3a">Betoken allows anyone to buy or sell any amount of Betoken Shares, and Betoken's fee structure is
               completely transparent.</ng-container>&nbsp;<a
-                href="https://betoken.gitbook.io/docs/connect-your-capital/what-is-the-fees-structure"
+                href="https://betoken.gitbook.io/docs/deposit-withdraw/what-is-the-fees-structure"
                 target="_blank"><ng-container i18n="@@investorOnboardingIntroText3b">More about fees, lockup, and liquidity</ng-container><i class="fe fe-arrow-right ml-2"></i></a>
             </p>
           </div>
@@ -73,7 +73,7 @@
         </h5>
         <h1 class="display-4 font-weight-bold d-block d-lg-none" i18n="@@investorOnboardingHeaderTitle">Betoken Fund</h1>
         <p class="lead font-weight-bold mb-4 d-block d-lg-none" i18n="@@investorOnboardingHeaderSubtitle">If you think 2 brains are better than one...How about
-          hundreds of talented asset managers working for you? Worldwide! Get started by connecting your capital!</p>
+          hundreds of talented asset managers working for you? Worldwide! Get started by depositing your capital!</p>
         <div class="card mb-6">
           <div class="card-header d-flex text-center text-md-left">
             <!-- cta -->
@@ -113,7 +113,7 @@
               tokens.
             </p>
             <p class="text-muted" i18n="@@disclaimertext2">
-              Betoken enables capital connection and managing using smart contracts which are open source. Betoken does
+              Betoken enables capital deposit, withdrawal, and managing using smart contracts which are open source. Betoken does
               not take custody of tokens and is only a collaborative hub for investors and managers. Betoken is not a
               licensed bank, broker-dealer, investment advisor or an exchange. Betoken uses partner protocols (Kyber,
               Compound, bZx, Maker DAO) to power its own ecosystem.
@@ -150,12 +150,12 @@
             </div>
             <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
               <div class="card-body">
-                <ng-container i18n="@@investorOnboardingFaqA1a">Yes. Betoken's protocol is 100% liquid. You can buy and sell BTKS at any time in 2 ways:</ng-container>
+                <ng-container i18n="@@investorOnboardingFaqA1a">Yes. Betoken's protocol is 100% liquid. You can buy and sell Betoken shares at any time in 2 ways:</ng-container>
                 <ol>
                   <li><ng-container i18n="@@investorOnboardingFaqA1b">During Betoken's 3 days
-                      intermission phase that happens every 27 days, you can buy and sell BTKS directly on the
+                      intermission phase that happens every 27 days, you can buy and sell Betoken shares directly on the
                     investor dashboard.</ng-container></li>
-                  <li><ng-container i18n="@@investorOnboardingFaqA1c">During Betoken's management phase (27 days), BTKS token is freely tradable on decentralized exchanges (Fork Delta, Uniswap).
+                  <li><ng-container i18n="@@investorOnboardingFaqA1c">During Betoken's management phase (27 days), Betoken shares token is freely tradable on decentralized exchanges (Fork Delta, Uniswap).
                     Depending of the market conditions, the price may be different from what's displayed on the investor
                     dashboard.</ng-container></li>
                 </ol>
@@ -179,7 +179,7 @@
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
               <div class="card-body" i18n="@@investorOnboardingFaqA2">
                 <p>Click on the Get Started button and follow the instructions. You'll be able to use Ether or any of
-                  our 70+ supported ERC-20 tokens to buy Betoken Shares (BTKS).</p>
+                  our 70+ supported ERC-20 tokens to buy Betoken Shares.</p>
               </div>
             </div>
             <div class="card-header border-bottom" id="headingThree">
@@ -203,7 +203,7 @@
                 <p i18n="@@investorOnboardingFaqA3Text1">After the management phase is over (every 27 days):</p>
                 <h4 i18n="@@investorOnboardingFaqA3Title2">IF the fund is profitable OR not profitable</h4>
                 <ul i18n="@@investorOnboardingFaqA3Text2">
-                  <li>0.1% of the total Betoken funds is set aside and distributed among fund manager holding Kairo.
+                  <li>0.1% of the total Betoken funds is set aside and distributed among fund manager holding Kairo tokens.
                   </li>
                   <li>In order to provide funding for its maintenance and future development, Betoken protocol will mint
                     Betoken Shares and send them to the current development team. The amount will be equal to 0.1% of
@@ -212,7 +212,7 @@
                 </ul>
                 <h4 i18n="@@investorOnboardingFaqA3Title3">ONLY IF the fund is profitable</h4>
                 <p i18n="@@investorOnboardingFaqA3text3">20% of the total Betoken's monthly profits is set aside as commission and distributed among fund
-                  managers holding Kairo proportional to the amount they hold and their risk profile. The commission is
+                  managers holding Kairo tokens proportional to the amount they hold and their risk profile. The commission is
                   taken into account IF and ONLY IF the fund is profitable during the actual investment cycle.</p>
                 <h3 i18n="@@investorOnboardingFaqA3Title4">Redemptions fee</h3>
                 <p i18n="@@investorOnboardingFaqA3Text4">Redemptions incur no withdrawal fee.</p>
@@ -279,7 +279,7 @@
               </h4>
               <!-- BTKS amount title -->
               <h4 class="modal-title" *ngIf="buyStep == 1" i18n="@@modalTitleBtksAmount">
-                How many shares do you want to buy?
+                How many Betoken shares do you want to buy?
               </h4>
               <!-- BTKS Confirm buy title -->
               <h4 class="modal-title" *ngIf="buyStep == 2" i18n="@@modalTitleConfirmTx">
@@ -416,7 +416,7 @@
                 <h4 class="mb-5">
                   {{sharesPrice.toFormat(4)}}
                 </h4>
-                <h6 class="header-pretitle text-secondary" i18n="@@investorOnboardingBuyBtksModalIWantToBuyWith">I want to buy Betoken Shares with</h6>
+                <h6 class="header-pretitle text-secondary" i18n="@@investorOnboardingBuyBtksModalIWantToBuyWith">I want to buy Betoken shares with</h6>
                 <div class="row justify-content-center mb-4">
                   <div class="col">
                     <form>
@@ -457,7 +457,7 @@
                     <tbody>
                       <tr>
                         <td class="px-0 small align-baseline text-muted" i18n="@@modalBtksToReceive">
-                          Betoken Shares to receive
+                          Betoken shares to receive
                         </td>
                         <td class="px-0 text-right small align-baseline">
                           {{buySharesAmount.toFormat(4)}} BTKS
@@ -554,7 +554,7 @@
               <!-- Continue button for buyStep 1 -->
               <button type="submit" class="btn btn-block btn-success mt-auto" aria-label="BuyBTKS" *ngIf="buyStep == 0"
                 (click)="buyStep = agreementsChecked() ? 1 : 0" [ngClass]="{'disabled': !agreementsChecked()}" i18n="@@investorOnboardingBuyBtksModalCtaBuy">
-                Buy Betoken Shares
+                Buy Betoken shares
               </button>
               <!-- Continue button for buyStep 2 -->
               <button type="submit" class="btn btn-block btn-success mt-auto" aria-label="Continue to Buy"

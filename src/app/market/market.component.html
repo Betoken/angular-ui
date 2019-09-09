@@ -105,19 +105,19 @@
                 </td>
                 <td class="tables-24h-change">
                   <span class="badge badge-xl"
-                    [ngClass]="{'badge-soft-success': +token.dailyPriceChange >= 0, 'badge-soft-danger': 0 > +token.dailyPriceChange}" i18n="@@market">
+                    [ngClass]="{'badge-soft-success': +token.dailyPriceChange >= 0, 'badge-soft-danger': 0 > +token.dailyPriceChange}">
                     {{token.dailyPriceChange.isNaN() ? 'Not available' : token.dailyPriceChange.toFixed(4) + '%'}}
                   </span>
                 </td>
                 <td class="tables-7d-change">
                   <span class="badge badge-xl"
-                    [ngClass]="{'badge-soft-success': +token.weeklyPriceChange >= 0, 'badge-soft-danger': 0 > +token.weeklyPriceChange}" i18n="@@market">
+                    [ngClass]="{'badge-soft-success': +token.weeklyPriceChange >= 0, 'badge-soft-danger': 0 > +token.weeklyPriceChange}">
                     {{token.weeklyPriceChange.isNaN() ? 'Not available' : token.weeklyPriceChange.toFixed(4) + '%'}}
                   </span>
                 </td>
                 <td class="tables-1m-change">
                   <span class="badge badge-xl"
-                    [ngClass]="{'badge-soft-success': +token.monthlyPriceChange >= 0, 'badge-soft-danger': 0 > +token.monthlyPriceChange}" i18n="@@market">
+                    [ngClass]="{'badge-soft-success': +token.monthlyPriceChange >= 0, 'badge-soft-danger': 0 > +token.monthlyPriceChange}">
                     {{token.monthlyPriceChange.isNaN() ? 'Not available' : token.monthlyPriceChange.toFixed(4) + '%'}}
                   </span>
                 </td>

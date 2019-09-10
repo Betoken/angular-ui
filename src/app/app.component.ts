@@ -1,6 +1,7 @@
-import { Component, Injectable } from '@angular/core';
+import { Component, Injectable, Inject } from '@angular/core';
 import { Betoken } from '../betokenjs/betoken-obj';
 import { loadAllData, loadDynamicData } from '../betokenjs/data-controller';
+import { LOCALE_ID } from '@angular/core';
 
 @Injectable()
 
@@ -14,7 +15,7 @@ export class AppComponent {
   is_loading = true;
   load_progress = 20;
 
-  constructor() {
+  constructor(@Inject(LOCALE_ID) public locale: string) {
     const betoken = new Betoken();
     betoken.init().then(() => {
       this.load_progress = 50;

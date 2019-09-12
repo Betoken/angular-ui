@@ -462,7 +462,7 @@
         <target>ファンドに収益性があるか収益性がないかによって異なります。</target>
       </trans-unit>
       <trans-unit id="investorOnboardingFaqA3Text2">
-        <source>0.1% of the total Betoken funds is set aside and distributed among fund manager holding Kairo tokens. In order to provide funding for its maintenance and future development, Betoken protocol will mint Betoken Shares and send them to the current development team. The amount will be equal to 0.1% of the current Betoken Shares total supply, and it will occur at the end of every investment cycle.</source>
+        <source>0.1% of the total Betoken funds is set aside as commission and distributed among fund manager holding Kairo tokens every investment cycle. In order to provide funding for its maintenance and future development, Betoken will mint Betoken Shares and send them to the current development team. The amount will be equal to 0.1% of the current Betoken Shares total supply, and it will occur at the end of every investment cycle.</source>
         <target>Betokenの全資金の0.1％が確保され、Kairoを保有するファンドマネージャーの間で分配されます。また、メンテナンスと将来の開発のための資金を提供するために、BetokenプロトコルはBTKSを作り出し、それを現在の開発チームに送ります。この金額は現在のBetoken Sharesの総供給量の0.1％になり、各投資サイクルの終わりに発生します。</target>
       </trans-unit>
       <trans-unit id="investorOnboardingFaqA3Title3">
@@ -470,7 +470,7 @@
         <target>ファンドが収益性がある場合のみ</target>
       </trans-unit>
       <trans-unit id="investorOnboardingFaqA3text3">
-        <source>20% of the total Betoken's monthly profits is set aside as commission and distributed among fund managers holding Kairo tokens proportional to the amount they hold and their risk profile. The commission is taken into account IF and ONLY IF the fund is profitable during the actual investment cycle.</source>
+        <source>20% of the total Betoken's monthly profits is set aside as commission and distributed among fund managers holding Kairo tokens proportional to the amount they hold and their risk profile. This part of the commission is taken into account IF and ONLY IF the fund is profitable during the investment cycle.</source>
         <target>Betokenの毎月の利益の20％はコミッションとして確保され、Kairoを持っているファンドマネジャーの間で彼らが持っている数量とリスクプロファイルに比例して分配されます。このコミッションは、実際の投資サイクルの間にファンドが収益を上げられる場合に限り発生します。</target>
       </trans-unit>
       <trans-unit id="investorOnboardingFaqA3Title4">
@@ -577,16 +577,12 @@
         <source>Management commissions</source>
         <target>管理コミッション</target>
       </trans-unit>
-      <trans-unit id="managerOnboardingFaqA4Text1">
-        <source>After the management phase is over (every 27 days):</source>
-        <target>管理フェーズが終了した後（27日ごと）：</target>
-      </trans-unit>
       <trans-unit id="managerOnboardingFaqA4Title2">
         <source>IF the fund is profitable OR not profitable</source>
         <target>ファンドが収益性がある場合または収益性がない場合によって異なります。</target>
       </trans-unit>
       <trans-unit id="managerOnboardingFaqA4Text2">
-        <source>0.1% of the total Betoken funds is set aside and distributed among fund manager holding Kairo tokens.</source>
+        <source>0.1% of the total Betoken funds is set aside as commission and distributed among fund manager holding Kairo tokens.</source>
         <target>Betokenファンドの合計の0.1％が確保され、KROを保有するファンドマネージャーに分配されます。</target>
       </trans-unit>
       <trans-unit id="managerOnboardingFaqA4Title3">
@@ -594,7 +590,7 @@
         <target>ファンドが収益性がある場合のみ</target>
       </trans-unit>
       <trans-unit id="managerOnboardingFaqA4Text3">
-        <source>20% of the total Betoken's monthly profits is set aside as commission and distributed among fund managers holding Kairo tokens proportional to the amount they hold and their risk profile. The commission is taken into account IF and ONLY IF the fund is profitable during the actual investment cycle.</source>
+        <source>20% of the total Betoken's monthly profits is set aside as commission and distributed among fund managers holding Kairo tokens proportional to the amount they hold and their risk profile. This part of the commission is taken into account IF and ONLY IF the fund is profitable during the investment cycle.</source>
         <target>Betokenの毎月の総利益の20％はコミッションとして確保され、KRO保有量とリスクプロファイルに比例してファンドマネージャーに分配されます。これはファンドが実際の投資サイクルで収益性がある場合にのみ計算されます。</target>
       </trans-unit>
       <trans-unit id="managerOnboardingFaqQ5">
@@ -673,10 +669,6 @@
         <source>1m Change</source>
         <target>1m Change</target>
       </trans-unit>
-      <trans-unit id="market">
-        <source>market</source>
-        <target>market</target>
-      </trans-unit>
       <trans-unit id="headerGetUpdateModalAriaDescribedby">
         <source>Get update modal by email</source>
         <target>e-mailで通知を受け取る</target>
@@ -720,10 +712,6 @@
       <trans-unit id="upgradeCardTimeLeftIllustrationAttrAlt">
         <source>illustration Woman and dog with a active spinner</source>
         <target>illustration Woman and dog with a active spinner</target>
-      </trans-unit>
-      <trans-unit id="commissionsExpectedCommissionThisMonthAttrTitle">
-        <source>&lt;strong&gt;20%&lt;/strong&gt; of the fund's profit and &lt;strong&gt;0.1%&lt;/strong&gt; of the AUM is set aside as commissions every month, which is paid to managers proportional to the Kairo tokens they hold. The estimate displayed here is calculated using the current fund ROI.</source>
-        <target>ファンドの利益の20％とAUMの0.1％は毎月コミッションとして確保され、マネージャーが保有するKROに比例して支払われます。ここに表示される見積もりは、現在のファンドのROIを使用して計算されます。</target>
       </trans-unit>
       <trans-unit id="commissionsTotalCommissionsReceivedAttrTitle">
         <source>The total amount of commission you have received throughout your manager career.</source>
@@ -808,66 +796,6 @@
       <trans-unit id="modalEmailPlaceholder">
         <source>myemail@address.com</source>
         <target>myemail@address.com</target>
-      </trans-unit>
-      <trans-unit id="switchToEN">
-        <source>English</source>
-        <target>英語</target>
-      </trans-unit>
-      <trans-unit id="switchToCN">
-        <source>Chinese</source>
-        <target>中国語</target>
-      </trans-unit>
-      <trans-unit id="switchToFR">
-        <source>French</source>
-        <target>フランス語</target>
-      </trans-unit>
-      <trans-unit id="switchToRU">
-        <source>Russian</source>
-        <target>ロシア語</target>
-      </trans-unit>
-      <trans-unit id="switchToJP">
-        <source>Japanese</source>
-        <target>日本語</target>
-      </trans-unit>
-      <trans-unit id="switchToES">
-        <source>Spanish</source>
-        <target>スペイン語</target>
-      </trans-unit>
-      <trans-unit id="switchToJavanese">
-        <source>Javanese</source>
-        <target>ジャワ語</target>
-      </trans-unit>
-      <trans-unit id="switchToIndonesian">
-        <source>Indonesian</source>
-        <target>インドネシア語</target>
-      </trans-unit>
-      <trans-unit id="switchToPT">
-        <source>Portuguese (BR)</source>
-        <target>ポルトガル語</target>
-      </trans-unit>
-      <trans-unit id="switchToSundanese">
-        <source>Sundanese</source>
-        <target>スンダ語</target>
-      </trans-unit>
-      <trans-unit id="switchToIT">
-        <source>Italian</source>
-        <target>イタリア語</target>
-      </trans-unit>
-      <trans-unit id="switchToKorean">
-        <source>Korean</source>
-        <target>韓国語</target>
-      </trans-unit>
-      <trans-unit id="switchToHindi">
-        <source>Hindi</source>
-        <target>ヒンディー語</target>
-      </trans-unit>
-      <trans-unit id="switchToThai">
-        <source>Thai</source>
-        <target>タイ語</target>
-      </trans-unit>
-      <trans-unit id="switchToVietnamese">
-        <source>Vietnamese</source>
-        <target>ベトナム語</target>
       </trans-unit>
       <trans-unit id="ctaBecomeManager">
         <source>Become a Manager</source>
@@ -1165,10 +1093,6 @@
         <source>disclaimer</source>
         <target>免責事項</target>
       </trans-unit>
-      <trans-unit id="disclaimertext13">
-        <source>💀 This project is in beta. Use at your own risk.</source>
-        <target>💀このプロジェクトはベータ版であり、利用は自己責任です。</target>
-      </trans-unit>
       <trans-unit id="timeCounterActionIntermission">
         <source>until managing begins</source>
         <target>運用開始まで</target>
@@ -1326,7 +1250,7 @@
         <target>27日毎に行われるBetokenの3日間の休憩フェーズでは、投資家のダッシュボードでBTKSを直接売買できます。</target>
       </trans-unit>
       <trans-unit id="investorOnboardingFaqA1c">
-        <source>During Betoken's management phase (27 days), Betoken shares token is freely tradable on decentralized exchanges (Fork Delta, Uniswap). Depending of the market conditions, the price may be different from what's displayed on the investor dashboard.</source>
+        <source>During Betoken's management phase (27 days), Betoken shares token is freely tradable on decentralized exchanges (e.g. ForkDelta, Uniswap). Depending on the market conditions, the price may be slightly different from what is displayed on the investor dashboard.</source>
         <target>Betokenの管理フェーズ（27日間）では、BTKSは分散型取引所（Fork Delta、Uniswap）で自由に取引できます。市場の状況によって、価格は投資家のダッシュボードに表示されるものと異なる場合があります。</target>
       </trans-unit>
       <trans-unit id="investorOnboardingBuyBtksModalTextStep4a">

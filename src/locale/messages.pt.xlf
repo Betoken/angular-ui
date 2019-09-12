@@ -463,7 +463,7 @@
         <target>SE o fundo for rentável OU não rentável</target>
       </trans-unit>
       <trans-unit id="investorOnboardingFaqA3Text2">
-        <source>0.1% of the total Betoken funds is set aside and distributed among fund manager holding Kairo tokens. In order to provide funding for its maintenance and future development, Betoken protocol will mint Betoken Shares and send them to the current development team. The amount will be equal to 0.1% of the current Betoken Shares total supply, and it will occur at the end of every investment cycle.</source>
+        <source>0.1% of the total Betoken funds is set aside as commission and distributed among fund manager holding Kairo tokens every investment cycle. In order to provide funding for its maintenance and future development, Betoken will mint Betoken Shares and send them to the current development team. The amount will be equal to 0.1% of the current Betoken Shares total supply, and it will occur at the end of every investment cycle.</source>
         <target>0,1% do total dos fundos Betoken é reservado e distribuído entre os gestores de fundos que possuem tokens Kairo. Para fornecer financiamento para sua manutenção e desenvolvimento futuro, o protocolo Betoken criará tokens de Compartilhamento e os enviará para a atual equipe de desenvolvimento. O valor será igual a 0,1% da oferta total atual dos tokens de Compartilhamento e ocorrerá no final de cada ciclo de investimento.</target>
       </trans-unit>
       <trans-unit id="investorOnboardingFaqA3Title3">
@@ -471,7 +471,7 @@
         <target>APENAS SE o fundo for rentável</target>
       </trans-unit>
       <trans-unit id="investorOnboardingFaqA3text3">
-        <source>20% of the total Betoken's monthly profits is set aside as commission and distributed among fund managers holding Kairo tokens proportional to the amount they hold and their risk profile. The commission is taken into account IF and ONLY IF the fund is profitable during the actual investment cycle.</source>
+        <source>20% of the total Betoken's monthly profits is set aside as commission and distributed among fund managers holding Kairo tokens proportional to the amount they hold and their risk profile. This part of the commission is taken into account IF and ONLY IF the fund is profitable during the investment cycle.</source>
         <target>20% dos lucros mensais totais do Betoken são reservados como comissão e distribuídos entre os gestores de fundos que mantêm os tokens Kairo proporcionais à quantia que possuem e ao seu perfil de risco. A comissão é levada em consideração SE e SOMENTE SE o fundo for rentável durante o ciclo de investimento real.</target>
       </trans-unit>
       <trans-unit id="investorOnboardingFaqA3Title4">
@@ -578,16 +578,12 @@
         <source>Management commissions</source>
         <target>Comissões de Gerenciamento</target>
       </trans-unit>
-      <trans-unit id="managerOnboardingFaqA4Text1">
-        <source>After the management phase is over (every 27 days):</source>
-        <target>Após o término da fase de gerenciamento (a cada 27 dias):</target>
-      </trans-unit>
       <trans-unit id="managerOnboardingFaqA4Title2">
         <source>IF the fund is profitable OR not profitable</source>
         <target>SE o fundo for rentável OU não rentável</target>
       </trans-unit>
       <trans-unit id="managerOnboardingFaqA4Text2">
-        <source>0.1% of the total Betoken funds is set aside and distributed among fund manager holding Kairo tokens.</source>
+        <source>0.1% of the total Betoken funds is set aside as commission and distributed among fund manager holding Kairo tokens.</source>
         <target>0,1% do total dos fundos Betoken é reservado e distribuído entre os gestores de fundos que possuem tokens Kairo.</target>
       </trans-unit>
       <trans-unit id="managerOnboardingFaqA4Title3">
@@ -595,7 +591,7 @@
         <target>APENAS SE o fundo for rentável</target>
       </trans-unit>
       <trans-unit id="managerOnboardingFaqA4Text3">
-        <source>20% of the total Betoken's monthly profits is set aside as commission and distributed among fund managers holding Kairo tokens proportional to the amount they hold and their risk profile. The commission is taken into account IF and ONLY IF the fund is profitable during the actual investment cycle.</source>
+        <source>20% of the total Betoken's monthly profits is set aside as commission and distributed among fund managers holding Kairo tokens proportional to the amount they hold and their risk profile. This part of the commission is taken into account IF and ONLY IF the fund is profitable during the investment cycle.</source>
         <target>20% dos lucros mensais totais do Betoken são reservados como comissão e distribuídos entre os gestores de fundos que mantêm os tokens Kairo proporcionais à quantia que possuem e ao seu perfil de risco. A comissão é levada em consideração SE e SOMENTE SE o fundo for rentável durante o ciclo de investimento real.</target>
       </trans-unit>
       <trans-unit id="managerOnboardingFaqQ5">
@@ -674,10 +670,6 @@
         <source>1m Change</source>
         <target>Variação 1m</target>
       </trans-unit>
-      <trans-unit id="market">
-        <source>market</source>
-        <target>mercado</target>
-      </trans-unit>
       <trans-unit id="headerGetUpdateModalAriaDescribedby">
         <source>Get update modal by email</source>
         <target>Obter notificações por e-mail</target>
@@ -722,10 +714,6 @@
       <trans-unit id="upgradeCardTimeLeftIllustrationAttrAlt">
         <source>illustration Woman and dog with a active spinner</source>
         <target>ilustração Mulher e cachorro com bloco que indica estar carregando</target>
-      </trans-unit>
-      <trans-unit id="commissionsExpectedCommissionThisMonthAttrTitle">
-        <source>&lt;strong&gt;20%&lt;/strong&gt; of the fund's profit and &lt;strong&gt;0.1%&lt;/strong&gt; of the AUM is set aside as commissions every month, which is paid to managers proportional to the Kairo tokens they hold. The estimate displayed here is calculated using the current fund ROI.</source>
-        <target>&lt;strong&gt;20%&lt;/strong&gt; do lucro do fundo e &lt;strong&gt;0.1%&lt;/strong&gt; do AUM é reservado como comissão todo mês, que é paga aos gestores proporcionalmente aos tokens Kairo que eles possuem. A estimativa exibida aqui é calculada usando o ROI atual do fundo.</target>
       </trans-unit>
       <trans-unit id="commissionsTotalCommissionsReceivedAttrTitle">
         <source>The total amount of commission you have received throughout your manager career.</source>
@@ -810,66 +798,6 @@
       <trans-unit id="modalEmailPlaceholder">
         <source>myemail@address.com</source>
         <target>meuemail@endereço.com</target>
-      </trans-unit>
-      <trans-unit id="switchToEN">
-        <source>English</source>
-        <target>Inglês</target>
-      </trans-unit>
-      <trans-unit id="switchToCN">
-        <source>Chinese</source>
-        <target>Chinês</target>
-      </trans-unit>
-      <trans-unit id="switchToFR">
-        <source>French</source>
-        <target>Francês</target>
-      </trans-unit>
-      <trans-unit id="switchToRU">
-        <source>Russian</source>
-        <target>Russo</target>
-      </trans-unit>
-      <trans-unit id="switchToJP">
-        <source>Japanese</source>
-        <target>Japonês</target>
-      </trans-unit>
-      <trans-unit id="switchToES">
-        <source>Spanish</source>
-        <target>Espanhol</target>
-      </trans-unit>
-      <trans-unit id="switchToJavanese">
-        <source>Javanese</source>
-        <target>Javanês</target>
-      </trans-unit>
-      <trans-unit id="switchToIndonesian">
-        <source>Indonesian</source>
-        <target>Indonésio</target>
-      </trans-unit>
-      <trans-unit id="switchToPT">
-        <source>Portuguese (BR)</source>
-        <target>Português (BR)</target>
-      </trans-unit>
-      <trans-unit id="switchToSundanese">
-        <source>Sundanese</source>
-        <target>Sundanês</target>
-      </trans-unit>
-      <trans-unit id="switchToIT">
-        <source>Italian</source>
-        <target>Italiano</target>
-      </trans-unit>
-      <trans-unit id="switchToKorean">
-        <source>Korean</source>
-        <target>Coreano</target>
-      </trans-unit>
-      <trans-unit id="switchToHindi">
-        <source>Hindi</source>
-        <target>Hindu</target>
-      </trans-unit>
-      <trans-unit id="switchToThai">
-        <source>Thai</source>
-        <target>Thailandês</target>
-      </trans-unit>
-      <trans-unit id="switchToVietnamese">
-        <source>Vietnamese</source>
-        <target>Viatnamita</target>
       </trans-unit>
       <trans-unit id="ctaBecomeManager">
         <source>Become a Manager</source>
@@ -1168,10 +1096,6 @@
         <source>disclaimer</source>
         <target>isenção de responsabilidade</target>
       </trans-unit>
-      <trans-unit id="disclaimertext13">
-        <source>💀 This project is in beta. Use at your own risk.</source>
-        <target>💀Este projeto está em beta. Use por sua conta e risco.</target>
-      </trans-unit>
       <trans-unit id="timeCounterActionIntermission">
         <source>until managing begins</source>
         <target>até que o gerenciamento comece</target>
@@ -1329,7 +1253,7 @@
         <target>Durante a fase de intervalo de 3 dias, que acontece a cada 27 dias, você pode comprar e vender tokens de compartilhamento Betoken diretamente no painel do investidor.</target>
       </trans-unit>
       <trans-unit id="investorOnboardingFaqA1c">
-        <source>During Betoken's management phase (27 days), Betoken shares token is freely tradable on decentralized exchanges (Fork Delta, Uniswap). Depending of the market conditions, the price may be different from what's displayed on the investor dashboard.</source>
+        <source>During Betoken's management phase (27 days), Betoken shares token is freely tradable on decentralized exchanges (e.g. ForkDelta, Uniswap). Depending on the market conditions, the price may be slightly different from what is displayed on the investor dashboard.</source>
         <target>Durante a fase de gerenciamento (27 dias), o token de compartilhamento Betoken pode ser negociado livremente em exchanges descentralizadas (Fork Delta, Uniswap). Dependendo das condições do mercado, o preço pode ser diferente do exibido no painel do investidor.</target>
       </trans-unit>
       <trans-unit id="investorOnboardingBuyBtksModalTextStep4a">

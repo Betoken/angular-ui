@@ -24,7 +24,7 @@
         <source>until managing begins</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/header/header.component.html</context>
-          <context context-type="linenumber">6</context>
+          <context context-type="linenumber">7</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/side-nav/side-nav.component.html</context>
@@ -35,7 +35,7 @@
         <source>to manage</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/header/header.component.html</context>
-          <context context-type="linenumber">6</context>
+          <context context-type="linenumber">8</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/side-nav/side-nav.component.html</context>
@@ -46,7 +46,7 @@
         <source>d</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/header/header.component.html</context>
-          <context context-type="linenumber">9</context>
+          <context context-type="linenumber">11</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/side-nav/side-nav.component.html</context>
@@ -69,7 +69,7 @@
         <source>h</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/header/header.component.html</context>
-          <context context-type="linenumber">9</context>
+          <context context-type="linenumber">12</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/side-nav/side-nav.component.html</context>
@@ -89,10 +89,11 @@
         </context-group>
       </trans-unit>
       <trans-unit id="timeLeftInMinutes" datatype="html">
-        <source>m</source>
+        <source>m
+        </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/header/header.component.html</context>
-          <context context-type="linenumber">9</context>
+          <context context-type="linenumber">12</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/side-nav/side-nav.component.html</context>
@@ -115,7 +116,7 @@
         <source>s</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/header/header.component.html</context>
-          <context context-type="linenumber">9</context>
+          <context context-type="linenumber">13</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/side-nav/side-nav.component.html</context>
@@ -138,21 +139,22 @@
         <source>Connect Wallet</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/header/header.component.html</context>
-          <context context-type="linenumber">34</context>
+          <context context-type="linenumber">39</context>
         </context-group>
       </trans-unit>
       <trans-unit id="managerAlert1" datatype="html">
         <source>Please note you have only</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/header/header.component.html</context>
-          <context context-type="linenumber">48</context>
+          <context context-type="linenumber">54</context>
         </context-group>
       </trans-unit>
       <trans-unit id="managerAlert2" datatype="html">
-        <source>days left to manage. You MUST sell all of your investments during this time, or you WILL LOSE your staked Kairo tokens.</source>
+        <source>days left to manage. You MUST sell all of your investments during this time, or you WILL
+      LOSE your staked Kairo tokens.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/header/header.component.html</context>
-          <context context-type="linenumber">48</context>
+          <context context-type="linenumber">55</context>
         </context-group>
       </trans-unit>
       <trans-unit id="modalBeNotifiedByEmail" datatype="html">
@@ -161,7 +163,7 @@
         </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/header/header.component.html</context>
-          <context context-type="linenumber">59</context>
+          <context context-type="linenumber">67</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investor/investor.component.html</context>
@@ -180,11 +182,11 @@
         <source>Close</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/header/header.component.html</context>
-          <context context-type="linenumber">64</context>
+          <context context-type="linenumber">72</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/header/header.component.html</context>
-          <context context-type="linenumber">148</context>
+          <context context-type="linenumber">156</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
@@ -269,14 +271,14 @@
             </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/header/header.component.html</context>
-          <context context-type="linenumber">72</context>
+          <context context-type="linenumber">80</context>
         </context-group>
       </trans-unit>
       <trans-unit id="headerGetUpdateModalText1" datatype="html">
         <source>Get updated when you can connect or withdraw your capital.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/header/header.component.html</context>
-          <context context-type="linenumber">75</context>
+          <context context-type="linenumber">83</context>
         </context-group>
       </trans-unit>
       <trans-unit id="headerGetUpdateModalSubtitle2" datatype="html">
@@ -285,7 +287,7 @@
             </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/header/header.component.html</context>
-          <context context-type="linenumber">81</context>
+          <context context-type="linenumber">89</context>
         </context-group>
       </trans-unit>
       <trans-unit id="headerGetUpdateModalText2" datatype="html">
@@ -294,7 +296,7 @@
             </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/header/header.component.html</context>
-          <context context-type="linenumber">84</context>
+          <context context-type="linenumber">92</context>
         </context-group>
       </trans-unit>
       <trans-unit id="headerGetUpdateModalSubtitle3" datatype="html">
@@ -303,7 +305,7 @@
             </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/header/header.component.html</context>
-          <context context-type="linenumber">92</context>
+          <context context-type="linenumber">100</context>
         </context-group>
       </trans-unit>
       <trans-unit id="headerGetUpdateModalText3" datatype="html">
@@ -312,14 +314,14 @@
             </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/header/header.component.html</context>
-          <context context-type="linenumber">95</context>
+          <context context-type="linenumber">103</context>
         </context-group>
       </trans-unit>
       <trans-unit id="modalEmailPlaceholder" datatype="html">
         <source>myemail@address.com</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/header/header.component.html</context>
-          <context context-type="linenumber">105</context>
+          <context context-type="linenumber">113</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investor/investor.component.html</context>
@@ -334,7 +336,7 @@
         <source>Get update modal by email</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/header/header.component.html</context>
-          <context context-type="linenumber">54</context>
+          <context context-type="linenumber">62</context>
         </context-group>
       </trans-unit>
       <trans-unit id="headerLanguageModalTitle" datatype="html">
@@ -343,119 +345,14 @@
         </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/header/header.component.html</context>
-          <context context-type="linenumber">143</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="switchToEN" datatype="html">
-        <source>English</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/header/header.component.html</context>
-          <context context-type="linenumber">155</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="switchToCN" datatype="html">
-        <source>Chinese</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/header/header.component.html</context>
-          <context context-type="linenumber">159</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="switchToFR" datatype="html">
-        <source>French</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/header/header.component.html</context>
-          <context context-type="linenumber">163</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="switchToRU" datatype="html">
-        <source>Russian</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/header/header.component.html</context>
-          <context context-type="linenumber">167</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="switchToJP" datatype="html">
-        <source>Japanese</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/header/header.component.html</context>
-          <context context-type="linenumber">171</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="switchToES" datatype="html">
-        <source>Spanish</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/header/header.component.html</context>
-          <context context-type="linenumber">175</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="switchToJavanese" datatype="html">
-        <source>Javanese</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/header/header.component.html</context>
-          <context context-type="linenumber">179</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="switchToIndonesian" datatype="html">
-        <source>Indonesian</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/header/header.component.html</context>
-          <context context-type="linenumber">183</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="switchToPT" datatype="html">
-        <source>Portuguese (BR)</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/header/header.component.html</context>
-          <context context-type="linenumber">187</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="switchToSundanese" datatype="html">
-        <source>Sundanese</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/header/header.component.html</context>
-          <context context-type="linenumber">191</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="switchToIT" datatype="html">
-        <source>Italian</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/header/header.component.html</context>
-          <context context-type="linenumber">195</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="switchToKorean" datatype="html">
-        <source>Korean</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/header/header.component.html</context>
-          <context context-type="linenumber">199</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="switchToHindi" datatype="html">
-        <source>Hindi</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/header/header.component.html</context>
-          <context context-type="linenumber">203</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="switchToThai" datatype="html">
-        <source>Thai</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/header/header.component.html</context>
-          <context context-type="linenumber">207</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="switchToVietnamese" datatype="html">
-        <source>Vietnamese</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/header/header.component.html</context>
-          <context context-type="linenumber">211</context>
+          <context context-type="linenumber">151</context>
         </context-group>
       </trans-unit>
       <trans-unit id="headerLanguageModalAriaDescribedby" datatype="html">
         <source>Switch to another language</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/header/header.component.html</context>
-          <context context-type="linenumber">138</context>
+          <context context-type="linenumber">146</context>
         </context-group>
       </trans-unit>
       <trans-unit id="sidebarBurgerIconAriaLabel" datatype="html">
@@ -714,6 +611,10 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
           <context context-type="linenumber">126</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/commissions/commissions.component.html</context>
+          <context context-type="linenumber">24</context>
         </context-group>
       </trans-unit>
       <trans-unit id="dashboardYourRankingTitle" datatype="html">
@@ -2066,13 +1967,6 @@
           <context context-type="linenumber">30</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="commissionsExpectedCommissionThisMonthAttrTitle" datatype="html">
-        <source>&lt;strong&gt;20%&lt;/strong&gt; of the fund&apos;s profit and &lt;strong&gt;0.1%&lt;/strong&gt; of the AUM is set aside as commissions every month, which is paid to managers proportional to the Kairo tokens they hold. The estimate displayed here is calculated using the current fund ROI.</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/commissions/commissions.component.html</context>
-          <context context-type="linenumber">24</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="totalCommissionsReceived" datatype="html">
         <source>
               Total Commission Received
@@ -2967,6 +2861,10 @@
           <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
           <context context-type="linenumber">121</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">103</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="faqTitle" datatype="html">
         <source>Frequently asked questions</source>
@@ -3053,6 +2951,10 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
           <context context-type="linenumber">203</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">201</context>
         </context-group>
       </trans-unit>
       <trans-unit id="investorOnboardingFaqA3Title2" datatype="html">
@@ -3359,15 +3261,6 @@
           <context context-type="linenumber">67</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="disclaimertext13" datatype="html">
-        <source>
-              💀 This project is in beta. Use at your own risk.
-            </source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
-          <context context-type="linenumber">103</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="managerOnboardingFaqQ1" datatype="html">
         <source>
                       What is Kairo token?
@@ -3441,13 +3334,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
           <context context-type="linenumber">200</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="managerOnboardingFaqA4Text1" datatype="html">
-        <source>After the management phase is over (every 27 days):</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
-          <context context-type="linenumber">201</context>
         </context-group>
       </trans-unit>
       <trans-unit id="managerOnboardingFaqA4Title2" datatype="html">
@@ -3674,23 +3560,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/market/market.component.html</context>
           <context context-type="linenumber">82</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="market" datatype="html">
-        <source>
-                    <x id="INTERPOLATION" equiv-text="{{token.dailyPriceChange.isNaN() ? &apos;Not available&apos; : token.dailyPriceChange.toFixed(4) + &apos;%&apos;}}"/>
-                  </source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/market/market.component.html</context>
-          <context context-type="linenumber">108</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/market/market.component.html</context>
-          <context context-type="linenumber">114</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/market/market.component.html</context>
-          <context context-type="linenumber">120</context>
         </context-group>
       </trans-unit>
     </body>

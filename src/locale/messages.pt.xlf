@@ -1280,6 +1280,10 @@
         <source>using</source>
         <target>usando</target>
       </trans-unit>
+      <trans-unit id="modalRule4">
+        <source>You understand that you can only buy Kairo tokens once per Ethereum account</source>
+        <target>Você entende que pode comprar tokens Kairo apenas uma vez por conta Ethereum</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

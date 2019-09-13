@@ -1277,6 +1277,9 @@
         <source>using</source>
         <target>using</target>
       </trans-unit>
+      <trans-unit id="modalRule4">
+        <source>You understand that you can only buy Kairo tokens once per Ethereum account</source>
+      </trans-unit>
     </body>
   </file>
 </xliff>

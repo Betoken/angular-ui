@@ -1135,7 +1135,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
-          <context context-type="linenumber">384</context>
+          <context context-type="linenumber">389</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/market/market.component.html</context>
@@ -1197,7 +1197,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
-          <context context-type="linenumber">403</context>
+          <context context-type="linenumber">408</context>
         </context-group>
       </trans-unit>
       <trans-unit id="modalBalanceAvailable" datatype="html">
@@ -1220,7 +1220,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
-          <context context-type="linenumber">416</context>
+          <context context-type="linenumber">421</context>
         </context-group>
       </trans-unit>
       <trans-unit id="investmentsBuyModalFulcrumMinStake" datatype="html">
@@ -1418,7 +1418,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
-          <context context-type="linenumber">467</context>
+          <context context-type="linenumber">472</context>
         </context-group>
       </trans-unit>
       <trans-unit id="modalBodyTextTxBroadcasted" datatype="html">
@@ -1455,7 +1455,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
-          <context context-type="linenumber">475</context>
+          <context context-type="linenumber">480</context>
         </context-group>
       </trans-unit>
       <trans-unit id="investmentsBuyModalTxConfirmed1" datatype="html">
@@ -1520,11 +1520,11 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
-          <context context-type="linenumber">481</context>
+          <context context-type="linenumber">486</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
-          <context context-type="linenumber">510</context>
+          <context context-type="linenumber">515</context>
         </context-group>
       </trans-unit>
       <trans-unit id="modalErrorText" datatype="html">
@@ -1561,7 +1561,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
-          <context context-type="linenumber">529</context>
+          <context context-type="linenumber">534</context>
         </context-group>
       </trans-unit>
       <trans-unit id="modalErrorMsg" datatype="html">
@@ -1596,7 +1596,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
-          <context context-type="linenumber">533</context>
+          <context context-type="linenumber">538</context>
         </context-group>
       </trans-unit>
       <trans-unit id="modalCtaContinue" datatype="html">
@@ -1625,7 +1625,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
-          <context context-type="linenumber">542</context>
+          <context context-type="linenumber">547</context>
         </context-group>
       </trans-unit>
       <trans-unit id="modalCtaClose" datatype="html">
@@ -1703,7 +1703,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
-          <context context-type="linenumber">546</context>
+          <context context-type="linenumber">551</context>
         </context-group>
       </trans-unit>
       <trans-unit id="investmentsModalSellOrderLeverage" datatype="html">
@@ -2480,7 +2480,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
-          <context context-type="linenumber">376</context>
+          <context context-type="linenumber">381</context>
         </context-group>
       </trans-unit>
       <trans-unit id="disclaimerTitle" datatype="html">
@@ -2559,7 +2559,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
-          <context context-type="linenumber">429</context>
+          <context context-type="linenumber">434</context>
         </context-group>
       </trans-unit>
       <trans-unit id="modalBtksToReceive" datatype="html">
@@ -2589,7 +2589,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
-          <context context-type="linenumber">451</context>
+          <context context-type="linenumber">456</context>
         </context-group>
       </trans-unit>
       <trans-unit id="investorBuyBtksModalTextStep4a" datatype="html">
@@ -3432,11 +3432,18 @@
           <context context-type="linenumber">311</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="modalRule4" datatype="html">
+        <source>You understand that you can only buy Kairo tokens once per Ethereum account</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">376</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="managerOnboardingBuyBtksModalIWantToBuyWith" datatype="html">
         <source>I want to buy Kairo tokens with</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
-          <context context-type="linenumber">390</context>
+          <context context-type="linenumber">395</context>
         </context-group>
       </trans-unit>
       <trans-unit id="managerOnboardingBuyBtksModalMaxPaymentAmount" datatype="html">
@@ -3444,7 +3451,7 @@
                     <x id="INTERPOLATION" equiv-text="{{getMaxPaymentAmount().toFormat(4)}}"/> <x id="INTERPOLATION_1" equiv-text="{{selectedTokenSymbol}}"/> <x id="START_LINK" ctype="x-a" equiv-text="&lt;a&gt;"/><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span&gt;"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/><x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
-          <context context-type="linenumber">417</context>
+          <context context-type="linenumber">422</context>
         </context-group>
       </trans-unit>
       <trans-unit id="managerOnboardingBuyBtksModalKroToreceive" datatype="html">
@@ -3453,7 +3460,7 @@
                     </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
-          <context context-type="linenumber">435</context>
+          <context context-type="linenumber">440</context>
         </context-group>
       </trans-unit>
       <trans-unit id="managerOnboardingBuyBtksModalAmountToManage" datatype="html">
@@ -3462,42 +3469,42 @@
                     </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
-          <context context-type="linenumber">443</context>
+          <context context-type="linenumber">448</context>
         </context-group>
       </trans-unit>
       <trans-unit id="managerOnboardingBuyBtksModalTextStep4a" datatype="html">
         <source>You bought</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
-          <context context-type="linenumber">502</context>
+          <context context-type="linenumber">507</context>
         </context-group>
       </trans-unit>
       <trans-unit id="managerOnboardingBuyBtksModalTextStep4b" datatype="html">
         <source>using</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
-          <context context-type="linenumber">502</context>
+          <context context-type="linenumber">507</context>
         </context-group>
       </trans-unit>
       <trans-unit id="managerOnboardingBuyBtksModalCtaTweet" datatype="html">
         <source>Tweet about it</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
-          <context context-type="linenumber">505</context>
+          <context context-type="linenumber">510</context>
         </context-group>
       </trans-unit>
       <trans-unit id="managerOnboardingBuyBtksModalTweet" datatype="html">
         <source>https://twitter.com/intent/tweet?hashtags=Betoken%2C%20DeFi&amp;related=betokenfund&amp;text=I%27ve%20just%20joined%20Betoken%20as%20a%20fund%20manager%2C%20world%27s%20first%20crowd-powered%20cryptoassets%20management%20protocol!&amp;url=https%3A%2F%2Fbetoken.fund&amp;via=betokenfund</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
-          <context context-type="linenumber">504</context>
+          <context context-type="linenumber">509</context>
         </context-group>
       </trans-unit>
       <trans-unit id="managerOnboardingBuyBtksModalStep4TxHashAriaLabel" datatype="html">
         <source>Transaction hash</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
-          <context context-type="linenumber">513</context>
+          <context context-type="linenumber">518</context>
         </context-group>
       </trans-unit>
       <trans-unit id="managerOnboardingBuyBtksModalCtaBuy" datatype="html">
@@ -3506,14 +3513,14 @@
             </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
-          <context context-type="linenumber">538</context>
+          <context context-type="linenumber">543</context>
         </context-group>
       </trans-unit>
       <trans-unit id="managerOnboardingBuyBtksModalManagerDashboard" datatype="html">
         <source>Manager Portal</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
-          <context context-type="linenumber">550</context>
+          <context context-type="linenumber">555</context>
         </context-group>
       </trans-unit>
       <trans-unit id="marketHeaderTitle" datatype="html">

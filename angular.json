@@ -73,7 +73,7 @@
             "zh-Hans": {
               "aot": true,
               "outputPath": "dist/Betoken/zh-Hans",
-              "i18nFile": "src/locale/zh-Hans.xlf",
+              "i18nFile": "src/locale/messages.zh-Hans.xlf",
               "i18nFormat": "xlf",
               "i18nLocale": "zh-Hans",
               "i18nMissingTranslation": "error",

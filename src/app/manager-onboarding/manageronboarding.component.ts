@@ -44,7 +44,7 @@ export class ManageronboardingComponent extends ApolloEnabled implements OnInit 
     super();
     this.user_address = this.ZERO_ADDR;
     this.buyStep = 0;
-    this.checkboxes = [false, false, false];
+    this.checkboxes = [false, false, false, false];
     this.selectedTokenSymbol = '';
     this.selectedTokenBalance = new BigNumber(0);
     this.transactionId = '';

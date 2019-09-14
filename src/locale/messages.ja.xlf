@@ -1279,6 +1279,7 @@
       </trans-unit>
       <trans-unit id="modalRule4">
         <source>You understand that you can only buy Kairo tokens once per Ethereum account</source>
+        <target>イーサリアムアカウントごとに1回しかカイロトークンを購入できないことを理解している</target>
       </trans-unit>
     </body>
   </file>

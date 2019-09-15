@@ -152,6 +152,9 @@
             },
             "ja": {
               "browserTarget": "Betoken:build:ja"
+            },
+            "pt": {
+              "browserTarget": "Betoken:build:pt"
             }
           }
         },

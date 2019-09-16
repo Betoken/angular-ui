@@ -93,7 +93,8 @@ export class InvestmentsComponent extends ApolloEnabled implements OnInit {
             currBorrow: new BigNumber(0),
             currCash: new BigNumber(0),
             leverage: 0,
-            tokenSymbol: "ETH"
+            tokenSymbol: "ETH",
+            txHash: ""
         };
 
         this.activeInvestmentList = new Array<Object>();

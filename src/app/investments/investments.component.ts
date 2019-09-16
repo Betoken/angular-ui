@@ -172,6 +172,7 @@ export class InvestmentsComponent extends ApolloEnabled implements OnInit {
                             sellPrice
                             buyTime
                             cycleNumber
+                            txHash
                         }
                         inactiveBasicOrders: basicOrders(where: {owner: "${userAddress}", cycleNumber: "${timer.cycle()}", isSold: true}) {
                             tokenAddress
@@ -189,6 +190,7 @@ export class InvestmentsComponent extends ApolloEnabled implements OnInit {
                             buyTime
                             liquidationPrice
                             isShort
+                            txHash
                         }
                         inactiveFulcrumOrders: fulcrumOrders(where: {owner: "${userAddress}", cycleNumber: "${timer.cycle()}", isSold: true}) {
                             tokenAddress
@@ -212,6 +214,7 @@ export class InvestmentsComponent extends ApolloEnabled implements OnInit {
                             buyTime
                             isShort
                             orderAddress
+                            txHash
                         }
                         inactiveCompoundOrders: compoundOrders(where: {owner: "${userAddress}", cycleNumber: "${timer.cycle()}", isSold: true}) {
                             tokenAddress

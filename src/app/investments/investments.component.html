@@ -789,7 +789,7 @@
 
       <div class="modal-body pb-5">
         <!--Step 0: enter sell amount-->
-        <time class="header-pretitle h6 mb-0" *ngIf="sellInvestmentPopupStep === 0"><ng-container i18n="@@investmentsModalSellOrderBuyTime">OPENED</ng-container>&nbsp;{{toDateTimeString(sellData.buyTime)}}</time>
+        <time class="header-pretitle h6 mb-0" *ngIf="sellInvestmentPopupStep === 0"><ng-container i18n="@@investmentsModalSellOrderBuyTime">OPENED</ng-container>&nbsp;{{toDateTimeString(sellData.buyTime)}}</time><a class="header-pretitle h6 mb-0" href="https://etherscan.io/tx/{{transactionId}}" target="_blank"> • Etherscan<i class="fe fe-external-link ml-2"></i></a>
         <hr class="mb-4" *ngIf="sellInvestmentPopupStep === 0">
         <!-- Asset price -->
         <div class="row mb-4" *ngIf="sellInvestmentPopupStep === 0">

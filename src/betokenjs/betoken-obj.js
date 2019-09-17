@@ -327,13 +327,14 @@ export var Betoken = function () {
         return ERC20(_tokenAddr).methods.balanceOf(_addr).call();
     };
 
-    self.getTokenPrice = async (_tokenAddr) => {
+    self.getTokenPrice = async (_tokenAddr, _amount) => {
         try {
             if (web3Instance.utils.toChecksumAddress(_tokenAddr) === DAI_ADDR) {
                 return BigNumber(1);
             }
             let decimals = await self.getTokenDecimals(_tokenAddr);
-            var price = await self.contracts.Kyber.methods.getExpectedRate(_tokenAddr, DAI_ADDR, BigNumber(10).pow(decimals).toString()).call();
+            let amount = BigNumber(_amount).times(BigNumber(10).pow(decimals)).integerValue().toFixed()
+            var price = await self.contracts.Kyber.methods.getExpectedRate(_tokenAddr, DAI_ADDR, amount).call();
             price = price[0];
             return BigNumber(price).div(PRECISION);
         } catch (e) {
@@ -341,7 +342,7 @@ export var Betoken = function () {
         }
     };
 
-    self.getPTokenPrice = async (_tokenAddr, _underlyingPrice) => {
+    self.getPTokenPrice = async (_tokenAddr) => {
         try {
             let pToken = PositionToken(_tokenAddr);
             let underlyingPerPToken = await pToken.methods.tokenPrice().call();
@@ -349,7 +350,8 @@ export var Betoken = function () {
             if (underlying === DAI_ADDR) {
                 return BigNumber(underlyingPerPToken).div(PRECISION);
             }
-            return BigNumber(underlyingPerPToken).div(PRECISION).times(_underlyingPrice);
+            let underlyingPrice = await self.getTokenPrice(underlying, 1);
+            return BigNumber(underlyingPerPToken).div(PRECISION).times(underlyingPrice);
         } catch (e) {
             return BigNumber(0);
         }

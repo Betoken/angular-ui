@@ -33,7 +33,7 @@
               Crowd-powered finance
             </h6>
             <p>
-              <ng-container i18n="@@investorOnboardingIntroText1a">Your capital is automatically distributed among</ng-container>&nbsp;<a href="https://betoken.fund/portal/#/rankings"
+              <ng-container i18n="@@investorOnboardingIntroText1a">Your capital is automatically distributed among</ng-container>&nbsp;<a routerLink="/rankings"
                 target="_blank"><ng-container i18n="@@investorOnboardingIntroText1b">Betoken’s community of managers</ng-container></a>.&nbsp;<ng-container i18n="@@investorOnboardingIntroText1c">The best of them will have the most influence over
               how that capital is put to work.</ng-container>
             </p>
@@ -407,7 +407,7 @@
                 <div class="custom-control custom-checkbox mb-4">
                   <input type="checkbox" class="custom-control-input" id="rule2"
                     (change)="checkboxes[1] = !checkboxes[1]">
-                  <label class="custom-control-label small text-secondary" for="rule2"><ng-container i18n="@@modalRule2">You have read and understood our</ng-container>&nbsp;<a href="#/disclaimer" data-dismiss="modal" i18n-aria-label="@@modalAriaLabelClose" aria-label="Close" i18n="@@modalDisclaimerCta">disclaimer</a>.</label>
+                  <label class="custom-control-label small text-secondary" for="rule2"><ng-container i18n="@@modalRule2">You have read and understood our</ng-container>&nbsp;<a routerLink="/disclaimer" data-dismiss="modal" i18n-aria-label="@@modalAriaLabelClose" aria-label="Close" i18n="@@modalDisclaimerCta">disclaimer</a>.</label>
                 </div>
                 <div class="custom-control custom-checkbox mb-4">
                   <input type="checkbox" class="custom-control-input" id="rule3"
@@ -578,7 +578,7 @@
                 Try again
               </button>
               <!-- Close button for buyStep 4 -->
-              <a class="btn btn-block btn-success mt-auto" href="#/investing-dashboard" target="_blank"
+              <a class="btn btn-block btn-success mt-auto" routerLink="/investing-dashboard" target="_blank"
                 *ngIf="buyStep == 4" i18n="@@investorOnboardingBuyBtksModalCtaGoToDashboard">Investor Dashboard</a>
             </div>
           </div>

@@ -411,7 +411,7 @@
           Select An Asset
         </h4>
         <!-- Selected Asset title -->
-        <a class="text-secondary" href="#/investments" (click)="resetModals()">
+        <a class="text-secondary" routerLink="/investments" (click)="resetModals()">
           <h4 class="modal-title d-flex align-items-center" *ngIf="createInvestmentPopupStep === 1">
             <i class="fe fe-arrow-left mr-2"></i>
             <span class="avatar avatar-xs align-middle mr-2">
@@ -487,7 +487,7 @@
         <!-- Step 0: select asset -->
         <ul class="list-group list-group-flush list" id="asset-list" *ngIf="createInvestmentPopupStep === 0">
           <li class="list-group-item px-0" *ngFor="let token of tokenData">
-            <a class="text-secondary" href="#/investments" (click)="selectInvestmentAsset(token.symbol)">
+            <a class="text-secondary" routerLink="/investments" (click)="selectInvestmentAsset(token.symbol)">
               <div class="row align-items-center">
                 <div class="col-auto">
                   <span class="avatar avatar-sm">

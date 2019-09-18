@@ -49,7 +49,7 @@
       <!-- cta -->
       <div class="d-none d-md-block" *ngIf="checkRouterURL('/investing-dashboard') === false">
         <!--Provide onboarding for prospective managers with no Kairo-->
-        <a class="btn btn-success btn-block mb-4" href="#/start-managing" *ngIf="!isManager"
+        <a class="btn btn-success btn-block mb-4" routerLink="/start-managing" *ngIf="!isManager"
           i18n="@@ctaBecomeManager">Become a Manager</a>
         <!--Provide actions for existing managers-->
         <span *ngIf="isManager">
@@ -81,32 +81,32 @@
           <div class="collapse show" id="sidebarDashboards">
             <ul class="nav nav-sm flex-column">
               <li class="nav-item" data-toggle="collapse" data-target="#sidebarCollapse">
-                <a href="#/dashboard" class="nav-link" i18n="@@sidebarNavDashboard">
+                <a routerLink="/dashboard" class="nav-link" i18n="@@sidebarNavDashboard">
                   Dashboard
                 </a>
               </li>
               <li class="nav-item" data-toggle="collapse" data-target="#sidebarCollapse">
-                <a href="#/investments" class="nav-link" i18n="@@sidebarNavInvestments">
+                <a routerLink="/investments" class="nav-link" i18n="@@sidebarNavInvestments">
                   Investments
                 </a>
               </li>
               <li class="nav-item" data-toggle="collapse" data-target="#sidebarCollapse">
-                <a href="#/market" class="nav-link" i18n="@@sidebarNavMarket">
+                <a routerLink="/market" class="nav-link" i18n="@@sidebarNavMarket">
                   Market
                 </a>
               </li>
               <li class="nav-item" data-toggle="collapse" data-target="#sidebarCollapse">
-                <a href="#/rankings" class="nav-link" i18n="@@sidebarNavRankings">
+                <a routerLink="/rankings" class="nav-link" i18n="@@sidebarNavRankings">
                   Rankings
                 </a>
               </li>
               <li class="nav-item" data-toggle="collapse" data-target="#sidebarCollapse">
-                <a href="#/commissions" class="nav-link" i18n="@@sidebarNavCommissions">
+                <a routerLink="/commissions" class="nav-link" i18n="@@sidebarNavCommissions">
                   Commissions
                 </a>
               </li>
               <li class="nav-item" data-toggle="collapse" data-target="#sidebarCollapse">
-                <a href="#/upgrades" class="nav-link" i18n="@@sidebarNavUpgrade">
+                <a routerLink="/upgrades" class="nav-link" i18n="@@sidebarNavUpgrade">
                   Upgrade Governance
                 </a>
               </li>
@@ -114,7 +114,7 @@
           </div>
         </li>
         <li class="nav-item" data-toggle="collapse" data-target="#sidebarCollapse">
-          <a class="nav-link" href="#/invest">
+          <a class="nav-link" routerLink="/invest">
             <i class="fe fe-dollar-sign mr-1"></i><ng-container i18n="@@sidebarToggleInvest">Invest</ng-container>
           </a>
         </li>
@@ -163,7 +163,7 @@
 <nav class="navbar fixed-bottom d-md-none" *ngIf="checkRouterURL('/investing-dashboard') === false">
   <div class="container px-0">
     <!--Provide onboarding for prospective managers with no Kairo-->
-    <a class="btn btn-success btn-block" href="#/start-managing" *ngIf="!isManager" i18n="@@ctaBecomeManager">
+    <a class="btn btn-success btn-block" routerLink="/start-managing" *ngIf="!isManager" i18n="@@ctaBecomeManager">
       Become a Manager
     </a>
 

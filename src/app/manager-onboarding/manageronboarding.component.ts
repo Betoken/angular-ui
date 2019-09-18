@@ -87,7 +87,7 @@ export class ManageronboardingComponent extends ApolloEnabled implements OnInit 
               kairoTotalSupply
             }
             manager(id: "${userAddress}") {
-              id
+              kairoBalance
             }
           }
         `

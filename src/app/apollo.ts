@@ -2,6 +2,7 @@ import { Subscription } from 'apollo-client/util/Observable';
 import { OnDestroy } from '@angular/core';
 import { BigNumber } from 'bignumber.js';
 import { timer } from '../betokenjs/helpers';
+import { isNullOrUndefined } from 'util';
 
 export class ApolloEnabled implements OnDestroy {
   querySubscription: Subscription;
@@ -11,7 +12,9 @@ export class ApolloEnabled implements OnDestroy {
   }
 
   ngOnDestroy() {
-    this.querySubscription.unsubscribe();
+    if (!isNullOrUndefined(this.querySubscription)) {
+      this.querySubscription.unsubscribe();
+    }
   }
 
   toBigNumber(n) {

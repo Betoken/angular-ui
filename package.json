@@ -32,6 +32,7 @@
     "core-js": "^2.5.4",
     "graphql": "^14.3.1",
     "graphql-tag": "^2.10.0",
+    "i18n-extract": "^0.6.6",
     "jquery": "^3.4.1",
     "list.js": "^1.5.0",
     "ngx-bootstrap": "^5.1.1",

@@ -69,6 +69,72 @@
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true
+            },
+            "zh-Hans": {
+              "aot": true,
+              "outputPath": "dist/Betoken/zh-Hans",
+              "i18nFile": "src/locale/messages.zh-Hans.xlf",
+              "i18nFormat": "xlf",
+              "i18nLocale": "zh-Hans",
+              "i18nMissingTranslation": "error",
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
+            },
+            "ja": {
+              "aot": true,
+              "outputPath": "dist/Betoken/ja",
+              "i18nFile": "src/locale/messages.ja.xlf",
+              "i18nFormat": "xlf",
+              "i18nLocale": "ja",
+              "i18nMissingTranslation": "error",
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
+            },
+            "pt": {
+              "aot": true,
+              "outputPath": "dist/Betoken/pt",
+              "i18nFile": "src/locale/messages.pt.xlf",
+              "i18nFormat": "xlf",
+              "i18nLocale": "pt",
+              "i18nMissingTranslation": "error",
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
             }
           }
         },
@@ -80,11 +146,20 @@
           "configurations": {
             "production": {
               "browserTarget": "Betoken:build:production"
+            },
+            "zh-Hans": {
+              "browserTarget": "Betoken:build:zh-Hans"
+            },
+            "ja": {
+              "browserTarget": "Betoken:build:ja"
+            },
+            "pt": {
+              "browserTarget": "Betoken:build:pt"
             }
           }
         },
         "extract-i18n": {
-          "builder": "@angular-builders/custom-webpack:extract-i18n",
+          "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
             "browserTarget": "Betoken:build"
           }
@@ -131,7 +206,7 @@
       "projectType": "application",
       "architect": {
         "e2e": {
-          "builder": "@angular-builders/custom-webpackr:protractor",
+          "builder": "@angular-builders/custom-webpack:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
             "devServerTarget": "Betoken:serve"
@@ -143,7 +218,7 @@
           }
         },
         "lint": {
-          "builder": "@angular-builders/custom-webpackr:tslint",
+          "builder": "@angular-builders/custom-webpack:tslint",
           "options": {
             "tsConfig": "e2e/tsconfig.e2e.json",
             "exclude": [

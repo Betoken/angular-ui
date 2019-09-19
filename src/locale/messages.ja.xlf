@@ -1,0 +1,1286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
+  <file original="ng2.template" datatype="plaintext" xml:space="preserve" source-language="en" target-language="ja">
+    <header>
+      <tool tool-id="poeditor.com" tool-name="POEditor"/>
+    </header>
+    <body>
+      <trans-unit id="headerGetUpdateModalSubtitle1">
+        <source>Capital connection</source>
+        <target>資金を繋ぐ</target>
+      </trans-unit>
+      <trans-unit id="headerGetUpdateModalText1">
+        <source>Get updated when you can connect or withdraw your capital.</source>
+        <target>ファンドの購入と解約ができるときに通知されます。</target>
+      </trans-unit>
+      <trans-unit id="headerGetUpdateModalSubtitle2">
+        <source>Monthly performance results</source>
+        <target>月間パフォーマンス</target>
+      </trans-unit>
+      <trans-unit id="headerGetUpdateModalText2">
+        <source>Get insights into how your holdings perform month by month.</source>
+        <target>今月の資金パフォーマンスの総括。</target>
+      </trans-unit>
+      <trans-unit id="headerGetUpdateModalSubtitle3">
+        <source>Manager commissions</source>
+        <target>マネージャーコミッション</target>
+      </trans-unit>
+      <trans-unit id="headerGetUpdateModalText3">
+        <source>Be the first to know when to redeem your manager's commissions.</source>
+        <target>コミッションが受け取り可能な時に通知されます。</target>
+      </trans-unit>
+      <trans-unit id="headerLanguageModalTitle">
+        <source>Switch to another language</source>
+        <target>言語変更</target>
+      </trans-unit>
+      <trans-unit id="sidebarToggleManage">
+        <source>Manage</source>
+        <target>管理</target>
+      </trans-unit>
+      <trans-unit id="sidebarNavDashboard">
+        <source>Dashboard</source>
+        <target>ダッシュボード</target>
+      </trans-unit>
+      <trans-unit id="sidebarNavInvestments">
+        <source>Investments</source>
+        <target>資金運用</target>
+      </trans-unit>
+      <trans-unit id="sidebarNavMarket">
+        <source>Market</source>
+        <target>マーケット情報</target>
+      </trans-unit>
+      <trans-unit id="sidebarNavRankings">
+        <source>Rankings</source>
+        <target>ランキング</target>
+      </trans-unit>
+      <trans-unit id="sidebarNavCommissions">
+        <source>Commissions</source>
+        <target>コミッション</target>
+      </trans-unit>
+      <trans-unit id="sidebarNavUpgrade">
+        <source>Upgrade Governance</source>
+        <target>仕様更新投票</target>
+      </trans-unit>
+      <trans-unit id="sidebarToggleInvest">
+        <source>Invest</source>
+        <target>投資</target>
+      </trans-unit>
+      <trans-unit id="sidebarNavHelp">
+        <source>Help</source>
+        <target>Help</target>
+      </trans-unit>
+      <trans-unit id="sidebarNavRateUs">
+        <source>Rate us</source>
+        <target>Rate us</target>
+      </trans-unit>
+      <trans-unit id="dashboardHeaderTitle">
+        <source>Your Stats</source>
+        <target>あなたの統計</target>
+      </trans-unit>
+      <trans-unit id="dashboardYourRankingTitle">
+        <source>Your Ranking</source>
+        <target>順位</target>
+      </trans-unit>
+      <trans-unit id="dashboardBetokenStatsTitle">
+        <source>Betoken Stats</source>
+        <target>Betokenの統計</target>
+      </trans-unit>
+      <trans-unit id="dashboardRoiTitle">
+        <source>ROI (Current Cycle)</source>
+        <target>投資収益率（現在のサイクル）</target>
+      </trans-unit>
+      <trans-unit id="dashboardRoiSinceInceptionTitle">
+        <source>ROI (Since Inception)</source>
+        <target>投資収益率（創設以来）</target>
+      </trans-unit>
+      <trans-unit id="dashboardTotalFundManagersTitle">
+        <source>Total fund managers</source>
+        <target>総ファンドマネージャー</target>
+      </trans-unit>
+      <trans-unit id="investmentsHeaderTitle">
+        <source>Your Investments</source>
+        <target>あなたの資金運用ステータス</target>
+      </trans-unit>
+      <trans-unit id="investmentsRiskTakenTitle">
+        <source>Risk Taken</source>
+        <target>Risk Taken</target>
+      </trans-unit>
+      <trans-unit id="investmentsActiveInvestmentsTableTitle">
+        <source>Active Investments</source>
+        <target>稼働中の投資</target>
+      </trans-unit>
+      <trans-unit id="investmentsNoActiveInvestments">
+        <source>You have no active investments</source>
+        <target>稼働中の投資はありません。</target>
+      </trans-unit>
+      <trans-unit id="investmentsPastInvestmentsTableTitle">
+        <source>Past Investments</source>
+        <target>閉じた投資</target>
+      </trans-unit>
+      <trans-unit id="investmentsBuyModalTitleStep0">
+        <source>Select An Asset</source>
+        <target>Select An Asset</target>
+      </trans-unit>
+      <trans-unit id="investmentsBuyModalTitleStep1">
+        <source>Buy</source>
+        <target>Buy</target>
+      </trans-unit>
+      <trans-unit id="investmentsBuyModalAssetLabelMarginTrading">
+        <source>Margin Trading</source>
+        <target>Margin Trading</target>
+      </trans-unit>
+      <trans-unit id="investmentsBuyModalFulcrumMinStake">
+        <source>Minimum stake:</source>
+        <target>Minimum stake: KRO</target>
+      </trans-unit>
+      <trans-unit id="investmentsBuyModalOrderTypeSelect">
+        <source>Order type</source>
+        <target>Order type</target>
+      </trans-unit>
+      <trans-unit id="investmentsBuyModalAdvancedOptionSubTitle">
+        <source>Max acceptable price</source>
+        <target>許容最大価格</target>
+      </trans-unit>
+      <trans-unit id="investmentsBuyModalMarginTradingPayoutTitle">
+        <source>Payout</source>
+        <target>Payout</target>
+      </trans-unit>
+      <trans-unit id="investmentsBuyModalMarginTradingPayoutText1">
+        <source>This order multiplies your returns by</source>
+        <target>This order multiplies your returns by x.</target>
+      </trans-unit>
+      <trans-unit id="investmentsBuyModalMarginTradingLiquidationTitle">
+        <source>Liquidation</source>
+        <target>清算</target>
+      </trans-unit>
+      <trans-unit id="investmentsModalSellOrderLeverage">
+        <source>Leverage</source>
+        <target>Leverage</target>
+      </trans-unit>
+      <trans-unit id="investmentsModalSellOrderBuyTime">
+        <source>OPENED</source>
+        <target>OPENED</target>
+      </trans-unit>
+      <trans-unit id="investmentsModalSellStakedKro">
+        <source>Staked KRO</source>
+        <target>賭けたKRO</target>
+      </trans-unit>
+      <trans-unit id="investmentsModalSellKroToRedeem">
+        <source>KRO to Redeem</source>
+        <target>回収できるKRO</target>
+      </trans-unit>
+      <trans-unit id="investmentsModalSellMarginPositionPrice">
+        <source>Margin Position Price</source>
+        <target>Margin Position Price</target>
+      </trans-unit>
+      <trans-unit id="investmentsModalSellFulcrumLiquidationPrice">
+        <source>Liquidation Price</source>
+        <target>清算価格</target>
+      </trans-unit>
+      <trans-unit id="investmentsModalSellFulcrumLiquidationText">
+        <source>If the margin position price falls below the liquidation price, this order will be liquidated, which will cause huge losses. When the order is in danger of liquidation, sell it.</source>
+        <target>証拠金ポジションの価格が清算価格を下回ると、この注文は清算され、多大な損失が発生します。ポジションが清算の危険にさらされている場合は事前にそれを売ってください。</target>
+      </trans-unit>
+      <trans-unit id="investmentsModalSellProportionAssetsToSell">
+        <source>Proportion of assets to sell</source>
+        <target>売る資産の割合</target>
+      </trans-unit>
+      <trans-unit id="investmentsModalSellAdvancedOptionSubtite">
+        <source>Min acceptable price</source>
+        <target>許容最小価格</target>
+      </trans-unit>
+      <trans-unit id="investmentsModalSellTextStep3">
+        <source>You have successfully sold the investment and redeemed your Kairo tokens.</source>
+        <target>投資の売却に成功し、KROを回収しました。</target>
+      </trans-unit>
+      <trans-unit id="investmentsModalSellCtaContinue">
+        <source>Sell Investment</source>
+        <target>Sell Investment</target>
+      </trans-unit>
+      <trans-unit id="investmentsModalTopUpStep0">
+        <source>Top up your order</source>
+        <target>Top up your order</target>
+      </trans-unit>
+      <trans-unit id="investmentsModalTopUpCollateralTarget">
+        <source>Collateralization target</source>
+        <target>Collateralization target</target>
+      </trans-unit>
+      <trans-unit id="investmentsModalTopUpMaxPossibleCollRatio">
+        <source>Max possible collateral ratio</source>
+        <target>Max possible collateral ratio</target>
+      </trans-unit>
+      <trans-unit id="investmentsModalTopUpTextStep3">
+        <source>You have successfully topped up the order.</source>
+        <target>You have successfully topped up the order.</target>
+      </trans-unit>
+      <trans-unit id="upgradeHeaderTitle">
+        <source>Upgrade Governance</source>
+        <target>仕様更新投票</target>
+      </trans-unit>
+      <trans-unit id="upgradeCardTitle">
+        <source>Upgrade proposals</source>
+        <target>提案されている仕様</target>
+      </trans-unit>
+      <trans-unit id="upgradeCardSubtitle">
+        <source>No active upgrade proposals</source>
+        <target>現在提案されている仕様はありません。</target>
+      </trans-unit>
+      <trans-unit id="upgradeCardText">
+        <source>During the Intermission phase of each cycle, the managers may decide to initiate an upgrade via a simple majority vote using their Kairo tokens. If the vote passed, then during the Manage phase, managers may use their Kairo tokens to vote on which smart contract should be accepted as the new version. Learn more</source>
+        <target>各サイクルの中断時に、マネージャーはKROを使用して単純多数決でアップグレード開始を決定できます。 投票に合格した場合、管理フェーズでマネージャはKROを使用して、どのスマート契約を新しいバージョンとして承認するかを投票できます。Learn more</target>
+      </trans-unit>
+      <trans-unit id="upgradeCardSubtitle2">
+        <source>Time of the upgrade governance system's activation</source>
+        <target>仕様更新投票のアクティブ化</target>
+      </trans-unit>
+      <trans-unit id="upgradeCardTimeLeft">
+        <source>7:30AM UTC, September 29th, 2019</source>
+        <target>7:30 AM UTC、2019年9月29日</target>
+      </trans-unit>
+      <trans-unit id="commissionsHeaderTitle">
+        <source>Commissions</source>
+        <target>コミッション</target>
+      </trans-unit>
+      <trans-unit id="commissionsExpectedCommissionThisMonth">
+        <source>Your Expected Commission This Month</source>
+        <target>今月の予測されたコミッション</target>
+      </trans-unit>
+      <trans-unit id="commissionsHistoryTitle">
+        <source>Your Commission History</source>
+        <target>コミッション履歴</target>
+      </trans-unit>
+      <trans-unit id="commissionsTheadCycleNb">
+        <source>Cycle Number</source>
+        <target>Cycle Number</target>
+      </trans-unit>
+      <trans-unit id="commissionsNoComYet">
+        <source>You have not received any commission yet</source>
+        <target>まだコミッションを受け取っていません</target>
+      </trans-unit>
+      <trans-unit id="commissionsRedeemModalStep0Title">
+        <source>Redeem your commissions</source>
+        <target>コミッションを受け取る</target>
+      </trans-unit>
+      <trans-unit id="commissionsRedeemModalBodyStep1Title">
+        <source>This month's commission</source>
+        <target>This month's commission</target>
+      </trans-unit>
+      <trans-unit id="commissionsRedeemModalAdvancedOptionSubtitle">
+        <source>Redeem commisssion for a particular cycle</source>
+        <target>特定のサイクルのコミッションを受け取る</target>
+      </trans-unit>
+      <trans-unit id="commissionsRedeemModalAdvancedOptionText">
+        <source>Only use this when normal redemption fails</source>
+        <target>通常のコミッション受け取りが失敗した場合にのみ使用してください。</target>
+      </trans-unit>
+      <trans-unit id="commissionsRedeemModalCtaRedeemBtks">
+        <source>Redeem in $BTKS</source>
+        <target>BTKSで受け取る</target>
+      </trans-unit>
+      <trans-unit id="commissionsRedeemModalCtaRedeemDAI">
+        <source>Redeem in $DAI</source>
+        <target>DAIで受け取る</target>
+      </trans-unit>
+      <trans-unit id="commissionsDoYouKnowTitle">
+        <source>Do you know?</source>
+        <target>Do you know?</target>
+      </trans-unit>
+      <trans-unit id="commissionsDoYouKnowText">
+        <source>You can redeem your commissions in Betoken fund shares (BTKS) - meaning you swap your commissions for an equivalent number of shares in the fund. By doing so, you will make the fund Assets Under Management (AUM) grow quicker. A bigger AUM means more money to manage in the next cycle, and more commissions for you.</source>
+        <target>あなたはBetokenファンド株（BTKS）でコミッションを受け取ることができます - ファンド株とコミッションを交換することを意味します。そうすることで、ファンドの運用資産（AUM）をより早く成長させることができます。 AUMが大きいほど次のサイクルで管理する資金が増え、コミッションが増えます。</target>
+      </trans-unit>
+      <trans-unit id="rankingsHeaderTitle">
+        <source>Managers Ranking</source>
+        <target>マネージャーランキング</target>
+      </trans-unit>
+      <trans-unit id="rankingsKroBalance&amp;Return">
+        <source>Kairo balance &amp; current ROI</source>
+        <target>KRO所有量と現在の損益</target>
+      </trans-unit>
+      <trans-unit id="rankingsThRank">
+        <source>Rank</source>
+        <target>Rank</target>
+      </trans-unit>
+      <trans-unit id="rankingsThWalletAddress">
+        <source>Manager</source>
+        <target>Manager</target>
+      </trans-unit>
+      <trans-unit id="rankingsKroBalance">
+        <source>Kairo Balance</source>
+        <target>Kairo Balance</target>
+      </trans-unit>
+      <trans-unit id="rankingsThCurrentMoRoi">
+        <source>Current Month ROI</source>
+        <target>Current Month ROI</target>
+      </trans-unit>
+      <trans-unit id="rankingsFriendsOfBetokenBadge">
+        <source>Betoken Evangelist</source>
+        <target>Betoken Evangelist</target>
+      </trans-unit>
+      <trans-unit id="investorHeaderTitle">
+        <source>Your Stats</source>
+        <target>Your Stats</target>
+      </trans-unit>
+      <trans-unit id="investorBtksBalance">
+        <source>Betoken Shares Balance</source>
+        <target>Betoken Shares Balance</target>
+      </trans-unit>
+      <trans-unit id="investorBtksTotalValueDai">
+        <source>Total value</source>
+        <target>Total value</target>
+      </trans-unit>
+      <trans-unit id="investorBetokenHistoricalReturn">
+        <source>Betoken Historical Returns</source>
+        <target>Betoken Historical Returns</target>
+      </trans-unit>
+      <trans-unit id="investorPriceChange">
+        <source>Price Change (Current Cycle)</source>
+        <target>Price Change (現在のサイクル)</target>
+      </trans-unit>
+      <trans-unit id="investorPriceChangeSinceInception">
+        <source>Price Change (Since Inception)</source>
+        <target>Price Change (創設以来)</target>
+      </trans-unit>
+      <trans-unit id="investorMaxDrawdown">
+        <source>Max Drawdown</source>
+        <target>最大下落率</target>
+      </trans-unit>
+      <trans-unit id="investorDepositWithdrawHistoryTitle">
+        <source>Your Deposit &amp; Withdraw History</source>
+        <target>入出金履歴</target>
+      </trans-unit>
+      <trans-unit id="investorDepositWithdrawHistoryType">
+        <source>Type</source>
+        <target>Type</target>
+      </trans-unit>
+      <trans-unit id="investorDepositBadge">
+        <source>Deposit</source>
+        <target>入金</target>
+      </trans-unit>
+      <trans-unit id="investorWithdrawBadge">
+        <source>Withdraw</source>
+        <target>出金</target>
+      </trans-unit>
+      <trans-unit id="investorBuyBtksModalIWantToBuyWith">
+        <source>I want to buy Betoken shares with</source>
+        <target>I want to buy Betoken Shares with</target>
+      </trans-unit>
+      <trans-unit id="investorBuyBtksModalTweet">
+        <source>Tweet about it</source>
+        <target>Tweet about it</target>
+      </trans-unit>
+      <trans-unit id="investorBuyBtksModalCtaBuy">
+        <source>Buy Betoken shares</source>
+        <target>BTKSを買う</target>
+      </trans-unit>
+      <trans-unit id="investorSellBtksModalTitleStep0">
+        <source>How many Betoken shares do you want to sell?</source>
+        <target>BTKSをいくつ売却しますか？</target>
+      </trans-unit>
+      <trans-unit id="investorSellBtksModalTitleOperationNonPermitted">
+        <source>Operation not permitted</source>
+        <target>Operation not permitted</target>
+      </trans-unit>
+      <trans-unit id="investorSellBtksModalIWantToSell">
+        <source>I want to sell</source>
+        <target>I want to sell</target>
+      </trans-unit>
+      <trans-unit id="investorSellBtksModalIWantToReceive">
+        <source>I want to receive</source>
+        <target>I want to receive</target>
+      </trans-unit>
+      <trans-unit id="investorSellBtksModalSellBtksFor">
+        <source>Sell Betoken shares for</source>
+        <target>Sell BTKS for</target>
+      </trans-unit>
+      <trans-unit id="investorOnboardingHeaderPreTitle">
+        <source>Welcome To</source>
+        <target>Welcome To</target>
+      </trans-unit>
+      <trans-unit id="investorOnboardingHeaderTitle">
+        <source>Betoken Fund</source>
+        <target>Betoken Fund</target>
+      </trans-unit>
+      <trans-unit id="investorOnboardingHeaderSubtitle">
+        <source>If you think 2 brains are better than one...How about hundreds of talented asset managers working for you? Worldwide!</source>
+        <target>2つの頭脳が1つよりも優れていると思うならば…あなたのために働いている何百もの才能のある資産運用者はどうですか？Worldwide!</target>
+      </trans-unit>
+      <trans-unit id="investorOnboardingIntroSubtitle1">
+        <source>Crowd-powered finance</source>
+        <target>クラウドファイナンス</target>
+      </trans-unit>
+      <trans-unit id="investorOnboardingIntroSubtitle2">
+        <source>70+ assets</source>
+        <target>70+ assets</target>
+      </trans-unit>
+      <trans-unit id="investorOnboardingIntroText2">
+        <source>By depositing your capital on Betoken protocol, you gain exposure to ETH, WBTC, BAT, MKR and 70+ ERC20 tokens.</source>
+        <target>あなたの資金をBetokenプロトコルに接続することによって、あなたはETH、WBTC、BAT、MKRおよび70種類以上のERC20トークンから利益を受け取る機会を得ます。</target>
+      </trans-unit>
+      <trans-unit id="investorOnboardingIntroSubtitle3">
+        <source>No limits, no hidden fees</source>
+        <target>上限下限の制限なし、隠れた手数料なし</target>
+      </trans-unit>
+      <trans-unit id="investorOnboardingIntroSubtitle4">
+        <source>Non-custodial</source>
+        <target>Non-custodial</target>
+      </trans-unit>
+      <trans-unit id="investorOnboardingIntroText4">
+        <source>You always stay in control, it’s written on the blockchain. All user funds are locked in smart contracts, no one but you has direct access to those funds.</source>
+        <target>あなたはいつも自己資金をコントロールし続けます、それはブロックチェーンに書かれています。すべてのユーザー資金はスマート契約に閉じ込められていますが、あなたはそれらの資金に直接アクセスできます。</target>
+      </trans-unit>
+      <trans-unit id="investorOnboardingConnectStatus">
+        <source>No Wallet Connected</source>
+        <target>No Wallet Connected</target>
+      </trans-unit>
+      <trans-unit id="investorOnboardingFaqQ1">
+        <source>Can I buy and sell Betoken Shares at any time?</source>
+        <target>私はいつでもBTKSを売買することができますか？</target>
+      </trans-unit>
+      <trans-unit id="investorOnboardingFaqQ2">
+        <source>How can I buy Betoken Shares?</source>
+        <target>BTKSを購入するにはどうすればよいですか？</target>
+      </trans-unit>
+      <trans-unit id="investorOnboardingFaqA2">
+        <source>Click on the Get Started button and follow the instructions. You'll be able to use Ether or any of our 70+ supported ERC-20 tokens to buy Betoken Shares.</source>
+        <target>[Get Started]ボタンをクリックして指示に従います。あなたはBetoken Shares（BTKS）を買うためにEtherか70種以上のサポートされたERC-20トークンのどれでも使うことができるでしょう。</target>
+      </trans-unit>
+      <trans-unit id="investorOnboardingFaqQ3">
+        <source>What is the fees structure?</source>
+        <target>料金体系は？</target>
+      </trans-unit>
+      <trans-unit id="investorOnboardingFaqA3Title1">
+        <source>Management fees</source>
+        <target>管理手数料</target>
+      </trans-unit>
+      <trans-unit id="investorOnboardingFaqA3Text1">
+        <source>After the management phase is over (every 27 days):</source>
+        <target>管理フェーズが終了した後（27日ごと）：</target>
+      </trans-unit>
+      <trans-unit id="investorOnboardingFaqA3Title2">
+        <source>IF the fund is profitable OR not profitable</source>
+        <target>ファンドに収益性があるか収益性がないかによって異なります。</target>
+      </trans-unit>
+      <trans-unit id="investorOnboardingFaqA3Text2">
+        <source>0.1% of the total Betoken funds is set aside as commission and distributed among fund manager holding Kairo tokens every investment cycle. In order to provide funding for its maintenance and future development, Betoken will mint Betoken Shares and send them to the current development team. The amount will be equal to 0.1% of the current Betoken Shares total supply, and it will occur at the end of every investment cycle.</source>
+        <target>Betokenの全資金の0.1％が確保され、Kairoを保有するファンドマネージャーの間で分配されます。また、メンテナンスと将来の開発のための資金を提供するために、BetokenプロトコルはBTKSを作り出し、それを現在の開発チームに送ります。この金額は現在のBetoken Sharesの総供給量の0.1％になり、各投資サイクルの終わりに発生します。</target>
+      </trans-unit>
+      <trans-unit id="investorOnboardingFaqA3Title3">
+        <source>ONLY IF the fund is profitable</source>
+        <target>ファンドが収益性がある場合のみ</target>
+      </trans-unit>
+      <trans-unit id="investorOnboardingFaqA3text3">
+        <source>20% of the total Betoken's monthly profits is set aside as commission and distributed among fund managers holding Kairo tokens proportional to the amount they hold and their risk profile. This part of the commission is taken into account IF and ONLY IF the fund is profitable during the investment cycle.</source>
+        <target>Betokenの毎月の利益の20％はコミッションとして確保され、Kairoを持っているファンドマネジャーの間で彼らが持っている数量とリスクプロファイルに比例して分配されます。このコミッションは、実際の投資サイクルの間にファンドが収益を上げられる場合に限り発生します。</target>
+      </trans-unit>
+      <trans-unit id="investorOnboardingFaqA3Title4">
+        <source>Redemptions fee</source>
+        <target>償還手数料</target>
+      </trans-unit>
+      <trans-unit id="investorOnboardingFaqA3Text4">
+        <source>Redemptions incur no withdrawal fee.</source>
+        <target>償還には引き出し手数料はかかりません。</target>
+      </trans-unit>
+      <trans-unit id="investorOnboardingFaqQ4">
+        <source>How can I follow the activity of the fund?</source>
+        <target>ファンドの活動をどのように追跡できますか？</target>
+      </trans-unit>
+      <trans-unit id="investorOnboardingFaqA4">
+        <source>You have access to a dashboard where you can view your capital account.</source>
+        <target>資金の状態を表示できるダッシュボードにアクセスできます。</target>
+      </trans-unit>
+      <trans-unit id="appFetchingText">
+        <source>Loading Betoken</source>
+        <target>Fetching data</target>
+      </trans-unit>
+      <trans-unit id="investorOnboardingBuyBtksModalIWantToBuyWith">
+        <source>I want to buy Betoken shares with</source>
+        <target>I want to buy Betoken Shares with</target>
+      </trans-unit>
+      <trans-unit id="investorOnboardingBuyBtksModalCtaTweet">
+        <source>Tweet about it</source>
+        <target>Tweet about it</target>
+      </trans-unit>
+      <trans-unit id="investorOnboardingBuyBtksModalCtaBuy">
+        <source>Buy Betoken shares</source>
+        <target>BTKSを買う</target>
+      </trans-unit>
+      <trans-unit id="investorOnboardingBuyBtksModalCtaGoToDashboard">
+        <source>Investor Dashboard</source>
+        <target>投資家ダッシュボード</target>
+      </trans-unit>
+      <trans-unit id="managerOnboardingHeaderPretitle">
+        <source>Become a</source>
+        <target>Become a</target>
+      </trans-unit>
+      <trans-unit id="managerOnboardingHeaderTitle">
+        <source>Fund Manager</source>
+        <target>Fund Manager</target>
+      </trans-unit>
+      <trans-unit id="managerOnboardingHeaderSubtitle">
+        <source>Connect your crypto-trading expertise to the Betoken's pool of capital and earn commissions!</source>
+        <target>暗号通貨トレードの専門知識を活用して、コミッションを獲得しましょう！</target>
+      </trans-unit>
+      <trans-unit id="managerOnboardingIntroSubTitle1">
+        <source>The best managers earn the most</source>
+        <target>The best managers earn the most</target>
+      </trans-unit>
+      <trans-unit id="managerOnboardingIntroSubTitle2">
+        <source>Margin trading and instant liquidity</source>
+        <target>Margin trading and instant liquidity</target>
+      </trans-unit>
+      <trans-unit id="managerOnboardingIntroSubText2">
+        <source>Betoken uses the full value of the open finance ecosystem like Kyber Network, Compound, Fulcrum by bZx and DAI stable coin. These financial primitives enable margin trading with up to 4x leverage on Betoken and guaranteed liquidity.</source>
+        <target>Betokenは、Kyber Network、Compound、Fulcrum by bZx、DAIステーブルコインなどのオープンファイナンスエコシステムの価値を最大限に活用しています。これらの金融プリミティブにより、Betokenは最大4倍のレバレッジと保証された流動性を使用したマージン取引が可能になります。</target>
+      </trans-unit>
+      <trans-unit id="managerOnboardingConnectStatus">
+        <source>No Wallet Connected</source>
+        <target>No Wallet Connected</target>
+      </trans-unit>
+      <trans-unit id="managerOnboardingAlreadyManagerText">
+        <source>You are already a manager.</source>
+        <target>You are already a manager.</target>
+      </trans-unit>
+      <trans-unit id="managerOnboardingCtaSignIn">
+        <source>Sign in</source>
+        <target>Sign in</target>
+      </trans-unit>
+      <trans-unit id="managerOnboardingFaqQ1">
+        <source>What is Kairo token?</source>
+        <target>Kairoとは何ですか？</target>
+      </trans-unit>
+      <trans-unit id="managerOnboardingFaqA1">
+        <source>Kairo is Betoken's non-transferable reputation token. Managers need to possess Kairo tokens to manage funds on Betoken. They represent how good a manager is at investing. The more Kairo tokens you have, the more money in the Betoken fund you can manage and the more income you’ll get every month as commissions on your investments.</source>
+        <target>KairoはBetokenの譲渡不可能な評判トークンです。マネージャーはBetokenで資金を管理するためにKROを所有する必要があります。KROはマネジャーの投資能力を表しています。所有するKROが多ければ多いほど、管理できるBetokenファンドの資金が増え、投資のコミッションとして毎月獲得できる収入が増えます。</target>
+      </trans-unit>
+      <trans-unit id="managerOnboardingFaqQ2">
+        <source>How can I buy Kairo tokens?</source>
+        <target>KROを購入するにはどうすればよいですか？</target>
+      </trans-unit>
+      <trans-unit id="managerOnboardingFaqA2">
+        <source>Click on the Get Started button and follow the instructions. You'll be able to use Ether or any of our 70+ supported ERC-20 tokens to buy Kairo tokens.</source>
+        <target>[Get Started]ボタンをクリックして指示に従います。 Etherまたは70種以上のサポートされているERC-20トークンを使用して、Kairoトークン（KRO）を購入できます。</target>
+      </trans-unit>
+      <trans-unit id="managerOnboardingFaqQ3">
+        <source>Do I receive my Kairo tokens immediately after purchase?</source>
+        <target>購入後すぐにKROを受け取りますか？</target>
+      </trans-unit>
+      <trans-unit id="managerOnboardingFaqA3">
+        <source>Yes. The Kairo tokens will be given to your wallet after your purchase transaction has been accepted by the Ethereum blockchain, which may take up to a few minutes.</source>
+        <target>はい。購入トランザクションがイーサリアムブロックチェーンによって受け入れられた後、KROがウォレットに渡されます。これには数分かかる場合があります。</target>
+      </trans-unit>
+      <trans-unit id="managerOnboardingFaqQ4">
+        <source>What is the commissions structure?</source>
+        <target>コミッションの仕組みはどのようなものですか？</target>
+      </trans-unit>
+      <trans-unit id="managerOnboardingFaqA4Title1">
+        <source>Management commissions</source>
+        <target>管理コミッション</target>
+      </trans-unit>
+      <trans-unit id="managerOnboardingFaqA4Title2">
+        <source>IF the fund is profitable OR not profitable</source>
+        <target>ファンドが収益性がある場合または収益性がない場合によって異なります。</target>
+      </trans-unit>
+      <trans-unit id="managerOnboardingFaqA4Text2">
+        <source>0.1% of the total Betoken funds is set aside as commission and distributed among fund manager holding Kairo tokens.</source>
+        <target>Betokenファンドの合計の0.1％が確保され、KROを保有するファンドマネージャーに分配されます。</target>
+      </trans-unit>
+      <trans-unit id="managerOnboardingFaqA4Title3">
+        <source>ONLY IF the fund is profitable</source>
+        <target>ファンドが収益性がある場合のみ</target>
+      </trans-unit>
+      <trans-unit id="managerOnboardingFaqA4Text3">
+        <source>20% of the total Betoken's monthly profits is set aside as commission and distributed among fund managers holding Kairo tokens proportional to the amount they hold and their risk profile. This part of the commission is taken into account IF and ONLY IF the fund is profitable during the investment cycle.</source>
+        <target>Betokenの毎月の総利益の20％はコミッションとして確保され、KRO保有量とリスクプロファイルに比例してファンドマネージャーに分配されます。これはファンドが実際の投資サイクルで収益性がある場合にのみ計算されます。</target>
+      </trans-unit>
+      <trans-unit id="managerOnboardingFaqQ5">
+        <source>How can I manage and follow the activity of the fund?</source>
+        <target>ファンドの活動をどのように管理し、フォローできますか？</target>
+      </trans-unit>
+      <trans-unit id="managerOnboardingFaqA5">
+        <source>You have access to a Portal where you can view Betoken's fund performances and your manager trading interface.</source>
+        <target>Betokenのファンドのパフォーマンスとマネージャーの取引インターフェースを表示できるポータルにアクセスできます。</target>
+      </trans-unit>
+      <trans-unit id="managerOnboardingFaqQ6">
+        <source>Can I sell my Kairo tokens?</source>
+        <target>KROを売ることはできますか？</target>
+      </trans-unit>
+      <trans-unit id="managerOnboardingFaqA6">
+        <source>No. Kairo is a non-transferable reputation token, which means that you cannot sell or give your Kairo tokens to someone else.</source>
+        <target>いいえ。KROは譲渡できない評判トークンです。つまり、KROを他人に販売または譲渡することはできません。</target>
+      </trans-unit>
+      <trans-unit id="managerOnboardingFaqQ7">
+        <source>Can I buy more Kairo tokens after with the same Wallet address?</source>
+        <target>同じウォレットアドレスでKROを追加購入できますか？</target>
+      </trans-unit>
+      <trans-unit id="managerOnboardingFaqA7">
+        <source>No. You can only buy Kairo tokens once per Ethereum account.</source>
+        <target>いいえ。KROはイーサリアムアカウントごとに1回しか購入できません。\nKROの分布と価格の詳細。</target>
+      </trans-unit>
+      <trans-unit id="managerOnboardingBuyBtksModalTitleStep1">
+        <source>How many Kairo tokens do you want to buy?</source>
+        <target>KROをいくつ購入しますか？</target>
+      </trans-unit>
+      <trans-unit id="managerOnboardingBuyBtksModalIWantToBuyWith">
+        <source>I want to buy Kairo tokens with</source>
+        <target>I want to buy Kairo with</target>
+      </trans-unit>
+      <trans-unit id="managerOnboardingBuyBtksModalMaxPaymentAmount">
+        <source>Maximum purchase:</source>
+        <target>最大購入可能量:</target>
+      </trans-unit>
+      <trans-unit id="managerOnboardingBuyBtksModalKroToreceive">
+        <source>Kairo tokens to receive</source>
+        <target>Kairo tokens to receive</target>
+      </trans-unit>
+      <trans-unit id="managerOnboardingBuyBtksModalAmountToManage">
+        <source>Assets under your management</source>
+        <target>Amount you will manage</target>
+      </trans-unit>
+      <trans-unit id="managerOnboardingBuyBtksModalCtaBuy">
+        <source>Buy Kairo tokens</source>
+        <target>KROを買う</target>
+      </trans-unit>
+      <trans-unit id="managerOnboardingBuyBtksModalManagerDashboard">
+        <source>Manager Portal</source>
+        <target>マネージャーポータル</target>
+      </trans-unit>
+      <trans-unit id="marketHeaderTitle">
+        <source>Market</source>
+        <target>マーケット</target>
+      </trans-unit>
+      <trans-unit id="marketPrice&amp;Trends">
+        <source>Prices &amp; Trends</source>
+        <target>Prices &amp; Trends</target>
+      </trans-unit>
+      <trans-unit id="marketThAsset">
+        <source>Asset</source>
+        <target>Asset</target>
+      </trans-unit>
+      <trans-unit id="marketTh24hVol">
+        <source>24h Volume (USD)</source>
+        <target>24h Volume (USD)</target>
+      </trans-unit>
+      <trans-unit id="marketTh7dChange">
+        <source>7d Change</source>
+        <target>7d Change</target>
+      </trans-unit>
+      <trans-unit id="marketTh1mChange">
+        <source>1m Change</source>
+        <target>1m Change</target>
+      </trans-unit>
+      <trans-unit id="headerGetUpdateModalAriaDescribedby">
+        <source>Get update modal by email</source>
+        <target>e-mailで通知を受け取る</target>
+      </trans-unit>
+      <trans-unit id="headerLanguageModalAriaDescribedby">
+        <source>Switch to another language</source>
+        <target>言語変更</target>
+      </trans-unit>
+      <trans-unit id="sidebarBurgerIconAriaLabel">
+        <source>Toggle navigation</source>
+        <target>Toggle navigation</target>
+      </trans-unit>
+      <trans-unit id="sidebarColorSchemeValueLight">
+        <source>light</source>
+        <target>light</target>
+      </trans-unit>
+      <trans-unit id="sidebarColorSchemeValueDark">
+        <source>dark</source>
+        <target>dark</target>
+      </trans-unit>
+      <trans-unit id="dashboardYourRankingAttrTitle">
+        <source>Your ranking among Betoken's managers based on your Kairo tokens balance</source>
+        <target>KRO残高に基づくマネージャーランキング</target>
+      </trans-unit>
+      <trans-unit id="dashboardTotalFundManagersAttrTitle">
+        <source>Number of fund managers actively managing Betoken's assets.</source>
+        <target>アクティブなファンドマネージャーの数です。</target>
+      </trans-unit>
+      <trans-unit id="investmentsRiskTakenAttrTitle">
+        <source>The more Kairo tokens you stake, the more of Betoken's money you put at work, the more commissions you earn.</source>
+        <target>より多くのKROを使って投資を行うことにより、より多くのコミッションを獲得できます。</target>
+      </trans-unit>
+      <trans-unit id="investmentsActiveInvestmentsPortfolioViewAriaLabel">
+        <source>Portfolio view</source>
+        <target>Portfolio view</target>
+      </trans-unit>
+      <trans-unit id="investmentsSearchListAssetsPlaceholder">
+        <source>Search</source>
+        <target>Search</target>
+      </trans-unit>
+      <trans-unit id="upgradeCardTimeLeftIllustrationAttrAlt">
+        <source>illustration Woman and dog with a active spinner</source>
+        <target>illustration Woman and dog with a active spinner</target>
+      </trans-unit>
+      <trans-unit id="commissionsTotalCommissionsReceivedAttrTitle">
+        <source>The total amount of commission you have received throughout your manager career.</source>
+        <target>今まで受け取ったコミッションの合計額。</target>
+      </trans-unit>
+      <trans-unit id="commissionsRedeemModalAdvancedOptionTextAriaDescribedby">
+        <source>cycle for which to redeem commission</source>
+        <target>cycle for which to redeem commission</target>
+      </trans-unit>
+      <trans-unit id="commissionsRedeemModalBodyTxHashStep2ArialLabel">
+        <source>Transaction hash</source>
+        <target>Transaction hash</target>
+      </trans-unit>
+      <trans-unit id="rankingsSearchPlaceholder">
+        <source>Search</source>
+        <target>Search</target>
+      </trans-unit>
+      <trans-unit id="investorBtksBalanceAttrTitle">
+        <source>The amount of Betoken Shares tokens (BTKS) you own.</source>
+        <target>所有するBetoken Shares（BTKS）の量。</target>
+      </trans-unit>
+      <trans-unit id="investorBtksTotalValueDaiAttrTitle">
+        <source>The value of your Betoken Shares, in DAI Stablecoin.</source>
+        <target>DAI建てのBetoken Sharesの価値。</target>
+      </trans-unit>
+      <trans-unit id="investorBtksPriceAttrTitle">
+        <source>The price of 1 Betoken Share token.</source>
+        <target>1BTKSの価格</target>
+      </trans-unit>
+      <trans-unit id="investorMaxDrawdownAttrTitle">
+        <source>A maximum drawdown (MDD) is the maximum observed loss from a peak to a trough of a portfolio, before a new peak is attained. Maximum drawdown is an indicator of downside risk over a specified time period.</source>
+        <target>最大下落率は、新しい頂点に到達する前の、ポートフォリオの頂点から底までの最大観測損失です。最大下落率は、指定された期間にわたる下落リスクの指標です。</target>
+      </trans-unit>
+      <trans-unit id="investorBuyBtksModalCtaBuyAriaLabel">
+        <source>BuyBTKS</source>
+        <target>BTKS購入</target>
+      </trans-unit>
+      <trans-unit id="investorSellBtksModalTxHashStep2AriaLabel">
+        <source>Transaction hash</source>
+        <target>Transaction hash</target>
+      </trans-unit>
+      <trans-unit id="investorSellBtksModalEmailNotificationPlaceholder">
+        <source>myemail@address.com</source>
+        <target>myemail@address.com</target>
+      </trans-unit>
+      <trans-unit id="investorOnboardingBuyBtksModalTxHashStep3AriaLabel">
+        <source>Transaction hash</source>
+        <target>Transaction hash</target>
+      </trans-unit>
+      <trans-unit id="investorOnboardingBuyBtksModalTweet">
+        <source>https://twitter.com/intent/tweet?hashtags=Betoken%2C%20DeFi&amp;related=betokenfund&amp;text=I%27ve%20just%20connected%20my%20capital%20to%20Betoken%2C%20world%27s%20first%20crowd-powered%20cryptoassets%20management%20protocol!&amp;url=https%3A%2F%2Fbetoken.fund&amp;via=betokenfund</source>
+        <target>https://twitter.com/intent/tweet?hashtags=Betoken%2C%20DeFi&amp;related=betokenfund&amp;text=I%27ve%20just%20connected%20my%20capital%20to%20Betoken%2C%20world%27s%20first%20crowd-powered%20cryptoassets%20management%20protocol!&amp;url=https%3A%2F%2Fbetoken.fund&amp;via=betokenfund</target>
+      </trans-unit>
+      <trans-unit id="investorOnboardingBuyBtksModalTxHashStep4AriaLabel">
+        <source>Transaction hash</source>
+        <target>Transaction hash</target>
+      </trans-unit>
+      <trans-unit id="managerOnboardingBuyBtksModalCtaTweet">
+        <source>Tweet about it</source>
+        <target>Tweet about it</target>
+      </trans-unit>
+      <trans-unit id="managerOnboardingBuyBtksModalTweet">
+        <source>https://twitter.com/intent/tweet?hashtags=Betoken%2C%20DeFi&amp;related=betokenfund&amp;text=I%27ve%20just%20joined%20Betoken%20as%20a%20fund%20manager%2C%20world%27s%20first%20crowd-powered%20cryptoassets%20management%20protocol!&amp;url=https%3A%2F%2Fbetoken.fund&amp;via=betokenfund</source>
+        <target>https://twitter.com/intent/tweet?hashtags=Betoken%2C%20DeFi&amp;related=betokenfund&amp;text=I%27ve%20just%20joined%20Betoken%20as%20a%20fund%20manager%2C%20world%27s%20first%20crowd-powered%20cryptoassets%20management%20protocol!&amp;url=https%3A%2F%2Fbetoken.fund&amp;via=betokenfund</target>
+      </trans-unit>
+      <trans-unit id="managerOnboardingBuyBtksModalStep4TxHashAriaLabel">
+        <source>Transaction hash</source>
+        <target>Transaction hash</target>
+      </trans-unit>
+      <trans-unit id="timeCounterTitle">
+        <source>Time left</source>
+        <target>残り時間</target>
+      </trans-unit>
+      <trans-unit id="modalBeNotifiedByEmail">
+        <source>Be notified by email</source>
+        <target>emailで通知を受ける</target>
+      </trans-unit>
+      <trans-unit id="modalAriaLabelClose">
+        <source>Close</source>
+        <target>Close</target>
+      </trans-unit>
+      <trans-unit id="modalEmailPlaceholder">
+        <source>myemail@address.com</source>
+        <target>myemail@address.com</target>
+      </trans-unit>
+      <trans-unit id="ctaBecomeManager">
+        <source>Become a Manager</source>
+        <target>マネージャーになる</target>
+      </trans-unit>
+      <trans-unit id="ctaMakeInvestments">
+        <source>Make Investments</source>
+        <target>投資する</target>
+      </trans-unit>
+      <trans-unit id="ctaRedeemCommissions">
+        <source>Redeem Commission</source>
+        <target>コミッションを受け取る</target>
+      </trans-unit>
+      <trans-unit id="ctaNextPhase">
+        <source>Next Phase</source>
+        <target>次のフェーズへ</target>
+      </trans-unit>
+      <trans-unit id="ctaBuyBtks">
+        <source>Buy BTKS</source>
+        <target>BTKSを買う</target>
+      </trans-unit>
+      <trans-unit id="ctaSellBtks">
+        <source>Sell BTKS</source>
+        <target>BTKSを売る</target>
+      </trans-unit>
+      <trans-unit id="portfolioValueTitle">
+        <source>Your Portfolio Value</source>
+        <target>ポートフォリオの価値</target>
+      </trans-unit>
+      <trans-unit id="portfolioValueAttrTitle">
+        <source>Amount of Betoken's AUM you manage. The more Kairo tokens you own, the more money you will manage.</source>
+        <target>あなたが管理するBetokenの資金量。KROを所有が多いほど、より多くの資金を管理できます。</target>
+      </trans-unit>
+      <trans-unit id="kroBalanceTitle">
+        <source>Your Kairo Balance</source>
+        <target>KRO残高</target>
+      </trans-unit>
+      <trans-unit id="kroBalanceAttrTitle">
+        <source>The more Kairo tokens you own, the more money you will manage, the more commission you will receive. You will be able to earn Kairo tokens by making profitable investments for the Betoken fund.</source>
+        <target>所有するKROが多いほど、より多くの資金を管理でき、より多くのコミッションを受け取ることができます。 Betokenファンドで収益性の高い投資を行うことでKROを獲得できます。</target>
+      </trans-unit>
+      <trans-unit id="estimateCommissionTitle">
+        <source>Your Estimated Commission This Month</source>
+        <target>今月の推定コミッション</target>
+      </trans-unit>
+      <trans-unit id="estimateCommissionAttrTitle">
+        <source>&lt;strong&gt;20%&lt;/strong&gt; of the fund's profit and &lt;strong&gt;0.1%&lt;/strong&gt; of the AUM is set aside as commissions every month, which is paid to managers proportional to the Kairo tokens they hold. The estimate displayed here is calculated using the current fund ROI.</source>
+        <target>ファンドの利益の20％とAUMの0.1％は毎月コミッションとして確保され、マネージャーが保有するKROに比例して支払われます。ここに表示される見積もりは、現在のファンドのROIを使用して計算されます。</target>
+      </trans-unit>
+      <trans-unit id="btksPriceTitle">
+        <source>Betoken Shares Price</source>
+        <target>Betoken Shares Price</target>
+      </trans-unit>
+      <trans-unit id="aumTitle">
+        <source>AUM</source>
+        <target>AUM</target>
+      </trans-unit>
+      <trans-unit id="standardDeviation">
+        <source>Standard Deviation</source>
+        <target>標準偏差</target>
+      </trans-unit>
+      <trans-unit id="standardDeviationAttrTitle">
+        <source>Standard deviation represents the volatility of an asset. The number shown here is the sample standard deviation of Betoken Shares' price since inception.</source>
+        <target>標準偏差は資産のボラティリティを表します。ここに示されている数値は、開始以来のBetoken Sharesの価格の標準偏差のサンプルです。</target>
+      </trans-unit>
+      <trans-unit id="solidifiedAudit">
+        <source>Betoken Smart Contracts are audited and secured by Solidified</source>
+        <target>Betokenスマートコントラクトは、Solidifiedによって監査および保護されています。</target>
+      </trans-unit>
+      <trans-unit id="refreshBtnLoad">
+        <source>Loading...</source>
+        <target>Loading...</target>
+      </trans-unit>
+      <trans-unit id="orderOfTypeLong">
+        <source>Long</source>
+        <target>Long</target>
+      </trans-unit>
+      <trans-unit id="orderOfTypeShort">
+        <source>Short</source>
+        <target>Short</target>
+      </trans-unit>
+      <trans-unit id="orderSafetySafe">
+        <source>Safe</source>
+        <target>Safe</target>
+      </trans-unit>
+      <trans-unit id="orderSafetyInDanger">
+        <source>In Danger</source>
+        <target>In Danger</target>
+      </trans-unit>
+      <trans-unit id="modalTitleConfirmTx">
+        <source>Confirm transaction</source>
+        <target>Confirm transaction</target>
+      </trans-unit>
+      <trans-unit id="modalTitleProcessingTx">
+        <source>Processing transaction</source>
+        <target>Processing transaction</target>
+      </trans-unit>
+      <trans-unit id="modalTitleTxConfirmed">
+        <source>Transaction confirmed</source>
+        <target>Transaction confirmed</target>
+      </trans-unit>
+      <trans-unit id="modalTitleError">
+        <source>That's an error</source>
+        <target>That's an error</target>
+      </trans-unit>
+      <trans-unit id="price">
+        <source>Price (DAI)</source>
+        <target>Price (DAI)</target>
+      </trans-unit>
+      <trans-unit id="24hChange">
+        <source>24h change</source>
+        <target>24h change</target>
+      </trans-unit>
+      <trans-unit id="modalCtaMax">
+        <source>Max</source>
+        <target>Max</target>
+      </trans-unit>
+      <trans-unit id="modalBalanceAvailable">
+        <source>available</source>
+        <target>available</target>
+      </trans-unit>
+      <trans-unit id="modalAdvancedOptionTitle">
+        <source>Advanced</source>
+        <target>高度な設定</target>
+      </trans-unit>
+      <trans-unit id="modalAdvancedOptionText">
+        <source>Your order WON'T be executed if the price goes up by more than:</source>
+        <target>価格が次の値を超えて上昇した場合、注文は執行されません。</target>
+      </trans-unit>
+      <trans-unit id="modalBodyTextStep1">
+        <source>Confirm the transaction in your wallet’s interface to save it on the Ethereum blockchain. It's fine to stick with these defaults gas limit and price.</source>
+        <target>ウォレットでトランザクションを確認して、Ethereumブロックチェーンに保存します。既定のガス制限とガス価格で実行できます。</target>
+      </trans-unit>
+      <trans-unit id="modalBodyTextTxBroadcasted">
+        <source>Your transaction is being saved on the Ethereum blockchain.</source>
+        <target>Your transaction is being saved on the Ethereum blockchain.</target>
+      </trans-unit>
+      <trans-unit id="modalBodyTxHash">
+        <source>Transaction hash</source>
+        <target>Transaction hash</target>
+      </trans-unit>
+      <trans-unit id="modalErrorText">
+        <source>The operation has resulted in an error. Please try again.</source>
+        <target>操作はエラーになりました。もう一度やり直してください。</target>
+      </trans-unit>
+      <trans-unit id="modalErrorMsg">
+        <source>Error message:</source>
+        <target>Error message:</target>
+      </trans-unit>
+      <trans-unit id="modalCtaContinue">
+        <source>Continue</source>
+        <target>Continue</target>
+      </trans-unit>
+      <trans-unit id="modalCtaClose">
+        <source>Close</source>
+        <target>Close</target>
+      </trans-unit>
+      <trans-unit id="modalTryAgainAriaLabel">
+        <source>Try again</source>
+        <target>Try again</target>
+      </trans-unit>
+      <trans-unit id="modalRoi">
+        <source>ROI</source>
+        <target>ROI</target>
+      </trans-unit>
+      <trans-unit id="modalCollateralStatusTitle">
+        <source>Collateralization status</source>
+        <target>担保の状態</target>
+      </trans-unit>
+      <trans-unit id="modalCtaTopUp">
+        <source>Top up</source>
+        <target>Top up</target>
+      </trans-unit>
+      <trans-unit id="modalMinCollRatio">
+        <source>min. collateral ratio</source>
+        <target>最低担保比率</target>
+      </trans-unit>
+      <trans-unit id="modalTopUpCollateralLiquidationText">
+        <source>If the order's collateral ratio falls below the minimum, it will be liquidated, which will cause huge losses.</source>
+        <target>担保比率が最低値を下回ると、注文は清算され、大きな損失が発生します。</target>
+      </trans-unit>
+      <trans-unit id="totalCommissionsReceived">
+        <source>Total Commission Received</source>
+        <target>受け取った総コミッション</target>
+      </trans-unit>
+      <trans-unit id="amount">
+        <source>Amount ($DAI)</source>
+        <target>Amount ($DAI)</target>
+      </trans-unit>
+      <trans-unit id="timeStamp">
+        <source>Timestamp</source>
+        <target>Timestamp</target>
+      </trans-unit>
+      <trans-unit id="transaction">
+        <source>Transaction</source>
+        <target>Transaction</target>
+      </trans-unit>
+      <trans-unit id="modalTitleConfirmRules">
+        <source>Please confirm before continuing</source>
+        <target>続ける前に確認してください</target>
+      </trans-unit>
+      <trans-unit id="modalTitleBtksAmount">
+        <source>How many Betoken shares do you want to buy?</source>
+        <target>いくつ買いますか？</target>
+      </trans-unit>
+      <trans-unit id="modalTitleOpNotPermitted">
+        <source>Operation not permitted</source>
+        <target>操作は許可されていません</target>
+      </trans-unit>
+      <trans-unit id="modalSubtitleTimeLeft">
+        <source>Time left until operation allowed</source>
+        <target>操作が許可されるまでの残り時間</target>
+      </trans-unit>
+      <trans-unit id="modalTimeLeftUnitsTitleAttribute">
+        <source>Learn more</source>
+        <target>Learn more</target>
+      </trans-unit>
+      <trans-unit id="modalFollowUs">
+        <source>Or follow us</source>
+        <target>Or follow us</target>
+      </trans-unit>
+      <trans-unit id="modalRule1">
+        <source>You are NEITHER a citizen or resident of, NOR currently located in any of the following states or territories, NOR an entity formed under the laws of: Afghanistan, Cuba, Democratic People's Republic of Korea, Iran, Iraq, People’s Republic of China, Russian Federation, Somalia, Sudan, Syria, United Arab Emirates, United States of America, Venezuela, Yemen.</source>
+        <target>あなたは、以下の州または準州のいずれかの市民または居住者でもなく、法​​律に基づいて形成された団体でもありません。\nアフガニスタン、キューバ、朝鮮民主主義人民共和国、イラン、イラク、中華人民共和国、ロシア連邦、ソマリア、スーダン、シリア、アラブ首長国連邦、アメリカ合衆国、ベネズエラ、イエメン。</target>
+      </trans-unit>
+      <trans-unit id="modalRule2">
+        <source>You have read and understood our disclaimer below.</source>
+        <target>免責事項を読んで理解しました。</target>
+      </trans-unit>
+      <trans-unit id="modalRule3">
+        <source>💀 You understand that Betoken Protocol is in beta. Use at your own risk.</source>
+        <target>💀 Betoken Protocolはベータ版であり、利用は自己責任であることを理解しています。</target>
+      </trans-unit>
+      <trans-unit id="disclaimerTitle">
+        <source>Disclaimer</source>
+        <target>免責事項</target>
+      </trans-unit>
+      <trans-unit id="disclaimertext1">
+        <source>Nothing herein constitutes an offer to sell, or the solicitation of an offer to buy, any securities or tokens.</source>
+        <target>本条項の全ては、有価証券またはトークンの販売及び購入の勧誘を意図するものではありません。</target>
+      </trans-unit>
+      <trans-unit id="disclaimertext2">
+        <source>Betoken enables capital connection and managing using smart contracts which are open source. Betoken does not take custody of tokens and is only a collaborative hub for investors and managers. Betoken is not a licensed bank, broker-dealer, investment advisor or an exchange. Betoken uses partner protocols (Kyber, Compound, bZx, Maker DAO) to power its own ecosystem.</source>
+        <target>Betokenは、オープンソースのスマートコントラクトを使用した資金接続と管理を可能にします。 Betokenはトークンの管理を行っておらず、投資家とマネジャーの共同ハブにすぎません。 Betokenは、認可銀行、ブローカーディーラー、投資顧問または取引所ではありません。 Betokenは、パートナープロトコル（Kyber、Compound、bZx、Maker DAO）を使用して独自のエコシステムを強化しています。</target>
+      </trans-unit>
+      <trans-unit id="modalTitleOrderDetail">
+        <source>Order Details</source>
+        <target>Order Details</target>
+      </trans-unit>
+      <trans-unit id="modalBtksToReceive">
+        <source>Betoken shares to receive</source>
+        <target>Betoken Shares to receive</target>
+      </trans-unit>
+      <trans-unit id="modalTotalCost">
+        <source>Total cost</source>
+        <target>Total cost</target>
+      </trans-unit>
+      <trans-unit id="modalCtaContinueAriaLabel">
+        <source>Continue to Buy</source>
+        <target>Continue to Buy</target>
+      </trans-unit>
+      <trans-unit id="ctaGetStarted">
+        <source>Get Started</source>
+        <target>Get Started</target>
+      </trans-unit>
+      <trans-unit id="disclaimertext3">
+        <source>💀 This project is in beta. Use at your own risk.</source>
+        <target>💀このプロジェクトはベータ版であり、利用は自己責任です。</target>
+      </trans-unit>
+      <trans-unit id="faqTitle">
+        <source>Frequently asked questions</source>
+        <target>よくある質問</target>
+      </trans-unit>
+      <trans-unit id="faqGetHelptitle">
+        <source>Can’t find what you’re looking for?</source>
+        <target>お探しのものは見つかりませんか？</target>
+      </trans-unit>
+      <trans-unit id="faqCtaHelpCenter">
+        <source>Help Center</source>
+        <target>Help Center</target>
+      </trans-unit>
+      <trans-unit id="footerNavHome">
+        <source>Home</source>
+        <target>Home</target>
+      </trans-unit>
+      <trans-unit id="footerNavBlog">
+        <source>Blog</source>
+        <target>Blog</target>
+      </trans-unit>
+      <trans-unit id="contactUs">
+        <source>Contact us at</source>
+        <target>Contact us at</target>
+      </trans-unit>
+      <trans-unit id="modalDisclaimerCta">
+        <source>disclaimer</source>
+        <target>免責事項</target>
+      </trans-unit>
+      <trans-unit id="timeCounterActionIntermission">
+        <source>until managing begins</source>
+        <target>運用開始まで</target>
+      </trans-unit>
+      <trans-unit id="timeCounterActionManage">
+        <source>to manage</source>
+        <target>運用する</target>
+      </trans-unit>
+      <trans-unit id="timeLeftInDays">
+        <source>d</source>
+        <target>日</target>
+      </trans-unit>
+      <trans-unit id="timeLeftInHours">
+        <source>h</source>
+        <target>時間</target>
+      </trans-unit>
+      <trans-unit id="timeLeftInMinutes">
+        <source>m</source>
+        <target>分</target>
+      </trans-unit>
+      <trans-unit id="timeLeftInSeconds">
+        <source>s</source>
+        <target>秒</target>
+      </trans-unit>
+      <trans-unit id="headerConnectWalletCTA">
+        <source>Connect Wallet</source>
+        <target>財布を接続する</target>
+      </trans-unit>
+      <trans-unit id="managerAlert1">
+        <source>Please note you have only</source>
+        <target>Please note you have only</target>
+      </trans-unit>
+      <trans-unit id="managerAlert2">
+        <source>days left to manage. You MUST sell all of your investments during this time, or you WILL LOSE your staked Kairo tokens.</source>
+        <target>運用するための残り時間。この期間中にすべての投資を売却する必要があります。そうしないと賭けたKROが失われます。</target>
+      </trans-unit>
+      <trans-unit id="investmentsBuyModalIWantToBuy1">
+        <source>I want to buy</source>
+        <target>I want to buy</target>
+      </trans-unit>
+      <trans-unit id="investmentsBuyModalIWantToBuy2">
+        <source>by staking</source>
+        <target>by staking</target>
+      </trans-unit>
+      <trans-unit id="investmentsBuyModalMarginTradingPayoutText2a">
+        <source>If</source>
+        <target>If</target>
+      </trans-unit>
+      <trans-unit id="investmentsBuyModalMarginTradingPayoutText2b">
+        <source>'s price</source>
+        <target>'s price</target>
+      </trans-unit>
+      <trans-unit id="investmentsBuyModalMarginTradingPayoutText2c">
+        <source>you</source>
+        <target>you</target>
+      </trans-unit>
+      <trans-unit id="investmentsBuyModalMarginTradingPayoutText2d">
+        <source>gain</source>
+        <target>gain</target>
+      </trans-unit>
+      <trans-unit id="investmentsBuyModalMarginTradingPayoutText2e">
+        <source>lose</source>
+        <target>lose</target>
+      </trans-unit>
+      <trans-unit id="investmentsBuyModalMarginTradingPayoutText3a">
+        <source>If</source>
+        <target>If</target>
+      </trans-unit>
+      <trans-unit id="investmentsBuyModalMarginTradingPayoutText3b">
+        <source>'s price</source>
+        <target>'s price</target>
+      </trans-unit>
+      <trans-unit id="investmentsBuyModalMarginTradingPayoutText3c">
+        <source>you</source>
+        <target>you</target>
+      </trans-unit>
+      <trans-unit id="investmentsBuyModalMarginTradingPayoutText3d">
+        <source>lose</source>
+        <target>lose</target>
+      </trans-unit>
+      <trans-unit id="investmentsBuyModalMarginTradingPayoutText3e">
+        <source>gain</source>
+        <target>gain</target>
+      </trans-unit>
+      <trans-unit id="investmentsBuyModalMarginTradingLiquidationText1">
+        <source>This order could be liquidated if its losses exceed a certain threshold (which will be displayed). If that happens, a large portion of your stake will be lost.</source>
+        <target>この注文は、損失が特定の閾値を超えると清算される可能性があります。その場合、資金の大部分が失われます。</target>
+      </trans-unit>
+      <trans-unit id="investmentsBuyModalMarginTradingLiquidationText2">
+        <source>Learn More</source>
+        <target>Learn more</target>
+      </trans-unit>
+      <trans-unit id="investmentsBuyModalTxConfirmed1">
+        <source>You staked</source>
+        <target>You staked</target>
+      </trans-unit>
+      <trans-unit id="investmentsBuyModalTxConfirmed2">
+        <source>KRO to invest in</source>
+        <target>KRO to invest in</target>
+      </trans-unit>
+      <trans-unit id="buyPrice">
+        <source>Asset buy price</source>
+        <target>Asset buy price</target>
+      </trans-unit>
+      <trans-unit id="commissionsRedeemModalBodyTextStep3a">
+        <source>You redeeemed</source>
+        <target>You redeeemed</target>
+      </trans-unit>
+      <trans-unit id="@@commissionsRedeemModalBodyTextStep3b">
+        <source>(or equivalent Betoken Shares)</source>
+        <target>(or equivalent Betoken Shares)</target>
+      </trans-unit>
+      <trans-unit id="investorBuyBtksModalTextStep4a">
+        <source>You bought</source>
+        <target>You bought</target>
+      </trans-unit>
+      <trans-unit id="investorBuyBtksModalTextStep4b">
+        <source>using</source>
+        <target>using</target>
+      </trans-unit>
+      <trans-unit id="investorSellBtksModalTextStep3a">
+        <source>You sold</source>
+        <target>You sold</target>
+      </trans-unit>
+      <trans-unit id="investorSellBtksModalTextStep3b">
+        <source>for</source>
+        <target>for</target>
+      </trans-unit>
+      <trans-unit id="investorOnboardingIntroText1a">
+        <source>Your capital is automatically distributed among</source>
+        <target>資金は自動的に分配されます。</target>
+      </trans-unit>
+      <trans-unit id="investorOnboardingIntroText1b">
+        <source>Betoken’s community of managers</source>
+        <target>Betoken’s community of managers</target>
+      </trans-unit>
+      <trans-unit id="investorOnboardingIntroText1c">
+        <source>The best of them will have the most influence over how that capital is put to work.</source>
+        <target>最も成績の良いマネージャーが、最も大きい裁量を持ちます。</target>
+      </trans-unit>
+      <trans-unit id="investorOnboardingIntroText3a">
+        <source>Betoken allows anyone to buy or sell any amount of Betoken Shares, and Betoken's fee structure is completely transparent.</source>
+        <target>Betokenでは、誰でも任意の量のBTKSを売買できます。Betokenの料金体系は完全に透明です。</target>
+      </trans-unit>
+      <trans-unit id="investorOnboardingIntroText3b">
+        <source>More about fees, lockup, and liquidity</source>
+        <target>料金（手数料）、ロックアップ、流動性の詳細</target>
+      </trans-unit>
+      <trans-unit id="investorOnboardingFaqA1a">
+        <source>Yes. Betoken's protocol is 100% liquid. You can buy and sell Betoken shares at any time in 2 ways:</source>
+        <target>はい。 BTKSはいつでも2つの方法で売買できます。</target>
+      </trans-unit>
+      <trans-unit id="investorOnboardingFaqA1b">
+        <source>During Betoken's 3 days intermission phase that happens every 27 days, you can buy and sell Betoken shares directly on the investor dashboard.</source>
+        <target>27日毎に行われるBetokenの3日間の休憩フェーズでは、投資家のダッシュボードでBTKSを直接売買できます。</target>
+      </trans-unit>
+      <trans-unit id="investorOnboardingFaqA1c">
+        <source>During Betoken's management phase (27 days), Betoken shares token is freely tradable on decentralized exchanges (e.g. ForkDelta, Uniswap). Depending on the market conditions, the price may be slightly different from what is displayed on the investor dashboard.</source>
+        <target>Betokenの管理フェーズ（27日間）では、BTKSは分散型取引所（Fork Delta、Uniswap）で自由に取引できます。市場の状況によって、価格は投資家のダッシュボードに表示されるものと異なる場合があります。</target>
+      </trans-unit>
+      <trans-unit id="investorOnboardingBuyBtksModalTextStep4a">
+        <source>You bought</source>
+        <target>You bought</target>
+      </trans-unit>
+      <trans-unit id="investorOnboardingBuyBtksModalTextStep4b">
+        <source>using</source>
+        <target>using</target>
+      </trans-unit>
+      <trans-unit id="managerOnboardingIntroSubText1a">
+        <source>The Betoken protocol recognizes and quantifies the talent of its fund managers by allocating units of reputation to them, denominated in Kairo tokens, and financially rewards them based on their talent and contributions. The more Kairo tokens you have, the more money in the Betoken fund you can manage and the more income you’ll get every month as commissions on your investments.</source>
+        <target>Betokenプロトコルは、KROで表される評判の単位を割り当てることにより、ファンドマネージャーの才能を認識および定量化し、才能と貢献に基づいて金銭的な報酬を与えます。所有するKROが多ければ多いほど、管理できるBetokenファンドのお金が増え、投資のコミッションとして毎月獲得できる収入が増えます。</target>
+      </trans-unit>
+      <trans-unit id="managerOnboardingIntroSubText1b">
+        <source>More about Betoken's commissions structure</source>
+        <target>Betokenのコミッション構造の詳細</target>
+      </trans-unit>
+      <trans-unit id="managerOnboardingBuyBtksModalTextStep4a">
+        <source>You bought</source>
+        <target>You bought</target>
+      </trans-unit>
+      <trans-unit id="managerOnboardingBuyBtksModalTextStep4b">
+        <source>using</source>
+        <target>using</target>
+      </trans-unit>
+      <trans-unit id="modalRule4">
+        <source>You understand that you can only buy Kairo tokens once per Ethereum account</source>
+        <target>Ethereumアカウント一つにつき一度しかKROを購入できないことを理解しています。</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

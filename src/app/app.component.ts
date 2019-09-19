@@ -1,4 +1,4 @@
-import { Component, Injectable } from '@angular/core';
+import { Component, Injectable, Inject } from '@angular/core';
 import { Betoken } from '../betokenjs/betoken-obj';
 import { loadAllData, loadDynamicData } from '../betokenjs/data-controller';
 
@@ -9,7 +9,6 @@ import { loadAllData, loadDynamicData } from '../betokenjs/data-controller';
   templateUrl: './app.component.html'
 })
 export class AppComponent {
-  title = 'Betoken';
   display_header_sidebar = true;
   is_loading = true;
   load_progress = 20;

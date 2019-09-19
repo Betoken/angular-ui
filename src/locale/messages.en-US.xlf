@@ -1,0 +1,3574 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="appFetchingText" datatype="html">
+        <source>Loading Betoken</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="timeCounterTitle" datatype="html">
+        <source>Time left</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/header/header.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/side-nav/side-nav.component.html</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="timeCounterActionIntermission" datatype="html">
+        <source>until managing begins</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/header/header.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/side-nav/side-nav.component.html</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="timeCounterActionManage" datatype="html">
+        <source>to manage</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/header/header.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/side-nav/side-nav.component.html</context>
+          <context context-type="linenumber">42</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="timeLeftInDays" datatype="html">
+        <source>d</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/header/header.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/side-nav/side-nav.component.html</context>
+          <context context-type="linenumber">45</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">383</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">869</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">319</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="timeLeftInHours" datatype="html">
+        <source>h</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/header/header.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/side-nav/side-nav.component.html</context>
+          <context context-type="linenumber">45</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">383</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">869</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">319</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="timeLeftInMinutes" datatype="html">
+        <source>m
+        </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/header/header.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/side-nav/side-nav.component.html</context>
+          <context context-type="linenumber">45</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">383</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">869</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">319</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="timeLeftInSeconds" datatype="html">
+        <source>s</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/header/header.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/side-nav/side-nav.component.html</context>
+          <context context-type="linenumber">45</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">383</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">869</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">319</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="headerConnectWalletCTA" datatype="html">
+        <source>Connect Wallet</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/header/header.component.html</context>
+          <context context-type="linenumber">39</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="managerAlert1" datatype="html">
+        <source>Please note you have only</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/header/header.component.html</context>
+          <context context-type="linenumber">54</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="managerAlert2" datatype="html">
+        <source>days left to manage. You MUST sell all of your investments during this time, or you WILL
+      LOSE your staked Kairo tokens.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/header/header.component.html</context>
+          <context context-type="linenumber">55</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="modalBeNotifiedByEmail" datatype="html">
+        <source>
+          Be notified by email
+        </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/header/header.component.html</context>
+          <context context-type="linenumber">67</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">390</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">876</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">327</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="modalAriaLabelClose" datatype="html">
+        <source>Close</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/header/header.component.html</context>
+          <context context-type="linenumber">72</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/header/header.component.html</context>
+          <context context-type="linenumber">156</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">430</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">714</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">720</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">770</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">1062</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">1103</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">1261</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/commissions/commissions.component.html</context>
+          <context context-type="linenumber">201</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/commissions/commissions.component.html</context>
+          <context context-type="linenumber">362</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">370</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">420</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">639</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">687</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">848</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">306</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">358</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">399</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">331</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">371</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="headerGetUpdateModalSubtitle1" datatype="html">
+        <source>
+              Capital connection
+            </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/header/header.component.html</context>
+          <context context-type="linenumber">80</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="headerGetUpdateModalText1" datatype="html">
+        <source>Get updated when you can connect or withdraw your capital.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/header/header.component.html</context>
+          <context context-type="linenumber">83</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="headerGetUpdateModalSubtitle2" datatype="html">
+        <source>
+              Monthly performance results
+            </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/header/header.component.html</context>
+          <context context-type="linenumber">89</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="headerGetUpdateModalText2" datatype="html">
+        <source>
+              Get insights into how your holdings perform month by month.
+            </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/header/header.component.html</context>
+          <context context-type="linenumber">92</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="headerGetUpdateModalSubtitle3" datatype="html">
+        <source>
+              Manager commissions
+            </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/header/header.component.html</context>
+          <context context-type="linenumber">100</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="headerGetUpdateModalText3" datatype="html">
+        <source>
+              Be the first to know when to redeem your manager&apos;s commissions.
+            </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/header/header.component.html</context>
+          <context context-type="linenumber">103</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="modalEmailPlaceholder" datatype="html">
+        <source>myemail@address.com</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/header/header.component.html</context>
+          <context context-type="linenumber">113</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">392</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">330</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="headerGetUpdateModalAriaDescribedby" datatype="html">
+        <source>Get update modal by email</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/header/header.component.html</context>
+          <context context-type="linenumber">62</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="headerLanguageModalTitle" datatype="html">
+        <source>
+          Switch to another language
+        </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/header/header.component.html</context>
+          <context context-type="linenumber">151</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="headerLanguageModalAriaDescribedby" datatype="html">
+        <source>Switch to another language</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/header/header.component.html</context>
+          <context context-type="linenumber">146</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="sidebarBurgerIconAriaLabel" datatype="html">
+        <source>Toggle navigation</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/side-nav/side-nav.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ctaBecomeManager" datatype="html">
+        <source>Become a Manager</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/side-nav/side-nav.component.html</context>
+          <context context-type="linenumber">53</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/side-nav/side-nav.component.html</context>
+          <context context-type="linenumber">166</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ctaMakeInvestments" datatype="html">
+        <source>Make Investments</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/side-nav/side-nav.component.html</context>
+          <context context-type="linenumber">57</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/side-nav/side-nav.component.html</context>
+          <context context-type="linenumber">172</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">298</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ctaRedeemCommissions" datatype="html">
+        <source>Redeem Commission</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/side-nav/side-nav.component.html</context>
+          <context context-type="linenumber">60</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/side-nav/side-nav.component.html</context>
+          <context context-type="linenumber">174</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ctaNextPhase" datatype="html">
+        <source>Next Phase</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/side-nav/side-nav.component.html</context>
+          <context context-type="linenumber">64</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/side-nav/side-nav.component.html</context>
+          <context context-type="linenumber">179</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ctaBuyBtks" datatype="html">
+        <source>Buy BTKS</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/side-nav/side-nav.component.html</context>
+          <context context-type="linenumber">70</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/side-nav/side-nav.component.html</context>
+          <context context-type="linenumber">185</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ctaSellBtks" datatype="html">
+        <source>Sell BTKS</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/side-nav/side-nav.component.html</context>
+          <context context-type="linenumber">72</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/side-nav/side-nav.component.html</context>
+          <context context-type="linenumber">187</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="sidebarToggleManage" datatype="html">
+        <source>Manage</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/side-nav/side-nav.component.html</context>
+          <context context-type="linenumber">79</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="sidebarNavDashboard" datatype="html">
+        <source>
+                  Dashboard
+                </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/side-nav/side-nav.component.html</context>
+          <context context-type="linenumber">84</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="sidebarNavInvestments" datatype="html">
+        <source>
+                  Investments
+                </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/side-nav/side-nav.component.html</context>
+          <context context-type="linenumber">89</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="sidebarNavMarket" datatype="html">
+        <source>
+                  Market
+                </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/side-nav/side-nav.component.html</context>
+          <context context-type="linenumber">94</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="sidebarNavRankings" datatype="html">
+        <source>
+                  Rankings
+                </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/side-nav/side-nav.component.html</context>
+          <context context-type="linenumber">99</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="sidebarNavCommissions" datatype="html">
+        <source>
+                  Commissions
+                </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/side-nav/side-nav.component.html</context>
+          <context context-type="linenumber">104</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="sidebarNavUpgrade" datatype="html">
+        <source>
+                  Upgrade Governance
+                </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/side-nav/side-nav.component.html</context>
+          <context context-type="linenumber">109</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="sidebarToggleInvest" datatype="html">
+        <source>Invest</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/side-nav/side-nav.component.html</context>
+          <context context-type="linenumber">118</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="sidebarNavHelp" datatype="html">
+        <source>
+            Help
+          </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/side-nav/side-nav.component.html</context>
+          <context context-type="linenumber">129</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="sidebarNavRateUs" datatype="html">
+        <source>
+            Rate us
+          </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/side-nav/side-nav.component.html</context>
+          <context context-type="linenumber">135</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="sidebarColorSchemeValueLight" datatype="html">
+        <source>light</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/side-nav/side-nav.component.html</context>
+          <context context-type="linenumber">144</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="sidebarColorSchemeValueDark" datatype="html">
+        <source>dark</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/side-nav/side-nav.component.html</context>
+          <context context-type="linenumber">149</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="dashboardHeaderTitle" datatype="html">
+        <source>
+        Your Stats
+      </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/dashboard/dashboard.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="portfolioValueTitle" datatype="html">
+        <source>
+                  Your Portfolio Value
+                </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/dashboard/dashboard.component.html</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="portfolioValueAttrTitle" datatype="html">
+        <source>Amount of Betoken&apos;s AUM you manage. The more Kairo tokens you own, the more money you will manage.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/dashboard/dashboard.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="kroBalanceTitle" datatype="html">
+        <source>
+                  Your Kairo Balance
+                </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/dashboard/dashboard.component.html</context>
+          <context context-type="linenumber">50</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">47</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="kroBalanceAttrTitle" datatype="html">
+        <source>The more Kairo tokens you own, the more money you will manage, the more commission you will receive. You will be able to earn Kairo tokens by making profitable investments for the Betoken fund.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/dashboard/dashboard.component.html</context>
+          <context context-type="linenumber">44</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="estimateCommissionTitle" datatype="html">
+        <source>
+                  Your Estimated Commission This Month
+                </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/dashboard/dashboard.component.html</context>
+          <context context-type="linenumber">82</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">132</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="estimateCommissionAttrTitle" datatype="html">
+        <source>&lt;strong&gt;20%&lt;/strong&gt; of the fund&apos;s profit and &lt;strong&gt;0.1%&lt;/strong&gt; of the AUM is set aside as commissions every month, which is paid to managers proportional to the Kairo tokens they hold. The estimate displayed here is calculated using the current fund ROI.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/dashboard/dashboard.component.html</context>
+          <context context-type="linenumber">76</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">126</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/commissions/commissions.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="dashboardYourRankingTitle" datatype="html">
+        <source>
+                    Your Ranking
+                  </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/dashboard/dashboard.component.html</context>
+          <context context-type="linenumber">110</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="dashboardYourRankingAttrTitle" datatype="html">
+        <source>Your ranking among Betoken&apos;s managers based on your Kairo tokens balance</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/dashboard/dashboard.component.html</context>
+          <context context-type="linenumber">104</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="dashboardBetokenStatsTitle" datatype="html">
+        <source>
+            Betoken Stats
+          </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/dashboard/dashboard.component.html</context>
+          <context context-type="linenumber">135</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="btksPriceTitle" datatype="html">
+        <source>
+                  Betoken Shares Price
+                </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/dashboard/dashboard.component.html</context>
+          <context context-type="linenumber">146</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">76</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="aumTitle" datatype="html">
+        <source>
+                  AUM
+                </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/dashboard/dashboard.component.html</context>
+          <context context-type="linenumber">156</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="dashboardRoiTitle" datatype="html">
+        <source>
+              ROI (Current Cycle)
+            </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/dashboard/dashboard.component.html</context>
+          <context context-type="linenumber">194</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="dashboardRoiSinceInceptionTitle" datatype="html">
+        <source>
+              ROI (Since Inception)
+            </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/dashboard/dashboard.component.html</context>
+          <context context-type="linenumber">222</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="standardDeviation" datatype="html">
+        <source>
+              Standard Deviation
+            </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/dashboard/dashboard.component.html</context>
+          <context context-type="linenumber">250</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">215</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="standardDeviationAttrTitle" datatype="html">
+        <source>Standard deviation represents the volatility of an asset. The number shown here is the sample standard deviation of Betoken Shares&apos; price since inception.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/dashboard/dashboard.component.html</context>
+          <context context-type="linenumber">244</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">209</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="dashboardTotalFundManagersTitle" datatype="html">
+        <source>
+              Total fund managers
+            </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/dashboard/dashboard.component.html</context>
+          <context context-type="linenumber">277</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="dashboardTotalFundManagersAttrTitle" datatype="html">
+        <source>Number of fund managers actively managing Betoken&apos;s assets.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/dashboard/dashboard.component.html</context>
+          <context context-type="linenumber">271</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="solidifiedAudit" datatype="html">
+        <source>Betoken Smart Contracts are audited and secured by Solidified</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/dashboard/dashboard.component.html</context>
+          <context context-type="linenumber">306</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">382</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/upgrade/upgrade.component.html</context>
+          <context context-type="linenumber">58</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/commissions/commissions.component.html</context>
+          <context context-type="linenumber">164</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/rankings/rankings.component.html</context>
+          <context context-type="linenumber">144</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">323</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">99</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">81</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/market/market.component.html</context>
+          <context context-type="linenumber">141</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investmentsHeaderTitle" datatype="html">
+        <source>
+        Your Investments
+      </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investmentsRiskTakenTitle" datatype="html">
+        <source>
+                  Risk Taken
+                </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">80</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investmentsRiskTakenAttrTitle" datatype="html">
+        <source>The more Kairo tokens you stake, the more of Betoken&apos;s money you put at work, the more commissions you earn.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">73</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investmentsActiveInvestmentsTableTitle" datatype="html">
+        <source>
+                Active Investments
+              </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">161</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investmentsActiveInvestmentsPortfolioViewAriaLabel" datatype="html">
+        <source>Portfolio view</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">167</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="refreshBtnLoad" datatype="html">
+        <source>Loading...</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">179</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">318</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/commissions/commissions.component.html</context>
+          <context context-type="linenumber">98</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/rankings/rankings.component.html</context>
+          <context context-type="linenumber">36</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">259</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/market/market.component.html</context>
+          <context context-type="linenumber">36</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="orderOfTypeLong" datatype="html">
+        <source>Long</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">213</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">344</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">748</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="orderOfTypeShort" datatype="html">
+        <source>Short</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">214</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">345</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">748</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="orderSafetySafe" datatype="html">
+        <source>Safe</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">215</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">855</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">916</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">942</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">1137</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">1163</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="orderSafetyInDanger" datatype="html">
+        <source>In Danger</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">215</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">858</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">919</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">931</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">1140</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">1152</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investmentsNoActiveInvestments" datatype="html">
+        <source>You have no active investments</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">296</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investmentsPastInvestmentsTableTitle" datatype="html">
+        <source>
+                Past Investments
+              </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">309</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investmentsBuyModalTitleStep0" datatype="html">
+        <source>
+          Select An Asset
+        </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">400</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investmentsBuyModalTitleStep1" datatype="html">
+        <source>Buy</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">410</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="modalTitleConfirmTx" datatype="html">
+        <source>
+          Confirm transaction
+        </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">414</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">754</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">1087</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/commissions/commissions.component.html</context>
+          <context context-type="linenumber">185</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">349</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">665</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">285</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">315</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="modalTitleProcessingTx" datatype="html">
+        <source>
+          Processing transaction
+        </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">418</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">758</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">1091</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/commissions/commissions.component.html</context>
+          <context context-type="linenumber">189</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">353</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">669</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">289</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">319</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="modalTitleTxConfirmed" datatype="html">
+        <source>
+          Transaction confirmed
+        </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">422</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">762</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">1095</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/commissions/commissions.component.html</context>
+          <context context-type="linenumber">193</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">357</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">673</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">293</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">323</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="modalTitleError" datatype="html">
+        <source>
+          That&apos;s an error
+        </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">426</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">766</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">1099</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/commissions/commissions.component.html</context>
+          <context context-type="linenumber">197</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">361</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">677</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">302</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">327</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investmentsSearchListAssetsPlaceholder" datatype="html">
+        <source>Search</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">463</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investmentsBuyModalAssetLabelMarginTrading" datatype="html">
+        <source>
+                      Margin Trading
+                    </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">487</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="price" datatype="html">
+        <source>
+                Price (DAI)
+              </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">518</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">799</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">483</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">711</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">413</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">389</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/market/market.component.html</context>
+          <context context-type="linenumber">70</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="24hChange" datatype="html">
+        <source>
+                24h change
+              </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">526</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/market/market.component.html</context>
+          <context context-type="linenumber">76</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investmentsBuyModalIWantToBuy1" datatype="html">
+        <source>I want to buy</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">538</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investmentsBuyModalIWantToBuy2" datatype="html">
+        <source>by staking</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">538</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="modalCtaMax" datatype="html">
+        <source>Max</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">547</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">896</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">1186</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">504</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">730</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">432</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">408</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="modalBalanceAvailable" datatype="html">
+        <source>available</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">551</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">516</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">733</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">444</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">421</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investmentsBuyModalFulcrumMinStake" datatype="html">
+        <source>Minimum stake:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">554</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investmentsBuyModalOrderTypeSelect" datatype="html">
+        <source>Order type</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">556</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="modalAdvancedOptionTitle" datatype="html">
+        <source>
+                            Advanced
+                          </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">577</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">961</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/commissions/commissions.component.html</context>
+          <context context-type="linenumber">241</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investmentsBuyModalAdvancedOptionSubTitle" datatype="html">
+        <source>
+                            Max acceptable price
+                          </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">591</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="modalAdvancedOptionText" datatype="html">
+        <source>Your order WON&apos;T be executed if the price goes up by more than:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">594</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">978</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investmentsBuyModalMarginTradingPayoutTitle" datatype="html">
+        <source>
+                  Payout
+                </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">623</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investmentsBuyModalMarginTradingPayoutText1" datatype="html">
+        <source>This order multiplies your returns by</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">626</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investmentsBuyModalMarginTradingPayoutText2a" datatype="html">
+        <source>
+                  If</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">628</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investmentsBuyModalMarginTradingPayoutText2b" datatype="html">
+        <source>&apos;s price</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">629</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investmentsBuyModalMarginTradingPayoutText2c" datatype="html">
+        <source>you</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">630</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investmentsBuyModalMarginTradingPayoutText2d" datatype="html">
+        <source>gain</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">630</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investmentsBuyModalMarginTradingPayoutText2e" datatype="html">
+        <source>lose</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">630</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investmentsBuyModalMarginTradingPayoutText3a" datatype="html">
+        <source>If</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">633</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investmentsBuyModalMarginTradingPayoutText3b" datatype="html">
+        <source>&apos;s price</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">633</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investmentsBuyModalMarginTradingPayoutText3c" datatype="html">
+        <source>you</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">633</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investmentsBuyModalMarginTradingPayoutText3d" datatype="html">
+        <source>lose</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">634</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investmentsBuyModalMarginTradingPayoutText3e" datatype="html">
+        <source>gain</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">634</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investmentsBuyModalMarginTradingLiquidationTitle" datatype="html">
+        <source>Liquidation</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">637</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investmentsBuyModalMarginTradingLiquidationText1" datatype="html">
+        <source>This order could be liquidated if its losses exceed a certain threshold (which will be displayed). If
+                  that happens, a large portion of your stake will be lost.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">639</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investmentsBuyModalMarginTradingLiquidationText2" datatype="html">
+        <source>Learn More</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">641</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="modalBodyTextStep1" datatype="html">
+        <source>
+          Confirm the transaction in your wallet’s interface to save it on the Ethereum blockchain. It&apos;s fine to stick
+          with these defaults gas limit and price.
+        </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">652</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">1005</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">1201</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/commissions/commissions.component.html</context>
+          <context context-type="linenumber">301</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">558</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">775</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">484</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">472</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="modalBodyTextTxBroadcasted" datatype="html">
+        <source>
+          Your transaction is being saved on the Ethereum blockchain.
+        </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">659</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">1012</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">1208</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/commissions/commissions.component.html</context>
+          <context context-type="linenumber">306</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">566</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">783</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">492</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">480</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investmentsBuyModalTxConfirmed1" datatype="html">
+        <source>You staked</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">670</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investmentsBuyModalTxConfirmed2" datatype="html">
+        <source>KRO to invest in</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">670</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="modalBodyTxHash" datatype="html">
+        <source>Transaction hash</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">679</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">1027</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">1226</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/commissions/commissions.component.html</context>
+          <context context-type="linenumber">312</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/commissions/commissions.component.html</context>
+          <context context-type="linenumber">334</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">572</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">602</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">789</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">814</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">498</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">527</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">486</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">515</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="modalErrorText" datatype="html">
+        <source>
+            The operation has resulted in an error. Please try again.
+          </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">697</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">1045</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">1244</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/commissions/commissions.component.html</context>
+          <context context-type="linenumber">352</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">619</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">833</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">546</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">534</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="modalErrorMsg" datatype="html">
+        <source>Error message:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">701</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">1049</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">1248</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/commissions/commissions.component.html</context>
+          <context context-type="linenumber">355</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">623</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">837</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">550</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">538</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="modalCtaContinue" datatype="html">
+        <source>
+          Continue
+        </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">708</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">1255</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">635</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">843</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">561</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">547</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="modalCtaClose" datatype="html">
+        <source>
+          Close
+        </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">714</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">720</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">1062</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">1261</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/commissions/commissions.component.html</context>
+          <context context-type="linenumber">362</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">420</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">640</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">849</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">358</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="modalTryAgainAriaLabel" datatype="html">
+        <source>
+          Try again
+        </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">726</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">1068</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">1268</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/commissions/commissions.component.html</context>
+          <context context-type="linenumber">366</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">645</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">855</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">566</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">551</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investmentsModalSellOrderLeverage" datatype="html">
+        <source>Leverage</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">748</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investmentsModalSellOrderBuyTime" datatype="html">
+        <source>OPENED</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">794</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="buyPrice" datatype="html">
+        <source>
+              Asset buy price
+            </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">812</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="modalRoi" datatype="html">
+        <source>
+              ROI
+            </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">820</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investmentsModalSellStakedKro" datatype="html">
+        <source>
+              Staked KRO
+            </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">831</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investmentsModalSellKroToRedeem" datatype="html">
+        <source>
+              KRO to Redeem
+            </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">839</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investmentsModalSellMarginPositionPrice" datatype="html">
+        <source>
+                Margin Position Price
+              </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">850</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investmentsModalSellFulcrumLiquidationPrice" datatype="html">
+        <source>
+                Liquidation Price
+              </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">864</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investmentsModalSellFulcrumLiquidationText" datatype="html">
+        <source>If the margin position price falls below the liquidation price, this
+                order will be liquidated, which will cause huge losses. When the order is in danger of liquidation, sell
+                it.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">874</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investmentsModalSellProportionAssetsToSell" datatype="html">
+        <source>Proportion of assets to sell</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">886</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="modalCollateralStatusTitle" datatype="html">
+        <source>
+                  Collateralization status
+                </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">906</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">1130</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="modalCtaTopUp" datatype="html">
+        <source>Top up</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">911</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="modalMinCollRatio" datatype="html">
+        <source>min. collateral ratio</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">937</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">1158</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="modalTopUpCollateralLiquidationText" datatype="html">
+        <source>If the order&apos;s collateral ratio falls below the minimum, it will be
+                  liquidated, which will cause huge losses.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">945</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">1166</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investmentsModalSellAdvancedOptionSubtite" datatype="html">
+        <source>
+                            Min acceptable price
+                          </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">975</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investmentsModalSellTextStep3" datatype="html">
+        <source>
+          You have successfully sold the investment and redeemed your Kairo tokens.
+        </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">1021</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investmentsModalSellCtaContinue" datatype="html">
+        <source>
+          Sell Investment
+        </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">1056</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investmentsModalTopUpStep0" datatype="html">
+        <source>
+          Top up your order
+        </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">1083</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investmentsModalTopUpCollateralTarget" datatype="html">
+        <source>Collateralization target</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">1174</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investmentsModalTopUpMaxPossibleCollRatio" datatype="html">
+        <source>Max possible collateral ratio</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">1190</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investmentsModalTopUpTextStep3" datatype="html">
+        <source>
+            You have successfully topped up the order.
+          </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">1218</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="upgradeHeaderTitle" datatype="html">
+        <source>
+            Upgrade Governance
+          </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/upgrade/upgrade.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="upgradeCardTitle" datatype="html">
+        <source>
+                Upgrade proposals
+              </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/upgrade/upgrade.component.html</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="upgradeCardSubtitle" datatype="html">
+        <source>No active upgrade proposals</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/upgrade/upgrade.component.html</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="upgradeCardText" datatype="html">
+        <source>During the Intermission phase of each cycle, the managers may decide to initiate an upgrade via a simple majority vote using their Kairo tokens. If the vote passed, then during the Manage phase, managers may use their Kairo tokens to vote on which smart contract should be accepted as the new version. <x id="START_LINK" ctype="x-a" equiv-text="&lt;a&gt;"/>Learn more<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/upgrade/upgrade.component.html</context>
+          <context context-type="linenumber">36</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="upgradeCardSubtitle2" datatype="html">
+        <source>
+              Time of the upgrade governance system&apos;s activation
+            </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/upgrade/upgrade.component.html</context>
+          <context context-type="linenumber">38</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="upgradeCardTimeLeft" datatype="html">
+        <source>
+              7:30AM UTC, September 29th, 2019
+            </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/upgrade/upgrade.component.html</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="upgradeCardTimeLeftIllustrationAttrAlt" datatype="html">
+        <source>illustration Woman and dog with a active spinner</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/upgrade/upgrade.component.html</context>
+          <context context-type="linenumber">44</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="commissionsHeaderTitle" datatype="html">
+        <source>
+            Commissions
+          </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/commissions/commissions.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="commissionsExpectedCommissionThisMonth" datatype="html">
+        <source>
+              Your Expected Commission This Month
+            </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/commissions/commissions.component.html</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="totalCommissionsReceived" datatype="html">
+        <source>
+              Total Commission Received
+            </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/commissions/commissions.component.html</context>
+          <context context-type="linenumber">58</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/rankings/rankings.component.html</context>
+          <context context-type="linenumber">78</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="commissionsTotalCommissionsReceivedAttrTitle" datatype="html">
+        <source>The total amount of commission you have received throughout your manager career.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/commissions/commissions.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="commissionsHistoryTitle" datatype="html">
+        <source>
+                Your Commission History
+              </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/commissions/commissions.component.html</context>
+          <context context-type="linenumber">88</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="commissionsTheadCycleNb" datatype="html">
+        <source>
+                  Cycle Number
+                </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/commissions/commissions.component.html</context>
+          <context context-type="linenumber">108</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="amount" datatype="html">
+        <source>
+                  Amount ($DAI)
+                </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/commissions/commissions.component.html</context>
+          <context context-type="linenumber">111</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">272</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="timeStamp" datatype="html">
+        <source>
+                  Timestamp
+                </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/commissions/commissions.component.html</context>
+          <context context-type="linenumber">114</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">275</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="transaction" datatype="html">
+        <source>
+                  Transaction
+                </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/commissions/commissions.component.html</context>
+          <context context-type="linenumber">117</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">278</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="commissionsNoComYet" datatype="html">
+        <source>You have not received any commission yet</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/commissions/commissions.component.html</context>
+          <context context-type="linenumber">143</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="commissionsRedeemModalStep0Title" datatype="html">
+        <source>
+          Redeem your commissions
+        </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/commissions/commissions.component.html</context>
+          <context context-type="linenumber">181</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="commissionsRedeemModalBodyStep1Title" datatype="html">
+        <source>
+              This month&apos;s commission
+            </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/commissions/commissions.component.html</context>
+          <context context-type="linenumber">222</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="commissionsRedeemModalAdvancedOptionSubtitle" datatype="html">
+        <source>
+                          Redeem commisssion for a particular cycle
+                        </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/commissions/commissions.component.html</context>
+          <context context-type="linenumber">255</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="commissionsRedeemModalAdvancedOptionText" datatype="html">
+        <source>Only use this when normal redemption fails</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/commissions/commissions.component.html</context>
+          <context context-type="linenumber">258</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="commissionsRedeemModalAdvancedOptionTextAriaDescribedby" datatype="html">
+        <source>cycle for which to redeem commission</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/commissions/commissions.component.html</context>
+          <context context-type="linenumber">261</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="commissionsRedeemModalCtaRedeemBtks" datatype="html">
+        <source>
+          Redeem in $BTKS
+        </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/commissions/commissions.component.html</context>
+          <context context-type="linenumber">273</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="commissionsRedeemModalCtaRedeemDAI" datatype="html">
+        <source>
+          Redeem in $DAI
+        </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/commissions/commissions.component.html</context>
+          <context context-type="linenumber">277</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="commissionsDoYouKnowTitle" datatype="html">
+        <source>
+              Do you know?
+            </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/commissions/commissions.component.html</context>
+          <context context-type="linenumber">284</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="commissionsDoYouKnowText" datatype="html">
+        <source>
+              You can redeem your commissions in Betoken fund shares (BTKS) - meaning you swap your commissions for an
+              equivalent number of shares in the fund. By doing so, you will make the fund Assets Under Management (AUM)
+              grow quicker. A bigger AUM means more money to manage in the next cycle, and more commissions for you.
+            </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/commissions/commissions.component.html</context>
+          <context context-type="linenumber">288</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="commissionsRedeemModalBodyTxHashStep2ArialLabel" datatype="html">
+        <source>Transaction hash</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/commissions/commissions.component.html</context>
+          <context context-type="linenumber">315</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="commissionsRedeemModalBodyTextStep3a" datatype="html">
+        <source>You redeeemed</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/commissions/commissions.component.html</context>
+          <context context-type="linenumber">329</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="@@commissionsRedeemModalBodyTextStep3b" datatype="html">
+        <source>(or equivalent Betoken Shares)</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/commissions/commissions.component.html</context>
+          <context context-type="linenumber">329</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="rankingsHeaderTitle" datatype="html">
+        <source>
+            Managers Ranking
+          </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/rankings/rankings.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="rankingsKroBalance&amp;Return" datatype="html">
+        <source>
+                Kairo balance &amp; current ROI
+              </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/rankings/rankings.component.html</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="rankingsSearchPlaceholder" datatype="html">
+        <source>Search</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/rankings/rankings.component.html</context>
+          <context context-type="linenumber">49</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="rankingsThRank" datatype="html">
+        <source>Rank</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/rankings/rankings.component.html</context>
+          <context context-type="linenumber">66</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="rankingsThWalletAddress" datatype="html">
+        <source>
+                  Manager
+                </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/rankings/rankings.component.html</context>
+          <context context-type="linenumber">68</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="rankingsKroBalance" datatype="html">
+        <source>Kairo Balance</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/rankings/rankings.component.html</context>
+          <context context-type="linenumber">72</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="rankingsThCurrentMoRoi" datatype="html">
+        <source>Current Month ROI</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/rankings/rankings.component.html</context>
+          <context context-type="linenumber">75</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="rankingsFriendsOfBetokenBadge" datatype="html">
+        <source>
+                    Betoken Evangelist
+                  </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/rankings/rankings.component.html</context>
+          <context context-type="linenumber">110</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorHeaderTitle" datatype="html">
+        <source>
+        Your Stats
+      </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorBtksBalance" datatype="html">
+        <source>
+                  Betoken Shares Balance
+                </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorBtksBalanceAttrTitle" datatype="html">
+        <source>The amount of Betoken Shares tokens (BTKS) you own.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorBtksTotalValueDai" datatype="html">
+        <source>
+                  Total value
+                </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">49</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorBtksTotalValueDaiAttrTitle" datatype="html">
+        <source>The value of your Betoken Shares, in DAI Stablecoin.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">43</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorBtksPriceAttrTitle" datatype="html">
+        <source>The price of 1 Betoken Share token.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">70</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorBetokenHistoricalReturn" datatype="html">
+        <source>
+            Betoken Historical Returns
+          </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">100</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorPriceChange" datatype="html">
+        <source>
+              Price Change (Current Cycle)
+            </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">132</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorPriceChangeSinceInception" datatype="html">
+        <source>
+              Price Change (Since Inception)
+            </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">160</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorMaxDrawdown" datatype="html">
+        <source>
+              Max Drawdown
+            </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">188</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorMaxDrawdownAttrTitle" datatype="html">
+        <source>A maximum drawdown (MDD) is the maximum observed loss from a peak to a trough of a portfolio, before a new peak is attained. Maximum drawdown is an indicator of downside risk over a specified time period.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">182</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorDepositWithdrawHistoryTitle" datatype="html">
+        <source>
+                Your Deposit &amp; Withdraw History
+              </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">249</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorDepositWithdrawHistoryType" datatype="html">
+        <source>
+                  Type
+                </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">269</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorDepositBadge" datatype="html">
+        <source>
+                    Deposit
+                  </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">286</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorWithdrawBadge" datatype="html">
+        <source>
+                    Withdraw
+                  </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">289</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="modalTitleConfirmRules" datatype="html">
+        <source>
+            Please confirm before continuing
+          </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">341</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">277</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">307</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="modalTitleBtksAmount" datatype="html">
+        <source>
+            How many Betoken shares do you want to buy?
+          </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">345</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">281</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="modalTitleOpNotPermitted" datatype="html">
+        <source>
+          Operation not permitted
+        </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">366</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">298</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="modalSubtitleTimeLeft" datatype="html">
+        <source>
+          Time left until operation allowed
+        </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">379</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">865</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">315</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="modalTimeLeftUnitsTitleAttribute" datatype="html">
+        <source>Learn more</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">384</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">870</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">320</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="modalFollowUs" datatype="html">
+        <source>Or follow us</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">404</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">890</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">342</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="modalRule1" datatype="html">
+        <source>You are NEITHER a citizen or resident
+              of, NOR currently located in any of the following states or territories, NOR an entity formed under the
+              laws of: Afghanistan, Cuba, Democratic People&apos;s Republic of Korea, Iran, Iraq, People’s Republic of China,
+              Russian Federation, Somalia, Sudan, Syria, United Arab Emirates, United States of America, Venezuela,
+              Yemen.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">446</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">390</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">361</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="modalRule2" datatype="html">
+        <source>You have read and understood our
+              disclaimer below.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">454</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">399</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">370</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="modalRule3" datatype="html">
+        <source>💀 You understand that Betoken Protocol is
+              in beta. Use at your own risk.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">459</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">404</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">381</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="disclaimerTitle" datatype="html">
+        <source>Disclaimer</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">464</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">110</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">92</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="disclaimertext1" datatype="html">
+        <source>
+                Nothing herein constitutes an offer to sell, or the solicitation of an offer to buy, any securities or
+                tokens.
+              </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">465</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">111</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">93</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="disclaimertext2" datatype="html">
+        <source>
+                Betoken enables capital connection and managing using smart contracts which are open source. Betoken
+                does not take custody of tokens and is only a collaborative hub for investors and managers. Betoken is
+                not a licensed bank, broker-dealer, investment advisor or an exchange. Betoken uses partner protocols
+                (Kyber, Compound, bZx, Maker DAO) to power its own ecosystem.
+              </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">469</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">115</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">97</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorBuyBtksModalIWantToBuyWith" datatype="html">
+        <source>I want to buy Betoken shares with</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">489</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="modalTitleOrderDetail" datatype="html">
+        <source>Order Details</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">527</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">753</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">453</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">434</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="modalBtksToReceive" datatype="html">
+        <source>
+                    Betoken shares to receive
+                  </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">533</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">459</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="modalTotalCost" datatype="html">
+        <source>
+                    Total cost
+                  </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">541</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">467</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">456</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorBuyBtksModalTextStep4a" datatype="html">
+        <source>You bought</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">593</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorBuyBtksModalTextStep4b" datatype="html">
+        <source>using</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">593</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorBuyBtksModalTweet" datatype="html">
+        <source>Tweet
+            about it</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">597</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorBuyBtksModalCtaBuy" datatype="html">
+        <source>
+          Buy Betoken shares
+        </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">630</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorBuyBtksModalCtaBuyAriaLabel" datatype="html">
+        <source>BuyBTKS</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">629</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="modalCtaContinueAriaLabel" datatype="html">
+        <source>Continue to Buy</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">634</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorSellBtksModalTitleStep0" datatype="html">
+        <source>
+            How many Betoken shares do you want to sell?
+          </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">661</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorSellBtksModalTitleOperationNonPermitted" datatype="html">
+        <source>
+            Operation not permitted
+          </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">682</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorSellBtksModalIWantToSell" datatype="html">
+        <source>I want to sell</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">718</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorSellBtksModalIWantToReceive" datatype="html">
+        <source>I want to receive</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">738</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorSellBtksModalSellBtksFor" datatype="html">
+        <source>
+                    Sell Betoken shares for
+                  </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">759</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorSellBtksModalTxHashStep2AriaLabel" datatype="html">
+        <source>Transaction hash</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">791</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorSellBtksModalTextStep3a" datatype="html">
+        <source>You sold</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">809</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorSellBtksModalTextStep3b" datatype="html">
+        <source>for</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">809</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorSellBtksModalEmailNotificationPlaceholder" datatype="html">
+        <source>myemail@address.com</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor/investor.component.html</context>
+          <context context-type="linenumber">878</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorOnboardingHeaderPreTitle" datatype="html">
+        <source>
+          Welcome To
+        </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">71</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorOnboardingHeaderTitle" datatype="html">
+        <source>Betoken Fund</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">74</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorOnboardingHeaderSubtitle" datatype="html">
+        <source>If you think 2 brains are better than one...How about
+          hundreds of talented asset managers working for you? Worldwide!</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">75</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorOnboardingIntroSubtitle1" datatype="html">
+        <source>
+              Crowd-powered finance
+            </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorOnboardingIntroText1a" datatype="html">
+        <source>Your capital is automatically distributed among</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorOnboardingIntroText1b" datatype="html">
+        <source>Betoken’s community of managers</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorOnboardingIntroText1c" datatype="html">
+        <source>The best of them will have the most influence over
+              how that capital is put to work.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorOnboardingIntroSubtitle2" datatype="html">
+        <source>
+              70+ assets
+            </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorOnboardingIntroText2" datatype="html">
+        <source>
+              By depositing your capital on Betoken protocol, you gain exposure to ETH, WBTC, BAT, MKR and 70+ ERC20
+              tokens.
+            </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorOnboardingIntroSubtitle3" datatype="html">
+        <source>
+              No limits, no hidden fees
+            </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">46</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorOnboardingIntroText3a" datatype="html">
+        <source>Betoken allows anyone to buy or sell any amount of Betoken Shares, and Betoken&apos;s fee structure is
+              completely transparent.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">50</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorOnboardingIntroText3b" datatype="html">
+        <source>More about fees, lockup, and liquidity</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">53</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorOnboardingIntroSubtitle4" datatype="html">
+        <source>
+              Non-custodial
+            </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">60</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorOnboardingIntroText4" datatype="html">
+        <source>
+              You always stay in control, it’s written on the blockchain. All user funds are locked in smart contracts,
+              no one but you has direct access to those funds.
+            </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">63</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorOnboardingConnectStatus" datatype="html">
+        <source>No Wallet Connected</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">82</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ctaGetStarted" datatype="html">
+        <source>Get Started</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">86</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">64</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="disclaimertext3" datatype="html">
+        <source>
+              💀 This project is in beta. Use at your own risk.
+            </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">121</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">103</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="faqTitle" datatype="html">
+        <source>Frequently asked questions</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">132</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">114</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorOnboardingFaqQ1" datatype="html">
+        <source>
+                      Can I buy and sell Betoken Shares at any time?
+                    </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">141</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorOnboardingFaqA1a" datatype="html">
+        <source>Yes. Betoken&apos;s protocol is 100% liquid. You can buy and sell Betoken shares at any time in 2 ways:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">153</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorOnboardingFaqA1b" datatype="html">
+        <source>During Betoken&apos;s 3 days
+                      intermission phase that happens every 27 days, you can buy and sell Betoken shares directly on the
+                    investor dashboard.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">155</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorOnboardingFaqA1c" datatype="html">
+        <source>During Betoken&apos;s management phase (27 days), Betoken shares token is freely tradable on decentralized exchanges (Fork Delta, Uniswap).
+                    Depending of the market conditions, the price may be different from what&apos;s displayed on the investor
+                    dashboard.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">158</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorOnboardingFaqQ2" datatype="html">
+        <source>
+                      How can I buy Betoken Shares?
+                    </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">169</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorOnboardingFaqA2" datatype="html">
+        <source>
+                <x id="START_PARAGRAPH" ctype="x-p" equiv-text="&lt;p&gt;"/>Click on the Get Started button and follow the instructions. You&apos;ll be able to use Ether or any of
+                  our 70+ supported ERC-20 tokens to buy Betoken Shares.<x id="CLOSE_PARAGRAPH" ctype="x-p" equiv-text="&lt;/p&gt;"/>
+              </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">180</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorOnboardingFaqQ3" datatype="html">
+        <source>
+                      What is the fees structure?
+                    </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">190</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorOnboardingFaqA3Title1" datatype="html">
+        <source>Management fees</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">202</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorOnboardingFaqA3Text1" datatype="html">
+        <source>After the management phase is over (every 27 days):</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">203</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">201</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorOnboardingFaqA3Title2" datatype="html">
+        <source>IF the fund is profitable OR not profitable</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">204</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorOnboardingFaqA3Text2" datatype="html">
+        <source>
+                  <x id="START_LIST_ITEM" ctype="x-li" equiv-text="&lt;li&gt;"/>0.1% of the total Betoken funds is set aside and distributed among fund manager holding Kairo tokens.
+                  <x id="CLOSE_LIST_ITEM" ctype="x-li" equiv-text="&lt;/li&gt;"/>
+                  <x id="START_LIST_ITEM" ctype="x-li" equiv-text="&lt;li&gt;"/>In order to provide funding for its maintenance and future development, Betoken protocol will mint
+                    Betoken Shares and send them to the current development team. The amount will be equal to 0.1% of
+                    the current Betoken Shares total supply, and it will occur at the end of every investment cycle.
+                  <x id="CLOSE_LIST_ITEM" ctype="x-li" equiv-text="&lt;/li&gt;"/>
+                </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">205</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorOnboardingFaqA3Title3" datatype="html">
+        <source>ONLY IF the fund is profitable</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">213</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorOnboardingFaqA3text3" datatype="html">
+        <source>20% of the total Betoken&apos;s monthly profits is set aside as commission and distributed among fund
+                  managers holding Kairo tokens proportional to the amount they hold and their risk profile. The commission is
+                  taken into account IF and ONLY IF the fund is profitable during the actual investment cycle.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">214</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorOnboardingFaqA3Title4" datatype="html">
+        <source>Redemptions fee</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">217</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorOnboardingFaqA3Text4" datatype="html">
+        <source>Redemptions incur no withdrawal fee.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">218</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorOnboardingFaqQ4" datatype="html">
+        <source>
+                      How can I follow the activity of the fund?
+                    </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">226</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorOnboardingFaqA4" datatype="html">
+        <source>
+                You have access to a dashboard where you
+                can view your capital account.
+              </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">237</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="faqGetHelptitle" datatype="html">
+        <source>Can’t find what you’re looking for?</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">251</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">282</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="faqCtaHelpCenter" datatype="html">
+        <source>Help Center</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">253</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">284</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="footerNavHome" datatype="html">
+        <source>Home</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">258</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">289</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="footerNavBlog" datatype="html">
+        <source>Blog</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">261</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">292</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="contactUs" datatype="html">
+        <source>Contact us at</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">264</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">295</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="modalDisclaimerCta" datatype="html">
+        <source>disclaimer</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">399</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">371</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorOnboardingBuyBtksModalIWantToBuyWith" datatype="html">
+        <source>I want to buy Betoken shares with</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">419</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorOnboardingBuyBtksModalTxHashStep3AriaLabel" datatype="html">
+        <source>Transaction hash</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">501</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorOnboardingBuyBtksModalTextStep4a" datatype="html">
+        <source>You bought</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">519</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorOnboardingBuyBtksModalTextStep4b" datatype="html">
+        <source>using</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">519</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorOnboardingBuyBtksModalCtaTweet" datatype="html">
+        <source>Tweet about it</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">522</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorOnboardingBuyBtksModalTweet" datatype="html">
+        <source>https://twitter.com/intent/tweet?hashtags=Betoken%2C%20DeFi&amp;related=betokenfund&amp;text=I%27ve%20just%20connected%20my%20capital%20to%20Betoken%2C%20world%27s%20first%20crowd-powered%20cryptoassets%20management%20protocol!&amp;url=https%3A%2F%2Fbetoken.fund&amp;via=betokenfund</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">521</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorOnboardingBuyBtksModalTxHashStep4AriaLabel" datatype="html">
+        <source>Transaction hash</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">530</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorOnboardingBuyBtksModalCtaBuy" datatype="html">
+        <source>
+                Buy Betoken shares
+              </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">556</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="investorOnboardingBuyBtksModalCtaGoToDashboard" datatype="html">
+        <source>Investor Dashboard</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investor-onboarding/investoronboarding.component.html</context>
+          <context context-type="linenumber">571</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="managerOnboardingHeaderPretitle" datatype="html">
+        <source>
+          Become a
+        </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">49</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="managerOnboardingHeaderTitle" datatype="html">
+        <source>Fund Manager</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="managerOnboardingHeaderSubtitle" datatype="html">
+        <source>Connect your crypto-trading expertise to the Betoken&apos;s
+          pool of capital and earn commissions!</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">53</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="managerOnboardingIntroSubTitle1" datatype="html">
+        <source>
+              The best managers earn the most
+            </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="managerOnboardingIntroSubText1a" datatype="html">
+        <source>The Betoken protocol recognizes and quantifies the talent of its fund managers by allocating units of
+              reputation to them, denominated in Kairo tokens, and financially rewards them based on their talent and contributions.
+              The more Kairo tokens you have, the more money in the Betoken fund you can manage and the more income
+              you’ll get every month as commissions on your investments.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="managerOnboardingIntroSubText1b" datatype="html">
+        <source>More about Betoken&apos;s commissions structure</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="managerOnboardingIntroSubTitle2" datatype="html">
+        <source>
+              Margin trading and instant liquidity
+            </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="managerOnboardingIntroSubText2" datatype="html">
+        <source>
+              Betoken uses the full value of the open finance ecosystem like Kyber Network, Compound, Fulcrum by bZx and
+              DAI stable coin. These financial primitives enable margin trading with up to 4x leverage on Betoken and
+              guaranteed liquidity.
+            </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="managerOnboardingConnectStatus" datatype="html">
+        <source>No Wallet Connected</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">61</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="managerOnboardingAlreadyManagerText" datatype="html">
+        <source>You are already a manager.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">66</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="managerOnboardingCtaSignIn" datatype="html">
+        <source>Sign in</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">67</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="managerOnboardingFaqQ1" datatype="html">
+        <source>
+                      What is Kairo token?
+                    </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">123</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="managerOnboardingFaqA1" datatype="html">
+        <source>
+                <x id="START_PARAGRAPH" ctype="x-p" equiv-text="&lt;p&gt;"/>Kairo is Betoken&apos;s non-transferable reputation token. Managers need to possess Kairo tokens to manage
+                  funds on Betoken. They represent how good a manager is at investing. The more Kairo tokens you have,
+                  the more money in the Betoken fund you can manage and the more income you’ll get every month as
+                  commissions on your investments.<x id="CLOSE_PARAGRAPH" ctype="x-p" equiv-text="&lt;/p&gt;"/>
+              </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">134</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="managerOnboardingFaqQ2" datatype="html">
+        <source>
+                      How can I buy Kairo tokens?
+                    </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">146</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="managerOnboardingFaqA2" datatype="html">
+        <source>
+                <x id="START_PARAGRAPH" ctype="x-p" equiv-text="&lt;p&gt;"/>Click on the Get Started button and follow the instructions. You&apos;ll be able to use Ether or any of
+                  our 70+ supported ERC-20 tokens to buy Kairo tokens.<x id="CLOSE_PARAGRAPH" ctype="x-p" equiv-text="&lt;/p&gt;"/>
+              </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">157</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="managerOnboardingFaqQ3" datatype="html">
+        <source>
+                      Do I receive my Kairo tokens immediately after purchase?
+                    </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">167</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="managerOnboardingFaqA3" datatype="html">
+        <source>
+                <x id="START_PARAGRAPH" ctype="x-p" equiv-text="&lt;p&gt;"/>Yes. The Kairo tokens will be given to your wallet after your purchase transaction has been accepted by the
+                  Ethereum blockchain, which may take up to a few minutes.<x id="CLOSE_PARAGRAPH" ctype="x-p" equiv-text="&lt;/p&gt;"/>
+              </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">178</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="managerOnboardingFaqQ4" datatype="html">
+        <source>
+                      What is the commissions structure?
+                    </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">188</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="managerOnboardingFaqA4Title1" datatype="html">
+        <source>Management commissions</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">200</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="managerOnboardingFaqA4Title2" datatype="html">
+        <source>IF the fund is profitable OR not profitable</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">202</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="managerOnboardingFaqA4Text2" datatype="html">
+        <source>0.1% of the total Betoken funds is set aside and distributed among fund manager holding Kairo tokens.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">203</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="managerOnboardingFaqA4Title3" datatype="html">
+        <source>ONLY IF the fund is profitable</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">204</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="managerOnboardingFaqA4Text3" datatype="html">
+        <source>20% of the total Betoken&apos;s monthly profits is set aside as commission and distributed among fund
+                  managers holding Kairo tokens proportional to the amount they hold and their risk profile.
+                  The commission is taken into account IF and ONLY IF the fund is profitable during the actual
+                  investment cycle.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">205</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="managerOnboardingFaqQ5" datatype="html">
+        <source>
+                      How can I manage and follow the activity of the fund?
+                    </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">216</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="managerOnboardingFaqA5" datatype="html">
+        <source>
+                You have access to a Portal where you can view
+                Betoken&apos;s fund performances and your manager trading interface.
+              </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">227</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="managerOnboardingFaqQ6" datatype="html">
+        <source>
+                      Can I sell my Kairo tokens?
+                    </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">237</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="managerOnboardingFaqA6" datatype="html">
+        <source>
+                No. Kairo is a non-transferable reputation token, which means that you cannot sell or give your Kairo tokens to
+                someone else.
+              </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">248</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="managerOnboardingFaqQ7" datatype="html">
+        <source>
+                      Can I buy more Kairo tokens after with the same Wallet address?
+                    </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">258</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="managerOnboardingFaqA7" datatype="html">
+        <source>
+                No. You can only buy Kairo tokens once per Ethereum account.
+              </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">269</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="managerOnboardingBuyBtksModalTitleStep1" datatype="html">
+        <source>
+              How many Kairo tokens do you want to buy?
+            </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">311</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="modalRule4" datatype="html">
+        <source>You understand that you can only buy Kairo tokens once per Ethereum account</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">376</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="managerOnboardingBuyBtksModalIWantToBuyWith" datatype="html">
+        <source>I want to buy Kairo tokens with</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">395</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="managerOnboardingBuyBtksModalMaxPaymentAmount" datatype="html">
+        <source>Maximum purchase:
+                    <x id="INTERPOLATION" equiv-text="{{getMaxPaymentAmount().toFormat(4)}}"/> <x id="INTERPOLATION_1" equiv-text="{{selectedTokenSymbol}}"/> <x id="START_LINK" ctype="x-a" equiv-text="&lt;a&gt;"/><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span&gt;"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/><x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">422</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="managerOnboardingBuyBtksModalKroToreceive" datatype="html">
+        <source>
+                      Kairo tokens to receive
+                    </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">440</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="managerOnboardingBuyBtksModalAmountToManage" datatype="html">
+        <source>
+                      Assets under your management
+                    </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">448</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="managerOnboardingBuyBtksModalTextStep4a" datatype="html">
+        <source>You bought</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">507</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="managerOnboardingBuyBtksModalTextStep4b" datatype="html">
+        <source>using</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">507</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="managerOnboardingBuyBtksModalCtaTweet" datatype="html">
+        <source>Tweet about it</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">510</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="managerOnboardingBuyBtksModalTweet" datatype="html">
+        <source>https://twitter.com/intent/tweet?hashtags=Betoken%2C%20DeFi&amp;related=betokenfund&amp;text=I%27ve%20just%20joined%20Betoken%20as%20a%20fund%20manager%2C%20world%27s%20first%20crowd-powered%20cryptoassets%20management%20protocol!&amp;url=https%3A%2F%2Fbetoken.fund&amp;via=betokenfund</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">509</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="managerOnboardingBuyBtksModalStep4TxHashAriaLabel" datatype="html">
+        <source>Transaction hash</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">518</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="managerOnboardingBuyBtksModalCtaBuy" datatype="html">
+        <source>
+              Buy Kairo tokens
+            </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">543</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="managerOnboardingBuyBtksModalManagerDashboard" datatype="html">
+        <source>Manager Portal</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager-onboarding/manageronboarding.component.html</context>
+          <context context-type="linenumber">555</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="marketHeaderTitle" datatype="html">
+        <source>
+            Market
+          </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/market/market.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="marketPrice&amp;Trends" datatype="html">
+        <source>
+                Prices &amp; Trends
+              </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/market/market.component.html</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="marketThAsset" datatype="html">
+        <source>Asset</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/market/market.component.html</context>
+          <context context-type="linenumber">67</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="marketTh24hVol" datatype="html">
+        <source>24h Volume (USD)</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/market/market.component.html</context>
+          <context context-type="linenumber">73</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="marketTh7dChange" datatype="html">
+        <source>7d Change</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/market/market.component.html</context>
+          <context context-type="linenumber">79</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="marketTh1mChange" datatype="html">
+        <source>1m Change</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/market/market.component.html</context>
+          <context context-type="linenumber">82</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

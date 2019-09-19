@@ -93,7 +93,8 @@ export class InvestmentsComponent extends ApolloEnabled implements OnInit {
             currBorrow: new BigNumber(0),
             currCash: new BigNumber(0),
             leverage: 0,
-            tokenSymbol: "ETH"
+            tokenSymbol: "ETH",
+            txHash: ""
         };
 
         this.activeInvestmentList = new Array<Object>();
@@ -172,6 +173,7 @@ export class InvestmentsComponent extends ApolloEnabled implements OnInit {
                             sellPrice
                             buyTime
                             cycleNumber
+                            txHash
                         }
                         inactiveBasicOrders: basicOrders(where: {owner: "${userAddress}", cycleNumber: "${timer.cycle()}", isSold: true}) {
                             tokenAddress
@@ -189,6 +191,7 @@ export class InvestmentsComponent extends ApolloEnabled implements OnInit {
                             buyTime
                             liquidationPrice
                             isShort
+                            txHash
                         }
                         inactiveFulcrumOrders: fulcrumOrders(where: {owner: "${userAddress}", cycleNumber: "${timer.cycle()}", isSold: true}) {
                             tokenAddress
@@ -212,6 +215,7 @@ export class InvestmentsComponent extends ApolloEnabled implements OnInit {
                             buyTime
                             isShort
                             orderAddress
+                            txHash
                         }
                         inactiveCompoundOrders: compoundOrders(where: {owner: "${userAddress}", cycleNumber: "${timer.cycle()}", isSold: true}) {
                             tokenAddress
@@ -428,17 +432,26 @@ export class InvestmentsComponent extends ApolloEnabled implements OnInit {
 
         switch (this.selectedOrderType['type']) {
             case 'basic':
-                let tokenPrice = tokens.asset_symbol_to_price(this.selectedTokenSymbol);
+                // TODO: more accurate token amount
+                let tokenPrice = await tokens.get_token_price(tokens.asset_symbol_to_address(this.selectedTokenSymbol), 1);
                 let maxPrice = tokenPrice.plus(tokenPrice.times(maxAcceptablePriceProp));
                 manager_actions.new_investment_with_symbol(this.selectedTokenSymbol, this.stakeAmount, new BigNumber(0), maxPrice, pending, confirm, error);
                 break;
             case 'compound':
-                let tokenPrice1 = tokens.asset_symbol_to_price(this.selectedTokenSymbol);
-                let maxPrice1 = tokenPrice1.plus(tokenPrice1.times(maxAcceptablePriceProp));
-                manager_actions.new_compound_order(this.selectedOrderType['isShort'], this.selectedTokenSymbol, this.stakeAmount, new BigNumber(0), maxPrice1, pending, confirm, error);
+                // TODO: more accurate token amount
+                let tokenPrice1 = await tokens.get_token_price(tokens.asset_symbol_to_address(this.selectedTokenSymbol), 1);
+                if (this.selectedOrderType['isShort']) {
+                    // selling the token, use min price threshold
+                    let minPrice1 = tokenPrice1.minus(tokenPrice1.times(maxAcceptablePriceProp));
+                    manager_actions.new_compound_order(this.selectedOrderType['isShort'], this.selectedTokenSymbol, this.stakeAmount, minPrice1, tokenPrice1.times(100000), pending, confirm, error);
+                } else {
+                    // buying the token, use max price threshold
+                    let maxPrice1 = tokenPrice1.plus(tokenPrice1.times(maxAcceptablePriceProp));
+                    manager_actions.new_compound_order(this.selectedOrderType['isShort'], this.selectedTokenSymbol, this.stakeAmount, new BigNumber(0), maxPrice1, pending, confirm, error);
+                }
                 break;
             case 'fulcrum':
-                let tokenPrice2 = await tokens.get_ptoken_price(this.selectedOrderType['tokenAddress'], tokens.asset_symbol_to_price(this.selectedTokenSymbol));
+                let tokenPrice2 = await tokens.get_ptoken_price(this.selectedOrderType['tokenAddress']);
                 let maxPrice2 = tokenPrice2.plus(tokenPrice2.times(maxAcceptablePriceProp));
                 manager_actions.new_investment_with_address(this.selectedOrderType['tokenAddress'], this.stakeAmount, new BigNumber(0), maxPrice2, pending, confirm, error);
                 break;
@@ -482,21 +495,30 @@ export class InvestmentsComponent extends ApolloEnabled implements OnInit {
         switch (this.sellData['__typename']) {
             case 'BasicOrder':
                 // basic order
-                let tokenPrice = this.assetSymbolToPrice(this.selectedTokenSymbol);
+                let tokenPrice = await tokens.get_token_price(this.sellData['tokenAddress'], sellPercentage.times(this.sellData['tokenAmount']));
                 let minPrice = tokenPrice.minus(tokenPrice.times(minAcceptablePriceProp));
                 manager_actions.sell_investment(this.sellId, sellPercentage, minPrice, tokenPrice.times(100000), pendingSell, confirmSell, error);
                 break;
             case 'FulcrumOrder':
                 // fulcrum order
-                let tokenPrice1 = new BigNumber(this.sellData['sellPrice']);
+                let tokenPrice1 = await tokens.get_ptoken_price(this.sellData['tokenAddress']);
                 let minPrice1 = tokenPrice1.minus(tokenPrice1.times(minAcceptablePriceProp));
                 manager_actions.sell_investment(this.sellId, sellPercentage, minPrice1, tokenPrice1.times(100000), pendingSell, confirmSell, error);
                 break;
             case 'CompoundOrder':
                 // compound order
-                let tokenPrice2 = this.assetSymbolToPrice(this.selectedTokenSymbol);
-                let minPrice2 = tokenPrice2.minus(tokenPrice2.times(minAcceptablePriceProp));
-                manager_actions.sell_compound_order(this.sellId, minPrice2, tokenPrice2.times(100000), pendingSell, confirmSell, error);
+                // TODO: more accurate sell token amount
+                let tokenPrice2 = await tokens.get_token_price(tokens.asset_symbol_to_address(this.selectedTokenSymbol), 1);
+                if (this.sellData['isShort']) {
+                    // buying the token, use max price threshold
+                    let maxPrice2 = tokenPrice2.plus(tokenPrice2.times(minAcceptablePriceProp));
+                    manager_actions.sell_compound_order(this.sellId, new BigNumber(0), maxPrice2, pendingSell, confirmSell, error);
+                } else {
+                    // selling the token, use min price threshold
+                    let minPrice2 = tokenPrice2.minus(tokenPrice2.times(minAcceptablePriceProp));
+                    manager_actions.sell_compound_order(this.sellId, minPrice2, tokenPrice2.times(100000), pendingSell, confirmSell, error);
+                }
+
                 break;
         }
 

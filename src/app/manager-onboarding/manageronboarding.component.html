@@ -1,44 +1,54 @@
 <!-- MAIN CONTENT -->
 <div class="main-content">
   <div class="container px-lg-7">
-    <div class="row justify-content-center my-5">
-      <div class="col-11 col-md-12">
-        <img class="image-fluid mb-4" src="assets/img/illustrations/betoken-particuls.svg" alt="Betoken particuls"
+    <div class="row justify-content-center align-items-center my-5">
+      <div class="col">
+        <img class="image-fluid" src="assets/img/illustrations/betoken-particuls.svg" alt="Betoken particuls"
           style="max-width: 88px;">
+      </div>
+      <div class="col-auto">
+        <!-- notification -->
+        <div class="navbar-toggler d-flex align-items-center">
+          <!-- Toggle -->
+          <a class="d-inline block mr-4 mr-md-0" data-toggle="modal" href="#modalLanguage">
+            <span class="icon">
+              <img src="assets/img/icons/baseline-translate-24px.svg" alt="">
+            </span>
+          </a>
+        </div>
       </div>
     </div>
     <div class="row justify-content-center mb-6">
       <div class="col-11 col-lg-6 pr-lg-4 order-2 order-lg-1">
-        <h5 class="header-pretitle d-none d-lg-block" i18n>
+        <h5 class="header-pretitle d-none d-lg-block" i18n="@@managerOnboardingHeaderPretitle">
           Become a
         </h5>
-        <h1 class="display-2 font-weight-bold d-none d-lg-block" i18n>Fund Manager</h1>
-        <p class="lead font-weight-bold mb-5 d-none d-lg-block" i18n>Connect your crypto-trading expertise to the Betoken's
+        <h1 class="display-2 font-weight-bold d-none d-lg-block" i18n="@@managerOnboardingHeaderTitle">Fund Manager</h1>
+        <p class="lead font-weight-bold mb-5 d-none d-lg-block" i18n="@@managerOnboardingHeaderSubtitle">Connect your crypto-trading expertise to the Betoken's
           pool of capital and earn commissions!</p>
         <div class="media mb-4 mb-lg-3">
           <i class="fe fe-check text-green mr-3"></i>
           <div class="media-body">
-            <h6 class="header-pretitle" i18n>
+            <h6 class="header-pretitle" i18n="@@managerOnboardingIntroSubTitle1">
               The best managers earn the most
             </h6>
-            <p i18n>
-              The Betoken protocol recognizes and quantifies the talent of its fund managers by allocating units of
-              reputation to them, denominated in <a href="https://betoken.gitbook.io/docs/manage-the-fund/what-is-kairo"
-                target="_blank">Kairo tokens</a>, and financially rewards them based on their talent and contributions.
+            <p>
+              <ng-container i18n="@@managerOnboardingIntroSubText1a">The Betoken protocol recognizes and quantifies the talent of its fund managers by allocating units of
+              reputation to them, denominated in Kairo tokens, and financially rewards them based on their talent and contributions.
               The more Kairo tokens you have, the more money in the Betoken fund you can manage and the more income
-              you’ll get every month as commissions on your investments. <a
+              you’ll get every month as commissions on your investments.</ng-container>&nbsp;<a
                 href="https://betoken.gitbook.io/docs/manage-the-fund/how-does-the-managers-monthly-commission-work"
-                target="_blank">More about Betoken's commissions structure<i class="fe fe-arrow-right ml-2"></i></a>
+                target="_blank"><ng-container i18n="@@managerOnboardingIntroSubText1b">More about Betoken's commissions structure</ng-container><i class="fe fe-arrow-right ml-2"></i></a>
             </p>
           </div>
         </div>
         <div class="media mb-4 mb-lg-3">
           <i class="fe fe-check text-green mr-3"></i>
           <div class="media-body">
-            <h6 class="header-pretitle" i18n>
+            <h6 class="header-pretitle" i18n="@@managerOnboardingIntroSubTitle2">
               Margin trading and instant liquidity
             </h6>
-            <p i18n>
+            <p i18n="@@managerOnboardingIntroSubText2">
               Betoken uses the full value of the open finance ecosystem like Kyber Network, Compound, Fulcrum by bZx and
               DAI stable coin. These financial primitives enable margin trading with up to 4x leverage on Betoken and
               guaranteed liquidity.
@@ -47,11 +57,11 @@
         </div>
       </div>
       <div class="col-11 col-lg-6 pl-lg-4 order-1 order-lg-2">
-        <h5 class="header-pretitle d-block d-lg-none" i18n>
+        <h5 class="header-pretitle d-block d-lg-none" i18n="@@managerOnboardingHeaderPretitle">
           Become a
         </h5>
-        <h1 class="display-4 font-weight-bold d-block d-lg-none" i18n>Fund Manager</h1>
-        <p class="lead font-weight-bold mb-4 d-block d-lg-none" i18n>Connect your crypto-trading expertise to the Betoken's
+        <h1 class="display-4 font-weight-bold d-block d-lg-none" i18n="@@managerOnboardingHeaderTitle">Fund Manager</h1>
+        <p class="lead font-weight-bold mb-4 d-block d-lg-none" i18n="@@managerOnboardingHeaderSubtitle">Connect your crypto-trading expertise to the Betoken's
           decentralized pool of capital and actively trade against the market to earn commissions! Get started by buying
           a manager account.</p>
         <div class="card mb-6">
@@ -59,23 +69,13 @@
             <!-- cta -->
             <span class="text-truncate d-block" *ngIf="user_address !== ZERO_ADDR"><span class="text-success">●</span>
               {{user_address}}</span>
-            <span class="text-truncate" *ngIf="user_address == ZERO_ADDR" i18n><span class="text-danger">●</span> No Wallet
-              Connected</span>
+            <span class="text-truncate" *ngIf="user_address == ZERO_ADDR"><span class="text-danger">●</span>&nbsp;<ng-container i18n="@@managerOnboardingConnectStatus">No Wallet Connected</ng-container></span>
           </div>
           <div class="card-body text-center text-md-left">
-            <div *ngIf="user_address == ZERO_ADDR">
-              <p class="text-secondary text-center" i18n>Please enable Metamask or visit this page in a Web3 browser to
-                interact with Betoken on the Ethereum Mainnet.</p>
-              <a class="btn btn-block btn-lg btn-success d-none d-lg-block" target="__blank"
-                href="https://metamask.io" i18n>Get Metamask</a>
-              <a class="btn btn-block btn-lg btn-success d-block d-lg-none" target="__blank"
-                href="https://trustwallet.com/" i18n>Get Trust Wallet</a>
-            </div>
-            <button class="btn btn-block btn-lg btn-success" type="button" data-toggle="modal" data-target="#modalBuy"
-              *ngIf="user_address != ZERO_ADDR && !isManager" i18n>Get Started</button>
+            <button class="btn btn-block btn-lg btn-success" type="button" data-toggle="modal" data-target="#modalBuy" *ngIf="user_address != ZERO_ADDR && !isManager" i18n="@@ctaGetStarted">Get Started</button>
             <div *ngIf="user_address != ZERO_ADDR && isManager">
-              <p class="text-secondary text-center" i18n>You are already a manager.</p>
-              <a class="btn btn-block btn-lg btn-success" href="#/dashboard" i18n>Sign in</a>
+              <p class="text-secondary text-center" i18n="@@managerOnboardingAlreadyManagerText">You are already a manager.</p>
+              <a class="btn btn-block btn-lg btn-success" routerLink="/dashboard" i18n="@@managerOnboardingCtaSignIn">Sign in</a>
             </div>
           </div>
           <a href="https://github.com/solidified-platform/audits/blob/master/Audit%20Report%20-%20%20Betoken%20%5B20.05.2019%5D.pdf"
@@ -89,7 +89,7 @@
                   </div>
                 </div>
                 <div class="col">
-                  <p class="small text-secondary mb-0" i18n>Betoken Smart Contracts are audited and secured by Solidified</p>
+                  <p class="small text-secondary mb-0" i18n="@@solidifiedAudit">Betoken Smart Contracts are audited and secured by Solidified</p>
                 </div>
                 <div class="col-auto">
                   <i class="fe fe-arrow-right text-secondary"></i>
@@ -100,18 +100,18 @@
         </div>
         <div class="card card-inactive mb-6">
           <div class="card-body">
-            <h3 i18n>Disclaimer</h3>
-            <p class="text-muted" i18n>
+            <h3 i18n="@@disclaimerTitle">Disclaimer</h3>
+            <p class="text-muted" i18n="@@disclaimertext1">
               Nothing herein constitutes an offer to sell, or the solicitation of an offer to buy, any securities or
               tokens.
             </p>
-            <p class="text-muted" i18n>
+            <p class="text-muted" i18n="@@disclaimertext2">
               Betoken enables capital connection and managing using smart contracts which are open source. Betoken does
               not take custody of tokens and is only a collaborative hub for investors and managers. Betoken is not a
               licensed bank, broker-dealer, investment advisor or an exchange. Betoken uses partner protocols (Kyber,
               Compound, bZx, Maker DAO) to power its own ecosystem.
             </p>
-            <p class="text-danger" i18n>
+            <p class="text-danger" i18n="@@disclaimertext3">
               💀 This project is in beta. Use at your own risk.
             </p>
           </div>
@@ -122,7 +122,7 @@
   <div class="container mt-3">
     <div class="row justify-content-center">
       <div class="col-11 col-lg-6">
-        <h1 class="text-center" i18n>Frequently asked questions</h1>
+        <h1 class="text-center" i18n="@@faqTitle">Frequently asked questions</h1>
         <div id="accordion">
           <!-- question -->
           <div class="card">
@@ -131,8 +131,8 @@
                 aria-controls="collapseOne">
                 <div class="row align-items-center no-gutters">
                   <div class="col mr-auto">
-                    <h3 class="card-text" i18n>
-                      What is Kairo?
+                    <h3 class="card-text" i18n="@@managerOnboardingFaqQ1">
+                      What is Kairo token?
                     </h3>
                   </div>
                   <div class="col-auto">
@@ -142,9 +142,9 @@
               </a>
             </div>
             <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-              <div class="card-body" i18n>
+              <div class="card-body" i18n="@@managerOnboardingFaqA1">
                 <p>Kairo is Betoken's non-transferable reputation token. Managers need to possess Kairo tokens to manage
-                  funds on Betoken. Kairo represents how good a manager is at investing. The more Kairo tokens you have,
+                  funds on Betoken. They represent how good a manager is at investing. The more Kairo tokens you have,
                   the more money in the Betoken fund you can manage and the more income you’ll get every month as
                   commissions on your investments.</p>
               </div>
@@ -154,7 +154,7 @@
                 aria-controls="collapseTwo">
                 <div class="row align-items-center no-gutters">
                   <div class="col mr-auto">
-                    <h3 class="card-text" i18n>
+                    <h3 class="card-text" i18n="@@managerOnboardingFaqQ2">
                       How can I buy Kairo tokens?
                     </h3>
                   </div>
@@ -165,9 +165,9 @@
               </a>
             </div>
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-              <div class="card-body" i18n>
+              <div class="card-body" i18n="@@managerOnboardingFaqA2">
                 <p>Click on the Get Started button and follow the instructions. You'll be able to use Ether or any of
-                  our 70+ supported ERC-20 tokens to buy Kairo tokens (KRO).</p>
+                  our 70+ supported ERC-20 tokens to buy Kairo tokens.</p>
               </div>
             </div>
             <div class="card-header border-bottom" id="headingSeven">
@@ -175,8 +175,8 @@
                 aria-expanded="false" aria-controls="collapseSeven">
                 <div class="row align-items-center no-gutters">
                   <div class="col mr-auto">
-                    <h3 class="card-text" i18n>
-                      Do I receive my Kairo immediately after purchase?
+                    <h3 class="card-text" i18n="@@managerOnboardingFaqQ3">
+                      Do I receive my Kairo tokens immediately after purchase?
                     </h3>
                   </div>
                   <div class="col-auto">
@@ -186,8 +186,8 @@
               </a>
             </div>
             <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordion">
-              <div class="card-body" i18n>
-                <p>Yes. The Kairo will be given to your wallet after your purchase transaction has been accepted by the
+              <div class="card-body" i18n="@@managerOnboardingFaqA3">
+                <p>Yes. The Kairo tokens will be given to your wallet after your purchase transaction has been accepted by the
                   Ethereum blockchain, which may take up to a few minutes.</p>
               </div>
             </div>
@@ -196,7 +196,7 @@
                 aria-expanded="false" aria-controls="collapseThree">
                 <div class="row align-items-center no-gutters">
                   <div class="col mr-auto">
-                    <h3 class="card-text" i18n>
+                    <h3 class="card-text" i18n="@@managerOnboardingFaqQ4">
                       What is the commissions structure?
                     </h3>
                   </div>
@@ -208,13 +208,13 @@
             </div>
             <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
               <div class="card-body">
-                <h3 i18n>Management commissions</h3>
-                <p i18n>After the management phase is over (every 27 days):</p>
-                <h4 i18n>IF the fund is profitable OR not profitable</h4>
-                <p i18n>0.1% of the total Betoken funds is set aside and distributed among fund manager holding Kairo.</p>
-                <h4 i18n>ONLY IF the fund is profitable</h4>
-                <p i18n>20% of the total Betoken's monthly profits is set aside as commission and distributed among fund
-                  managers holding Kairo proportional to the amount they hold and their <a href="#"></a> risk profile.
+                <h3 i18n="@@managerOnboardingFaqA4Title1">Management commissions</h3>
+                <p i18n="@@investorOnboardingFaqA3Text1">After the management phase is over (every 27 days):</p>
+                <h4 i18n="@@managerOnboardingFaqA4Title2">IF the fund is profitable OR not profitable</h4>
+                <p i18n="@@managerOnboardingFaqA4Text2">0.1% of the total Betoken funds is set aside and distributed among fund manager holding Kairo tokens.</p>
+                <h4 i18n="@@managerOnboardingFaqA4Title3">ONLY IF the fund is profitable</h4>
+                <p i18n="@@managerOnboardingFaqA4Text3">20% of the total Betoken's monthly profits is set aside as commission and distributed among fund
+                  managers holding Kairo tokens proportional to the amount they hold and their risk profile.
                   The commission is taken into account IF and ONLY IF the fund is profitable during the actual
                   investment cycle.</p>
               </div>
@@ -224,7 +224,7 @@
                 aria-controls="collapseFour">
                 <div class="row align-items-center no-gutters">
                   <div class="col mr-auto">
-                    <h3 class="card-text" i18n>
+                    <h3 class="card-text" i18n="@@managerOnboardingFaqQ5">
                       How can I manage and follow the activity of the fund?
                     </h3>
                   </div>
@@ -235,8 +235,8 @@
               </a>
             </div>
             <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
-              <div class="card-body" i18n>
-                You have access to a <a href="https://betoken.fund/portal/#/dashboard">Portal</a> where you can view
+              <div class="card-body" i18n="@@managerOnboardingFaqA5">
+                You have access to a Portal where you can view
                 Betoken's fund performances and your manager trading interface.
               </div>
             </div>
@@ -245,7 +245,7 @@
                 aria-controls="collapseFive">
                 <div class="row align-items-center no-gutters">
                   <div class="col mr-auto">
-                    <h3 class="card-text" i18n>
+                    <h3 class="card-text" i18n="@@managerOnboardingFaqQ6">
                       Can I sell my Kairo tokens?
                     </h3>
                   </div>
@@ -256,8 +256,8 @@
               </a>
             </div>
             <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
-              <div class="card-body" i18n>
-                No. Kairo is a non-transferable reputation token, which means that you cannot sell or give your Kairo to
+              <div class="card-body" i18n="@@managerOnboardingFaqA6">
+                No. Kairo is a non-transferable reputation token, which means that you cannot sell or give your Kairo tokens to
                 someone else.
               </div>
             </div>
@@ -266,8 +266,8 @@
                 aria-controls="collapseSix">
                 <div class="row align-items-center no-gutters">
                   <div class="col mr-auto">
-                    <h3 class="card-text" i18n>
-                      Can I buy more Kairo after with the same Wallet address?
+                    <h3 class="card-text" i18n="@@managerOnboardingFaqQ7">
+                      Can I buy more Kairo tokens after with the same Wallet address?
                     </h3>
                   </div>
                   <div class="col-auto">
@@ -277,10 +277,8 @@
               </a>
             </div>
             <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordion">
-              <div class="card-body" i18n>
-                No. You can only buy Kairo tokens once per Ethereum account. <a
-                  href="https://github.com/Betoken/Whitepaper/blob/master/BetokenWhitepaper.md#212-continuous-distribution"
-                  target="_blank">More about Kairo distribution and price.</a>
+              <div class="card-body" i18n="@@managerOnboardingFaqA7">
+                No. You can only buy Kairo tokens once per Ethereum account.
               </div>
             </div>
           </div>
@@ -292,56 +290,56 @@
       <div class="col-11 col-lg-6">
         <div class="card bg-green">
           <div class="card-body text-center">
-            <h3 class="text-white" i18n>Can’t find what you’re looking for?</h3>
+            <h3 class="text-white" i18n="@@faqGetHelptitle">Can’t find what you’re looking for?</h3>
             <a class="btn btn-white mr-3" href="https://t.me/betokenfund">Telegram</a>
-            <a class="btn btn-white mr-3" href="https://betoken.gitbook.io/docs/" i18n>Help Center</a>
+            <a class="btn btn-white mr-3" href="https://betoken.gitbook.io/docs/" i18n="@@faqCtaHelpCenter">Help Center</a>
           </div>
         </div>
         <ul class="nav justify-content-center my-4">
           <li class="nav-item">
-            <a href="https://betoken.fund" class="nav-link text-center text-secondary" i18n>Home</a>
+            <a href="https://betoken.fund" class="nav-link text-center text-secondary" i18n="@@footerNavHome">Home</a>
           </li>
           <li class="nav-item">
-            <a href="https://medium.com/betoken" class="nav-link text-center text-secondary" i18n>Blog</a>
+            <a href="https://medium.com/betoken" class="nav-link text-center text-secondary" i18n="@@footerNavBlog">Blog</a>
           </li>
         </ul>
-        <p class="text-center text-secondary" i18n>Contact us at <a class="text-secondary"
+        <p class="text-center text-secondary"><ng-container i18n="@@contactUs">Contact us at</ng-container>&nbsp;<a class="text-secondary"
             href="mailto:hello@betoken.fund?subject=Hey">hello@betoken.fund</a></p>
       </div>
     </div>
 
-    <!-- Buy BTKS modal -->
+    <!-- Buy Kairo modal -->
     <div class="modal fade fixed-right" id="modalBuy" tabindex="-1" role="dialog" aria-labelledby="modalBuy"
       aria-hidden="true">
       <div class="modal-dialog modal-dialog-vertical bg-white" role="document">
         <div class="modal-content" data-toggle="lists" data-lists-values="[&quot;name&quot;]">
           <div class="modal-header border-0">
             <!-- Confirm rules title -->
-            <h4 class="modal-title" *ngIf="buyStep == 0" i18n>
+            <h4 class="modal-title" *ngIf="buyStep == 0" i18n="@@modalTitleConfirmRules">
               Please confirm before continuing
             </h4>
             <!-- BTKS amount title -->
-            <h4 class="modal-title" *ngIf="buyStep == 1" i18n>
-              How many Kairo do you want to buy?
+            <h4 class="modal-title" *ngIf="buyStep == 1" i18n="@@managerOnboardingBuyBtksModalTitleStep1">
+              How many Kairo tokens do you want to buy?
             </h4>
             <!-- BTKS Confirm buy title -->
-            <h4 class="modal-title" *ngIf="buyStep == 2" i18n>
-              Confirm order
+            <h4 class="modal-title" *ngIf="buyStep == 2" i18n="@@modalTitleConfirmTx">
+              Confirm transaction
             </h4>
             <!-- BTKS Processing buy title -->
-            <h4 class="modal-title" *ngIf="buyStep == 3" i18n>
-              Processing order
+            <h4 class="modal-title" *ngIf="buyStep == 3" i18n="@@modalTitleProcessingTx">
+              Processing transaction
             </h4>
             <!-- BTKS confirmed buy title -->
-            <h4 class="modal-title" *ngIf="buyStep == 4" i18n>
-              Order confirmed
+            <h4 class="modal-title" *ngIf="buyStep == 4" i18n="@@modalTitleTxConfirmed">
+              Transaction confirmed
             </h4>
             <!-- Error -->
-            <h4 class="modal-title" *ngIf="buyStep == -1" i18n>
+            <h4 class="modal-title" *ngIf="buyStep == -1" i18n="@@modalTitleError">
               That's an error
             </h4>
             <!-- Close -->
-            <button type="button" class="close" data-dismiss="modal" i18n-aria-label aria-label="Close">
+            <button type="button" class="close" data-dismiss="modal" i18n-aria-label="@@modalAriaLabelClose" aria-label="Close">
               <span aria-hidden="true">×</span>
             </button>
           </div>
@@ -371,7 +369,7 @@
               <div class="custom-control custom-checkbox mb-4">
                 <input type="checkbox" class="custom-control-input" id="rule1"
                   (change)="checkboxes[0] = !checkboxes[0]">
-                <label class="custom-control-label small text-secondary" for="rule1" i18n>You are NEITHER a citizen or
+                <label class="custom-control-label small text-secondary" for="rule1" i18n="@@modalRule1">You are NEITHER a citizen or
                   resident of, NOR currently located in any of the following states or territories, NOR an entity formed
                   under the laws of: Afghanistan, Cuba, Democratic People's Republic of Korea, Iran, Iraq, People’s
                   Republic of China, Russian Federation, Somalia, Sudan, Syria, United Arab Emirates, United States of
@@ -380,13 +378,18 @@
               <div class="custom-control custom-checkbox mb-4">
                 <input type="checkbox" class="custom-control-input" id="rule2"
                   (change)="checkboxes[1] = !checkboxes[1]">
-                <label class="custom-control-label small text-secondary" for="rule2" i18n>You have read and understood our <a
-                    href="#/disclaimer" data-dismiss="modal" i18n-aria-label aria-label="Close">disclaimer</a>.</label>
+                <label class="custom-control-label small text-secondary" for="rule2"><ng-container i18n="@@modalRule2">You have read and understood our</ng-container>&nbsp;<a
+                    routerLink="/disclaimer" data-dismiss="modal" i18n-aria-label="@@modalAriaLabelClose" aria-label="Close" i18n="@@modalDisclaimerCta">disclaimer</a>.</label>
+              </div>
+              <div class="custom-control custom-checkbox mb-4">
+                <input type="checkbox" class="custom-control-input" id="rule4"
+                  (change)="checkboxes[2] = !checkboxes[2]">
+                <label class="custom-control-label small text-secondary" for="rule4"><ng-container i18n="@@modalRule4">You understand that you can only buy Kairo tokens once per Ethereum account</ng-container>.</label>
               </div>
               <div class="custom-control custom-checkbox mb-4">
                 <input type="checkbox" class="custom-control-input" id="rule3"
-                  (change)="checkboxes[2] = !checkboxes[2]">
-                <label class="custom-control-label small text-danger" for="rule3" i18n>💀 You understand that Betoken
+                  (change)="checkboxes[3] = !checkboxes[3]">
+                <label class="custom-control-label small text-danger" for="rule3" i18n="@@modalRule3">💀 You understand that Betoken
                   Protocol is in beta. Use at your own risk.</label>
               </div>
             </div>
@@ -394,84 +397,82 @@
             <!-- Step 1: enter amount -->
 
             <!-- Quantity of Kairo to buy -->
-            <div *ngIf="buyStep == 1">
-              <h6 class="header-pretitle" i18n>
-                Current Kairo Token Price
-              </h6>
-              <h4 class="mb-5">
-                {{kairoPrice.toFormat(4)}} DAI/KRO
-              </h4>
-              <h6 class="header-pretitle text-secondary" i18n>I want to buy Kairo with</h6>
-              <div class="row justify-content-center mb-4">
-                <div class="col">
-                  <form>
-                    <div class="form-group row mb-2">
-                      <div class="col">
-                        <div class="input-group">
-                          <input aria-describedby="Kairo Amount to buy"
-                            class="form-control form-control-lg pr-0" type="number" placeholder="0.0"
-                            id="sharesAmountToBuy" min="0.0"
-                            (input)="refreshBuyOrderDetails($event.target.value); continueEnabled = true">
-                          <div class="input-group-append">
-                            <button class="btn btn-white" name="button" type="button"
-                              (click)="maxBuyAmount()" i18n>Max</button>
-                          </div>
+            <h6 class="header-pretitle" i18n="@@price" *ngIf="buyStep == 1">
+              Price (DAI)
+            </h6>
+            <h4 class="mb-5" *ngIf="buyStep == 1">
+              {{kairoPrice.toFormat(4)}}
+            </h4>
+            <h6 class="header-pretitle text-secondary" i18n="@@managerOnboardingBuyBtksModalIWantToBuyWith" *ngIf="buyStep == 1">I want to buy Kairo tokens with</h6>
+            <div class="row justify-content-center mb-4" *ngIf="buyStep == 1">
+              <div class="col">
+                <form>
+                  <div class="form-group row mb-2">
+                    <div class="col">
+                      <div class="input-group">
+                        <input aria-describedby="Kairo tokens amount to buy"
+                          class="form-control form-control-lg pr-0" type="number" placeholder="0.0"
+                          id="sharesAmountToBuy" min="0.0"
+                          (input)="refreshBuyOrderDetails($event.target.value); continueEnabled = true">
+                        <div class="input-group-append">
+                          <button class="btn btn-white" name="button" type="button"
+                            (click)="maxBuyAmount()" i18n="@@modalCtaMax">Max</button>
                         </div>
                       </div>
-                      <div class="col">
-                        <select class="form-control form-control-lg" id="buyTokenSelect"
-                          (change)="selectBuyToken($event.target.value)">
-                          <option *ngFor="let token of tokenData">{{token.symbol}}</option>
-                        </select>
-                      </div>
                     </div>
-                    <small
-                      class="d-block form-text text-secondary d-inline-block mb-0" i18n>{{selectedTokenBalance.toFormat(4)}}
-                      {{selectedTokenSymbol}} available</small>
-                    <small class="form-text text-warning d-inline-block mb-0 mt-1" i18n>Maximum purchase:
-                      {{getMaxPaymentAmount().toFormat(4)}} {{selectedTokenSymbol}} <a class="text-muted ml-2"
-                        href="https://betoken.gitbook.io/docs/manage-the-fund/why-is-there-a-max-kairo-purchase"
-                        title="Learn more" target="_blank"><span class="fe fe-help-circle"></span></a></small>
-                  </form>
-                </div>
+                    <div class="col">
+                      <select class="form-control form-control-lg" id="buyTokenSelect"
+                        (change)="selectBuyToken($event.target.value)">
+                        <option *ngFor="let token of tokenData">{{token.symbol}}</option>
+                      </select>
+                    </div>
+                  </div>
+                  <small
+                    class="d-block form-text text-secondary d-inline-block mb-0">{{selectedTokenBalance.toFormat(4)}}
+                    {{selectedTokenSymbol}}&nbsp;<ng-container i18n="@@modalBalanceAvailable">available</ng-container></small>
+                  <small class="form-text text-warning d-inline-block mb-0 mt-1" i18n="@@managerOnboardingBuyBtksModalMaxPaymentAmount">Maximum purchase:
+                    {{getMaxPaymentAmount().toFormat(4)}} {{selectedTokenSymbol}} <a class="text-muted ml-2"
+                      href="https://betoken.gitbook.io/docs/manage-the-fund/why-is-there-a-max-kairo-purchase"
+                      title="Learn more" target="_blank"><span class="fe fe-help-circle"></span></a></small>
+                </form>
               </div>
-              <div class="table-responsive">
-                <table class="table mb-4">
-                  <thead>
-                    <tr>
-                      <th class="px-0 bg-transparent border-top-0">
-                        <span class="h6" i18n>Order Details</span>
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td class="px-0 small align-baseline text-muted" i18n>
-                        Kairo tokens to receive
-                      </td>
-                      <td class="px-0 text-right small align-baseline" i18n>
-                        {{buyKairoAmount.toFormat(6)}} KRO
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="px-0 small align-baseline text-muted" i18n>
-                        Amount you will manage
-                      </td>
-                      <td class="px-0 text-right small align-baseline">
-                        {{buyKairoAmount.times(totalFunds).div(kairoTotalSupply).toFormat(6)}} DAI
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="px-0 small align-baseline text-muted" i18n>
-                        Total cost
-                      </td>
-                      <td class="px-0 text-right h3 align-baseline">
-                        {{buyTokenAmount.toFormat(6)}} {{selectedTokenSymbol}}
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+            </div>
+            <div class="table-responsive" *ngIf="buyStep == 1">
+              <table class="table mb-4">
+                <thead>
+                  <tr>
+                    <th class="px-0 bg-transparent border-top-0">
+                      <span class="h6" i18n="@@modalTitleOrderDetail">Order Details</span>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="px-0 small align-baseline text-muted" i18n="@@managerOnboardingBuyBtksModalKroToreceive">
+                      Kairo tokens to receive
+                    </td>
+                    <td class="px-0 text-right small align-baseline">
+                      {{buyKairoAmount.toFormat(6)}} KRO
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="px-0 small align-baseline text-muted" i18n="@@managerOnboardingBuyBtksModalAmountToManage">
+                      Assets under your management
+                    </td>
+                    <td class="px-0 text-right small align-baseline">
+                      {{buyKairoAmount.times(totalFunds).div(kairoTotalSupply).toFormat(6)}} DAI
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="px-0 small align-baseline text-muted" i18n="@@modalTotalCost">
+                      Total cost
+                    </td>
+                    <td class="px-0 text-right h3 align-baseline">
+                      {{buyTokenAmount.toFormat(6)}} {{selectedTokenSymbol}}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
 
 
@@ -479,24 +480,24 @@
             <!-- loader -->
             <img class="image-fluid d-block mx-auto mb-4" src="assets/img/animated-logo.svg" alt="Betoken logo"
               style="width: 88px;" *ngIf="buyStep == 3 || buyStep === 2">
-            <p class="text-center text-muted mb-5" *ngIf="buyStep == 2" i18n>
+            <p class="text-center text-muted mb-5" *ngIf="buyStep == 2" i18n="@@modalBodyTextStep1">
               Confirm the transaction in your wallet’s interface to save it on the Ethereum blockchain. It's fine to
               stick with these defaults gas limit and price.
             </p>
 
             <!-- Step 3: transaction broadcasted -->
-            <!-- Processing investment body -->
+            <!-- Processing transaction body -->
             <div *ngIf="buyStep == 3">
-              <p class="text-center text-muted mb-5" i18n>
-                Your order is being saved on the Ethereum blockchain.
+              <p class="text-center text-muted mb-5" i18n="@@modalBodyTextTxBroadcasted">
+                Your transaction is being saved on the Ethereum blockchain.
               </p>
               <hr>
               <form>
                 <div class="form-group">
-                  <label for="exampleFormControlInput1" i18n>Transaction ID</label>
+                  <label for="exampleFormControlInput1" i18n="@@modalBodyTxHash">Transaction hash</label>
                   <div class="input-group mb-3">
                     <input type="text" class="form-control form-control-lg" value="{{transactionId}}"
-                      aria-label="Transaction ID" aria-describedby="">
+                      aria-label="Transaction hash">
                     <div class="input-group-append">
                       <a class="btn btn-white h-100 d-flex align-items-center"
                         href="https://etherscan.io/tx/{{transactionId}}" target="_blank"><i
@@ -513,21 +514,19 @@
               <p class="h1 text-center">
                 <i class="fe fe-check-circle text-success"></i>
               </p>
-              <p class="text-center text-muted mb-5" i18n>
-                You bought <span class="font-weight-bold text-secondary">{{buyKairoAmount.toFormat(4)}}</span> KRO using
-                <span class="font-weight-bold text-secondary">{{buyTokenAmount.toFormat(6)}}</span>
-                {{selectedTokenSymbol}}.
+              <p class="text-center text-muted mb-5">
+                <ng-container i18n="@@managerOnboardingBuyBtksModalTextStep4a">You bought</ng-container>&nbsp;<span class="font-weight-bold text-secondary">{{buyKairoAmount.toFormat(4)}}</span>&nbsp;KRO&nbsp;<ng-container i18n="@@managerOnboardingBuyBtksModalTextStep4b">using</ng-container>&nbsp;<span class="font-weight-bold text-secondary">{{buyTokenAmount.toFormat(6)}}</span>&nbsp;{{selectedTokenSymbol}}.
               </p>
-              <a target="_blank" i18n-href href="https://twitter.com/intent/tweet?hashtags=Betoken%2C%20DeFi&related=betokenfund&text=I%27ve%20just%20joined%20Betoken%20as%20a%20fund%20manager%2C%20world%27s%20first%20crowd-powered%20cryptoassets%20management%20protocol!&url=https%3A%2F%2Fbetoken.fund&via=betokenfund">
-                <button class="btn btn-twitter btn-block" type="button" name="button" i18n>Tweet about it</button>
+              <a target="_blank" i18n-href="@@managerOnboardingBuyBtksModalTweet" href="https://twitter.com/intent/tweet?hashtags=Betoken%2C%20DeFi&related=betokenfund&text=I%27ve%20just%20joined%20Betoken%20as%20a%20fund%20manager%2C%20world%27s%20first%20crowd-powered%20cryptoassets%20management%20protocol!&url=https%3A%2F%2Fbetoken.fund&via=betokenfund">
+                <button class="btn btn-twitter btn-block" type="button" name="button" i18n="@@managerOnboardingBuyBtksModalCtaTweet">Tweet about it</button>
               </a>
               <hr>
               <form>
                 <div class="form-group">
-                  <label for="exampleFormControlInput1" i18n>Transaction ID</label>
+                  <label for="exampleFormControlInput1" i18n="@@modalBodyTxHash">Transaction hash</label>
                   <div class="input-group mb-3">
                     <input type="text" class="form-control form-control-lg" value="{{transactionId}}"
-                     i18n-aria-label aria-label="Transaction ID" aria-describedby="">
+                     i18n-aria-label="@@managerOnboardingBuyBtksModalStep4TxHashAriaLabel" aria-label="Transaction hash">
                     <div class="input-group-append">
                       <a class="btn btn-white h-100 d-flex align-items-center"
                         href="https://etherscan.io/tx/{{transactionId}}" target="_blank"><i
@@ -543,35 +542,74 @@
               <p class="h1 text-center">
                 <i class="fe fe-alert-circle text-danger"></i>
               </p>
-              <p class="text-center text-muted mb-5" i18n>
+              <p class="text-center text-muted mb-5" i18n="@@modalErrorText">
                 The operation has resulted in an error. Please try again.
               </p>
-              <p class="text-center text-muted mb-5" i18n>
-                Error message: {{errorMsg}}
+              <p class="text-center text-muted mb-5">
+                <ng-container i18n="@@modalErrorMsg">Error message:</ng-container>&nbsp;{{errorMsg}}
               </p>
             </div>
 
             <!-- Continue button for buyStep 1 -->
-            <button type="submit" class="btn btn-block btn-success mt-auto" aria-label="BuyBTKS" *ngIf="buyStep == 0"
-              (click)="buyStep = agreementsChecked() ? 1 : 0" [ngClass]="{'disabled': !agreementsChecked()}" i18n>
+            <button type="submit" class="btn btn-block btn-success mt-auto" aria-label="BuyBTKS" *ngIf="buyStep == 0" (click)="buyStep = agreementsChecked() ? 1 : 0" [ngClass]="{'disabled': !agreementsChecked()}" i18n="@@managerOnboardingBuyBtksModalCtaBuy">
               Buy Kairo tokens
             </button>
             <!-- Continue button for buyStep 2 -->
-            <button type="submit" class="btn btn-block btn-success mt-auto" aria-label="Continue to Buy"
-              *ngIf="buyStep == 1" (click)="register();" [disabled]="!continueEnabled" i18n>
+            <button type="submit" class="btn btn-block btn-success mt-auto" aria-label="Continue to Buy" *ngIf="buyStep == 1" (click)="register();" [disabled]="!continueEnabled" i18n="@@modalCtaContinue">
               Continue
             </button>
             <!-- Try again button for error -->
-            <button type="submit" class="btn btn-block btn-white mt-auto" aria-label="Try again" *ngIf="buyStep == -1"
-              (click)="resetModals()" i18n>
+            <button type="submit" class="btn btn-block btn-white mt-auto" i18n="@@modalTryAgainAriaLabel" aria-label="Try again" *ngIf="buyStep == -1" (click)="resetModals()" i18n="@@modalTryAgain">
               Try again
             </button>
             <!-- Close button for buyStep 4 -->
-            <a class="btn btn-block btn-success mt-auto" href="#/dashboard" target="_blank" *ngIf="buyStep == 4" i18n>Manager
-              Portal</a>
-          </div>
+            <a class="btn btn-block btn-success mt-auto" routerLink="/dashboard" target="_blank" *ngIf="buyStep == 4" i18n="@@managerOnboardingBuyBtksModalManagerDashboard">Manager Portal</a>
         </div>
-      </div>
+        </div>
     </div><!-- / modal -->
   </div>
 </div> <!-- / .main-content -->
+
+<!-- Languages modal -->
+<div class="modal fade fixed-right" id="modalLanguage" tabindex="-1" role="dialog"
+  i18n-aria-describedby="@@headerLanguageModalAriaDescribedby" aria-describedby="Switch to another language"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-vertical bg-white" role="document">
+    <div class="modal-content">
+      <div class="modal-header border-0">
+        <h4 class="modal-title" i18n="@@headerLanguageModalTitle">
+          Switch to another language
+        </h4>
+        <!-- Close -->
+        <button type="button" class="close" data-dismiss="modal" i18n-aria-label="@@modalAriaLabelClose"
+          aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body pb-5">
+        <ul class="navbar-nav mb-md-3">
+          <li class="nav-item">
+            <a class="nav-link text-secondary" href="https://betoken.fund/portal/#/start-managing">
+              English
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-secondary" href="https://betoken.fund/portal/zh-Hans/#/start-managing">
+              简体中文
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-secondary" href="https://betoken.fund/portal/ja/#/start-managing">
+              日本語
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-secondary" href="https://betoken.fund/portal/pt/#/start-managing">
+              Português
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

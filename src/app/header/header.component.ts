@@ -79,17 +79,6 @@ export class HeaderComponent extends ApolloEnabled implements OnInit {
     this.ms.setHeaderSidebarDisplay(!this.checkRouterURL('/start') && !this.checkRouterURL('/start-managing'));
   }
 
-  phaseActionText() {
-    switch (this.phase) {
-      case 0:
-        return 'until managing begins';
-      case 1:
-        return 'to manage';
-      case 2:
-        return 'to redeem commission';
-    }
-  }
-
   checkRouterURL(route) {
     return this.router.url === route;
   }

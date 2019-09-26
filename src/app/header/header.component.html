@@ -26,10 +26,9 @@
       </div>
       <div class="mr-4 d-none d-md-flex">
         <!-- Toggle -->
-        <a class="text-muted mt-3" data-toggle="modal" href="#modalEmailUpdates">
-          <span class="icon active">
-            <i class="fe fe-bell"></i>
-          </span>
+        <a class="text-muted mt-2" data-toggle="modal" href="#modalEmailUpdates">
+          <i class="fe fe-bell h2 mr-1"></i>
+          <span class="badge badge-success badge-pill align-items-top mt-n4 ml-n3">23</span>
         </a>
       </div>
       <!--Account display-->
@@ -50,10 +49,13 @@
   </div>
 </div>
 <div *ngIf="phase == 1 && 7 > days && !checkRouterURL('/invest')">
-  <div class="alert alert-warning rounded-0 mb-0">
+  <div class="alert alert-warning alert-dismissible fade show rounded-0 mb-0">
     <ng-container i18n="@@managerAlert1">Please note you have only</ng-container>&nbsp;{{days}}&nbsp;<ng-container
       i18n="@@managerAlert2">days left to manage. You MUST sell all of your investments during this time, or you WILL
       LOSE your staked Kairo tokens.</ng-container>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">×</span>
+      </button>
   </div>
 </div>
 
@@ -65,7 +67,7 @@
     <div class="modal-content">
       <div class="modal-header border-0">
         <h4 class="modal-title" i18n="@@modalBeNotifiedByEmail">
-          Be notified by email
+          Notifications
         </h4>
         <!-- Close -->
         <button type="button" class="close" data-dismiss="modal" i18n-aria-label="@@modalAriaLabelClose"
@@ -73,41 +75,11 @@
           <span aria-hidden="true">×</span>
         </button>
       </div>
-      <div class="modal-body pb-5">
-        <div class="media mb-4 mb-lg-3">
-          <i class="fe fe-check text-green mr-3"></i>
-          <div class="media-body">
-            <h6 class="header-pretitle" i18n="@@headerGetUpdateModalSubtitle1">
-              Capital connection
-            </h6>
-            <p i18n="@@headerGetUpdateModalText1">Get updated when you can connect or withdraw your capital.</p>
-          </div>
-        </div>
-        <div class="media mb-4 mb-lg-3">
-          <i class="fe fe-check text-green mr-3"></i>
-          <div class="media-body">
-            <h6 class="header-pretitle" i18n="@@headerGetUpdateModalSubtitle2">
-              Monthly performance results
-            </h6>
-            <p i18n="@@headerGetUpdateModalText2">
-              Get insights into how your holdings perform month by month.
-            </p>
-          </div>
-        </div>
-        <div class="media mb-4 mb-lg-3">
-          <i class="fe fe-check text-green mr-3"></i>
-          <div class="media-body">
-            <h6 class="header-pretitle" i18n="@@headerGetUpdateModalSubtitle3">
-              Manager commissions
-            </h6>
-            <p i18n="@@headerGetUpdateModalText3">
-              Be the first to know when to redeem your manager's commissions.
-            </p>
-          </div>
-        </div>
+      <div class="modal-body pt-0 pb-5">
         <form action="https://fund.us17.list-manage.com/subscribe/post?u=9c0647dcb587985ed6121cdf6&amp;id=150e0f091e"
-          method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate col mb-5"
+          method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate col mb-4 px-0"
           target="_blank" novalidate>
+          <label class="small" for="mce-EMAIL">Get notified by email</label>
           <div class="input-group input-group-lg">
             <input class="form-control" type="email" value="" name="EMAIL" id="mce-EMAIL"
               i18n-placeholder="@@modalEmailPlaceholder" placeholder="myemail@address.com" required>
@@ -120,22 +92,116 @@
             </div>
           </div>
         </form>
-        <div class="row justify-content-center">
-          <div class="col-auto mb-5">
-            <a href="https://t.me/betokenfund" class="btn btn-rounded-circle btn-white mr-3" target="_blank">
-              <img class="mx-auto" src="assets/img/icons/telegram.svg" alt="telegram logo" height="20">
-            </a>
-            <a href="https://twitter.com/betokenfund" class="btn btn-rounded-circle btn-white mr-3" target="_blank">
-              <img class="mx-auto" src="assets/img/icons/twitter.svg" alt="twitter logo" height="20">
-            </a>
-            <a href="https://medium.com/betoken" class="btn btn-rounded-circle btn-white mr-3" target="_blank">
-              <img class="mx-auto" src="assets/img/icons/medium.svg" alt="medium logo" height="20">
-            </a>
-            <a href="https://github.com/Betoken" class="btn btn-rounded-circle btn-white" target="_blank">
-              <img class="mx-auto" src="assets/img/icons/github.svg" alt="medium logo" height="20">
-            </a>
-          </div>
-        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item px-0">
+
+            <div class="row">
+              <div class="col-auto">
+                <div class="avatar">
+                  <span class="avatar-title rounded-circle bg-warning"><i class="fe fe-alert-circle"></i></span>
+                </div>
+
+              </div>
+              <div class="col ml-n2">
+
+                <!-- Content -->
+                <div class="small text-secondary">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.
+                </div>
+
+              </div>
+              <div class="col-auto">
+
+                <small class="text-secondary">
+                  2m ago
+                </small>
+
+              </div>
+            </div> <!-- / .row -->
+
+          </li>
+          <li class="list-group-item px-0">
+
+            <div class="row">
+              <div class="col-auto">
+                <div class="avatar">
+                  <span class="avatar-title rounded-circle bg-success"><i class="fe fe-check"></i></span>
+                </div>
+
+              </div>
+              <div class="col ml-n2">
+
+                <!-- Content -->
+                <div class="small text-secondary">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.
+                </div>
+
+              </div>
+              <div class="col-auto">
+
+                <small class="text-secondary">
+                  2m ago
+                </small>
+
+              </div>
+            </div> <!-- / .row -->
+
+          </li>
+          <li class="list-group-item px-0">
+
+            <div class="row">
+              <div class="col-auto">
+                <div class="avatar">
+                  <span class="avatar-title rounded-circle bg-danger"><i class="fe fe-x"></i></span>
+                </div>
+
+              </div>
+              <div class="col ml-n2">
+
+                <!-- Content -->
+                <div class="small text-secondary">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.
+                </div>
+
+              </div>
+              <div class="col-auto">
+
+                <small class="text-secondary">
+                  2m ago
+                </small>
+
+              </div>
+            </div> <!-- / .row -->
+
+          </li>
+          <li class="list-group-item px-0">
+
+            <div class="row">
+              <div class="col-auto">
+                <div class="avatar">
+                  <span class="avatar-title rounded-circle bg-info"><i class="fe fe-info"></i></span>
+                </div>
+
+              </div>
+              <div class="col ml-n2">
+
+                <!-- Content -->
+                <div class="small text-secondary">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.
+                </div>
+
+              </div>
+              <div class="col-auto">
+
+                <small class="text-secondary">
+                  2m ago
+                </small>
+
+              </div>
+            </div> <!-- / .row -->
+
+          </li>
+        </ul>
       </div>
     </div>
   </div>

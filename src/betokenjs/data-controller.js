@@ -3,6 +3,7 @@ import { getDefaultAccount, DAI_ADDR, CompoundOrder } from './betoken-obj';
 import BigNumber from "bignumber.js";
 import https from "https";
 import { isUndefined } from 'util';
+const fetch = require('node-fetch');
 
 // constants
 const PRECISION = 1e18;
@@ -158,19 +159,8 @@ export const fulcrumMinStake = (_symbol, _isShort) => {
 };
 
 export const httpsGet = async (apiStr) => {
-    const data = await (new Promise((resolve, reject) => {
-        https.get(apiStr, (res) => {
-            var rawData = "";
-            res.on("data", (chunk) => {
-                rawData += chunk;
-            });
-            res.on("end", () => {
-                var parsedData = JSON.parse(rawData);
-                resolve(parsedData);
-            });
-        }).on("error", reject);
-    }));
-    return data;
+    const request = await fetch(apiStr, {headers: {'Origin': 'https://betoken.fund/portal/'}});
+    return await request.json();
 };
 
 const clock = () => {

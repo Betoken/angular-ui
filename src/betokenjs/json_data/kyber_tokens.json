@@ -218,19 +218,6 @@
 			]
 		},
 		{
-			"symbol" : "ADX",
-			"name" : "AdEx",
-			"address" : "0x4470bb87d77b963a013db939be332f927f2b992e",
-			"decimals" : 4,
-			"id" : "0x4470bb87d77b963a013db939be332f927f2b992e",
-			"reserves_src" : [
-				"0x21433Dec9Cb634A23c6A4BbcCe08c83f5aC2EC18"
-			],
-			"reserves_dest" : [
-				"0x21433Dec9Cb634A23c6A4BbcCe08c83f5aC2EC18"
-			]
-		},
-		{
 			"symbol" : "AST",
 			"name" : "AirSwap",
 			"address" : "0x27054b13b1b798b345b591a4d22e6562d47ea75a",
@@ -242,19 +229,6 @@
 			],
 			"reserves_dest" : [
 				"0x63825c174ab367968EC60f061753D3bbD36A0D8F",
-				"0x21433Dec9Cb634A23c6A4BbcCe08c83f5aC2EC18"
-			]
-		},
-		{
-			"symbol" : "RCN",
-			"name" : "Ripio Credit Network",
-			"address" : "0xf970b8e36e23f7fc3fd752eea86f8be8d83375a6",
-			"decimals" : 18,
-			"id" : "0xf970b8e36e23f7fc3fd752eea86f8be8d83375a6",
-			"reserves_src" : [
-				"0x21433Dec9Cb634A23c6A4BbcCe08c83f5aC2EC18"
-			],
-			"reserves_dest" : [
 				"0x21433Dec9Cb634A23c6A4BbcCe08c83f5aC2EC18"
 			]
 		},
@@ -282,45 +256,6 @@
 			],
 			"reserves_dest" : [
 				"0x63825c174ab367968EC60f061753D3bbD36A0D8F"
-			]
-		},
-		{
-			"symbol" : "STORM",
-			"name" : "Storm",
-			"address" : "0xd0a4b8946cb52f0661273bfbc6fd0e0c75fc6433",
-			"decimals" : 18,
-			"id" : "0xd0a4b8946cb52f0661273bfbc6fd0e0c75fc6433",
-			"reserves_src" : [
-				"0x21433Dec9Cb634A23c6A4BbcCe08c83f5aC2EC18"
-			],
-			"reserves_dest" : [
-				"0x21433Dec9Cb634A23c6A4BbcCe08c83f5aC2EC18"
-			]
-		},
-		{
-			"symbol" : "IOST",
-			"name" : "IOStoken",
-			"address" : "0xfa1a856cfa3409cfa145fa4e20eb270df3eb21ab",
-			"decimals" : 18,
-			"id" : "0xfa1a856cfa3409cfa145fa4e20eb270df3eb21ab",
-			"reserves_src" : [
-				"0x21433Dec9Cb634A23c6A4BbcCe08c83f5aC2EC18"
-			],
-			"reserves_dest" : [
-				"0x21433Dec9Cb634A23c6A4BbcCe08c83f5aC2EC18"
-			]
-		},
-		{
-			"symbol" : "MOT",
-			"name" : "Olympus Labs",
-			"address" : "0x263c618480dbe35c300d8d5ecda19bbb986acaed",
-			"decimals" : 18,
-			"id" : "0x263c618480dbe35c300d8d5ecda19bbb986acaed",
-			"reserves_src" : [
-				"0x6f50E41885Fdc44DBdf7797Df0393779A9c0A3A6"
-			],
-			"reserves_dest" : [
-				"0x6f50E41885Fdc44DBdf7797Df0393779A9c0A3A6"
 			]
 		},
 		{
@@ -363,26 +298,6 @@
 			]
 		},
 		{
-			"symbol" : "ELEC",
-			"name" : "ElectrifyAsia",
-			"address" : "0xd49ff13661451313ca1553fd6954bd1d9b6e02b9",
-			"decimals" : 18,
-			"id" : "0xd49ff13661451313ca1553fd6954bd1d9b6e02b9"
-		},
-		{
-			"symbol" : "BBO",
-			"name" : "Bigbom",
-			"address" : "0x84f7c44b6fed1080f647e354d552595be2cc602f",
-			"decimals" : 18,
-			"id" : "0x84f7c44b6fed1080f647e354d552595be2cc602f",
-			"reserves_src" : [
-				"0x91Be8fA21dc21Cff073E07Bae365669E154d6Ee1"
-			],
-			"reserves_dest" : [
-				"0x91Be8fA21dc21Cff073E07Bae365669E154d6Ee1"
-			]
-		},
-		{
 			"symbol" : "POLY",
 			"name" : "Polymath",
 			"address" : "0x9992ec3cf6a55b00978cddf2b27bc6882d88d1ec",
@@ -419,21 +334,6 @@
 			],
 			"reserves_dest" : [
 				"0x63825c174ab367968EC60f061753D3bbD36A0D8F"
-			]
-		},
-		{
-			"symbol" : "WAX",
-			"name" : "Wax",
-			"address" : "0x39bb259f66e1c59d5abef88375979b4d20d98022",
-			"decimals" : 8,
-			"id" : "0x39bb259f66e1c59d5abef88375979b4d20d98022",
-			"reserves_src" : [
-				"0x63825c174ab367968EC60f061753D3bbD36A0D8F",
-				"0x75fF6BeC6Ed398FA80EA1596cef422D64681F057"
-			],
-			"reserves_dest" : [
-				"0x63825c174ab367968EC60f061753D3bbD36A0D8F",
-				"0x75fF6BeC6Ed398FA80EA1596cef422D64681F057"
 			]
 		},
 		{
@@ -504,65 +404,6 @@
 			]
 		},
 		{
-			"symbol" : "LEND",
-			"name" : "EthLend",
-			"address" : "0x80fb784b7ed66730e8b1dbd9820afd29931aab03",
-			"decimals" : 18,
-			"id" : "0x80fb784b7ed66730e8b1dbd9820afd29931aab03",
-			"reserves_src" : [
-				"0x21433Dec9Cb634A23c6A4BbcCe08c83f5aC2EC18"
-			],
-			"reserves_dest" : [
-				"0x21433Dec9Cb634A23c6A4BbcCe08c83f5aC2EC18"
-			]
-		},
-		{
-			"symbol" : "WINGS",
-			"name" : "WINGS",
-			"address" : "0x667088b212ce3d06a1b553a7221e1fd19000d9af",
-			"decimals" : 18,
-			"id" : "0x667088b212ce3d06a1b553a7221e1fd19000d9af",
-			"reserves_src" : [
-				"0x21433Dec9Cb634A23c6A4BbcCe08c83f5aC2EC18"
-			],
-			"reserves_dest" : [
-				"0x21433Dec9Cb634A23c6A4BbcCe08c83f5aC2EC18"
-			]
-		},
-		{
-			"symbol" : "MTL",
-			"name" : "Metal",
-			"address" : "0xf433089366899d83a9f26a773d59ec7ecf30355e",
-			"decimals" : 8,
-			"id" : "0xf433089366899d83a9f26a773d59ec7ecf30355e",
-			"reserves_src" : [
-				"0x21433Dec9Cb634A23c6A4BbcCe08c83f5aC2EC18"
-			],
-			"reserves_dest" : [
-				"0x21433Dec9Cb634A23c6A4BbcCe08c83f5aC2EC18"
-			]
-		},
-		{
-			"symbol" : "WABI",
-			"name" : "WaBi",
-			"address" : "0x286bda1413a2df81731d4930ce2f862a35a609fe",
-			"decimals" : 18,
-			"id" : "0x286bda1413a2df81731d4930ce2f862a35a609fe",
-			"reserves_src" : [
-				"0x21433Dec9Cb634A23c6A4BbcCe08c83f5aC2EC18"
-			],
-			"reserves_dest" : [
-				"0x21433Dec9Cb634A23c6A4BbcCe08c83f5aC2EC18"
-			]
-		},
-		{
-			"symbol" : "COFI",
-			"name" : "CoinFi",
-			"address" : "0x3136ef851592acf49ca4c825131e364170fa32b3",
-			"decimals" : 18,
-			"id" : "0x3136ef851592acf49ca4c825131e364170fa32b3"
-		},
-		{
 			"symbol" : "MOC",
 			"name" : "Moss Land",
 			"address" : "0x865ec58b06bf6305b886793aa20a2da31d034e68",
@@ -601,19 +442,6 @@
 			],
 			"reserves_dest" : [
 				"0x63825c174ab367968EC60f061753D3bbD36A0D8F"
-			]
-		},
-		{
-			"symbol" : "MAS",
-			"name" : "MidasProtocol",
-			"address" : "0x23ccc43365d9dd3882eab88f43d515208f832430",
-			"decimals" : 18,
-			"id" : "0x23ccc43365d9dd3882eab88f43d515208f832430",
-			"reserves_src" : [
-				"0x56e37b6b79d4E895618B8Bb287748702848Ae8c0"
-			],
-			"reserves_dest" : [
-				"0x56e37b6b79d4E895618B8Bb287748702848Ae8c0"
 			]
 		},
 		{
@@ -671,52 +499,6 @@
 			]
 		},
 		{
-			"symbol" : "DCC",
-			"name" : "Distributed Credit Chain",
-			"address" : "0xffa93aacf49297d51e211817452839052fdfb961",
-			"decimals" : 18,
-			"id" : "0xffa93aacf49297d51e211817452839052fdfb961"
-		},
-		{
-			"symbol" : "SSP",
-			"name" : "Smartshare Token",
-			"address" : "0x624d520bab2e4ad83935fa503fb130614374e850",
-			"decimals" : 4,
-			"id" : "0x624d520bab2e4ad83935fa503fb130614374e850",
-			"reserves_src" : [
-				"0x21433Dec9Cb634A23c6A4BbcCe08c83f5aC2EC18"
-			],
-			"reserves_dest" : [
-				"0x21433Dec9Cb634A23c6A4BbcCe08c83f5aC2EC18"
-			]
-		},
-		{
-			"symbol" : "PRO",
-			"name" : "Propy",
-			"address" : "0x226bb599a12c826476e3a771454697ea52e9e220",
-			"decimals" : 8,
-			"id" : "0x226bb599a12c826476e3a771454697ea52e9e220",
-			"reserves_src" : [
-				"0x21433Dec9Cb634A23c6A4BbcCe08c83f5aC2EC18"
-			],
-			"reserves_dest" : [
-				"0x21433Dec9Cb634A23c6A4BbcCe08c83f5aC2EC18"
-			]
-		},
-		{
-			"symbol" : "OCN",
-			"name" : "OCoin",
-			"address" : "0x4092678e4e78230f46a1534c0fbc8fa39780892b",
-			"decimals" : 18,
-			"id" : "0x4092678e4e78230f46a1534c0fbc8fa39780892b",
-			"reserves_src" : [
-				"0x21433Dec9Cb634A23c6A4BbcCe08c83f5aC2EC18"
-			],
-			"reserves_dest" : [
-				"0x21433Dec9Cb634A23c6A4BbcCe08c83f5aC2EC18"
-			]
-		},
-		{
 			"symbol" : "EKO",
 			"name" : "EchoLink",
 			"address" : "0xa6a840e50bcaa50da017b91a0d86b8b2d41156ee",
@@ -740,58 +522,6 @@
 			],
 			"reserves_dest" : [
 				"0x63825c174ab367968EC60f061753D3bbD36A0D8F"
-			]
-		},
-		{
-			"symbol" : "DTH",
-			"name" : "Dether",
-			"address" : "0x5adc961d6ac3f7062d2ea45fefb8d8167d44b190",
-			"decimals" : 18,
-			"id" : "0x5adc961d6ac3f7062d2ea45fefb8d8167d44b190",
-			"reserves_src" : [
-				"0x2631a5222522156DfafaA5Ca8480223D6465782d"
-			],
-			"reserves_dest" : [
-				"0x2631a5222522156DfafaA5Ca8480223D6465782d"
-			]
-		},
-		{
-			"symbol" : "PT",
-			"name" : "Promotion Token",
-			"address" : "0x094c875704c14783049ddf8136e298b3a099c446",
-			"decimals" : 18,
-			"id" : "0x094c875704c14783049ddf8136e298b3a099c446",
-			"reserves_src" : [
-				"0x2295fc6BC32cD12fdBb852cFf4014cEAc6d79C10"
-			],
-			"reserves_dest" : [
-				"0x2295fc6BC32cD12fdBb852cFf4014cEAc6d79C10"
-			]
-		},
-		{
-			"symbol" : "INF",
-			"name" : "InfinitusTokens",
-			"address" : "0x00e150d741eda1d49d341189cae4c08a73a49c95",
-			"decimals" : 18,
-			"id" : "0x00e150d741eda1d49d341189cae4c08a73a49c95",
-			"reserves_src" : [
-				"0x4D864B5b4F866f65F53cbAAd32Eb9574760865e6"
-			],
-			"reserves_dest" : [
-				"0x4D864B5b4F866f65F53cbAAd32Eb9574760865e6"
-			]
-		},
-		{
-			"symbol" : "TTC",
-			"name" : "TTC Protocol",
-			"address" : "0x9389434852b94bbad4c8afed5b7bdbc5ff0c2275",
-			"decimals" : 18,
-			"id" : "0x9389434852b94bbad4c8afed5b7bdbc5ff0c2275",
-			"reserves_src" : [
-				"0xa9312cb86d1E532B7c21881Ce03a1a9d52F6ADb1"
-			],
-			"reserves_dest" : [
-				"0xa9312cb86d1E532B7c21881Ce03a1a9d52F6ADb1"
 			]
 		},
 		{
@@ -867,19 +597,6 @@
 			],
 			"reserves_dest" : [
 				"0x21433Dec9Cb634A23c6A4BbcCe08c83f5aC2EC18"
-			]
-		},
-		{
-			"symbol" : "BIX",
-			"name" : "BIX Token",
-			"address" : "0xb3104b4b9da82025e8b9f8fb28b3553ce2f67069",
-			"decimals" : 18,
-			"id" : "0xb3104b4b9da82025e8b9f8fb28b3553ce2f67069",
-			"reserves_src" : [
-				"0x63825c174ab367968EC60f061753D3bbD36A0D8F"
-			],
-			"reserves_dest" : [
-				"0x63825c174ab367968EC60f061753D3bbD36A0D8F"
 			]
 		},
 		{

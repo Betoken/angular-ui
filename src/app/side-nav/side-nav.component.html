@@ -47,7 +47,7 @@
       </div>
       <hr class="navbar-divider my-3 d-lg-none">
       <!-- cta -->
-      <div class="d-none d-md-block" *ngIf="checkRouterURL('/investing-dashboard') === false">
+      <div class="d-none d-md-block" *ngIf="checkRouterURL('/invest') === false">
         <!--Provide onboarding for prospective managers with no Kairo-->
         <a class="btn btn-success btn-block mb-4" routerLink="/start-managing" *ngIf="!isManager"
           i18n="@@ctaBecomeManager">Become a Manager</a>
@@ -64,7 +64,7 @@
             class="fe fe-skip-forward mr-1"></i><ng-container i18n="@@ctaNextPhase">Next Phase</ng-container></button>
       </div>
       <!-- cta -->
-      <div class="d-none d-md-flex mb-4" *ngIf="checkRouterURL('/investing-dashboard') === true">
+      <div class="d-md-flex mb-4" *ngIf="checkRouterURL('/invest') === true">
         <!--Action buttons-->
         <button class="btn btn-success" type="button" data-toggle="modal" data-target="#modalInvestorBuy"
           i18n="@@ctaBuyBtks">Buy BTKS</button>

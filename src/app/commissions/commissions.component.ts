@@ -70,6 +70,8 @@ export class CommissionsComponent extends ApolloEnabled implements OnInit {
                             kairoBalance
                             totalCommissionReceived
                             kairoBalanceWithStake
+                            riskTaken
+                            riskThreshold
                             commissionHistory(orderBy: timestamp, orderDirection: desc) {
                                 timestamp
                                 cycleNumber
@@ -101,7 +103,7 @@ export class CommissionsComponent extends ApolloEnabled implements OnInit {
                     let userValue = new BigNumber(manager.kairoBalanceWithStake);
                     if (fund.cyclePhase === 'INTERMISSION') {
                         // Actual commission that will be redeemed
-                        this.commissionAmount = new BigNumber(manager.kairoBalance).div(fund.kairoTotalSupply).times(fund.cycleTotalCommission);
+                        this.commissionAmount = new BigNumber(manager.kairoBalance).div(fund.kairoTotalSupply).times(fund.cycleTotalCommission).times(manager.riskTaken).div(manager.riskThreshold);
                     } else {
                         // Expected commission based on previous average ROI
                         let actualKairoSupply = new BigNumber(fund.kairoTotalSupply).div(fund.totalFundsInDAI).times(fund.aum);
@@ -109,7 +111,7 @@ export class CommissionsComponent extends ApolloEnabled implements OnInit {
                         totalProfit = BigNumber.max(totalProfit, 0);
                         let commission = totalProfit.div(actualKairoSupply).times(userValue).times(user.commission_rate());
                         let assetFee = new BigNumber(fund.aum).div(actualKairoSupply).times(userValue).times(user.asset_fee_rate());
-                        this.commissionAmount = commission.plus(assetFee);
+                        this.commissionAmount = commission.plus(assetFee).times(manager.riskTaken).div(manager.riskThreshold);
                     }
                 }
             }

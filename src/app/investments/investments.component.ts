@@ -252,7 +252,7 @@ export class InvestmentsComponent extends ApolloEnabled implements OnInit {
                 if (+fund.kairoTotalSupply > 0) {
                     if (this.phase == 0) {
                         // Actual commission that will be redeemed
-                        this.expectedCommission = this.kairoBalance.div(fund.kairoTotalSupply).times(fund.cycleTotalCommission);
+                        this.expectedCommission = this.kairoBalance.div(fund.kairoTotalSupply).times(fund.cycleTotalCommission).times(manager.riskTaken).div(manager.riskThreshold);
                     } else {
                         // Expected commission based on previous average ROI
                         let actualKairoSupply = new BigNumber(fund.kairoTotalSupply).div(fund.totalFundsInDAI).times(fund.aum);
@@ -260,7 +260,7 @@ export class InvestmentsComponent extends ApolloEnabled implements OnInit {
                         totalProfit = BigNumber.max(totalProfit, 0);
                         let commission = totalProfit.div(actualKairoSupply).times(this.userValue).times(user.commission_rate());
                         let assetFee = new BigNumber(fund.aum).div(actualKairoSupply).times(this.userValue).times(user.asset_fee_rate());
-                        this.expectedCommission = commission.plus(assetFee);
+                        this.expectedCommission = commission.plus(assetFee).times(manager.riskTaken).div(manager.riskThreshold);
                     }
                 }
             }

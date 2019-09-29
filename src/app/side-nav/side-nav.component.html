@@ -64,7 +64,7 @@
             class="fe fe-skip-forward mr-1"></i><ng-container i18n="@@ctaNextPhase">Next Phase</ng-container></button>
       </div>
       <!-- cta -->
-      <div class="d-md-flex mb-4" *ngIf="checkRouterURL('/invest') === true">
+      <div class="d-none d-md-flex mb-4" *ngIf="checkRouterURL('/invest') === true">
         <!--Action buttons-->
         <button class="btn btn-success" type="button" data-toggle="modal" data-target="#modalInvestorBuy"
           i18n="@@ctaBuyBtks">Buy BTKS</button>
@@ -165,7 +165,7 @@
   </div>
 </nav>
 
-<nav class="navbar fixed-bottom d-md-none" *ngIf="checkRouterURL('/investing-dashboard') === false">
+<nav class="navbar fixed-bottom d-md-none" *ngIf="checkRouterURL('/invest') === false">
   <div class="container px-0">
     <!--Provide onboarding for prospective managers with no Kairo-->
     <a class="btn btn-success btn-block" routerLink="/start-managing" *ngIf="!isManager" i18n="@@ctaBecomeManager">
@@ -184,7 +184,7 @@
       i18n="@@ctaNextPhase">Next Phase</button>
   </div>
 </nav>
-<nav class="navbar fixed-bottom d-md-none" *ngIf="checkRouterURL('/investing-dashboard') === true">
+<nav class="navbar fixed-bottom d-md-none" *ngIf="checkRouterURL('/invest') === true">
   <div class="btn-group btn-block" role="group" aria-label="Basic example">
     <button class="btn btn-success w-50" type="button" data-toggle="modal" data-target="#modalInvestorBuy"
       i18n="@@ctaBuyBtks">Buy BTKS</button>

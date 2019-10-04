@@ -184,7 +184,6 @@ export class InvestorComponent extends ApolloEnabled implements OnInit {
       this.sharesPriceHistory = fund.sharesPriceHistory;
       this.btcPriceHistory = data['btcPriceHistory'];
       this.ethPriceHistory = data['ethPriceHistory'];
-      console.log(this.ethPriceHistory);
       this.calcStats();
       this.chartDraw();
     }

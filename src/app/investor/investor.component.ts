@@ -146,11 +146,11 @@ export class InvestorComponent extends ApolloEnabled implements OnInit {
                 txHash
               }
             }
-            btcPriceHistory: tokenPrices(where: { tokenSymbol: "WBTC" }, orderBy: timestamp) {
+            btcPriceHistory: tokenPrices(where: { tokenSymbol: "WBTC" }, orderBy: timestamp, first: 1000) {
               timestamp
               priceInDAI
             }
-            ethPriceHistory: tokenPrices(where: { tokenSymbol: "ETH" }, orderBy: timestamp) {
+            ethPriceHistory: tokenPrices(where: { tokenSymbol: "ETH" }, orderBy: timestamp, first: 1000) {
               timestamp
               priceInDAI
             }
@@ -184,6 +184,7 @@ export class InvestorComponent extends ApolloEnabled implements OnInit {
       this.sharesPriceHistory = fund.sharesPriceHistory;
       this.btcPriceHistory = data['btcPriceHistory'];
       this.ethPriceHistory = data['ethPriceHistory'];
+      console.log(this.ethPriceHistory);
       this.calcStats();
       this.chartDraw();
     }

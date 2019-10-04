@@ -232,6 +232,7 @@ export const loadTokenPrices = async () => {
 
     let apiStr = "https://api.kyber.network/market";
     let rawData = await httpsGet(apiStr);
+    console.log(rawData);
     if (!rawData.error) {
         TOKEN_DATA = TOKEN_DATA.map((x) => {
             if (x.symbol !== 'ETH') {

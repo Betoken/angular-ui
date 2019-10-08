@@ -232,7 +232,7 @@ export class InvestmentsComponent extends ApolloEnabled implements OnInit {
         this.querySubscription = this.query.valueChanges.subscribe((result) => this.handleQuery(result));
     }
 
-    handleQuery({ data, loading }) {
+    async handleQuery({ data, loading }) {
         this.isLoading = isUndefined(loading) || loading;
 
         if (!loading) {
@@ -265,8 +265,9 @@ export class InvestmentsComponent extends ApolloEnabled implements OnInit {
                 }
             }
 
-            let activeBasicOrders = data['activeBasicOrders'].map((x) => {
+            let activeBasicOrders = await data['activeBasicOrders'].map(async (x) => {
                 x.tokenSymbol = this.getOrderTokenSymbol(x);
+                x.sellPrice = await tokens.get_token_price(x.tokenAddress, x.tokenAmount);
                 x.ROI = new BigNumber(x.sellPrice).div(x.buyPrice).minus(1).times(100);
                 x.currValue = new BigNumber(x.stake).times(x.ROI.div(100).plus(1));
                 return x;

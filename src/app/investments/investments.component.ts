@@ -364,7 +364,7 @@ export class InvestmentsComponent extends ApolloEnabled implements OnInit {
             type: 'basic'
         };
         orderTypes.push(basicOrder);
-        if (tokens.is_compound_token(symbol)) {
+        /*if (tokens.is_compound_token(symbol)) {
             const longOrder = {
                 text: 'Long • Leverage 1.5625x (Compound)',
                 leverage: 1.5625,
@@ -379,7 +379,7 @@ export class InvestmentsComponent extends ApolloEnabled implements OnInit {
             }
             orderTypes.push(longOrder);
             orderTypes.push(shortOrder);
-        }
+        }*/
         if (tokens.is_fulcrum_token(symbol)) {
             let pTokens = tokens.asset_symbol_to_ptokens(symbol);
             for (let pToken of pTokens) {

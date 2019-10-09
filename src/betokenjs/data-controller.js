@@ -2,7 +2,7 @@
 import { getDefaultAccount } from './betoken-obj';
 import BigNumber from "bignumber.js";
 import https from "https";
-import { isUndefined } from 'util';
+import { isUndefined, isNullOrUndefined } from 'util';
 const fetch = require('node-fetch');
 
 // constants
@@ -215,7 +215,7 @@ export const loadUserData = async () => {
         // Get user address
         await getDefaultAccount();
         const userAddr = web3Instance.eth.defaultAccount;
-        if (typeof userAddr !== "undefined") {
+        if (!isNullOrUndefined(userAddr)) {
             userAddress = userAddr;
         } else {
             userAddress = ZERO_ADDR;

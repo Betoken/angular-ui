@@ -1,6 +1,6 @@
 // imports
 import BigNumber from "bignumber.js";
-import { isNull } from "util";
+import { isNull, isNullOrUndefined } from "util";
 const Web3 = require('web3');
 const bnc = require('bnc-assist');
 
@@ -265,12 +265,16 @@ export var Betoken = function () {
         self.assistInstance = bnc.init(bncAssistConfig);
         
         let userState = await self.assistInstance.getState();
-        if (!userState.web3Wallet) {
+        if (isNullOrUndefined(userState.currentProvider)) {
             window.web3Instance = new Web3(self.infuraEndpoint);
             self.hasWeb3 = false;
+            self.assistInstance.onboard();
+        } else {
+            if (!userState.accessToWallet) {
+                window.web3Instance = new Web3(self.infuraEndpoint);
+                self.hasWeb3 = true;
+            }
         }
-
-        self.assistInstance.onboard();
     }
 
     /*

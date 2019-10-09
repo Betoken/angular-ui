@@ -269,11 +269,6 @@ export var Betoken = function () {
             window.web3Instance = new Web3(self.infuraEndpoint);
             self.hasWeb3 = false;
             self.assistInstance.onboard();
-        } else {
-            if (!userState.accessToWallet) {
-                window.web3Instance = new Web3(self.infuraEndpoint);
-                self.hasWeb3 = true;
-            }
         }
     }
 

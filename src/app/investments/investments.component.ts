@@ -265,13 +265,13 @@ export class InvestmentsComponent extends ApolloEnabled implements OnInit {
                 }
             }
 
-            let activeBasicOrders = await data['activeBasicOrders'].map(async (x) => {
+            let activeBasicOrders = await Promise.all(data['activeBasicOrders'].map(async (x) => {
                 x.tokenSymbol = this.getOrderTokenSymbol(x);
                 x.sellPrice = await tokens.get_token_price(x.tokenAddress, x.tokenAmount);
                 x.ROI = new BigNumber(x.sellPrice).div(x.buyPrice).minus(1).times(100);
                 x.currValue = new BigNumber(x.stake).times(x.ROI.div(100).plus(1));
                 return x;
-            });
+            }));
             let activeFulcrumOrders = data['activeFulcrumOrders'].map((x) => {
                 x.tokenSymbol = this.getOrderTokenSymbol(x);
                 x.ROI = new BigNumber(x.sellPrice).div(x.buyPrice).minus(1).times(100);

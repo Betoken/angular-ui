@@ -160,10 +160,6 @@ const clock = () => {
 };
 
 // data loaders
-export const loadMetadata = async () => {
-    return loadTokenMetadata();
-};
-
 export const loadTokenMetadata = async () => {
     // fetch token data from Kyber API
     let rawData = require('./json_data/kyber_tokens.json').data;
@@ -323,7 +319,7 @@ const loadPriceChanges = async (_daysInPast) => {
 }
 
 export const loadAllData = async function (progressCallback) {
-    return loadMetadata().then(() => loadDynamicData(progressCallback));
+    return loadTokenMetadata().then(() => loadDynamicData(progressCallback));
 };
 
 export const loadDynamicData = async (progressCallback) => {

@@ -23,6 +23,7 @@ export class SideNavComponent extends ApolloEnabled implements OnInit {
   ZERO_ADDR = '0x0000000000000000000000000000000000000000';
   can_redeem_commission: boolean;
   isManager: Boolean;
+  hasUpdatedTimer: Boolean;
 
   constructor(private router: Router, private apollo: Apollo) {
     super();
@@ -34,6 +35,7 @@ export class SideNavComponent extends ApolloEnabled implements OnInit {
 
     this.isManager = true;
     this.can_redeem_commission = false;
+    this.hasUpdatedTimer = false;
   }
 
   ngOnInit() {
@@ -46,14 +48,16 @@ export class SideNavComponent extends ApolloEnabled implements OnInit {
     this.hours = timer.hour();
     this.minutes = timer.minute();
     this.seconds = timer.second();
+    this.phase = timer.phase();
+    this.hasUpdatedTimer = true;
   }
 
   refreshDisplay() {
     let userAddress = user.address().toLowerCase();
     this.querySubscription = this.apollo
       .watchQuery({
-        pollInterval: 300000,
-        fetchPolicy: 'cache-and-network',
+        pollInterval: this.pollInterval,
+        fetchPolicy: this.fetchPolicy,
         query: gql`
           {
             fund(id: "BetokenFund") {

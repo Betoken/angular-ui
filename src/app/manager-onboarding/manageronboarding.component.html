@@ -72,7 +72,10 @@
             <span class="text-truncate" *ngIf="user_address == ZERO_ADDR"><span class="text-danger">●</span>&nbsp;<ng-container i18n="@@managerOnboardingConnectStatus">No Wallet Connected</ng-container></span>
           </div>
           <div class="card-body text-center text-md-left">
+            <!--If has web3, check if is manager-->
             <button class="btn btn-block btn-lg btn-success" type="button" data-toggle="modal" data-target="#modalBuy" *ngIf="user_address != ZERO_ADDR && !isManager" i18n="@@ctaGetStarted">Get Started</button>
+            <!--If no web3, button connects wallet-->
+            <button class="btn btn-block btn-lg btn-success" type="button" *ngIf="user_address == ZERO_ADDR" i18n="@@ctaGetStarted" (click)="reloadAll()">Get Started</button>
             <div *ngIf="user_address != ZERO_ADDR && isManager">
               <p class="text-secondary text-center" i18n="@@managerOnboardingAlreadyManagerText">You are already a manager.</p>
               <a class="btn btn-block btn-lg btn-success" routerLink="/dashboard" i18n="@@managerOnboardingCtaSignIn">Sign in</a>

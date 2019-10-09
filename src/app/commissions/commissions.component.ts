@@ -53,8 +53,8 @@ export class CommissionsComponent extends ApolloEnabled implements OnInit {
         let userAddress = user.address().toLowerCase();
         this.query = this.apollo
             .watchQuery({
-                pollInterval: 300000,
-                fetchPolicy: 'cache-and-network',
+                pollInterval: this.pollInterval,
+                fetchPolicy: this.fetchPolicy,
                 query: gql`
                     {
                         fund(id: "BetokenFund") {

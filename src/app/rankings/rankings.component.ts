@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { user, stats, sortTable, timer } from '../../betokenjs/helpers';
+import { user, stats, sortTable } from '../../betokenjs/helpers';
 
 import { ApolloEnabled } from '../apollo';
 import { Apollo } from 'apollo-angular';
@@ -41,11 +41,11 @@ export class RankingsComponent extends ApolloEnabled implements OnInit, OnDestro
         let userAddress = user.address().toLowerCase();
         this.query = this.apollo
             .watchQuery({
-                pollInterval: 300000,
-                fetchPolicy: 'cache-and-network',
+                pollInterval: this.pollInterval,
+                fetchPolicy: this.fetchPolicy,
                 query: gql`
                     {
-                        managers(orderBy: "${timer.phase() == 0 ? 'kairoBalance' : 'kairoBalanceWithStake'}", orderDirection: desc, first: 1000) {
+                        managers(orderBy: "kairoBalanceWithStake", orderDirection: desc, first: 1000) {
                             id
                             kairoBalance
                             kairoBalanceWithStake

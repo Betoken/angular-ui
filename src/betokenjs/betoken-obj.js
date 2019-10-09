@@ -159,6 +159,7 @@ export var Betoken = function () {
     self.wrongNetwork = false;
     self.assistInstance = null;
     self.apiKey = "902e9643-ad7b-44dc-a130-778bd3b29b95";
+    self.infuraEndpoint = "wss://mainnet.infura.io/ws/v3/3057a4979e92452bae6afaabed67a724"
 
     /*
     Object Initialization
@@ -262,8 +263,14 @@ export var Betoken = function () {
             }
         };
         self.assistInstance = bnc.init(bncAssistConfig);
+        
+        let userState = await self.assistInstance.getState();
+        if (!userState.web3Wallet) {
+            window.web3Instance = new Web3(self.infuraEndpoint);
+            self.hasWeb3 = false;
+        }
 
-        await self.assistInstance.onboard();
+        self.assistInstance.onboard();
     }
 
     /*

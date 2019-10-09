@@ -60,7 +60,7 @@
               class="fe fe-dollar-sign mr-1"></i><ng-container i18n="@@ctaRedeemCommissions">Redeem Commission</ng-container></button>
         </span>
         <button class="btn btn-success btn-block mb-4" type="button"
-          *ngIf="days == 0 && hours == 0 && minutes == 0 && 1 >= seconds" (click)="nextPhase()"><i
+          *ngIf="days == 0 && hours == 0 && minutes == 0 && 1 >= seconds && hasUpdatedTimer" (click)="nextPhase()"><i
             class="fe fe-skip-forward mr-1"></i><ng-container i18n="@@ctaNextPhase">Next Phase</ng-container></button>
       </div>
       <!-- cta -->
@@ -180,7 +180,7 @@
       Commission</button>
 
     <button class="btn btn-success btn-block" type="button"
-      *ngIf="days == 0 && hours == 0 && minutes == 0 && 1 >= seconds && isManager" (click)="nextPhase()"
+      *ngIf="days == 0 && hours == 0 && minutes == 0 && 1 >= seconds && isManager && hasUpdatedTimer" (click)="nextPhase()"
       i18n="@@ctaNextPhase">Next Phase</button>
   </div>
 </nav>

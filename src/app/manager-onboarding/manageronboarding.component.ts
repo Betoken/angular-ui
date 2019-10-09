@@ -8,7 +8,7 @@ import { } from 'jquery';
 declare var $: any;;
 
 import {
-  user, tokens, manager_actions
+  user, tokens, manager_actions, refresh_actions
 } from '../../betokenjs/helpers';
 
 import { ApolloEnabled } from '../apollo';
@@ -77,8 +77,8 @@ export class ManageronboardingComponent extends ApolloEnabled implements OnInit 
     let userAddress = user.address().toLowerCase();
     this.querySubscription = this.apollo
       .watchQuery({
-        pollInterval: 300000,
-        fetchPolicy: 'cache-and-network',
+        pollInterval: this.pollInterval,
+        fetchPolicy: this.fetchPolicy,
         query: gql`
           {
             fund(id: "BetokenFund") {
@@ -111,6 +111,11 @@ export class ManageronboardingComponent extends ApolloEnabled implements OnInit 
     this.checkboxes = [false, false, false];
     this.continueEnabled = false;
     this.getTokenBalance(this.selectedTokenSymbol);
+  }
+
+  async reloadAll() {
+    await refresh_actions.reload_all();
+    this.refreshDisplay();
   }
 
   refreshBuyOrderDetails(val) {

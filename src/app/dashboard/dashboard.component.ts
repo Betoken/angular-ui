@@ -5,7 +5,7 @@ import { Chart } from 'chart.js';
 declare var $: any;;
 
 import {
-  user, timer
+  user
 } from '../../betokenjs/helpers';
 
 import { ApolloEnabled } from '../apollo';
@@ -69,8 +69,8 @@ export class DashboardComponent extends ApolloEnabled implements OnInit {
     let userAddress = user.address().toLowerCase();
     this.query = this.apollo
       .watchQuery({
-        pollInterval: 300000,
-        fetchPolicy: 'cache-and-network',
+        pollInterval: this.pollInterval,
+        fetchPolicy: this.fetchPolicy,
         query: gql`
           {
             fund(id: "BetokenFund") {
@@ -97,7 +97,7 @@ export class DashboardComponent extends ApolloEnabled implements OnInit {
               riskTaken
               riskThreshold
             }
-            managers(orderBy: "${timer.phase() == 0 ? 'kairoBalance' : 'kairoBalanceWithStake'}", orderDirection: desc, first: 1000) {
+            managers(orderBy: "kairoBalanceWithStake", orderDirection: desc, first: 1000) {
               id
             }
           }

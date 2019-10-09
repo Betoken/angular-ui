@@ -23,8 +23,10 @@
         <h5 class="header-pretitle d-none d-lg-block" i18n="@@investorOnboardingHeaderPreTitle">
           Welcome To
         </h5>
-        <h1 class="display-2 font-weight-bold d-none d-lg-block" i18n="@@investorOnboardingHeaderTitle">Betoken Fund</h1>
-        <p class="lead font-weight-bold mb-5 d-none d-lg-block" i18n="@@investorOnboardingHeaderSubtitle">If you think 2 brains are better than one...How about
+        <h1 class="display-2 font-weight-bold d-none d-lg-block" i18n="@@investorOnboardingHeaderTitle">Betoken Fund
+        </h1>
+        <p class="lead font-weight-bold mb-5 d-none d-lg-block" i18n="@@investorOnboardingHeaderSubtitle">If you think 2
+          brains are better than one...How about
           hundreds of talented asset managers working for you? Worldwide!</p>
         <div class="media mb-4 mb-lg-3">
           <i class="fe fe-check text-green mr-3"></i>
@@ -33,9 +35,12 @@
               Crowd-powered finance
             </h6>
             <p>
-              <ng-container i18n="@@investorOnboardingIntroText1a">Your capital is automatically distributed among</ng-container>&nbsp;<a routerLink="/rankings"
-                target="_blank"><ng-container i18n="@@investorOnboardingIntroText1b">Betoken’s community of managers</ng-container></a>.&nbsp;<ng-container i18n="@@investorOnboardingIntroText1c">The best of them will have the most influence over
-              how that capital is put to work.</ng-container>
+              <ng-container i18n="@@investorOnboardingIntroText1a">Your capital is automatically distributed among
+              </ng-container>&nbsp;<a routerLink="/rankings" target="_blank">
+                <ng-container i18n="@@investorOnboardingIntroText1b">Betoken’s community of managers</ng-container>
+              </a>.&nbsp;<ng-container i18n="@@investorOnboardingIntroText1c">The best of them will have the most
+                influence over
+                how that capital is put to work.</ng-container>
             </p>
           </div>
         </div>
@@ -58,10 +63,13 @@
               No limits, no hidden fees
             </h6>
             <p>
-              <ng-container i18n="@@investorOnboardingIntroText3a">Betoken allows anyone to buy or sell any amount of Betoken Shares, and Betoken's fee structure is
-              completely transparent.</ng-container>&nbsp;<a
-                href="https://betoken.gitbook.io/docs/deposit-withdraw/what-is-the-fees-structure"
-                target="_blank"><ng-container i18n="@@investorOnboardingIntroText3b">More about fees, lockup, and liquidity</ng-container><i class="fe fe-arrow-right ml-2"></i></a>
+              <ng-container i18n="@@investorOnboardingIntroText3a">Betoken allows anyone to buy or sell any amount of
+                Betoken Shares, and Betoken's fee structure is
+                completely transparent.</ng-container>&nbsp;<a
+                href="https://betoken.gitbook.io/docs/deposit-withdraw/what-is-the-fees-structure" target="_blank">
+                <ng-container i18n="@@investorOnboardingIntroText3b">More about fees, lockup, and liquidity
+                </ng-container><i class="fe fe-arrow-right ml-2"></i>
+              </a>
             </p>
           </div>
         </div>
@@ -82,19 +90,27 @@
         <h5 class="header-pretitle d-block d-lg-none" i18n="@@investorOnboardingHeaderPreTitle">
           Welcome To
         </h5>
-        <h1 class="display-4 font-weight-bold d-block d-lg-none" i18n="@@investorOnboardingHeaderTitle">Betoken Fund</h1>
-        <p class="lead font-weight-bold mb-4 d-block d-lg-none" i18n="@@investorOnboardingHeaderSubtitle">If you think 2 brains are better than one...How about
+        <h1 class="display-4 font-weight-bold d-block d-lg-none" i18n="@@investorOnboardingHeaderTitle">Betoken Fund
+        </h1>
+        <p class="lead font-weight-bold mb-4 d-block d-lg-none" i18n="@@investorOnboardingHeaderSubtitle">If you think 2
+          brains are better than one...How about
           hundreds of talented asset managers working for you? Worldwide! Get started by depositing your capital!</p>
         <div class="card mb-6">
           <div class="card-header d-flex text-center text-md-left">
             <!-- cta -->
             <span class="text-truncate d-block" *ngIf="user_address !== ZERO_ADDR"><span class="text-success">●</span>
               {{user_address}}</span>
-            <span class="text-truncate" *ngIf="user_address == ZERO_ADDR"><span class="text-danger">●</span>&nbsp;<ng-container i18n="@@investorOnboardingConnectStatus">No Wallet Connected</ng-container></span>
+            <span class="text-truncate" *ngIf="user_address == ZERO_ADDR"><span class="text-danger">●</span>&nbsp;
+              <ng-container i18n="@@investorOnboardingConnectStatus">No Wallet Connected</ng-container></span>
           </div>
           <div class="card-body text-center text-md-left">
+            <!--If has web3-->
             <button class="btn btn-block btn-lg btn-success" type="button" data-toggle="modal"
-              data-target="#modalInvestorBuy" *ngIf="user_address != ZERO_ADDR" i18n="@@ctaGetStarted">Get Started</button>
+              data-target="#modalInvestorBuy" *ngIf="user_address != ZERO_ADDR" i18n="@@ctaGetStarted">Get
+              Started</button>
+            <!--If no web3, button connects wallet-->
+            <button class="btn btn-block btn-lg btn-success" type="button" *ngIf="user_address == ZERO_ADDR"
+              i18n="@@ctaGetStarted" (click)="reloadAll()">Get Started</button>
           </div>
           <a href="https://github.com/solidified-platform/audits/blob/master/Audit%20Report%20-%20%20Betoken%20%5B20.05.2019%5D.pdf"
             target="_blank">
@@ -107,7 +123,8 @@
                   </div>
                 </div>
                 <div class="col">
-                  <p class="small text-secondary mb-0" i18n="@@solidifiedAudit">Betoken Smart Contracts are audited and secured by Solidified</p>
+                  <p class="small text-secondary mb-0" i18n="@@solidifiedAudit">Betoken Smart Contracts are audited and
+                    secured by Solidified</p>
                 </div>
                 <div class="col-auto">
                   <i class="fe fe-arrow-right text-secondary"></i>
@@ -124,7 +141,8 @@
               tokens.
             </p>
             <p class="text-muted" i18n="@@disclaimertext2">
-              Betoken enables capital deposit, withdrawal, and managing using smart contracts which are open source. Betoken does
+              Betoken enables capital deposit, withdrawal, and managing using smart contracts which are open source.
+              Betoken does
               not take custody of tokens and is only a collaborative hub for investors and managers. Betoken is not a
               licensed bank, broker-dealer, investment advisor or an exchange. Betoken uses partner protocols (Kyber,
               Compound, bZx, Maker DAO) to power its own ecosystem.
@@ -161,14 +179,21 @@
             </div>
             <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
               <div class="card-body">
-                <ng-container i18n="@@investorOnboardingFaqA1a">Yes. Betoken's protocol is 100% liquid. You can buy and sell Betoken shares at any time in 2 ways:</ng-container>
+                <ng-container i18n="@@investorOnboardingFaqA1a">Yes. Betoken's protocol is 100% liquid. You can buy and
+                  sell Betoken shares at any time in 2 ways:</ng-container>
                 <ol>
-                  <li><ng-container i18n="@@investorOnboardingFaqA1b">During Betoken's 3 days
+                  <li>
+                    <ng-container i18n="@@investorOnboardingFaqA1b">During Betoken's 3 days
                       intermission phase that happens every 27 days, you can buy and sell Betoken shares directly on the
-                    investor dashboard.</ng-container></li>
-                  <li><ng-container i18n="@@investorOnboardingFaqA1c">During Betoken's management phase (27 days), Betoken shares token is freely tradable on decentralized exchanges (Fork Delta, Uniswap).
-                    Depending of the market conditions, the price may be different from what's displayed on the investor
-                    dashboard.</ng-container></li>
+                      investor dashboard.</ng-container>
+                  </li>
+                  <li>
+                    <ng-container i18n="@@investorOnboardingFaqA1c">During Betoken's management phase (27 days), Betoken
+                      shares token is freely tradable on decentralized exchanges (Fork Delta, Uniswap).
+                      Depending of the market conditions, the price may be different from what's displayed on the
+                      investor
+                      dashboard.</ng-container>
+                  </li>
                 </ol>
               </div>
             </div>
@@ -214,7 +239,8 @@
                 <p i18n="@@investorOnboardingFaqA3Text1">After the management phase is over (every 27 days):</p>
                 <h4 i18n="@@investorOnboardingFaqA3Title2">IF the fund is profitable OR not profitable</h4>
                 <ul i18n="@@investorOnboardingFaqA3Text2">
-                  <li>0.1% of the total Betoken funds is set aside and distributed among fund manager holding Kairo tokens.
+                  <li>0.1% of the total Betoken funds is set aside and distributed among fund manager holding Kairo
+                    tokens.
                   </li>
                   <li>In order to provide funding for its maintenance and future development, Betoken protocol will mint
                     Betoken Shares and send them to the current development team. The amount will be equal to 0.1% of
@@ -222,8 +248,10 @@
                   </li>
                 </ul>
                 <h4 i18n="@@investorOnboardingFaqA3Title3">ONLY IF the fund is profitable</h4>
-                <p i18n="@@investorOnboardingFaqA3text3">20% of the total Betoken's monthly profits is set aside as commission and distributed among fund
-                  managers holding Kairo tokens proportional to the amount they hold and their risk profile. The commission is
+                <p i18n="@@investorOnboardingFaqA3text3">20% of the total Betoken's monthly profits is set aside as
+                  commission and distributed among fund
+                  managers holding Kairo tokens proportional to the amount they hold and their risk profile. The
+                  commission is
                   taken into account IF and ONLY IF the fund is profitable during the actual investment cycle.</p>
                 <h3 i18n="@@investorOnboardingFaqA3Title4">Redemptions fee</h3>
                 <p i18n="@@investorOnboardingFaqA3Text4">Redemptions incur no withdrawal fee.</p>
@@ -261,7 +289,8 @@
           <div class="card-body text-center">
             <h3 class="text-white" i18n="@@faqGetHelptitle">Can’t find what you’re looking for?</h3>
             <a class="btn btn-white mr-3" href="https://t.me/betokenfund">Telegram</a>
-            <a class="btn btn-white mr-3" href="https://betoken.gitbook.io/docs/" i18n="@@faqCtaHelpCenter">Help Center</a>
+            <a class="btn btn-white mr-3" href="https://betoken.gitbook.io/docs/" i18n="@@faqCtaHelpCenter">Help
+              Center</a>
           </div>
         </div>
         <ul class="nav justify-content-center my-4">
@@ -269,11 +298,14 @@
             <a href="https://betoken.fund" class="nav-link text-center text-secondary" i18n="@@footerNavHome">Home</a>
           </li>
           <li class="nav-item">
-            <a href="https://medium.com/betoken" class="nav-link text-center text-secondary" i18n="@@footerNavBlog">Blog</a>
+            <a href="https://medium.com/betoken" class="nav-link text-center text-secondary"
+              i18n="@@footerNavBlog">Blog</a>
           </li>
         </ul>
-        <p class="text-center text-secondary"><ng-container i18n="@@contactUs">Contact us at</ng-container>&nbsp;<a class="text-secondary"
-            href="mailto:hello@betoken.fund?subject=Hey">hello@betoken.fund</a></p>
+        <p class="text-center text-secondary">
+          <ng-container i18n="@@contactUs">Contact us at</ng-container>&nbsp;<a class="text-secondary"
+            href="mailto:hello@betoken.fund?subject=Hey">hello@betoken.fund</a>
+        </p>
       </div>
     </div>
 
@@ -314,7 +346,8 @@
               That's an error
             </h4>
             <!-- Close -->
-            <button type="button" class="close" data-dismiss="modal" i18n-aria-label="@@modalAriaLabelClose" aria-label="Close">
+            <button type="button" class="close" data-dismiss="modal" i18n-aria-label="@@modalAriaLabelClose"
+              aria-label="Close">
               <span aria-hidden="true">×</span>
             </button>
           </div>
@@ -327,18 +360,22 @@
               Time left until operation allowed
             </h6>
             <h4 class="header-title mb-4 text-center">
-              {{days}}<ng-container i18n="@@timeLeftInDays">d</ng-container>&nbsp;{{hours}}<ng-container i18n="@@timeLeftInHours">h</ng-container>&nbsp;{{minutes}}<ng-container i18n="@@timeLeftInMinutes">m</ng-container>&nbsp;{{seconds}}<ng-container i18n="@@timeLeftInSeconds">s</ng-container>&nbsp;<a class="text-muted ml-2"
-                href="https://betoken.gitbook.io/docs/betoken-investment-cycle" i18n-title="@@modalTimeLeftUnitsTitleAttribute" title="Learn more" target="_blank"><span
+              {{days}}<ng-container i18n="@@timeLeftInDays">d</ng-container>&nbsp;{{hours}}<ng-container
+                i18n="@@timeLeftInHours">h</ng-container>&nbsp;{{minutes}}<ng-container i18n="@@timeLeftInMinutes">m
+              </ng-container>&nbsp;{{seconds}}<ng-container i18n="@@timeLeftInSeconds">s</ng-container>&nbsp;<a
+                class="text-muted ml-2" href="https://betoken.gitbook.io/docs/betoken-investment-cycle"
+                i18n-title="@@modalTimeLeftUnitsTitleAttribute" title="Learn more" target="_blank"><span
                   class="fe fe-help-circle"></span></a>
             </h4>
             <form
               action="https://fund.us17.list-manage.com/subscribe/post?u=9c0647dcb587985ed6121cdf6&amp;id=150e0f091e"
               method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form"
               class="validate mb-4 text-center" target="_blank" novalidate>
-              <label class="text-secondary" for="mce-EMAIL" i18n="@@modalBeNotifiedByEmail">Be notified by email 👇</label>
+              <label class="text-secondary" for="mce-EMAIL" i18n="@@modalBeNotifiedByEmail">Be notified by email
+                👇</label>
               <div class="input-group input-group-lg">
                 <input class="form-control" type="email" value="" name="EMAIL" id="mce-EMAIL"
-                 i18n-placeholder="@@modalEmailPlaceholder" placeholder="myemail@address.com" required>
+                  i18n-placeholder="@@modalEmailPlaceholder" placeholder="myemail@address.com" required>
                 <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text"
                     name="b_9c0647dcb587985ed6121cdf6_150e0f091e" tabindex="-1" value=""></div>
                 <div class="input-group-append bg-black">
@@ -366,7 +403,8 @@
               </div>
             </div>
             <!-- Close button for buyStep 5 and buying not allowed page -->
-            <button type="submit" class="btn btn-block btn-white mt-auto" data-dismiss="modal" i18n-aria-label="@@modalAriaLabelClose" aria-label="Close" i18n="@@modalCtaClose">
+            <button type="submit" class="btn btn-block btn-white mt-auto" data-dismiss="modal"
+              i18n-aria-label="@@modalAriaLabelClose" aria-label="Close" i18n="@@modalCtaClose">
               Close
             </button>
           </div>
@@ -398,7 +436,8 @@
                 <div class="custom-control custom-checkbox mb-4">
                   <input type="checkbox" class="custom-control-input" id="rule1"
                     (change)="checkboxes[0] = !checkboxes[0]">
-                  <label class="custom-control-label small text-secondary" for="rule1" i18n="@@modalRule1">You are NEITHER a citizen or
+                  <label class="custom-control-label small text-secondary" for="rule1" i18n="@@modalRule1">You are
+                    NEITHER a citizen or
                     resident of, NOR currently located in any of the following states or territories, NOR an entity
                     formed under the laws of: Afghanistan, Cuba, Democratic People's Republic of Korea, Iran, Iraq,
                     People’s Republic of China, Russian Federation, Somalia, Sudan, Syria, United Arab Emirates, United
@@ -407,12 +446,17 @@
                 <div class="custom-control custom-checkbox mb-4">
                   <input type="checkbox" class="custom-control-input" id="rule2"
                     (change)="checkboxes[1] = !checkboxes[1]">
-                  <label class="custom-control-label small text-secondary" for="rule2"><ng-container i18n="@@modalRule2">You have read and understood our</ng-container>&nbsp;<a routerLink="/disclaimer" data-dismiss="modal" i18n-aria-label="@@modalAriaLabelClose" aria-label="Close" i18n="@@modalDisclaimerCta">disclaimer</a>.</label>
+                  <label class="custom-control-label small text-secondary" for="rule2">
+                    <ng-container i18n="@@modalRule2">You have read and understood our</ng-container>&nbsp;<a
+                      routerLink="/disclaimer" data-dismiss="modal" i18n-aria-label="@@modalAriaLabelClose"
+                      aria-label="Close" i18n="@@modalDisclaimerCta">disclaimer</a>.
+                  </label>
                 </div>
                 <div class="custom-control custom-checkbox mb-4">
                   <input type="checkbox" class="custom-control-input" id="rule3"
                     (change)="checkboxes[2] = !checkboxes[2]">
-                  <label class="custom-control-label small text-danger" for="rule3" i18n="@@modalRule3">💀 You understand that Betoken
+                  <label class="custom-control-label small text-danger" for="rule3" i18n="@@modalRule3">💀 You
+                    understand that Betoken
                     Protocol is in beta. Use at your own risk.</label>
                 </div>
               </div>
@@ -427,7 +471,8 @@
                 <h4 class="mb-5">
                   {{sharesPrice.toFormat(4)}}
                 </h4>
-                <h6 class="header-pretitle text-secondary" i18n="@@investorOnboardingBuyBtksModalIWantToBuyWith">I want to buy Betoken shares with</h6>
+                <h6 class="header-pretitle text-secondary" i18n="@@investorOnboardingBuyBtksModalIWantToBuyWith">I want
+                  to buy Betoken shares with</h6>
                 <div class="row justify-content-center mb-4">
                   <div class="col">
                     <form>
@@ -439,8 +484,8 @@
                               id="sharesAmountToBuy"
                               (input)="refreshBuyOrderDetails($event.target.value); continueEnabled = true;">
                             <div class="input-group-append">
-                              <button class="btn btn-white" name="button" type="button"
-                                (click)="maxBuyAmount()" i18n="@@modalCtaMax">Max</button>
+                              <button class="btn btn-white" name="button" type="button" (click)="maxBuyAmount()"
+                                i18n="@@modalCtaMax">Max</button>
                             </div>
                           </div>
                         </div>
@@ -452,7 +497,8 @@
                         </div>
                       </div>
                       <small class="form-text text-secondary d-inline-block mb-0">{{selectedTokenBalance.toFormat(4)}}
-                        {{selectedTokenSymbol}}&nbsp;<ng-container i18n="@@modalBalanceAvailable">available</ng-container></small>
+                        {{selectedTokenSymbol}}&nbsp;<ng-container i18n="@@modalBalanceAvailable">available
+                        </ng-container></small>
                     </form>
                   </div>
                 </div>
@@ -509,7 +555,8 @@
                     <label for="exampleFormControlInput1" i18n="@@modalBodyTxHash">Transaction hash</label>
                     <div class="input-group mb-3">
                       <input type="text" class="form-control form-control-lg" value="{{transactionId}}"
-                       i18n-aria-label="@@investorOnboardingBuyBtksModalTxHashStep3AriaLabel" aria-label="Transaction hash">
+                        i18n-aria-label="@@investorOnboardingBuyBtksModalTxHashStep3AriaLabel"
+                        aria-label="Transaction hash">
                       <div class="input-group-append">
                         <a class="btn btn-white h-100 d-flex align-items-center"
                           href="https://etherscan.io/tx/{{transactionId}}" target="_blank"><i
@@ -527,10 +574,15 @@
                   <i class="fe fe-check-circle text-success"></i>
                 </p>
                 <p class="text-center text-muted mb-5">
-                  <ng-container i18n="@@investorOnboardingBuyBtksModalTextStep4a">You bought</ng-container>&nbsp;<span class="font-weight-bold text-secondary">{{buySharesAmount.toFormat(4)}}</span>&nbsp;BTKS&nbsp;<ng-container i18n="@@investorOnboardingBuyBtksModalTextStep4b">using</ng-container>&nbsp;<span class="font-weight-bold text-secondary">{{buyTokenAmount.toFormat(4)}}</span>&nbsp;{{selectedTokenSymbol}}.
+                  <ng-container i18n="@@investorOnboardingBuyBtksModalTextStep4a">You bought</ng-container>&nbsp;<span
+                    class="font-weight-bold text-secondary">{{buySharesAmount.toFormat(4)}}</span>&nbsp;BTKS&nbsp;
+                  <ng-container i18n="@@investorOnboardingBuyBtksModalTextStep4b">using</ng-container>&nbsp;<span
+                    class="font-weight-bold text-secondary">{{buyTokenAmount.toFormat(4)}}</span>&nbsp;{{selectedTokenSymbol}}.
                 </p>
-                <a target="_blank" i18n-href="@@investorOnboardingBuyBtksModalTweet" href="https://twitter.com/intent/tweet?hashtags=Betoken%2C%20DeFi&related=betokenfund&text=I%27ve%20just%20connected%20my%20capital%20to%20Betoken%2C%20world%27s%20first%20crowd-powered%20cryptoassets%20management%20protocol!&url=https%3A%2F%2Fbetoken.fund&via=betokenfund">
-                  <button class="btn btn-twitter btn-block" type="button" name="button" i18n="@@investorOnboardingBuyBtksModalCtaTweet">Tweet about it</button>
+                <a target="_blank" i18n-href="@@investorOnboardingBuyBtksModalTweet"
+                  href="https://twitter.com/intent/tweet?hashtags=Betoken%2C%20DeFi&related=betokenfund&text=I%27ve%20just%20connected%20my%20capital%20to%20Betoken%2C%20world%27s%20first%20crowd-powered%20cryptoassets%20management%20protocol!&url=https%3A%2F%2Fbetoken.fund&via=betokenfund">
+                  <button class="btn btn-twitter btn-block" type="button" name="button"
+                    i18n="@@investorOnboardingBuyBtksModalCtaTweet">Tweet about it</button>
                 </a>
                 <hr>
                 <form>
@@ -538,7 +590,8 @@
                     <label for="exampleFormControlInput1" i18n="@@modalBodyTxHash">Transaction hash</label>
                     <div class="input-group mb-3">
                       <input type="text" class="form-control form-control-lg" value="{{transactionId}}"
-                       i18n-aria-label="@@investorOnboardingBuyBtksModalTxHashStep4AriaLabel" aria-label="Transaction hash">
+                        i18n-aria-label="@@investorOnboardingBuyBtksModalTxHashStep4AriaLabel"
+                        aria-label="Transaction hash">
                       <div class="input-group-append">
                         <a class="btn btn-white h-100 d-flex align-items-center"
                           href="https://etherscan.io/tx/{{transactionId}}" target="_blank"><i
@@ -564,7 +617,8 @@
 
               <!-- Continue button for buyStep 1 -->
               <button type="submit" class="btn btn-block btn-success mt-auto" aria-label="BuyBTKS" *ngIf="buyStep == 0"
-                (click)="buyStep = agreementsChecked() ? 1 : 0" [ngClass]="{'disabled': !agreementsChecked()}" i18n="@@investorOnboardingBuyBtksModalCtaBuy">
+                (click)="buyStep = agreementsChecked() ? 1 : 0" [ngClass]="{'disabled': !agreementsChecked()}"
+                i18n="@@investorOnboardingBuyBtksModalCtaBuy">
                 Buy Betoken shares
               </button>
               <!-- Continue button for buyStep 2 -->
@@ -573,13 +627,13 @@
                 Continue
               </button>
               <!-- Try again button for error -->
-              <button type="submit" class="btn btn-block btn-white mt-auto" i18n="@@modalTryAgainAriaLabel" aria-label="Try again" *ngIf="buyStep == -1"
-                (click)="resetModals()" i18n="@@modalTryAgain">
+              <button type="submit" class="btn btn-block btn-white mt-auto" i18n="@@modalTryAgainAriaLabel"
+                aria-label="Try again" *ngIf="buyStep == -1" (click)="resetModals()" i18n="@@modalTryAgain">
                 Try again
               </button>
               <!-- Close button for buyStep 4 -->
-              <a class="btn btn-block btn-success mt-auto" routerLink="/invest" target="_blank"
-                *ngIf="buyStep == 4" i18n="@@investorOnboardingBuyBtksModalCtaGoToDashboard">Investor Dashboard</a>
+              <a class="btn btn-block btn-success mt-auto" routerLink="/invest" target="_blank" *ngIf="buyStep == 4"
+                i18n="@@investorOnboardingBuyBtksModalCtaGoToDashboard">Investor Dashboard</a>
             </div>
           </div>
         </div>

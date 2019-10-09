@@ -1,14 +1,18 @@
 import { Subscription } from 'apollo-client/util/Observable';
 import { OnDestroy } from '@angular/core';
 import { BigNumber } from 'bignumber.js';
-import { timer } from '../betokenjs/helpers';
 import { isNullOrUndefined } from 'util';
 
 export class ApolloEnabled implements OnDestroy {
   querySubscription: Subscription;
   query: any;
 
+  pollInterval: number;
+  fetchPolicy: any;
+
   constructor() {
+    this.pollInterval = 300000;
+    this.fetchPolicy = 'cache-and-network';
   }
 
   ngOnDestroy() {
@@ -34,10 +38,6 @@ export class ApolloEnabled implements OnDestroy {
   }
 
   getManagerKairoBalance(managerData) {
-    if (timer.phase() == 0) {
-      return new BigNumber(managerData.kairoBalance);
-    } else {
-      return new BigNumber(managerData.kairoBalanceWithStake);
-    }
+    return new BigNumber(managerData.kairoBalanceWithStake);
   }
 }

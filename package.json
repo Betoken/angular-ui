@@ -26,7 +26,7 @@
     "apollo-client": "^2.6.0",
     "apollo-link": "^1.2.11",
     "bignumber.js": "^8.0.0",
-    "bnc-assist": "^0.10.1",
+    "bnc-onboard": "^0.2.3",
     "bootstrap": "^4.3.1",
     "chart.js": "^2.7.2",
     "core-js": "^2.5.4",
@@ -69,5 +69,8 @@
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
     "typescript": "~3.5.3"
+  },
+  "browser": {
+    "fs": false
   }
 }

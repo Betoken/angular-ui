@@ -206,7 +206,6 @@ export var Betoken = function () {
 
     self.loadWeb3 = async () => {
         self.hasWeb3 = true;
-        console.log("hi");
 
         if (isNull(self.assistInstance)) {
             var bncAssistConfig = {

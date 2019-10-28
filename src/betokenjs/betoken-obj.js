@@ -220,7 +220,7 @@ export var Betoken = function () {
                     walletSelect: Onboard.modules.select.defaults({
                         fortmaticInit: { apiKey: self.fortmaticAPIKey },
                         portisInit: { apiKey: self.portisAPIKey },
-                        walletConnectInit: { infuraKey: "3057a4979e92452bae6afaabed67a724" },
+                        walletConnectInit: { infuraKey: self.infuraKey },
                         networkId: 1
                     }),
                     // default ready steps are: connect, network, balance
@@ -235,11 +235,22 @@ export var Betoken = function () {
 
         // Get user to select a wallet
         let selectedWallet = await self.assistInstance.walletSelect();
-
-        if (selectedWallet) {
+        let state = self.assistInstance.getState();
+        if (
+            selectedWallet 
+            || state.address !== null // If user already logged in but want to switch account, and then dismissed window
+        ) {
             // Get users' wallet ready to transact
             let ready = await self.assistInstance.walletReady();
+
+            if (!ready) {
+                // Selected an option but then dismissed it
+                // Treat as no wallet
+                window.web3 = new Web3(self.infuraEndpoint);
+                self.hasWeb3 = false;
+            }
         } else {
+            // User refuses to connect to wallet
             window.web3 = new Web3(self.infuraEndpoint);
             self.hasWeb3 = false;
         }

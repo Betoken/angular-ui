@@ -161,7 +161,8 @@ export var Betoken = function () {
     self.blocknativeAPIKey = "902e9643-ad7b-44dc-a130-778bd3b29b95";
     self.fortmaticAPIKey = "pk_live_D786361A2D3453D4";
     self.portisAPIKey = "f5e7429c-2715-4a45-b032-c3d76688da8d";
-    self.infuraEndpoint = "wss://mainnet.infura.io/ws/v3/3057a4979e92452bae6afaabed67a724"
+    self.infuraKey = "3057a4979e92452bae6afaabed67a724";
+    self.infuraEndpoint = "wss://mainnet.infura.io/ws/v3/" + self.infuraKey;
 
     /*
     Object Initialization
@@ -207,7 +208,7 @@ export var Betoken = function () {
     self.loadWeb3 = async () => {
         self.hasWeb3 = true;
 
-        if (isNull(self.assistInstance)) {
+        if (self.assistInstance === null) {
             var bncAssistConfig = {
                 dappId: self.blocknativeAPIKey,
                 networkId: 1,

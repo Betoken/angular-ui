@@ -2,7 +2,7 @@
 import BigNumber from "bignumber.js";
 import { isNull, isNullOrUndefined } from "util";
 const Web3 = require('web3');
-const bnc = require('bnc-assist');
+import Onboard from 'bnc-onboard';
 
 // constants
 export const BETOKEN_PROXY_ADDR = "0xC7CbB403D1722EE3E4ae61f452Dc36d71E8800DE";
@@ -15,28 +15,28 @@ export const CHECK_RECEIPT_INTERVAL = 3e3; // in milliseconds
 
 // helpers
 export const getDefaultAccount = async () => {
-    web3Instance.eth.defaultAccount = (await web3Instance.eth.getAccounts())[0];
+    web3.eth.defaultAccount = (await web3.eth.getAccounts())[0];
 };
 
 export const ERC20 = function (_tokenAddr) {
     // add new token contract
     var erc20ABI = require("./abi/ERC20.json");
-    return new web3Instance.eth.Contract(erc20ABI, _tokenAddr);
+    return new web3.eth.Contract(erc20ABI, _tokenAddr);
 };
 
 export const CompoundOrder = function (_addr) {
     var abi = require("./abi/CompoundOrder.json");
-    return new web3Instance.eth.Contract(abi, _addr);
+    return new web3.eth.Contract(abi, _addr);
 };
 
 export const PositionToken = function (_addr) {
     var abi = require("./abi/PositionToken.json");
-    return new web3Instance.eth.Contract(abi, _addr);
+    return new web3.eth.Contract(abi, _addr);
 };
 
 export const estimateGas = async (func, val, _onError) => {
     return Math.floor((await func.estimateGas({
-        from: web3Instance.eth.defaultAccount,
+        from: web3.eth.defaultAccount,
         value: val
     }).catch(_onError)) * 1.2);
 };
@@ -45,12 +45,12 @@ export const sendTx = async (func, _onTxHash, _onReceipt, _onError) => {
     var gasLimit = await estimateGas(func, 0, _onError);
     if (!isNaN(gasLimit)) {
         return func.send({
-            from: web3Instance.eth.defaultAccount,
+            from: web3.eth.defaultAccount,
             gas: gasLimit
         }).on("transactionHash", (hash) => {
             _onTxHash(hash);
             let listener = setInterval(async () => {
-                let receipt = await web3Instance.eth.getTransaction(hash);
+                let receipt = await web3.eth.getTransaction(hash);
                 if (!isNull(receipt)) {
                     _onReceipt(receipt);
                     clearInterval(listener);
@@ -68,13 +68,13 @@ export const sendTxWithValue = async (func, val, _onTxHash, _onReceipt, _onError
     var gasLimit = await estimateGas(func, val, _onError);
     if (!isNaN(gasLimit)) {
         return func.send({
-            from: web3Instance.eth.defaultAccount,
+            from: web3.eth.defaultAccount,
             gas: gasLimit,
             value: val
         }).on("transactionHash", (hash) => {
             _onTxHash(hash);
             let listener = setInterval(async () => {
-                let receipt = await web3Instance.eth.getTransaction(hash);
+                let receipt = await web3.eth.getTransaction(hash);
                 if (!isNull(receipt)) {
                     _onReceipt(receipt);
                     clearInterval(listener);
@@ -89,7 +89,7 @@ export const sendTxWithValue = async (func, val, _onTxHash, _onReceipt, _onError
 };
 
 export const sendTxWithToken = async (func, token, to, amount, _onTxHash, _onReceipt, _onError) => {
-    let allowance = new BigNumber(await token.methods.allowance(web3Instance.eth.defaultAccount, to).call());
+    let allowance = new BigNumber(await token.methods.allowance(web3.eth.defaultAccount, to).call());
     if (allowance.gt(0)) {
         if (allowance.gte(amount)) {
             return sendTx(func, _onTxHash, _onReceipt, _onError);
@@ -97,12 +97,12 @@ export const sendTxWithToken = async (func, token, to, amount, _onTxHash, _onRec
         return sendTx(token.methods.approve(to, 0), () => {
             sendTx(token.methods.approve(to, amount), () => {
                 func.send({
-                    from: web3Instance.eth.defaultAccount,
+                    from: web3.eth.defaultAccount,
                     gasLimit: "3000000"
                 }).on("transactionHash", (hash) => {
                     _onTxHash(hash);
                     let listener = setInterval(async () => {
-                        let receipt = await web3Instance.eth.getTransaction(hash);
+                        let receipt = await web3.eth.getTransaction(hash);
                         if (!isNull(receipt)) {
                             _onReceipt(receipt);
                             clearInterval(listener);
@@ -118,12 +118,12 @@ export const sendTxWithToken = async (func, token, to, amount, _onTxHash, _onRec
     } else {
         return sendTx(token.methods.approve(to, amount), () => {
             func.send({
-                from: web3Instance.eth.defaultAccount,
+                from: web3.eth.defaultAccount,
                 gasLimit: "3000000"
             }).on("transactionHash", (hash) => {
                 _onTxHash(hash);
                 let listener = setInterval(async () => {
-                    let receipt = await web3Instance.eth.getTransaction(hash);
+                    let receipt = await web3.eth.getTransaction(hash);
                     if (!isNull(receipt)) {
                         _onReceipt(receipt);
                         clearInterval(listener);
@@ -158,8 +158,11 @@ export var Betoken = function () {
     self.hasWeb3 = false;
     self.wrongNetwork = false;
     self.assistInstance = null;
-    self.apiKey = "902e9643-ad7b-44dc-a130-778bd3b29b95";
-    self.infuraEndpoint = "wss://mainnet.infura.io/ws/v3/3057a4979e92452bae6afaabed67a724"
+    self.blocknativeAPIKey = "902e9643-ad7b-44dc-a130-778bd3b29b95";
+    self.fortmaticAPIKey = "pk_live_D786361A2D3453D4";
+    self.portisAPIKey = "f5e7429c-2715-4a45-b032-c3d76688da8d";
+    self.infuraKey = "3057a4979e92452bae6afaabed67a724";
+    self.infuraEndpoint = "wss://mainnet.infura.io/ws/v3/" + self.infuraKey;
 
     /*
     Object Initialization
@@ -170,7 +173,7 @@ export var Betoken = function () {
 
         // Initialize BetokenProxy contract
         var betokenProxyABI = require("./abi/BetokenProxy.json");
-        var BetokenProxy = new web3Instance.eth.Contract(betokenProxyABI, BETOKEN_PROXY_ADDR);
+        var BetokenProxy = new web3.eth.Contract(betokenProxyABI, BETOKEN_PROXY_ADDR);
         self.contracts.BetokenProxy = BetokenProxy;
 
         // Fetch address of BetokenFund
@@ -178,12 +181,12 @@ export var Betoken = function () {
 
         // Initialize BetokenFund contract
         var betokenFundABI = require("./abi/BetokenFund.json");
-        var BetokenFund = new web3Instance.eth.Contract(betokenFundABI, betokenAddr);
+        var BetokenFund = new web3.eth.Contract(betokenFundABI, betokenAddr);
         self.contracts.BetokenFund = BetokenFund;
 
         // Initialize KyberNetwork contract
         var kyberABI = require("./abi/KyberNetwork.json");
-        var Kyber = new web3Instance.eth.Contract(kyberABI, KYBER_ADDR);
+        var Kyber = new web3.eth.Contract(kyberABI, KYBER_ADDR);
         self.contracts.Kyber = Kyber;
 
         // Initialize token contracts
@@ -191,11 +194,11 @@ export var Betoken = function () {
         await Promise.all([
             BetokenFund.methods.controlTokenAddr().call().then(function (_addr) {
                 // Initialize Kairo contract
-                self.contracts.Kairo = new web3Instance.eth.Contract(minimeABI, _addr);
+                self.contracts.Kairo = new web3.eth.Contract(minimeABI, _addr);
             }),
             BetokenFund.methods.shareTokenAddr().call().then(function (_addr) {
                 // Initialize Shares contract
-                self.contracts.Shares = new web3Instance.eth.Contract(minimeABI, _addr);
+                self.contracts.Shares = new web3.eth.Contract(minimeABI, _addr);
             })
         ]);
 
@@ -203,72 +206,53 @@ export var Betoken = function () {
     };
 
     self.loadWeb3 = async () => {
-        self.hasWeb3 = false;
-        self.wrongNetwork = false;
+        self.hasWeb3 = true;
 
-        if (typeof window.ethereum !== 'undefined') {
-            // new metamask
-            try {
-                await ethereum.enable();
-                self.hasWeb3 = true;
-                window.web3Instance = new Web3(ethereum);
-            } catch (error1) { }
-        } else {
-            // legacy metamask
-            window.web3Instance = new Web3(Web3.givenProvider);
-            self.hasWeb3 = true;
+        if (self.assistInstance === null) {
+            var bncAssistConfig = {
+                dappId: self.blocknativeAPIKey,
+                networkId: 1,
+                subscriptions: {
+                    wallet: wallet => window.web3 = new Web3(wallet.provider)
+                },
+                modules: {
+                    // default wallets that are included: MetaMask, Dapper, Coinbase, Trust, WalletConnect
+                    walletSelect: Onboard.modules.select.defaults({
+                        fortmaticInit: { apiKey: self.fortmaticAPIKey },
+                        portisInit: { apiKey: self.portisAPIKey },
+                        walletConnectInit: { infuraKey: self.infuraKey },
+                        networkId: 1
+                    }),
+                    // default ready steps are: connect, network, balance
+                    walletReady: Onboard.modules.ready.defaults({
+                        networkId: 1,
+                        minimumBalance: "0"
+                    })
+                }
+            };
+            self.assistInstance = Onboard.init(bncAssistConfig);
         }
 
-        var bncAssistConfig = {
-            dappId: self.apiKey,
-            networkId: 1,
-            web3: window.web3Instance,
-            recommendedWallets: {
-                desktop: [
-                    {
-                        name: 'MetaMask',
-                        link: 'https://metamask.io/',
-                        icon: 'https://metamask.io/img/metamask.png'
-                    },
-                    {
-                        name: 'Opera',
-                        link: 'https://www.opera.com/',
-                        icon: 'https://images-na.ssl-images-amazon.com/images/I/71Y2mhDkBNL.png'
-                    }
-                    // other desktop wallets your dapp supports here
-                ],
-                mobile: [
-                    {
-                        name: 'Coinbase',
-                        link: 'https://wallet.coinbase.com/',
-                        icon: 'https://cdn-images-1.medium.com/max/1200/1*7ywNS48PnonfsvvMu1tTsA.png'
-                    },
-                    {
-                        name: 'Trust',
-                        link: 'https://trustwallet.com/',
-                        icon: 'https://uploads-ssl.webflow.com/5a88babea6e0f90001b39b0d/5a8cf5a81df25e0001d5c78d_logo_solid_square_blue%20(2).png'
-                    },
-                    {
-                        name: 'Opera Touch',
-                        link: 'https://www.opera.com/mobile/touch',
-                        icon: 'https://apps.goodereader.com/wp-content/uploads/icons/1525044654.png'
-                    },
-                    {
-                        name: 'Status',
-                        link: 'https://dev.status.im/get/',
-                        icon: 'https://cdn.investinblockchain.com/wp-content/uploads/2017/12/status-2-300x300.png?x88891'
-                    }
-                    // other mobile wallets your dapp supports here
-                ]
+        // Get user to select a wallet
+        let selectedWallet = await self.assistInstance.walletSelect();
+        let state = self.assistInstance.getState();
+        if (
+            selectedWallet 
+            || state.address !== null // If user already logged in but want to switch account, and then dismissed window
+        ) {
+            // Get users' wallet ready to transact
+            let ready = await self.assistInstance.walletReady();
+
+            if (!ready) {
+                // Selected an option but then dismissed it
+                // Treat as no wallet
+                window.web3 = new Web3(self.infuraEndpoint);
+                self.hasWeb3 = false;
             }
-        };
-        self.assistInstance = bnc.init(bncAssistConfig);
-        
-        let userState = await self.assistInstance.getState();
-        if (isNullOrUndefined(userState.currentProvider)) {
-            window.web3Instance = new Web3(self.infuraEndpoint);
+        } else {
+            // User refuses to connect to wallet
+            window.web3 = new Web3(self.infuraEndpoint);
             self.hasWeb3 = false;
-            self.assistInstance.onboard();
         }
     }
 
@@ -307,7 +291,7 @@ export var Betoken = function () {
     };
 
     self.getTokenSymbol = function (_tokenAddr) {
-        _tokenAddr = web3Instance.utils.toHex(_tokenAddr);
+        _tokenAddr = web3.utils.toHex(_tokenAddr);
         if (_tokenAddr === ETH_TOKEN_ADDRESS) {
             return Promise.resolve().then(function () {
                 return "ETH";
@@ -317,7 +301,7 @@ export var Betoken = function () {
     };
 
     self.getTokenDecimals = function (_tokenAddr) {
-        _tokenAddr = web3Instance.utils.toHex(_tokenAddr);
+        _tokenAddr = web3.utils.toHex(_tokenAddr);
         if (_tokenAddr === ETH_TOKEN_ADDRESS) {
             return Promise.resolve().then(function () {
                 return 18;
@@ -327,15 +311,15 @@ export var Betoken = function () {
     };
 
     self.getTokenBalance = function (_tokenAddr, _addr) {
-        if (_tokenAddr === web3Instance.utils.toChecksumAddress(ETH_TOKEN_ADDRESS)) {
-            return web3Instance.eth.getBalance(_addr);
+        if (_tokenAddr === web3.utils.toChecksumAddress(ETH_TOKEN_ADDRESS)) {
+            return web3.eth.getBalance(_addr);
         }
         return ERC20(_tokenAddr).methods.balanceOf(_addr).call();
     };
 
     self.getTokenPrice = async (_tokenAddr, _amount) => {
         try {
-            if (web3Instance.utils.toChecksumAddress(_tokenAddr) === DAI_ADDR) {
+            if (web3.utils.toChecksumAddress(_tokenAddr) === DAI_ADDR) {
                 return BigNumber(1);
             }
             let decimals = await self.getTokenDecimals(_tokenAddr);
@@ -630,7 +614,7 @@ export var Betoken = function () {
     */
     self.sellAsset = async function (_proposalId, _percentage, _minPrice, _maxPrice, _onTxHash, _onReceipt, _onError) {
         await getDefaultAccount();
-        var sellTokenAmount = BigNumber((await self.getDoubleMapping("userInvestments", web3Instance.eth.defaultAccount, _proposalId)).tokenAmount).times(_percentage).integerValue().toFixed();
+        var sellTokenAmount = BigNumber((await self.getDoubleMapping("userInvestments", web3.eth.defaultAccount, _proposalId)).tokenAmount).times(_percentage).integerValue().toFixed();
         var minPrice = _minPrice.times(PRECISION).integerValue().toFixed();
         var maxPrice = _maxPrice.times(PRECISION).integerValue().toFixed();
 

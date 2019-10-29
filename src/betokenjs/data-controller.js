@@ -42,7 +42,7 @@ export const assetSymbolToPrice = function (_symbol) {
 };
 
 export const assetAddressToSymbol = function (_addr) {
-    _addr = web3Instance.utils.toChecksumAddress(_addr);
+    _addr = web3.utils.toChecksumAddress(_addr);
     return TOKEN_DATA.find((x) => x.address === _addr).symbol;
 };
 
@@ -59,17 +59,17 @@ export const assetSymbolToPTokens = (_symbol) => {
 };
 
 export const assetCTokenAddressToSymbol = (_addr) => {
-    _addr = web3Instance.utils.toChecksumAddress(_addr);
+    _addr = web3.utils.toChecksumAddress(_addr);
     return CTOKENS.find((x) => x.address === _addr).symbol;
 };
 
 export const assetPTokenAddressToSymbol = (_addr) => {
-    _addr = web3Instance.utils.toChecksumAddress(_addr);
+    _addr = web3.utils.toChecksumAddress(_addr);
     return PTOKENS.find((x) => !isUndefined(x.pTokens.find((y) => y.address === _addr))).symbol;
 };
 
 export const assetPTokenAddressToInfo = (_addr) => {
-    _addr = web3Instance.utils.toChecksumAddress(_addr);
+    _addr = web3.utils.toChecksumAddress(_addr);
     return PTOKENS.find((x) => !isUndefined(x.pTokens.find((y) => y.address === _addr))).pTokens.find((y) => y.address === _addr);
 };
 
@@ -112,7 +112,7 @@ export const isFulcrumTokenAddress = (_tokenAddress) => {
     return !isUndefined(result);
 };
 
-export const isSupporter = (_addr) => SUPPORTERS.indexOf(web3Instance.utils.toChecksumAddress(_addr)) != -1;
+export const isSupporter = (_addr) => SUPPORTERS.indexOf(web3.utils.toChecksumAddress(_addr)) != -1;
 
 export const fulcrumMinStake = (_symbol, _isShort, _kairoPrice) => {
     let underlyingPrice;
@@ -168,7 +168,7 @@ export const loadTokenMetadata = async () => {
         return {
             name: x.name,
             symbol: x.symbol,
-            address: web3Instance.utils.toChecksumAddress(x.address),
+            address: web3.utils.toChecksumAddress(x.address),
             decimals: x.decimals,
             logoUrl: '',
             price: BigNumber(0),
@@ -215,7 +215,7 @@ export const loadUserData = async () => {
     if (betoken.hasWeb3) {
         // Get user address
         await getDefaultAccount();
-        const userAddr = web3Instance.eth.defaultAccount;
+        const userAddr = web3.eth.defaultAccount;
         if (!isNullOrUndefined(userAddr)) {
             userAddress = userAddr;
         } else {

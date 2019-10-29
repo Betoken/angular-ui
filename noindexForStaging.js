@@ -11,7 +11,7 @@ for (let locale of locales) {
   }
   let fileData = fs.readFileSync(filePath, 'utf-8');
   let headIdx = fileData.indexOf('<head>') + 6;
-  let tag = '\n  <meta name="robots" content="noindex" />\n';
+  let tag = '\n  <meta name="robots" content="noindex" />\n <meta name="fortmatic-site-verification" content="vkeS0rf93GzMCSPu" /> \n';
   fileData = fileData.slice(0, headIdx) + tag + fileData.slice(headIdx);
 
   fs.writeFileSync(filePath, fileData, 'utf-8');

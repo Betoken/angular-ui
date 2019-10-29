@@ -1,5 +1,5 @@
 // imports
-import { getDefaultAccount } from './betoken-obj';
+import { getDefaultAccount, PRECISION } from './betoken-obj';
 import BigNumber from "bignumber.js";
 import https from "https";
 import { isUndefined, isNullOrUndefined } from 'util';
@@ -15,6 +15,7 @@ const SUPPORTERS = require('./json_data/betoken_supporters.json');
 // instance variables
 // user info
 export var userAddress = ZERO_ADDR;
+export var commissionBalance = BigNumber(0);
 
 // fund metadata
 export var commissionRate = BigNumber(0.2);
@@ -220,6 +221,10 @@ export const loadUserData = async () => {
         } else {
             userAddress = ZERO_ADDR;
         }
+
+        // Get user commissions
+        let commissionObj = await betoken.getMappingOrArrayItem("commissionBalanceOf", userAddress);
+        commissionBalance = BigNumber(commissionObj._commission).div(PRECISION);
     }
 };
 

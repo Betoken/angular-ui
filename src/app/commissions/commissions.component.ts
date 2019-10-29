@@ -103,7 +103,7 @@ export class CommissionsComponent extends ApolloEnabled implements OnInit {
                     let userValue = new BigNumber(manager.kairoBalanceWithStake);
                     if (fund.cyclePhase === 'INTERMISSION') {
                         // Actual commission that will be redeemed
-                        this.commissionAmount = new BigNumber(manager.kairoBalance).div(fund.kairoTotalSupply).times(fund.cycleTotalCommission).times(manager.riskTaken).div(manager.riskThreshold);
+                        this.commissionAmount = user.commission_balance();
                     } else {
                         // Expected commission based on previous average ROI
                         let actualKairoSupply = new BigNumber(fund.kairoTotalSupply).div(fund.totalFundsInDAI).times(fund.aum);

@@ -94,7 +94,8 @@ export const user = {
         return BigNumber(balance).div(Math.pow(10, decimals));
     },
     commission_rate: () => Data.commissionRate,
-    asset_fee_rate: () => Data.assetFeeRate
+    asset_fee_rate: () => Data.assetFeeRate,
+    commission_balance: () => Data.commissionBalance
 };
 
 export const stats = {

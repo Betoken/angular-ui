@@ -213,7 +213,11 @@ export var Betoken = function () {
                 dappId: self.blocknativeAPIKey,
                 networkId: 1,
                 subscriptions: {
-                    wallet: wallet => window.web3 = new Web3(wallet.provider)
+                    wallet: wallet => {
+                        if (wallet.provider) {
+                            window.web3 = new Web3(wallet.provider);
+                        }
+                    }
                 },
                 modules: {
                     // default wallets that are included: MetaMask, Dapper, Coinbase, Trust, WalletConnect
@@ -237,7 +241,7 @@ export var Betoken = function () {
         let selectedWallet = await self.assistInstance.walletSelect();
         let state = self.assistInstance.getState();
         if (
-            selectedWallet 
+            selectedWallet
             || state.address !== null // If user already logged in but want to switch account, and then dismissed window
         ) {
             // Get users' wallet ready to transact

@@ -254,6 +254,7 @@ export var Betoken = function () {
                 }
             };
             self.assistInstance = Onboard.init(bncAssistConfig);
+            self.assistInstance.config({ darkMode: getComputedStyle(document.body).backgroundColor != 'rgb(249, 251, 253)' });
         }
 
         // Get user to select a wallet

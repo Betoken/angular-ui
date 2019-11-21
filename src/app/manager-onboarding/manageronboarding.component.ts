@@ -174,7 +174,7 @@ export class ManageronboardingComponent extends ApolloEnabled implements OnInit 
       case 'ETH':
         manager_actions.register_with_ETH(payAmount, pending, confirm, error);
         break;
-      case 'DAI':
+      case 'SAI':
         manager_actions.register_with_DAI(payAmount, pending, confirm, error);
         break;
       default:

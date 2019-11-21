@@ -172,7 +172,7 @@ export class InvestoronboardingComponent extends ApolloEnabled implements OnInit
       case 'ETH':
         investor_actions.depositETH(payAmount, pending, confirm, error);
         break;
-      case 'DAI':
+      case 'SAI':
         investor_actions.depositDAI(payAmount, pending, confirm, error);
         break;
       default:

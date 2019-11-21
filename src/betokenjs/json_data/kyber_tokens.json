@@ -40,8 +40,8 @@
 			]
 		},
 		{
-			"symbol" : "DAI",
-			"name" : "DAI",
+			"symbol" : "SAI",
+			"name" : "SAI",
 			"address" : "0x89d24a6b4ccb1b6faa2625fe562bdd9a23260359",
 			"decimals" : 18,
 			"id" : "0x89d24a6b4ccb1b6faa2625fe562bdd9a23260359",
@@ -59,6 +59,13 @@
 				"0x5D154c145Db2ca90B8aB5e8Fe3E716AfA4AB7Ff0",
 				"0x7a3370075a54B187d7bD5DceBf0ff2B5552d4F7D"
 			]
+		},
+		{
+			"symbol" : "DAI",
+			"name" : "DAI",
+			"address" : "0x6B175474E89094C44Da98b954EedeAC495271d0F",
+			"decimals" : 18,
+			"id" : "0x6B175474E89094C44Da98b954EedeAC495271d0F"
 		},
 		{
 			"symbol" : "OMG",

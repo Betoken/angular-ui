@@ -90,7 +90,7 @@ export class InvestorComponent extends ApolloEnabled implements OnInit {
     this.phase = 0;
 
     this.checkboxes = [false, false, false];
-    this.selectedTokenSymbol = 'DAI';
+    this.selectedTokenSymbol = 'SAI';
     this.selectedTokenBalance = new BigNumber(0);
     this.transactionId = '';
     this.continueEnabled = false;
@@ -303,7 +303,7 @@ export class InvestorComponent extends ApolloEnabled implements OnInit {
       case 'ETH':
         investor_actions.depositETH(payAmount, pending, confirm, error);
         break;
-      case 'DAI':
+      case 'SAI':
         investor_actions.depositDAI(payAmount, pending, confirm, error);
         break;
       default:
@@ -337,7 +337,7 @@ export class InvestorComponent extends ApolloEnabled implements OnInit {
       case 'ETH':
         investor_actions.withdrawETH(sellAmount, pending, confirm, error);
         break;
-      case 'DAI':
+      case 'SAI':
         investor_actions.withdrawDAI(sellAmount, pending, confirm, error);
         break;
       default:

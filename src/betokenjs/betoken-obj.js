@@ -164,12 +164,12 @@ export var Betoken = function () {
         await self.loadWeb3();
 
         // Initialize BetokenProxy contract
-        var betokenProxyABI = require("./abi/BetokenProxy.json");
+        /*var betokenProxyABI = require("./abi/BetokenProxy.json");
         var BetokenProxy = new web3.eth.Contract(betokenProxyABI, BETOKEN_PROXY_ADDR);
-        self.contracts.BetokenProxy = BetokenProxy;
+        self.contracts.BetokenProxy = BetokenProxy;*/
 
         // Fetch address of BetokenFund
-        var betokenAddr = await BetokenProxy.methods.betokenFundAddress().call();
+        var betokenAddr = '0x045C07F40eEa2c9c3373cdDEf3FD2E60c70068E9';//await BetokenProxy.methods.betokenFundAddress().call();
 
         // Initialize BetokenFund contract
         var betokenFundABI = require("./abi/BetokenFund.json");

@@ -5,7 +5,7 @@ const Web3 = require('web3');
 // constants
 export const BETOKEN_PROXY_ADDR = "0xC7CbB403D1722EE3E4ae61f452Dc36d71E8800DE";
 export const ETH_TOKEN_ADDRESS = "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee";
-export const DAI_ADDR = "0x89d24A6b4CcB1B6fAA2625fE562bDD9a23260359";
+export const DAI_ADDR = "0x6B175474E89094C44Da98b954EedeAC495271d0F";
 export const KYBER_ADDR = "0x818E6FECD516Ecc3849DAf6845e3EC868087B755";
 export const NET_ID = 1; // Mainnet
 export const PRECISION = 1e18;
@@ -55,7 +55,7 @@ export const sendTx = async (func, _onTxHash, _onReceipt, _onError) => {
                 }
             }, CHECK_RECEIPT_INTERVAL);
         }).on("error", (e) => {
-            if (!e.toString().contains('newBlockHeaders')) {
+            if (!JSON.stringify(e).contains('newBlockHeaders')) {
                 _onError(e);
             }
         });
@@ -79,7 +79,7 @@ export const sendTxWithValue = async (func, val, _onTxHash, _onReceipt, _onError
                 }
             }, CHECK_RECEIPT_INTERVAL);
         }).on("error", (e) => {
-            if (!e.toString().contains('newBlockHeaders')) {
+            if (!JSON.stringify(e).contains('newBlockHeaders')) {
                 _onError(e);
             }
         });
@@ -107,7 +107,7 @@ export const sendTxWithToken = async (func, token, to, amount, _onTxHash, _onRec
                         }
                     }, CHECK_RECEIPT_INTERVAL);
                 }).on("error", (e) => {
-                    if (!e.toString().contains('newBlockHeaders')) {
+                    if (!JSON.stringify(e).contains('newBlockHeaders')) {
                         _onError(e);
                     }
                 });
@@ -128,7 +128,7 @@ export const sendTxWithToken = async (func, token, to, amount, _onTxHash, _onRec
                     }
                 }, CHECK_RECEIPT_INTERVAL);
             }).on("error", (e) => {
-                if (!e.toString().contains('newBlockHeaders')) {
+                if (!JSON.stringify(e).contains('newBlockHeaders')) {
                     _onError(e);
                 }
             });
@@ -169,7 +169,7 @@ export var Betoken = function () {
         self.contracts.BetokenProxy = BetokenProxy;*/
 
         // Fetch address of BetokenFund
-        var betokenAddr = '0x045C07F40eEa2c9c3373cdDEf3FD2E60c70068E9';//await BetokenProxy.methods.betokenFundAddress().call();
+        var betokenAddr = '0xe9997F0f209F3574113A6010f93Bdb125b040e34';//await BetokenProxy.methods.betokenFundAddress().call();
 
         // Initialize BetokenFund contract
         var betokenFundABI = require("./abi/BetokenFund.json");
@@ -304,7 +304,7 @@ export var Betoken = function () {
         try {
             let pToken = PositionToken(_tokenAddr);
             let underlyingPerPToken = await pToken.methods.tokenPrice().call();
-            let underlying = await pToken.methods.loanTokenAddress().call();
+            let underlying = await pToken.methods.tradeTokenAddress().call();
             if (underlying === DAI_ADDR) {
                 return BigNumber(underlyingPerPToken).div(PRECISION);
             }
@@ -318,7 +318,7 @@ export var Betoken = function () {
         try {
             let pToken = PositionToken(_tokenAddr);
             let underlyingPerPToken = await pToken.methods.liquidationPrice().call();
-            let underlying = await pToken.methods.loanTokenAddress().call();
+            let underlying = await pToken.methods.tradeTokenAddress().call();
             if (underlying === DAI_ADDR) {
                 return BigNumber(underlyingPerPToken).div(PRECISION);
             }

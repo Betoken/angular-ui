@@ -131,7 +131,7 @@ export class ManageronboardingComponent implements OnInit {
     let error = (e) => {
       if (this.buyStep != 0) {
         this.buyStep = -1;
-        this.errorMsg = e.toString();
+        this.errorMsg = JSON.stringify(e);
       }
     }
     switch (this.selectedTokenSymbol) {

@@ -240,9 +240,10 @@ export const investor_actions = {
 
 export const manager_actions = {
     // All amounts must be BigNumber, in floating point (no need to multiply by 1e18)
-    new_investment_with_symbol: async function (tokenSymbol, stakeInKRO, minPrice, maxPrice, pending, confirm, error) {
-        var tokenAddress = Data.assetSymbolToAddress(tokenSymbol);
-        betoken.createInvestment(tokenAddress, stakeInKRO, minPrice, maxPrice, pending, confirm, error);
+    new_investment_with_symbol: async function (tokenSymbol, stakeInKRO, minPrice, maxPrice, useKyber, pending, confirm, error) {
+        let tokenAddress = Data.assetSymbolToAddress(tokenSymbol);
+        let calldata = await Data.generateBuyDexagCalldata(tokenSymbol, stakeInKRO);
+        betoken.createInvestmentV2(tokenAddress, stakeInKRO, minPrice, maxPrice, calldata, useKyber, pending, confirm, error);
     },
     new_investment_with_address: async function (tokenAddress, stakeInKRO, minPrice, maxPrice, pending, confirm, error) {
         betoken.createInvestment(tokenAddress, stakeInKRO, minPrice, maxPrice, pending, confirm, error);
@@ -250,8 +251,16 @@ export const manager_actions = {
     sell_investment: async function (id, percentage, minPrice, maxPrice, pending, confirm, error) {
         return betoken.sellAsset(id, percentage, minPrice, maxPrice, pending, confirm, error);
     },
+    sell_investment_v2: async function (id, percentage, minPrice, maxPrice, useKyber, pending, confirm, error) {
+        let investment = await betoken.getDoubleMapping("userInvestments", web3.eth.defaultAccount, id);
+        let sellTokenAddress = investment.tokenAddress;
+        let sellTokenDecimals = +(await betoken.getTokenDecimals(sellTokenAddress));
+        let sellTokenAmount = BigNumber(investment.tokenAmount).times(percentage).div(BigNumber(10).pow(sellTokenDecimals));
+        let calldata = await Data.generateSellDexagCalldata(Data.assetAddressToSymbol(sellTokenAddress), sellTokenAmount);
+        return betoken.sellAssetV2(id, percentage, minPrice, maxPrice, calldata, useKyber, pending, confirm, error);
+    },
     new_compound_order: async function (orderType, tokenSymbol, stakeInKRO, minPrice, maxPrice, pending, confirm, error) {
-        var tokenAddress = Data.assetSymbolToCTokenAddress(tokenSymbol);
+        let tokenAddress = Data.assetSymbolToCTokenAddress(tokenSymbol);
         betoken.createCompoundOrder(orderType, tokenAddress, stakeInKRO, minPrice, maxPrice, pending, confirm, error);
     },
     sell_compound_order: async function (id, minPrice, maxPrice, pending, confirm, error) {

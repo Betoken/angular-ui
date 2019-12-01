@@ -7,6 +7,7 @@ export const BETOKEN_PROXY_ADDR = "0xC7CbB403D1722EE3E4ae61f452Dc36d71E8800DE";
 export const ETH_TOKEN_ADDRESS = "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee";
 export const DAI_ADDR = "0x6B175474E89094C44Da98b954EedeAC495271d0F";
 export const KYBER_ADDR = "0x818E6FECD516Ecc3849DAf6845e3EC868087B755";
+export const DEXAG_ADDR = "0xb1ba342EDB8626B611BbC1754D8C8639521D3F58";
 export const NET_ID = 1; // Mainnet
 export const PRECISION = 1e18;
 export const CHECK_RECEIPT_INTERVAL = 3e3; // in milliseconds
@@ -49,13 +50,13 @@ export const sendTx = async (func, _onTxHash, _onReceipt, _onError) => {
             _onTxHash(hash);
             let listener = setInterval(async () => {
                 let receipt = await web3.eth.getTransaction(hash);
-                if (!isNull(receipt)) {
+                if (receipt) {
                     _onReceipt(receipt);
                     clearInterval(listener);
                 }
             }, CHECK_RECEIPT_INTERVAL);
         }).on("error", (e) => {
-            if (!JSON.stringify(e).contains('newBlockHeaders')) {
+            if (!JSON.stringify(e).includes('newBlockHeaders')) {
                 _onError(e);
             }
         });
@@ -73,13 +74,13 @@ export const sendTxWithValue = async (func, val, _onTxHash, _onReceipt, _onError
             _onTxHash(hash);
             let listener = setInterval(async () => {
                 let receipt = await web3.eth.getTransaction(hash);
-                if (!isNull(receipt)) {
+                if (receipt) {
                     _onReceipt(receipt);
                     clearInterval(listener);
                 }
             }, CHECK_RECEIPT_INTERVAL);
         }).on("error", (e) => {
-            if (!JSON.stringify(e).contains('newBlockHeaders')) {
+            if (!JSON.stringify(e).includes('newBlockHeaders')) {
                 _onError(e);
             }
         });
@@ -101,13 +102,13 @@ export const sendTxWithToken = async (func, token, to, amount, _onTxHash, _onRec
                     _onTxHash(hash);
                     let listener = setInterval(async () => {
                         let receipt = await web3.eth.getTransaction(hash);
-                        if (!isNull(receipt)) {
+                        if (receipt) {
                             _onReceipt(receipt);
                             clearInterval(listener);
                         }
                     }, CHECK_RECEIPT_INTERVAL);
                 }).on("error", (e) => {
-                    if (!JSON.stringify(e).contains('newBlockHeaders')) {
+                    if (!JSON.stringify(e).includes('newBlockHeaders')) {
                         _onError(e);
                     }
                 });
@@ -122,13 +123,13 @@ export const sendTxWithToken = async (func, token, to, amount, _onTxHash, _onRec
                 _onTxHash(hash);
                 let listener = setInterval(async () => {
                     let receipt = await web3.eth.getTransaction(hash);
-                    if (!isNull(receipt)) {
+                    if (receipt) {
                         _onReceipt(receipt);
                         clearInterval(listener);
                     }
                 }, CHECK_RECEIPT_INTERVAL);
             }).on("error", (e) => {
-                if (!JSON.stringify(e).contains('newBlockHeaders')) {
+                if (!JSON.stringify(e).includes('newBlockHeaders')) {
                     _onError(e);
                 }
             });
@@ -169,7 +170,7 @@ export var Betoken = function () {
         self.contracts.BetokenProxy = BetokenProxy;*/
 
         // Fetch address of BetokenFund
-        var betokenAddr = '0xe9997F0f209F3574113A6010f93Bdb125b040e34';//await BetokenProxy.methods.betokenFundAddress().call();
+        var betokenAddr = '0x8c7F1e3190456DE59AF2E1b00428f5C8EE5F6c6f';//await BetokenProxy.methods.betokenFundAddress().call();
 
         // Initialize BetokenFund contract
         var betokenFundABI = require("./abi/BetokenFund.json");
@@ -572,6 +573,26 @@ export var Betoken = function () {
     };
 
     /**
+    * Creates an investment (V2)
+    * @param  {String} _tokenAddress the token address
+    * @param  {BigNumber} _stakeInKRO the investment amount
+    * @param  {BigNumber} _minPrice the min acceptable token price
+    * @param  {BigNumber} _maxPrice the max acceptable token price
+    * @param  {String}    _calldata the dex.ag calldata
+    * @param  {Bool}      _useKyber whether to use Kyber or dex.ag
+    * @return {Promise}               .then(()->)
+    */
+    self.createInvestmentV2 = async function (_tokenAddress, _stakeInKRO, _minPrice, _maxPrice, _calldata, _useKyber, _onTxHash, _onReceipt, _onError) {
+        await getDefaultAccount();
+        var stake = _stakeInKRO.times(PRECISION).integerValue().toFixed();
+        var minPrice = _minPrice.times(PRECISION).integerValue().toFixed();
+        var maxPrice = _maxPrice.times(PRECISION).integerValue().toFixed();
+
+        var func = self.contracts.BetokenFund.methods.createInvestmentV2(_tokenAddress, stake, minPrice, maxPrice, _calldata, _useKyber);
+        return sendTx(func, _onTxHash, _onReceipt, _onError);
+    };
+
+    /**
     * Sells an investment (maybe only part of it)
     * @param  {Number} _proposalId the investment's ID
     * @param  {BigNumber} _percentage the percentage of tokens to sell
@@ -586,6 +607,26 @@ export var Betoken = function () {
         var maxPrice = _maxPrice.times(PRECISION).integerValue().toFixed();
 
         var func = self.contracts.BetokenFund.methods.sellInvestmentAsset(_proposalId, sellTokenAmount, minPrice, maxPrice);
+        return sendTx(func, _onTxHash, _onReceipt, _onError);
+    };
+
+    /**
+    * Sells an investment (maybe only part of it)
+    * @param  {Number} _proposalId the investment's ID
+    * @param  {BigNumber} _percentage the percentage of tokens to sell
+    * @param  {BigNumber} _minPrice the min acceptable token price
+    * @param  {BigNumber} _maxPrice the max acceptable token price
+    * @param  {String}    _calldata the dex.ag calldata
+    * @param  {Bool}      _useKyber whether to use Kyber or dex.ag
+    * @return {Promise}               .then(()->)
+    */
+    self.sellAssetV2 = async function (_proposalId, _percentage, _minPrice, _maxPrice, _calldata, _useKyber, _onTxHash, _onReceipt, _onError) {
+        await getDefaultAccount();
+        var sellTokenAmount = BigNumber((await self.getDoubleMapping("userInvestments", web3.eth.defaultAccount, _proposalId)).tokenAmount).times(_percentage).integerValue().toFixed();
+        var minPrice = _minPrice.times(PRECISION).integerValue().toFixed();
+        var maxPrice = _maxPrice.times(PRECISION).integerValue().toFixed();
+
+        var func = self.contracts.BetokenFund.methods.sellInvestmentAssetV2(_proposalId, sellTokenAmount, minPrice, maxPrice, _calldata, _useKyber);
         return sendTx(func, _onTxHash, _onReceipt, _onError);
     };
 

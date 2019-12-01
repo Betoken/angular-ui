@@ -226,7 +226,7 @@ export class InvestmentsComponent implements OnInit {
             case 'basic':
                 let tokenPrice = tokens.asset_symbol_to_price(this.selectedTokenSymbol);
                 let maxPrice = tokenPrice.plus(tokenPrice.times(maxAcceptablePriceProp));
-                manager_actions.new_investment_with_symbol(this.selectedTokenSymbol, this.stakeAmount, new BigNumber(0), maxPrice, pending, confirm, error);
+                manager_actions.new_investment_with_symbol(this.selectedTokenSymbol, this.stakeAmount, new BigNumber(0), maxPrice, false, pending, confirm, error);
                 break;
             case 'compound':
                 let tokenPrice1 = tokens.asset_symbol_to_price(this.selectedTokenSymbol);
@@ -280,7 +280,7 @@ export class InvestmentsComponent implements OnInit {
                 // basic order
                 let tokenPrice = this.assetSymbolToPrice(this.selectedTokenSymbol);
                 let minPrice = tokenPrice.minus(tokenPrice.times(minAcceptablePriceProp));
-                manager_actions.sell_investment(this.sellId, sellPercentage, minPrice, tokenPrice.times(100000), pendingSell, confirmSell, error);
+                manager_actions.sell_investment_v2(this.sellId, sellPercentage, minPrice, tokenPrice.times(100000), false, pendingSell, confirmSell, error);
                 break;
             case 'fulcrum':
                 // fulcrum order

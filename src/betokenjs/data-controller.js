@@ -1,5 +1,5 @@
 // imports
-import { getDefaultAccount, DAI_ADDR, CompoundOrder } from './betoken-obj';
+import { getDefaultAccount, DAI_ADDR, CompoundOrder, DEXAG_ADDR } from './betoken-obj';
 import BigNumber from "bignumber.js";
 import https from "https";
 import { isUndefined } from 'util';
@@ -15,6 +15,7 @@ const PTOKENS = require('./json_data/fulcrum_tokens.json'); // Fulcrum pTokens
 const SUPPORTERS = require('./json_data/betoken_supporters.json');
 const UNSAFE_COL_RATIO_MULTIPLIER = 1.1;
 const COL_RATIO_MODIFIER = 4 / 3;
+const DEXAG_AMOUNT_MODIFIER = 1 - 1e-9;
 
 // instance variables
 // user info
@@ -159,9 +160,33 @@ export const fulcrumMinStake = (_symbol, _isShort) => {
 };
 
 export const httpsGet = async (apiStr) => {
-    const request = await fetch(apiStr, {headers: {'Origin': 'https://betoken.fund/portal/'}});
+    const request = await fetch(apiStr, { headers: { 'Origin': 'https://betoken.fund/portal/' } });
     return await request.json();
 };
+
+export const generateBuyDexagCalldata = async (tokenSymbol, stake) => {
+    let tokenDecimals = await betoken.getTokenDecimals(assetSymbolToAddress(tokenSymbol));
+    let fromSymbol, toSymbol, fromAmount;
+    fromSymbol = 'DAI';
+    toSymbol = tokenSymbol;
+    fromAmount = BigNumber(stake).times(totalFunds).div(kairoTotalSupply).times(DEXAG_AMOUNT_MODIFIER).toFixed(tokenDecimals);
+
+    let apiStr = `https://api.dex.ag/trade?from=${fromSymbol}&to=${toSymbol}&fromAmount=${fromAmount}&dex=best&proxy=${DEXAG_ADDR}`;
+    let result = await httpsGet(apiStr);
+    return result.trade.data;
+}
+
+export const generateSellDexagCalldata = async (tokenSymbol, tokenAmount) => {
+    let tokenDecimals = +(await betoken.getTokenDecimals(assetSymbolToAddress(tokenSymbol)));
+    let fromSymbol, toSymbol, fromAmount;
+    fromSymbol = tokenSymbol;
+    toSymbol = 'DAI';
+    fromAmount = BigNumber(tokenAmount).times(DEXAG_AMOUNT_MODIFIER).toFixed(tokenDecimals);
+
+    let apiStr = `https://api.dex.ag/trade?from=${fromSymbol}&to=${toSymbol}&fromAmount=${fromAmount}&dex=best&proxy=${DEXAG_ADDR}`;
+    let result = await httpsGet(apiStr);
+    return result.trade.data;
+}
 
 const clock = () => {
     const timeKeeper = setInterval(() => {
@@ -787,7 +812,7 @@ export const loadRanking = async () => {
         _entry.rank = _id + 1;
         return _entry;
     });
-    
+
     kairoTotalSupply = BigNumber((await betoken.getKairoTotalSupply())).div(PRECISION)
     let fundValueInDAI = fundTotalKRO.div(kairoTotalSupply).times(totalFunds);
     totalFunds = fundValueInDAI;

@@ -165,7 +165,7 @@ export const httpsGet = async (apiStr) => {
 };
 
 export const generateBuyDexagCalldata = async (tokenSymbol, stake) => {
-    let tokenDecimals = await betoken.getTokenDecimals(assetSymbolToAddress(tokenSymbol));
+    let tokenDecimals = +(await betoken.getTokenDecimals(assetSymbolToAddress(tokenSymbol)));
     let fromSymbol, toSymbol, fromAmount;
     fromSymbol = 'DAI';
     toSymbol = tokenSymbol;

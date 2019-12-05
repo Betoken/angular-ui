@@ -220,7 +220,7 @@ export class InvestmentsComponent implements OnInit {
         let error = (e) => {
             if (this.createInvestmentPopupStep != 0) {
                 this.createInvestmentPopupStep = -1;
-                this.errorMsg = e.toString();
+                this.errorMsg = JSON.stringify(e);
             }
         }
 
@@ -273,7 +273,7 @@ export class InvestmentsComponent implements OnInit {
         let error = (e) => {
             if (this.sellInvestmentPopupStep != 0) {
                 this.sellInvestmentPopupStep = -1;
-                this.errorMsg = e.toString();
+                this.errorMsg = JSON.stringify(e);
             }
         }
 
@@ -324,7 +324,7 @@ export class InvestmentsComponent implements OnInit {
         let error = (e) => {
             if (this.topupPopupStep != 0) {
                 this.topupPopupStep = -1;
-                this.errorMsg = e.toString();
+                this.errorMsg = JSON.stringify(e);
             }
         }
 

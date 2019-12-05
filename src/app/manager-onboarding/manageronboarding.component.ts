@@ -131,14 +131,14 @@ export class ManageronboardingComponent implements OnInit {
     let error = (e) => {
       if (this.buyStep != 0) {
         this.buyStep = -1;
-        this.errorMsg = e.toString();
+        this.errorMsg = JSON.stringify(e);
       }
     }
     switch (this.selectedTokenSymbol) {
       case 'ETH':
         manager_actions.register_with_ETH(payAmount, pending, confirm, error);
         break;
-      case 'DAI':
+      case 'SAI':
         manager_actions.register_with_DAI(payAmount, pending, confirm, error);
         break;
       default:

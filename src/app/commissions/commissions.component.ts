@@ -77,7 +77,7 @@ export class CommissionsComponent implements OnInit {
         let error = (e) => {
             if (this.step != 0) {
                 this.step = -1;
-                this.errorMsg = e.toString();
+                this.errorMsg = JSON.stringify(e);
             }
         }
 

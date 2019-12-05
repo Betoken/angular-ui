@@ -138,14 +138,14 @@ export class InvestoronboardingComponent implements OnInit {
     let error = (e) => {
       if (this.buyStep != 0) {
         this.buyStep = -1;
-        this.errorMsg = e.toString();
+        this.errorMsg = JSON.stringify(e);
       }
     }
     switch (this.selectedTokenSymbol) {
       case 'ETH':
         investor_actions.depositETH(payAmount, pending, confirm, error);
         break;
-      case 'DAI':
+      case 'SAI':
         investor_actions.depositDAI(payAmount, pending, confirm, error);
         break;
       default:

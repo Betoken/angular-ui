@@ -12,123 +12,106 @@
 
     <!-- Body -->
     <div class="header-body">
-      <div class="card-deck mb-4">
-        <!-- Card -->
-        <div class="card" data-toggle="tooltip" data-html="true" i18n-title="@@portfolioValueAttrTitle" title="Amount of Betoken's AUM you manage. The more Kairo tokens you own, the more money you will manage.">
-          <div class="card-body">
-            <div class="row align-items-center">
-              <div class="col">
-
-                <!-- Title -->
-                <h6 class="card-title text-uppercase text-muted mb-2" i18n="@@portfolioValueTitle">
-                  Your Portfolio Value
-                </h6>
-
-                <!-- Heading -->
-                <span class="h2 mb-0">
-                  {{portfolioValueInDAI.toFormat(4)}} DAI
-                </span>
-
-              </div>
-              <div class="col-auto">
-
-                <!-- Icon -->
-                <span class="h2 fe fe-pie-chart text-muted mb-0"></span>
-
-              </div>
-            </div> <!-- / .row -->
-
-          </div>
-        </div>
-        <!-- Card -->
-        <div class="card" data-toggle="tooltip" data-html="true"  i18n-title="@@kroBalanceAttrTitle" title="The more Kairo tokens you own, the more money you will manage, the more commission you will receive. You will be able to earn Kairo tokens by making profitable investments for the Betoken fund.">
-          <div class="card-body">
-            <div class="row align-items-center">
-              <div class="col">
-
-                <!-- Title -->
-                <h6 class="card-title text-uppercase text-muted mb-2" i18n="@@kroBalanceTitle">
-                  Your Kairo Balance
-                </h6>
-
-                <!-- Heading -->
-                <span class="h2 mb-0">
-                  {{userValue.toFormat(4)}} KRO
-                </span>
-
-                <!-- Badge -->
-                <span class="badge" [ngClass]="{'badge-soft-success': userROI.gte(0), 'badge-soft-danger': userROI.lt(0)}">
-                  {{userROI.toFormat(4)}}%
-                </span>
-
-              </div>
-              <div class="col-auto">
-
-                <!-- Icon -->
-                <span class="h2 fe fe-zap text-muted mb-0"></span>
-
-              </div>
-            </div> <!-- / .row -->
-
-          </div>
-        </div>
-        <!-- Card -->
-        <div class="card" data-toggle="tooltip" data-html="true"  i18n-title="@@estimateCommissionAttrTitle" title="<strong>20%</strong> of the fund's profit and <strong>0.1%</strong> of the AUM is set aside as commissions every month, which is paid to managers proportional to the Kairo tokens they hold. The estimate displayed here is calculated using the current fund ROI.">
-          <div class="card-body">
-            <div class="row align-items-center">
-              <div class="col">
-
-                <!-- Title -->
-                <h6 class="card-title text-uppercase text-muted mb-2" i18n="@@estimateCommissionTitle">
-                  Your Estimated Commission This Month
-                </h6>
-
-                <!-- Heading -->
-                <span class="h2 mb-0">
-                  {{expectedCommission.toFormat(4)}} DAI
-                </span>
-
-              </div>
-              <div class="col-auto">
-
-                <!-- Icon -->
-                <span class="h2 fe fe-award text-muted mb-0"></span>
-
-              </div>
-            </div> <!-- / .row -->
-
-          </div>
-        </div>
-        <!-- Card -->
-        <div class="card">
-          <div data-toggle="tooltip"  i18n-title="@@dashboardYourRankingAttrTitle" title="Your ranking among Betoken's managers based on your Kairo tokens balance">
+      <ul class="nav nav-tabs nav-overflow border-0 mb-4 mr-n3 mr-lg-n5">
+        <li class="nav-item mr-3">
+          <!-- Card -->
+          <div style="min-width: 256px;" class="card" data-toggle="tooltip" data-html="true" i18n-title="@@portfolioValueAttrTitle" title="Amount of Betoken's AUM you manage. The more Kairo tokens you own, the more money you will manage.">
             <div class="card-body">
               <div class="row align-items-center">
                 <div class="col">
 
                   <!-- Title -->
-                  <h6 class="card-title text-uppercase text-muted mb-2" i18n="@@dashboardYourRankingTitle">
-                    Your Ranking
+                  <h6 class="card-title text-uppercase text-muted mb-2" i18n="@@portfolioValueTitle">
+                    Portfolio Value
                   </h6>
 
                   <!-- Heading -->
                   <span class="h2 mb-0">
-                    {{userRanking}}
+                    {{portfolioValueInDAI.toFormat(4)}} DAI
                   </span>
-
-                </div>
-                <div class="col-auto">
-
-                  <!-- Icon -->
-                  <span class="h2 fe fe-user text-muted mb-0"></span>
 
                 </div>
               </div> <!-- / .row -->
 
             </div>
           </div>
-        </div>
-      </div> <!-- / .card-deck -->
+        </li>
+        <li class="nav-item mr-3">
+          <!-- Card -->
+          <div style="min-width: 256px;" class="card" data-toggle="tooltip" data-html="true" i18n-title="@@kroBalanceAttrTitle" title="The more Kairo tokens you own, the more money you will manage, the more commission you will receive. You will be able to earn Kairo tokens by making profitable investments for the Betoken fund.">
+            <div class="card-body">
+              <div class="row align-items-center">
+                <div class="col">
+
+                  <!-- Title -->
+                  <h6 class="card-title text-uppercase text-muted mb-2" i18n="@@kroBalanceTitle">
+                    Kairo Tokens Balance
+                  </h6>
+
+                  <!-- Heading -->
+                  <span class="h2 mb-0">
+                    {{userValue.toFormat(4)}} KRO
+                  </span>
+
+                  <!-- Badge -->
+                  <span class="badge" [ngClass]="{'badge-soft-success': userROI.gte(0), 'badge-soft-danger': userROI.lt(0)}">
+                    {{userROI.toFormat(4)}}%
+                  </span>
+
+                </div>
+              </div> <!-- / .row -->
+
+            </div>
+          </div>
+        </li>
+        <li class="nav-item mr-3">
+          <!-- Card -->
+          <div style="min-width: 256px;" class="card" data-toggle="tooltip" data-html="true" i18n-title="@@estimateCommissionAttrTitle" title="<strong>20%</strong> of the fund's profit and <strong>0.1%</strong> of the AUM is set aside as commissions every month, which is paid to managers proportional to the Kairo tokens they hold. The estimate displayed here is calculated using the current fund ROI.">
+            <div class="card-body">
+              <div class="row align-items-center">
+                <div class="col">
+
+                  <!-- Title -->
+                  <h6 class="card-title text-uppercase text-muted mb-2" i18n="@@estimateCommissionTitle">
+                    Estimated Commission
+                  </h6>
+
+                  <!-- Heading -->
+                  <span class="h2 mb-0">
+                    {{expectedCommission.toFormat(4)}} DAI
+                  </span>
+
+                </div>
+              </div> <!-- / .row -->
+
+            </div>
+          </div>
+        </li>
+        <li class="nav-item mr-3 pr-3 pr-lg-5">
+          <!-- Card -->
+          <div style="min-width: 256px;" class="card" data-toggle="tooltip" i18n-title="@@dashboardYourRankingAttrTitle" title="Your ranking among Betoken's managers based on your Kairo tokens balance">
+              <div class="card-body">
+                <div class="row align-items-center">
+                  <div class="col">
+
+                    <!-- Title -->
+                    <h6 class="card-title text-uppercase text-muted mb-2" i18n="@@dashboardYourRankingTitle">
+                      Ranking
+                    </h6>
+
+                    <!-- Heading -->
+                    <span class="h2 mb-0">
+                      {{userRanking}}
+                    </span>
+
+                  </div>
+                </div> <!-- / .row -->
+
+              </div>
+          </div>
+        </li>
+      </ul>
+
       <div class="row align-items-end">
         <div class="col">
           <!-- Title -->

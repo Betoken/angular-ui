@@ -18,64 +18,56 @@
 
 <!-- CARDS -->
 <div class="container-fluid pb-6 px-md-5">
-  <div class="card-deck mb-4">
-    <!-- Card -->
-    <div class="card" data-toggle="tooltip" data-html="true" i18n-title="@@estimateCommissionAttrTitle"
-      title="<strong>20%</strong> of the fund's profit and <strong>0.1%</strong> of the AUM is set aside as commissions every month, which is paid to managers proportional to the Kairo tokens they hold. The estimate displayed here is calculated using the current fund ROI.">
-      <div class="card-body">
-        <div class="row align-items-center">
-          <div class="col">
+  <ul class="nav nav-tabs nav-overflow border-0 mb-4 mr-n3 mr-lg-n5">
+    <li class="nav-item mr-3">
+      <!-- Card -->
+      <div style="min-width: 256px;" class="card" data-toggle="tooltip" data-html="true" i18n-title="@@estimateCommissionAttrTitle"
+        title="<strong>20%</strong> of the fund's profit and <strong>0.1%</strong> of the AUM is set aside as commissions every month, which is paid to managers proportional to the Kairo tokens they hold. The estimate displayed here is calculated using the current fund ROI.">
+        <div class="card-body">
+          <div class="row align-items-center">
+            <div class="col">
 
-            <!-- Title -->
-            <h6 class="card-title text-uppercase text-muted mb-2" i18n="@@commissionsExpectedCommissionThisMonth">
-              Your Expected Commission This Month
-            </h6>
+              <!-- Title -->
+              <h6 class="card-title text-uppercase text-muted mb-2" i18n="@@commissionsExpectedCommissionThisMonth">
+                Expected Commission
+              </h6>
 
-            <!-- Heading -->
-            <span class="h2 mb-0">
-              {{commissionAmount.toFormat(6)}} DAI
-            </span>
+              <!-- Heading -->
+              <span class="h2 mb-0">
+                {{commissionAmount.toFormat(6)}} DAI
+              </span>
 
-          </div>
-          <div class="col-auto">
+            </div>
+          </div> <!-- / .row -->
 
-            <!-- Icon -->
-            <span class="h2 fe fe-award text-muted mb-0"></span>
-
-          </div>
-        </div> <!-- / .row -->
-
+        </div>
       </div>
-    </div>
-    <!-- Card -->
-    <div class="card" data-toggle="tooltip" data-html="true" i18n-title="@@commissionsTotalCommissionsReceivedAttrTitle"
-      title="The total amount of commission you have received throughout your manager career.">
-      <div class="card-body">
-        <div class="row align-items-center">
-          <div class="col">
+    </li>
+    <li class="nav-item mr-3 pr-3 pr-lg-5">
+      <!-- Card -->
+      <div style="min-width: 256px;" class="card" data-toggle="tooltip" data-html="true" i18n-title="@@commissionsTotalCommissionsReceivedAttrTitle"
+        title="The total amount of commission you have received throughout your manager career.">
+        <div class="card-body">
+          <div class="row align-items-center">
+            <div class="col">
 
-            <!-- Title -->
-            <h6 class="card-title text-uppercase text-muted mb-2" i18n="@@totalCommissionsReceived">
-              Total Commission Received
-            </h6>
+              <!-- Title -->
+              <h6 class="card-title text-uppercase text-muted mb-2" i18n="@@totalCommissionsReceived">
+                Total Commission Received
+              </h6>
 
-            <!-- Heading -->
-            <span class="h2 mb-0">
-              {{totalCommissionReceived.toFormat(6)}} DAI
-            </span>
+              <!-- Heading -->
+              <span class="h2 mb-0">
+                {{totalCommissionReceived.toFormat(6)}} DAI
+              </span>
 
-          </div>
-          <div class="col-auto">
+            </div>
+          </div> <!-- / .row -->
 
-            <!-- Icon -->
-            <span class="h2 fe fe-dollar-sign text-muted mb-0"></span>
-
-          </div>
-        </div> <!-- / .row -->
-
+        </div>
       </div>
-    </div>
-  </div>
+    </li>
+  </ul>
   <div class="row">
     <div class="col-12">
       <!-- Card -->

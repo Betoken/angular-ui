@@ -184,7 +184,7 @@
       i18n="@@ctaNextPhase">Next Phase</button>
   </div>
 </nav>
-<nav class="navbar fixed-bottom d-md-none mb-5 pb-4 px-3" *ngIf="checkRouterURL('/invest') === true">
+<nav class="navbar fixed-bottom d-md-none px-3" *ngIf="checkRouterURL('/invest') === true">
   <div class="btn-group btn-block" role="group" aria-label="Basic example">
     <button class="btn btn-success w-50" type="button" data-toggle="modal" data-target="#modalInvestorBuy"
       i18n="@@ctaBuyBtks">Buy BTKS</button>
@@ -192,7 +192,7 @@
       i18n="@@ctaSellBtks">Sell BTKS</button>
   </div>
 </nav>
-<nav class="navbar fixed-bottom bg-white border border-top-1 justify-content-between py-2 d-flex d-md-none">
+<nav class="navbar fixed-bottom bg-white border border-top-1 justify-content-between py-2 d-flex d-md-none" *ngIf="checkRouterURL('/invest') === false">
   <a class="nav-link text-dark h5 py-0 text-center mb-0 px-1" href=""><i class="fe fe-home text-success d-block mb-2"></i>Home</a>
   <a class="nav-link text-secondary h5 py-0 text-center mb-0 font-weight-normal px-1" href=""><i class="fe fe-pie-chart d-block mb-2"></i>Invest.</a>
   <a class="nav-link text-secondary h5 py-0 text-center mb-0 font-weight-normal px-1" href=""><i class="fe fe-dollar-sign d-block mb-2"></i>Market</a>

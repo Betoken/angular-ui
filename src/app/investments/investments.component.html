@@ -14,7 +14,124 @@
 
 <!-- CARDS -->
 <div class="container-fluid pb-7 px-md-5">
-  <ul class="nav nav-tabs nav-overflow border-0 mb-4 mr-n3 mr-lg-n5">
+  <div class="card-deck d-none d-lg-flex mb-4">
+    <!-- Card -->
+    <div class="card" data-toggle="tooltip" data-html="true" i18n-title="@@portfolioValueAttrTitle"
+      title="Amount of Betoken's AUM you manage. The more Kairo tokens you own, the more money you will manage.">
+      <div class="card-body">
+        <div class="row align-items-center">
+          <div class="col">
+            <!-- Title -->
+            <h6 class="card-title text-uppercase text-muted mb-2" i18n="@@portfolioValueTitle">
+              Portfolio Value
+            </h6>
+            <!-- Heading -->
+            <span class="h2 mb-0">
+              {{portfolioValueInDAI.toFormat(4)}} DAI
+            </span>
+          </div>
+        </div> <!-- / .row -->
+
+      </div>
+    </div>
+    <!-- Card -->
+    <div class="card" data-toggle="tooltip" data-html="true" i18n-title="@@kroBalanceAttrTitle"
+      title="The more Kairo tokens you own, the more money you will manage, the more commission you will receive. You can earn Kairo tokens by making profitable investments for the Betoken fund.">
+      <div class="card-body">
+        <div class="row align-items-center">
+          <div class="col">
+
+            <!-- Title -->
+            <h6 class="card-title text-uppercase text-muted mb-2" i18n="@@kroBalanceTitle">
+              Kairo tokens Balance
+            </h6>
+
+            <!-- Heading -->
+            <span class="h2 mb-0">
+              {{userValue.toFormat(4)}} KRO
+            </span>
+            <!-- Badge -->
+            <span class="badge" [ngClass]="{'badge-soft-success': userROI.gte(0), 'badge-soft-danger': userROI.lt(0)}">
+              {{userROI.toFormat(4)}}%
+            </span>
+
+          </div>
+        </div> <!-- / .row -->
+
+      </div>
+    </div>
+    <!-- Card -->
+    <div class="card" data-toggle="tooltip" data-html="true" i18n-title="@@investmentsRiskTakenAttrTitle"
+      title="The more Kairo tokens you stake, the more of Betoken's money you put at work, the more commissions you earn.">
+      <div class="card-body">
+        <div class="row align-items-center">
+          <div class="col">
+            <div class="row no-gutters">
+              <div class="col-auto">
+                <!-- Title -->
+                <h6 class="card-title text-uppercase text-muted mb-0" i18n="@@investmentsRiskTakenTitle">
+                  Risk Taken
+                </h6>
+              </div>
+              <div class="col-auto mt-n2">
+                <a class="text-muted ml-2"
+                  href="https://betoken.gitbook.io/docs/manage-the-fund/how-does-risk-threshold-work" title="Learn more"
+                  target="_blank">
+                  <span class="fe fe-help-circle"></span>
+                </a>
+              </div>
+            </div>
+
+            <div class="row align-items-center no-gutters">
+              <div class="col-auto">
+
+                <!-- Heading -->
+                <span class="h2 mr-2 mb-0">
+                  {{riskTakenPercentage.toFormat(2)}}%
+                </span>
+
+              </div>
+              <div class="col">
+
+                <!-- Progress -->
+                <div class="progress progress-sm">
+                  <div class="progress-bar" role="progressbar"
+                    [ngStyle]="{'width': riskTakenPercentage.toFormat(2) + '%'}" aria-valuenow="100" aria-valuemin="0"
+                    aria-valuemax="100"></div>
+                </div>
+
+              </div>
+            </div> <!-- / .row -->
+
+          </div>
+        </div> <!-- / .row -->
+
+      </div>
+    </div>
+    <!-- Card -->
+    <div class="card" data-toggle="tooltip" data-html="true" i18n-title="@@estimateCommissionAttrTitle"
+      title="<strong>20%</strong> of the fund's profit and <strong>0.1%</strong> of the AUM is set aside as commissions every month, which is paid to managers proportional to the Kairo tokens they hold. The estimate displayed here is calculated using the current fund ROI.">
+      <div class="card-body">
+        <div class="row align-items-center">
+          <div class="col">
+
+            <!-- Title -->
+            <h6 class="card-title text-uppercase text-muted mb-2" i18n="@@estimateCommissionTitle">
+              Estimated Commission
+            </h6>
+
+            <!-- Heading -->
+            <span class="h2 mb-0">
+              {{expectedCommission.toFormat(4)}} DAI
+            </span>
+
+          </div>
+        </div> <!-- / .row -->
+
+      </div>
+    </div>
+  </div>
+  <ul class="nav nav-tabs nav-overflow border-0 mb-4 mr-n3 d-lg-none">
     <li class="nav-item mr-3">
       <!-- Card -->
       <div style="min-width: 256px;" class="card" data-toggle="tooltip" data-html="true" i18n-title="@@portfolioValueAttrTitle"

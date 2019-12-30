@@ -25,6 +25,7 @@ export class InvestorComponent extends ApolloEnabled implements OnInit {
   maxDrawdown: BigNumber;
   standardDeviation: BigNumber;
   tokenData: Array<Object>;
+  isUpgradeEnd: boolean;
 
   sharesBalance: BigNumber;
   investmentBalance: BigNumber;
@@ -70,6 +71,7 @@ export class InvestorComponent extends ApolloEnabled implements OnInit {
     this.maxDrawdown = new BigNumber(0);
     this.standardDeviation = new BigNumber(0);
     this.tokenData = new Array<Object>();
+    this.isUpgradeEnd = false;
 
     this.sharesBalance = new BigNumber(0);
     this.investmentBalance = new BigNumber(0);
@@ -136,6 +138,7 @@ export class InvestorComponent extends ApolloEnabled implements OnInit {
                 timestamp
                 value
               }
+              hasFinalizedNextVersion
             }
             investor(id: "${userAddress}") {
               sharesBalance
@@ -173,6 +176,7 @@ export class InvestorComponent extends ApolloEnabled implements OnInit {
       if (fund.cyclePhase === 'INTERMISSION') {
         this.currMoROI = new BigNumber(0);
       }
+      this.isUpgradeEnd = fund.hasFinalizedNextVersion;
 
       if (!isNull(investor)) {
         this.sharesBalance = new BigNumber(investor.sharesBalance);

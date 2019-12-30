@@ -331,7 +331,7 @@
   <div class="modal-dialog modal-dialog-vertical" role="document">
     <div class="modal-content">
       <div class="modal-header border-0">
-        <div *ngIf="phase == 0">
+        <div *ngIf="phase == 0 && !isUpgradeEnd">
           <!-- Confirm rules title -->
           <h4 class="modal-title" *ngIf="buyStep == 0" i18n="@@modalTitleConfirmRules">
             Please confirm before continuing
@@ -358,7 +358,7 @@
           </h4>
         </div>
         <!-- Wait until next intermission title -->
-        <h4 class="modal-title" *ngIf="phase == 1" i18n="@@modalTitleOpNotPermitted">
+        <h4 class="modal-title" *ngIf="(phase == 0 && isUpgradeEnd) || phase == 1" i18n="@@modalTitleOpNotPermitted">
           Operation not permitted
         </h4>
         <!-- Close -->

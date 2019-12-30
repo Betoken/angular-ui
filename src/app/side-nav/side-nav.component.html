@@ -97,7 +97,7 @@
               </li>
               <li class="nav-item" data-toggle="collapse" data-target="#sidebarCollapse">
                 <a routerLink="/rankings" class="nav-link" i18n="@@sidebarNavRankings">
-                  Rankings
+                  Ranking
                 </a>
               </li>
               <li class="nav-item" data-toggle="collapse" data-target="#sidebarCollapse">
@@ -165,7 +165,7 @@
   </div>
 </nav>
 
-<nav class="navbar fixed-bottom d-md-none" *ngIf="checkRouterURL('/invest') === false">
+<nav class="navbar fixed-bottom d-md-none mb-5 pb-4 px-3" *ngIf="checkRouterURL('/invest') === false">
   <div class="container px-0">
     <!--Provide onboarding for prospective managers with no Kairo-->
     <a class="btn btn-success btn-block" routerLink="/start-managing" *ngIf="!isManager" i18n="@@ctaBecomeManager">
@@ -184,11 +184,33 @@
       i18n="@@ctaNextPhase">Next Phase</button>
   </div>
 </nav>
-<nav class="navbar fixed-bottom d-md-none" *ngIf="checkRouterURL('/invest') === true">
+<nav class="navbar fixed-bottom d-md-none px-3" *ngIf="checkRouterURL('/invest') === true">
   <div class="btn-group btn-block" role="group" aria-label="Basic example">
     <button class="btn btn-success w-50" type="button" data-toggle="modal" data-target="#modalInvestorBuy"
       i18n="@@ctaBuyBtks">Buy BTKS</button>
     <button class="btn btn-white w-50 " type="button" data-toggle="modal" data-target="#modalInvestorSell"
       i18n="@@ctaSellBtks">Sell BTKS</button>
   </div>
+</nav>
+<nav class="navbar fixed-bottom bg-white border border-top-1 justify-content-between py-2 d-flex d-md-none" *ngIf="checkRouterURL('/invest') === false">
+  <a class="nav-link text-secondary h5 py-0 text-center mb-0 font-weight-normal px-1" [ngClass]="{'text-success': checkRouterURL('/dashboard')}" routerLink="/dashboard">
+    <i class="fe fe-home d-block mb-2" [ngClass]="{'text-success': checkRouterURL('/dashboard')}"></i>
+    <ng-container i18n="@@sidebarNavDashboard">Home</ng-container>
+  </a>
+  <a class="nav-link text-secondary h5 py-0 text-center mb-0 font-weight-normal px-1" [ngClass]="{'text-success': checkRouterURL('/investments')}" routerLink="/investments">
+    <i class="fe fe-pie-chart d-block mb-2" [ngClass]="{'text-success': checkRouterURL('/investments')}"></i>
+    <ng-container i18n="@@sidebarNavInvestments">Invest.</ng-container>
+  </a>
+  <a class="nav-link text-secondary h5 py-0 text-center mb-0 font-weight-normal px-1" [ngClass]="{'text-success': checkRouterURL('/market')}" routerLink="/market">
+    <i class="fe fe-dollar-sign d-block mb-2" [ngClass]="{'text-success': checkRouterURL('/market')}"></i>
+    <ng-container i18n="@@sidebarNavMarket">Market</ng-container>
+  </a>
+  <a class="nav-link text-secondary h5 py-0 text-center mb-0 font-weight-normal px-1" [ngClass]="{'text-success': checkRouterURL('/rankings')}" routerLink="/rankings">
+    <i class="fe fe-users d-block mb-2" [ngClass]="{'text-success': checkRouterURL('/rankings')}"></i>
+    <ng-container i18n="@@sidebarNavRankings">Ranking</ng-container>
+  </a>
+  <a class="nav-link text-secondary h5 py-0 text-center mb-0 font-weight-normal px-1" [ngClass]="{'text-success': checkRouterURL('/commissions')}" routerLink="/commissions">
+    <i class="fe fe-award d-block mb-2" [ngClass]="{'text-success': checkRouterURL('/commissions')}"></i>
+    <ng-container i18n="@@sidebarNavCommissions">Com.</ng-container>
+  </a>
 </nav>

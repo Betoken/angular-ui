@@ -1,5 +1,5 @@
 // imports
-import { getDefaultAccount, DAI_ADDR, CompoundOrder, DEXAG_ADDR } from './betoken-obj';
+import { getDefaultAccount, DAI_ADDR, CompoundOrder, DEXAG_ADDR, PRECISION } from './betoken-obj';
 import BigNumber from "bignumber.js";
 import https from "https";
 import { isUndefined, isNullOrUndefined } from 'util';

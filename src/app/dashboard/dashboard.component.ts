@@ -112,9 +112,12 @@ export class DashboardComponent extends ApolloEnabled implements OnInit {
       let manager = data['manager'];
       let managers = data['managers'];
 
-      if (!isNull(manager)) {
+      if (manager) {
         this.userValue = this.getManagerKairoBalance(manager);
         this.userROI = this.userValue.div(manager.baseStake).minus(1).times(100);
+        if (this.userROI.isNaN()) {
+          this.userROI = new BigNumber(0);
+        }
         // calculate expected commission
         if (+fund.kairoTotalSupply > 0) {
           if (fund.cyclePhase === 'INTERMISSION') {

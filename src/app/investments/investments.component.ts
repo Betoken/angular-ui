@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { user, timer, manager_actions, tokens } from '../../betokenjs/helpers';
+import { user, timer, manager_actions, tokens, utils } from '../../betokenjs/helpers';
 import BigNumber from 'bignumber.js';
 import { isUndefined, isNull } from 'util';
 
@@ -268,13 +268,17 @@ export class InvestmentsComponent extends ApolloEnabled implements OnInit {
             let activeBasicOrders = await Promise.all(data['activeBasicOrders'].map(async (x) => {
                 x.tokenSymbol = this.getOrderTokenSymbol(x);
                 x.sellPrice = await tokens.get_token_price(x.tokenAddress, x.tokenAmount);
-                x.ROI = new BigNumber(x.sellPrice).div(x.buyPrice).minus(1).times(100);
+                let investmentROI = new BigNumber(x.sellPrice).div(x.buyPrice).minus(1);
+                let kairoROI = utils.toKairoROI(investmentROI);
+                x.ROI = kairoROI.times(100);
                 x.currValue = new BigNumber(x.stake).times(x.ROI.div(100).plus(1));
                 return x;
             }));
             let activeFulcrumOrders = data['activeFulcrumOrders'].map((x) => {
                 x.tokenSymbol = this.getOrderTokenSymbol(x);
-                x.ROI = new BigNumber(x.sellPrice).div(x.buyPrice).minus(1).times(100);
+                let investmentROI = new BigNumber(x.sellPrice).div(x.buyPrice).minus(1);
+                let kairoROI = utils.toKairoROI(investmentROI);
+                x.ROI = kairoROI.times(100);
                 x.currValue = new BigNumber(x.stake).times(x.ROI.div(100).plus(1));
                 x.leverage = tokens.ptoken_address_to_info(x.tokenAddress).leverage;
                 x.safety = new BigNumber(x.liquidationPrice).minus(x.sellPrice).div(x.sellPrice).abs().gt(this.UNSAFE_COL_RATIO_MULTIPLIER - 1);
@@ -282,7 +286,9 @@ export class InvestmentsComponent extends ApolloEnabled implements OnInit {
             });
             let activeCompoundOrders = data['activeCompoundOrders'].map((x) => {
                 x.tokenSymbol = this.getOrderTokenSymbol(x);
-                x.ROI = new BigNumber(x.currProfit).div(x.collateralAmountInDAI).times(100);
+                let investmentROI = new BigNumber(x.currProfit).div(x.collateralAmountInDAI);
+                let kairoROI = utils.toKairoROI(investmentROI);
+                x.ROI = kairoROI.times(100);
                 x.currValue = new BigNumber(x.stake).times(x.ROI.div(100).plus(1));
                 x.minCollateralRatio = new BigNumber(1).div(x.marketCollateralFactor);
                 x.leverage = x.isShort ? x.minCollateralRatio.times(this.COL_RATIO_MODIFIER).pow(-1).dp(4).toNumber() : new BigNumber(1).plus(x.minCollateralRatio.times(this.COL_RATIO_MODIFIER).pow(-1)).dp(4).toNumber();
@@ -291,20 +297,26 @@ export class InvestmentsComponent extends ApolloEnabled implements OnInit {
             });
             let inactiveBasicOrders = data['inactiveBasicOrders'].map((x) => {
                 x.tokenSymbol = this.getOrderTokenSymbol(x);
-                x.ROI = new BigNumber(x.sellPrice).div(x.buyPrice).minus(1).times(100);
+                let investmentROI = new BigNumber(x.sellPrice).div(x.buyPrice).minus(1);
+                let kairoROI = utils.toKairoROI(investmentROI);
+                x.ROI = kairoROI.times(100);
                 x.currValue = new BigNumber(x.stake).times(x.ROI.div(100).plus(1));
                 return x;
             });
             let inactiveFulcrumOrders = data['inactiveFulcrumOrders'].map((x) => {
                 x.tokenSymbol = this.getOrderTokenSymbol(x);
-                x.ROI = new BigNumber(x.sellPrice).div(x.buyPrice).minus(1).times(100);
+                let investmentROI = new BigNumber(x.sellPrice).div(x.buyPrice).minus(1);
+                let kairoROI = utils.toKairoROI(investmentROI);
+                x.ROI = kairoROI.times(100);
                 x.currValue = new BigNumber(x.stake).times(x.ROI.div(100).plus(1));
                 x.leverage = tokens.ptoken_address_to_info(x.tokenAddress).leverage;
                 return x;
             });
             let inactiveCompoundOrders = data['inactiveCompoundOrders'].map((x) => {
                 x.tokenSymbol = this.getOrderTokenSymbol(x);
-                x.ROI = new BigNumber(x.currProfit).div(x.collateralAmountInDAI).times(100);
+                let investmentROI = new BigNumber(x.currProfit).div(x.collateralAmountInDAI);
+                let kairoROI = utils.toKairoROI(investmentROI);
+                x.ROI = kairoROI.times(100);
                 x.currValue = new BigNumber(x.stake).times(x.ROI.div(100).plus(1));
                 let minCollateralRatio = new BigNumber(1).div(x.marketCollateralFactor);
                 x.leverage = x.isShort ? minCollateralRatio.times(this.COL_RATIO_MODIFIER).pow(-1).dp(4).toNumber() : new BigNumber(1).plus(minCollateralRatio.times(this.COL_RATIO_MODIFIER).pow(-1)).dp(4).toNumber();

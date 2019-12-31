@@ -1,6 +1,6 @@
 // imports
 import BigNumber from "bignumber.js";
-import {Betoken} from "./betoken-obj";
+import { Betoken } from "./betoken-obj";
 import 'list.js';
 const Data = require("./data-controller");
 
@@ -217,4 +217,23 @@ export const manager_actions = {
         let tokenAddr = Data.assetSymbolToAddress(symbol);
         return betoken.registerWithToken(tokenAddr, amountInToken, pending, confirm, error);
     }
+};
+
+export const utils = {
+    toKairoROI: function (investmentROI) {
+        let punishmentThreshold = -0.1;
+        let burnThreshold = -0.25;
+        let punishmentSlope = 6;
+        let punishmentBias = 0.5;
+        if (investmentROI.ge(punishmentThreshold)) {
+            // no punishment
+            return investmentROI;
+        } else if (investmentROI.lt(punishmentThreshold) && investmentROI.gt(burnThreshold)) {
+            // punishment
+            return investmentROI.times(punishmentSlope).plus(punishmentBias);
+        } else {
+            // burn
+            return BigNumber(-1);
+        }
+    },
 };

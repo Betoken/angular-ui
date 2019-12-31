@@ -242,7 +242,7 @@ export const loadTokenPrices = async () => {
                     x.dailyVolume = BigNumber(0);
                     return x;
                 }
-                let daiData = rawData.data.find((y) => y.base_symbol === 'SAI');
+                let daiData = rawData.data.find((y) => y.base_symbol === 'DAI');
                 if (tokenData.current_bid == 0) {
                     tokenData.current_bid = tokenData.current_ask;
                 } else if (tokenData.current_ask == 0) {
@@ -260,7 +260,7 @@ export const loadTokenPrices = async () => {
 
                 x.dailyVolume = BigNumber(tokenData.usd_24h_volume);
             } else {
-                let daiData = rawData.data.find((y) => y.base_symbol === 'SAI');
+                let daiData = rawData.data.find((y) => y.base_symbol === 'DAI');
                 if (daiData.current_bid == 0) {
                     daiData.current_bid = daiData.current_ask;
                 } else if (daiData.current_ask == 0) {

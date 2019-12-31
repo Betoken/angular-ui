@@ -5,9 +5,10 @@ const Web3 = require('web3');
 import Onboard from 'bnc-onboard';
 
 // constants
+export const DEXAG_ADDR = "0xb1ba342EDB8626B611BbC1754D8C8639521D3F58";
 export const BETOKEN_PROXY_ADDR = "0xC7CbB403D1722EE3E4ae61f452Dc36d71E8800DE";
 export const ETH_TOKEN_ADDRESS = "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee";
-export const DAI_ADDR = "0x89d24A6b4CcB1B6fAA2625fE562bDD9a23260359";
+export const DAI_ADDR = "0x6B175474E89094C44Da98b954EedeAC495271d0F";
 export const KYBER_ADDR = "0x818E6FECD516Ecc3849DAf6845e3EC868087B755";
 export const NET_ID = 1; // Mainnet
 export const PRECISION = 1e18;

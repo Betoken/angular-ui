@@ -333,7 +333,7 @@ export class InvestmentsComponent extends ApolloEnabled implements OnInit {
             }
             // record unstaked KRO as well
             this.activePortfolio.push({
-                symbol: 'SAI',
+                symbol: 'DAI',
                 stake: this.kairoBalance
             });
             // sort in descending order of stake

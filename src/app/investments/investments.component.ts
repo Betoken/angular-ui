@@ -365,7 +365,7 @@ export class InvestmentsComponent extends ApolloEnabled implements OnInit {
             type: 'basic'
         };
         orderTypes.push(basicOrder);
-        /*if (tokens.is_compound_token(symbol)) {
+        if (tokens.is_compound_token(symbol)) {
             const longOrder = {
                 text: 'Long • Leverage 1.5625x (Compound)',
                 leverage: 1.5625,
@@ -380,7 +380,7 @@ export class InvestmentsComponent extends ApolloEnabled implements OnInit {
             }
             orderTypes.push(longOrder);
             orderTypes.push(shortOrder);
-        }*/
+        }
         if (tokens.is_fulcrum_token(symbol)) {
             let pTokens = tokens.asset_symbol_to_ptokens(symbol);
             for (let pToken of pTokens) {
@@ -436,7 +436,7 @@ export class InvestmentsComponent extends ApolloEnabled implements OnInit {
                 // TODO: more accurate token amount
                 let tokenPrice = await tokens.get_token_price(tokens.asset_symbol_to_address(this.selectedTokenSymbol), 1);
                 let maxPrice = tokenPrice.plus(tokenPrice.times(maxAcceptablePriceProp));
-                manager_actions.new_investment_with_symbol(this.selectedTokenSymbol, this.stakeAmount, new BigNumber(0), maxPrice, pending, confirm, error);
+                manager_actions.new_investment_with_symbol(this.selectedTokenSymbol, this.stakeAmount, new BigNumber(0), maxPrice, false, pending, confirm, error);
                 break;
             case 'compound':
                 // TODO: more accurate token amount
@@ -498,7 +498,7 @@ export class InvestmentsComponent extends ApolloEnabled implements OnInit {
                 // basic order
                 let tokenPrice = await tokens.get_token_price(this.sellData['tokenAddress'], sellPercentage.times(this.sellData['tokenAmount']));
                 let minPrice = tokenPrice.minus(tokenPrice.times(minAcceptablePriceProp));
-                manager_actions.sell_investment(this.sellId, sellPercentage, minPrice, tokenPrice.times(100000), pendingSell, confirmSell, error);
+                manager_actions.sell_investment_v2(this.sellId, sellPercentage, minPrice, tokenPrice.times(100000), false, pendingSell, confirmSell, error);
                 break;
             case 'FulcrumOrder':
                 // fulcrum order

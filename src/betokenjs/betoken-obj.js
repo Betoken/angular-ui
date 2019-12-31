@@ -1,6 +1,5 @@
 // imports
 import BigNumber from "bignumber.js";
-import { isNull, isNullOrUndefined } from "util";
 const Web3 = require('web3');
 import Onboard from 'bnc-onboard';
 
@@ -52,13 +51,13 @@ export const sendTx = async (func, _onTxHash, _onReceipt, _onError) => {
             _onTxHash(hash);
             let listener = setInterval(async () => {
                 let receipt = await web3.eth.getTransaction(hash);
-                if (!isNull(receipt)) {
+                if (receipt) {
                     _onReceipt(receipt);
                     clearInterval(listener);
                 }
             }, CHECK_RECEIPT_INTERVAL);
         }).on("error", (e) => {
-            if (!e.toString().contains('newBlockHeaders')) {
+            if (!JSON.stringify(e).includes('newBlockHeaders')) {
                 _onError(e);
             }
         });
@@ -76,13 +75,13 @@ export const sendTxWithValue = async (func, val, _onTxHash, _onReceipt, _onError
             _onTxHash(hash);
             let listener = setInterval(async () => {
                 let receipt = await web3.eth.getTransaction(hash);
-                if (!isNull(receipt)) {
+                if (receipt) {
                     _onReceipt(receipt);
                     clearInterval(listener);
                 }
             }, CHECK_RECEIPT_INTERVAL);
         }).on("error", (e) => {
-            if (!e.toString().contains('newBlockHeaders')) {
+            if (!JSON.stringify(e).includes('newBlockHeaders')) {
                 _onError(e);
             }
         });
@@ -104,13 +103,13 @@ export const sendTxWithToken = async (func, token, to, amount, _onTxHash, _onRec
                     _onTxHash(hash);
                     let listener = setInterval(async () => {
                         let receipt = await web3.eth.getTransaction(hash);
-                        if (!isNull(receipt)) {
+                        if (receipt) {
                             _onReceipt(receipt);
                             clearInterval(listener);
                         }
                     }, CHECK_RECEIPT_INTERVAL);
                 }).on("error", (e) => {
-                    if (!e.toString().contains('newBlockHeaders')) {
+                    if (!JSON.stringify(e).includes('newBlockHeaders')) {
                         _onError(e);
                     }
                 });
@@ -125,13 +124,13 @@ export const sendTxWithToken = async (func, token, to, amount, _onTxHash, _onRec
                 _onTxHash(hash);
                 let listener = setInterval(async () => {
                     let receipt = await web3.eth.getTransaction(hash);
-                    if (!isNull(receipt)) {
+                    if (receipt) {
                         _onReceipt(receipt);
                         clearInterval(listener);
                     }
                 }, CHECK_RECEIPT_INTERVAL);
             }).on("error", (e) => {
-                if (!e.toString().contains('newBlockHeaders')) {
+                if (!JSON.stringify(e).includes('newBlockHeaders')) {
                     _onError(e);
                 }
             });
@@ -630,6 +629,26 @@ export var Betoken = function () {
     };
 
     /**
+    * Creates an investment (V2)
+    * @param  {String} _tokenAddress the token address
+    * @param  {BigNumber} _stakeInKRO the investment amount
+    * @param  {BigNumber} _minPrice the min acceptable token price
+    * @param  {BigNumber} _maxPrice the max acceptable token price
+    * @param  {String}    _calldata the dex.ag calldata
+    * @param  {Bool}      _useKyber whether to use Kyber or dex.ag
+    * @return {Promise}               .then(()->)
+    */
+    self.createInvestmentV2 = async function (_tokenAddress, _stakeInKRO, _minPrice, _maxPrice, _calldata, _useKyber, _onTxHash, _onReceipt, _onError) {
+        await getDefaultAccount();
+        var stake = _stakeInKRO.times(PRECISION).integerValue().toFixed();
+        var minPrice = _minPrice.times(PRECISION).integerValue().toFixed();
+        var maxPrice = _maxPrice.times(PRECISION).integerValue().toFixed();
+
+        var func = self.contracts.BetokenFund.methods.createInvestmentV2(_tokenAddress, stake, minPrice, maxPrice, _calldata, _useKyber);
+        return sendTx(func, _onTxHash, _onReceipt, _onError);
+    };
+
+    /**
     * Sells an investment (maybe only part of it)
     * @param  {Number} _proposalId the investment's ID
     * @param  {BigNumber} _percentage the percentage of tokens to sell
@@ -644,6 +663,26 @@ export var Betoken = function () {
         var maxPrice = _maxPrice.times(PRECISION).integerValue().toFixed();
 
         var func = self.contracts.BetokenFund.methods.sellInvestmentAsset(_proposalId, sellTokenAmount, minPrice, maxPrice);
+        return sendTx(func, _onTxHash, _onReceipt, _onError);
+    };
+
+    /**
+    * Sells an investment (maybe only part of it)
+    * @param  {Number} _proposalId the investment's ID
+    * @param  {BigNumber} _percentage the percentage of tokens to sell
+    * @param  {BigNumber} _minPrice the min acceptable token price
+    * @param  {BigNumber} _maxPrice the max acceptable token price
+    * @param  {String}    _calldata the dex.ag calldata
+    * @param  {Bool}      _useKyber whether to use Kyber or dex.ag
+    * @return {Promise}               .then(()->)
+    */
+    self.sellAssetV2 = async function (_proposalId, _percentage, _minPrice, _maxPrice, _calldata, _useKyber, _onTxHash, _onReceipt, _onError) {
+        await getDefaultAccount();
+        var sellTokenAmount = BigNumber((await self.getDoubleMapping("userInvestments", web3.eth.defaultAccount, _proposalId)).tokenAmount).times(_percentage).integerValue().toFixed();
+        var minPrice = _minPrice.times(PRECISION).integerValue().toFixed();
+        var maxPrice = _maxPrice.times(PRECISION).integerValue().toFixed();
+
+        var func = self.contracts.BetokenFund.methods.sellInvestmentAssetV2(_proposalId, sellTokenAmount, minPrice, maxPrice, _calldata, _useKyber);
         return sendTx(func, _onTxHash, _onReceipt, _onError);
     };
 

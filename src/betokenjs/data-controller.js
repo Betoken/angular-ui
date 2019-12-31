@@ -1,5 +1,5 @@
 // imports
-import { getDefaultAccount, PRECISION } from './betoken-obj';
+import { getDefaultAccount, DAI_ADDR, CompoundOrder, DEXAG_ADDR } from './betoken-obj';
 import BigNumber from "bignumber.js";
 import https from "https";
 import { isUndefined, isNullOrUndefined } from 'util';
@@ -11,6 +11,7 @@ const CTOKENS = require('./json_data/compound_tokens.json'); // Compound cTokens
 const STABLECOINS = require('./json_data/stablecoins.json'); // Stablecoins (managers can't invest)
 const PTOKENS = require('./json_data/fulcrum_tokens.json'); // Fulcrum pTokens
 const SUPPORTERS = require('./json_data/betoken_supporters.json');
+const DEXAG_AMOUNT_MODIFIER = 1 - 1e-9;
 
 // instance variables
 // user info
@@ -135,9 +136,33 @@ export const getAssetPriceAtTimestamp = async (symbol, timestamp) => {
 }
 
 export const httpsGet = async (apiStr) => {
-    const request = await fetch(apiStr, {headers: {'Origin': 'https://betoken.fund/portal/'}});
+    const request = await fetch(apiStr, { headers: { 'Origin': 'https://betoken.fund/portal/' } });
     return await request.json();
 };
+
+export const generateBuyDexagCalldata = async (tokenSymbol, stake) => {
+    let tokenDecimals = +(await betoken.getTokenDecimals(assetSymbolToAddress(tokenSymbol)));
+    let fromSymbol, toSymbol, fromAmount;
+    fromSymbol = 'DAI';
+    toSymbol = tokenSymbol;
+    fromAmount = BigNumber(stake).times(totalFunds).div(kairoTotalSupply).times(DEXAG_AMOUNT_MODIFIER).toFixed(tokenDecimals);
+
+    let apiStr = `https://api.dex.ag/trade?from=${fromSymbol}&to=${toSymbol}&fromAmount=${fromAmount}&dex=best&proxy=${DEXAG_ADDR}`;
+    let result = await httpsGet(apiStr);
+    return result.trade.data;
+}
+
+export const generateSellDexagCalldata = async (tokenSymbol, tokenAmount) => {
+    let tokenDecimals = +(await betoken.getTokenDecimals(assetSymbolToAddress(tokenSymbol)));
+    let fromSymbol, toSymbol, fromAmount;
+    fromSymbol = tokenSymbol;
+    toSymbol = 'DAI';
+    fromAmount = BigNumber(tokenAmount).times(DEXAG_AMOUNT_MODIFIER).toFixed(tokenDecimals);
+
+    let apiStr = `https://api.dex.ag/trade?from=${fromSymbol}&to=${toSymbol}&fromAmount=${fromAmount}&dex=best&proxy=${DEXAG_ADDR}`;
+    let result = await httpsGet(apiStr);
+    return result.trade.data;
+}
 
 const clock = () => {
     const timeKeeper = setInterval(() => {

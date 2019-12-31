@@ -1,324 +1,698 @@
 [
   {
-    "constant": true,
-    "inputs": [],
-    "name": "nextVersion",
-    "outputs": [
+    "inputs": [
       {
-        "name": "",
+        "internalType": "address payable",
+        "name": "_kroAddr",
+        "type": "address"
+      },
+      {
+        "internalType": "address payable",
+        "name": "_sTokenAddr",
+        "type": "address"
+      },
+      {
+        "internalType": "address payable",
+        "name": "_devFundingAccount",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256[2]",
+        "name": "_phaseLengths",
+        "type": "uint256[2]"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_devFundingRate",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address payable",
+        "name": "_previousVersion",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "_daiAddr",
+        "type": "address"
+      },
+      {
+        "internalType": "address payable",
+        "name": "_kyberAddr",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "_compoundFactoryAddr",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "_betokenLogic",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "_betokenLogic2",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_startCycleNumber",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address payable",
+        "name": "_dexagAddr",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "_saiAddr",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "_mcdaiMigrationAddr",
         "type": "address"
       }
     ],
     "payable": false,
-    "stateMutability": "view",
-    "type": "function"
+    "stateMutability": "nonpayable",
+    "type": "constructor"
   },
   {
-    "constant": true,
-    "inputs": [],
-    "name": "totalFundsInDAI",
-    "outputs": [
+    "anonymous": false,
+    "inputs": [
       {
-        "name": "",
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "_cycleNumber",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "_newPhase",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_timestamp",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_totalFundsInDAI",
         "type": "uint256"
       }
     ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
+    "name": "ChangedPhase",
+    "type": "event"
   },
   {
-    "constant": true,
+    "anonymous": false,
     "inputs": [
       {
-        "name": "",
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "_cycleNumber",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "_sender",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_commission",
+        "type": "uint256"
+      }
+    ],
+    "name": "CommissionPaid",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "_cycleNumber",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "_sender",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_id",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "_order",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "bool",
+        "name": "_orderType",
+        "type": "bool"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "_tokenAddress",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_stakeInWeis",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_costDAIAmount",
+        "type": "uint256"
+      }
+    ],
+    "name": "CreatedCompoundOrder",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "_cycleNumber",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "_sender",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_id",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "_tokenAddress",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_stakeInWeis",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_buyPrice",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_costDAIAmount",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_tokenAmount",
+        "type": "uint256"
+      }
+    ],
+    "name": "CreatedInvestment",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "_cycleNumber",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "_sender",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "_tokenAddress",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_tokenAmount",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_daiAmount",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_timestamp",
+        "type": "uint256"
+      }
+    ],
+    "name": "Deposit",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "_cycleNumber",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "_candidate",
         "type": "address"
       }
     ],
-    "name": "isKyberToken",
-    "outputs": [
+    "name": "DeveloperInitiatedUpgrade",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
       {
-        "name": "",
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "_cycleNumber",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "_nextVersion",
+        "type": "address"
+      }
+    ],
+    "name": "FinalizedNextVersion",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "_cycleNumber",
+        "type": "uint256"
+      }
+    ],
+    "name": "InitiatedUpgrade",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "previousOwner",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "newOwner",
+        "type": "address"
+      }
+    ],
+    "name": "OwnershipTransferred",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "_cycleNumber",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "_voteID",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "_sender",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "_candidate",
+        "type": "address"
+      }
+    ],
+    "name": "ProposedCandidate",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "_manager",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_donationInDAI",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_kairoReceived",
+        "type": "uint256"
+      }
+    ],
+    "name": "Register",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "_cycleNumber",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "_sender",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_id",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "_order",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_repaidDAIAmount",
+        "type": "uint256"
+      }
+    ],
+    "name": "RepaidCompoundOrder",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "_cycleNumber",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "_sender",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "bool",
+        "name": "_inSupport",
         "type": "bool"
       }
     ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
+    "name": "SignaledUpgrade",
+    "type": "event"
   },
   {
-    "constant": true,
-    "inputs": [],
-    "name": "devFundingRate",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "COMMISSION_RATE",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "startTimeOfCyclePhase",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
+    "anonymous": false,
     "inputs": [
       {
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "name": "isCompoundToken",
-    "outputs": [
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "_cycleNumber",
+        "type": "uint256"
+      },
       {
-        "name": "",
+        "indexed": true,
+        "internalType": "address",
+        "name": "_sender",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_id",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "_order",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "bool",
+        "name": "_orderType",
         "type": "bool"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "_tokenAddress",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_receivedKairo",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_earnedDAIAmount",
+        "type": "uint256"
       }
     ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
+    "name": "SoldCompoundOrder",
+    "type": "event"
   },
   {
-    "constant": true,
-    "inputs": [],
-    "name": "getTotalVotingWeight",
-    "outputs": [
+    "anonymous": false,
+    "inputs": [
       {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "_cycleNumber",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "_sender",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_id",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "_tokenAddress",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_receivedKairo",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_sellPrice",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_earnedDAIAmount",
+        "type": "uint256"
+      }
+    ],
+    "name": "SoldInvestment",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "_cycleNumber",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_totalCommissionInDAI",
+        "type": "uint256"
+      }
+    ],
+    "name": "TotalCommissionPaid",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "_cycleNumber",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "_voteID",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "_sender",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "bool",
+        "name": "_inSupport",
+        "type": "bool"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
         "name": "_weight",
         "type": "uint256"
       }
     ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
+    "name": "Voted",
+    "type": "event"
   },
   {
-    "constant": true,
-    "inputs": [],
-    "name": "betokenLogic",
-    "outputs": [
-      {
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
+    "anonymous": false,
     "inputs": [
       {
-        "name": "",
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "_cycleNumber",
         "type": "uint256"
       },
       {
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "name": "upgradeSignal",
-    "outputs": [
-      {
-        "name": "",
-        "type": "bool"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "QUORUM",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "cycleNumber",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "MAX_BUY_KRO_PROP",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "name": "candidates",
-    "outputs": [
-      {
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [
-      {
-        "name": "",
+        "indexed": true,
+        "internalType": "address",
+        "name": "_sender",
         "type": "address"
       },
       {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "name": "userCompoundOrders",
-    "outputs": [
-      {
-        "name": "",
+        "indexed": false,
+        "internalType": "address",
+        "name": "_tokenAddress",
         "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_tokenAmount",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_daiAmount",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_timestamp",
+        "type": "uint256"
       }
     ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
+    "name": "Withdraw",
+    "type": "event"
+  },
+  {
+    "payable": true,
+    "stateMutability": "payable",
+    "type": "fallback"
   },
   {
     "constant": true,
     "inputs": [],
-    "name": "CYCLES_TILL_MATURITY",
+    "name": "ASSET_FEE_RATE",
     "outputs": [
       {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "MIN_RISK_TIME",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "name": "phaseLengths",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [
-      {
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "name": "baseRiskStakeFallback",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "name": "againstVotes",
-    "outputs": [
-      {
+        "internalType": "uint256",
         "name": "",
         "type": "uint256"
       }
@@ -330,42 +704,10 @@
   {
     "constant": true,
     "inputs": [],
-    "name": "hasFinalizedNextVersion",
+    "name": "CHUNK_SIZE",
     "outputs": [
       {
-        "name": "",
-        "type": "bool"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "name": "proposers",
-    "outputs": [
-      {
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "proposersVotingWeight",
-    "outputs": [
-      {
+        "internalType": "uint256",
         "name": "",
         "type": "uint256"
       }
@@ -380,8 +722,939 @@
     "name": "COLLATERAL_RATIO_MODIFIER",
     "outputs": [
       {
+        "internalType": "uint256",
         "name": "",
         "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "COMMISSION_RATE",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "CYCLES_TILL_MATURITY",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "DAI_ADDR",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "DEXAG_ADDR",
+    "outputs": [
+      {
+        "internalType": "address payable",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "FALLBACK_MAX_DONATION",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "INACTIVE_THRESHOLD",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "KYBER_ADDR",
+    "outputs": [
+      {
+        "internalType": "address payable",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "MAX_BUY_KRO_PROP",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "MIN_KRO_PRICE",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "MIN_RISK_TIME",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "NEXT_PHASE_REWARD",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "PERM_HINT",
+    "outputs": [
+      {
+        "internalType": "bytes",
+        "name": "",
+        "type": "bytes"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "PROPOSE_SUBCHUNK_SIZE",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "QUORUM",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "ROI_BURN_THRESHOLD",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "ROI_PUNISH_NEG_BIAS",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "ROI_PUNISH_SLOPE",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "ROI_PUNISH_THRESHOLD",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "VOTE_SUCCESS_THRESHOLD",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "againstVotes",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_manager",
+        "type": "address"
+      }
+    ],
+    "name": "baseRiskStakeFallback",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "betokenLogic",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "betokenLogic2",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "candidates",
+    "outputs": [
+      {
+        "internalType": "address payable",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "compoundFactoryAddr",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "controlTokenAddr",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "currentChunk",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "currentSubchunk",
+    "outputs": [
+      {
+        "internalType": "enum BetokenStorage.Subchunk",
+        "name": "_subchunk",
+        "type": "uint8"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "cycleNumber",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "cyclePhase",
+    "outputs": [
+      {
+        "internalType": "enum BetokenStorage.CyclePhase",
+        "name": "",
+        "type": "uint8"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "devFundingAccount",
+    "outputs": [
+      {
+        "internalType": "address payable",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "devFundingRate",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "forVotes",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "getTotalVotingWeight",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "_weight",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_of",
+        "type": "address"
+      }
+    ],
+    "name": "getVotingWeight",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "_weight",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "hasFinalizedNextVersion",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "hasInitializedTokenListings",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_manager",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_cycle",
+        "type": "uint256"
+      }
+    ],
+    "name": "hasRedeemedCommissionForCycle",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "isCompoundToken",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "isInitialized",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "isKyberToken",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "isOwner",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "isPositionToken",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "kairoPrice",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "_kairoPrice",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_manager",
+        "type": "address"
+      }
+    ],
+    "name": "lastActiveCycle",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_manager",
+        "type": "address"
+      }
+    ],
+    "name": "lastCommissionRedemption",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_cycle",
+        "type": "uint256"
+      }
+    ],
+    "name": "managePhaseEndBlock",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "managerVotes",
+    "outputs": [
+      {
+        "internalType": "enum BetokenStorage.VoteDirection",
+        "name": "",
+        "type": "uint8"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "nextVersion",
+    "outputs": [
+      {
+        "internalType": "address payable",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "owner",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "phaseLengths",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "previousVersion",
+    "outputs": [
+      {
+        "internalType": "address payable",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "proposers",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "proposersVotingWeight",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "proxyAddr",
+    "outputs": [
+      {
+        "internalType": "address payable",
+        "name": "",
+        "type": "address"
       }
     ],
     "payable": false,
@@ -401,32 +1674,20 @@
     "constant": true,
     "inputs": [
       {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "name": "totalCommissionOfCycle",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [
-      {
-        "name": "",
+        "internalType": "address",
+        "name": "_manager",
         "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_cycle",
+        "type": "uint256"
       }
     ],
-    "name": "lastCommissionRedemption",
+    "name": "riskTakenInCycle",
     "outputs": [
       {
+        "internalType": "uint256",
         "name": "",
         "type": "uint256"
       }
@@ -438,37 +1699,10 @@
   {
     "constant": true,
     "inputs": [],
-    "name": "PROPOSE_SUBCHUNK_SIZE",
+    "name": "saiAddr",
     "outputs": [
       {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "PERM_HINT",
-    "outputs": [
-      {
-        "name": "",
-        "type": "bytes"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "owner",
-    "outputs": [
-      {
+        "internalType": "address",
         "name": "",
         "type": "address"
       }
@@ -480,130 +1714,10 @@
   {
     "constant": true,
     "inputs": [],
-    "name": "isOwner",
+    "name": "shareTokenAddr",
     "outputs": [
       {
-        "name": "",
-        "type": "bool"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "kairoPrice",
-    "outputs": [
-      {
-        "name": "_kairoPrice",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [
-      {
-        "name": "",
-        "type": "address"
-      },
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "name": "userInvestments",
-    "outputs": [
-      {
-        "name": "tokenAddress",
-        "type": "address"
-      },
-      {
-        "name": "cycleNumber",
-        "type": "uint256"
-      },
-      {
-        "name": "stake",
-        "type": "uint256"
-      },
-      {
-        "name": "tokenAmount",
-        "type": "uint256"
-      },
-      {
-        "name": "buyPrice",
-        "type": "uint256"
-      },
-      {
-        "name": "sellPrice",
-        "type": "uint256"
-      },
-      {
-        "name": "buyTime",
-        "type": "uint256"
-      },
-      {
-        "name": "buyCostInDAI",
-        "type": "uint256"
-      },
-      {
-        "name": "isSold",
-        "type": "bool"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "name": "upgradeSignalStrength",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [
-      {
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "name": "isPositionToken",
-    "outputs": [
-      {
-        "name": "",
-        "type": "bool"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "compoundFactoryAddr",
-    "outputs": [
-      {
+        "internalType": "address",
         "name": "",
         "type": "address"
       }
@@ -615,56 +1729,10 @@
   {
     "constant": true,
     "inputs": [],
-    "name": "currentSubchunk",
+    "name": "startTimeOfCyclePhase",
     "outputs": [
       {
-        "name": "_subchunk",
-        "type": "uint8"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "proxyAddr",
-    "outputs": [
-      {
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "NEXT_PHASE_REWARD",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "name": "managePhaseEndBlock",
-    "outputs": [
-      {
+        "internalType": "uint256",
         "name": "",
         "type": "uint256"
       }
@@ -679,113 +1747,7 @@
     "name": "totalCommissionLeft",
     "outputs": [
       {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "ASSET_FEE_RATE",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "MIN_KRO_PRICE",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "INACTIVE_THRESHOLD",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "hasInitializedTokenListings",
-    "outputs": [
-      {
-        "name": "",
-        "type": "bool"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [
-      {
-        "name": "",
-        "type": "address"
-      },
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "name": "riskTakenInCycle",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "KYBER_ADDR",
-    "outputs": [
-      {
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "FALLBACK_MAX_DONATION",
-    "outputs": [
-      {
+        "internalType": "uint256",
         "name": "",
         "type": "uint256"
       }
@@ -798,139 +1760,15 @@
     "constant": true,
     "inputs": [
       {
-        "name": "",
-        "type": "address"
-      },
-      {
-        "name": "",
+        "internalType": "uint256",
+        "name": "_cycle",
         "type": "uint256"
       }
     ],
-    "name": "hasRedeemedCommissionForCycle",
+    "name": "totalCommissionOfCycle",
     "outputs": [
       {
-        "name": "",
-        "type": "bool"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [
-      {
-        "name": "_of",
-        "type": "address"
-      }
-    ],
-    "name": "getVotingWeight",
-    "outputs": [
-      {
-        "name": "_weight",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "shareTokenAddr",
-    "outputs": [
-      {
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "DAI_ADDR",
-    "outputs": [
-      {
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "previousVersion",
-    "outputs": [
-      {
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "upgradeVotingActive",
-    "outputs": [
-      {
-        "name": "",
-        "type": "bool"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "controlTokenAddr",
-    "outputs": [
-      {
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "CHUNK_SIZE",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "name": "forVotes",
-    "outputs": [
-      {
+        "internalType": "uint256",
         "name": "",
         "type": "uint256"
       }
@@ -942,38 +1780,12 @@
   {
     "constant": true,
     "inputs": [],
-    "name": "currentChunk",
+    "name": "totalFundsInDAI",
     "outputs": [
       {
+        "internalType": "uint256",
         "name": "",
         "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      },
-      {
-        "name": "",
-        "type": "address"
-      },
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "name": "managerVotes",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint8"
       }
     ],
     "payable": false,
@@ -984,6 +1796,7 @@
     "constant": false,
     "inputs": [
       {
+        "internalType": "address",
         "name": "newOwner",
         "type": "address"
       }
@@ -996,10 +1809,43 @@
   },
   {
     "constant": true,
-    "inputs": [],
-    "name": "VOTE_SUCCESS_THRESHOLD",
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "upgradeSignal",
     "outputs": [
       {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "upgradeSignalStrength",
+    "outputs": [
+      {
+        "internalType": "uint256",
         "name": "",
         "type": "uint256"
       }
@@ -1011,11 +1857,12 @@
   {
     "constant": true,
     "inputs": [],
-    "name": "cyclePhase",
+    "name": "upgradeVotingActive",
     "outputs": [
       {
+        "internalType": "bool",
         "name": "",
-        "type": "uint8"
+        "type": "bool"
       }
     ],
     "payable": false,
@@ -1026,27 +1873,20 @@
     "constant": true,
     "inputs": [
       {
+        "internalType": "address",
         "name": "",
         "type": "address"
-      }
-    ],
-    "name": "lastActiveCycle",
-    "outputs": [
+      },
       {
+        "internalType": "uint256",
         "name": "",
         "type": "uint256"
       }
     ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "devFundingAccount",
+    "name": "userCompoundOrders",
     "outputs": [
       {
+        "internalType": "address payable",
         "name": "",
         "type": "address"
       }
@@ -1056,590 +1896,86 @@
     "type": "function"
   },
   {
+    "constant": true,
     "inputs": [
       {
-        "name": "_kroAddr",
+        "internalType": "address",
+        "name": "",
         "type": "address"
       },
       {
-        "name": "_sTokenAddr",
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "userInvestments",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "tokenAddress",
         "type": "address"
       },
       {
-        "name": "_devFundingAccount",
-        "type": "address"
-      },
-      {
-        "name": "_phaseLengths",
-        "type": "uint256[2]"
-      },
-      {
-        "name": "_devFundingRate",
+        "internalType": "uint256",
+        "name": "cycleNumber",
         "type": "uint256"
       },
       {
-        "name": "_previousVersion",
-        "type": "address"
+        "internalType": "uint256",
+        "name": "stake",
+        "type": "uint256"
       },
       {
-        "name": "_daiAddr",
-        "type": "address"
+        "internalType": "uint256",
+        "name": "tokenAmount",
+        "type": "uint256"
       },
       {
-        "name": "_kyberAddr",
-        "type": "address"
+        "internalType": "uint256",
+        "name": "buyPrice",
+        "type": "uint256"
       },
       {
-        "name": "_compoundFactoryAddr",
-        "type": "address"
+        "internalType": "uint256",
+        "name": "sellPrice",
+        "type": "uint256"
       },
       {
-        "name": "_betokenLogic",
-        "type": "address"
+        "internalType": "uint256",
+        "name": "buyTime",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "buyCostInDAI",
+        "type": "uint256"
+      },
+      {
+        "internalType": "bool",
+        "name": "isSold",
+        "type": "bool"
       }
     ],
     "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "constructor"
-  },
-  {
-    "payable": true,
-    "stateMutability": "payable",
-    "type": "fallback"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "name": "_cycleNumber",
-        "type": "uint256"
-      },
-      {
-        "indexed": true,
-        "name": "_newPhase",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "name": "_timestamp",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "name": "_totalFundsInDAI",
-        "type": "uint256"
-      }
-    ],
-    "name": "ChangedPhase",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "name": "_cycleNumber",
-        "type": "uint256"
-      },
-      {
-        "indexed": true,
-        "name": "_sender",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "name": "_tokenAddress",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "name": "_tokenAmount",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "name": "_daiAmount",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "name": "_timestamp",
-        "type": "uint256"
-      }
-    ],
-    "name": "Deposit",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "name": "_cycleNumber",
-        "type": "uint256"
-      },
-      {
-        "indexed": true,
-        "name": "_sender",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "name": "_tokenAddress",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "name": "_tokenAmount",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "name": "_daiAmount",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "name": "_timestamp",
-        "type": "uint256"
-      }
-    ],
-    "name": "Withdraw",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "name": "_cycleNumber",
-        "type": "uint256"
-      },
-      {
-        "indexed": true,
-        "name": "_sender",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "name": "_id",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "name": "_tokenAddress",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "name": "_stakeInWeis",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "name": "_buyPrice",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "name": "_costDAIAmount",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "name": "_tokenAmount",
-        "type": "uint256"
-      }
-    ],
-    "name": "CreatedInvestment",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "name": "_cycleNumber",
-        "type": "uint256"
-      },
-      {
-        "indexed": true,
-        "name": "_sender",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "name": "_id",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "name": "_tokenAddress",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "name": "_receivedKairo",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "name": "_sellPrice",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "name": "_earnedDAIAmount",
-        "type": "uint256"
-      }
-    ],
-    "name": "SoldInvestment",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "name": "_cycleNumber",
-        "type": "uint256"
-      },
-      {
-        "indexed": true,
-        "name": "_sender",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "name": "_id",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "name": "_order",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "name": "_orderType",
-        "type": "bool"
-      },
-      {
-        "indexed": false,
-        "name": "_tokenAddress",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "name": "_stakeInWeis",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "name": "_costDAIAmount",
-        "type": "uint256"
-      }
-    ],
-    "name": "CreatedCompoundOrder",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "name": "_cycleNumber",
-        "type": "uint256"
-      },
-      {
-        "indexed": true,
-        "name": "_sender",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "name": "_id",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "name": "_order",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "name": "_orderType",
-        "type": "bool"
-      },
-      {
-        "indexed": false,
-        "name": "_tokenAddress",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "name": "_receivedKairo",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "name": "_earnedDAIAmount",
-        "type": "uint256"
-      }
-    ],
-    "name": "SoldCompoundOrder",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "name": "_cycleNumber",
-        "type": "uint256"
-      },
-      {
-        "indexed": true,
-        "name": "_sender",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "name": "_id",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "name": "_order",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "name": "_repaidDAIAmount",
-        "type": "uint256"
-      }
-    ],
-    "name": "RepaidCompoundOrder",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "name": "_cycleNumber",
-        "type": "uint256"
-      },
-      {
-        "indexed": true,
-        "name": "_sender",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "name": "_commission",
-        "type": "uint256"
-      }
-    ],
-    "name": "CommissionPaid",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "name": "_cycleNumber",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "name": "_totalCommissionInDAI",
-        "type": "uint256"
-      }
-    ],
-    "name": "TotalCommissionPaid",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "name": "_manager",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "name": "_donationInDAI",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "name": "_kairoReceived",
-        "type": "uint256"
-      }
-    ],
-    "name": "Register",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "name": "_cycleNumber",
-        "type": "uint256"
-      },
-      {
-        "indexed": true,
-        "name": "_sender",
-        "type": "address"
-      },
-      {
-        "indexed": true,
-        "name": "_inSupport",
-        "type": "bool"
-      }
-    ],
-    "name": "SignaledUpgrade",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "name": "_cycleNumber",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "name": "_candidate",
-        "type": "address"
-      }
-    ],
-    "name": "DeveloperInitiatedUpgrade",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "name": "_cycleNumber",
-        "type": "uint256"
-      }
-    ],
-    "name": "InitiatedUpgrade",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "name": "_cycleNumber",
-        "type": "uint256"
-      },
-      {
-        "indexed": true,
-        "name": "_voteID",
-        "type": "uint256"
-      },
-      {
-        "indexed": true,
-        "name": "_sender",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "name": "_candidate",
-        "type": "address"
-      }
-    ],
-    "name": "ProposedCandidate",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "name": "_cycleNumber",
-        "type": "uint256"
-      },
-      {
-        "indexed": true,
-        "name": "_voteID",
-        "type": "uint256"
-      },
-      {
-        "indexed": true,
-        "name": "_sender",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "name": "_inSupport",
-        "type": "bool"
-      },
-      {
-        "indexed": false,
-        "name": "_weight",
-        "type": "uint256"
-      }
-    ],
-    "name": "Voted",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "name": "_cycleNumber",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
-        "name": "_nextVersion",
-        "type": "address"
-      }
-    ],
-    "name": "FinalizedNextVersion",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "name": "previousOwner",
-        "type": "address"
-      },
-      {
-        "indexed": true,
-        "name": "newOwner",
-        "type": "address"
-      }
-    ],
-    "name": "OwnershipTransferred",
-    "type": "event"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
     "constant": false,
     "inputs": [
       {
+        "internalType": "address[]",
         "name": "_kyberTokens",
         "type": "address[]"
       },
       {
+        "internalType": "address[]",
         "name": "_compoundTokens",
         "type": "address[]"
       },
       {
+        "internalType": "address[]",
         "name": "_positionTokens",
         "type": "address[]"
       }
@@ -1654,6 +1990,7 @@
     "constant": false,
     "inputs": [
       {
+        "internalType": "address payable",
         "name": "_proxyAddr",
         "type": "address"
       }
@@ -1668,6 +2005,7 @@
     "constant": false,
     "inputs": [
       {
+        "internalType": "address payable",
         "name": "_candidate",
         "type": "address"
       }
@@ -1675,6 +2013,7 @@
     "name": "developerInitiateUpgrade",
     "outputs": [
       {
+        "internalType": "bool",
         "name": "_success",
         "type": "bool"
       }
@@ -1687,6 +2026,7 @@
     "constant": false,
     "inputs": [
       {
+        "internalType": "bool",
         "name": "_inSupport",
         "type": "bool"
       }
@@ -1694,6 +2034,7 @@
     "name": "signalUpgrade",
     "outputs": [
       {
+        "internalType": "bool",
         "name": "_success",
         "type": "bool"
       }
@@ -1706,10 +2047,12 @@
     "constant": false,
     "inputs": [
       {
+        "internalType": "uint256",
         "name": "_chunkNumber",
         "type": "uint256"
       },
       {
+        "internalType": "address payable",
         "name": "_candidate",
         "type": "address"
       }
@@ -1717,6 +2060,7 @@
     "name": "proposeCandidate",
     "outputs": [
       {
+        "internalType": "bool",
         "name": "_success",
         "type": "bool"
       }
@@ -1729,10 +2073,12 @@
     "constant": false,
     "inputs": [
       {
+        "internalType": "uint256",
         "name": "_chunkNumber",
         "type": "uint256"
       },
       {
+        "internalType": "bool",
         "name": "_inSupport",
         "type": "bool"
       }
@@ -1740,6 +2086,7 @@
     "name": "voteOnCandidate",
     "outputs": [
       {
+        "internalType": "bool",
         "name": "_success",
         "type": "bool"
       }
@@ -1752,6 +2099,7 @@
     "constant": false,
     "inputs": [
       {
+        "internalType": "uint256",
         "name": "_chunkNumber",
         "type": "uint256"
       }
@@ -1759,6 +2107,7 @@
     "name": "finalizeSuccessfulVote",
     "outputs": [
       {
+        "internalType": "bool",
         "name": "_success",
         "type": "bool"
       }
@@ -1780,6 +2129,7 @@
     "constant": false,
     "inputs": [
       {
+        "internalType": "address",
         "name": "_assetAddress",
         "type": "address"
       }
@@ -1794,6 +2144,7 @@
     "constant": true,
     "inputs": [
       {
+        "internalType": "address",
         "name": "_userAddr",
         "type": "address"
       }
@@ -1801,6 +2152,7 @@
     "name": "investmentsCount",
     "outputs": [
       {
+        "internalType": "uint256",
         "name": "_count",
         "type": "uint256"
       }
@@ -1813,6 +2165,7 @@
     "constant": true,
     "inputs": [
       {
+        "internalType": "address",
         "name": "_userAddr",
         "type": "address"
       }
@@ -1820,6 +2173,7 @@
     "name": "compoundOrdersCount",
     "outputs": [
       {
+        "internalType": "uint256",
         "name": "_count",
         "type": "uint256"
       }
@@ -1834,58 +2188,9 @@
     "name": "getPhaseLengths",
     "outputs": [
       {
+        "internalType": "uint256[2]",
         "name": "_phaseLengths",
         "type": "uint256[2]"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [
-      {
-        "name": "_manager",
-        "type": "address"
-      }
-    ],
-    "name": "commissionBalanceOf",
-    "outputs": [
-      {
-        "name": "_commission",
-        "type": "uint256"
-      },
-      {
-        "name": "_penalty",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [
-      {
-        "name": "_manager",
-        "type": "address"
-      },
-      {
-        "name": "_cycle",
-        "type": "uint256"
-      }
-    ],
-    "name": "commissionOfAt",
-    "outputs": [
-      {
-        "name": "_commission",
-        "type": "uint256"
-      },
-      {
-        "name": "_penalty",
-        "type": "uint256"
       }
     ],
     "payable": false,
@@ -1896,6 +2201,64 @@
     "constant": false,
     "inputs": [
       {
+        "internalType": "address",
+        "name": "_manager",
+        "type": "address"
+      }
+    ],
+    "name": "commissionBalanceOf",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "_commission",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_penalty",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_manager",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_cycle",
+        "type": "uint256"
+      }
+    ],
+    "name": "commissionOfAt",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "_commission",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_penalty",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "internalType": "address payable",
         "name": "_newAddr",
         "type": "address"
       }
@@ -1910,6 +2273,7 @@
     "constant": false,
     "inputs": [
       {
+        "internalType": "uint256",
         "name": "_newProp",
         "type": "uint256"
       }
@@ -1924,11 +2288,27 @@
     "constant": false,
     "inputs": [
       {
+        "internalType": "address",
         "name": "_token",
         "type": "address"
       }
     ],
     "name": "listKyberToken",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_token",
+        "type": "address"
+      }
+    ],
+    "name": "listCompoundToken",
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
@@ -1947,6 +2327,7 @@
     "constant": false,
     "inputs": [
       {
+        "internalType": "uint256",
         "name": "_donationInDAI",
         "type": "uint256"
       }
@@ -1970,10 +2351,12 @@
     "constant": false,
     "inputs": [
       {
+        "internalType": "address",
         "name": "_token",
         "type": "address"
       },
       {
+        "internalType": "uint256",
         "name": "_donationInTokens",
         "type": "uint256"
       }
@@ -1997,6 +2380,7 @@
     "constant": false,
     "inputs": [
       {
+        "internalType": "uint256",
         "name": "_daiAmount",
         "type": "uint256"
       }
@@ -2011,10 +2395,12 @@
     "constant": false,
     "inputs": [
       {
+        "internalType": "address",
         "name": "_tokenAddr",
         "type": "address"
       },
       {
+        "internalType": "uint256",
         "name": "_tokenAmount",
         "type": "uint256"
       }
@@ -2029,6 +2415,7 @@
     "constant": false,
     "inputs": [
       {
+        "internalType": "uint256",
         "name": "_amountInDAI",
         "type": "uint256"
       }
@@ -2043,6 +2430,7 @@
     "constant": false,
     "inputs": [
       {
+        "internalType": "uint256",
         "name": "_amountInDAI",
         "type": "uint256"
       }
@@ -2057,10 +2445,12 @@
     "constant": false,
     "inputs": [
       {
+        "internalType": "address",
         "name": "_tokenAddr",
         "type": "address"
       },
       {
+        "internalType": "uint256",
         "name": "_amountInDAI",
         "type": "uint256"
       }
@@ -2075,6 +2465,7 @@
     "constant": false,
     "inputs": [
       {
+        "internalType": "bool",
         "name": "_inShares",
         "type": "bool"
       }
@@ -2089,10 +2480,12 @@
     "constant": false,
     "inputs": [
       {
+        "internalType": "bool",
         "name": "_inShares",
         "type": "bool"
       },
       {
+        "internalType": "uint256",
         "name": "_cycle",
         "type": "uint256"
       }
@@ -2107,6 +2500,7 @@
     "constant": false,
     "inputs": [
       {
+        "internalType": "address",
         "name": "_tokenAddr",
         "type": "address"
       }
@@ -2121,6 +2515,22 @@
     "constant": false,
     "inputs": [
       {
+        "internalType": "address",
+        "name": "_tokenAddr",
+        "type": "address"
+      }
+    ],
+    "name": "sellLeftoverFulcrumToken",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "internalType": "address payable",
         "name": "_orderAddress",
         "type": "address"
       }
@@ -2135,6 +2545,7 @@
     "constant": false,
     "inputs": [
       {
+        "internalType": "address",
         "name": "_deadman",
         "type": "address"
       }
@@ -2149,18 +2560,22 @@
     "constant": false,
     "inputs": [
       {
+        "internalType": "address",
         "name": "_tokenAddress",
         "type": "address"
       },
       {
+        "internalType": "uint256",
         "name": "_stake",
         "type": "uint256"
       },
       {
+        "internalType": "uint256",
         "name": "_minPrice",
         "type": "uint256"
       },
       {
+        "internalType": "uint256",
         "name": "_maxPrice",
         "type": "uint256"
       }
@@ -2175,18 +2590,62 @@
     "constant": false,
     "inputs": [
       {
-        "name": "_investmentId",
+        "internalType": "address",
+        "name": "_tokenAddress",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_stake",
         "type": "uint256"
       },
       {
-        "name": "_tokenAmount",
-        "type": "uint256"
-      },
-      {
+        "internalType": "uint256",
         "name": "_minPrice",
         "type": "uint256"
       },
       {
+        "internalType": "uint256",
+        "name": "_maxPrice",
+        "type": "uint256"
+      },
+      {
+        "internalType": "bytes",
+        "name": "_calldata",
+        "type": "bytes"
+      },
+      {
+        "internalType": "bool",
+        "name": "_useKyber",
+        "type": "bool"
+      }
+    ],
+    "name": "createInvestmentV2",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_investmentId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_tokenAmount",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_minPrice",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
         "name": "_maxPrice",
         "type": "uint256"
       }
@@ -2201,22 +2660,67 @@
     "constant": false,
     "inputs": [
       {
-        "name": "_orderType",
-        "type": "bool"
-      },
-      {
-        "name": "_tokenAddress",
-        "type": "address"
-      },
-      {
-        "name": "_stake",
+        "internalType": "uint256",
+        "name": "_investmentId",
         "type": "uint256"
       },
       {
+        "internalType": "uint256",
+        "name": "_tokenAmount",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
         "name": "_minPrice",
         "type": "uint256"
       },
       {
+        "internalType": "uint256",
+        "name": "_maxPrice",
+        "type": "uint256"
+      },
+      {
+        "internalType": "bytes",
+        "name": "_calldata",
+        "type": "bytes"
+      },
+      {
+        "internalType": "bool",
+        "name": "_useKyber",
+        "type": "bool"
+      }
+    ],
+    "name": "sellInvestmentAssetV2",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "internalType": "bool",
+        "name": "_orderType",
+        "type": "bool"
+      },
+      {
+        "internalType": "address",
+        "name": "_tokenAddress",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_stake",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_minPrice",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
         "name": "_maxPrice",
         "type": "uint256"
       }
@@ -2231,14 +2735,17 @@
     "constant": false,
     "inputs": [
       {
+        "internalType": "uint256",
         "name": "_orderId",
         "type": "uint256"
       },
       {
+        "internalType": "uint256",
         "name": "_minPrice",
         "type": "uint256"
       },
       {
+        "internalType": "uint256",
         "name": "_maxPrice",
         "type": "uint256"
       }
@@ -2253,10 +2760,12 @@
     "constant": false,
     "inputs": [
       {
+        "internalType": "uint256",
         "name": "_orderId",
         "type": "uint256"
       },
       {
+        "internalType": "uint256",
         "name": "_repayAmountInDAI",
         "type": "uint256"
       }
@@ -2271,6 +2780,7 @@
     "constant": false,
     "inputs": [
       {
+        "internalType": "address",
         "name": "_owner",
         "type": "address"
       }
@@ -2278,6 +2788,7 @@
     "name": "proxyPayment",
     "outputs": [
       {
+        "internalType": "bool",
         "name": "",
         "type": "bool"
       }
@@ -2290,14 +2801,17 @@
     "constant": false,
     "inputs": [
       {
+        "internalType": "address",
         "name": "_from",
         "type": "address"
       },
       {
+        "internalType": "address",
         "name": "_to",
         "type": "address"
       },
       {
+        "internalType": "uint256",
         "name": "_amount",
         "type": "uint256"
       }
@@ -2305,6 +2819,7 @@
     "name": "onTransfer",
     "outputs": [
       {
+        "internalType": "bool",
         "name": "",
         "type": "bool"
       }
@@ -2317,14 +2832,17 @@
     "constant": false,
     "inputs": [
       {
+        "internalType": "address",
         "name": "_owner",
         "type": "address"
       },
       {
+        "internalType": "address",
         "name": "_spender",
         "type": "address"
       },
       {
+        "internalType": "uint256",
         "name": "_amount",
         "type": "uint256"
       }
@@ -2332,6 +2850,7 @@
     "name": "onApprove",
     "outputs": [
       {
+        "internalType": "bool",
         "name": "",
         "type": "bool"
       }

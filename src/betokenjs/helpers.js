@@ -225,7 +225,7 @@ export const utils = {
         let burnThreshold = -0.25;
         let punishmentSlope = 6;
         let punishmentBias = 0.5;
-        if (investmentROI.ge(punishmentThreshold)) {
+        if (investmentROI.gte(punishmentThreshold)) {
             // no punishment
             return investmentROI;
         } else if (investmentROI.lt(punishmentThreshold) && investmentROI.gt(burnThreshold)) {

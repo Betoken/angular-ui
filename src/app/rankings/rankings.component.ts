@@ -45,7 +45,7 @@ export class RankingsComponent extends ApolloEnabled implements OnInit, OnDestro
                 fetchPolicy: this.fetchPolicy,
                 query: gql`
                     {
-                        managers(orderBy: "kairoBalanceWithStake", orderDirection: desc, first: 1000) {
+                        managers(orderBy: "kairoBalanceWithStake", orderDirection: desc, first: 1000, where: {kairoBalanceWithStake_gt: 0}) {
                             id
                             kairoBalance
                             kairoBalanceWithStake

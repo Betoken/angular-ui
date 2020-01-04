@@ -97,7 +97,7 @@ export class DashboardComponent extends ApolloEnabled implements OnInit {
               riskTaken
               riskThreshold
             }
-            managers(orderBy: "kairoBalanceWithStake", orderDirection: desc, first: 1000) {
+            managers(orderBy: "kairoBalanceWithStake", orderDirection: desc, first: 1000, where: {kairoBalanceWithStake_gt: 0}) {
               id
             }
           }

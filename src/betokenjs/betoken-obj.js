@@ -360,7 +360,7 @@ export var Betoken = function () {
         try {
             let pToken = PositionToken(_tokenAddr);
             let underlyingPerPToken = await pToken.methods.tokenPrice().call();
-            let underlying = await pToken.methods.loanTokenAddress().call();
+            let underlying = await pToken.methods.tradeTokenAddress().call();
             if (underlying === DAI_ADDR) {
                 return BigNumber(underlyingPerPToken).div(PRECISION);
             }
@@ -375,7 +375,7 @@ export var Betoken = function () {
         try {
             let pToken = PositionToken(_tokenAddr);
             let underlyingPerPToken = await pToken.methods.liquidationPrice().call();
-            let underlying = await pToken.methods.loanTokenAddress().call();
+            let underlying = await pToken.methods.tradeTokenAddress().call();
             if (underlying === DAI_ADDR) {
                 return BigNumber(underlyingPerPToken).div(PRECISION);
             }

@@ -140,12 +140,12 @@ export const httpsGet = async (apiStr) => {
     return await request.json();
 };
 
-export const generateBuyDexagCalldata = async (tokenSymbol, stake) => {
+export const generateBuyDexagCalldata = async (tokenSymbol, stake, kairoPrice) => {
     let tokenDecimals = +(await betoken.getTokenDecimals(assetSymbolToAddress(tokenSymbol)));
     let fromSymbol, toSymbol, fromAmount;
     fromSymbol = 'DAI';
     toSymbol = tokenSymbol;
-    fromAmount = BigNumber(stake).times(totalFunds).div(kairoTotalSupply).times(DEXAG_AMOUNT_MODIFIER).toFixed(tokenDecimals);
+    fromAmount = BigNumber(stake).times(kairoPrice).times(DEXAG_AMOUNT_MODIFIER).toFixed(tokenDecimals);
 
     let apiStr = `https://api.dex.ag/trade?from=${fromSymbol}&to=${toSymbol}&fromAmount=${fromAmount}&dex=best&proxy=${DEXAG_ADDR}`;
     let result = await httpsGet(apiStr);

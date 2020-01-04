@@ -168,9 +168,9 @@ export const investor_actions = {
 
 export const manager_actions = {
     // All amounts must be BigNumber, in floating point (no need to multiply by 1e18)
-    new_investment_with_symbol: async function (tokenSymbol, stakeInKRO, minPrice, maxPrice, useKyber, pending, confirm, error) {
+    new_investment_with_symbol: async function (tokenSymbol, stakeInKRO, minPrice, maxPrice, useKyber, kairoPrice, pending, confirm, error) {
         let tokenAddress = Data.assetSymbolToAddress(tokenSymbol);
-        let calldata = await Data.generateBuyDexagCalldata(tokenSymbol, stakeInKRO);
+        let calldata = await Data.generateBuyDexagCalldata(tokenSymbol, stakeInKRO, kairoPrice);
         betoken.createInvestmentV2(tokenAddress, stakeInKRO, minPrice, maxPrice, calldata, useKyber, pending, confirm, error);
     },
     new_investment_with_address: async function (tokenAddress, stakeInKRO, minPrice, maxPrice, pending, confirm, error) {

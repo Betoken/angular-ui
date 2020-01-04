@@ -240,7 +240,7 @@ export class InvestmentsComponent extends ApolloEnabled implements OnInit {
             let manager = data['manager'];
 
             this.phase = fund.cyclePhase === 'INTERMISSION' ? 0 : 1;
-            this.kairoPrice = new BigNumber(fund.kairoPrice);
+            this.kairoPrice = new BigNumber(fund.totalFundsInDAI).div(fund.kairoTotalSupply);
 
             if (!isNull(manager)) {
                 this.userValue = this.getManagerKairoBalance(manager);
@@ -439,7 +439,7 @@ export class InvestmentsComponent extends ApolloEnabled implements OnInit {
         let error = (e) => {
             if (this.createInvestmentPopupStep != 0) {
                 this.createInvestmentPopupStep = -1;
-                this.errorMsg = e.toString();
+                this.errorMsg = JSON.stringify(e);
             }
         }
 
@@ -448,7 +448,7 @@ export class InvestmentsComponent extends ApolloEnabled implements OnInit {
                 // TODO: more accurate token amount
                 let tokenPrice = await tokens.get_token_price(tokens.asset_symbol_to_address(this.selectedTokenSymbol), 1);
                 let maxPrice = tokenPrice.plus(tokenPrice.times(maxAcceptablePriceProp));
-                manager_actions.new_investment_with_symbol(this.selectedTokenSymbol, this.stakeAmount, new BigNumber(0), maxPrice, false, pending, confirm, error);
+                manager_actions.new_investment_with_symbol(this.selectedTokenSymbol, this.stakeAmount, new BigNumber(0), maxPrice, false, this.kairoPrice, pending, confirm, error);
                 break;
             case 'compound':
                 // TODO: more accurate token amount
@@ -501,7 +501,7 @@ export class InvestmentsComponent extends ApolloEnabled implements OnInit {
         let error = (e) => {
             if (this.sellInvestmentPopupStep != 0) {
                 this.sellInvestmentPopupStep = -1;
-                this.errorMsg = e.toString();
+                this.errorMsg = JSON.stringify(e);
             }
         }
 
@@ -561,7 +561,7 @@ export class InvestmentsComponent extends ApolloEnabled implements OnInit {
         let error = (e) => {
             if (this.topupPopupStep != 0) {
                 this.topupPopupStep = -1;
-                this.errorMsg = e.toString();
+                this.errorMsg = JSON.stringify(e);
             }
         }
 

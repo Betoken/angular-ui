@@ -66,12 +66,12 @@ export const assetCTokenAddressToSymbol = (_addr) => {
 
 export const assetPTokenAddressToSymbol = (_addr) => {
     _addr = web3.utils.toChecksumAddress(_addr);
-    return PTOKENS.find((x) => !isUndefined(x.pTokens.find((y) => y.address === _addr))).symbol;
+    return PTOKENS.find((x) => !isUndefined(x.pTokens.find((y) => web3.utils.toChecksumAddress(y.address) === _addr))).symbol;
 };
 
 export const assetPTokenAddressToInfo = (_addr) => {
     _addr = web3.utils.toChecksumAddress(_addr);
-    return PTOKENS.find((x) => !isUndefined(x.pTokens.find((y) => y.address === _addr))).pTokens.find((y) => y.address === _addr);
+    return PTOKENS.find((x) => !isUndefined(x.pTokens.find((y) => web3.utils.toChecksumAddress(y.address) === _addr))).pTokens.find((y) => web3.utils.toChecksumAddress(y.address) === _addr);
 };
 
 export const assetSymbolToDailyPriceChange = function (_symbol) {

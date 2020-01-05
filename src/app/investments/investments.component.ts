@@ -409,10 +409,10 @@ export class InvestmentsComponent extends ApolloEnabled implements OnInit {
         this.orderTypes = orderTypes;
     }
 
-    selectOrderType(typeId) {
+    async selectOrderType(typeId) {
         this.selectedOrderType = this.orderTypes[typeId];
         if (this.selectedOrderType['type'] === 'fulcrum') {
-            this.fulcrumMinStake = tokens.fulcrum_min_stake(this.selectedTokenSymbol, (this.selectedOrderType['leverage'] < 0), this.kairoPrice);
+            this.fulcrumMinStake = await tokens.fulcrum_min_stake(this.selectedOrderType['tokenAddress'], this.kairoPrice);
         }
     }
 

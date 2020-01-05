@@ -1,5 +1,5 @@
 // imports
-import { getDefaultAccount, DAI_ADDR, CompoundOrder, DEXAG_ADDR, PRECISION } from './betoken-obj';
+import { getDefaultAccount, DAI_ADDR, CompoundOrder, DEXAG_ADDR, PRECISION, PositionToken } from './betoken-obj';
 import BigNumber from "bignumber.js";
 import https from "https";
 import { isUndefined, isNullOrUndefined } from 'util';
@@ -115,15 +115,17 @@ export const isFulcrumTokenAddress = (_tokenAddress) => {
 
 export const isSupporter = (_addr) => SUPPORTERS.indexOf(web3.utils.toChecksumAddress(_addr)) != -1;
 
-export const fulcrumMinStake = (_symbol, _isShort, _kairoPrice) => {
+export const fulcrumMinStake = async (_addr, _kairoPrice) => {
+    let pToken = PositionToken(_addr);
+    let underlyingPerPToken = await pToken.methods.tokenPrice().call();
+    let underlying = await pToken.methods.tradeTokenAddress().call();
     let underlyingPrice;
-    if (_isShort) {
-        // underlying is token
-        underlyingPrice = assetSymbolToPrice(_symbol);
-    } else {
-        // underlying is DAI
+    if (underlying === DAI_ADDR) {
         underlyingPrice = BigNumber(1);
+    } else {
+        underlyingPrice = await betoken.getTokenPrice(underlying, 1);
     }
+
     const MIN_AMOUNT = BigNumber(0.001);
     return MIN_AMOUNT.times(underlyingPrice).div(_kairoPrice);
 };

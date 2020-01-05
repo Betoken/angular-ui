@@ -214,6 +214,7 @@ export var Betoken = function () {
 
     self.loadWeb3 = async () => {
         self.hasWeb3 = true;
+        let darkMode = getComputedStyle(document.body).backgroundColor != 'rgb(249, 251, 253)';
 
         if (self.assistInstance === null) {
             let genericMobileWalletConfig = {
@@ -261,7 +262,7 @@ export var Betoken = function () {
                 }
             };
             self.assistInstance = Onboard.init(bncAssistConfig);
-            self.assistInstance.config({ darkMode: getComputedStyle(document.body).backgroundColor != 'rgb(249, 251, 253)' });
+            self.assistInstance.config({ darkMode: darkMode });
         }
 
         // Get user to select a wallet
@@ -290,6 +291,9 @@ export var Betoken = function () {
         self.notifyInstance = Notify({
             dappId: self.blocknativeAPIKey,
             networkId: 1
+        });
+        self.notifyInstance.config({
+            darkMode: darkMode
         });
     }
 

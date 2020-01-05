@@ -12,6 +12,7 @@ const STABLECOINS = require('./json_data/stablecoins.json'); // Stablecoins (man
 const PTOKENS = require('./json_data/fulcrum_tokens.json'); // Fulcrum pTokens
 const SUPPORTERS = require('./json_data/betoken_supporters.json');
 const DEXAG_AMOUNT_MODIFIER = 1 - 1e-9;
+const FULCRUM_MINSTAKE_MODIFIER = 2;
 
 // instance variables
 // user info
@@ -127,7 +128,7 @@ export const fulcrumMinStake = async (_addr, _kairoPrice) => {
     }
 
     const MIN_AMOUNT = BigNumber(0.001);
-    return MIN_AMOUNT.times(underlyingPrice).div(_kairoPrice);
+    return MIN_AMOUNT.times(underlyingPrice).div(_kairoPrice).times(FULCRUM_MINSTAKE_MODIFIER);
 };
 
 export const getAssetPriceAtTimestamp = async (symbol, timestamp) => {

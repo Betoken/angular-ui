@@ -76,15 +76,11 @@ export var Betoken = function () {
                 from: web3.eth.defaultAccount,
                 gas: gasLimit
             }).on("transactionHash", (hash) => {
-                self.notifyInstance.hash(hash);
                 _onTxHash(hash);
-                let listener = setInterval(async () => {
-                    let receipt = await web3.eth.getTransaction(hash);
-                    if (receipt) {
-                        _onReceipt(receipt);
-                        clearInterval(listener);
-                    }
-                }, CHECK_RECEIPT_INTERVAL);
+                const { emitter } = self.notifyInstance.hash(hash);
+                emitter.on("txConfirmed", _onReceipt);
+                emitter.on("txFailed", _onError);
+                emitter.on("txError", _onError);
             }).on("error", (e) => {
                 if (!JSON.stringify(e).includes('newBlockHeaders')) {
                     _onError(e);
@@ -92,7 +88,7 @@ export var Betoken = function () {
             });
         }
     };
-    
+
     self.sendTxWithValue = async (func, val, _onTxHash, _onReceipt, _onError) => {
         var gasLimit = await estimateGas(func, val, _onError);
         if (!isNaN(gasLimit)) {
@@ -101,15 +97,11 @@ export var Betoken = function () {
                 gas: gasLimit,
                 value: val
             }).on("transactionHash", (hash) => {
-                self.notifyInstance.hash(hash);
                 _onTxHash(hash);
-                let listener = setInterval(async () => {
-                    let receipt = await web3.eth.getTransaction(hash);
-                    if (receipt) {
-                        _onReceipt(receipt);
-                        clearInterval(listener);
-                    }
-                }, CHECK_RECEIPT_INTERVAL);
+                const { emitter } = self.notifyInstance.hash(hash);
+                emitter.on("txConfirmed", _onReceipt);
+                emitter.on("txFailed", _onError);
+                emitter.on("txError", _onError);
             }).on("error", (e) => {
                 if (!JSON.stringify(e).includes('newBlockHeaders')) {
                     _onError(e);
@@ -117,7 +109,7 @@ export var Betoken = function () {
             });
         }
     };
-    
+
     self.sendTxWithToken = async (func, token, to, amount, _onTxHash, _onReceipt, _onError) => {
         let allowance = new BigNumber(await token.methods.allowance(web3.eth.defaultAccount, to).call());
         if (allowance.gt(0)) {
@@ -128,16 +120,13 @@ export var Betoken = function () {
                 self.sendTx(token.methods.approve(to, amount), () => {
                     func.send({
                         from: web3.eth.defaultAccount,
+                        gasLimit: "3000000"
                     }).on("transactionHash", (hash) => {
-                        self.notifyInstance.hash(hash);
                         _onTxHash(hash);
-                        let listener = setInterval(async () => {
-                            let receipt = await web3.eth.getTransaction(hash);
-                            if (receipt) {
-                                _onReceipt(receipt);
-                                clearInterval(listener);
-                            }
-                        }, CHECK_RECEIPT_INTERVAL);
+                        const { emitter } = self.notifyInstance.hash(hash);
+                        emitter.on("txConfirmed", _onReceipt);
+                        emitter.on("txFailed", _onError);
+                        emitter.on("txError", _onError);
                     }).on("error", (e) => {
                         if (!JSON.stringify(e).includes('newBlockHeaders')) {
                             _onError(e);
@@ -151,15 +140,11 @@ export var Betoken = function () {
                     from: web3.eth.defaultAccount,
                     gasLimit: "3000000"
                 }).on("transactionHash", (hash) => {
-                    self.notifyInstance.hash(hash);
                     _onTxHash(hash);
-                    let listener = setInterval(async () => {
-                        let receipt = await web3.eth.getTransaction(hash);
-                        if (receipt) {
-                            _onReceipt(receipt);
-                            clearInterval(listener);
-                        }
-                    }, CHECK_RECEIPT_INTERVAL);
+                    const { emitter } = self.notifyInstance.hash(hash);
+                    emitter.on("txConfirmed", _onReceipt);
+                    emitter.on("txFailed", _onError);
+                    emitter.on("txError", _onError);
                 }).on("error", (e) => {
                     if (!JSON.stringify(e).includes('newBlockHeaders')) {
                         _onError(e);
@@ -168,7 +153,7 @@ export var Betoken = function () {
             }, doNothing, _onError);
         }
     };
-    
+
     self.doNothing = () => { }
 
     /*

@@ -134,7 +134,8 @@
   <ul class="nav nav-tabs nav-overflow border-0 mb-4 mr-n3 d-lg-none">
     <li class="nav-item mr-3">
       <!-- Card -->
-      <div style="min-width: 256px;" class="card" data-toggle="tooltip" data-html="true" i18n-title="@@portfolioValueAttrTitle"
+      <div style="min-width: 256px;" class="card" data-toggle="tooltip" data-html="true"
+        i18n-title="@@portfolioValueAttrTitle"
         title="Amount of Betoken's AUM you manage. The more Kairo tokens you own, the more money you will manage.">
         <div class="card-body">
           <div class="row align-items-center">
@@ -155,7 +156,8 @@
     </li>
     <li class="nav-item mr-3">
       <!-- Card -->
-      <div style="min-width: 256px;" class="card" data-toggle="tooltip" data-html="true" i18n-title="@@kroBalanceAttrTitle"
+      <div style="min-width: 256px;" class="card" data-toggle="tooltip" data-html="true"
+        i18n-title="@@kroBalanceAttrTitle"
         title="The more Kairo tokens you own, the more money you will manage, the more commission you will receive. You can earn Kairo tokens by making profitable investments for the Betoken fund.">
         <div class="card-body">
           <div class="row align-items-center">
@@ -171,7 +173,8 @@
                 {{userValue.toFormat(4)}} KRO
               </span>
               <!-- Badge -->
-              <span class="badge" [ngClass]="{'badge-soft-success': userROI.gte(0), 'badge-soft-danger': userROI.lt(0)}">
+              <span class="badge"
+                [ngClass]="{'badge-soft-success': userROI.gte(0), 'badge-soft-danger': userROI.lt(0)}">
                 {{userROI.toFormat(4)}}%
               </span>
 
@@ -183,7 +186,8 @@
     </li>
     <li class="nav-item mr-3">
       <!-- Card -->
-      <div style="min-width: 256px;" class="card" data-toggle="tooltip" data-html="true" i18n-title="@@investmentsRiskTakenAttrTitle"
+      <div style="min-width: 256px;" class="card" data-toggle="tooltip" data-html="true"
+        i18n-title="@@investmentsRiskTakenAttrTitle"
         title="The more Kairo tokens you stake, the more of Betoken's money you put at work, the more commissions you earn.">
         <div class="card-body">
           <div class="row align-items-center">
@@ -197,8 +201,8 @@
                 </div>
                 <div class="col-auto mt-n2">
                   <a class="text-muted ml-2"
-                    href="https://betoken.gitbook.io/docs/manage-the-fund/how-does-risk-threshold-work" title="Learn more"
-                    target="_blank">
+                    href="https://betoken.gitbook.io/docs/manage-the-fund/how-does-risk-threshold-work"
+                    title="Learn more" target="_blank">
                     <span class="fe fe-help-circle"></span>
                   </a>
                 </div>
@@ -233,7 +237,8 @@
     </li>
     <li class="nav-item mr-3 pr-3 pr-lg-5">
       <!-- Card -->
-      <div style="min-width: 256px;" class="card" data-toggle="tooltip" data-html="true" i18n-title="@@estimateCommissionAttrTitle"
+      <div style="min-width: 256px;" class="card" data-toggle="tooltip" data-html="true"
+        i18n-title="@@estimateCommissionAttrTitle"
         title="<strong>20%</strong> of the fund's profit and <strong>0.1%</strong> of the AUM is set aside as commissions every month, which is paid to managers proportional to the Kairo tokens they hold. The estimate displayed here is calculated using the current fund ROI.">
         <div class="card-body">
           <div class="row align-items-center">
@@ -973,235 +978,226 @@
 
       <div class="modal-body pb-5">
         <!--Step 0: enter sell amount-->
-        <time class="header-pretitle h6 mb-0" *ngIf="sellInvestmentPopupStep === 0">
-          <ng-container i18n="@@investmentsModalSellOrderBuyTime">OPENED</ng-container>
-          &nbsp;{{toDateTimeString(sellData.buyTime)}}
-        </time>
-        <a *ngIf="sellInvestmentPopupStep === 0" class="header-pretitle h6 mb-0" href="https://etherscan.io/tx/{{sellData['txHash']}}" target="_blank"> •
-          Etherscan<i class="fe fe-external-link ml-2"></i></a>
+        <ng-container *ngIf="sellInvestmentPopupStep === 0">
+          <time class="header-pretitle h6 mb-0">
+            <ng-container i18n="@@investmentsModalSellOrderBuyTime">OPENED</ng-container>
+            &nbsp;{{toDateTimeString(sellData.buyTime)}}
+          </time>
+          <a class="header-pretitle h6 mb-0"
+            href="https://etherscan.io/tx/{{sellData['txHash']}}" target="_blank"> •
+            Etherscan<i class="fe fe-external-link ml-2"></i></a>
 
-        <hr class="mb-4" *ngIf="sellInvestmentPopupStep === 0">
-        <!-- Asset price -->
-        <div class="row mb-4" *ngIf="sellInvestmentPopupStep === 0">
-          <div class="col">
-            <h6 class="header-pretitle" i18n="@@price">
-              Price (DAI)
-            </h6>
-            <h4 class="mb-0">
-              {{isOrderOfType(sellData, 'BasicOrder') ? toBigNumber(sellData.sellPrice).toFormat(6) : assetSymbolToPrice(sellData.tokenSymbol).toFormat(6)}}
-            </h4>
-            <span class="badge"
-              [ngClass]="{'badge-soft-success': sellData.ROI.gte(0), 'badge-soft-danger': sellData.ROI.lt(0)}"
-              *ngIf="isOrderOfType(sellData, 'BasicOrder')">
-              {{sellData.ROI.toFormat(4)}}%
-            </span>
-          </div>
-          <div class="col" *ngIf="isOrderOfType(sellData, 'BasicOrder')">
-            <h6 class="header-pretitle" i18n="@@buyPrice">
-              Asset buy price (DAI)
-            </h6>
-            <h4 class="mb-0">
-              {{toBigNumber(sellData.buyPrice).toFormat(6)}}
-            </h4>
-          </div>
-          <div class="col" *ngIf="!isOrderOfType(sellData, 'BasicOrder')">
-            <h6 class="header-pretitle mb-1" i18n="@@modalRoi">
-              ROI
-            </h6>
-            <span class="badge"
-              [ngClass]="{'badge-soft-success': sellData.ROI.gte(0), 'badge-soft-danger': sellData.ROI.lt(0)}">
-              {{sellData.ROI.toFormat(4)}}%
-            </span>
-          </div>
-        </div>
-        <div class="row" *ngIf="sellInvestmentPopupStep === 0">
-          <div class="col">
-            <h6 class="header-pretitle" i18n="@@investmentsModalSellStakedKro">
-              Staked KRO
-            </h6>
-            <h4 class="mb-0">
-              {{formatNumber(sellData.stake, 4)}}
-            </h4>
-          </div>
-          <div class="col">
-            <h6 class="header-pretitle" i18n="@@investmentsModalSellKroToRedeem">
-              KRO to Redeem
-            </h6>
-            <h4 class="mb-0">
-              {{sellData.currValue.toFormat(4)}}
-            </h4>
-          </div>
-        </div>
-        <div *ngIf="sellInvestmentPopupStep === 0">
-          <div class="row my-4" *ngIf="isOrderOfType(sellData, 'FulcrumOrder')">
+          <hr class="mb-4">
+          <!-- Asset price -->
+          <div class="row mb-4">
             <div class="col">
-              <h6 class="header-pretitle" i18n="@@investmentsModalSellMarginPositionPrice">
-                Margin Position Price
+              <h6 class="header-pretitle" i18n="@@price">
+                Price (DAI)
               </h6>
               <h4 class="mb-0">
-                {{formatNumber(sellData.sellPrice, 4)}}
+                {{isOrderOfType(sellData, 'BasicOrder') ? toBigNumber(sellData.sellPrice).toFormat(6) : assetSymbolToPrice(sellData.tokenSymbol).toFormat(6)}}
+              </h4>
+              <span class="badge"
+                [ngClass]="{'badge-soft-success': sellData.ROI.gte(0), 'badge-soft-danger': sellData.ROI.lt(0)}">
+                {{sellData.ROI.toFormat(4)}}%
+              </span>
+            </div>
+            <div class="col" >
+              <h6 class="header-pretitle" i18n="@@buyPrice">
+                Asset buy price (DAI)
+              </h6>
+              <h4 class="mb-0" *ngIf="isOrderOfType(sellData, 'BasicOrder')">
+                {{toBigNumber(sellData.buyPrice).toFormat(6)}}
+              </h4>
+              <h4 class="mb-0" *ngIf="!isOrderOfType(sellData, 'BasicOrder')">
+                {{toBigNumber(sellData.buyTokenPrice).toFormat(6)}}
+              </h4>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <h6 class="header-pretitle" i18n="@@investmentsModalSellStakedKro">
+                Staked KRO
+              </h6>
+              <h4 class="mb-0">
+                {{formatNumber(sellData.stake, 4)}}
+              </h4>
+            </div>
+            <div class="col">
+              <h6 class="header-pretitle" i18n="@@investmentsModalSellKroToRedeem">
+                KRO to Redeem
+              </h6>
+              <h4 class="mb-0">
+                {{sellData.currValue.toFormat(4)}}
+              </h4>
+            </div>
+          </div>
+          <div>
+            <div class="row my-4" *ngIf="isOrderOfType(sellData, 'FulcrumOrder')">
+              <div class="col">
+                <h6 class="header-pretitle" i18n="@@investmentsModalSellFulcrumLiquidationPrice">
+                  Liquidation Price
+                </h6>
+                <h4 class="mb-0">
+                  {{toBigNumber(sellData.liquidationPrice).times(assetSymbolToPrice(sellData.tokenSymbol)).div(sellData.sellPrice).toFormat(4)}}
+                </h4>
                 <span class="badge badge-soft-success ml-1" *ngIf="sellData.safety" i18n="@@orderSafetySafe">
                   Safe
                 </span>
                 <span class="badge badge-soft-danger ml-1" *ngIf="!sellData.safety" i18n="@@orderSafetyInDanger">
                   In Danger
                 </span>
-              </h4>
+              </div>
             </div>
-            <div class="col">
-              <h6 class="header-pretitle" i18n="@@investmentsModalSellFulcrumLiquidationPrice">
-                Liquidation Price
-              </h6>
-              <h4 class="mb-0">
-                {{formatNumber(sellData.liquidationPrice, 4)}}
-              </h4>
-            </div>
-          </div>
-          <div class="row" *ngIf="isOrderOfType(sellData, 'FulcrumOrder')">
-            <div class="col">
-              <p class="text-secondary small mb-0" i18n="@@investmentsModalSellFulcrumLiquidationText">If the margin
-                position price falls below the liquidation price, this
-                order will be liquidated, which will cause huge losses. When the order is in danger of liquidation, sell
-                it.</p>
+            <div class="row" *ngIf="isOrderOfType(sellData, 'FulcrumOrder')">
+              <div class="col">
+                <p class="text-secondary small mb-0" i18n="@@investmentsModalSellFulcrumLiquidationText">If the margin
+                  asset's price reaches the liquidation price, this
+                  order will be liquidated, which will cause huge losses. When the order is in danger of liquidation,
+                  sell
+                  it.</p>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div *ngIf="sellInvestmentPopupStep === 0">
-          <hr class="my-4">
-          <div *ngIf="isOrderOfType(sellData, 'BasicOrder') || isOrderOfType(sellData, 'FulcrumOrder')">
-            <!-- KRO amount to unstake -->
-            <!-- hideen when top up feature is activated -->
-            <h6 class="header-pretitle" i18n="@@investmentsModalSellProportionAssetsToSell">Proportion of assets to sell
-            </h6>
-            <div class="row">
-              <div class="col">
-                <form>
-                  <div class="input-group mb-2">
-                    <input type="number" min="0.0" max="100.0" class="form-control form-control-lg border-right-0 pr-0"
-                      aria-describedby="percent of stake to sell" placeholder="0.0" id="sell-percentage-input"
-                      (input)="continueEnabled = true">
-                    <div class="input-group-append">
-                      <span class="input-group-text border-left-0 border-right-0" id="maxSellPercentUnit">%</span>
-                      <button class="btn btn-white" name="button" type="button" (click)="maxSellPercent()"
-                        i18n="@@modalCtaMax">Max</button>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-          <div *ngIf="isOrderOfType(sellData, 'CompoundOrder')">
-            <div class="row align-items-center justify-content-center mt-4 mb-3">
-              <div class="col">
-                <h6 class="header-pretitle mb-0" i18n="@@modalCollateralStatusTitle">
-                  Collateralization status
-                </h6>
-              </div>
-              <div class="col-auto d-flex align-items-center">
-                <a href="" class="btn btn-sm btn-white" data-toggle="modal" data-target="#modalTopUp"
-                  i18n="@@modalCtaTopUp">Top up</a>
-              </div>
-            </div>
-            <div class="row align-items-center">
-              <div class="col">
-                <span class="badge badge-soft-success mb-2" *ngIf="sellData.safety" i18n="@@orderSafetySafe">
-                  Safe
-                </span>
-                <span class="badge badge-soft-danger mb-2" *ngIf="!sellData.safety" i18n="@@orderSafetyInDanger">
-                  In Danger
-                </span>
-                <div class="progress">
-                  <div [ngClass]="{'bg-success': sellData.safety, 'bg-danger': !sellData.safety}" class="progress-bar"
-                    role="progressbar"
-                    [ngStyle]="{'width': toBigNumber(sellData.collateralRatio).div(sellData.minCollateralRatio).div(2).times(100).toFormat(2) + '%'}">
-                    {{toBigNumber(sellData.collateralRatio).times(100).toFormat(0)}}%</div>
-                </div>
-                <div class="row no-gutters justify-content-between text-secondary mb-3">
-                  <div class="col text-left">
-                    <small class="h6">0%</small>
-                    <small class="h6 d-block" i18n="@@orderSafetyInDanger">In Danger</small>
-                  </div>
-                  <div class="col text-left position-absolute d-block w-auto"
-                    style="left: 49.0000%;transform: translateX(-50%);">
-                    <div style="display: flex; flex-direction: column;">
-                      <div style="border: 0.5px dashed #6e84a3; width: 1px; height: 8px; align-self: center;"></div>
-                      <small class="h6">{{sellData.minCollateralRatio.times(100).toFormat(0)}}%&nbsp;•&nbsp;
-                        <ng-container i18n="@@modalMinCollRatio">min. collateral ratio</ng-container></small>
-                    </div>
-                  </div>
-                  <div class="col text-right">
-                    <small class="h6">{{sellData.minCollateralRatio.times(2).times(100).toFormat(0)}}%</small>
-                    <small class="h6 d-block" i18n="@@orderSafetySafe">Safe</small>
-                  </div>
-                </div>
-                <p class="text-secondary small mb-0" i18n="@@modalTopUpCollateralLiquidationText">If the order's
-                  collateral ratio falls below the minimum, it will be
-                  liquidated, which will cause huge losses.</p>
-              </div>
-            </div>
-          </div>
-          <!--<h6 class="header-pretitle mt-4" i18n="@@investmentsNetworkLiquidity">Liquidity network</h6>
-          <div class="custom-control custom-radio custom-control-inline">
-            <input type="radio" id="kybernetwork" name="kybernetwork" class="custom-control-input" checked>
-            <label class="custom-control-label" for="kybernetwork">Kyber Network</label>
-          </div>
-          <div class="custom-control custom-radio custom-control-inline">
-            <input type="radio" id="dexag" name="dexag" class="custom-control-input">
-            <label class="custom-control-label" for="dexag">DEX.AG</label>
-          </div>-->
-          <!-- Min acceptable price -->
-          <div class="row justify-content-center mb-4">
-            <div class="col">
-              <div id="accordion">
-                <!-- question -->
-                <div class="card border-0 shadow-none mb-0">
-                  <div class="card-header border-0 shadow-none px-0" id="headingTwo">
-                    <a href="" class="text-secondary" data-toggle="collapse" data-target="#collapseTwo"
-                      aria-expanded="false" aria-controls="collapseTwo">
-                      <div class="row align-items-center no-gutters">
-                        <div class="col mr-auto">
-                          <span class="card-text text-muted small" i18n="@@modalAdvancedOptionTitle">
-                            Advanced
-                          </span>
-                        </div>
-                        <div class="col-auto">
-                          <i class="fe fe-plus"></i>
-                        </div>
+          <div>
+            <hr class="my-4">
+            <div *ngIf="isOrderOfType(sellData, 'BasicOrder') || isOrderOfType(sellData, 'FulcrumOrder')">
+              <!-- KRO amount to unstake -->
+              <!-- hideen when top up feature is activated -->
+              <h6 class="header-pretitle" i18n="@@investmentsModalSellProportionAssetsToSell">Proportion of assets to
+                sell
+              </h6>
+              <div class="row">
+                <div class="col">
+                  <form>
+                    <div class="input-group mb-2">
+                      <input type="number" min="0.0" max="100.0"
+                        class="form-control form-control-lg border-right-0 pr-0"
+                        aria-describedby="percent of stake to sell" placeholder="0.0" id="sell-percentage-input"
+                        (input)="continueEnabled = true">
+                      <div class="input-group-append">
+                        <span class="input-group-text border-left-0 border-right-0" id="maxSellPercentUnit">%</span>
+                        <button class="btn btn-white" name="button" type="button" (click)="maxSellPercent()"
+                          i18n="@@modalCtaMax">Max</button>
                       </div>
-                    </a>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="isOrderOfType(sellData, 'CompoundOrder')">
+              <div class="row align-items-center justify-content-center mt-4 mb-3">
+                <div class="col">
+                  <h6 class="header-pretitle mb-0" i18n="@@modalCollateralStatusTitle">
+                    Collateralization status
+                  </h6>
+                </div>
+                <div class="col-auto d-flex align-items-center">
+                  <a href="" class="btn btn-sm btn-white" data-toggle="modal" data-target="#modalTopUp"
+                    i18n="@@modalCtaTopUp">Top up</a>
+                </div>
+              </div>
+              <div class="row align-items-center">
+                <div class="col">
+                  <span class="badge badge-soft-success mb-2" *ngIf="sellData.safety" i18n="@@orderSafetySafe">
+                    Safe
+                  </span>
+                  <span class="badge badge-soft-danger mb-2" *ngIf="!sellData.safety" i18n="@@orderSafetyInDanger">
+                    In Danger
+                  </span>
+                  <div class="progress">
+                    <div [ngClass]="{'bg-success': sellData.safety, 'bg-danger': !sellData.safety}" class="progress-bar"
+                      role="progressbar"
+                      [ngStyle]="{'width': toBigNumber(sellData.collateralRatio).div(sellData.minCollateralRatio).div(2).times(100).toFormat(2) + '%'}">
+                      {{toBigNumber(sellData.collateralRatio).times(100).toFormat(0)}}%</div>
                   </div>
-                  <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-                    <div class="card-body p-0 pb-4">
-                      <div class="row align-items-center">
-                        <div class="col">
-                          <ng-container
-                            *ngIf="(sellData.isShort && isOrderOfType(sellData, 'CompoundOrder')) || !isOrderOfType(sellData, 'CompoundOrder')">
-                            <h6 class="header-pretitle" i18n="@@investmentsBuyModalAdvancedOptionSubTitle">
-                              Max acceptable price
-                            </h6>
-                            <p i18n="@@modalAdvancedOptionText">Your order WON'T be executed if the price goes up by
-                              more than:</p>
-                          </ng-container>
-                          <ng-container
-                            *ngIf="!((sellData.isShort && isOrderOfType(sellData, 'CompoundOrder')) || !isOrderOfType(sellData, 'CompoundOrder'))">
-                            <h6 class="header-pretitle" i18n="@@investmentsModalSellAdvancedOptionSubtite">
-                              Min acceptable price
-                            </h6>
-                            <p i18n="@@modalAdvancedOptionText">Your order WON'T be executed if the price goes down by
-                              more than:</p>
-                          </ng-container>
-                          <form>
-                            <div class="input-group input-group-lg">
-                              <input type="number" min="0.0" max="100.0" class="form-control border-right-0"
-                                aria-describedby="minAcceptablePrice" min="0.0" max="100.0" value="3"
-                                id="minAcceptablePrice">
-                              <div class="input-group-append">
-                                <span class="input-group-text rounded-right border-left-0"
-                                  id="minAcceptablePriceUnit">%</span>
+                  <div class="row no-gutters justify-content-between text-secondary mb-3">
+                    <div class="col text-left">
+                      <small class="h6">0%</small>
+                      <small class="h6 d-block" i18n="@@orderSafetyInDanger">In Danger</small>
+                    </div>
+                    <div class="col text-left position-absolute d-block w-auto"
+                      style="left: 49.0000%;transform: translateX(-50%);">
+                      <div style="display: flex; flex-direction: column;">
+                        <div style="border: 0.5px dashed #6e84a3; width: 1px; height: 8px; align-self: center;"></div>
+                        <small class="h6">{{sellData.minCollateralRatio.times(100).toFormat(0)}}%&nbsp;•&nbsp;
+                          <ng-container i18n="@@modalMinCollRatio">min. collateral ratio</ng-container></small>
+                      </div>
+                    </div>
+                    <div class="col text-right">
+                      <small class="h6">{{sellData.minCollateralRatio.times(2).times(100).toFormat(0)}}%</small>
+                      <small class="h6 d-block" i18n="@@orderSafetySafe">Safe</small>
+                    </div>
+                  </div>
+                  <p class="text-secondary small mb-0" i18n="@@modalTopUpCollateralLiquidationText">If the order's
+                    collateral ratio falls below the minimum, it will be
+                    liquidated, which will cause huge losses.</p>
+                </div>
+              </div>
+            </div>
+            <!--<h6 class="header-pretitle mt-4" i18n="@@investmentsNetworkLiquidity">Liquidity network</h6>
+            <div class="custom-control custom-radio custom-control-inline">
+              <input type="radio" id="kybernetwork" name="kybernetwork" class="custom-control-input" checked>
+              <label class="custom-control-label" for="kybernetwork">Kyber Network</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+              <input type="radio" id="dexag" name="dexag" class="custom-control-input">
+              <label class="custom-control-label" for="dexag">DEX.AG</label>
+            </div>-->
+            <!-- Min acceptable price -->
+            <div class="row justify-content-center mb-4">
+              <div class="col">
+                <div id="accordion">
+                  <!-- question -->
+                  <div class="card border-0 shadow-none mb-0">
+                    <div class="card-header border-0 shadow-none px-0" id="headingTwo">
+                      <a href="" class="text-secondary" data-toggle="collapse" data-target="#collapseTwo"
+                        aria-expanded="false" aria-controls="collapseTwo">
+                        <div class="row align-items-center no-gutters">
+                          <div class="col mr-auto">
+                            <span class="card-text text-muted small" i18n="@@modalAdvancedOptionTitle">
+                              Advanced
+                            </span>
+                          </div>
+                          <div class="col-auto">
+                            <i class="fe fe-plus"></i>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                      <div class="card-body p-0 pb-4">
+                        <div class="row align-items-center">
+                          <div class="col">
+                            <ng-container
+                              *ngIf="(sellData.isShort && isOrderOfType(sellData, 'CompoundOrder')) || !isOrderOfType(sellData, 'CompoundOrder')">
+                              <h6 class="header-pretitle" i18n="@@investmentsBuyModalAdvancedOptionSubTitle">
+                                Max acceptable price
+                              </h6>
+                              <p i18n="@@modalAdvancedOptionText">Your order WON'T be executed if the price goes up by
+                                more than:</p>
+                            </ng-container>
+                            <ng-container
+                              *ngIf="!((sellData.isShort && isOrderOfType(sellData, 'CompoundOrder')) || !isOrderOfType(sellData, 'CompoundOrder'))">
+                              <h6 class="header-pretitle" i18n="@@investmentsModalSellAdvancedOptionSubtite">
+                                Min acceptable price
+                              </h6>
+                              <p i18n="@@modalAdvancedOptionText">Your order WON'T be executed if the price goes down by
+                                more than:</p>
+                            </ng-container>
+                            <form>
+                              <div class="input-group input-group-lg">
+                                <input type="number" min="0.0" max="100.0" class="form-control border-right-0"
+                                  aria-describedby="minAcceptablePrice" min="0.0" max="100.0" value="3"
+                                  id="minAcceptablePrice">
+                                <div class="input-group-append">
+                                  <span class="input-group-text rounded-right border-left-0"
+                                    id="minAcceptablePriceUnit">%</span>
+                                </div>
                               </div>
-                            </div>
-                          </form>
+                            </form>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -1210,7 +1206,8 @@
               </div>
             </div>
           </div>
-        </div>
+        </ng-container>
+
         <!--Step 1: confirm tx in wallet-->
         <!-- Confirm tx body -->
         <!-- loader -->

@@ -187,6 +187,7 @@ export class InvestmentsComponent extends ApolloEnabled implements OnInit {
                             stake
                             tokenAmount
                             buyPrice
+                            buyTokenPrice
                             sellPrice
                             buyTime
                             liquidationPrice
@@ -213,6 +214,7 @@ export class InvestmentsComponent extends ApolloEnabled implements OnInit {
                             marketCollateralFactor
                             outputAmount
                             buyTime
+                            buyTokenPrice
                             isShort
                             orderAddress
                             txHash

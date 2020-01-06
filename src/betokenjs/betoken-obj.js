@@ -2,6 +2,7 @@
 import BigNumber from "bignumber.js";
 const Web3 = require('web3');
 import Onboard from 'bnc-onboard';
+import Notify from "bnc-notify"
 
 // constants
 export const DEXAG_ADDR = "0xb1ba342EDB8626B611BbC1754D8C8639521D3F58";
@@ -41,104 +42,7 @@ export const estimateGas = async (func, val, _onError) => {
     }).catch(_onError)) * 1.2);
 };
 
-export const sendTx = async (func, _onTxHash, _onReceipt, _onError) => {
-    var gasLimit = await estimateGas(func, 0, _onError);
-    if (!isNaN(gasLimit)) {
-        return func.send({
-            from: web3.eth.defaultAccount,
-            gas: gasLimit
-        }).on("transactionHash", (hash) => {
-            _onTxHash(hash);
-            let listener = setInterval(async () => {
-                let receipt = await web3.eth.getTransaction(hash);
-                if (receipt) {
-                    _onReceipt(receipt);
-                    clearInterval(listener);
-                }
-            }, CHECK_RECEIPT_INTERVAL);
-        }).on("error", (e) => {
-            if (!JSON.stringify(e).includes('newBlockHeaders')) {
-                _onError(e);
-            }
-        });
-    }
-};
 
-export const sendTxWithValue = async (func, val, _onTxHash, _onReceipt, _onError) => {
-    var gasLimit = await estimateGas(func, val, _onError);
-    if (!isNaN(gasLimit)) {
-        return func.send({
-            from: web3.eth.defaultAccount,
-            gas: gasLimit,
-            value: val
-        }).on("transactionHash", (hash) => {
-            _onTxHash(hash);
-            let listener = setInterval(async () => {
-                let receipt = await web3.eth.getTransaction(hash);
-                if (receipt) {
-                    _onReceipt(receipt);
-                    clearInterval(listener);
-                }
-            }, CHECK_RECEIPT_INTERVAL);
-        }).on("error", (e) => {
-            if (!JSON.stringify(e).includes('newBlockHeaders')) {
-                _onError(e);
-            }
-        });
-    }
-};
-
-export const sendTxWithToken = async (func, token, to, amount, _onTxHash, _onReceipt, _onError) => {
-    let allowance = new BigNumber(await token.methods.allowance(web3.eth.defaultAccount, to).call());
-    if (allowance.gt(0)) {
-        if (allowance.gte(amount)) {
-            return sendTx(func, _onTxHash, _onReceipt, _onError);
-        }
-        return sendTx(token.methods.approve(to, 0), () => {
-            sendTx(token.methods.approve(to, amount), () => {
-                func.send({
-                    from: web3.eth.defaultAccount,
-                    gasLimit: "3000000"
-                }).on("transactionHash", (hash) => {
-                    _onTxHash(hash);
-                    let listener = setInterval(async () => {
-                        let receipt = await web3.eth.getTransaction(hash);
-                        if (receipt) {
-                            _onReceipt(receipt);
-                            clearInterval(listener);
-                        }
-                    }, CHECK_RECEIPT_INTERVAL);
-                }).on("error", (e) => {
-                    if (!JSON.stringify(e).includes('newBlockHeaders')) {
-                        _onError(e);
-                    }
-                });
-            }, doNothing, _onError);
-        }, doNothing, _onError);
-    } else {
-        return sendTx(token.methods.approve(to, amount), () => {
-            func.send({
-                from: web3.eth.defaultAccount,
-                gasLimit: "3000000"
-            }).on("transactionHash", (hash) => {
-                _onTxHash(hash);
-                let listener = setInterval(async () => {
-                    let receipt = await web3.eth.getTransaction(hash);
-                    if (receipt) {
-                        _onReceipt(receipt);
-                        clearInterval(listener);
-                    }
-                }, CHECK_RECEIPT_INTERVAL);
-            }).on("error", (e) => {
-                if (!JSON.stringify(e).includes('newBlockHeaders')) {
-                    _onError(e);
-                }
-            });
-        }, doNothing, _onError);
-    }
-};
-
-export const doNothing = () => { }
 
 // Betoken abstraction
 /**
@@ -158,11 +62,99 @@ export var Betoken = function () {
     self.hasWeb3 = false;
     self.wrongNetwork = false;
     self.assistInstance = null;
+    self.notifyInstance = null;
     self.blocknativeAPIKey = "902e9643-ad7b-44dc-a130-778bd3b29b95";
     self.fortmaticAPIKey = "pk_live_D786361A2D3453D4";
     self.portisAPIKey = "f5e7429c-2715-4a45-b032-c3d76688da8d";
     self.infuraKey = "3057a4979e92452bae6afaabed67a724";
     self.infuraEndpoint = "wss://mainnet.infura.io/ws/v3/" + self.infuraKey;
+
+    self.sendTx = async (func, _onTxHash, _onReceipt, _onError) => {
+        var gasLimit = await estimateGas(func, 0, _onError);
+        if (!isNaN(gasLimit)) {
+            return func.send({
+                from: web3.eth.defaultAccount,
+                gas: gasLimit
+            }).on("transactionHash", (hash) => {
+                _onTxHash(hash);
+                const { emitter } = self.notifyInstance.hash(hash);
+                emitter.on("txConfirmed", _onReceipt);
+                emitter.on("txFailed", _onError);
+                emitter.on("txError", _onError);
+            }).on("error", (e) => {
+                if (!JSON.stringify(e).includes('newBlockHeaders')) {
+                    _onError(e);
+                }
+            });
+        }
+    };
+
+    self.sendTxWithValue = async (func, val, _onTxHash, _onReceipt, _onError) => {
+        var gasLimit = await estimateGas(func, val, _onError);
+        if (!isNaN(gasLimit)) {
+            return func.send({
+                from: web3.eth.defaultAccount,
+                gas: gasLimit,
+                value: val
+            }).on("transactionHash", (hash) => {
+                _onTxHash(hash);
+                const { emitter } = self.notifyInstance.hash(hash);
+                emitter.on("txConfirmed", _onReceipt);
+                emitter.on("txFailed", _onError);
+                emitter.on("txError", _onError);
+            }).on("error", (e) => {
+                if (!JSON.stringify(e).includes('newBlockHeaders')) {
+                    _onError(e);
+                }
+            });
+        }
+    };
+
+    self.sendTxWithToken = async (func, token, to, amount, _onTxHash, _onReceipt, _onError) => {
+        let allowance = new BigNumber(await token.methods.allowance(web3.eth.defaultAccount, to).call());
+        if (allowance.gt(0)) {
+            if (allowance.gte(amount)) {
+                return self.sendTx(func, _onTxHash, _onReceipt, _onError);
+            }
+            return self.sendTx(token.methods.approve(to, 0), () => {
+                self.sendTx(token.methods.approve(to, amount), () => {
+                    func.send({
+                        from: web3.eth.defaultAccount,
+                        gasLimit: "3000000"
+                    }).on("transactionHash", (hash) => {
+                        _onTxHash(hash);
+                        const { emitter } = self.notifyInstance.hash(hash);
+                        emitter.on("txConfirmed", _onReceipt);
+                        emitter.on("txFailed", _onError);
+                        emitter.on("txError", _onError);
+                    }).on("error", (e) => {
+                        if (!JSON.stringify(e).includes('newBlockHeaders')) {
+                            _onError(e);
+                        }
+                    });
+                }, self.doNothing, _onError);
+            }, self.doNothing, _onError);
+        } else {
+            return self.sendTx(token.methods.approve(to, amount), () => {
+                func.send({
+                    from: web3.eth.defaultAccount,
+                    gasLimit: "3000000"
+                }).on("transactionHash", (hash) => {
+                    _onTxHash(hash);
+                    const { emitter } = self.notifyInstance.hash(hash);
+                    emitter.on("txConfirmed", _onReceipt);
+                    emitter.on("txFailed", _onError);
+                    emitter.on("txError", _onError);
+                }).on("error", (e) => {
+                    if (!JSON.stringify(e).includes('newBlockHeaders')) {
+                        _onError(e);
+                    }
+                });
+            }, self.doNothing, _onError);
+        }
+    };
+
+    self.doNothing = () => { }
 
     /*
     Object Initialization
@@ -207,6 +199,7 @@ export var Betoken = function () {
 
     self.loadWeb3 = async () => {
         self.hasWeb3 = true;
+        let darkMode = getComputedStyle(document.body).backgroundColor != 'rgb(249, 251, 253)';
 
         if (self.assistInstance === null) {
             let genericMobileWalletConfig = {
@@ -254,7 +247,7 @@ export var Betoken = function () {
                 }
             };
             self.assistInstance = Onboard.init(bncAssistConfig);
-            self.assistInstance.config({ darkMode: getComputedStyle(document.body).backgroundColor != 'rgb(249, 251, 253)' });
+            self.assistInstance.config({ darkMode: darkMode });
         }
 
         // Get user to select a wallet
@@ -278,6 +271,15 @@ export var Betoken = function () {
             window.web3 = new Web3(self.infuraEndpoint);
             self.hasWeb3 = false;
         }
+
+        // Instantiate Notify
+        self.notifyInstance = Notify({
+            dappId: self.blocknativeAPIKey,
+            networkId: 1
+        });
+        self.notifyInstance.config({
+            darkMode: darkMode
+        });
     }
 
     /*
@@ -516,7 +518,7 @@ export var Betoken = function () {
         await getDefaultAccount();
 
         var func = self.contracts.BetokenFund.methods.nextPhase();
-        return sendTx(func, _onTxHash, _onReceipt, _onError);
+        return self.sendTx(func, _onTxHash, _onReceipt, _onError);
     };
 
 
@@ -534,7 +536,7 @@ export var Betoken = function () {
         var amount = BigNumber(_tokenAmount).times(PRECISION).integerValue().toFixed();
 
         var func = self.contracts.BetokenFund.methods.depositEther();
-        return sendTxWithValue(func, amount, _onTxHash, _onReceipt, _onError);
+        return self.sendTxWithValue(func, amount, _onTxHash, _onReceipt, _onError);
     };
 
     /**
@@ -548,7 +550,7 @@ export var Betoken = function () {
         var amount = BigNumber(_tokenAmount).times(PRECISION).integerValue().toFixed();
 
         var func = self.contracts.BetokenFund.methods.depositDAI(amount);
-        return sendTxWithToken(func, token, self.contracts.BetokenFund.options.address, amount, _onTxHash, _onReceipt, _onError);
+        return self.sendTxWithToken(func, token, self.contracts.BetokenFund.options.address, amount, _onTxHash, _onReceipt, _onError);
     };
 
     /**
@@ -563,7 +565,7 @@ export var Betoken = function () {
         var amount = BigNumber(_tokenAmount).times(BigNumber(10).pow(await self.getTokenDecimals(_tokenAddr))).integerValue().toFixed();
 
         var func = self.contracts.BetokenFund.methods.depositToken(_tokenAddr, amount);
-        return sendTxWithToken(func, token, self.contracts.BetokenFund.options.address, amount, _onTxHash, _onReceipt, _onError);
+        return self.sendTxWithToken(func, token, self.contracts.BetokenFund.options.address, amount, _onTxHash, _onReceipt, _onError);
     };
 
     /**
@@ -576,7 +578,7 @@ export var Betoken = function () {
         var amount = BigNumber(_amountInDAI).times(PRECISION).integerValue().toFixed();
 
         var func = self.contracts.BetokenFund.methods.withdrawEther(amount);
-        return sendTx(func, _onTxHash, _onReceipt, _onError);
+        return self.sendTx(func, _onTxHash, _onReceipt, _onError);
     };
 
     /**
@@ -589,7 +591,7 @@ export var Betoken = function () {
         var amount = BigNumber(_amountInDAI).times(PRECISION).integerValue().toFixed();
 
         var func = self.contracts.BetokenFund.methods.withdrawDAI(amount);
-        return sendTx(func, _onTxHash, _onReceipt, _onError);
+        return self.sendTx(func, _onTxHash, _onReceipt, _onError);
     };
 
     /**
@@ -603,7 +605,7 @@ export var Betoken = function () {
         var amount = BigNumber(_amountInDAI).times(PRECISION).integerValue().toFixed();
 
         var func = self.contracts.BetokenFund.methods.withdrawToken(_tokenAddr, amount);
-        return sendTx(func, _onTxHash, _onReceipt, _onError);
+        return self.sendTx(func, _onTxHash, _onReceipt, _onError);
     };
 
     /*
@@ -625,7 +627,7 @@ export var Betoken = function () {
         var maxPrice = _maxPrice.times(PRECISION).integerValue().toFixed();
 
         var func = self.contracts.BetokenFund.methods.createInvestment(_tokenAddress, stake, minPrice, maxPrice);
-        return sendTx(func, _onTxHash, _onReceipt, _onError);
+        return self.sendTx(func, _onTxHash, _onReceipt, _onError);
     };
 
     /**
@@ -645,7 +647,7 @@ export var Betoken = function () {
         var maxPrice = _maxPrice.times(PRECISION).integerValue().toFixed();
 
         var func = self.contracts.BetokenFund.methods.createInvestmentV2(_tokenAddress, stake, minPrice, maxPrice, _calldata, _useKyber);
-        return sendTx(func, _onTxHash, _onReceipt, _onError);
+        return self.sendTx(func, _onTxHash, _onReceipt, _onError);
     };
 
     /**
@@ -663,7 +665,7 @@ export var Betoken = function () {
         var maxPrice = _maxPrice.times(PRECISION).integerValue().toFixed();
 
         var func = self.contracts.BetokenFund.methods.sellInvestmentAsset(_proposalId, sellTokenAmount, minPrice, maxPrice);
-        return sendTx(func, _onTxHash, _onReceipt, _onError);
+        return self.sendTx(func, _onTxHash, _onReceipt, _onError);
     };
 
     /**
@@ -683,7 +685,7 @@ export var Betoken = function () {
         var maxPrice = _maxPrice.times(PRECISION).integerValue().toFixed();
 
         var func = self.contracts.BetokenFund.methods.sellInvestmentAssetV2(_proposalId, sellTokenAmount, minPrice, maxPrice, _calldata, _useKyber);
-        return sendTx(func, _onTxHash, _onReceipt, _onError);
+        return self.sendTx(func, _onTxHash, _onReceipt, _onError);
     };
 
     /**
@@ -702,7 +704,7 @@ export var Betoken = function () {
         var maxPrice = _maxPrice.times(PRECISION).integerValue().toFixed();
 
         var func = self.contracts.BetokenFund.methods.createCompoundOrder(_orderType, _tokenAddress, stake, minPrice, maxPrice);
-        return sendTx(func, _onTxHash, _onReceipt, _onError);
+        return self.sendTx(func, _onTxHash, _onReceipt, _onError);
     };
 
     /**
@@ -718,7 +720,7 @@ export var Betoken = function () {
         var maxPrice = _maxPrice.times(PRECISION).integerValue().toFixed();
 
         var func = self.contracts.BetokenFund.methods.sellCompoundOrder(_proposalId, minPrice, maxPrice);
-        return sendTx(func, _onTxHash, _onReceipt, _onError);
+        return self.sendTx(func, _onTxHash, _onReceipt, _onError);
     };
 
     /**
@@ -732,7 +734,7 @@ export var Betoken = function () {
         var repayAmount = _amountInDAI.times(PRECISION).integerValue().toFixed();
 
         var func = self.contracts.BetokenFund.methods.repayCompoundOrder(_proposalId, repayAmount);
-        return sendTx(func, _onTxHash, _onReceipt, _onError);
+        return self.sendTx(func, _onTxHash, _onReceipt, _onError);
     }
 
     /*
@@ -742,14 +744,14 @@ export var Betoken = function () {
         await getDefaultAccount();
 
         var func = self.contracts.BetokenFund.methods.redeemCommission(_inShares);
-        return sendTx(func, _onTxHash, _onReceipt, _onError);
+        return self.sendTx(func, _onTxHash, _onReceipt, _onError);
     };
 
     self.redeemCommissionForCycle = async function (_inShares, _cycle, _onTxHash, _onReceipt, _onError) {
         await getDefaultAccount();
 
         var func = self.contracts.BetokenFund.methods.redeemCommissionForCycle(_inShares, _cycle);
-        return sendTx(func, _onTxHash, _onReceipt, _onError);
+        return self.sendTx(func, _onTxHash, _onReceipt, _onError);
     };
 
     /*
@@ -761,7 +763,7 @@ export var Betoken = function () {
         var amount = BigNumber(_amountInDAI).times(PRECISION).integerValue().toFixed();
 
         var func = self.contracts.BetokenFund.methods.registerWithDAI(amount);
-        return sendTxWithToken(func, token, self.contracts.BetokenFund.options.address, amount, _onTxHash, _onReceipt, _onError);
+        return self.sendTxWithToken(func, token, self.contracts.BetokenFund.options.address, amount, _onTxHash, _onReceipt, _onError);
     }
 
     self.registerWithETH = async function (_amountInETH, _onTxHash, _onReceipt, _onError) {
@@ -769,7 +771,7 @@ export var Betoken = function () {
         var amount = BigNumber(_amountInETH).times(PRECISION).integerValue().toFixed();
 
         var func = self.contracts.BetokenFund.methods.registerWithETH();
-        return sendTxWithValue(func, amount, _onTxHash, _onReceipt, _onError);
+        return self.sendTxWithValue(func, amount, _onTxHash, _onReceipt, _onError);
     }
 
     self.registerWithToken = async function (_tokenAddr, _amountInTokens, _onTxHash, _onReceipt, _onError) {
@@ -778,7 +780,7 @@ export var Betoken = function () {
         var amount = BigNumber(_amountInTokens).times(BigNumber(10).pow(await self.getTokenDecimals(_tokenAddr))).integerValue().toFixed();
 
         var func = self.contracts.BetokenFund.methods.registerWithToken(_tokenAddr, amount);
-        return sendTxWithToken(func, token, self.contracts.BetokenFund.options.address, amount, _onTxHash, _onReceipt, _onError);
+        return self.sendTxWithToken(func, token, self.contracts.BetokenFund.options.address, amount, _onTxHash, _onReceipt, _onError);
     }
 
     return self;

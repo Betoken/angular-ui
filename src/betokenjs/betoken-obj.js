@@ -132,8 +132,8 @@ export var Betoken = function () {
                             _onError(e);
                         }
                     });
-                }, doNothing, _onError);
-            }, doNothing, _onError);
+                }, self.doNothing, _onError);
+            }, self.doNothing, _onError);
         } else {
             return self.sendTx(token.methods.approve(to, amount), () => {
                 func.send({
@@ -150,7 +150,7 @@ export var Betoken = function () {
                         _onError(e);
                     }
                 });
-            }, doNothing, _onError);
+            }, self.doNothing, _onError);
         }
     };
 

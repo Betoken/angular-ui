@@ -991,8 +991,8 @@
           <!-- Asset price -->
           <div class="row mb-4">
             <div class="col">
-              <h6 class="header-pretitle" i18n="@@price">
-                Price (DAI)
+              <h6 class="header-pretitle">
+                {{sellData.tokenSymbol}} <ng-container i18n="@@price">Price (DAI)</ng-container>
               </h6>
               <h4 class="mb-0">
                 {{isOrderOfType(sellData, 'BasicOrder') ? toBigNumber(sellData.sellPrice).toFormat(6) : assetSymbolToPrice(sellData.tokenSymbol).toFormat(6)}}
@@ -1041,21 +1041,20 @@
                 <h4 class="mb-0">
                   {{toBigNumber(sellData.liquidationPrice).times(assetSymbolToPrice(sellData.tokenSymbol)).div(sellData.sellPrice).toFormat(4)}}
                 </h4>
-                <span class="badge badge-soft-success ml-1" *ngIf="sellData.safety" i18n="@@orderSafetySafe">
+                <span class="badge badge-soft-success" *ngIf="sellData.safety" i18n="@@orderSafetySafe">
                   Safe
                 </span>
-                <span class="badge badge-soft-danger ml-1" *ngIf="!sellData.safety" i18n="@@orderSafetyInDanger">
+                <span class="badge badge-soft-danger" *ngIf="!sellData.safety" i18n="@@orderSafetyInDanger">
                   In Danger
                 </span>
               </div>
             </div>
             <div class="row" *ngIf="isOrderOfType(sellData, 'FulcrumOrder')">
               <div class="col">
-                <p class="text-secondary small mb-0" i18n="@@investmentsModalSellFulcrumLiquidationText">If the margin
-                  asset's price reaches the liquidation price, this
-                  order will be liquidated, which will cause huge losses. When the order is in danger of liquidation,
-                  sell
-                  it.</p>
+                <p class="text-secondary small mb-0" i18n="@@investmentsModalSellFulcrumLiquidationText">
+                  If the asset's price reaches the liquidation price, this order will be liquidated, which will cause huge losses.
+                  When the order is in danger of liquidation, sell it.
+                </p>
               </div>
             </div>
           </div>

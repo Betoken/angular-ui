@@ -11,7 +11,6 @@ import {
 import { ApolloEnabled } from '../apollo';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
-import { isNull } from 'util';
 
 @Component({
   selector: 'app-invest',
@@ -38,6 +37,7 @@ export class DashboardComponent extends ApolloEnabled implements OnInit {
   shouldDrawChart: Boolean;
   sharesPriceHistory: any;
   aumHistory: any;
+  historyWindowSize: number;
 
   constructor(private apollo: Apollo) {
     super();
@@ -58,6 +58,7 @@ export class DashboardComponent extends ApolloEnabled implements OnInit {
     this.hasDrawnChart = false;
     this.chartTabId = 0;
     this.shouldDrawChart = true;
+    this.historyWindowSize = 90;
   }
 
   ngOnInit() {
@@ -81,11 +82,11 @@ export class DashboardComponent extends ApolloEnabled implements OnInit {
               cycleTotalCommission
               totalFundsAtPhaseStart
               sharesPrice
-              sharesPriceHistory(orderBy: timestamp, orderDirection: asc, first: 1000) {
+              sharesPriceHistory(orderBy: timestamp, orderDirection: desc, first: ${this.historyWindowSize}) {
                 timestamp
                 value
               }
-              aumHistory(orderBy: timestamp, orderDirection: asc, first: 1000) {
+              aumHistory(orderBy: timestamp, orderDirection: desc, first: ${this.historyWindowSize}) {
                 timestamp
                 value
               }
@@ -147,8 +148,8 @@ export class DashboardComponent extends ApolloEnabled implements OnInit {
       this.portfolioValueInDAI = this.userValue.div(fund.kairoTotalSupply).times(fund.totalFundsInDAI);
 
       // draw chart
-      this.sharesPriceHistory = fund.sharesPriceHistory;
-      this.aumHistory = fund.aumHistory;
+      this.sharesPriceHistory = this.reversedCopyOfArray(fund.sharesPriceHistory);
+      this.aumHistory = this.reversedCopyOfArray(fund.aumHistory);
       this.calcStats();
       this.chartDraw(this.chartTabId);
     }

@@ -40,6 +40,7 @@ export class InvestorComponent extends ApolloEnabled implements OnInit {
   sharesPriceHistory: any;
   btcPriceHistory: any;
   ethPriceHistory: any;
+  historyWindowSize: number;
 
   buyStep: Number;
   sellStep: Number;
@@ -82,6 +83,7 @@ export class InvestorComponent extends ApolloEnabled implements OnInit {
     this.sellTokenAmount = new BigNumber(0);
 
     this.hasDrawnChart = false;
+    this.historyWindowSize = 90;
 
     this.buyStep = 0;
     this.sellStep = 0;
@@ -134,7 +136,7 @@ export class InvestorComponent extends ApolloEnabled implements OnInit {
               totalFundsAtPhaseStart
               aum
               sharesPrice
-              sharesPriceHistory(orderBy: timestamp, orderDirection: asc, first: 1000) {
+              sharesPriceHistory(orderBy: timestamp, orderDirection: desc, first: ${this.historyWindowSize}) {
                 timestamp
                 value
               }
@@ -149,11 +151,11 @@ export class InvestorComponent extends ApolloEnabled implements OnInit {
                 txHash
               }
             }
-            btcPriceHistory: tokenPrices(where: { tokenSymbol: "WBTC" }, orderBy: timestamp, first: 1000) {
+            btcPriceHistory: tokenPrices(where: { tokenSymbol: "WBTC" }, orderBy: timestamp, orderDirection: desc, first: ${this.historyWindowSize}) {
               timestamp
               priceInDAI
             }
-            ethPriceHistory: tokenPrices(where: { tokenSymbol: "ETH" }, orderBy: timestamp, first: 1000) {
+            ethPriceHistory: tokenPrices(where: { tokenSymbol: "ETH" }, orderBy: timestamp, orderDirection: desc, first: ${this.historyWindowSize}) {
               timestamp
               priceInDAI
             }
@@ -185,9 +187,9 @@ export class InvestorComponent extends ApolloEnabled implements OnInit {
       }
 
       // draw chart
-      this.sharesPriceHistory = fund.sharesPriceHistory;
-      this.btcPriceHistory = data['btcPriceHistory'];
-      this.ethPriceHistory = data['ethPriceHistory'];
+      this.sharesPriceHistory = this.reversedCopyOfArray(fund.sharesPriceHistory);
+      this.btcPriceHistory = this.reversedCopyOfArray(data['btcPriceHistory']);
+      this.ethPriceHistory = this.reversedCopyOfArray(data['ethPriceHistory']);
       this.calcStats();
       this.chartDraw();
     }
@@ -411,8 +413,9 @@ export class InvestorComponent extends ApolloEnabled implements OnInit {
       let self = this;
       let NUM_DECIMALS = 4;
 
-      let sharesPriceList = this.sharesPriceHistory.map((x) => new BigNumber(x.value).minus(1).times(100).dp(NUM_DECIMALS));
-      sharesPriceList.push(this.sharesPrice.minus(1).times(100).dp(NUM_DECIMALS));
+      let sharesPriceList = this.sharesPriceHistory.map((x) => new BigNumber(x.value));
+      sharesPriceList.push(this.sharesPrice);
+      sharesPriceList = sharesPriceList.map((x) => x.div(sharesPriceList[0]).minus(1).times(100).dp(NUM_DECIMALS));
 
       let btcPriceList = this.btcPriceHistory.map((x) => new BigNumber(x.priceInDAI));
       btcPriceList.push(this.assetSymbolToPrice('WBTC'));

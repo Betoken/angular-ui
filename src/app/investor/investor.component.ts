@@ -83,7 +83,7 @@ export class InvestorComponent extends ApolloEnabled implements OnInit {
     this.sellTokenAmount = new BigNumber(0);
 
     this.hasDrawnChart = false;
-    this.historyWindowSize = 90;
+    this.historyWindowSize = 1000;
 
     this.buyStep = 0;
     this.sellStep = 0;

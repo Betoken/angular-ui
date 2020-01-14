@@ -58,7 +58,7 @@ export class DashboardComponent extends ApolloEnabled implements OnInit {
     this.hasDrawnChart = false;
     this.chartTabId = 0;
     this.shouldDrawChart = true;
-    this.historyWindowSize = 90;
+    this.historyWindowSize = 1000;
   }
 
   ngOnInit() {

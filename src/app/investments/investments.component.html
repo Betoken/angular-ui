@@ -340,6 +340,9 @@
                       <span class="font-weight-bold">{{data.currValue.toFormat(4)}} KRO</span>
                     </div>
                     <div class="col-12 col-lg-auto">
+                      <span class="font-weight-bold">{{data.daiValue.toFormat(4)}} DAI</span>
+                    </div>
+                    <div class="col-12 col-lg-auto">
                       <!-- Badge ROI -->
                       <span class="badge badge-xl"
                         [ngClass]="{'badge-soft-success': data.ROI.gte(0), 'badge-soft-danger': data.ROI.lt(0)}">
@@ -983,8 +986,7 @@
             <ng-container i18n="@@investmentsModalSellOrderBuyTime">OPENED</ng-container>
             &nbsp;{{toDateTimeString(sellData.buyTime)}}
           </time>
-          <a class="header-pretitle h6 mb-0"
-            href="https://etherscan.io/tx/{{sellData['txHash']}}" target="_blank"> •
+          <a class="header-pretitle h6 mb-0" href="https://etherscan.io/tx/{{sellData['txHash']}}" target="_blank"> •
             Etherscan<i class="fe fe-external-link ml-2"></i></a>
 
           <hr class="mb-4">
@@ -992,70 +994,81 @@
           <div class="row mb-4">
             <div class="col">
               <h6 class="header-pretitle">
-                {{sellData.tokenSymbol}} <ng-container i18n="@@price">Price (DAI)</ng-container>
+                {{sellData.tokenSymbol}} <ng-container i18n="@@price">Price</ng-container>
               </h6>
               <h4 class="mb-0">
-                {{isOrderOfType(sellData, 'BasicOrder') ? toBigNumber(sellData.sellPrice).toFormat(6) : assetSymbolToPrice(sellData.tokenSymbol).toFormat(6)}}
+                {{isOrderOfType(sellData, 'BasicOrder') ? toBigNumber(sellData.sellPrice).toFormat(6) : assetSymbolToPrice(sellData.tokenSymbol).toFormat(6)}} DAI
               </h4>
-              <span class="badge"
-                [ngClass]="{'badge-soft-success': sellData.ROI.gte(0), 'badge-soft-danger': sellData.ROI.lt(0)}">
-                {{sellData.ROI.toFormat(4)}}%
-              </span>
             </div>
-            <div class="col" >
+            <div class="col">
               <h6 class="header-pretitle" i18n="@@buyPrice">
-                Asset buy price (DAI)
+                Asset buy price
               </h6>
               <h4 class="mb-0" *ngIf="isOrderOfType(sellData, 'BasicOrder')">
-                {{toBigNumber(sellData.buyPrice).toFormat(6)}}
+                {{toBigNumber(sellData.buyPrice).toFormat(6)}} DAI
               </h4>
               <h4 class="mb-0" *ngIf="!isOrderOfType(sellData, 'BasicOrder')">
-                {{toBigNumber(sellData.buyTokenPrice).toFormat(6)}}
+                {{toBigNumber(sellData.buyTokenPrice).toFormat(6)}} DAI
               </h4>
             </div>
           </div>
           <div class="row">
             <div class="col">
               <h6 class="header-pretitle" i18n="@@investmentsModalSellStakedKro">
-                Staked KRO
+                Staked Kairo
               </h6>
               <h4 class="mb-0">
-                {{formatNumber(sellData.stake, 4)}}
+                {{formatNumber(sellData.stake, 4)}} KRO
               </h4>
             </div>
             <div class="col">
               <h6 class="header-pretitle" i18n="@@investmentsModalSellKroToRedeem">
-                KRO to Redeem
+                Kairo to redeem
               </h6>
               <h4 class="mb-0">
-                {{sellData.currValue.toFormat(4)}}
+                {{sellData.currValue.toFormat(4)}} KRO
               </h4>
+              <span class="badge"
+                [ngClass]="{'badge-soft-success': sellData.ROI.gte(0), 'badge-soft-danger': sellData.ROI.lt(0)}">
+                {{sellData.ROI.toFormat(4)}}%
+              </span>
             </div>
           </div>
-          <div>
-            <div class="row my-4" *ngIf="isOrderOfType(sellData, 'FulcrumOrder')">
-              <div class="col">
-                <h6 class="header-pretitle" i18n="@@investmentsModalSellFulcrumLiquidationPrice">
-                  Liquidation Price
-                </h6>
-                <h4 class="mb-0">
-                  {{toBigNumber(sellData.liquidationPrice).times(assetSymbolToPrice(sellData.tokenSymbol)).div(sellData.sellPrice).toFormat(4)}}
-                </h4>
-                <span class="badge badge-soft-success" *ngIf="sellData.safety" i18n="@@orderSafetySafe">
-                  Safe
-                </span>
-                <span class="badge badge-soft-danger" *ngIf="!sellData.safety" i18n="@@orderSafetyInDanger">
-                  In Danger
-                </span>
-              </div>
+          <div class="row my-4">
+            <div class="col">
+              <h6 class="header-pretitle">
+                DAI to redeem
+              </h6>
+              <h4 class="mb-0">
+                {{sellData.daiValue.toFormat(4)}} DAI
+              </h4>
+              <span class="badge"
+                [ngClass]="{'badge-soft-success': sellData.daiROI.gte(0), 'badge-soft-danger': sellData.daiROI.lt(0)}">
+                {{sellData.daiROI.toFormat(4)}}%
+              </span>
             </div>
-            <div class="row" *ngIf="isOrderOfType(sellData, 'FulcrumOrder')">
-              <div class="col">
-                <p class="text-secondary small mb-0" i18n="@@investmentsModalSellFulcrumLiquidationText">
-                  If the asset's price reaches the liquidation price, this order will be liquidated, which will cause huge losses.
-                  When the order is in danger of liquidation, sell it.
-                </p>
-              </div>
+            <div class="col" *ngIf="isOrderOfType(sellData, 'FulcrumOrder')">
+              <h6 class="header-pretitle" i18n="@@investmentsModalSellFulcrumLiquidationPrice">
+                Liquidation Price
+              </h6>
+              <h4 class="mb-0">
+                {{toBigNumber(sellData.liquidationPrice).times(assetSymbolToPrice(sellData.tokenSymbol)).div(sellData.sellPrice).toFormat(4)}}
+              </h4>
+              <span class="badge badge-soft-success" *ngIf="sellData.safety" i18n="@@orderSafetySafe">
+                Safe
+              </span>
+              <span class="badge badge-soft-danger" *ngIf="!sellData.safety" i18n="@@orderSafetyInDanger">
+                In Danger
+              </span>
+            </div>
+          </div>
+          <div class="row" *ngIf="isOrderOfType(sellData, 'FulcrumOrder')">
+            <div class="col">
+              <p class="text-secondary small mb-0" i18n="@@investmentsModalSellFulcrumLiquidationText">
+                If the asset's price reaches the liquidation price, this order will be liquidated, which will cause huge
+                losses.
+                When the order is in danger of liquidation, sell it.
+              </p>
             </div>
           </div>
 

@@ -40,4 +40,11 @@ export class ApolloEnabled implements OnDestroy {
   getManagerKairoBalance(managerData) {
     return new BigNumber(managerData.kairoBalanceWithStake);
   }
+
+  reversedCopyOfArray(array) {
+    let result = new Array();
+    result = result.concat(array);
+    result.reverse();
+    return result;
+  }
 }

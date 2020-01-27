@@ -94,7 +94,9 @@ export class InvestmentsComponent extends ApolloEnabled implements OnInit {
             currCash: new BigNumber(0),
             leverage: 0,
             tokenSymbol: "ETH",
-            txHash: ""
+            txHash: "",
+            daiValue: new BigNumber(0),
+            daiROI: new BigNumber(0)
         };
 
         this.activeInvestmentList = new Array<Object>();
@@ -274,6 +276,8 @@ export class InvestmentsComponent extends ApolloEnabled implements OnInit {
                 let kairoROI = utils.toKairoROI(investmentROI);
                 x.ROI = kairoROI.times(100);
                 x.currValue = new BigNumber(x.stake).times(x.ROI.div(100).plus(1));
+                x.daiValue = new BigNumber(x.stake).times(investmentROI.plus(1)).times(this.kairoPrice);
+                x.daiROI = investmentROI.times(100);
                 return x;
             }));
             let activeFulcrumOrders = data['activeFulcrumOrders'].map((x) => {
@@ -282,6 +286,8 @@ export class InvestmentsComponent extends ApolloEnabled implements OnInit {
                 let kairoROI = utils.toKairoROI(investmentROI);
                 x.ROI = kairoROI.times(100);
                 x.currValue = new BigNumber(x.stake).times(x.ROI.div(100).plus(1));
+                x.daiValue = new BigNumber(x.stake).times(investmentROI.plus(1)).times(this.kairoPrice);
+                x.daiROI = investmentROI.times(100);
                 x.leverage = tokens.ptoken_address_to_info(x.tokenAddress).leverage;
                 x.safety = new BigNumber(x.liquidationPrice).minus(x.sellPrice).div(x.sellPrice).abs().gt(this.UNSAFE_COL_RATIO_MULTIPLIER - 1);
                 return x;
@@ -292,6 +298,8 @@ export class InvestmentsComponent extends ApolloEnabled implements OnInit {
                 let kairoROI = utils.toKairoROI(investmentROI);
                 x.ROI = kairoROI.times(100);
                 x.currValue = new BigNumber(x.stake).times(x.ROI.div(100).plus(1));
+                x.daiValue = new BigNumber(x.stake).times(investmentROI.plus(1)).times(this.kairoPrice);
+                x.daiROI = investmentROI.times(100);
                 x.minCollateralRatio = new BigNumber(1).div(x.marketCollateralFactor);
                 x.leverage = x.isShort ? x.minCollateralRatio.times(this.COL_RATIO_MODIFIER).pow(-1).dp(4).toNumber() : new BigNumber(1).plus(x.minCollateralRatio.times(this.COL_RATIO_MODIFIER).pow(-1)).dp(4).toNumber();
                 x.safety = new BigNumber(x.collateralRatio).gt(x.minCollateralRatio.times(this.UNSAFE_COL_RATIO_MULTIPLIER));

@@ -126,12 +126,16 @@ export class DashboardComponent extends ApolloEnabled implements OnInit {
             this.expectedCommission = user.commission_balance();
           } else {
             // Expected commission based on previous average ROI
-            let actualKairoSupply = new BigNumber(fund.kairoTotalSupply).div(fund.totalFundsInDAI).times(fund.aum);
-            let totalProfit = new BigNumber(fund.aum).minus(fund.totalFundsAtPhaseStart);
-            totalProfit = BigNumber.max(totalProfit, 0);
-            let commission = totalProfit.div(actualKairoSupply).times(this.userValue).times(user.commission_rate());
-            let assetFee = new BigNumber(fund.aum).div(actualKairoSupply).times(this.userValue).times(user.asset_fee_rate());
-            this.expectedCommission = commission.plus(assetFee).times(manager.riskTaken).div(manager.riskThreshold);
+            if (+manager.riskThreshold !== 0) {
+              let actualKairoSupply = new BigNumber(fund.kairoTotalSupply).div(fund.totalFundsInDAI).times(fund.aum);
+              let totalProfit = new BigNumber(fund.aum).minus(fund.totalFundsAtPhaseStart);
+              totalProfit = BigNumber.max(totalProfit, 0);
+              let commission = totalProfit.div(actualKairoSupply).times(this.userValue).times(user.commission_rate());
+              let assetFee = new BigNumber(fund.aum).div(actualKairoSupply).times(this.userValue).times(user.asset_fee_rate());
+              this.expectedCommission = commission.plus(assetFee).times(manager.riskTaken).div(manager.riskThreshold);
+            } else {
+              this.expectedCommission = new BigNumber(0);
+            }
           }
         }
       }

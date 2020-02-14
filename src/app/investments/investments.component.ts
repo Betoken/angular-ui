@@ -248,8 +248,8 @@ export class InvestmentsComponent extends ApolloEnabled implements OnInit {
 
             if (!isNull(manager)) {
                 this.userValue = this.getManagerKairoBalance(manager);
-                this.userROI = this.userValue.div(manager.baseStake).minus(1).times(100);
-                this.riskTakenPercentage = BigNumber.min(new BigNumber(manager.riskTaken).div(manager.riskThreshold).times(100), 100);
+                this.userROI = +manager.baseStake == 0 ? new BigNumber(0) : this.userValue.div(manager.baseStake).minus(1).times(100);
+                this.riskTakenPercentage = +manager.riskThreshold == 0 ? new BigNumber(0) : BigNumber.min(new BigNumber(manager.riskTaken).div(manager.riskThreshold).times(100), 100);
                 this.portfolioValueInDAI = this.userValue.div(fund.kairoTotalSupply).times(fund.totalFundsInDAI);
                 this.kairoBalance = new BigNumber(manager.kairoBalance);
                 // calculate expected commission
@@ -259,12 +259,16 @@ export class InvestmentsComponent extends ApolloEnabled implements OnInit {
                         this.expectedCommission = user.commission_balance();
                     } else {
                         // Expected commission based on previous average ROI
-                        let actualKairoSupply = new BigNumber(fund.kairoTotalSupply).div(fund.totalFundsInDAI).times(fund.aum);
-                        let totalProfit = new BigNumber(fund.aum).minus(fund.totalFundsAtPhaseStart);
-                        totalProfit = BigNumber.max(totalProfit, 0);
-                        let commission = totalProfit.div(actualKairoSupply).times(this.userValue).times(user.commission_rate());
-                        let assetFee = new BigNumber(fund.aum).div(actualKairoSupply).times(this.userValue).times(user.asset_fee_rate());
-                        this.expectedCommission = commission.plus(assetFee).times(manager.riskTaken).div(manager.riskThreshold);
+                        if (+manager.riskThreshold !== 0) {
+                            let actualKairoSupply = new BigNumber(fund.kairoTotalSupply).div(fund.totalFundsInDAI).times(fund.aum);
+                            let totalProfit = new BigNumber(fund.aum).minus(fund.totalFundsAtPhaseStart);
+                            totalProfit = BigNumber.max(totalProfit, 0);
+                            let commission = totalProfit.div(actualKairoSupply).times(this.userValue).times(user.commission_rate());
+                            let assetFee = new BigNumber(fund.aum).div(actualKairoSupply).times(this.userValue).times(user.asset_fee_rate());
+                            this.expectedCommission = commission.plus(assetFee).times(manager.riskTaken).div(manager.riskThreshold);
+                        } else {
+                            this.expectedCommission = new BigNumber(0);
+                        }
                     }
                 }
             }

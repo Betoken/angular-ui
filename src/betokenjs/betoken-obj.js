@@ -68,6 +68,7 @@ export var Betoken = function () {
     self.portisAPIKey = "f5e7429c-2715-4a45-b032-c3d76688da8d";
     self.infuraKey = "3057a4979e92452bae6afaabed67a724";
     self.infuraEndpoint = "wss://mainnet.infura.io/ws/v3/" + self.infuraKey;
+    self.squarelinkKey = "2b586551124b5a78f599";
 
     self.sendTx = async (func, _onTxHash, _onReceipt, _onError) => {
         var gasLimit = await estimateGas(func, 0, _onError);
@@ -201,14 +202,17 @@ export var Betoken = function () {
         self.hasWeb3 = true;
         let darkMode = getComputedStyle(document.body).backgroundColor != 'rgb(249, 251, 253)';
 
-        if (self.assistInstance === null) {
+        if (!self.assistInstance) {
             let genericMobileWalletConfig = {
                 name: "Web3 wallet",
+                mobile: true,
+                desktop: true,
+                preferred: true,
                 iconSrc: "data:image/png;base64,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",
                 wallet: function (helpers) {
                     var getProviderName = helpers.getProviderName, createModernProviderInterface = helpers.createModernProviderInterface, createLegacyProviderInterface = helpers.createLegacyProviderInterface;
-                    var provider = window.ethereum ||
-                        (window.web3 && window.web3.currentProvider);
+                    var provider = window['ethereum'] ||
+                        (web3 && web3.currentProvider);
                     return {
                         provider: provider,
                         interface: provider
@@ -219,35 +223,57 @@ export var Betoken = function () {
                     };
                 }
             };
-            let walletSelectConfig = Onboard.modules.select.defaults({
-                fortmaticInit: { apiKey: self.fortmaticAPIKey },
-                portisInit: { apiKey: self.portisAPIKey },
-                walletConnectInit: { infuraKey: self.infuraKey },
-                networkId: 1
-            });
-            walletSelectConfig.wallets.mobile.unshift(genericMobileWalletConfig);
+
+            const wallets = [
+                {
+                    walletName: 'fortmatic',
+                    preferred: true,
+                    apiKey: self.fortmaticAPIKey
+                },
+                genericMobileWalletConfig,
+                { walletName: 'authereum', networkId: 1 },
+                {
+                    walletName: 'walletConnect',
+                    infuraKey: self.infuraKey,
+                    networkId: 1
+                },
+                {
+                    walletName: 'portis',
+                    apiKey: self.portisAPIKey,
+                    networkId: 1
+                },
+                { walletName: 'squarelink', apiKey: self.squarelinkKey },
+            ];
+
+            const walletChecks = [
+                { checkName: 'connect' },
+                { checkName: 'network' },
+                { checkName: 'balance', minimumBalance: '0' }
+            ];
+
+            let walletSelectConfig = {
+                heading: 'Select a Wallet',
+                description: 'Please select a wallet to connect to this dapp:',
+                wallets: wallets
+            };
+
             let bncAssistConfig = {
                 dappId: self.blocknativeAPIKey,
+                darkMode: darkMode,
                 networkId: 1,
                 subscriptions: {
                     wallet: wallet => {
                         if (wallet.provider) {
-                            window.web3 = new Web3(wallet.provider);
+                            web3 = new Web3(wallet.provider);
                         }
                     }
                 },
-                modules: {
-                    // default wallets that are included: MetaMask, Dapper, Coinbase, Trust, WalletConnect
-                    walletSelect: walletSelectConfig,
-                    // default ready steps are: connect, network, balance
-                    walletReady: Onboard.modules.ready.defaults({
-                        networkId: 1,
-                        minimumBalance: "0"
-                    })
-                }
+                // default wallets that are included: MetaMask, Dapper, Coinbase, Trust, WalletConnect
+                walletSelect: walletSelectConfig,
+                // default ready steps are: connect, network, balance
+                walletCheck: walletChecks
             };
-            self.assistInstance = Onboard.init(bncAssistConfig);
-            self.assistInstance.config({ darkMode: darkMode });
+            self.assistInstance = Onboard(bncAssistConfig);
         }
 
         // Get user to select a wallet
@@ -258,7 +284,7 @@ export var Betoken = function () {
             || state.address !== null // If user already logged in but want to switch account, and then dismissed window
         ) {
             // Get users' wallet ready to transact
-            let ready = await self.assistInstance.walletReady();
+            let ready = await self.assistInstance.walletCheck();
 
             if (!ready) {
                 // Selected an option but then dismissed it
@@ -273,13 +299,15 @@ export var Betoken = function () {
         }
 
         // Instantiate Notify
-        self.notifyInstance = Notify({
-            dappId: self.blocknativeAPIKey,
-            networkId: 1
-        });
-        self.notifyInstance.config({
-            darkMode: darkMode
-        });
+        if (!self.notifyInstance) {
+            self.notifyInstance = Notify({
+                dappId: self.blocknativeAPIKey,
+                networkId: 1
+            });
+            self.notifyInstance.config({
+                darkMode: darkMode
+            });
+        }
     }
 
     /*

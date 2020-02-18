@@ -125,6 +125,12 @@ export const tokens = {
     getAssetPriceAtTimestamp: (symbol, timestamp) => Data.getAssetPriceAtTimestamp(symbol, timestamp)
 };
 
+export const governance = {
+    chunk: () => Data.chunk,
+    subchunk: () => Data.subchunk,
+    totalVotingWeight: () => Data.totalVotingWeight
+}
+
 export const loading = {
     prices: () => Data.isLoadingPrices
 };

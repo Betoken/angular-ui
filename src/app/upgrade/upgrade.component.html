@@ -21,40 +21,18 @@
       <div class="card list-group mb-4">
         <div class="card-header border-bottom-0">
           <div class="row align-items-center justify-content-between">
-            <!-- If voting phase -->
             <div class="col-auto">
               <!-- Title -->
               <h4 class="card-header-title" i18n="@@upgradeCardTitle">
-                Vote
-              </h4>
-            </div>
-            <div class="col-auto text-right pr-2">
-              <h6 class="header-pretitle text-secondary mb-2" i18n="@@upgradeCardPreTitleQuorum">
-                Quorum
-              </h6>
-              <h4 class="header-title mb-0">
-                1.42% <ng-container i18n="@@upgradeCardQuorumValueNeeded">(10% needed)</ng-container>
-              </h4>
-            </div>
-            <!-- If no voting phase -->
-            <div class="col-auto d-none">
-              <!-- Title -->
-              <h4 class="card-header-title" i18n="@@upgradeCandidateCardTitle">
-                Upgrade candidate
-              </h4>
-            </div>
-            <!-- If waiting status -->
-            <div class="col-auto d-none">
-              <!-- Title -->
-              <h4 class="card-header-title" i18n="@@upgradeStatusCardTitle">
-                Upgrade status
+                Current Status
               </h4>
             </div>
           </div> <!-- / .row -->
         </div>
-        <!-- If no dev candidate -->
+        <!-- If signaling -->
         <a class="list-group-item list-group-item-action border-bottom-0 border-left-0 border-right-0" href="#"
-          data-toggle="modal" data-target="#modalUpgrade">
+          data-toggle="modal" data-target="#modalUpgrade"
+          *ngIf="upgradeState == UpgradeState.SIGNALING_ENOUGH || upgradeState == UpgradeState.SIGNALING_NOT_ENOUGH">
           <div class="row d-flex align-items-center no-gutters">
             <div class="col-auto">
               <span class="avatar avatar-xs">
@@ -62,32 +40,26 @@
               </span>
             </div>
             <div class="col pl-3">
-              <h4 class="mb-0" i18n="@@upgradeBetoken">Upgrade Betoken</h4>
+              <h4 class="mb-0" i18n="@@upgradeBetoken">Should upgrade Betoken smart contracts</h4>
             </div>
-            <div class="col-auto text-right">
-              <span class="font-weight-bold">457&nbsp;<ng-container i18n="@@upgradeNbVotes">votes</ng-container></span>
+            <div class="col-auto mr-2">
+              <span class="small">{{progressBarValue}} / {{progressBarMax}}</span>
             </div>
-          </div>
-        </a>
-        <a class="list-group-item list-group-item-action border-bottom-0 border-left-0 border-right-0" href="#"
-          data-toggle="modal" data-target="#modalUpgrade">
-          <div class="row d-flex align-items-center no-gutters">
-            <div class="col-auto">
-              <span class="avatar avatar-xs">
-                <span class="avatar-title rounded-circle bg-danger"><i class="fe fe-x h4 mb-0"></i></span>
-              </span>
-            </div>
-            <div class="col pl-3">
-              <h4 class="mb-0" i18n="@@dontUpgradeBetoken">Don't upgrade Betoken</h4>
-            </div>
-            <div class="col-auto text-right">
-              <span class="font-weight-bold">34&nbsp;<ng-container i18n="@@upgradeNbVotes">votes</ng-container></span>
+            <div class="col text-right">
+              <div class="progress progress-sm">
+                <div
+                  [ngClass]="{'bg-success': upgradeState == UpgradeState.SIGNALING_ENOUGH, 'bg-danger': upgradeState == UpgradeState.SIGNALING_NOT_ENOUGH}"
+                  class="progress-bar" role="progressbar"
+                  [ngStyle]="{'width': toBigNumber(progressBarValue).div(progressBarMax).times(100).toFormat(2) + '%'}">
+                </div>
+              </div>
             </div>
           </div>
         </a>
         <!-- If dev candidate -->
-        <a class="list-group-item list-group-item-action border-bottom-0 border-left-0 border-right-0" href="https://etherscan.io/address/0x881a0bdf9514c116f4576f4fba263bf5397fca83#code"
-          target="_blank">
+        <a class="list-group-item list-group-item-action border-bottom-0 border-left-0 border-right-0"
+          href="https://etherscan.io/address/{{nextVersion}}#code" target="_blank"
+          *ngIf="upgradeState == UpgradeState.DEV_PROPOSED">
           <div class="row d-flex align-items-center no-gutters">
             <div class="col-auto">
               <span class="avatar avatar-xs">
@@ -95,7 +67,7 @@
               </span>
             </div>
             <div class="col pl-3">
-              <h4 class="mb-0" i18n="@@upgradeDevsCandidate">Developers upgrade candidate</h4>
+              <h4 class="mb-0" i18n="@@upgradeDevsCandidate">The development team has proposed an upgrade candidate</h4>
             </div>
             <div class="col-auto text-right">
               <span class="font-weight-bold" i18n="@@review">Review</span>
@@ -103,7 +75,8 @@
           </div>
         </a>
         <!-- If upgrade initiated -->
-        <div class="list-group-item border-bottom-0 border-left-0 border-right-0">
+        <div class="list-group-item border-bottom-0 border-left-0 border-right-0"
+          *ngIf="upgradeState == UpgradeState.PROPAGATING">
           <div class="row d-flex align-items-center no-gutters">
             <div class="col-auto">
               <span class="avatar avatar-xs">
@@ -115,16 +88,15 @@
               </span>
             </div>
             <div class="col pl-3">
-              <h4 class="mb-1 text-secondary" i18n="@@upgradeInitiated">Upgrade initiated</h4>
-              <h6 class="text-secondary mb-0" i18n="@@upgradeInitiatedSubTitle">Waiting propagation decision</h6>
-            </div>
-            <div class="col-auto text-right">
-              <span class="font-weight-bold text-secondary">3,423&nbsp;<ng-container i18n="@@upgradeNbVotes">votes</ng-container></span>
+              <h4 class="mb-1 text-secondary" i18n="@@upgradeInitiated">Upgrade Initiated</h4>
+              <h6 class="text-secondary mb-0" i18n="@@upgradeInitiatedSubTitle">The first 3 days are reserved for
+                letting the news of the upgrade propagate.</h6>
             </div>
           </div>
         </div>
-        <!-- If upgrade initiated and voter without the biggest Kairo tokens balance -->
-        <div class="list-group-item border-bottom-0 border-left-0 border-right-0">
+        <!-- If upgrade initiated and proposing -->
+        <div class="list-group-item border-bottom-0 border-left-0 border-right-0"
+          *ngIf="upgradeState == UpgradeState.PROPOSING_NO_CANDIDATE">
           <div class="row d-flex align-items-center no-gutters">
             <div class="col-auto">
               <span class="avatar avatar-xs">
@@ -136,18 +108,18 @@
               </span>
             </div>
             <div class="col pl-3">
-              <h4 class="mb-1 text-secondary" i18n="@@waitingUgradeCandidate">Waiting upgrade candidate</h4>
-              <h6 class="text-secondary mb-0" i18n="@@waitingUgradeCandidateSubtitle">From voter with the biggest KRO balance</h6>
+              <h4 class="mb-1 text-secondary" i18n="@@waitingUgradeCandidate">Proposing upgrade candidate</h4>
+              <h6 class="text-secondary mb-0" i18n="@@waitingUgradeCandidateSubtitle">Any manager can propose a smart contract as the upgrade candidate, unless another manager with more Kairo has proposed/proposes a candidate.</h6>
             </div>
           </div>
         </div>
-        <!-- If upgrade initiated and voter with the biggest Kairo tokens balance -->
         <a class="list-group-item list-group-item-action border-bottom-0 border-left-0 border-right-0" href="#"
-          data-toggle="modal" data-target="#modalUpgrade">
+          data-toggle="modal" data-target="#modalUpgrade" *ngIf="upgradeState == UpgradeState.PROPOSING_NO_CANDIDATE || upgradeState == UpgradeState.PROPOSING_HAS_CANDIDATE">
           <div class="row d-flex align-items-center no-gutters">
             <div class="col-auto">
               <span class="avatar avatar-xs">
-                <span class="avatar-title rounded-circle bg-primary"><i class="fe fe-git-pull-request h4 mb-0"></i></span>
+                <span class="avatar-title rounded-circle bg-primary"><i
+                    class="fe fe-git-pull-request h4 mb-0"></i></span>
               </span>
             </div>
             <div class="col pl-3">
@@ -158,9 +130,10 @@
             </div>
           </div>
         </a>
-        <!-- If manager upgrade candidate -->
+        <!-- If manager upgrade and voting -->
         <a class="list-group-item list-group-item-action border-bottom-0 border-left-0 border-right-0" href="#"
-          data-toggle="modal" data-target="#modalUpgrade">
+          data-toggle="modal" data-target="#modalUpgrade"
+          *ngIf="upgradeState == UpgradeState.VOTING_ENOUGH || upgradeState == UpgradeState.VOTING_NOT_ENOUGH">
           <div class="row d-flex align-items-center no-gutters">
             <div class="col-auto">
               <span class="avatar avatar-xs">
@@ -168,15 +141,18 @@
               </span>
             </div>
             <div class="col pl-3">
-              <h4 class="mb-0"><ng-container i18n="@@upgradeTo">Upgrade to</ng-container>&nbsp;0x00..0000</h4>
+              <h4 class="mb-0">
+                <ng-container i18n="@@upgradeTo">Upgrade to</ng-container>&nbsp;{{nextVersion}}
+              </h4>
             </div>
             <div class="col-auto text-right">
-              <span class="font-weight-bold">457&nbsp;<ng-container i18n="@@upgradeNbVotes">votes</ng-container></span>
+              <span class="font-weight-bold">Vote</span>
             </div>
           </div>
         </a>
         <a class="list-group-item list-group-item-action border-bottom-0 border-left-0 border-right-0" href="#"
-          data-toggle="modal" data-target="#modalUpgrade">
+          data-toggle="modal" data-target="#modalUpgrade"
+          *ngIf="upgradeState == UpgradeState.VOTING_ENOUGH || upgradeState == UpgradeState.VOTING_NOT_ENOUGH">
           <div class="row d-flex align-items-center no-gutters">
             <div class="col-auto">
               <span class="avatar avatar-xs">
@@ -184,16 +160,19 @@
               </span>
             </div>
             <div class="col pl-3">
-              <h4 class="mb-0"><ng-container i18n="@@dontUpgradeTo">Don't upgrade to</ng-container>&nbsp;0x00..0000</h4>
+              <h4 class="mb-0">
+                <ng-container i18n="@@dontUpgradeTo">Don't upgrade to</ng-container>&nbsp;{{nextVersion}}
+              </h4>
             </div>
             <div class="col-auto text-right">
-              <span class="font-weight-bold">34&nbsp;<ng-container i18n="@@upgradeNbVotes">votes</ng-container></span>
+              <span class="font-weight-bold">Vote</span>
             </div>
           </div>
         </a>
-        <!-- If manager upgrade candidate accepted -->
-        <a class="list-group-item list-group-item-action border-bottom-0 border-left-0 border-right-0" href="https://etherscan.io/address/0x881a0bdf9514c116f4576f4fba263bf5397fca83#code"
-          target="_blank">
+        <!-- If manager upgrade candidate accepted and is still in manage phase -->
+        <a class="list-group-item list-group-item-action border-bottom-0 border-left-0 border-right-0"
+          href="https://etherscan.io/address/{{nextVersion}}#code" target="_blank"
+          *ngIf="upgradeState == UpgradeState.PASSED">
           <div class="row d-flex align-items-center no-gutters">
             <div class="col-auto">
               <span class="avatar avatar-xs">
@@ -201,13 +180,53 @@
               </span>
             </div>
             <div class="col pl-3">
-              <h4 class="mb-0"><ng-container i18n="@@upgrade">Upgrade</ng-container>&nbsp;0x00..0000&nbsp;<ng-container i18n="@@accepted">accepted</ng-container></h4>
+              <h4 class="mb-0">
+                <ng-container i18n="@@upgrade">Upgrade</ng-container>&nbsp;{{nextVersion}}&nbsp;<ng-container
+                  i18n="@@accepted">accepted</ng-container>
+              </h4>
             </div>
             <div class="col-auto text-right">
               <span class="font-weight-bold" i18n="@@review">Review</span>
             </div>
           </div>
         </a>
+        <!-- If is intermission and a candidate was accepted -->
+        <a class="list-group-item list-group-item-action border-bottom-0 border-left-0 border-right-0"
+          href="https://etherscan.io/address/{{nextVersion}}#code" target="_blank"
+          *ngIf="upgradeState == UpgradeState.FINALIZED">
+          <div class="row d-flex align-items-center no-gutters">
+            <div class="col-auto">
+              <span class="avatar avatar-xs">
+                <span class="avatar-title rounded-circle bg-success"><i class="fe fe-check-circle h4 mb-0"></i></span>
+              </span>
+            </div>
+            <div class="col pl-3">
+              <h4 class="mb-0">
+                <ng-container i18n="@@willUpgradeTo">Will upgrade to</ng-container>&nbsp;{{nextVersion}}
+                <ng-container i18n="@@afterThisIntermissionPhase">after this Intermission phase</ng-container>
+              </h4>
+            </div>
+            <div class="col-auto text-right">
+              <span class="font-weight-bold" i18n="@@review">Review</span>
+            </div>
+          </div>
+        </a>
+        <!-- If is manage phase and voting is inactive -->
+        <div class="list-group-item border-bottom-0 border-left-0 border-right-0"
+          *ngIf="upgradeState == UpgradeState.IDLE">
+          <div class="row d-flex align-items-center no-gutters">
+            <div class="col-auto">
+              <span class="avatar avatar-xs">
+                <span class="avatar-title rounded-circle bg-danger"><i class="fe fe-x h4 mb-0"></i></span>
+              </span>
+            </div>
+            <div class="col pl-3">
+              <h4 class="mb-0">
+                <ng-container i18n="@@votingInactive">Voting is inactive</ng-container>
+              </h4>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="card list-group">
         <div class="card-header border-bottom-0">
@@ -220,8 +239,8 @@
             </div>
           </div> <!-- / .row -->
         </div>
-        <a class="list-group-item list-group-item-action border-bottom-0 border-left-0 border-right-0" href="https://etherscan.io/address/0x881a0bdf9514c116f4576f4fba263bf5397fca83#code"
-          target="_blank">
+        <a class="list-group-item list-group-item-action border-bottom-0 border-left-0 border-right-0"
+          href="https://etherscan.io/address/0x881a0bdf9514c116f4576f4fba263bf5397fca83#code" target="_blank">
           <div class="row d-flex align-items-center no-gutters">
             <div class="col-auto">
               <span class="avatar avatar-xs">
@@ -229,15 +248,17 @@
               </span>
             </div>
             <div class="col pl-3">
-              <h4 class="mb-0"><ng-container i18n="@@upgrade">Upgrade</ng-container>&nbsp;0x00..0000</h4>
+              <h4 class="mb-0">
+                <ng-container i18n="@@upgrade">Upgrade</ng-container>&nbsp;0x00..0000
+              </h4>
             </div>
             <div class="col-auto text-right">
               <span class="font-weight-bold">8/30/2020</span>
             </div>
           </div>
         </a>
-        <a class="list-group-item list-group-item-action border-bottom-0 border-left-0 border-right-0" href="https://etherscan.io/address/0x881a0bdf9514c116f4576f4fba263bf5397fca83#code"
-          target="_blank">
+        <a class="list-group-item list-group-item-action border-bottom-0 border-left-0 border-right-0"
+          href="https://etherscan.io/address/0x881a0bdf9514c116f4576f4fba263bf5397fca83#code" target="_blank">
           <div class="row d-flex align-items-center no-gutters">
             <div class="col-auto">
               <span class="avatar avatar-xs">
@@ -245,15 +266,17 @@
               </span>
             </div>
             <div class="col pl-3">
-              <h4 class="mb-0"><ng-container i18n="@@upgrade">Upgrade</ng-container>&nbsp;0x00..0000</h4>
+              <h4 class="mb-0">
+                <ng-container i18n="@@upgrade">Upgrade</ng-container>&nbsp;0x00..0000
+              </h4>
             </div>
             <div class="col-auto text-right">
               <span class="font-weight-bold">7/30/2019</span>
             </div>
           </div>
         </a>
-        <a class="list-group-item list-group-item-action border-bottom-0 border-left-0 border-right-0" href="https://etherscan.io/address/0x881a0bdf9514c116f4576f4fba263bf5397fca83#code"
-          target="_blank">
+        <a class="list-group-item list-group-item-action border-bottom-0 border-left-0 border-right-0"
+          href="https://etherscan.io/address/0x881a0bdf9514c116f4576f4fba263bf5397fca83#code" target="_blank">
           <div class="row d-flex align-items-center no-gutters">
             <div class="col-auto">
               <span class="avatar avatar-xs">
@@ -261,7 +284,9 @@
               </span>
             </div>
             <div class="col pl-3">
-              <h4 class="mb-0"><ng-container i18n="@@upgrade">Upgrade</ng-container>&nbsp;0x00..0000</h4>
+              <h4 class="mb-0">
+                <ng-container i18n="@@upgrade">Upgrade</ng-container>&nbsp;0x00..0000
+              </h4>
             </div>
             <div class="col-auto text-right">
               <span class="font-weight-bold">6/30/2019</span>
@@ -278,15 +303,18 @@
       </div>
     </div>
   </div> <!-- / .row -->
-  <a href="https://github.com/solidified-platform/audits/blob/master/Audit%20Report%20-%20%20Betoken%20%5B20.05.2019%5D.pdf" target="_blank">
+  <a href="https://github.com/solidified-platform/audits/blob/master/Audit%20Report%20-%20%20Betoken%20%5B20.05.2019%5D.pdf"
+    target="_blank">
     <div class="row align-items-center justify-content-center">
       <div class="col-auto mb-2 mb-lg-0">
         <div class="avatar avatar-sm">
-          <img class="avatar-img rounded-circle bg-secondary" src="assets/img/solidified-logo.png" alt="Solidified logo">
+          <img class="avatar-img rounded-circle bg-secondary" src="assets/img/solidified-logo.png"
+            alt="Solidified logo">
         </div>
       </div>
       <div class="col-auto">
-        <p class="small text-secondary mb-0 text-center" i18n="@@solidifiedAudit">Betoken Smart Contracts are audited and secured by Solidified</p>
+        <p class="small text-secondary mb-0 text-center" i18n="@@solidifiedAudit">Betoken Smart Contracts are audited
+          and secured by Solidified</p>
       </div>
       <div class="col-auto">
         <i class="fe fe-arrow-right text-secondary"></i>
@@ -355,8 +383,10 @@
               <span class="avatar-title rounded-circle bg-success"><i class="fe fe-check-circle h3 mb-0"></i></span>
             </span>
             <h1 i18n="@@upgradeBetoken">Upgrade Betoken</h1>
-            <p class="text-secondary mb-0" i18n="@@modalUpgradeBetokenSubtitle">Vote for a manager initiated upgrade.</p>
-            <a href="https://betoken.gitbook.io/docs/govern/what-is-the-upgrade-governance#2-manager-initiated-upgrade" target="_blank" i18n="@@learnMore">Learn more</a>
+            <p class="text-secondary mb-0" i18n="@@modalUpgradeBetokenSubtitle">Vote for a manager initiated upgrade.
+            </p>
+            <a href="https://betoken.gitbook.io/docs/govern/what-is-the-upgrade-governance#2-manager-initiated-upgrade"
+              target="_blank" i18n="@@learnMore">Learn more</a>
           </div>
           <!-- IDEA: Vote against a manager initiated upgrade -->
           <div class="col text-center d-none">
@@ -364,28 +394,44 @@
               <span class="avatar-title rounded-circle bg-danger"><i class="fe fe-x h3 mb-0"></i></span>
             </span>
             <h1 i18n="@@dontUpgradeBetoken">Don't upgrade Betoken</h1>
-            <p class="text-secondary mb-0" i18n="@@modalDontUpgradeBetokenSubtitle">Vote against a manager initiated upgrade.</p>
-            <a href="https://betoken.gitbook.io/docs/govern/what-is-the-upgrade-governance#2-manager-initiated-upgrade" target="_blank" i18n="@@learnMore">Learn more</a>
+            <p class="text-secondary mb-0" i18n="@@modalDontUpgradeBetokenSubtitle">Vote against a manager initiated
+              upgrade.</p>
+            <a href="https://betoken.gitbook.io/docs/govern/what-is-the-upgrade-governance#2-manager-initiated-upgrade"
+              target="_blank" i18n="@@learnMore">Learn more</a>
           </div>
           <!-- IDEA: Vote for the upgrade to 0x000 -->
           <div class="col text-center d-none">
             <span class="avatar mb-4">
               <span class="avatar-title rounded-circle bg-success"><i class="fe fe-check-circle h3 mb-0"></i></span>
             </span>
-            <h1><ng-container i18n="@@upgradeTo">Upgrade to</ng-container>&nbsp;0x00..0000</h1>
-            <p class="text-secondary" i18n="@@modalUpgradeToSubtitle">Vote for the upgrade to this new smart contract.</p>
-            <a class="btn btn-small btn-white mr-2" href="https://etherscan.io/address/0x881a0bdf9514c116f4576f4fba263bf5397fca83#code" target="_blank">Review</a>
-            <a class="btn btn-small btn-link" href="https://betoken.gitbook.io/docs/govern/what-is-the-upgrade-governance#2-manager-initiated-upgrade" target="_blank" i18n="@@learnMore">Learn more</a>
+            <h1>
+              <ng-container i18n="@@upgradeTo">Upgrade to</ng-container>&nbsp;0x00..0000
+            </h1>
+            <p class="text-secondary" i18n="@@modalUpgradeToSubtitle">Vote for the upgrade to this new smart contract.
+            </p>
+            <a class="btn btn-small btn-white mr-2"
+              href="https://etherscan.io/address/0x881a0bdf9514c116f4576f4fba263bf5397fca83#code"
+              target="_blank">Review</a>
+            <a class="btn btn-small btn-link"
+              href="https://betoken.gitbook.io/docs/govern/what-is-the-upgrade-governance#2-manager-initiated-upgrade"
+              target="_blank" i18n="@@learnMore">Learn more</a>
           </div>
           <!-- IDEA: Vote against the upgrade to 0x000 -->
           <div class="col text-center d-none">
             <span class="avatar mb-4">
               <span class="avatar-title rounded-circle bg-danger"><i class="fe fe-x h3 mb-0"></i></span>
             </span>
-            <h1><ng-container i18n="@@dontUpgradeTo">Don't upgrade to</ng-container>&nbsp;0x00..0000</h1>
-            <p class="text-secondary" i18n="@@modalDontUpgradeToSubtitle">Vote against the upgrade to this new smart contract.</p>
-            <a class="btn btn-small btn-white mr-2" href="https://etherscan.io/address/0x881a0bdf9514c116f4576f4fba263bf5397fca83#code" target="_blank" i18n="@@review">Review</a>
-            <a class="btn btn-small btn-link" href="https://betoken.gitbook.io/docs/govern/what-is-the-upgrade-governance#2-manager-initiated-upgrade" target="_blank" i18n="@@learnMore">Learn more</a>
+            <h1>
+              <ng-container i18n="@@dontUpgradeTo">Don't upgrade to</ng-container>&nbsp;0x00..0000
+            </h1>
+            <p class="text-secondary" i18n="@@modalDontUpgradeToSubtitle">Vote against the upgrade to this new smart
+              contract.</p>
+            <a class="btn btn-small btn-white mr-2"
+              href="https://etherscan.io/address/0x881a0bdf9514c116f4576f4fba263bf5397fca83#code" target="_blank"
+              i18n="@@review">Review</a>
+            <a class="btn btn-small btn-link"
+              href="https://betoken.gitbook.io/docs/govern/what-is-the-upgrade-governance#2-manager-initiated-upgrade"
+              target="_blank" i18n="@@learnMore">Learn more</a>
           </div>
           <!-- IDEA: submit upgrade candidate -->
           <div class="col text-center d-none">
@@ -393,8 +439,11 @@
               <span class="avatar-title rounded-circle bg-primary"><i class="fe fe-git-pull-request h3 mb-0"></i></span>
             </span>
             <h1 i18n="@@submitUpgradeCandidate">Submit upgrade candidate</h1>
-            <p class="text-secondary mb-0" i18n="@@modalSubmitUpgradeCandidateSubtitle">Submit the candidate smart contract to vote on. During the next two days, managers other than you, may use Kairo tokens to vote on whether or not to accept this candidate as the upgrade target.</p>
-            <a href="https://betoken.gitbook.io/docs/govern/what-is-the-upgrade-governance#2-manager-initiated-upgrade" target="_blank" i18n="@@learnMore">Learn more</a>
+            <p class="text-secondary mb-0" i18n="@@modalSubmitUpgradeCandidateSubtitle">Submit the candidate smart
+              contract to vote on. During the next two days, managers other than you, may use Kairo tokens to vote on
+              whether or not to accept this candidate as the upgrade target.</p>
+            <a href="https://betoken.gitbook.io/docs/govern/what-is-the-upgrade-governance#2-manager-initiated-upgrade"
+              target="_blank" i18n="@@learnMore">Learn more</a>
             <form class="my-4">
               <div class="form-group">
                 <label for="smartContractAddress" i18n="@@smartContractAddress">Smart contract address</label>
@@ -409,7 +458,8 @@
           <div class="col text-center">
             <h1 class="display-2 mb-2">81.32</h1>
             <h6 class="header-pretitle" i18n="@@modalUpgradeVotingWeight">Your voting weight</h6>
-            <small class="text-secondary" i18n="@@modalUpgradeVotingWeightSubtitle">Your voting weight is equal to your KRO balance.</small>
+            <small class="text-secondary" i18n="@@modalUpgradeVotingWeightSubtitle">Your voting weight is equal to your
+              KRO balance.</small>
           </div>
         </div>
 

@@ -7,6 +7,23 @@ import gql from 'graphql-tag';
 import {
   user, governance
 } from '../../betokenjs/helpers';
+import { BigNumber } from 'bignumber.js';
+
+enum UpgradeStateEnum {
+  DEV_PROPOSED,
+  SIGNALING_ENOUGH,
+  SIGNALING_NOT_ENOUGH,
+  PROPAGATING,
+  PROPOSING_NO_CANDIDATE,
+  PROPOSING_HAS_CANDIDATE,
+  VOTING_NO_CANDIDATE,
+  VOTING_ENOUGH,
+  VOTING_NOT_ENOUGH,
+  PASSED,
+  ALL_FAILED,
+  FINALIZED,
+  IDLE,
+}
 
 @Component({
   selector: 'app-proposal',
@@ -14,9 +31,16 @@ import {
 })
 
 export class UpgradeComponent extends ApolloEnabled implements OnInit {
+  nextVersion: any;
+  upgradeState: UpgradeStateEnum;
+  progressBarValue: string;
+  progressBarMax: string;
+  ZERO_ADDR: string;
+  UpgradeState = UpgradeStateEnum;
 
   constructor(private apollo: Apollo) {
     super();
+    this.ZERO_ADDR = '0x0000000000000000000000000000000000000000';
   }
 
   ngOnInit() {
@@ -58,62 +82,102 @@ export class UpgradeComponent extends ApolloEnabled implements OnInit {
       let fund = data['fund'];
       let manager = data['manager'];
 
+      fund.cyclePhase = 'MANAGE';
+      fund.hasFinalizedNextVersion = false;
+      fund.upgradeVotingActive = true;
+      fund.nextVersion = '0x123456';
+
       if (fund.cyclePhase === 'INTERMISSION') {
         // Intermission phase
         if (fund.hasFinalizedNextVersion) {
           // Had a successful vote last cycle, will upgrade
-          
+          this.upgradeState = UpgradeStateEnum.FINALIZED;
+          this.nextVersion = fund.nextVersion;
         } else {
           // Normal
           if (fund.upgradeVotingActive) {
             // The developer have initiated an upgrade
-            
+            this.upgradeState = UpgradeStateEnum.DEV_PROPOSED;
+            this.nextVersion = fund.nextVersion;
           } else {
             // No upgrade active, users could signal their desire for an upgrade
             let totalVotingWeight = governance.totalVotingWeight();
-            if (totalVotingWeight.times(0.5).lte(fund.upgradeSignalStrength)) {
+            if (totalVotingWeight.times(0.5).lt(fund.upgradeSignalStrength)) {
               // More than 50% Kairo have signaled for an upgrade
+              this.upgradeState = UpgradeStateEnum.SIGNALING_ENOUGH;
             } else {
               // Not enought Kairo have signaled an upgrade
+              this.upgradeState = UpgradeStateEnum.SIGNALING_NOT_ENOUGH;
             }
+            this.progressBarValue = new BigNumber(fund.upgradeSignalStrength).toFixed(2);
+            this.progressBarMax = totalVotingWeight.toFixed(2);
           }
         }
       } else {
         // Manage phase
         if (fund.upgradeVotingActive) {
           // Upgrade initiated, voting active
-          const chunk = governance.chunk();
-          const subchunk = governance.subchunk();
+          let chunk = 1;//governance.chunk();
+          const subchunk = 0;//governance.subchunk();
           if (chunk == 0) {
             // Chunk 0, no voting, waiting for news of vote to propagate
+            this.upgradeState = UpgradeStateEnum.PROPAGATING;
           } else if (chunk <= 5) {
             // Chunks 1-5, voting active
             if (fund.hasFinalizedNextVersion) {
               // There was a successful vote, voting inactive, display successful candidate
+              this.nextVersion = fund.nextVersion;
+              this.upgradeState = UpgradeStateEnum.PASSED;
             } else {
               // No successful vote yet, let people vote
+              let candidate = fund.candidates[chunk - 1];
+              if (!candidate) candidate = this.ZERO_ADDR;
               if (subchunk == 0) {
                 // Propose candidate
+                if (candidate === this.ZERO_ADDR) {
+                  this.upgradeState = UpgradeStateEnum.PROPOSING_NO_CANDIDATE;
+                } else {
+                  this.nextVersion = candidate;
+                  this.upgradeState = UpgradeStateEnum.PROPOSING_HAS_CANDIDATE;
+                }
+                console.log(this.upgradeState);
               } else {
                 // Vote on candidate
-                const forVotes = +fund.forVotes[chunk-1];
-                const againstVotes = +fund.againstVotes[chunk-1];
-                const totalSubmittedVotes = forVotes + againstVotes;
-                const totalVotingWeight = governance.totalVotingWeight();
-                const hasQuorum = totalVotingWeight.times(0.1).lte(totalSubmittedVotes);
-                const hasConsensus = (totalSubmittedVotes > 0) && (forVotes / totalSubmittedVotes > 0.75);
-                if (hasQuorum && hasConsensus) {
-                  // Already has enough votes to succeed
+                if (candidate === this.ZERO_ADDR) {
+                  // No candidate
+                  this.upgradeState = UpgradeStateEnum.VOTING_NO_CANDIDATE;
                 } else {
-                  // Not enough votes to succeed
+                  // Has candidate, vote
+                  this.nextVersion = candidate;
+
+                  const forVotes = +fund.forVotes[chunk - 1];
+                  const againstVotes = +fund.againstVotes[chunk - 1];
+                  const totalSubmittedVotes = forVotes + againstVotes;
+                  const totalVotingWeight = governance.totalVotingWeight();
+                  const hasQuorum = totalVotingWeight.times(0.1).lt(totalSubmittedVotes);
+                  const hasConsensus = (totalSubmittedVotes > 0) && (forVotes / totalSubmittedVotes > 0.75);
+                  if (hasQuorum && hasConsensus) {
+                    // Already has enough votes to succeed
+                    this.upgradeState = UpgradeStateEnum.VOTING_ENOUGH;
+                  } else {
+                    // Not enough votes to succeed
+                    this.upgradeState = UpgradeStateEnum.VOTING_NOT_ENOUGH;
+                  }
                 }
               }
             }
           } else {
             // Chunks 6-8, no voting, reserved for reviewing the upgrade candidate's code
+            if (fund.hasFinalizedNextVersion) {
+              this.nextVersion = fund.nextVersion;
+              this.upgradeState = UpgradeStateEnum.PASSED;
+            } else {
+              this.upgradeState = UpgradeStateEnum.ALL_FAILED;
+            }
           }
         } else {
           // No upgrade, nothing active
+          this.upgradeState = UpgradeStateEnum.IDLE;
         }
       }
     }

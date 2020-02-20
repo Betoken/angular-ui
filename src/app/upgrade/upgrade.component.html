@@ -68,6 +68,10 @@
               <h4 class="card-header-title" i18n="@@upgradeCardStatePASSED" *ngIf="upgradeState == UpgradeState.PASSED">
                 Upgrade candidate accepted
               </h4>
+              <h4 class="card-header-title" i18n="@@upgradeCardStatePASSED_NOT_FINALIZED"
+                *ngIf="upgradeState == UpgradeState.PASSED_NOT_FINALIZED">
+                Upgrade candidate accepted but needs to be finalized
+              </h4>
               <h4 class="card-header-title" i18n="@@upgradeCardStateALL_FAILED"
                 *ngIf="upgradeState == UpgradeState.ALL_FAILED">
                 All upgrade candidates rejected
@@ -83,32 +87,54 @@
           </div> <!-- / .row -->
         </div>
         <!-- If signaling -->
-        <a class="list-group-item list-group-item-action border-bottom-0 border-left-0 border-right-0" href="#"
-          data-toggle="modal" data-target="#modalUpgrade"
+        <ng-container
           *ngIf="upgradeState == UpgradeState.SIGNALING_ENOUGH || upgradeState == UpgradeState.SIGNALING_NOT_ENOUGH">
-          <div class="row d-flex align-items-center no-gutters">
-            <div class="col-auto">
-              <span class="avatar avatar-xs">
-                <span class="avatar-title rounded-circle bg-success"><i class="fe fe-check-circle h4 mb-0"></i></span>
-              </span>
-            </div>
-            <div class="col pl-3">
-              <h4 class="mb-0" i18n="@@upgradeBetoken">Signal your support for a smart contract upgrade</h4>
-            </div>
-            <div class="col-auto mr-2">
-              <span class="small">{{progressBarValue}} / {{progressBarMax}}</span>
-            </div>
-            <div class="col text-right">
-              <div class="progress progress-sm">
-                <div
-                  [ngClass]="{'bg-success': upgradeState == UpgradeState.SIGNALING_ENOUGH, 'bg-danger': upgradeState == UpgradeState.SIGNALING_NOT_ENOUGH}"
-                  class="progress-bar" role="progressbar"
-                  [ngStyle]="{'width': toBigNumber(progressBarValue).div(progressBarMax).times(100).toFormat(2) + '%'}">
+          <div class="list-group-item border-bottom-0 border-left-0 border-right-0">
+            <div class="row d-flex align-items-center no-gutters">
+              <div class="col-auto mr-2">
+                <span class="small">👍 {{progressBarValue}} / {{progressBarMax}}</span>
+              </div>
+              <div class="col text-right">
+                <div class="progress progress-sm">
+                  <div
+                    [ngClass]="{'bg-success': upgradeState == UpgradeState.SIGNALING_ENOUGH, 'bg-danger': upgradeState == UpgradeState.SIGNALING_NOT_ENOUGH}"
+                    class="progress-bar" role="progressbar"
+                    [ngStyle]="{'width': toBigNumber(progressBarValue).div(progressBarMax).times(100).toFormat(2) + '%'}">
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </a>
+          <a class="list-group-item list-group-item-action border-bottom-0 border-left-0 border-right-0" href="#"
+            data-toggle="modal" data-target="#modalUpgrade" (click)="managerVotingSupport = true"
+            *ngIf="upgradeState == UpgradeState.SIGNALING_ENOUGH || upgradeState == UpgradeState.SIGNALING_NOT_ENOUGH">
+            <div class="row d-flex align-items-center no-gutters">
+              <div class="col-auto">
+                <span class="avatar avatar-xs">
+                  <span class="avatar-title rounded-circle bg-success"><i class="fe fe-check-circle h4 mb-0"></i></span>
+                </span>
+              </div>
+              <div class="col pl-3">
+                <h4 class="mb-0" i18n="@@upgradeBetoken">Signal your support for a smart contract upgrade</h4>
+              </div>
+            </div>
+          </a>
+          <a class="list-group-item list-group-item-action border-bottom-0 border-left-0 border-right-0" href="#"
+            data-toggle="modal" data-target="#modalUpgrade" (click)="managerVotingSupport = false"
+            *ngIf="(upgradeState == UpgradeState.SIGNALING_ENOUGH || upgradeState == UpgradeState.SIGNALING_NOT_ENOUGH) && managerSignal">
+            <div class="row d-flex align-items-center no-gutters">
+              <div class="col-auto">
+                <span class="avatar avatar-xs">
+                  <span class="avatar-title rounded-circle bg-danger"><i class="fe fe-x h3 mb-0"></i></span>
+                </span>
+              </div>
+              <div class="col pl-3">
+                <h4 class="mb-0" i18n="@@cancelUpgradeSignal">Cancel your support for a smart contract upgrade</h4>
+              </div>
+            </div>
+          </a>
+        </ng-container>
+
         <!-- If dev candidate -->
         <a class="list-group-item list-group-item-action border-bottom-0 border-left-0 border-right-0"
           href="https://etherscan.io/address/{{nextVersion}}#code" target="_blank"
@@ -220,7 +246,7 @@
         </a>
         <a class="list-group-item list-group-item-action border-bottom-0 border-left-0 border-right-0" href="#"
           data-toggle="modal" data-target="#modalUpgrade"
-          *ngIf="upgradeState == UpgradeState.PROPOSING_NO_CANDIDATE || upgradeState == UpgradeState.PROPOSING_HAS_CANDIDATE">
+          *ngIf="upgradeState == UpgradeState.PROPOSING_NO_CANDIDATE || (upgradeState == UpgradeState.PROPOSING_HAS_CANDIDATE && (+managerVotingWeight > +proposerVotingWeight || managerAddress === proposer))">
           <div class="row d-flex align-items-center no-gutters">
             <div class="col-auto">
               <span class="avatar avatar-xs">
@@ -304,7 +330,7 @@
           </div>
         </div>
         <a class="list-group-item list-group-item-action border-bottom-0 border-left-0 border-right-0" href="#"
-          data-toggle="modal" data-target="#modalUpgrade"
+          data-toggle="modal" data-target="#modalUpgrade" (click)="managerVotingSupport = true;"
           *ngIf="upgradeState == UpgradeState.VOTING_ENOUGH || upgradeState == UpgradeState.VOTING_NOT_ENOUGH">
           <div class="row d-flex align-items-center no-gutters">
             <div class="col-auto">
@@ -323,7 +349,7 @@
           </div>
         </a>
         <a class="list-group-item list-group-item-action border-bottom-0 border-left-0 border-right-0" href="#"
-          data-toggle="modal" data-target="#modalUpgrade"
+          data-toggle="modal" data-target="#modalUpgrade" (click)="managerVotingSupport = false;"
           *ngIf="upgradeState == UpgradeState.VOTING_ENOUGH || upgradeState == UpgradeState.VOTING_NOT_ENOUGH">
           <div class="row d-flex align-items-center no-gutters">
             <div class="col-auto">
@@ -338,6 +364,26 @@
             </div>
             <div class="col-auto text-right">
               <span class="font-weight-bold">Vote</span>
+            </div>
+          </div>
+        </a>
+        <!-- If manager upgrade candidate accepted but hasn't been finalized -->
+        <a class="list-group-item list-group-item-action border-bottom-0 border-left-0 border-right-0" href="#"
+          data-toggle="modal" data-target="#modalUpgrade" *ngIf="upgradeState == UpgradeState.PASSED_NOT_FINALIZED">
+          <div class="row d-flex align-items-center no-gutters">
+            <div class="col-auto">
+              <span class="avatar avatar-xs">
+                <span class="avatar-title rounded-circle bg-primary"><i class="fe fe-code h4 mb-0"></i></span>
+              </span>
+            </div>
+            <div class="col pl-3">
+              <h4 class="mb-0">
+                <ng-container i18n="@@upgrade">Upgrade</ng-container>&nbsp;{{nextVersion}}&nbsp;<ng-container
+                  i18n="@@acceptedNotFinalized">accepted but needs to be finalized.</ng-container>
+              </h4>
+            </div>
+            <div class="col-auto text-right">
+              <span class="font-weight-bold" i18n="@@finalize">Finalize</span>
             </div>
           </div>
         </a>
@@ -438,7 +484,8 @@
               </div>
               <div class="col pl-3">
                 <h4 class="mb-0">
-                  {{contractAddr}} <ng-container i18n="@@currentSmartContract" *ngIf="i == 0">(current smart contract)</ng-container>
+                  {{contractAddr}} <ng-container i18n="@@currentSmartContract" *ngIf="i == 0">(current smart contract)
+                  </ng-container>
                 </h4>
               </div>
               <div class="col-auto text-right">
@@ -476,26 +523,34 @@
   <div class="modal-dialog modal-dialog-vertical bg-white" role="document">
     <div class="modal-content">
       <div class="modal-header border-0">
-        <h4 class="modal-title" i18n="@@modalUpgradeVoteTitle">
-          Vote
-        </h4>
-        <h4 class="modal-title d-none" i18n="@@modalUpgradeSubmitTitle">
-          Submit upgrade candidate
-        </h4>
+        <ng-container *ngIf="modalStep == 0">
+          <h4 class="modal-title" i18n="@@modalUpgradeVoteTitle"
+            *ngIf="upgradeState == UpgradeState.SIGNALING_ENOUGH || upgradeState == UpgradeState.SIGNALING_NOT_ENOUGH || upgradeState == UpgradeState.VOTING_ENOUGH || upgradeState == UpgradeState.VOTING_NOT_ENOUGH">
+            Vote
+          </h4>
+          <h4 class="modal-title" i18n="@@modalUpgradeSubmitCandidateTitle"
+            *ngIf="upgradeState == UpgradeState.PROPOSING_HAS_CANDIDATE || upgradeState == UpgradeState.PROPOSING_NO_CANDIDATE">
+            Submit upgrade candidate
+          </h4>
+          <h4 class="modal-title" i18n="@@modalUpgradeFinalizeTitle"
+            *ngIf="upgradeState == UpgradeState.PASSED_NOT_FINALIZED">
+            Finalize upgrade
+          </h4>
+        </ng-container>
         <!-- Confirm tx -->
-        <h4 class="modal-title d-none" i18n="@@modalTitleConfirmTx">
+        <h4 class="modal-title " i18n="@@modalTitleConfirmTx" *ngIf="modalStep == 1">
           Confirm transaction
         </h4>
         <!-- Processing tx -->
-        <h4 class="modal-title d-none" i18n="@@modalTitleProcessingTx">
+        <h4 class="modal-title " i18n="@@modalTitleProcessingTx" *ngIf="modalStep == 2">
           Processing transaction
         </h4>
         <!-- Confirmed tx -->
-        <h4 class="modal-title d-none" i18n="@@modalTitleTxConfirmed">
+        <h4 class="modal-title " i18n="@@modalTitleTxConfirmed" *ngIf="modalStep == 3">
           Transaction confirmed
         </h4>
         <!-- Error -->
-        <h4 class="modal-title d-none" i18n="@@modalTitleError">
+        <h4 class="modal-title " i18n="@@modalTitleError" *ngIf="modalStep == -1">
           That's an error
         </h4>
         <!-- Close -->
@@ -507,124 +562,155 @@
       <!-- progress bar vote -->
       <div class="card-header py-0 border-0" style="min-height: 24px;">
         <div class="progress" style="height: 8px;">
-          <div [ngClass]="{'bg-success': topupPopupStep >= 0, 'bg-secondary': topupPopupStep !== 0}"
+          <div [ngClass]="{'bg-success': modalStep >= 0, 'bg-secondary': modalStep !== 0}"
             class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0"
             aria-valuemax="100"></div>
-          <div [ngClass]="{'bg-success': topupPopupStep >= 1, 'bg-secondary': topupPopupStep !== 1}"
+          <div [ngClass]="{'bg-success': modalStep >= 1, 'bg-secondary': modalStep !== 1}"
             class="progress-bar border-left" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0"
             aria-valuemax="100"></div>
-          <div [ngClass]="{'bg-success': topupPopupStep >= 2, 'bg-secondary': topupPopupStep !== 2}"
+          <div [ngClass]="{'bg-success': modalStep >= 2, 'bg-secondary': modalStep !== 2}"
             class="progress-bar border-left" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0"
             aria-valuemax="100"></div>
-          <div [ngClass]="{'bg-success': topupPopupStep >= 3, 'bg-secondary': topupPopupStep !== 3}"
+          <div [ngClass]="{'bg-success': modalStep >= 3, 'bg-secondary': modalStep !== 3}"
             class="progress-bar border-left" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0"
             aria-valuemax="100"></div>
         </div>
       </div>
 
       <div class="modal-body pb-5">
-        <div class="row">
-          <!-- IDEA: Vote for a manager initiated upgrade -->
-          <div class="col text-center">
-            <span class="avatar mb-4">
-              <span class="avatar-title rounded-circle bg-success"><i class="fe fe-check-circle h3 mb-0"></i></span>
-            </span>
-            <h1 i18n="@@upgradeBetoken">Upgrade Betoken</h1>
-            <p class="text-secondary mb-0" i18n="@@modalUpgradeBetokenSubtitle">Vote for a manager initiated upgrade.
-            </p>
-            <a href="https://betoken.gitbook.io/docs/govern/what-is-the-upgrade-governance#2-manager-initiated-upgrade"
-              target="_blank" i18n="@@learnMore">Learn more</a>
-          </div>
-          <!-- IDEA: Vote against a manager initiated upgrade -->
-          <div class="col text-center d-none">
-            <span class="avatar mb-4">
-              <span class="avatar-title rounded-circle bg-danger"><i class="fe fe-x h3 mb-0"></i></span>
-            </span>
-            <h1 i18n="@@dontUpgradeBetoken">Don't upgrade Betoken</h1>
-            <p class="text-secondary mb-0" i18n="@@modalDontUpgradeBetokenSubtitle">Vote against a manager initiated
-              upgrade.</p>
-            <a href="https://betoken.gitbook.io/docs/govern/what-is-the-upgrade-governance#2-manager-initiated-upgrade"
-              target="_blank" i18n="@@learnMore">Learn more</a>
-          </div>
-          <!-- IDEA: Vote for the upgrade to 0x000 -->
-          <div class="col text-center d-none">
-            <span class="avatar mb-4">
-              <span class="avatar-title rounded-circle bg-success"><i class="fe fe-check-circle h3 mb-0"></i></span>
-            </span>
-            <h1>
-              <ng-container i18n="@@upgradeTo">Upgrade to</ng-container>&nbsp;0x00..0000
-            </h1>
-            <p class="text-secondary" i18n="@@modalUpgradeToSubtitle">Vote for the upgrade to this new smart contract.
-            </p>
-            <a class="btn btn-small btn-white mr-2"
-              href="https://etherscan.io/address/0x881a0bdf9514c116f4576f4fba263bf5397fca83#code"
-              target="_blank">Review</a>
-            <a class="btn btn-small btn-link"
-              href="https://betoken.gitbook.io/docs/govern/what-is-the-upgrade-governance#2-manager-initiated-upgrade"
-              target="_blank" i18n="@@learnMore">Learn more</a>
-          </div>
-          <!-- IDEA: Vote against the upgrade to 0x000 -->
-          <div class="col text-center d-none">
-            <span class="avatar mb-4">
-              <span class="avatar-title rounded-circle bg-danger"><i class="fe fe-x h3 mb-0"></i></span>
-            </span>
-            <h1>
-              <ng-container i18n="@@dontUpgradeTo">Don't upgrade to</ng-container>&nbsp;0x00..0000
-            </h1>
-            <p class="text-secondary" i18n="@@modalDontUpgradeToSubtitle">Vote against the upgrade to this new smart
-              contract.</p>
-            <a class="btn btn-small btn-white mr-2"
-              href="https://etherscan.io/address/0x881a0bdf9514c116f4576f4fba263bf5397fca83#code" target="_blank"
-              i18n="@@review">Review</a>
-            <a class="btn btn-small btn-link"
-              href="https://betoken.gitbook.io/docs/govern/what-is-the-upgrade-governance#2-manager-initiated-upgrade"
-              target="_blank" i18n="@@learnMore">Learn more</a>
-          </div>
-          <!-- IDEA: submit upgrade candidate -->
-          <div class="col text-center d-none">
-            <span class="avatar mb-4">
-              <span class="avatar-title rounded-circle bg-primary"><i class="fe fe-git-pull-request h3 mb-0"></i></span>
-            </span>
-            <h1 i18n="@@submitUpgradeCandidate">Submit upgrade candidate</h1>
-            <p class="text-secondary mb-0" i18n="@@modalSubmitUpgradeCandidateSubtitle">Submit the candidate smart
-              contract to vote on. During the next two days, managers other than you, may use Kairo tokens to vote on
-              whether or not to accept this candidate as the upgrade target.</p>
-            <a href="https://betoken.gitbook.io/docs/govern/what-is-the-upgrade-governance#2-manager-initiated-upgrade"
-              target="_blank" i18n="@@learnMore">Learn more</a>
-            <form class="my-4">
-              <div class="form-group">
-                <label for="smartContractAddress" i18n="@@smartContractAddress">Smart contract address</label>
-                <input type="text" class="form-control" id="smartContractAddress" placeholder="0x00..">
+        <ng-container *ngIf="modalStep == 0">
+          <div class="row">
+            <ng-container
+              *ngIf="upgradeState == UpgradeState.SIGNALING_ENOUGH || upgradeState == UpgradeState.SIGNALING_NOT_ENOUGH">
+              <!-- IDEA: Signal for a manager initiated upgrade -->
+              <div class="col text-center" *ngIf="managerVotingSupport">
+                <span class="avatar mb-4">
+                  <span class="avatar-title rounded-circle bg-success"><i class="fe fe-check-circle h3 mb-0"></i></span>
+                </span>
+                <h1 i18n="@@upgradeBetoken">Upgrade Betoken</h1>
+                <p class="text-secondary mb-0" i18n="@@modalUpgradeBetokenSubtitle">Signal your support for a manager
+                  initiated upgrade.
+                </p>
+                <a href="https://betoken.gitbook.io/docs/govern/what-is-the-upgrade-governance#2-manager-initiated-upgrade"
+                  target="_blank" i18n="@@learnMore">Learn more</a>
               </div>
-            </form>
+              <!-- IDEA: Cancel signaling for a manager initiated upgrade -->
+              <div class="col text-center" *ngIf="!managerVotingSupport">
+                <span class="avatar mb-4">
+                  <span class="avatar-title rounded-circle bg-danger"><i class="fe fe-x h3 mb-0"></i></span>
+                </span>
+                <h1 i18n="@@dontUpgradeBetoken">Don't upgrade Betoken</h1>
+                <p class="text-secondary mb-0" i18n="@@modalDontUpgradeBetokenSubtitle">Cancel your support for a
+                  manager
+                  initiated
+                  upgrade.</p>
+                <a href="https://betoken.gitbook.io/docs/govern/what-is-the-upgrade-governance#2-manager-initiated-upgrade"
+                  target="_blank" i18n="@@learnMore">Learn more</a>
+              </div>
+            </ng-container>
+
+            <!-- IDEA: submit upgrade candidate -->
+            <div class="col text-center"
+              *ngIf="upgradeState == UpgradeState.PROPOSING_HAS_CANDIDATE || upgradeState == UpgradeState.PROPOSING_NO_CANDIDATE">
+              <span class="avatar mb-4">
+                <span class="avatar-title rounded-circle bg-primary"><i
+                    class="fe fe-git-pull-request h3 mb-0"></i></span>
+              </span>
+              <h1 i18n="@@submitUpgradeCandidate">Submit upgrade candidate</h1>
+              <p class="text-secondary mb-0" i18n="@@modalSubmitUpgradeCandidateSubtitle">Submit the candidate smart
+                contract to vote on. During the next two days, managers other than you may vote on
+                whether or not to accept this candidate as the upgrade target.</p>
+              <a href="https://betoken.gitbook.io/docs/govern/what-is-the-upgrade-governance#2-manager-initiated-upgrade"
+                target="_blank" i18n="@@learnMore">Learn more</a>
+              <form class="my-4">
+                <div class="form-group">
+                  <label for="smartContractAddress" i18n="@@smartContractAddress">Smart contract address</label>
+                  <input type="text" class="form-control" id="smartContractAddress" placeholder="0x00.."
+                    [(value)]="managerProposedCandidate">
+                </div>
+              </form>
+            </div>
+            <ng-container
+              *ngIf="upgradeState == UpgradeState.VOTING_NOT_ENOUGH || upgradeState == UpgradeState.VOTING_ENOUGH">
+              <!-- IDEA: Vote for the upgrade to 0x000 -->
+              <div class="col text-center" *ngIf="managerVotingSupport">
+                <span class="avatar mb-4">
+                  <span class="avatar-title rounded-circle bg-success"><i class="fe fe-check-circle h3 mb-0"></i></span>
+                </span>
+                <h1>
+                  <ng-container i18n="@@upgradeTo">Upgrade to</ng-container>&nbsp;{{nextVersion}}
+                </h1>
+                <p class="text-secondary" i18n="@@modalUpgradeToSubtitle">Vote in support of upgrading to this smart
+                  contract.
+                </p>
+                <a class="btn btn-small btn-white mr-2" href="https://etherscan.io/address/{{nextVersion}}#code"
+                  target="_blank">Review</a>
+                <a class="btn btn-small btn-link"
+                  href="https://betoken.gitbook.io/docs/govern/what-is-the-upgrade-governance#2-manager-initiated-upgrade"
+                  target="_blank" i18n="@@learnMore">Learn more</a>
+              </div>
+              <!-- IDEA: Vote against the upgrade to 0x000 -->
+              <div class="col text-center" *ngIf="!managerVotingSupport">
+                <span class="avatar mb-4">
+                  <span class="avatar-title rounded-circle bg-danger"><i class="fe fe-x h3 mb-0"></i></span>
+                </span>
+                <h1>
+                  <ng-container i18n="@@dontUpgradeTo">Don't upgrade to</ng-container>&nbsp;{{nextVersion}}
+                </h1>
+                <p class="text-secondary" i18n="@@modalDontUpgradeToSubtitle">Vote against upgrading to this smart
+                  contract.</p>
+                <a class="btn btn-small btn-white mr-2" href="https://etherscan.io/address/{{nextVersion}}#code"
+                  target="_blank" i18n="@@review">Review</a>
+                <a class="btn btn-small btn-link"
+                  href="https://betoken.gitbook.io/docs/govern/what-is-the-upgrade-governance#2-manager-initiated-upgrade"
+                  target="_blank" i18n="@@learnMore">Learn more</a>
+              </div>
+            </ng-container>
+            <!-- IDEA: Finalize the upgrade to 0x000 -->
+            <div class="col text-center" *ngIf="upgradeState == UpgradeState.PASSED_NOT_FINALIZED">
+              <span class="avatar mb-4">
+                <span class="avatar-title rounded-circle bg-success"><i class="fe fe-check-circle h3 mb-0"></i></span>
+              </span>
+              <h1>
+                <ng-container i18n="@@finalizeUpgradeTo">Finalize the upgrade to</ng-container>&nbsp;{{nextVersion}}
+              </h1>
+              <p class="text-secondary" i18n="@@finalizeUpgradeToSubtitle">Finalize the upgrade to this smart
+                contract.
+              </p>
+              <a class="btn btn-small btn-white mr-2" href="https://etherscan.io/address/{{nextVersion}}#code"
+                target="_blank">Review</a>
+              <a class="btn btn-small btn-link"
+                href="https://betoken.gitbook.io/docs/govern/what-is-the-upgrade-governance#2-manager-initiated-upgrade"
+                target="_blank" i18n="@@learnMore">Learn more</a>
+            </div>
           </div>
-        </div>
-        <!-- IDEA: if vote, then display following components -->
-        <hr class="my-4">
-        <div class="row">
-          <div class="col text-center">
-            <h1 class="display-2 mb-2">81.32</h1>
-            <h6 class="header-pretitle" i18n="@@modalUpgradeVotingWeight">Your voting weight</h6>
-            <small class="text-secondary" i18n="@@modalUpgradeVotingWeightSubtitle">Your voting weight is equal to your
-              KRO balance.</small>
+          <hr class="my-4">
+          <div class="row">
+            <div class="col text-center">
+              <h1 class="display-2 mb-2">{{managerVotingWeight}}</h1>
+              <h6 class="header-pretitle" i18n="@@modalUpgradeVotingWeight">Your voting weight</h6>
+              <small class="text-secondary" i18n="@@modalUpgradeVotingWeightSubtitle">
+                Your voting weight is equal to your Kairo balance from 3 cycles ago.
+              </small>
+            </div>
           </div>
-        </div>
+        </ng-container>
 
         <!--Step 1: confirm tx in wallet-->
         <img class="image-fluid d-block mx-auto mb-4" src="assets/img/animated-logo.svg" alt="Betoken logo"
-          style="width: 88px;" *ngIf="topupPopupStep == 1 || topupPopupStep === 2">
-        <p class="text-center text-muted mb-5" *ngIf="topupPopupStep === 1" i18n="@@modalBodyTextStep1">
+          style="width: 88px;" *ngIf="modalStep == 1 || modalStep === 2">
+        <p class="text-center text-muted mb-5" *ngIf="modalStep === 1" i18n="@@modalBodyTextStep1">
           Confirm the transaction in your wallet’s interface to save it on the Ethereum blockchain. It's fine to stick
           with these defaults gas limit and price.
         </p>
 
         <!--Step 2: tx broadcasted-->
-        <p class="text-center text-muted mb-5" *ngIf="topupPopupStep == 2" i18n="@@modalBodyTextTxBroadcasted">
+        <p class="text-center text-muted mb-5" *ngIf="modalStep == 2" i18n="@@modalBodyTextTxBroadcasted">
           Your transaction is being saved on the Ethereum blockchain.
         </p>
 
         <!--Step 3: tx confirmed-->
-        <div class="d-none">
+        <div *ngIf="modalStep == 3">
           <p class="h1 text-center">
             <i class="fe fe-check-circle text-success"></i>
           </p>
@@ -633,8 +719,8 @@
           </p>
         </div>
 
-        <hr *ngIf="topupPopupStep === 2 || topupPopupStep === 3">
-        <form *ngIf="topupPopupStep === 2 || topupPopupStep === 3">
+        <hr *ngIf="modalStep === 2 || modalStep === 3">
+        <form *ngIf="modalStep === 2 || modalStep === 3">
           <div class="form-group">
             <label i18n="@@modalBodyTxHash">Transaction hash</label>
             <div class="input-group mb-3">
@@ -650,7 +736,7 @@
         </form>
 
         <!-- error -->
-        <div *ngIf="topupPopupStep == -1">
+        <div *ngIf="modalStep == -1">
           <p class="h1 text-center">
             <i class="fe fe-alert-circle text-danger"></i>
           </p>
@@ -664,21 +750,22 @@
       </div>
       <div class="modal-footer">
         <!-- Continue button -->
-        <button type="submit" class="btn btn-block btn-success mt-auto" aria-label="Continue" i18n="@@modalCtaContinue">
+        <button type="submit" class="btn btn-block btn-success mt-auto" aria-label="Continue" (click)="continue()"
+          i18n="@@modalCtaContinue" *ngIf="modalStep == 0">
           Continue
         </button>
       </div>
-      <div class="modal-footer" *ngIf="topupPopupStep === 2 || topupPopupStep === 3">
+      <div class="modal-footer" *ngIf="modalStep === 2 || modalStep === 3">
         <!-- close button panel -->
         <button type="submit" class="btn btn-block btn-white mt-auto" data-dismiss="modal"
           i18n-aria-label="@@modalAriaLabelClose" aria-label="Close" i18n="@@modalCtaClose">
           Close
         </button>
       </div>
-      <div class="modal-footer" *ngIf="topupPopupStep == -1">
+      <div class="modal-footer" *ngIf="modalStep == -1">
         <!-- Try again button for error -->
         <button type="submit" class="btn btn-block btn-white mt-auto" i18n="@@modalTryAgainAriaLabel"
-          aria-label="Try again" (click)="topupPopupStep = 0" i18n="@@modalTryAgain">
+          aria-label="Try again" (click)="modalStep = 0" i18n="@@modalTryAgain">
           Try again
         </button>
       </div>

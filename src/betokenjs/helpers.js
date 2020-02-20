@@ -130,7 +130,11 @@ export const governance = {
     subchunk: () => Data.subchunk,
     totalVotingWeight: () => Data.totalVotingWeight,
     getVotingWeight: async (addr) => new BigNumber(await betoken.getMappingOrArrayItem('getVotingWeight', addr)).div(PRECISION),
-    getUpgradeHistory: () => betoken.getUpgradeHistory()
+    getUpgradeHistory: () => betoken.getUpgradeHistory(),
+    signalUpgrade: (_inSupport, _onTxHash, _onReceipt, _onError) => betoken.signalUpgrade(_inSupport, _onTxHash, _onReceipt, _onError),
+    proposeCandidate: (_chunkNumber, _candidate, _onTxHash, _onReceipt, _onError) => betoken.proposeCandidate(_chunkNumber, _candidate, _onTxHash, _onReceipt, _onError),
+    voteOnCandidate: (_chunkNumber, _inSupport, _onTxHash, _onReceipt, _onError) => betoken.voteOnCandidate(_chunkNumber, _inSupport, _onTxHash, _onReceipt, _onError),
+    finalizeSuccessfulVote: (_chunkNumber, _onTxHash, _onReceipt, _onError) => betoken.finalizeSuccessfulVote(_chunkNumber, _onTxHash, _onReceipt, _onError),
 }
 
 export const loading = {

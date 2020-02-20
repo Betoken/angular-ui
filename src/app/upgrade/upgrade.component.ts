@@ -9,6 +9,8 @@ import {
 } from '../../betokenjs/helpers';
 import { BigNumber } from 'bignumber.js';
 
+declare var $: any;
+
 enum UpgradeStateEnum {
   DEV_PROPOSED,
   SIGNALING_ENOUGH,
@@ -21,6 +23,7 @@ enum UpgradeStateEnum {
   VOTING_NOT_ENOUGH,
   PASSED,
   ALL_FAILED,
+  PASSED_NOT_FINALIZED,
   FINALIZED,
   IDLE,
 }
@@ -34,6 +37,9 @@ export class UpgradeComponent extends ApolloEnabled implements OnInit {
   ZERO_ADDR: string;
   UpgradeState = UpgradeStateEnum;
 
+  chunk: number;
+  subchunk: number;
+
   nextVersion: any;
   proposer: string;
   proposerVotingWeight: string;
@@ -46,13 +52,29 @@ export class UpgradeComponent extends ApolloEnabled implements OnInit {
   supportPercentage: string;
   upgradeHistory: Array<string>;
 
+  managerAddress: string;
+  managerVotingWeight: string;
+  managerVotingSupport: boolean;
+  managerSignal: boolean;
+  managerProposedCandidate: string;
+
+  modalStep: number;
+  transactionId: string;
+  errorMsg: string;
+
   constructor(private apollo: Apollo) {
     super();
     this.ZERO_ADDR = '0x0000000000000000000000000000000000000000';
+    this.managerVotingSupport = true;
+    this.modalStep = 0;
   }
 
   async ngOnInit() {
+    $('#modalUpgrade').on('hidden.bs.modal', () => {
+      this.resetModals();
+    });
     this.createQuery();
+    this.managerAddress = user.address().toLowerCase();
     this.upgradeHistory = await governance.getUpgradeHistory();
   }
 
@@ -90,6 +112,11 @@ export class UpgradeComponent extends ApolloEnabled implements OnInit {
     if (!loading) {
       let fund = data['fund'];
       let manager = data['manager'];
+      
+      if (manager) {
+        this.managerVotingWeight = (await governance.getVotingWeight(user.address())).toFixed(4);
+        this.managerSignal = manager.upgradeSignal;
+      }
 
       if (fund.cyclePhase === 'INTERMISSION') {
         // Intermission phase
@@ -121,28 +148,45 @@ export class UpgradeComponent extends ApolloEnabled implements OnInit {
         // Manage phase
         if (fund.upgradeVotingActive) {
           // Upgrade initiated, voting active
-          let chunk = governance.chunk();
-          let subchunk = governance.subchunk();
-          if (chunk == 0) {
+          this.chunk = governance.chunk();
+          this.subchunk = governance.subchunk();
+          const voteSuccessful = (chunkNum) => {
+            const forVotes = isNaN(+fund.forVotes[chunkNum - 1]) ? 0 : +fund.forVotes[chunkNum - 1];
+            const againstVotes = isNaN(+fund.againstVotes[chunkNum - 1]) ? 0 : +fund.againstVotes[chunkNum - 1];
+            const totalSubmittedVotes = forVotes + againstVotes;
+            const totalVotingWeight = governance.totalVotingWeight();
+            const hasQuorum = totalVotingWeight.times(0.1).lt(totalSubmittedVotes);
+            const hasConsensus = (totalSubmittedVotes > 0) && (forVotes / totalSubmittedVotes > 0.75);
+            return hasQuorum && hasConsensus;
+          }
+          if (this.chunk == 0) {
             // Chunk 0, no voting, waiting for news of vote to propagate
             this.upgradeState = UpgradeStateEnum.PROPAGATING;
-          } else if (chunk <= 5) {
+          } else if (this.chunk <= 5) {
             // Chunks 1-5, voting active
             if (fund.hasFinalizedNextVersion) {
               // There was a successful vote, voting inactive, display successful candidate
               this.nextVersion = fund.nextVersion;
               this.upgradeState = UpgradeStateEnum.PASSED;
             } else {
+              // Check whether there has been a successful vote
+              for (let c = 1; c < this.chunk; c++) {
+                if (voteSuccessful(c)) {
+                  this.nextVersion = fund.candidates[c - 1];
+                  this.upgradeState = UpgradeStateEnum.PASSED_NOT_FINALIZED;
+                  return;
+                }
+              }
               // No successful vote yet, let people vote
-              let candidate = fund.candidates[chunk - 1];
+              let candidate = fund.candidates[this.chunk - 1];
               if (!candidate) candidate = this.ZERO_ADDR;
-              if (subchunk == 0) {
+              if (this.subchunk == 0) {
                 // Propose candidate
                 if (candidate === this.ZERO_ADDR) {
                   this.upgradeState = UpgradeStateEnum.PROPOSING_NO_CANDIDATE;
                 } else {
                   this.nextVersion = candidate;
-                  this.proposer = fund.proposers[chunk - 1];
+                  this.proposer = fund.proposers[this.chunk - 1];
                   this.proposerVotingWeight = (await governance.getVotingWeight(this.proposer)).toFixed(2);
                   this.upgradeState = UpgradeStateEnum.PROPOSING_HAS_CANDIDATE;
                 }
@@ -155,19 +199,17 @@ export class UpgradeComponent extends ApolloEnabled implements OnInit {
                   // Has candidate, vote
                   this.nextVersion = candidate;
 
-                  const forVotes = isNaN(+fund.forVotes[chunk - 1]) ? 0 : +fund.forVotes[chunk - 1];
-                  const againstVotes = isNaN(+fund.againstVotes[chunk - 1]) ? 0 : +fund.againstVotes[chunk - 1];
+                  const forVotes = isNaN(+fund.forVotes[this.chunk - 1]) ? 0 : +fund.forVotes[this.chunk - 1];
+                  const againstVotes = isNaN(+fund.againstVotes[this.chunk - 1]) ? 0 : +fund.againstVotes[this.chunk - 1];
                   const totalSubmittedVotes = forVotes + againstVotes;
                   const totalVotingWeight = governance.totalVotingWeight();
-                  const hasQuorum = totalVotingWeight.times(0.1).lt(totalSubmittedVotes);
-                  const hasConsensus = (totalSubmittedVotes > 0) && (forVotes / totalSubmittedVotes > 0.75);
                   this.progressBarValue = new BigNumber(forVotes).toFixed(2);
                   this.progressBarMax = new BigNumber(totalSubmittedVotes).toFixed(2);
                   this.forVotes = new BigNumber(forVotes).toFixed(2);
                   this.againstVotes = new BigNumber(againstVotes).toFixed(2);
                   this.quorumPercentage = new BigNumber(totalSubmittedVotes).div(totalVotingWeight).times(100).toFixed(2);
                   this.supportPercentage = totalSubmittedVotes == 0 ? '0.00' : new BigNumber(forVotes).div(totalSubmittedVotes).times(100).toFixed(2);
-                  if (hasQuorum && hasConsensus) {
+                  if (voteSuccessful(this.chunk)) {
                     // Already has enough votes to succeed
                     this.upgradeState = UpgradeStateEnum.VOTING_ENOUGH;
                   } else {
@@ -183,6 +225,14 @@ export class UpgradeComponent extends ApolloEnabled implements OnInit {
               this.nextVersion = fund.nextVersion;
               this.upgradeState = UpgradeStateEnum.PASSED;
             } else {
+              // Check whether there has been a successful vote
+              for (let c = 1; c < this.chunk; c++) {
+                if (voteSuccessful(c)) {
+                  this.nextVersion = fund.candidates[c - 1];
+                  this.upgradeState = UpgradeStateEnum.PASSED_NOT_FINALIZED;
+                  return;
+                }
+              }
               this.upgradeState = UpgradeStateEnum.ALL_FAILED;
             }
           }
@@ -201,5 +251,59 @@ export class UpgradeComponent extends ApolloEnabled implements OnInit {
 
   refreshDisplay() {
     this.query.refetch().then((result) => this.handleQuery(result));
+  }
+
+  resetModals() {
+    this.modalStep = 0;
+    this.transactionId = '';
+  }
+
+  continue() {
+    this.modalStep = 1;
+
+    let pending = (transactionHash) => {
+      if (this.modalStep != 0) {
+        this.transactionId = transactionHash;
+        this.modalStep = 2;
+      }
+    }
+
+    let confirm = () => {
+      if (this.modalStep != 0) {
+        this.modalStep = 3;
+      }
+      this.refreshDisplay();
+    }
+
+    let error = (e) => {
+      if (this.modalStep != 0) {
+        this.modalStep = -1;
+        this.errorMsg = JSON.stringify(e);
+      }
+    }
+
+    switch (this.upgradeState) {
+      case UpgradeStateEnum.SIGNALING_ENOUGH:
+      case UpgradeStateEnum.SIGNALING_NOT_ENOUGH:
+        // Submit signal
+        governance.signalUpgrade(this.managerVotingSupport, pending, confirm, error);
+        break;
+      case UpgradeStateEnum.PROPOSING_HAS_CANDIDATE:
+      case UpgradeStateEnum.PROPOSING_NO_CANDIDATE:
+        // Propose candidate
+        governance.proposeCandidate(this.chunk, this.managerProposedCandidate, pending, confirm, error);
+        break;
+      case UpgradeStateEnum.VOTING_ENOUGH:
+      case UpgradeStateEnum.VOTING_NOT_ENOUGH:
+        // Vote
+        governance.voteOnCandidate(this.chunk, this.managerVotingSupport, pending, confirm, error);
+        break;
+      case UpgradeStateEnum.PASSED_NOT_FINALIZED:
+        // Finalize vote
+        governance.finalizeSuccessfulVote(this.chunk, pending, confirm, error);
+        break;
+      default:
+        break;
+    }
   }
 }

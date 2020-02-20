@@ -250,8 +250,7 @@ export const loadFundData = async () => {
 export const loadUserData = async () => {
     if (betoken.hasWeb3) {
         // Get user address
-        await getDefaultAccount();
-        const userAddr = web3.eth.defaultAccount;
+        const userAddr = betoken.accountState.address;
         if (!isNullOrUndefined(userAddr)) {
             userAddress = userAddr;
         } else {

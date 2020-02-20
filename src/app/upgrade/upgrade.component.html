@@ -29,40 +29,51 @@
             </div>
             <div class="col-auto text-right">
               <!-- State -->
-              <h4 class="card-header-title" i18n="@@upgradeCardStateDEV_PROPOSED" *ngIf="upgradeState == UpgradeState.DEV_PROPOSED">
+              <h4 class="card-header-title" i18n="@@upgradeCardStateDEV_PROPOSED"
+                *ngIf="upgradeState == UpgradeState.DEV_PROPOSED">
                 Development team proposed upgrade
               </h4>
-              <h4 class="card-header-title" i18n="@@upgradeCardStateSIGNALING_ENOUGH" *ngIf="upgradeState == UpgradeState.SIGNALING_ENOUGH">
+              <h4 class="card-header-title" i18n="@@upgradeCardStateSIGNALING_ENOUGH"
+                *ngIf="upgradeState == UpgradeState.SIGNALING_ENOUGH">
                 Has enough support for initiating upgrade
               </h4>
-              <h4 class="card-header-title" i18n="@@upgradeCardStateSIGNALING_NOT_ENOUGH" *ngIf="upgradeState == UpgradeState.SIGNALING_NOT_ENOUGH">
+              <h4 class="card-header-title" i18n="@@upgradeCardStateSIGNALING_NOT_ENOUGH"
+                *ngIf="upgradeState == UpgradeState.SIGNALING_NOT_ENOUGH">
                 Not enough support for initiating upgrade
               </h4>
-              <h4 class="card-header-title" i18n="@@upgradeCardStatePROPAGATING" *ngIf="upgradeState == UpgradeState.PROPAGATING">
+              <h4 class="card-header-title" i18n="@@upgradeCardStatePROPAGATING"
+                *ngIf="upgradeState == UpgradeState.PROPAGATING">
                 Propagating news of upgrade initiation
               </h4>
-              <h4 class="card-header-title" i18n="@@upgradeCardStatePROPOSING_NO_CANDIDATE" *ngIf="upgradeState == UpgradeState.PROPOSING_NO_CANDIDATE">
+              <h4 class="card-header-title" i18n="@@upgradeCardStatePROPOSING_NO_CANDIDATE"
+                *ngIf="upgradeState == UpgradeState.PROPOSING_NO_CANDIDATE">
                 Waiting for an upgrade candidate to be proposed
               </h4>
-              <h4 class="card-header-title" i18n="@@upgradeCardStatePROPOSING_HAS_CANDIDATE" *ngIf="upgradeState == UpgradeState.PROPOSING_HAS_CANDIDATE">
+              <h4 class="card-header-title" i18n="@@upgradeCardStatePROPOSING_HAS_CANDIDATE"
+                *ngIf="upgradeState == UpgradeState.PROPOSING_HAS_CANDIDATE">
                 Proposing upgrade candidate
               </h4>
-              <h4 class="card-header-title" i18n="@@upgradeCardStateVOTING_NO_CANDIDATE" *ngIf="upgradeState == UpgradeState.VOTING_NO_CANDIDATE">
+              <h4 class="card-header-title" i18n="@@upgradeCardStateVOTING_NO_CANDIDATE"
+                *ngIf="upgradeState == UpgradeState.VOTING_NO_CANDIDATE">
                 No upgrade candidate to vote on
               </h4>
-              <h4 class="card-header-title" i18n="@@upgradeCardStateVOTING_ENOUGH" *ngIf="upgradeState == UpgradeState.VOTING_ENOUGH">
+              <h4 class="card-header-title" i18n="@@upgradeCardStateVOTING_ENOUGH"
+                *ngIf="upgradeState == UpgradeState.VOTING_ENOUGH">
                 Upgrade candidate has enough support
               </h4>
-              <h4 class="card-header-title" i18n="@@upgradeCardStateVOTING_NOT_ENOUGH" *ngIf="upgradeState == UpgradeState.VOTING_NOT_ENOUGH">
+              <h4 class="card-header-title" i18n="@@upgradeCardStateVOTING_NOT_ENOUGH"
+                *ngIf="upgradeState == UpgradeState.VOTING_NOT_ENOUGH">
                 Upgrade candidate doesn't have enough support
               </h4>
               <h4 class="card-header-title" i18n="@@upgradeCardStatePASSED" *ngIf="upgradeState == UpgradeState.PASSED">
                 Upgrade candidate accepted
               </h4>
-              <h4 class="card-header-title" i18n="@@upgradeCardStateALL_FAILED" *ngIf="upgradeState == UpgradeState.ALL_FAILED">
+              <h4 class="card-header-title" i18n="@@upgradeCardStateALL_FAILED"
+                *ngIf="upgradeState == UpgradeState.ALL_FAILED">
                 All upgrade candidates rejected
               </h4>
-              <h4 class="card-header-title" i18n="@@upgradeCardStateFINALIZED" *ngIf="upgradeState == UpgradeState.FINALIZED">
+              <h4 class="card-header-title" i18n="@@upgradeCardStateFINALIZED"
+                *ngIf="upgradeState == UpgradeState.FINALIZED">
                 Will upgrade to candidate after Intermission phase ends
               </h4>
               <h4 class="card-header-title" i18n="@@upgradeCardStateIDLE" *ngIf="upgradeState == UpgradeState.IDLE">
@@ -285,7 +296,10 @@
                 >75% of participating votes to support the candidate in order for it to be accepted.</h6>
             </div>
             <div class="col-auto text-right">
-              <span class="font-weight-bold"><ng-container i18n="@@votingQuorum">Quorum</ng-container>: {{quorumPercentage}}%/10%, <ng-container i18n="@@votingSupport">Support</ng-container>: {{supportPercentage}}%/75%</span>
+              <span class="font-weight-bold">
+                <ng-container i18n="@@votingQuorum">Quorum</ng-container>: {{quorumPercentage}}%/10%, <ng-container
+                  i18n="@@votingSupport">Support</ng-container>: {{supportPercentage}}%/75%
+              </span>
             </div>
           </div>
         </div>
@@ -413,66 +427,25 @@
             </div>
           </div> <!-- / .row -->
         </div>
-        <a class="list-group-item list-group-item-action border-bottom-0 border-left-0 border-right-0"
-          href="https://etherscan.io/address/0x881a0bdf9514c116f4576f4fba263bf5397fca83#code" target="_blank">
-          <div class="row d-flex align-items-center no-gutters">
-            <div class="col-auto">
-              <span class="avatar avatar-xs">
-                <span class="avatar-title rounded-circle bg-success"><i class="fe fe-git-merge h4 mb-0"></i></span>
-              </span>
+        <div *ngFor="let contractAddr of upgradeHistory; let i = index">
+          <a class="list-group-item list-group-item-action border-bottom-0 border-left-0 border-right-0"
+            href="https://etherscan.io/address/{{contractAddr}}#code" target="_blank">
+            <div class="row d-flex align-items-center no-gutters">
+              <div class="col-auto">
+                <span class="avatar avatar-xs">
+                  <span class="avatar-title rounded-circle bg-success"><i class="fe fe-git-merge h4 mb-0"></i></span>
+                </span>
+              </div>
+              <div class="col pl-3">
+                <h4 class="mb-0">
+                  {{contractAddr}} <ng-container i18n="@@currentSmartContract" *ngIf="i == 0">(current smart contract)</ng-container>
+                </h4>
+              </div>
+              <div class="col-auto text-right">
+                <span class="font-weight-bold" i18n="@@review">Review</span>
+              </div>
             </div>
-            <div class="col pl-3">
-              <h4 class="mb-0">
-                <ng-container i18n="@@upgrade">Upgrade</ng-container>&nbsp;0x00..0000
-              </h4>
-            </div>
-            <div class="col-auto text-right">
-              <span class="font-weight-bold">8/30/2020</span>
-            </div>
-          </div>
-        </a>
-        <a class="list-group-item list-group-item-action border-bottom-0 border-left-0 border-right-0"
-          href="https://etherscan.io/address/0x881a0bdf9514c116f4576f4fba263bf5397fca83#code" target="_blank">
-          <div class="row d-flex align-items-center no-gutters">
-            <div class="col-auto">
-              <span class="avatar avatar-xs">
-                <span class="avatar-title rounded-circle bg-success"><i class="fe fe-git-merge h4 mb-0"></i></span>
-              </span>
-            </div>
-            <div class="col pl-3">
-              <h4 class="mb-0">
-                <ng-container i18n="@@upgrade">Upgrade</ng-container>&nbsp;0x00..0000
-              </h4>
-            </div>
-            <div class="col-auto text-right">
-              <span class="font-weight-bold">7/30/2019</span>
-            </div>
-          </div>
-        </a>
-        <a class="list-group-item list-group-item-action border-bottom-0 border-left-0 border-right-0"
-          href="https://etherscan.io/address/0x881a0bdf9514c116f4576f4fba263bf5397fca83#code" target="_blank">
-          <div class="row d-flex align-items-center no-gutters">
-            <div class="col-auto">
-              <span class="avatar avatar-xs">
-                <span class="avatar-title rounded-circle bg-success"><i class="fe fe-git-merge h4 mb-0"></i></span>
-              </span>
-            </div>
-            <div class="col pl-3">
-              <h4 class="mb-0">
-                <ng-container i18n="@@upgrade">Upgrade</ng-container>&nbsp;0x00..0000
-              </h4>
-            </div>
-            <div class="col-auto text-right">
-              <span class="font-weight-bold">6/30/2019</span>
-            </div>
-          </div>
-        </a>
-        <div class="list-group-item border-bottom-0 border-left-0 border-right-0">
-          <div class="row d-flex align-items-center no-gutters">
-            <div class="col-auto">
-              <h4 class="mb-0 text-secondary" i18n="@@noUpgradeHistory">No upgrade yet</h4>
-            </div>
-          </div>
+          </a>
         </div>
       </div>
     </div>

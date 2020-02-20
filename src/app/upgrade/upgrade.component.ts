@@ -31,6 +31,9 @@ enum UpgradeStateEnum {
 })
 
 export class UpgradeComponent extends ApolloEnabled implements OnInit {
+  ZERO_ADDR: string;
+  UpgradeState = UpgradeStateEnum;
+
   nextVersion: any;
   proposer: string;
   proposerVotingWeight: string;
@@ -41,16 +44,16 @@ export class UpgradeComponent extends ApolloEnabled implements OnInit {
   againstVotes: string;
   quorumPercentage: string;
   supportPercentage: string;
-  ZERO_ADDR: string;
-  UpgradeState = UpgradeStateEnum;
+  upgradeHistory: Array<string>;
 
   constructor(private apollo: Apollo) {
     super();
     this.ZERO_ADDR = '0x0000000000000000000000000000000000000000';
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.createQuery();
+    this.upgradeHistory = await governance.getUpgradeHistory();
   }
 
   createQuery() {

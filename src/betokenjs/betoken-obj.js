@@ -10,6 +10,7 @@ export const BETOKEN_PROXY_ADDR = "0xC7CbB403D1722EE3E4ae61f452Dc36d71E8800DE";
 export const ETH_TOKEN_ADDRESS = "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee";
 export const DAI_ADDR = "0x6B175474E89094C44Da98b954EedeAC495271d0F";
 export const KYBER_ADDR = "0x818E6FECD516Ecc3849DAf6845e3EC868087B755";
+export const ZERO_ADDR = "0x0000000000000000000000000000000000000000";
 export const NET_ID = 1; // Mainnet
 export const PRECISION = 1e18;
 export const CHECK_RECEIPT_INTERVAL = 3e3; // in milliseconds
@@ -463,6 +464,20 @@ export var Betoken = function () {
     self.getShareTotalSupply = function () {
         return self.contracts.Shares.methods.totalSupply().call();
     };
+
+    self.getUpgradeHistory = async function () {
+        let betokenFundABI = require("./abi/BetokenFund.json");
+        let fund = self.contracts.BetokenFund;
+        let result = [self.contracts.BetokenFund.options.address];
+        let prevVersion = await fund.methods.previousVersion().call();
+        while (prevVersion && prevVersion !== ZERO_ADDR) {
+            result.push(prevVersion);
+
+            fund = new web3.eth.Contract(betokenFundABI, prevVersion);
+            prevVersion = await fund.methods.previousVersion().call();
+        }
+        return result;
+    }
 
     /**
     * Gets the array of investments

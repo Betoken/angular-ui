@@ -129,7 +129,8 @@ export const governance = {
     chunk: () => Data.chunk,
     subchunk: () => Data.subchunk,
     totalVotingWeight: () => Data.totalVotingWeight,
-    getVotingWeight: async (addr) => new BigNumber(await betoken.getMappingOrArrayItem('getVotingWeight', addr)).div(PRECISION)
+    getVotingWeight: async (addr) => new BigNumber(await betoken.getMappingOrArrayItem('getVotingWeight', addr)).div(PRECISION),
+    getUpgradeHistory: () => betoken.getUpgradeHistory()
 }
 
 export const loading = {

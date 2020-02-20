@@ -91,11 +91,6 @@ export class UpgradeComponent extends ApolloEnabled implements OnInit {
       let fund = data['fund'];
       let manager = data['manager'];
 
-      fund.cyclePhase = 'MANAGE';
-      fund.hasFinalizedNextVersion = false;
-      fund.upgradeVotingActive = true;
-      fund.nextVersion = '0x123456';
-
       if (fund.cyclePhase === 'INTERMISSION') {
         // Intermission phase
         if (fund.hasFinalizedNextVersion) {
@@ -126,8 +121,8 @@ export class UpgradeComponent extends ApolloEnabled implements OnInit {
         // Manage phase
         if (fund.upgradeVotingActive) {
           // Upgrade initiated, voting active
-          let chunk = 1;//governance.chunk();
-          let subchunk = 1;//governance.subchunk();
+          let chunk = governance.chunk();
+          let subchunk = governance.subchunk();
           if (chunk == 0) {
             // Chunk 0, no voting, waiting for news of vote to propagate
             this.upgradeState = UpgradeStateEnum.PROPAGATING;
@@ -140,7 +135,6 @@ export class UpgradeComponent extends ApolloEnabled implements OnInit {
             } else {
               // No successful vote yet, let people vote
               let candidate = fund.candidates[chunk - 1];
-              candidate = '0x123456';
               if (!candidate) candidate = this.ZERO_ADDR;
               if (subchunk == 0) {
                 // Propose candidate

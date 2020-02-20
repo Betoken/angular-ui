@@ -32,9 +32,15 @@ enum UpgradeStateEnum {
 
 export class UpgradeComponent extends ApolloEnabled implements OnInit {
   nextVersion: any;
+  proposer: string;
+  proposerVotingWeight: string;
   upgradeState: UpgradeStateEnum;
   progressBarValue: string;
   progressBarMax: string;
+  forVotes: string;
+  againstVotes: string;
+  quorumPercentage: string;
+  supportPercentage: string;
   ZERO_ADDR: string;
   UpgradeState = UpgradeStateEnum;
 
@@ -77,7 +83,7 @@ export class UpgradeComponent extends ApolloEnabled implements OnInit {
     this.querySubscription = this.query.valueChanges.subscribe((result) => this.handleQuery(result));
   }
 
-  handleQuery({ data, loading }) {
+  async handleQuery({ data, loading }) {
     if (!loading) {
       let fund = data['fund'];
       let manager = data['manager'];
@@ -118,7 +124,7 @@ export class UpgradeComponent extends ApolloEnabled implements OnInit {
         if (fund.upgradeVotingActive) {
           // Upgrade initiated, voting active
           let chunk = 1;//governance.chunk();
-          const subchunk = 0;//governance.subchunk();
+          let subchunk = 1;//governance.subchunk();
           if (chunk == 0) {
             // Chunk 0, no voting, waiting for news of vote to propagate
             this.upgradeState = UpgradeStateEnum.PROPAGATING;
@@ -131,6 +137,7 @@ export class UpgradeComponent extends ApolloEnabled implements OnInit {
             } else {
               // No successful vote yet, let people vote
               let candidate = fund.candidates[chunk - 1];
+              candidate = '0x123456';
               if (!candidate) candidate = this.ZERO_ADDR;
               if (subchunk == 0) {
                 // Propose candidate
@@ -138,9 +145,10 @@ export class UpgradeComponent extends ApolloEnabled implements OnInit {
                   this.upgradeState = UpgradeStateEnum.PROPOSING_NO_CANDIDATE;
                 } else {
                   this.nextVersion = candidate;
+                  this.proposer = fund.proposers[chunk - 1];
+                  this.proposerVotingWeight = (await governance.getVotingWeight(this.proposer)).toFixed(2);
                   this.upgradeState = UpgradeStateEnum.PROPOSING_HAS_CANDIDATE;
                 }
-                console.log(this.upgradeState);
               } else {
                 // Vote on candidate
                 if (candidate === this.ZERO_ADDR) {
@@ -150,12 +158,18 @@ export class UpgradeComponent extends ApolloEnabled implements OnInit {
                   // Has candidate, vote
                   this.nextVersion = candidate;
 
-                  const forVotes = +fund.forVotes[chunk - 1];
-                  const againstVotes = +fund.againstVotes[chunk - 1];
+                  const forVotes = isNaN(+fund.forVotes[chunk - 1]) ? 0 : +fund.forVotes[chunk - 1];
+                  const againstVotes = isNaN(+fund.againstVotes[chunk - 1]) ? 0 : +fund.againstVotes[chunk - 1];
                   const totalSubmittedVotes = forVotes + againstVotes;
                   const totalVotingWeight = governance.totalVotingWeight();
                   const hasQuorum = totalVotingWeight.times(0.1).lt(totalSubmittedVotes);
                   const hasConsensus = (totalSubmittedVotes > 0) && (forVotes / totalSubmittedVotes > 0.75);
+                  this.progressBarValue = new BigNumber(forVotes).toFixed(2);
+                  this.progressBarMax = new BigNumber(totalSubmittedVotes).toFixed(2);
+                  this.forVotes = new BigNumber(forVotes).toFixed(2);
+                  this.againstVotes = new BigNumber(againstVotes).toFixed(2);
+                  this.quorumPercentage = new BigNumber(totalSubmittedVotes).div(totalVotingWeight).times(100).toFixed(2);
+                  this.supportPercentage = totalSubmittedVotes == 0 ? '0' : new BigNumber(forVotes).div(totalSubmittedVotes).times(100).toFixed(2);
                   if (hasQuorum && hasConsensus) {
                     // Already has enough votes to succeed
                     this.upgradeState = UpgradeStateEnum.VOTING_ENOUGH;
@@ -176,8 +190,13 @@ export class UpgradeComponent extends ApolloEnabled implements OnInit {
             }
           }
         } else {
-          // No upgrade, nothing active
-          this.upgradeState = UpgradeStateEnum.IDLE;
+          if (fund.hasFinalizedNextVersion) {
+            this.nextVersion = fund.nextVersion;
+            this.upgradeState = UpgradeStateEnum.PASSED;
+          } else {
+            // No upgrade, nothing active
+            this.upgradeState = UpgradeStateEnum.IDLE;
+          }
         }
       }
     }

@@ -1,6 +1,6 @@
 // imports
 import BigNumber from "bignumber.js";
-import { Betoken } from "./betoken-obj";
+import { Betoken, PRECISION } from "./betoken-obj";
 import 'list.js';
 const Data = require("./data-controller");
 
@@ -128,7 +128,8 @@ export const tokens = {
 export const governance = {
     chunk: () => Data.chunk,
     subchunk: () => Data.subchunk,
-    totalVotingWeight: () => Data.totalVotingWeight
+    totalVotingWeight: () => Data.totalVotingWeight,
+    getVotingWeight: async (addr) => new BigNumber(await betoken.getMappingOrArrayItem('getVotingWeight', addr)).div(PRECISION)
 }
 
 export const loading = {

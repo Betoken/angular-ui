@@ -246,7 +246,7 @@
         </a>
         <a class="list-group-item list-group-item-action border-bottom-0 border-left-0 border-right-0" href="#"
           data-toggle="modal" data-target="#modalUpgrade"
-          *ngIf="upgradeState == UpgradeState.PROPOSING_NO_CANDIDATE || (upgradeState == UpgradeState.PROPOSING_HAS_CANDIDATE && (+managerVotingWeight > +proposerVotingWeight || managerAddress === proposer))">
+          *ngIf="canPropose()">
           <div class="row d-flex align-items-center no-gutters">
             <div class="col-auto">
               <span class="avatar avatar-xs">

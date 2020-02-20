@@ -112,7 +112,7 @@ export class UpgradeComponent extends ApolloEnabled implements OnInit {
     if (!loading) {
       let fund = data['fund'];
       let manager = data['manager'];
-      
+
       if (manager) {
         this.managerVotingWeight = (await governance.getVotingWeight(user.address())).toFixed(4);
         this.managerSignal = manager.upgradeSignal;
@@ -305,5 +305,10 @@ export class UpgradeComponent extends ApolloEnabled implements OnInit {
       default:
         break;
     }
+  }
+
+  canPropose() {
+    return this.upgradeState == UpgradeStateEnum.PROPOSING_NO_CANDIDATE
+      || (this.upgradeState == UpgradeStateEnum.PROPOSING_HAS_CANDIDATE && (+this.managerVotingWeight > +this.proposerVotingWeight || this.managerAddress === this.proposer));
   }
 }

@@ -169,7 +169,7 @@ export class UpgradeComponent extends ApolloEnabled implements OnInit {
                   this.forVotes = new BigNumber(forVotes).toFixed(2);
                   this.againstVotes = new BigNumber(againstVotes).toFixed(2);
                   this.quorumPercentage = new BigNumber(totalSubmittedVotes).div(totalVotingWeight).times(100).toFixed(2);
-                  this.supportPercentage = totalSubmittedVotes == 0 ? '0' : new BigNumber(forVotes).div(totalSubmittedVotes).times(100).toFixed(2);
+                  this.supportPercentage = totalSubmittedVotes == 0 ? '0.00' : new BigNumber(forVotes).div(totalSubmittedVotes).times(100).toFixed(2);
                   if (hasQuorum && hasConsensus) {
                     // Already has enough votes to succeed
                     this.upgradeState = UpgradeStateEnum.VOTING_ENOUGH;

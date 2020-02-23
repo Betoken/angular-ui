@@ -23,64 +23,64 @@
           <div class="row align-items-center justify-content-between">
             <div class="col-auto">
               <!-- Title -->
-              <h4 class="card-header-title" i18n="@@upgradeCardTitle">
+              <h4 class="card-header-title mb-2 mb-lg-0" i18n="@@upgradeCardTitle">
                 Current Status
               </h4>
             </div>
-            <div class="col-auto text-right">
+            <div class="col-12 col-lg-auto text-lg-right">
               <!-- State -->
-              <h4 class="card-header-title" i18n="@@upgradeCardStateDEV_PROPOSED"
+              <h4 class="card-header-title text-muted" i18n="@@upgradeCardStateDEV_PROPOSED"
                 *ngIf="upgradeState == UpgradeState.DEV_PROPOSED">
                 Development team proposed upgrade
               </h4>
-              <h4 class="card-header-title" i18n="@@upgradeCardStateSIGNALING_ENOUGH"
+              <h4 class="card-header-title text-muted" i18n="@@upgradeCardStateSIGNALING_ENOUGH"
                 *ngIf="upgradeState == UpgradeState.SIGNALING_ENOUGH">
                 Has enough support for initiating upgrade
               </h4>
-              <h4 class="card-header-title" i18n="@@upgradeCardStateSIGNALING_NOT_ENOUGH"
+              <h4 class="card-header-title text-muted" i18n="@@upgradeCardStateSIGNALING_NOT_ENOUGH"
                 *ngIf="upgradeState == UpgradeState.SIGNALING_NOT_ENOUGH">
                 Not enough support for initiating upgrade
               </h4>
-              <h4 class="card-header-title" i18n="@@upgradeCardStatePROPAGATING"
+              <h4 class="card-header-title text-muted" i18n="@@upgradeCardStatePROPAGATING"
                 *ngIf="upgradeState == UpgradeState.PROPAGATING">
                 Propagating news of upgrade initiation
               </h4>
-              <h4 class="card-header-title" i18n="@@upgradeCardStatePROPOSING_NO_CANDIDATE"
+              <h4 class="card-header-title text-muted" i18n="@@upgradeCardStatePROPOSING_NO_CANDIDATE"
                 *ngIf="upgradeState == UpgradeState.PROPOSING_NO_CANDIDATE">
                 Waiting for an upgrade candidate to be proposed
               </h4>
-              <h4 class="card-header-title" i18n="@@upgradeCardStatePROPOSING_HAS_CANDIDATE"
+              <h4 class="card-header-title text-muted" i18n="@@upgradeCardStatePROPOSING_HAS_CANDIDATE"
                 *ngIf="upgradeState == UpgradeState.PROPOSING_HAS_CANDIDATE">
                 Proposing upgrade candidate
               </h4>
-              <h4 class="card-header-title" i18n="@@upgradeCardStateVOTING_NO_CANDIDATE"
+              <h4 class="card-header-title text-muted" i18n="@@upgradeCardStateVOTING_NO_CANDIDATE"
                 *ngIf="upgradeState == UpgradeState.VOTING_NO_CANDIDATE">
                 No upgrade candidate to vote on
               </h4>
-              <h4 class="card-header-title" i18n="@@upgradeCardStateVOTING_ENOUGH"
+              <h4 class="card-header-title text-muted" i18n="@@upgradeCardStateVOTING_ENOUGH"
                 *ngIf="upgradeState == UpgradeState.VOTING_ENOUGH">
                 Upgrade candidate has enough support
               </h4>
-              <h4 class="card-header-title" i18n="@@upgradeCardStateVOTING_NOT_ENOUGH"
+              <h4 class="card-header-title text-muted" i18n="@@upgradeCardStateVOTING_NOT_ENOUGH"
                 *ngIf="upgradeState == UpgradeState.VOTING_NOT_ENOUGH">
                 Upgrade candidate doesn't have enough support
               </h4>
-              <h4 class="card-header-title" i18n="@@upgradeCardStatePASSED" *ngIf="upgradeState == UpgradeState.PASSED">
+              <h4 class="card-header-title text-muted" i18n="@@upgradeCardStatePASSED" *ngIf="upgradeState == UpgradeState.PASSED">
                 Upgrade candidate accepted
               </h4>
-              <h4 class="card-header-title" i18n="@@upgradeCardStatePASSED_NOT_FINALIZED"
+              <h4 class="card-header-title text-muted" i18n="@@upgradeCardStatePASSED_NOT_FINALIZED"
                 *ngIf="upgradeState == UpgradeState.PASSED_NOT_FINALIZED">
                 Upgrade candidate accepted but needs to be finalized
               </h4>
-              <h4 class="card-header-title" i18n="@@upgradeCardStateALL_FAILED"
+              <h4 class="card-header-title text-muted" i18n="@@upgradeCardStateALL_FAILED"
                 *ngIf="upgradeState == UpgradeState.ALL_FAILED">
                 All upgrade candidates rejected
               </h4>
-              <h4 class="card-header-title" i18n="@@upgradeCardStateFINALIZED"
+              <h4 class="card-header-title text-muted" i18n="@@upgradeCardStateFINALIZED"
                 *ngIf="upgradeState == UpgradeState.FINALIZED">
                 Will upgrade to candidate after Intermission phase ends
               </h4>
-              <h4 class="card-header-title" i18n="@@upgradeCardStateIDLE" *ngIf="upgradeState == UpgradeState.IDLE">
+              <h4 class="card-header-title text-muted" i18n="@@upgradeCardStateIDLE" *ngIf="upgradeState == UpgradeState.IDLE">
                 Upgrade process inactive
               </h4>
             </div>
@@ -108,13 +108,13 @@
           <a class="list-group-item list-group-item-action border-bottom-0 border-left-0 border-right-0" href="#"
             data-toggle="modal" data-target="#modalUpgrade" (click)="managerVotingSupport = true"
             *ngIf="upgradeState == UpgradeState.SIGNALING_ENOUGH || upgradeState == UpgradeState.SIGNALING_NOT_ENOUGH">
-            <div class="row d-flex align-items-center no-gutters">
+            <div class="row d-flex align-items-center">
               <div class="col-auto">
                 <span class="avatar avatar-xs">
                   <span class="avatar-title rounded-circle bg-success"><i class="fe fe-check-circle h4 mb-0"></i></span>
                 </span>
               </div>
-              <div class="col pl-3">
+              <div class="col-9">
                 <h4 class="mb-0" i18n="@@upgradeBetoken">Signal your support for a smart contract upgrade</h4>
               </div>
             </div>
@@ -122,13 +122,13 @@
           <a class="list-group-item list-group-item-action border-bottom-0 border-left-0 border-right-0" href="#"
             data-toggle="modal" data-target="#modalUpgrade" (click)="managerVotingSupport = false"
             *ngIf="(upgradeState == UpgradeState.SIGNALING_ENOUGH || upgradeState == UpgradeState.SIGNALING_NOT_ENOUGH) && managerSignal">
-            <div class="row d-flex align-items-center no-gutters">
+            <div class="row d-flex align-items-center">
               <div class="col-auto">
                 <span class="avatar avatar-xs">
                   <span class="avatar-title rounded-circle bg-danger"><i class="fe fe-x h3 mb-0"></i></span>
                 </span>
               </div>
-              <div class="col pl-3">
+              <div class="col-9">
                 <h4 class="mb-0" i18n="@@cancelUpgradeSignal">Cancel your support for a smart contract upgrade</h4>
               </div>
             </div>
@@ -139,16 +139,16 @@
         <a class="list-group-item list-group-item-action border-bottom-0 border-left-0 border-right-0"
           href="https://etherscan.io/address/{{nextVersion}}#code" target="_blank"
           *ngIf="upgradeState == UpgradeState.DEV_PROPOSED">
-          <div class="row d-flex align-items-center no-gutters">
+          <div class="row d-flex align-items-center">
             <div class="col-auto">
               <span class="avatar avatar-xs">
                 <span class="avatar-title rounded-circle bg-primary"><i class="fe fe-code h4 mb-0"></i></span>
               </span>
             </div>
-            <div class="col pl-3">
+            <div class="col-9 mb-2 mb-lg-0">
               <h4 class="mb-0" i18n="@@upgradeDevsCandidate">The development team has proposed an upgrade candidate</h4>
             </div>
-            <div class="col-auto text-right">
+            <div class="col-12 col-lg-auto text-right">
               <span class="font-weight-bold" i18n="@@review">Review</span>
             </div>
           </div>
@@ -156,7 +156,7 @@
         <!-- If upgrade initiated -->
         <div class="list-group-item border-bottom-0 border-left-0 border-right-0"
           *ngIf="upgradeState == UpgradeState.PROPAGATING">
-          <div class="row d-flex align-items-center no-gutters">
+          <div class="row d-flex align-items-center">
             <div class="col-auto">
               <span class="avatar avatar-xs">
                 <span class="avatar-title rounded-circle bg-transparent">
@@ -166,7 +166,7 @@
                 </span>
               </span>
             </div>
-            <div class="col pl-3">
+            <div class="col-9">
               <h4 class="mb-1 text-secondary" i18n="@@upgradeInitiated">Upgrade Initiated</h4>
               <h6 class="text-secondary mb-0" i18n="@@upgradeInitiatedSubTitle">The first 3 days are reserved for
                 letting the news of the upgrade propagate.</h6>
@@ -176,7 +176,7 @@
         <!-- If upgrade initiated and proposing -->
         <div class="list-group-item border-bottom-0 border-left-0 border-right-0"
           *ngIf="upgradeState == UpgradeState.PROPOSING_NO_CANDIDATE">
-          <div class="row d-flex align-items-center no-gutters">
+          <div class="row d-flex align-items-center">
             <div class="col-auto">
               <span class="avatar avatar-xs">
                 <span class="avatar-title rounded-circle bg-transparent">
@@ -186,7 +186,7 @@
                 </span>
               </span>
             </div>
-            <div class="col pl-3">
+            <div class="col-9">
               <h4 class="mb-1 text-secondary" i18n="@@waitingUpgradeCandidate">Proposing upgrade candidate</h4>
               <h6 class="text-secondary mb-0" i18n="@@waitingUpgradeCandidateSubtitle">Any manager can propose a smart
                 contract as the upgrade candidate, unless another manager with more votes has proposed/proposes a
@@ -197,7 +197,7 @@
         <a class="list-group-item list-group-item-action border-bottom-0 border-left-0 border-right-0"
           *ngIf="upgradeState == UpgradeState.PROPOSING_HAS_CANDIDATE"
           href="https://etherscan.io/address/{{nextVersion}}#code" target="_blank">
-          <div class="row d-flex align-items-center no-gutters">
+          <div class="row d-flex align-items-center">
             <div class="col-auto">
               <span class="avatar avatar-xs">
                 <span class="avatar-title rounded-circle bg-transparent">
@@ -207,7 +207,7 @@
                 </span>
               </span>
             </div>
-            <div class="col pl-3">
+            <div class="col-9 mb-2 mb-lg-0">
               <h4 class="mb-1 text-secondary">
                 <ng-container i18n="@@upgradeCandidateProposed">Upgrade candidate proposed: </ng-container>
                 {{nextVersion}}
@@ -215,7 +215,7 @@
               <h6 class="text-secondary mb-0" i18n="@@upgradeCandidateProposedSubtitle">You can change the upgrade
                 candidate if you are the current proposer or have more votes than the current proposer.</h6>
             </div>
-            <div class="col-auto text-right">
+            <div class="col-12 col-lg-auto text-right">
               <span class="font-weight-bold" i18n="@@review">Review</span>
             </div>
           </div>
@@ -223,7 +223,7 @@
         <a class="list-group-item list-group-item-action border-bottom-0 border-left-0 border-right-0"
           *ngIf="upgradeState == UpgradeState.PROPOSING_HAS_CANDIDATE" href="https://etherscan.io/address/{{proposer}}"
           target="_blank">
-          <div class="row d-flex align-items-center no-gutters">
+          <div class="row d-flex align-items-center">
             <div class="col-auto">
               <span class="avatar avatar-xs">
                 <span class="avatar-title rounded-circle bg-transparent">
@@ -233,13 +233,13 @@
                 </span>
               </span>
             </div>
-            <div class="col pl-3">
+            <div class="col-9 mb-2 mb-lg-0">
               <h4 class="mb-1 text-secondary">
                 <ng-container i18n="@@upgradeProposer">Proposer: </ng-container>{{proposer}} ({{proposerVotingWeight}}
                 votes)
               </h4>
             </div>
-            <div class="col-auto text-right">
+            <div class="col-12 col-lg-auto text-right">
               <span class="font-weight-bold" i18n="@@review">Review</span>
             </div>
           </div>
@@ -247,17 +247,17 @@
         <a class="list-group-item list-group-item-action border-bottom-0 border-left-0 border-right-0" href="#"
           data-toggle="modal" data-target="#modalUpgrade"
           *ngIf="canPropose()">
-          <div class="row d-flex align-items-center no-gutters">
+          <div class="row d-flex align-items-center">
             <div class="col-auto">
               <span class="avatar avatar-xs">
                 <span class="avatar-title rounded-circle bg-primary"><i
                     class="fe fe-git-pull-request h4 mb-0"></i></span>
               </span>
             </div>
-            <div class="col pl-3">
+            <div class="col-9 mb-2 mb-lg-0">
               <h4 class="mb-0" i18n="@@submitUpgradeCandidate">Submit upgrade candidate</h4>
             </div>
-            <div class="col-auto text-right">
+            <div class="col-12 col-lg-auto text-right">
               <span class="font-weight-bold" i18n="@@modalCtaContinue">Continue</span>
             </div>
           </div>
@@ -266,13 +266,13 @@
         <!-- If no candidate -->
         <div class="list-group-item border-bottom-0 border-left-0 border-right-0"
           *ngIf="upgradeState == UpgradeState.VOTING_NO_CANDIDATE">
-          <div class="row d-flex align-items-center no-gutters">
+          <div class="row d-flex align-items-center">
             <div class="col-auto">
               <span class="avatar avatar-xs">
                 <span class="avatar-title rounded-circle bg-danger"><i class="fe fe-x h4 mb-0"></i></span>
               </span>
             </div>
-            <div class="col pl-3">
+            <div class="col-9">
               <h4 class="mb-0">
                 <ng-container i18n="@@votingNoCandidate">No candidate proposed, please wait for the current 3-day voting
                   chunk to end.</ng-container>
@@ -303,7 +303,7 @@
         </div>
         <div class="list-group-item border-bottom-0 border-left-0 border-right-0"
           *ngIf="upgradeState == UpgradeState.VOTING_ENOUGH || upgradeState == UpgradeState.VOTING_NOT_ENOUGH">
-          <div class="row d-flex align-items-center no-gutters">
+          <div class="row d-flex align-items-center">
             <div class="col-auto">
               <span class="avatar avatar-xs">
                 <span class="avatar-title rounded-circle bg-transparent">
@@ -313,7 +313,7 @@
                 </span>
               </span>
             </div>
-            <div class="col pl-3">
+            <div class="col-9 mb-2 mb-lg-0">
               <h4 class="mb-1 text-secondary">
                 <ng-container i18n="@@votingUpgradeCandidate">Voting on upgrade candidate</ng-container> <a
                   target="_blank" href="https://etherscan.io/address/{{nextVersion}}#code">&nbsp;{{nextVersion}}</a>
@@ -321,7 +321,7 @@
               <h6 class="text-secondary mb-0" i18n="@@votingUpgradeCandidateSubtitle">Need >10% votes to participate and
                 >75% of participating votes to support the candidate in order for it to be accepted.</h6>
             </div>
-            <div class="col-auto text-right">
+            <div class="col-12 col-lg-auto text-right">
               <span class="font-weight-bold">
                 <ng-container i18n="@@votingQuorum">Quorum</ng-container>: {{quorumPercentage}}%/10%, <ng-container
                   i18n="@@votingSupport">Support</ng-container>: {{supportPercentage}}%/75%
@@ -332,18 +332,18 @@
         <a class="list-group-item list-group-item-action border-bottom-0 border-left-0 border-right-0" href="#"
           data-toggle="modal" data-target="#modalUpgrade" (click)="managerVotingSupport = true;"
           *ngIf="upgradeState == UpgradeState.VOTING_ENOUGH || upgradeState == UpgradeState.VOTING_NOT_ENOUGH">
-          <div class="row d-flex align-items-center no-gutters">
+          <div class="row d-flex align-items-center">
             <div class="col-auto">
               <span class="avatar avatar-xs">
                 <span class="avatar-title rounded-circle bg-success"><i class="fe fe-check-circle h4 mb-0"></i></span>
               </span>
             </div>
-            <div class="col pl-3">
+            <div class="col-9 mb-2 mb-lg-0">
               <h4 class="mb-0">
                 <ng-container i18n="@@upgradeTo">Upgrade to</ng-container>&nbsp;{{nextVersion}}
               </h4>
             </div>
-            <div class="col-auto text-right">
+            <div class="col-12 col-lg-auto text-right">
               <span class="font-weight-bold">Vote</span>
             </div>
           </div>
@@ -351,18 +351,18 @@
         <a class="list-group-item list-group-item-action border-bottom-0 border-left-0 border-right-0" href="#"
           data-toggle="modal" data-target="#modalUpgrade" (click)="managerVotingSupport = false;"
           *ngIf="upgradeState == UpgradeState.VOTING_ENOUGH || upgradeState == UpgradeState.VOTING_NOT_ENOUGH">
-          <div class="row d-flex align-items-center no-gutters">
+          <div class="row d-flex align-items-center">
             <div class="col-auto">
               <span class="avatar avatar-xs">
                 <span class="avatar-title rounded-circle bg-danger"><i class="fe fe-x h4 mb-0"></i></span>
               </span>
             </div>
-            <div class="col pl-3">
+            <div class="col-9 mb-2 mb-lg-0">
               <h4 class="mb-0">
                 <ng-container i18n="@@dontUpgradeTo">Don't upgrade to</ng-container>&nbsp;{{nextVersion}}
               </h4>
             </div>
-            <div class="col-auto text-right">
+            <div class="col-12 col-lg-auto text-right">
               <span class="font-weight-bold">Vote</span>
             </div>
           </div>
@@ -370,19 +370,19 @@
         <!-- If manager upgrade candidate accepted but hasn't been finalized -->
         <a class="list-group-item list-group-item-action border-bottom-0 border-left-0 border-right-0" href="#"
           data-toggle="modal" data-target="#modalUpgrade" *ngIf="upgradeState == UpgradeState.PASSED_NOT_FINALIZED">
-          <div class="row d-flex align-items-center no-gutters">
+          <div class="row d-flex align-items-center">
             <div class="col-auto">
               <span class="avatar avatar-xs">
                 <span class="avatar-title rounded-circle bg-primary"><i class="fe fe-code h4 mb-0"></i></span>
               </span>
             </div>
-            <div class="col pl-3">
+            <div class="col-9 mb-2 mb-lg-0">
               <h4 class="mb-0">
                 <ng-container i18n="@@upgrade">Upgrade</ng-container>&nbsp;{{nextVersion}}&nbsp;<ng-container
                   i18n="@@acceptedNotFinalized">accepted but needs to be finalized.</ng-container>
               </h4>
             </div>
-            <div class="col-auto text-right">
+            <div class="col-12 col-lg-auto text-right">
               <span class="font-weight-bold" i18n="@@finalize">Finalize</span>
             </div>
           </div>
@@ -391,19 +391,19 @@
         <a class="list-group-item list-group-item-action border-bottom-0 border-left-0 border-right-0"
           href="https://etherscan.io/address/{{nextVersion}}#code" target="_blank"
           *ngIf="upgradeState == UpgradeState.PASSED">
-          <div class="row d-flex align-items-center no-gutters">
+          <div class="row d-flex align-items-center">
             <div class="col-auto">
               <span class="avatar avatar-xs">
                 <span class="avatar-title rounded-circle bg-success"><i class="fe fe-check-circle h4 mb-0"></i></span>
               </span>
             </div>
-            <div class="col pl-3">
+            <div class="col-9 mb-2 mb-lg-0">
               <h4 class="mb-0">
                 <ng-container i18n="@@upgrade">Upgrade</ng-container>&nbsp;{{nextVersion}}&nbsp;<ng-container
                   i18n="@@accepted">accepted</ng-container>
               </h4>
             </div>
-            <div class="col-auto text-right">
+            <div class="col-12 col-lg-auto text-right">
               <span class="font-weight-bold" i18n="@@review">Review</span>
             </div>
           </div>
@@ -411,13 +411,13 @@
         <!-- If all votes have failed and is in manage phase -->
         <div class="list-group-item border-bottom-0 border-left-0 border-right-0"
           *ngIf="upgradeState == UpgradeState.ALL_FAILED">
-          <div class="row d-flex align-items-center no-gutters">
+          <div class="row d-flex align-items-center">
             <div class="col-auto">
               <span class="avatar avatar-xs">
                 <span class="avatar-title rounded-circle bg-danger"><i class="fe fe-x h4 mb-0"></i></span>
               </span>
             </div>
-            <div class="col pl-3">
+            <div class="col-9">
               <h4 class="mb-0">
                 <ng-container i18n="@@allFailed">No upgrade candidate had enough vote to be accepted.</ng-container>
               </h4>
@@ -428,19 +428,19 @@
         <a class="list-group-item list-group-item-action border-bottom-0 border-left-0 border-right-0"
           href="https://etherscan.io/address/{{nextVersion}}#code" target="_blank"
           *ngIf="upgradeState == UpgradeState.FINALIZED">
-          <div class="row d-flex align-items-center no-gutters">
+          <div class="row d-flex align-items-center">
             <div class="col-auto">
               <span class="avatar avatar-xs">
                 <span class="avatar-title rounded-circle bg-success"><i class="fe fe-check-circle h4 mb-0"></i></span>
               </span>
             </div>
-            <div class="col pl-3">
+            <div class="col-9 mb-2 mb-lg-0">
               <h4 class="mb-0">
                 <ng-container i18n="@@willUpgradeTo">Will upgrade to</ng-container>&nbsp;{{nextVersion}}
                 <ng-container i18n="@@afterThisIntermissionPhase">after this Intermission phase</ng-container>
               </h4>
             </div>
-            <div class="col-auto text-right">
+            <div class="col-12 col-lg-auto text-right">
               <span class="font-weight-bold" i18n="@@review">Review</span>
             </div>
           </div>
@@ -448,13 +448,13 @@
         <!-- If is manage phase and voting is inactive -->
         <div class="list-group-item border-bottom-0 border-left-0 border-right-0"
           *ngIf="upgradeState == UpgradeState.IDLE">
-          <div class="row d-flex align-items-center no-gutters">
+          <div class="row d-flex align-items-center">
             <div class="col-auto">
               <span class="avatar avatar-xs">
                 <span class="avatar-title rounded-circle bg-danger"><i class="fe fe-x h4 mb-0"></i></span>
               </span>
             </div>
-            <div class="col pl-3">
+            <div class="col-9">
               <h4 class="mb-0">
                 <ng-container i18n="@@votingInactive">Voting is inactive</ng-container>
               </h4>
@@ -476,19 +476,19 @@
         <div *ngFor="let contractAddr of upgradeHistory; let i = index">
           <a class="list-group-item list-group-item-action border-bottom-0 border-left-0 border-right-0"
             href="https://etherscan.io/address/{{contractAddr}}#code" target="_blank">
-            <div class="row d-flex align-items-center no-gutters">
+            <div class="row d-flex align-items-center">
               <div class="col-auto">
                 <span class="avatar avatar-xs">
                   <span class="avatar-title rounded-circle bg-success"><i class="fe fe-git-merge h4 mb-0"></i></span>
                 </span>
               </div>
-              <div class="col pl-3">
+              <div class="col-9 mb-2 mb-lg-0">
                 <h4 class="mb-0">
                   {{contractAddr}} <ng-container i18n="@@currentSmartContract" *ngIf="i == 0">(current smart contract)
                   </ng-container>
                 </h4>
               </div>
-              <div class="col-auto text-right">
+              <div class="col-12 col-lg-auto text-right">
                 <span class="font-weight-bold" i18n="@@review">Review</span>
               </div>
             </div>

@@ -34,6 +34,18 @@
   background-color: #1DC887;
 }
 .bg-green-curved{background-color:transparent!important;background-image:radial-gradient(#1DC887,#19A670 70%,transparent 70.1%);background-repeat:no-repeat;background-position:bottom;background-size:200% 150%}
+.border-spot{
+  border-color: #2c7be5!important;
+  border-left-width: 3px!important;
+}
+.border-long{
+  border-color: #FF0DD2!important;
+  border-left-width: 3px!important;
+}
+.border-short{
+  border-color: #00FFC1!important;
+  border-left-width: 3px!important;
+}
 @media (min-width: 768px)
 {.main-content.custom-sidebar {
     margin-left: 250px;

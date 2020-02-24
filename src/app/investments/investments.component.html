@@ -300,8 +300,9 @@
           <div class="tab-pane show active" id="pills-investments" role="tabpanel"
             aria-labelledby="pills-investments-tab">
             <!-- Active investments -->
-            <a class="list-group-item list-group-item-action border-bottom-0 border-left-0 border-right-0" href="#"
+            <a class="list-group-item list-group-item-action border-top-0 border-bottom-0 border-left border-right-0" href="#"
               data-toggle="modal" data-target="#modalSell" (click)="openSellModal(data)"
+              [ngClass]="{'border-spot': isOrderOfType(data, 'BasicOrder'), 'border-long': !isOrderOfType(data, 'BasicOrder') && !data.isShort, 'border-short': !isOrderOfType(data, 'BasicOrder') && data.isShort}"
               *ngFor="let data of activeInvestmentList">
               <div class="row d-flex align-items-center no-gutters">
                 <div class="col-auto">
@@ -438,7 +439,8 @@
             </div>
           </div> <!-- / .row -->
         </div>
-        <div class="list-group-item border-top-0 border-bottom-0 border-left border-right-0 border-spot"
+        <div class="list-group-item border-top-0 border-bottom-0 border-left border-right-0"
+          [ngClass]="{'border-spot': isOrderOfType(data, 'BasicOrder'), 'border-long': !isOrderOfType(data, 'BasicOrder') && !data.isShort, 'border-short': !isOrderOfType(data, 'BasicOrder') && data.isShort}"
           *ngFor="let data of inactiveInvestmentList">
           <div class="row d-flex align-items-center no-gutters">
             <div class="col-auto">
@@ -997,7 +999,8 @@
                 {{sellData.tokenSymbol}} <ng-container i18n="@@price">Price</ng-container>
               </h6>
               <h4 class="mb-0">
-                {{isOrderOfType(sellData, 'BasicOrder') ? toBigNumber(sellData.sellPrice).toFormat(6) : assetSymbolToPrice(sellData.tokenSymbol).toFormat(6)}} DAI
+                {{isOrderOfType(sellData, 'BasicOrder') ? toBigNumber(sellData.sellPrice).toFormat(6) : assetSymbolToPrice(sellData.tokenSymbol).toFormat(6)}}
+                DAI
               </h4>
             </div>
             <div class="col">

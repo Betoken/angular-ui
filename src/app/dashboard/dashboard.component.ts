@@ -30,6 +30,7 @@ export class DashboardComponent extends ApolloEnabled implements OnInit {
   sortinoRatio: BigNumber;
   standardDeviation: BigNumber;
   portfolioValueInDAI: BigNumber;
+  apy: BigNumber;
 
   hasDrawnChart: boolean;
   performanceChart: any;
@@ -146,6 +147,7 @@ export class DashboardComponent extends ApolloEnabled implements OnInit {
       this.totalUser = managers.length;
       this.sharesPrice = new BigNumber(fund.sharesPrice);
       this.currMoROI = this.AUM.div(fund.totalFundsAtPhaseStart).minus(1).times(100);
+      this.apy = this.currMoROI.div(100).plus(1).pow(12).minus(1).times(100);
       if (fund.cyclePhase === 'INTERMISSION') {
         this.currMoROI = new BigNumber(0);
       }

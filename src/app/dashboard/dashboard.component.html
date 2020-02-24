@@ -287,14 +287,14 @@
           <div class="col">
 
             <!-- Title -->
-            <h6 class="card-title text-uppercase text-muted mb-2" i18n="@@dashboardRoiSinceInceptionTitle">
-              APR
+            <h6 class="card-title text-uppercase text-muted mb-2">
+              APY
             </h6>
 
             <!-- Heading -->
             <span class="badge badge-xl"
-              [ngClass]="{'badge-soft-success': avgMonthReturn.gte(0), 'badge-soft-danger': avgMonthReturn.lt(0)}">
-              25.00%
+              [ngClass]="{'badge-soft-success': apy.gte(0), 'badge-soft-danger': apy.lt(0)}">
+              {{apy.toFixed(2)}}%
             </span>
 
           </div>

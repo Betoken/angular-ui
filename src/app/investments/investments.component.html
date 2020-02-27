@@ -300,8 +300,8 @@
           <div class="tab-pane show active" id="pills-investments" role="tabpanel"
             aria-labelledby="pills-investments-tab">
             <!-- Active investments -->
-            <a class="list-group-item list-group-item-action border-top-0 border-bottom-0 border-left border-right-0" href="#"
-              data-toggle="modal" data-target="#modalSell" (click)="openSellModal(data)"
+            <a class="list-group-item list-group-item-action border-top-0 border-bottom-0 border-left border-right-0"
+              href="#" data-toggle="modal" data-target="#modalSell" (click)="openSellModal(data)"
               [ngClass]="{'border-spot': isOrderOfType(data, 'BasicOrder'), 'border-long': !isOrderOfType(data, 'BasicOrder') && !data.isShort, 'border-short': !isOrderOfType(data, 'BasicOrder') && data.isShort}"
               *ngFor="let data of activeInvestmentList">
               <div class="row d-flex align-items-center no-gutters">
@@ -693,15 +693,19 @@
                   (change)="selectOrderType($event.target.selectedIndex)" *ngIf="isMarginToken(selectedTokenSymbol)">
                   <option *ngFor="let orderType of orderTypes">{{orderType.text}}</option>
                 </select>
-                <!--<h6 class="header-pretitle mt-4" i18n="@@investmentsNetworkLiquidity">Liquidity network</h6>
-                <div class="custom-control custom-radio custom-control-inline">
-                  <input type="radio" id="kybernetwork" name="kybernetwork" class="custom-control-input" checked>
-                  <label class="custom-control-label" for="kybernetwork">Kyber Network</label>
-                </div>
-                <div class="custom-control custom-radio custom-control-inline">
-                  <input type="radio" id="dexag" name="dexag" class="custom-control-input">
-                  <label class="custom-control-label" for="dexag">DEX.AG</label>
-                </div>-->
+                <ng-container *ngIf="selectedOrderType.type === 'basic'">
+                  <h6 class="header-pretitle mt-4">Liquidity Provider</h6>
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="dexag" name="dexag" class="custom-control-input" [checked]="!useKyber"
+                      (input)="useKyber = false;">
+                    <label class="custom-control-label" for="dexag">DEX.AG</label>
+                  </div>
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="kybernetwork" name="kybernetwork" class="custom-control-input"
+                      [checked]="useKyber" (input)="useKyber = true;">
+                    <label class="custom-control-label" for="kybernetwork">Kyber Network</label>
+                  </div>
+                </ng-container>
               </form>
             </div>
           </div>
@@ -1151,15 +1155,20 @@
                 </div>
               </div>
             </div>
-            <!--<h6 class="header-pretitle mt-4" i18n="@@investmentsNetworkLiquidity">Liquidity network</h6>
-            <div class="custom-control custom-radio custom-control-inline">
-              <input type="radio" id="kybernetwork" name="kybernetwork" class="custom-control-input" checked>
-              <label class="custom-control-label" for="kybernetwork">Kyber Network</label>
-            </div>
-            <div class="custom-control custom-radio custom-control-inline">
-              <input type="radio" id="dexag" name="dexag" class="custom-control-input">
-              <label class="custom-control-label" for="dexag">DEX.AG</label>
-            </div>-->
+            <ng-container *ngIf="isOrderOfType(sellData, 'BasicOrder')">
+              <h6 class="header-pretitle mt-4">Liquidity Provider</h6>
+              <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="dexag" name="dexag" class="custom-control-input" [checked]="!useKyber"
+                  (input)="useKyber = false;">
+                <label class="custom-control-label" for="dexag">DEX.AG</label>
+              </div>
+              <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="kybernetwork" name="kybernetwork" class="custom-control-input"
+                  [checked]="useKyber" (input)="useKyber = true;">
+                <label class="custom-control-label" for="kybernetwork">Kyber Network</label>
+              </div>
+            </ng-container>
+
             <!-- Min acceptable price -->
             <div class="row justify-content-center mb-4">
               <div class="col">

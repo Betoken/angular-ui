@@ -39,6 +39,7 @@ export class InvestmentsComponent extends ApolloEnabled implements OnInit {
     orderTypes: Array<Object>;
     selectedOrderType: Object;
     fulcrumMinStake: BigNumber;
+    useKyber: boolean;
 
     sellId: Number;
     sellData: Object;
@@ -79,6 +80,7 @@ export class InvestmentsComponent extends ApolloEnabled implements OnInit {
         };
         this.continueEnabled = false;
         this.fulcrumMinStake = new BigNumber(0);
+        this.useKyber = false;
 
         this.sellId = 0;
         this.sellData = {
@@ -462,7 +464,7 @@ export class InvestmentsComponent extends ApolloEnabled implements OnInit {
                 // TODO: more accurate token amount
                 let tokenPrice = await tokens.get_token_price(tokens.asset_symbol_to_address(this.selectedTokenSymbol), 1);
                 let maxPrice = tokenPrice.plus(tokenPrice.times(maxAcceptablePriceProp));
-                manager_actions.new_investment_with_symbol(this.selectedTokenSymbol, this.stakeAmount, new BigNumber(0), maxPrice, false, this.kairoPrice, pending, confirm, error);
+                manager_actions.new_investment_with_symbol(this.selectedTokenSymbol, this.stakeAmount, new BigNumber(0), maxPrice, this.useKyber, this.kairoPrice, pending, confirm, error);
                 break;
             case 'compound':
                 // TODO: more accurate token amount
@@ -524,7 +526,7 @@ export class InvestmentsComponent extends ApolloEnabled implements OnInit {
                 // basic order
                 let tokenPrice = await tokens.get_token_price(this.sellData['tokenAddress'], sellPercentage.times(this.sellData['tokenAmount']));
                 let minPrice = tokenPrice.minus(tokenPrice.times(minAcceptablePriceProp));
-                manager_actions.sell_investment_v2(this.sellId, sellPercentage, minPrice, tokenPrice.times(100000), false, pendingSell, confirmSell, error);
+                manager_actions.sell_investment_v2(this.sellId, sellPercentage, minPrice, tokenPrice.times(100000), this.useKyber, pendingSell, confirmSell, error);
                 break;
             case 'FulcrumOrder':
                 // fulcrum order

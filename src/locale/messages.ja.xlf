@@ -1,1285 +1,1863 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
-  <file original="ng2.template" datatype="plaintext" xml:space="preserve" source-language="en" target-language="ja">
-    <header>
-      <tool tool-id="poeditor.com" tool-name="POEditor"/>
-    </header>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" target-language="ja" datatype="plaintext" original="ng2.template">
     <body>
-      <trans-unit id="headerGetUpdateModalSubtitle1">
+      <trans-unit id="headerGetUpdateModalSubtitle1" datatype="html">
         <source>Capital connection</source>
         <target>資金を繋ぐ</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="headerGetUpdateModalText1">
+      <trans-unit id="headerGetUpdateModalText1" datatype="html">
         <source>Get updated when you can connect or withdraw your capital.</source>
         <target>ファンドの購入と解約ができるときに通知されます。</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="headerGetUpdateModalSubtitle2">
+      <trans-unit id="headerGetUpdateModalSubtitle2" datatype="html">
         <source>Monthly performance results</source>
         <target>月間パフォーマンス</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="headerGetUpdateModalText2">
+      <trans-unit id="headerGetUpdateModalText2" datatype="html">
         <source>Get insights into how your holdings perform month by month.</source>
         <target>今月の資金パフォーマンスの総括。</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="headerGetUpdateModalSubtitle3">
+      <trans-unit id="headerGetUpdateModalSubtitle3" datatype="html">
         <source>Manager commissions</source>
         <target>マネージャーコミッション</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="headerGetUpdateModalText3">
-        <source>Be the first to know when to redeem your manager's commissions.</source>
+      <trans-unit id="headerGetUpdateModalText3" datatype="html">
+        <source>Be the first to know when to redeem your manager&apos;s commissions.</source>
         <target>コミッションが受け取り可能な時に通知されます。</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="headerLanguageModalTitle">
+      <trans-unit id="headerLanguageModalTitle" datatype="html">
         <source>Switch to another language</source>
         <target>言語変更</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="sidebarToggleManage">
+      <trans-unit id="sidebarToggleManage" datatype="html">
         <source>Manage</source>
         <target>管理</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="sidebarNavDashboard">
+      <trans-unit id="sidebarNavDashboard" datatype="html">
         <source>Dashboard</source>
         <target>ダッシュボード</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="sidebarNavInvestments">
+      <trans-unit id="sidebarNavInvestments" datatype="html">
         <source>Investments</source>
         <target>資金運用</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="sidebarNavMarket">
+      <trans-unit id="sidebarNavMarket" datatype="html">
         <source>Market</source>
         <target>マーケット情報</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="sidebarNavRankings">
+      <trans-unit id="sidebarNavRankings" datatype="html">
         <source>Rankings</source>
         <target>ランキング</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="sidebarNavCommissions">
+      <trans-unit id="sidebarNavCommissions" datatype="html">
         <source>Commissions</source>
         <target>コミッション</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="sidebarNavUpgrade">
+      <trans-unit id="sidebarNavUpgrade" datatype="html">
         <source>Upgrade Governance</source>
         <target>仕様更新投票</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="sidebarToggleInvest">
+      <trans-unit id="sidebarToggleInvest" datatype="html">
         <source>Invest</source>
         <target>投資</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="sidebarNavHelp">
+      <trans-unit id="sidebarNavHelp" datatype="html">
         <source>Help</source>
         <target>Help</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="sidebarNavRateUs">
+      <trans-unit id="sidebarNavRateUs" datatype="html">
         <source>Rate us</source>
         <target>Rate us</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="dashboardHeaderTitle">
+      <trans-unit id="dashboardHeaderTitle" datatype="html">
         <source>Your Stats</source>
         <target>あなたの統計</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="dashboardYourRankingTitle">
+      <trans-unit id="dashboardYourRankingTitle" datatype="html">
         <source>Your Ranking</source>
         <target>順位</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="dashboardBetokenStatsTitle">
+      <trans-unit id="dashboardBetokenStatsTitle" datatype="html">
         <source>Betoken Stats</source>
         <target>Betokenの統計</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="dashboardRoiTitle">
+      <trans-unit id="dashboardRoiTitle" datatype="html">
         <source>ROI (Current Cycle)</source>
         <target>投資収益率（現在のサイクル）</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="dashboardRoiSinceInceptionTitle">
+      <trans-unit id="dashboardRoiSinceInceptionTitle" datatype="html">
         <source>ROI (Since Inception)</source>
         <target>投資収益率（創設以来）</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="dashboardTotalFundManagersTitle">
+      <trans-unit id="dashboardTotalFundManagersTitle" datatype="html">
         <source>Total fund managers</source>
         <target>総ファンドマネージャー</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investmentsHeaderTitle">
+      <trans-unit id="investmentsHeaderTitle" datatype="html">
         <source>Your Investments</source>
         <target>あなたの資金運用ステータス</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investmentsRiskTakenTitle">
+      <trans-unit id="investmentsRiskTakenTitle" datatype="html">
         <source>Risk Taken</source>
         <target>Risk Taken</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investmentsActiveInvestmentsTableTitle">
+      <trans-unit id="investmentsActiveInvestmentsTableTitle" datatype="html">
         <source>Active Investments</source>
         <target>稼働中の投資</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investmentsNoActiveInvestments">
+      <trans-unit id="investmentsNoActiveInvestments" datatype="html">
         <source>You have no active investments</source>
         <target>稼働中の投資はありません。</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investmentsPastInvestmentsTableTitle">
+      <trans-unit id="investmentsPastInvestmentsTableTitle" datatype="html">
         <source>Past Investments</source>
         <target>閉じた投資</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investmentsBuyModalTitleStep0">
+      <trans-unit id="investmentsBuyModalTitleStep0" datatype="html">
         <source>Select An Asset</source>
         <target>Select An Asset</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investmentsBuyModalTitleStep1">
+      <trans-unit id="investmentsBuyModalTitleStep1" datatype="html">
         <source>Buy</source>
         <target>Buy</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investmentsBuyModalAssetLabelMarginTrading">
+      <trans-unit id="investmentsBuyModalAssetLabelMarginTrading" datatype="html">
         <source>Margin Trading</source>
         <target>Margin Trading</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investmentsBuyModalFulcrumMinStake">
+      <trans-unit id="investmentsBuyModalFulcrumMinStake" datatype="html">
         <source>Minimum stake:</source>
         <target>Minimum stake: KRO</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investmentsBuyModalOrderTypeSelect">
+      <trans-unit id="investmentsBuyModalOrderTypeSelect" datatype="html">
         <source>Order type</source>
         <target>Order type</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investmentsBuyModalAdvancedOptionSubTitle">
+      <trans-unit id="investmentsBuyModalAdvancedOptionSubTitle" datatype="html">
         <source>Max acceptable price</source>
         <target>許容最大価格</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investmentsBuyModalMarginTradingPayoutTitle">
+      <trans-unit id="investmentsBuyModalMarginTradingPayoutTitle" datatype="html">
         <source>Payout</source>
         <target>Payout</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investmentsBuyModalMarginTradingPayoutText1">
+      <trans-unit id="investmentsBuyModalMarginTradingPayoutText1" datatype="html">
         <source>This order multiplies your returns by</source>
         <target>This order multiplies your returns by x.</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investmentsBuyModalMarginTradingLiquidationTitle">
+      <trans-unit id="investmentsBuyModalMarginTradingLiquidationTitle" datatype="html">
         <source>Liquidation</source>
         <target>清算</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investmentsModalSellOrderLeverage">
+      <trans-unit id="investmentsModalSellOrderLeverage" datatype="html">
         <source>Leverage</source>
         <target>Leverage</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investmentsModalSellOrderBuyTime">
+      <trans-unit id="investmentsModalSellOrderBuyTime" datatype="html">
         <source>OPENED</source>
         <target>OPENED</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investmentsModalSellStakedKro">
+      <trans-unit id="investmentsModalSellStakedKro" datatype="html">
         <source>Staked KRO</source>
         <target>賭けたKRO</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investmentsModalSellKroToRedeem">
+      <trans-unit id="investmentsModalSellKroToRedeem" datatype="html">
         <source>KRO to Redeem</source>
         <target>回収できるKRO</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investmentsModalSellMarginPositionPrice">
-        <source>Margin Position Price</source>
-        <target>Margin Position Price</target>
-      </trans-unit>
-      <trans-unit id="investmentsModalSellFulcrumLiquidationPrice">
+      <trans-unit id="investmentsModalSellFulcrumLiquidationPrice" datatype="html">
         <source>Liquidation Price</source>
         <target>清算価格</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investmentsModalSellFulcrumLiquidationText">
-        <source>If the margin position price falls below the liquidation price, this order will be liquidated, which will cause huge losses. When the order is in danger of liquidation, sell it.</source>
+      <trans-unit id="investmentsModalSellFulcrumLiquidationText" datatype="html">
+        <source>If the asset&apos;s price reaches the liquidation price, this order will be liquidated, which will cause huge losses. When the order is in danger of liquidation, sell it.</source>
         <target>証拠金ポジションの価格が清算価格を下回ると、この注文は清算され、多大な損失が発生します。ポジションが清算の危険にさらされている場合は事前にそれを売ってください。</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investmentsModalSellProportionAssetsToSell">
+      <trans-unit id="investmentsModalSellProportionAssetsToSell" datatype="html">
         <source>Proportion of assets to sell</source>
         <target>売る資産の割合</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investmentsModalSellAdvancedOptionSubtite">
+      <trans-unit id="investmentsModalSellAdvancedOptionSubtite" datatype="html">
         <source>Min acceptable price</source>
         <target>許容最小価格</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investmentsModalSellTextStep3">
+      <trans-unit id="investmentsModalSellTextStep3" datatype="html">
         <source>You have successfully sold the investment and redeemed your Kairo tokens.</source>
         <target>投資の売却に成功し、KROを回収しました。</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investmentsModalSellCtaContinue">
+      <trans-unit id="investmentsModalSellCtaContinue" datatype="html">
         <source>Sell Investment</source>
         <target>Sell Investment</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investmentsModalTopUpStep0">
+      <trans-unit id="investmentsModalTopUpStep0" datatype="html">
         <source>Top up your order</source>
         <target>Top up your order</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investmentsModalTopUpCollateralTarget">
+      <trans-unit id="investmentsModalTopUpCollateralTarget" datatype="html">
         <source>Collateralization target</source>
         <target>Collateralization target</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investmentsModalTopUpMaxPossibleCollRatio">
+      <trans-unit id="investmentsModalTopUpMaxPossibleCollRatio" datatype="html">
         <source>Max possible collateral ratio</source>
         <target>Max possible collateral ratio</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investmentsModalTopUpTextStep3">
+      <trans-unit id="investmentsModalTopUpTextStep3" datatype="html">
         <source>You have successfully topped up the order.</source>
         <target>You have successfully topped up the order.</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="upgradeHeaderTitle">
+      <trans-unit id="upgradeHeaderTitle" datatype="html">
         <source>Upgrade Governance</source>
         <target>仕様更新投票</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="upgradeCardTitle">
+      <trans-unit id="upgradeCardTitle" datatype="html">
         <source>Upgrade proposals</source>
         <target>提案されている仕様</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="upgradeCardSubtitle">
-        <source>No active upgrade proposals</source>
-        <target>現在提案されている仕様はありません。</target>
-      </trans-unit>
-      <trans-unit id="upgradeCardText">
-        <source>During the Intermission phase of each cycle, the managers may decide to initiate an upgrade via a simple majority vote using their Kairo tokens. If the vote passed, then during the Manage phase, managers may use their Kairo tokens to vote on which smart contract should be accepted as the new version. Learn more</source>
-        <target>各サイクルの中断時に、マネージャーはKROを使用して単純多数決でアップグレード開始を決定できます。 投票に合格した場合、管理フェーズでマネージャはKROを使用して、どのスマート契約を新しいバージョンとして承認するかを投票できます。Learn more</target>
-      </trans-unit>
-      <trans-unit id="upgradeCardSubtitle2">
-        <source>Time of the upgrade governance system's activation</source>
-        <target>仕様更新投票のアクティブ化</target>
-      </trans-unit>
-      <trans-unit id="upgradeCardTimeLeft">
-        <source>7:30AM UTC, September 29th, 2019</source>
-        <target>7:30 AM UTC、2019年9月29日</target>
-      </trans-unit>
-      <trans-unit id="commissionsHeaderTitle">
+      <trans-unit id="commissionsHeaderTitle" datatype="html">
         <source>Commissions</source>
         <target>コミッション</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="commissionsExpectedCommissionThisMonth">
+      <trans-unit id="commissionsExpectedCommissionThisMonth" datatype="html">
         <source>Your Expected Commission This Month</source>
         <target>今月の予測されたコミッション</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="commissionsHistoryTitle">
+      <trans-unit id="commissionsHistoryTitle" datatype="html">
         <source>Your Commission History</source>
         <target>コミッション履歴</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="commissionsTheadCycleNb">
+      <trans-unit id="commissionsTheadCycleNb" datatype="html">
         <source>Cycle Number</source>
         <target>Cycle Number</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="commissionsNoComYet">
+      <trans-unit id="commissionsNoComYet" datatype="html">
         <source>You have not received any commission yet</source>
         <target>まだコミッションを受け取っていません</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="commissionsRedeemModalStep0Title">
+      <trans-unit id="commissionsRedeemModalStep0Title" datatype="html">
         <source>Redeem your commissions</source>
         <target>コミッションを受け取る</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="commissionsRedeemModalBodyStep1Title">
-        <source>This month's commission</source>
-        <target>This month's commission</target>
+      <trans-unit id="commissionsRedeemModalBodyStep1Title" datatype="html">
+        <source>This month&apos;s commission</source>
+        <target>This month&apos;s commission</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="commissionsRedeemModalAdvancedOptionSubtitle">
+      <trans-unit id="commissionsRedeemModalAdvancedOptionSubtitle" datatype="html">
         <source>Redeem commisssion for a particular cycle</source>
         <target>特定のサイクルのコミッションを受け取る</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="commissionsRedeemModalAdvancedOptionText">
+      <trans-unit id="commissionsRedeemModalAdvancedOptionText" datatype="html">
         <source>Only use this when normal redemption fails</source>
         <target>通常のコミッション受け取りが失敗した場合にのみ使用してください。</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="commissionsRedeemModalCtaRedeemBtks">
+      <trans-unit id="commissionsRedeemModalCtaRedeemBtks" datatype="html">
         <source>Redeem in $BTKS</source>
         <target>BTKSで受け取る</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="commissionsRedeemModalCtaRedeemDAI">
+      <trans-unit id="commissionsRedeemModalCtaRedeemDAI" datatype="html">
         <source>Redeem in $DAI</source>
         <target>DAIで受け取る</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="commissionsDoYouKnowTitle">
+      <trans-unit id="commissionsDoYouKnowTitle" datatype="html">
         <source>Do you know?</source>
         <target>Do you know?</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="commissionsDoYouKnowText">
+      <trans-unit id="commissionsDoYouKnowText" datatype="html">
         <source>You can redeem your commissions in Betoken fund shares (BTKS) - meaning you swap your commissions for an equivalent number of shares in the fund. By doing so, you will make the fund Assets Under Management (AUM) grow quicker. A bigger AUM means more money to manage in the next cycle, and more commissions for you.</source>
         <target>あなたはBetokenファンド株（BTKS）でコミッションを受け取ることができます - ファンド株とコミッションを交換することを意味します。そうすることで、ファンドの運用資産（AUM）をより早く成長させることができます。 AUMが大きいほど次のサイクルで管理する資金が増え、コミッションが増えます。</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="rankingsHeaderTitle">
+      <trans-unit id="rankingsHeaderTitle" datatype="html">
         <source>Managers Ranking</source>
         <target>マネージャーランキング</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="rankingsKroBalance&amp;Return">
+      <trans-unit id="rankingsKroBalance&amp;Return" datatype="html">
         <source>Kairo balance &amp; current ROI</source>
         <target>KRO所有量と現在の損益</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="rankingsThRank">
+      <trans-unit id="rankingsThRank" datatype="html">
         <source>Rank</source>
         <target>Rank</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="rankingsThWalletAddress">
+      <trans-unit id="rankingsThWalletAddress" datatype="html">
         <source>Manager</source>
         <target>Manager</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="rankingsKroBalance">
+      <trans-unit id="rankingsKroBalance" datatype="html">
         <source>Kairo Balance</source>
         <target>Kairo Balance</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="rankingsThCurrentMoRoi">
+      <trans-unit id="rankingsThCurrentMoRoi" datatype="html">
         <source>Current Month ROI</source>
         <target>Current Month ROI</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="rankingsFriendsOfBetokenBadge">
+      <trans-unit id="rankingsFriendsOfBetokenBadge" datatype="html">
         <source>Betoken Evangelist</source>
         <target>Betoken Evangelist</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investorHeaderTitle">
+      <trans-unit id="investorHeaderTitle" datatype="html">
         <source>Your Stats</source>
         <target>Your Stats</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investorBtksBalance">
+      <trans-unit id="investorBtksBalance" datatype="html">
         <source>Betoken Shares Balance</source>
         <target>Betoken Shares Balance</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investorBtksTotalValueDai">
+      <trans-unit id="investorBtksTotalValueDai" datatype="html">
         <source>Total value</source>
         <target>Total value</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investorBetokenHistoricalReturn">
+      <trans-unit id="investorBetokenHistoricalReturn" datatype="html">
         <source>Betoken Historical Returns</source>
         <target>Betoken Historical Returns</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investorPriceChange">
+      <trans-unit id="investorPriceChange" datatype="html">
         <source>Price Change (Current Cycle)</source>
         <target>Price Change (現在のサイクル)</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investorPriceChangeSinceInception">
+      <trans-unit id="investorPriceChangeSinceInception" datatype="html">
         <source>Price Change (Since Inception)</source>
         <target>Price Change (創設以来)</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investorMaxDrawdown">
+      <trans-unit id="investorMaxDrawdown" datatype="html">
         <source>Max Drawdown</source>
         <target>最大下落率</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investorDepositWithdrawHistoryTitle">
+      <trans-unit id="investorDepositWithdrawHistoryTitle" datatype="html">
         <source>Your Deposit &amp; Withdraw History</source>
         <target>入出金履歴</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investorDepositWithdrawHistoryType">
+      <trans-unit id="investorDepositWithdrawHistoryType" datatype="html">
         <source>Type</source>
         <target>Type</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investorDepositBadge">
+      <trans-unit id="investorDepositBadge" datatype="html">
         <source>Deposit</source>
         <target>入金</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investorWithdrawBadge">
+      <trans-unit id="investorWithdrawBadge" datatype="html">
         <source>Withdraw</source>
         <target>出金</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investorBuyBtksModalIWantToBuyWith">
+      <trans-unit id="investorBuyBtksModalIWantToBuyWith" datatype="html">
         <source>I want to buy Betoken shares with</source>
         <target>I want to buy Betoken Shares with</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investorBuyBtksModalTweet">
+      <trans-unit id="investorBuyBtksModalTweet" datatype="html">
         <source>Tweet about it</source>
         <target>Tweet about it</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investorBuyBtksModalCtaBuy">
+      <trans-unit id="investorBuyBtksModalCtaBuy" datatype="html">
         <source>Buy Betoken shares</source>
         <target>BTKSを買う</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investorSellBtksModalTitleStep0">
+      <trans-unit id="investorSellBtksModalTitleStep0" datatype="html">
         <source>How many Betoken shares do you want to sell?</source>
         <target>BTKSをいくつ売却しますか？</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investorSellBtksModalTitleOperationNonPermitted">
+      <trans-unit id="investorSellBtksModalTitleOperationNonPermitted" datatype="html">
         <source>Operation not permitted</source>
         <target>Operation not permitted</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investorSellBtksModalIWantToSell">
+      <trans-unit id="investorSellBtksModalIWantToSell" datatype="html">
         <source>I want to sell</source>
         <target>I want to sell</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investorSellBtksModalIWantToReceive">
+      <trans-unit id="investorSellBtksModalIWantToReceive" datatype="html">
         <source>I want to receive</source>
         <target>I want to receive</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investorSellBtksModalSellBtksFor">
+      <trans-unit id="investorSellBtksModalSellBtksFor" datatype="html">
         <source>Sell Betoken shares for</source>
         <target>Sell BTKS for</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investorOnboardingHeaderPreTitle">
+      <trans-unit id="investorOnboardingHeaderPreTitle" datatype="html">
         <source>Welcome To</source>
         <target>Welcome To</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investorOnboardingHeaderTitle">
+      <trans-unit id="investorOnboardingHeaderTitle" datatype="html">
         <source>Betoken Fund</source>
         <target>Betoken Fund</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investorOnboardingHeaderSubtitle">
+      <trans-unit id="investorOnboardingHeaderSubtitle" datatype="html">
         <source>If you think 2 brains are better than one...How about hundreds of talented asset managers working for you? Worldwide!</source>
         <target>2つの頭脳が1つよりも優れていると思うならば…あなたのために働いている何百もの才能のある資産運用者はどうですか？Worldwide!</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investorOnboardingIntroSubtitle1">
+      <trans-unit id="investorOnboardingIntroSubtitle1" datatype="html">
         <source>Crowd-powered finance</source>
         <target>クラウドファイナンス</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investorOnboardingIntroSubtitle2">
+      <trans-unit id="investorOnboardingIntroSubtitle2" datatype="html">
         <source>70+ assets</source>
         <target>70+ assets</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investorOnboardingIntroText2">
+      <trans-unit id="investorOnboardingIntroText2" datatype="html">
         <source>By depositing your capital on Betoken protocol, you gain exposure to ETH, WBTC, BAT, MKR and 70+ ERC20 tokens.</source>
         <target>あなたの資金をBetokenプロトコルに接続することによって、あなたはETH、WBTC、BAT、MKRおよび70種類以上のERC20トークンから利益を受け取る機会を得ます。</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investorOnboardingIntroSubtitle3">
+      <trans-unit id="investorOnboardingIntroSubtitle3" datatype="html">
         <source>No limits, no hidden fees</source>
         <target>上限下限の制限なし、隠れた手数料なし</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investorOnboardingIntroSubtitle4">
+      <trans-unit id="investorOnboardingIntroSubtitle4" datatype="html">
         <source>Non-custodial</source>
         <target>Non-custodial</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investorOnboardingIntroText4">
+      <trans-unit id="investorOnboardingIntroText4" datatype="html">
         <source>You always stay in control, it’s written on the blockchain. All user funds are locked in smart contracts, no one but you has direct access to those funds.</source>
         <target>あなたはいつも自己資金をコントロールし続けます、それはブロックチェーンに書かれています。すべてのユーザー資金はスマート契約に閉じ込められていますが、あなたはそれらの資金に直接アクセスできます。</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investorOnboardingConnectStatus">
+      <trans-unit id="investorOnboardingConnectStatus" datatype="html">
         <source>No Wallet Connected</source>
         <target>No Wallet Connected</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investorOnboardingFaqQ1">
+      <trans-unit id="investorOnboardingFaqQ1" datatype="html">
         <source>Can I buy and sell Betoken Shares at any time?</source>
         <target>私はいつでもBTKSを売買することができますか？</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investorOnboardingFaqQ2">
+      <trans-unit id="investorOnboardingFaqQ2" datatype="html">
         <source>How can I buy Betoken Shares?</source>
         <target>BTKSを購入するにはどうすればよいですか？</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investorOnboardingFaqA2">
-        <source>Click on the Get Started button and follow the instructions. You'll be able to use Ether or any of our 70+ supported ERC-20 tokens to buy Betoken Shares.</source>
+      <trans-unit id="investorOnboardingFaqA2" datatype="html">
+        <source>Click on the Get Started button and follow the instructions. You&apos;ll be able to use Ether or any of our 70+ supported ERC-20 tokens to buy Betoken Shares.</source>
         <target>[Get Started]ボタンをクリックして指示に従います。あなたはBetoken Shares（BTKS）を買うためにEtherか70種以上のサポートされたERC-20トークンのどれでも使うことができるでしょう。</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investorOnboardingFaqQ3">
+      <trans-unit id="investorOnboardingFaqQ3" datatype="html">
         <source>What is the fees structure?</source>
         <target>料金体系は？</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investorOnboardingFaqA3Title1">
+      <trans-unit id="investorOnboardingFaqA3Title1" datatype="html">
         <source>Management fees</source>
         <target>管理手数料</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investorOnboardingFaqA3Text1">
+      <trans-unit id="investorOnboardingFaqA3Text1" datatype="html">
         <source>After the management phase is over (every 27 days):</source>
         <target>管理フェーズが終了した後（27日ごと）：</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investorOnboardingFaqA3Title2">
+      <trans-unit id="investorOnboardingFaqA3Title2" datatype="html">
         <source>IF the fund is profitable OR not profitable</source>
         <target>ファンドに収益性があるか収益性がないかによって異なります。</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investorOnboardingFaqA3Text2">
+      <trans-unit id="investorOnboardingFaqA3Text2" datatype="html">
         <source>0.1% of the total Betoken funds is set aside as commission and distributed among fund manager holding Kairo tokens every investment cycle. In order to provide funding for its maintenance and future development, Betoken will mint Betoken Shares and send them to the current development team. The amount will be equal to 0.1% of the current Betoken Shares total supply, and it will occur at the end of every investment cycle.</source>
         <target>Betokenの全資金の0.1％が確保され、Kairoを保有するファンドマネージャーの間で分配されます。また、メンテナンスと将来の開発のための資金を提供するために、BetokenプロトコルはBTKSを作り出し、それを現在の開発チームに送ります。この金額は現在のBetoken Sharesの総供給量の0.1％になり、各投資サイクルの終わりに発生します。</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investorOnboardingFaqA3Title3">
+      <trans-unit id="investorOnboardingFaqA3Title3" datatype="html">
         <source>ONLY IF the fund is profitable</source>
         <target>ファンドが収益性がある場合のみ</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investorOnboardingFaqA3text3">
-        <source>20% of the total Betoken's monthly profits is set aside as commission and distributed among fund managers holding Kairo tokens proportional to the amount they hold and their risk profile. This part of the commission is taken into account IF and ONLY IF the fund is profitable during the investment cycle.</source>
+      <trans-unit id="investorOnboardingFaqA3text3" datatype="html">
+        <source>20% of the total Betoken&apos;s monthly profits is set aside as commission and distributed among fund managers holding Kairo tokens proportional to the amount they hold and their risk profile. This part of the commission is taken into account IF and ONLY IF the fund is profitable during the investment cycle.</source>
         <target>Betokenの毎月の利益の20％はコミッションとして確保され、Kairoを持っているファンドマネジャーの間で彼らが持っている数量とリスクプロファイルに比例して分配されます。このコミッションは、実際の投資サイクルの間にファンドが収益を上げられる場合に限り発生します。</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investorOnboardingFaqA3Title4">
+      <trans-unit id="investorOnboardingFaqA3Title4" datatype="html">
         <source>Redemptions fee</source>
         <target>償還手数料</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investorOnboardingFaqA3Text4">
+      <trans-unit id="investorOnboardingFaqA3Text4" datatype="html">
         <source>Redemptions incur no withdrawal fee.</source>
         <target>償還には引き出し手数料はかかりません。</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investorOnboardingFaqQ4">
+      <trans-unit id="investorOnboardingFaqQ4" datatype="html">
         <source>How can I follow the activity of the fund?</source>
         <target>ファンドの活動をどのように追跡できますか？</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investorOnboardingFaqA4">
+      <trans-unit id="investorOnboardingFaqA4" datatype="html">
         <source>You have access to a dashboard where you can view your capital account.</source>
         <target>資金の状態を表示できるダッシュボードにアクセスできます。</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="appFetchingText">
+      <trans-unit id="appFetchingText" datatype="html">
         <source>Loading Betoken</source>
         <target>Fetching data</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investorOnboardingBuyBtksModalIWantToBuyWith">
+      <trans-unit id="investorOnboardingBuyBtksModalIWantToBuyWith" datatype="html">
         <source>I want to buy Betoken shares with</source>
         <target>I want to buy Betoken Shares with</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investorOnboardingBuyBtksModalCtaTweet">
+      <trans-unit id="investorOnboardingBuyBtksModalCtaTweet" datatype="html">
         <source>Tweet about it</source>
         <target>Tweet about it</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investorOnboardingBuyBtksModalCtaBuy">
+      <trans-unit id="investorOnboardingBuyBtksModalCtaBuy" datatype="html">
         <source>Buy Betoken shares</source>
         <target>BTKSを買う</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investorOnboardingBuyBtksModalCtaGoToDashboard">
+      <trans-unit id="investorOnboardingBuyBtksModalCtaGoToDashboard" datatype="html">
         <source>Investor Dashboard</source>
         <target>投資家ダッシュボード</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="managerOnboardingHeaderPretitle">
+      <trans-unit id="managerOnboardingHeaderPretitle" datatype="html">
         <source>Become a</source>
         <target>Become a</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="managerOnboardingHeaderTitle">
+      <trans-unit id="managerOnboardingHeaderTitle" datatype="html">
         <source>Fund Manager</source>
         <target>Fund Manager</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="managerOnboardingHeaderSubtitle">
-        <source>Connect your crypto-trading expertise to the Betoken's pool of capital and earn commissions!</source>
+      <trans-unit id="managerOnboardingHeaderSubtitle" datatype="html">
+        <source>Connect your crypto-trading expertise to the Betoken&apos;s pool of capital and earn commissions!</source>
         <target>暗号通貨トレードの専門知識を活用して、コミッションを獲得しましょう！</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="managerOnboardingIntroSubTitle1">
+      <trans-unit id="managerOnboardingIntroSubTitle1" datatype="html">
         <source>The best managers earn the most</source>
         <target>The best managers earn the most</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="managerOnboardingIntroSubTitle2">
+      <trans-unit id="managerOnboardingIntroSubTitle2" datatype="html">
         <source>Margin trading and instant liquidity</source>
         <target>Margin trading and instant liquidity</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="managerOnboardingIntroSubText2">
+      <trans-unit id="managerOnboardingIntroSubText2" datatype="html">
         <source>Betoken uses the full value of the open finance ecosystem like Kyber Network, Compound, Fulcrum by bZx and DAI stable coin. These financial primitives enable margin trading with up to 4x leverage on Betoken and guaranteed liquidity.</source>
         <target>Betokenは、Kyber Network、Compound、Fulcrum by bZx、DAIステーブルコインなどのオープンファイナンスエコシステムの価値を最大限に活用しています。これらの金融プリミティブにより、Betokenは最大4倍のレバレッジと保証された流動性を使用したマージン取引が可能になります。</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="managerOnboardingConnectStatus">
+      <trans-unit id="managerOnboardingConnectStatus" datatype="html">
         <source>No Wallet Connected</source>
         <target>No Wallet Connected</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="managerOnboardingAlreadyManagerText">
+      <trans-unit id="managerOnboardingAlreadyManagerText" datatype="html">
         <source>You are already a manager.</source>
         <target>You are already a manager.</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="managerOnboardingCtaSignIn">
+      <trans-unit id="managerOnboardingCtaSignIn" datatype="html">
         <source>Sign in</source>
         <target>Sign in</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="managerOnboardingFaqQ1">
+      <trans-unit id="managerOnboardingFaqQ1" datatype="html">
         <source>What is Kairo token?</source>
         <target>Kairoとは何ですか？</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="managerOnboardingFaqA1">
-        <source>Kairo is Betoken's non-transferable reputation token. Managers need to possess Kairo tokens to manage funds on Betoken. They represent how good a manager is at investing. The more Kairo tokens you have, the more money in the Betoken fund you can manage and the more income you’ll get every month as commissions on your investments.</source>
+      <trans-unit id="managerOnboardingFaqA1" datatype="html">
+        <source>Kairo is Betoken&apos;s non-transferable reputation token. Managers need to possess Kairo tokens to manage funds on Betoken. They represent how good a manager is at investing. The more Kairo tokens you have, the more money in the Betoken fund you can manage and the more income you’ll get every month as commissions on your investments.</source>
         <target>KairoはBetokenの譲渡不可能な評判トークンです。マネージャーはBetokenで資金を管理するためにKROを所有する必要があります。KROはマネジャーの投資能力を表しています。所有するKROが多ければ多いほど、管理できるBetokenファンドの資金が増え、投資のコミッションとして毎月獲得できる収入が増えます。</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="managerOnboardingFaqQ2">
+      <trans-unit id="managerOnboardingFaqQ2" datatype="html">
         <source>How can I buy Kairo tokens?</source>
         <target>KROを購入するにはどうすればよいですか？</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="managerOnboardingFaqA2">
-        <source>Click on the Get Started button and follow the instructions. You'll be able to use Ether or any of our 70+ supported ERC-20 tokens to buy Kairo tokens.</source>
+      <trans-unit id="managerOnboardingFaqA2" datatype="html">
+        <source>Click on the Get Started button and follow the instructions. You&apos;ll be able to use Ether or any of our 70+ supported ERC-20 tokens to buy Kairo tokens.</source>
         <target>[Get Started]ボタンをクリックして指示に従います。 Etherまたは70種以上のサポートされているERC-20トークンを使用して、Kairoトークン（KRO）を購入できます。</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="managerOnboardingFaqQ3">
+      <trans-unit id="managerOnboardingFaqQ3" datatype="html">
         <source>Do I receive my Kairo tokens immediately after purchase?</source>
         <target>購入後すぐにKROを受け取りますか？</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="managerOnboardingFaqA3">
+      <trans-unit id="managerOnboardingFaqA3" datatype="html">
         <source>Yes. The Kairo tokens will be given to your wallet after your purchase transaction has been accepted by the Ethereum blockchain, which may take up to a few minutes.</source>
         <target>はい。購入トランザクションがイーサリアムブロックチェーンによって受け入れられた後、KROがウォレットに渡されます。これには数分かかる場合があります。</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="managerOnboardingFaqQ4">
+      <trans-unit id="managerOnboardingFaqQ4" datatype="html">
         <source>What is the commissions structure?</source>
         <target>コミッションの仕組みはどのようなものですか？</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="managerOnboardingFaqA4Title1">
+      <trans-unit id="managerOnboardingFaqA4Title1" datatype="html">
         <source>Management commissions</source>
         <target>管理コミッション</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="managerOnboardingFaqA4Title2">
+      <trans-unit id="managerOnboardingFaqA4Title2" datatype="html">
         <source>IF the fund is profitable OR not profitable</source>
         <target>ファンドが収益性がある場合または収益性がない場合によって異なります。</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="managerOnboardingFaqA4Text2">
+      <trans-unit id="managerOnboardingFaqA4Text2" datatype="html">
         <source>0.1% of the total Betoken funds is set aside as commission and distributed among fund manager holding Kairo tokens.</source>
         <target>Betokenファンドの合計の0.1％が確保され、KROを保有するファンドマネージャーに分配されます。</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="managerOnboardingFaqA4Title3">
+      <trans-unit id="managerOnboardingFaqA4Title3" datatype="html">
         <source>ONLY IF the fund is profitable</source>
         <target>ファンドが収益性がある場合のみ</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="managerOnboardingFaqA4Text3">
-        <source>20% of the total Betoken's monthly profits is set aside as commission and distributed among fund managers holding Kairo tokens proportional to the amount they hold and their risk profile. This part of the commission is taken into account IF and ONLY IF the fund is profitable during the investment cycle.</source>
+      <trans-unit id="managerOnboardingFaqA4Text3" datatype="html">
+        <source>20% of the total Betoken&apos;s monthly profits is set aside as commission and distributed among fund managers holding Kairo tokens proportional to the amount they hold and their risk profile. This part of the commission is taken into account IF and ONLY IF the fund is profitable during the investment cycle.</source>
         <target>Betokenの毎月の総利益の20％はコミッションとして確保され、KRO保有量とリスクプロファイルに比例してファンドマネージャーに分配されます。これはファンドが実際の投資サイクルで収益性がある場合にのみ計算されます。</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="managerOnboardingFaqQ5">
+      <trans-unit id="managerOnboardingFaqQ5" datatype="html">
         <source>How can I manage and follow the activity of the fund?</source>
         <target>ファンドの活動をどのように管理し、フォローできますか？</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="managerOnboardingFaqA5">
-        <source>You have access to a Portal where you can view Betoken's fund performances and your manager trading interface.</source>
+      <trans-unit id="managerOnboardingFaqA5" datatype="html">
+        <source>You have access to a Portal where you can view Betoken&apos;s fund performances and your manager trading interface.</source>
         <target>Betokenのファンドのパフォーマンスとマネージャーの取引インターフェースを表示できるポータルにアクセスできます。</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="managerOnboardingFaqQ6">
+      <trans-unit id="managerOnboardingFaqQ6" datatype="html">
         <source>Can I sell my Kairo tokens?</source>
         <target>KROを売ることはできますか？</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="managerOnboardingFaqA6">
+      <trans-unit id="managerOnboardingFaqA6" datatype="html">
         <source>No. Kairo is a non-transferable reputation token, which means that you cannot sell or give your Kairo tokens to someone else.</source>
         <target>いいえ。KROは譲渡できない評判トークンです。つまり、KROを他人に販売または譲渡することはできません。</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="managerOnboardingFaqQ7">
+      <trans-unit id="managerOnboardingFaqQ7" datatype="html">
         <source>Can I buy more Kairo tokens after with the same Wallet address?</source>
         <target>同じウォレットアドレスでKROを追加購入できますか？</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="managerOnboardingFaqA7">
+      <trans-unit id="managerOnboardingFaqA7" datatype="html">
         <source>No. You can only buy Kairo tokens once per Ethereum account.</source>
-        <target>いいえ。KROはイーサリアムアカウントごとに1回しか購入できません。\nKROの分布と価格の詳細。</target>
+        <target>いいえ。KROはイーサリアムアカウントごとに1回しか購入できません。
+KROの分布と価格の詳細。</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="managerOnboardingBuyBtksModalTitleStep1">
+      <trans-unit id="managerOnboardingBuyBtksModalTitleStep1" datatype="html">
         <source>How many Kairo tokens do you want to buy?</source>
         <target>KROをいくつ購入しますか？</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="managerOnboardingBuyBtksModalIWantToBuyWith">
+      <trans-unit id="managerOnboardingBuyBtksModalIWantToBuyWith" datatype="html">
         <source>I want to buy Kairo tokens with</source>
         <target>I want to buy Kairo with</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="managerOnboardingBuyBtksModalMaxPaymentAmount">
+      <trans-unit id="managerOnboardingBuyBtksModalMaxPaymentAmount" datatype="html">
         <source>Maximum purchase:</source>
         <target>最大購入可能量:</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="managerOnboardingBuyBtksModalKroToreceive">
+      <trans-unit id="managerOnboardingBuyBtksModalKroToreceive" datatype="html">
         <source>Kairo tokens to receive</source>
         <target>Kairo tokens to receive</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="managerOnboardingBuyBtksModalAmountToManage">
+      <trans-unit id="managerOnboardingBuyBtksModalAmountToManage" datatype="html">
         <source>Assets under your management</source>
         <target>Amount you will manage</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="managerOnboardingBuyBtksModalCtaBuy">
+      <trans-unit id="managerOnboardingBuyBtksModalCtaBuy" datatype="html">
         <source>Buy Kairo tokens</source>
         <target>KROを買う</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="managerOnboardingBuyBtksModalManagerDashboard">
+      <trans-unit id="managerOnboardingBuyBtksModalManagerDashboard" datatype="html">
         <source>Manager Portal</source>
         <target>マネージャーポータル</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="marketHeaderTitle">
+      <trans-unit id="marketHeaderTitle" datatype="html">
         <source>Market</source>
         <target>マーケット</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="marketPrice&amp;Trends">
+      <trans-unit id="marketPrice&amp;Trends" datatype="html">
         <source>Prices &amp; Trends</source>
         <target>Prices &amp; Trends</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="marketThAsset">
+      <trans-unit id="marketThAsset" datatype="html">
         <source>Asset</source>
         <target>Asset</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="marketTh24hVol">
+      <trans-unit id="marketTh24hVol" datatype="html">
         <source>24h Volume (USD)</source>
         <target>24h Volume (USD)</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="marketTh7dChange">
+      <trans-unit id="marketTh7dChange" datatype="html">
         <source>7d Change</source>
         <target>7d Change</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="marketTh1mChange">
+      <trans-unit id="marketTh1mChange" datatype="html">
         <source>1m Change</source>
         <target>1m Change</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="headerGetUpdateModalAriaDescribedby">
+      <trans-unit id="headerGetUpdateModalAriaDescribedby" datatype="html">
         <source>Get update modal by email</source>
         <target>e-mailで通知を受け取る</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="headerLanguageModalAriaDescribedby">
+      <trans-unit id="headerLanguageModalAriaDescribedby" datatype="html">
         <source>Switch to another language</source>
         <target>言語変更</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="sidebarBurgerIconAriaLabel">
+      <trans-unit id="sidebarBurgerIconAriaLabel" datatype="html">
         <source>Toggle navigation</source>
         <target>Toggle navigation</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="sidebarColorSchemeValueLight">
+      <trans-unit id="sidebarColorSchemeValueLight" datatype="html">
         <source>light</source>
         <target>light</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="sidebarColorSchemeValueDark">
+      <trans-unit id="sidebarColorSchemeValueDark" datatype="html">
         <source>dark</source>
         <target>dark</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="dashboardYourRankingAttrTitle">
-        <source>Your ranking among Betoken's managers based on your Kairo tokens balance</source>
+      <trans-unit id="dashboardYourRankingAttrTitle" datatype="html">
+        <source>Your ranking among Betoken&apos;s managers based on your Kairo tokens balance</source>
         <target>KRO残高に基づくマネージャーランキング</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="dashboardTotalFundManagersAttrTitle">
-        <source>Number of fund managers actively managing Betoken's assets.</source>
+      <trans-unit id="dashboardTotalFundManagersAttrTitle" datatype="html">
+        <source>Number of fund managers actively managing Betoken&apos;s assets.</source>
         <target>アクティブなファンドマネージャーの数です。</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investmentsRiskTakenAttrTitle">
-        <source>The more Kairo tokens you stake, the more of Betoken's money you put at work, the more commissions you earn.</source>
+      <trans-unit id="investmentsRiskTakenAttrTitle" datatype="html">
+        <source>The more Kairo tokens you stake, the more of Betoken&apos;s money you put at work, the more commissions you earn.</source>
         <target>より多くのKROを使って投資を行うことにより、より多くのコミッションを獲得できます。</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investmentsActiveInvestmentsPortfolioViewAriaLabel">
+      <trans-unit id="investmentsActiveInvestmentsPortfolioViewAriaLabel" datatype="html">
         <source>Portfolio view</source>
         <target>Portfolio view</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investmentsSearchListAssetsPlaceholder">
+      <trans-unit id="investmentsSearchListAssetsPlaceholder" datatype="html">
         <source>Search</source>
         <target>Search</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="upgradeCardTimeLeftIllustrationAttrAlt">
-        <source>illustration Woman and dog with a active spinner</source>
-        <target>illustration Woman and dog with a active spinner</target>
-      </trans-unit>
-      <trans-unit id="commissionsTotalCommissionsReceivedAttrTitle">
+      <trans-unit id="commissionsTotalCommissionsReceivedAttrTitle" datatype="html">
         <source>The total amount of commission you have received throughout your manager career.</source>
         <target>今まで受け取ったコミッションの合計額。</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="commissionsRedeemModalAdvancedOptionTextAriaDescribedby">
+      <trans-unit id="commissionsRedeemModalAdvancedOptionTextAriaDescribedby" datatype="html">
         <source>cycle for which to redeem commission</source>
         <target>cycle for which to redeem commission</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="commissionsRedeemModalBodyTxHashStep2ArialLabel">
+      <trans-unit id="commissionsRedeemModalBodyTxHashStep2ArialLabel" datatype="html">
         <source>Transaction hash</source>
         <target>Transaction hash</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="rankingsSearchPlaceholder">
+      <trans-unit id="rankingsSearchPlaceholder" datatype="html">
         <source>Search</source>
         <target>Search</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investorBtksBalanceAttrTitle">
+      <trans-unit id="investorBtksBalanceAttrTitle" datatype="html">
         <source>The amount of Betoken Shares tokens (BTKS) you own.</source>
         <target>所有するBetoken Shares（BTKS）の量。</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investorBtksTotalValueDaiAttrTitle">
+      <trans-unit id="investorBtksTotalValueDaiAttrTitle" datatype="html">
         <source>The value of your Betoken Shares, in DAI Stablecoin.</source>
         <target>DAI建てのBetoken Sharesの価値。</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investorBtksPriceAttrTitle">
+      <trans-unit id="investorBtksPriceAttrTitle" datatype="html">
         <source>The price of 1 Betoken Share token.</source>
         <target>1BTKSの価格</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investorMaxDrawdownAttrTitle">
+      <trans-unit id="investorMaxDrawdownAttrTitle" datatype="html">
         <source>A maximum drawdown (MDD) is the maximum observed loss from a peak to a trough of a portfolio, before a new peak is attained. Maximum drawdown is an indicator of downside risk over a specified time period.</source>
         <target>最大下落率は、新しい頂点に到達する前の、ポートフォリオの頂点から底までの最大観測損失です。最大下落率は、指定された期間にわたる下落リスクの指標です。</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investorBuyBtksModalCtaBuyAriaLabel">
+      <trans-unit id="investorBuyBtksModalCtaBuyAriaLabel" datatype="html">
         <source>BuyBTKS</source>
         <target>BTKS購入</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investorSellBtksModalTxHashStep2AriaLabel">
+      <trans-unit id="investorSellBtksModalTxHashStep2AriaLabel" datatype="html">
         <source>Transaction hash</source>
         <target>Transaction hash</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investorSellBtksModalEmailNotificationPlaceholder">
+      <trans-unit id="investorSellBtksModalEmailNotificationPlaceholder" datatype="html">
         <source>myemail@address.com</source>
         <target>myemail@address.com</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investorOnboardingBuyBtksModalTxHashStep3AriaLabel">
+      <trans-unit id="investorOnboardingBuyBtksModalTxHashStep3AriaLabel" datatype="html">
         <source>Transaction hash</source>
         <target>Transaction hash</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investorOnboardingBuyBtksModalTweet">
+      <trans-unit id="investorOnboardingBuyBtksModalTweet" datatype="html">
         <source>https://twitter.com/intent/tweet?hashtags=Betoken%2C%20DeFi&amp;related=betokenfund&amp;text=I%27ve%20just%20connected%20my%20capital%20to%20Betoken%2C%20world%27s%20first%20crowd-powered%20cryptoassets%20management%20protocol!&amp;url=https%3A%2F%2Fbetoken.fund&amp;via=betokenfund</source>
         <target>https://twitter.com/intent/tweet?hashtags=Betoken%2C%20DeFi&amp;related=betokenfund&amp;text=I%27ve%20just%20connected%20my%20capital%20to%20Betoken%2C%20world%27s%20first%20crowd-powered%20cryptoassets%20management%20protocol!&amp;url=https%3A%2F%2Fbetoken.fund&amp;via=betokenfund</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investorOnboardingBuyBtksModalTxHashStep4AriaLabel">
+      <trans-unit id="investorOnboardingBuyBtksModalTxHashStep4AriaLabel" datatype="html">
         <source>Transaction hash</source>
         <target>Transaction hash</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="managerOnboardingBuyBtksModalCtaTweet">
+      <trans-unit id="managerOnboardingBuyBtksModalCtaTweet" datatype="html">
         <source>Tweet about it</source>
         <target>Tweet about it</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="managerOnboardingBuyBtksModalTweet">
+      <trans-unit id="managerOnboardingBuyBtksModalTweet" datatype="html">
         <source>https://twitter.com/intent/tweet?hashtags=Betoken%2C%20DeFi&amp;related=betokenfund&amp;text=I%27ve%20just%20joined%20Betoken%20as%20a%20fund%20manager%2C%20world%27s%20first%20crowd-powered%20cryptoassets%20management%20protocol!&amp;url=https%3A%2F%2Fbetoken.fund&amp;via=betokenfund</source>
         <target>https://twitter.com/intent/tweet?hashtags=Betoken%2C%20DeFi&amp;related=betokenfund&amp;text=I%27ve%20just%20joined%20Betoken%20as%20a%20fund%20manager%2C%20world%27s%20first%20crowd-powered%20cryptoassets%20management%20protocol!&amp;url=https%3A%2F%2Fbetoken.fund&amp;via=betokenfund</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="managerOnboardingBuyBtksModalStep4TxHashAriaLabel">
+      <trans-unit id="managerOnboardingBuyBtksModalStep4TxHashAriaLabel" datatype="html">
         <source>Transaction hash</source>
         <target>Transaction hash</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="timeCounterTitle">
+      <trans-unit id="timeCounterTitle" datatype="html">
         <source>Time left</source>
         <target>残り時間</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="modalBeNotifiedByEmail">
+      <trans-unit id="modalBeNotifiedByEmail" datatype="html">
         <source>Be notified by email</source>
         <target>emailで通知を受ける</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="modalAriaLabelClose">
+      <trans-unit id="modalAriaLabelClose" datatype="html">
         <source>Close</source>
         <target>Close</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="modalEmailPlaceholder">
+      <trans-unit id="modalEmailPlaceholder" datatype="html">
         <source>myemail@address.com</source>
         <target>myemail@address.com</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="ctaBecomeManager">
+      <trans-unit id="ctaBecomeManager" datatype="html">
         <source>Become a Manager</source>
         <target>マネージャーになる</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="ctaMakeInvestments">
+      <trans-unit id="ctaMakeInvestments" datatype="html">
         <source>Make Investments</source>
         <target>投資する</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="ctaRedeemCommissions">
+      <trans-unit id="ctaRedeemCommissions" datatype="html">
         <source>Redeem Commission</source>
         <target>コミッションを受け取る</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="ctaNextPhase">
+      <trans-unit id="ctaNextPhase" datatype="html">
         <source>Next Phase</source>
         <target>次のフェーズへ</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="ctaBuyBtks">
+      <trans-unit id="ctaBuyBtks" datatype="html">
         <source>Buy BTKS</source>
         <target>BTKSを買う</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="ctaSellBtks">
+      <trans-unit id="ctaSellBtks" datatype="html">
         <source>Sell BTKS</source>
         <target>BTKSを売る</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="portfolioValueTitle">
+      <trans-unit id="portfolioValueTitle" datatype="html">
         <source>Your Portfolio Value</source>
         <target>ポートフォリオの価値</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="portfolioValueAttrTitle">
-        <source>Amount of Betoken's AUM you manage. The more Kairo tokens you own, the more money you will manage.</source>
+      <trans-unit id="portfolioValueAttrTitle" datatype="html">
+        <source>Amount of Betoken&apos;s AUM you manage. The more Kairo tokens you own, the more money you will manage.</source>
         <target>あなたが管理するBetokenの資金量。KROを所有が多いほど、より多くの資金を管理できます。</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="kroBalanceTitle">
+      <trans-unit id="kroBalanceTitle" datatype="html">
         <source>Your Kairo Balance</source>
         <target>KRO残高</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="kroBalanceAttrTitle">
+      <trans-unit id="kroBalanceAttrTitle" datatype="html">
         <source>The more Kairo tokens you own, the more money you will manage, the more commission you will receive. You will be able to earn Kairo tokens by making profitable investments for the Betoken fund.</source>
         <target>所有するKROが多いほど、より多くの資金を管理でき、より多くのコミッションを受け取ることができます。 Betokenファンドで収益性の高い投資を行うことでKROを獲得できます。</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="estimateCommissionTitle">
+      <trans-unit id="estimateCommissionTitle" datatype="html">
         <source>Your Estimated Commission This Month</source>
         <target>今月の推定コミッション</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="estimateCommissionAttrTitle">
-        <source>&lt;strong&gt;20%&lt;/strong&gt; of the fund's profit and &lt;strong&gt;0.1%&lt;/strong&gt; of the AUM is set aside as commissions every month, which is paid to managers proportional to the Kairo tokens they hold. The estimate displayed here is calculated using the current fund ROI.</source>
+      <trans-unit id="estimateCommissionAttrTitle" datatype="html">
+        <source>&lt;strong&gt;20%&lt;/strong&gt; of the fund&apos;s profit and &lt;strong&gt;0.1%&lt;/strong&gt; of the AUM is set aside as commissions every month, which is paid to managers proportional to the Kairo tokens they hold. The estimate displayed here is calculated using the current fund ROI.</source>
         <target>ファンドの利益の20％とAUMの0.1％は毎月コミッションとして確保され、マネージャーが保有するKROに比例して支払われます。ここに表示される見積もりは、現在のファンドのROIを使用して計算されます。</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="btksPriceTitle">
+      <trans-unit id="btksPriceTitle" datatype="html">
         <source>Betoken Shares Price</source>
         <target>Betoken Shares Price</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="aumTitle">
+      <trans-unit id="aumTitle" datatype="html">
         <source>AUM</source>
         <target>AUM</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="standardDeviation">
+      <trans-unit id="standardDeviation" datatype="html">
         <source>Standard Deviation</source>
         <target>標準偏差</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="standardDeviationAttrTitle">
-        <source>Standard deviation represents the volatility of an asset. The number shown here is the sample standard deviation of Betoken Shares' price since inception.</source>
+      <trans-unit id="standardDeviationAttrTitle" datatype="html">
+        <source>Standard deviation represents the volatility of an asset. The number shown here is the sample standard deviation of Betoken Shares&apos; price since inception.</source>
         <target>標準偏差は資産のボラティリティを表します。ここに示されている数値は、開始以来のBetoken Sharesの価格の標準偏差のサンプルです。</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="solidifiedAudit">
+      <trans-unit id="solidifiedAudit" datatype="html">
         <source>Betoken Smart Contracts are audited and secured by Solidified</source>
         <target>Betokenスマートコントラクトは、Solidifiedによって監査および保護されています。</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="refreshBtnLoad">
+      <trans-unit id="refreshBtnLoad" datatype="html">
         <source>Loading...</source>
         <target>Loading...</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="orderOfTypeLong">
+      <trans-unit id="orderOfTypeLong" datatype="html">
         <source>Long</source>
         <target>Long</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="orderOfTypeShort">
+      <trans-unit id="orderOfTypeShort" datatype="html">
         <source>Short</source>
         <target>Short</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="orderSafetySafe">
+      <trans-unit id="orderSafetySafe" datatype="html">
         <source>Safe</source>
         <target>Safe</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="orderSafetyInDanger">
+      <trans-unit id="orderSafetyInDanger" datatype="html">
         <source>In Danger</source>
         <target>In Danger</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="modalTitleConfirmTx">
+      <trans-unit id="modalTitleConfirmTx" datatype="html">
         <source>Confirm transaction</source>
         <target>Confirm transaction</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="modalTitleProcessingTx">
+      <trans-unit id="modalTitleProcessingTx" datatype="html">
         <source>Processing transaction</source>
         <target>Processing transaction</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="modalTitleTxConfirmed">
+      <trans-unit id="modalTitleTxConfirmed" datatype="html">
         <source>Transaction confirmed</source>
         <target>Transaction confirmed</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="modalTitleError">
-        <source>That's an error</source>
-        <target>That's an error</target>
+      <trans-unit id="modalTitleError" datatype="html">
+        <source>That&apos;s an error</source>
+        <target>That&apos;s an error</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="price">
+      <trans-unit id="price" datatype="html">
         <source>Price (DAI)</source>
         <target>Price (DAI)</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="24hChange">
+      <trans-unit id="24hChange" datatype="html">
         <source>24h change</source>
         <target>24h change</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="modalCtaMax">
+      <trans-unit id="modalCtaMax" datatype="html">
         <source>Max</source>
         <target>Max</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="modalBalanceAvailable">
+      <trans-unit id="modalBalanceAvailable" datatype="html">
         <source>available</source>
         <target>available</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="modalAdvancedOptionTitle">
+      <trans-unit id="modalAdvancedOptionTitle" datatype="html">
         <source>Advanced</source>
         <target>高度な設定</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="modalAdvancedOptionText">
-        <source>Your order WON'T be executed if the price goes up by more than:</source>
+      <trans-unit id="modalAdvancedOptionText" datatype="html">
+        <source>Your order WON&apos;T be executed if the price goes up by more than:</source>
         <target>価格が次の値を超えて上昇した場合、注文は執行されません。</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="modalBodyTextStep1">
-        <source>Confirm the transaction in your wallet’s interface to save it on the Ethereum blockchain. It's fine to stick with these defaults gas limit and price.</source>
+      <trans-unit id="modalBodyTextStep1" datatype="html">
+        <source>Confirm the transaction in your wallet’s interface to save it on the Ethereum blockchain. It&apos;s fine to stick with these defaults gas limit and price.</source>
         <target>ウォレットでトランザクションを確認して、Ethereumブロックチェーンに保存します。既定のガス制限とガス価格で実行できます。</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="modalBodyTextTxBroadcasted">
+      <trans-unit id="modalBodyTextTxBroadcasted" datatype="html">
         <source>Your transaction is being saved on the Ethereum blockchain.</source>
         <target>Your transaction is being saved on the Ethereum blockchain.</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="modalBodyTxHash">
+      <trans-unit id="modalBodyTxHash" datatype="html">
         <source>Transaction hash</source>
         <target>Transaction hash</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="modalErrorText">
+      <trans-unit id="modalErrorText" datatype="html">
         <source>The operation has resulted in an error. Please try again.</source>
         <target>操作はエラーになりました。もう一度やり直してください。</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="modalErrorMsg">
+      <trans-unit id="modalErrorMsg" datatype="html">
         <source>Error message:</source>
         <target>Error message:</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="modalCtaContinue">
+      <trans-unit id="modalCtaContinue" datatype="html">
         <source>Continue</source>
         <target>Continue</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="modalCtaClose">
+      <trans-unit id="modalCtaClose" datatype="html">
         <source>Close</source>
         <target>Close</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="modalTryAgainAriaLabel">
+      <trans-unit id="modalTryAgainAriaLabel" datatype="html">
         <source>Try again</source>
         <target>Try again</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="modalRoi">
-        <source>ROI</source>
-        <target>ROI</target>
-      </trans-unit>
-      <trans-unit id="modalCollateralStatusTitle">
+      <trans-unit id="modalCollateralStatusTitle" datatype="html">
         <source>Collateralization status</source>
         <target>担保の状態</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="modalCtaTopUp">
+      <trans-unit id="modalCtaTopUp" datatype="html">
         <source>Top up</source>
         <target>Top up</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="modalMinCollRatio">
+      <trans-unit id="modalMinCollRatio" datatype="html">
         <source>min. collateral ratio</source>
         <target>最低担保比率</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="modalTopUpCollateralLiquidationText">
-        <source>If the order's collateral ratio falls below the minimum, it will be liquidated, which will cause huge losses.</source>
+      <trans-unit id="modalTopUpCollateralLiquidationText" datatype="html">
+        <source>If the order&apos;s collateral ratio falls below the minimum, it will be liquidated, which will cause huge losses.</source>
         <target>担保比率が最低値を下回ると、注文は清算され、大きな損失が発生します。</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="totalCommissionsReceived">
+      <trans-unit id="totalCommissionsReceived" datatype="html">
         <source>Total Commission Received</source>
         <target>受け取った総コミッション</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="amount">
+      <trans-unit id="amount" datatype="html">
         <source>Amount ($DAI)</source>
         <target>Amount ($DAI)</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="timeStamp">
+      <trans-unit id="timeStamp" datatype="html">
         <source>Timestamp</source>
         <target>Timestamp</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="transaction">
+      <trans-unit id="transaction" datatype="html">
         <source>Transaction</source>
         <target>Transaction</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="modalTitleConfirmRules">
+      <trans-unit id="modalTitleConfirmRules" datatype="html">
         <source>Please confirm before continuing</source>
         <target>続ける前に確認してください</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="modalTitleBtksAmount">
+      <trans-unit id="modalTitleBtksAmount" datatype="html">
         <source>How many Betoken shares do you want to buy?</source>
         <target>いくつ買いますか？</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="modalTitleOpNotPermitted">
+      <trans-unit id="modalTitleOpNotPermitted" datatype="html">
         <source>Operation not permitted</source>
         <target>操作は許可されていません</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="modalSubtitleTimeLeft">
+      <trans-unit id="modalSubtitleTimeLeft" datatype="html">
         <source>Time left until operation allowed</source>
         <target>操作が許可されるまでの残り時間</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="modalTimeLeftUnitsTitleAttribute">
+      <trans-unit id="modalTimeLeftUnitsTitleAttribute" datatype="html">
         <source>Learn more</source>
         <target>Learn more</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="modalFollowUs">
+      <trans-unit id="modalFollowUs" datatype="html">
         <source>Or follow us</source>
         <target>Or follow us</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="modalRule1">
-        <source>You are NEITHER a citizen or resident of, NOR currently located in any of the following states or territories, NOR an entity formed under the laws of: Afghanistan, Cuba, Democratic People's Republic of Korea, Iran, Iraq, People’s Republic of China, Russian Federation, Somalia, Sudan, Syria, United Arab Emirates, United States of America, Venezuela, Yemen.</source>
-        <target>あなたは、以下の州または準州のいずれかの市民または居住者でもなく、法​​律に基づいて形成された団体でもありません。\nアフガニスタン、キューバ、朝鮮民主主義人民共和国、イラン、イラク、中華人民共和国、ロシア連邦、ソマリア、スーダン、シリア、アラブ首長国連邦、アメリカ合衆国、ベネズエラ、イエメン。</target>
+      <trans-unit id="modalRule1" datatype="html">
+        <source>You are NEITHER a citizen or resident of, NOR currently located in any of the following states or territories, NOR an entity formed under the laws of: Afghanistan, Cuba, Democratic People&apos;s Republic of Korea, Iran, Iraq, People’s Republic of China, Russian Federation, Somalia, Sudan, Syria, United Arab Emirates, United States of America, Venezuela, Yemen.</source>
+        <target>あなたは、以下の州または準州のいずれかの市民または居住者でもなく、法​​律に基づいて形成された団体でもありません。
+アフガニスタン、キューバ、朝鮮民主主義人民共和国、イラン、イラク、中華人民共和国、ロシア連邦、ソマリア、スーダン、シリア、アラブ首長国連邦、アメリカ合衆国、ベネズエラ、イエメン。</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="modalRule2">
+      <trans-unit id="modalRule2" datatype="html">
         <source>You have read and understood our disclaimer below.</source>
         <target>免責事項を読んで理解しました。</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="modalRule3">
+      <trans-unit id="modalRule3" datatype="html">
         <source>💀 You understand that Betoken Protocol is in beta. Use at your own risk.</source>
         <target>💀 Betoken Protocolはベータ版であり、利用は自己責任であることを理解しています。</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="disclaimerTitle">
+      <trans-unit id="disclaimerTitle" datatype="html">
         <source>Disclaimer</source>
         <target>免責事項</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="disclaimertext1">
+      <trans-unit id="disclaimertext1" datatype="html">
         <source>Nothing herein constitutes an offer to sell, or the solicitation of an offer to buy, any securities or tokens.</source>
         <target>本条項の全ては、有価証券またはトークンの販売及び購入の勧誘を意図するものではありません。</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="disclaimertext2">
+      <trans-unit id="disclaimertext2" datatype="html">
         <source>Betoken enables capital connection and managing using smart contracts which are open source. Betoken does not take custody of tokens and is only a collaborative hub for investors and managers. Betoken is not a licensed bank, broker-dealer, investment advisor or an exchange. Betoken uses partner protocols (Kyber, Compound, bZx, Maker DAO) to power its own ecosystem.</source>
         <target>Betokenは、オープンソースのスマートコントラクトを使用した資金接続と管理を可能にします。 Betokenはトークンの管理を行っておらず、投資家とマネジャーの共同ハブにすぎません。 Betokenは、認可銀行、ブローカーディーラー、投資顧問または取引所ではありません。 Betokenは、パートナープロトコル（Kyber、Compound、bZx、Maker DAO）を使用して独自のエコシステムを強化しています。</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="modalTitleOrderDetail">
+      <trans-unit id="modalTitleOrderDetail" datatype="html">
         <source>Order Details</source>
         <target>Order Details</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="modalBtksToReceive">
+      <trans-unit id="modalBtksToReceive" datatype="html">
         <source>Betoken shares to receive</source>
         <target>Betoken Shares to receive</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="modalTotalCost">
+      <trans-unit id="modalTotalCost" datatype="html">
         <source>Total cost</source>
         <target>Total cost</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="modalCtaContinueAriaLabel">
+      <trans-unit id="modalCtaContinueAriaLabel" datatype="html">
         <source>Continue to Buy</source>
         <target>Continue to Buy</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="ctaGetStarted">
+      <trans-unit id="ctaGetStarted" datatype="html">
         <source>Get Started</source>
         <target>Get Started</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="disclaimertext3">
+      <trans-unit id="disclaimertext3" datatype="html">
         <source>💀 This project is in beta. Use at your own risk.</source>
         <target>💀このプロジェクトはベータ版であり、利用は自己責任です。</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="faqTitle">
+      <trans-unit id="faqTitle" datatype="html">
         <source>Frequently asked questions</source>
         <target>よくある質問</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="faqGetHelptitle">
+      <trans-unit id="faqGetHelptitle" datatype="html">
         <source>Can’t find what you’re looking for?</source>
         <target>お探しのものは見つかりませんか？</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="faqCtaHelpCenter">
+      <trans-unit id="faqCtaHelpCenter" datatype="html">
         <source>Help Center</source>
         <target>Help Center</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="footerNavHome">
+      <trans-unit id="footerNavHome" datatype="html">
         <source>Home</source>
         <target>Home</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="footerNavBlog">
+      <trans-unit id="footerNavBlog" datatype="html">
         <source>Blog</source>
         <target>Blog</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="contactUs">
+      <trans-unit id="contactUs" datatype="html">
         <source>Contact us at</source>
         <target>Contact us at</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="modalDisclaimerCta">
+      <trans-unit id="modalDisclaimerCta" datatype="html">
         <source>disclaimer</source>
         <target>免責事項</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="timeCounterActionIntermission">
+      <trans-unit id="timeCounterActionIntermission" datatype="html">
         <source>until managing begins</source>
         <target>運用開始まで</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="timeCounterActionManage">
+      <trans-unit id="timeCounterActionManage" datatype="html">
         <source>to manage</source>
         <target>運用する</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="timeLeftInDays">
+      <trans-unit id="timeLeftInDays" datatype="html">
         <source>d</source>
         <target>日</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="timeLeftInHours">
+      <trans-unit id="timeLeftInHours" datatype="html">
         <source>h</source>
         <target>時間</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="timeLeftInMinutes">
+      <trans-unit id="timeLeftInMinutes" datatype="html">
         <source>m</source>
         <target>分</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="timeLeftInSeconds">
+      <trans-unit id="timeLeftInSeconds" datatype="html">
         <source>s</source>
         <target>秒</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="headerConnectWalletCTA">
+      <trans-unit id="headerConnectWalletCTA" datatype="html">
         <source>Connect Wallet</source>
         <target>財布を接続する</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="managerAlert1">
+      <trans-unit id="managerAlert1" datatype="html">
         <source>Please note you have only</source>
         <target>Please note you have only</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="managerAlert2">
+      <trans-unit id="managerAlert2" datatype="html">
         <source>days left to manage. You MUST sell all of your investments during this time, or you WILL LOSE your staked Kairo tokens.</source>
         <target>運用するための残り時間。この期間中にすべての投資を売却する必要があります。そうしないと賭けたKROが失われます。</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investmentsBuyModalIWantToBuy1">
+      <trans-unit id="investmentsBuyModalIWantToBuy1" datatype="html">
         <source>I want to buy</source>
         <target>I want to buy</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investmentsBuyModalIWantToBuy2">
+      <trans-unit id="investmentsBuyModalIWantToBuy2" datatype="html">
         <source>by staking</source>
         <target>by staking</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investmentsBuyModalMarginTradingPayoutText2a">
+      <trans-unit id="investmentsBuyModalMarginTradingPayoutText2a" datatype="html">
         <source>If</source>
         <target>If</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investmentsBuyModalMarginTradingPayoutText2b">
-        <source>'s price</source>
-        <target>'s price</target>
+      <trans-unit id="investmentsBuyModalMarginTradingPayoutText2b" datatype="html">
+        <source>&apos;s price</source>
+        <target>&apos;s price</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investmentsBuyModalMarginTradingPayoutText2c">
+      <trans-unit id="investmentsBuyModalMarginTradingPayoutText2c" datatype="html">
         <source>you</source>
         <target>you</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investmentsBuyModalMarginTradingPayoutText2d">
+      <trans-unit id="investmentsBuyModalMarginTradingPayoutText2d" datatype="html">
         <source>gain</source>
         <target>gain</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investmentsBuyModalMarginTradingPayoutText2e">
+      <trans-unit id="investmentsBuyModalMarginTradingPayoutText2e" datatype="html">
         <source>lose</source>
         <target>lose</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investmentsBuyModalMarginTradingPayoutText3a">
+      <trans-unit id="investmentsBuyModalMarginTradingPayoutText3a" datatype="html">
         <source>If</source>
         <target>If</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investmentsBuyModalMarginTradingPayoutText3b">
-        <source>'s price</source>
-        <target>'s price</target>
+      <trans-unit id="investmentsBuyModalMarginTradingPayoutText3b" datatype="html">
+        <source>&apos;s price</source>
+        <target>&apos;s price</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investmentsBuyModalMarginTradingPayoutText3c">
+      <trans-unit id="investmentsBuyModalMarginTradingPayoutText3c" datatype="html">
         <source>you</source>
         <target>you</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investmentsBuyModalMarginTradingPayoutText3d">
+      <trans-unit id="investmentsBuyModalMarginTradingPayoutText3d" datatype="html">
         <source>lose</source>
         <target>lose</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investmentsBuyModalMarginTradingPayoutText3e">
+      <trans-unit id="investmentsBuyModalMarginTradingPayoutText3e" datatype="html">
         <source>gain</source>
         <target>gain</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investmentsBuyModalMarginTradingLiquidationText1">
+      <trans-unit id="investmentsBuyModalMarginTradingLiquidationText1" datatype="html">
         <source>This order could be liquidated if its losses exceed a certain threshold (which will be displayed). If that happens, a large portion of your stake will be lost.</source>
         <target>この注文は、損失が特定の閾値を超えると清算される可能性があります。その場合、資金の大部分が失われます。</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investmentsBuyModalMarginTradingLiquidationText2">
+      <trans-unit id="investmentsBuyModalMarginTradingLiquidationText2" datatype="html">
         <source>Learn More</source>
         <target>Learn more</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investmentsBuyModalTxConfirmed1">
+      <trans-unit id="investmentsBuyModalTxConfirmed1" datatype="html">
         <source>You staked</source>
         <target>You staked</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investmentsBuyModalTxConfirmed2">
+      <trans-unit id="investmentsBuyModalTxConfirmed2" datatype="html">
         <source>KRO to invest in</source>
         <target>KRO to invest in</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="buyPrice">
+      <trans-unit id="buyPrice" datatype="html">
         <source>Asset buy price</source>
         <target>Asset buy price</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="commissionsRedeemModalBodyTextStep3a">
+      <trans-unit id="commissionsRedeemModalBodyTextStep3a" datatype="html">
         <source>You redeeemed</source>
         <target>You redeeemed</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="@@commissionsRedeemModalBodyTextStep3b">
+      <trans-unit id="@@commissionsRedeemModalBodyTextStep3b" datatype="html">
         <source>(or equivalent Betoken Shares)</source>
         <target>(or equivalent Betoken Shares)</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investorBuyBtksModalTextStep4a">
+      <trans-unit id="investorBuyBtksModalTextStep4a" datatype="html">
         <source>You bought</source>
         <target>You bought</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investorBuyBtksModalTextStep4b">
+      <trans-unit id="investorBuyBtksModalTextStep4b" datatype="html">
         <source>using</source>
         <target>using</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investorSellBtksModalTextStep3a">
+      <trans-unit id="investorSellBtksModalTextStep3a" datatype="html">
         <source>You sold</source>
         <target>You sold</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investorSellBtksModalTextStep3b">
+      <trans-unit id="investorSellBtksModalTextStep3b" datatype="html">
         <source>for</source>
         <target>for</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investorOnboardingIntroText1a">
+      <trans-unit id="investorOnboardingIntroText1a" datatype="html">
         <source>Your capital is automatically distributed among</source>
         <target>資金は自動的に分配されます。</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investorOnboardingIntroText1b">
+      <trans-unit id="investorOnboardingIntroText1b" datatype="html">
         <source>Betoken’s community of managers</source>
         <target>Betoken’s community of managers</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investorOnboardingIntroText1c">
+      <trans-unit id="investorOnboardingIntroText1c" datatype="html">
         <source>The best of them will have the most influence over how that capital is put to work.</source>
         <target>最も成績の良いマネージャーが、最も大きい裁量を持ちます。</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investorOnboardingIntroText3a">
-        <source>Betoken allows anyone to buy or sell any amount of Betoken Shares, and Betoken's fee structure is completely transparent.</source>
+      <trans-unit id="investorOnboardingIntroText3a" datatype="html">
+        <source>Betoken allows anyone to buy or sell any amount of Betoken Shares, and Betoken&apos;s fee structure is completely transparent.</source>
         <target>Betokenでは、誰でも任意の量のBTKSを売買できます。Betokenの料金体系は完全に透明です。</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investorOnboardingIntroText3b">
+      <trans-unit id="investorOnboardingIntroText3b" datatype="html">
         <source>More about fees, lockup, and liquidity</source>
         <target>料金（手数料）、ロックアップ、流動性の詳細</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investorOnboardingFaqA1a">
-        <source>Yes. Betoken's protocol is 100% liquid. You can buy and sell Betoken shares at any time in 2 ways:</source>
+      <trans-unit id="investorOnboardingFaqA1a" datatype="html">
+        <source>Yes. Betoken&apos;s protocol is 100% liquid. You can buy and sell Betoken shares at any time in 2 ways:</source>
         <target>はい。 BTKSはいつでも2つの方法で売買できます。</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investorOnboardingFaqA1b">
-        <source>During Betoken's 3 days intermission phase that happens every 27 days, you can buy and sell Betoken shares directly on the investor dashboard.</source>
+      <trans-unit id="investorOnboardingFaqA1b" datatype="html">
+        <source>During Betoken&apos;s 3 days intermission phase that happens every 27 days, you can buy and sell Betoken shares directly on the investor dashboard.</source>
         <target>27日毎に行われるBetokenの3日間の休憩フェーズでは、投資家のダッシュボードでBTKSを直接売買できます。</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investorOnboardingFaqA1c">
-        <source>During Betoken's management phase (27 days), Betoken shares token is freely tradable on decentralized exchanges (e.g. ForkDelta, Uniswap). Depending on the market conditions, the price may be slightly different from what is displayed on the investor dashboard.</source>
+      <trans-unit id="investorOnboardingFaqA1c" datatype="html">
+        <source>During Betoken&apos;s management phase (27 days), Betoken shares token is freely tradable on decentralized exchanges (e.g. ForkDelta, Uniswap). Depending on the market conditions, the price may be slightly different from what is displayed on the investor dashboard.</source>
         <target>Betokenの管理フェーズ（27日間）では、BTKSは分散型取引所（Fork Delta、Uniswap）で自由に取引できます。市場の状況によって、価格は投資家のダッシュボードに表示されるものと異なる場合があります。</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investorOnboardingBuyBtksModalTextStep4a">
+      <trans-unit id="investorOnboardingBuyBtksModalTextStep4a" datatype="html">
         <source>You bought</source>
         <target>You bought</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="investorOnboardingBuyBtksModalTextStep4b">
+      <trans-unit id="investorOnboardingBuyBtksModalTextStep4b" datatype="html">
         <source>using</source>
         <target>using</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="managerOnboardingIntroSubText1a">
+      <trans-unit id="managerOnboardingIntroSubText1a" datatype="html">
         <source>The Betoken protocol recognizes and quantifies the talent of its fund managers by allocating units of reputation to them, denominated in Kairo tokens, and financially rewards them based on their talent and contributions. The more Kairo tokens you have, the more money in the Betoken fund you can manage and the more income you’ll get every month as commissions on your investments.</source>
         <target>Betokenプロトコルは、KROで表される評判の単位を割り当てることにより、ファンドマネージャーの才能を認識および定量化し、才能と貢献に基づいて金銭的な報酬を与えます。所有するKROが多ければ多いほど、管理できるBetokenファンドのお金が増え、投資のコミッションとして毎月獲得できる収入が増えます。</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="managerOnboardingIntroSubText1b">
-        <source>More about Betoken's commissions structure</source>
+      <trans-unit id="managerOnboardingIntroSubText1b" datatype="html">
+        <source>More about Betoken&apos;s commissions structure</source>
         <target>Betokenのコミッション構造の詳細</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="managerOnboardingBuyBtksModalTextStep4a">
+      <trans-unit id="managerOnboardingBuyBtksModalTextStep4a" datatype="html">
         <source>You bought</source>
         <target>You bought</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="managerOnboardingBuyBtksModalTextStep4b">
+      <trans-unit id="managerOnboardingBuyBtksModalTextStep4b" datatype="html">
         <source>using</source>
         <target>using</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
-      <trans-unit id="modalRule4">
+      <trans-unit id="modalRule4" datatype="html">
         <source>You understand that you can only buy Kairo tokens once per Ethereum account</source>
         <target>Ethereumアカウント一つにつき一度しかKROを購入できないことを理解しています。</target>
+        <note priority="1" from="meaning">ng2.template</note>
+      </trans-unit>
+      <trans-unit id="upgradeCardStateDEV_PROPOSED" datatype="html">
+        <source>Development team proposed upgrade</source>
+        <target>開発チームがアップグレードを提案</target>
+        <note priority="1" from="meaning">ng2.template</note>
+      </trans-unit>
+      <trans-unit id="upgradeCardStateSIGNALING_ENOUGH" datatype="html">
+        <source>Has enough support for initiating upgrade</source>
+        <target>アップグレードを開始するための十分なサポートがあります</target>
+        <note priority="1" from="meaning">ng2.template</note>
+      </trans-unit>
+      <trans-unit id="upgradeCardStateSIGNALING_NOT_ENOUGH" datatype="html">
+        <source>Not enough support for initiating upgrade</source>
+        <target>アップグレードを開始するための十分なサポートがありません</target>
+        <note priority="1" from="meaning">ng2.template</note>
+      </trans-unit>
+      <trans-unit id="upgradeCardStatePROPAGATING" datatype="html">
+        <source>Propagating news of upgrade initiation</source>
+        <target>アップグレードの開始を伝える</target>
+        <note priority="1" from="meaning">ng2.template</note>
+      </trans-unit>
+      <trans-unit id="upgradeCardStatePROPOSING_NO_CANDIDATE" datatype="html">
+        <source>Waiting for an upgrade candidate to be proposed</source>
+        <target>アップグレード候補が提案されるのを待っています</target>
+        <note priority="1" from="meaning">ng2.template</note>
+      </trans-unit>
+      <trans-unit id="upgradeCardStatePROPOSING_HAS_CANDIDATE" datatype="html">
+        <source>Proposing upgrade candidate</source>
+        <target>アップグレード候補の提案</target>
+        <note priority="1" from="meaning">ng2.template</note>
+      </trans-unit>
+      <trans-unit id="upgradeCardStateVOTING_NO_CANDIDATE" datatype="html">
+        <source>No upgrade candidate to vote on</source>
+        <target>投票するアップグレード候補はありません</target>
+        <note priority="1" from="meaning">ng2.template</note>
+      </trans-unit>
+      <trans-unit id="upgradeCardStateVOTING_ENOUGH" datatype="html">
+        <source>Upgrade candidate has enough support</source>
+        <target>アップグレード候補には十分なサポートがあります</target>
+        <note priority="1" from="meaning">ng2.template</note>
+      </trans-unit>
+      <trans-unit id="upgradeCardStateVOTING_NOT_ENOUGH" datatype="html">
+        <source>Upgrade candidate doesn&apos;t have enough support</source>
+        <target>アップグレード候補には十分なサポートがありません</target>
+        <note priority="1" from="meaning">ng2.template</note>
+      </trans-unit>
+      <trans-unit id="upgradeCardStatePASSED" datatype="html">
+        <source>Upgrade candidate accepted</source>
+        <target>アップグレード候補が受け入れられました</target>
+        <note priority="1" from="meaning">ng2.template</note>
+      </trans-unit>
+      <trans-unit id="upgradeCardStatePASSED_NOT_FINALIZED" datatype="html">
+        <source>Upgrade candidate accepted but needs to be finalized</source>
+        <target>アップグレード候補は受け入れられましたが、確定する必要があります</target>
+        <note priority="1" from="meaning">ng2.template</note>
+      </trans-unit>
+      <trans-unit id="upgradeCardStateALL_FAILED" datatype="html">
+        <source>All upgrade candidates rejected</source>
+        <target>すべてのアップグレード候補が拒否されました</target>
+        <note priority="1" from="meaning">ng2.template</note>
+      </trans-unit>
+      <trans-unit id="upgradeCardStateFINALIZED" datatype="html">
+        <source>Will upgrade to candidate after Intermission phase ends</source>
+        <target>休憩フェーズ終了後にアップグレードします</target>
+        <note priority="1" from="meaning">ng2.template</note>
+      </trans-unit>
+      <trans-unit id="upgradeCardStateIDLE" datatype="html">
+        <source>Upgrade process inactive</source>
+        <target>アップグレードプロセスが非アクティブです</target>
+        <note priority="1" from="meaning">ng2.template</note>
+      </trans-unit>
+      <trans-unit id="upgradeBetoken" datatype="html">
+        <source>Signal your support for a smart contract upgrade</source>
+        <target>スマートコントラクトアップグレードをサポートする</target>
+        <note priority="1" from="meaning">ng2.template</note>
+      </trans-unit>
+      <trans-unit id="cancelUpgradeSignal" datatype="html">
+        <source>Cancel your support for a smart contract upgrade</source>
+        <target>スマートコントラクトアップグレードのサポートをキャンセルする</target>
+        <note priority="1" from="meaning">ng2.template</note>
+      </trans-unit>
+      <trans-unit id="upgradeDevsCandidate" datatype="html">
+        <source>The development team has proposed an upgrade candidate</source>
+        <target>開発チームはアップグレード候補を提案しました</target>
+        <note priority="1" from="meaning">ng2.template</note>
+      </trans-unit>
+      <trans-unit id="review" datatype="html">
+        <source>Review</source>
+        <target>Review</target>
+        <note priority="1" from="meaning">ng2.template</note>
+      </trans-unit>
+      <trans-unit id="upgradeInitiated" datatype="html">
+        <source>Upgrade Initiated</source>
+        <target>アップグレード開始</target>
+        <note priority="1" from="meaning">ng2.template</note>
+      </trans-unit>
+      <trans-unit id="upgradeInitiatedSubTitle" datatype="html">
+        <source>The first 3 days are reserved for letting the news of the upgrade propagate.</source>
+        <target>最初の三日間は、アップグレードのニュースを知らせるために予約されています。</target>
+        <note priority="1" from="meaning">ng2.template</note>
+      </trans-unit>
+      <trans-unit id="waitingUpgradeCandidate" datatype="html">
+        <source>Proposing upgrade candidate</source>
+        <target>アップグレード候補の提案</target>
+        <note priority="1" from="meaning">ng2.template</note>
+      </trans-unit>
+      <trans-unit id="waitingUpgradeCandidateSubtitle" datatype="html">
+        <source>Any manager can propose a smart contract as the upgrade candidate, unless another manager with more votes has proposed/proposes a candidate.</source>
+        <target>票数の多い別のマネージャーが候補を提案しない限り、どのマネージャーもスマートコントラクトをアップグレード候補として提案できます。</target>
+        <note priority="1" from="meaning">ng2.template</note>
+      </trans-unit>
+      <trans-unit id="upgradeCandidateProposed" datatype="html">
+        <source>Upgrade candidate proposed:</source>
+        <target>アップグレード候補が提案されました：</target>
+        <note priority="1" from="meaning">ng2.template</note>
+      </trans-unit>
+      <trans-unit id="upgradeCandidateProposedSubtitle" datatype="html">
+        <source>You can change the upgrade candidate if you are the current proposer or have more votes than the current proposer.</source>
+        <target>現在の提案者であるか、現在の提案者よりも多くの票を持っている場合は、アップグレード候補を変更できます。</target>
+        <note priority="1" from="meaning">ng2.template</note>
+      </trans-unit>
+      <trans-unit id="upgradeProposer" datatype="html">
+        <source>Proposer:</source>
+        <target>Proposer:</target>
+        <note priority="1" from="meaning">ng2.template</note>
+      </trans-unit>
+      <trans-unit id="submitUpgradeCandidate" datatype="html">
+        <source>Submit upgrade candidate</source>
+        <target>アップグレード候補を提出する</target>
+        <note priority="1" from="meaning">ng2.template</note>
+      </trans-unit>
+      <trans-unit id="votingNoCandidate" datatype="html">
+        <source>No candidate proposed, please wait for the current 3-day voting chunk to end.</source>
+        <target>候補は提案されていません。現在の3日間の投票チャンクが終了するまでお待ちください。</target>
+        <note priority="1" from="meaning">ng2.template</note>
+      </trans-unit>
+      <trans-unit id="votingUpgradeCandidate" datatype="html">
+        <source>Voting on upgrade candidate</source>
+        <target>アップグレード候補の投票</target>
+        <note priority="1" from="meaning">ng2.template</note>
+      </trans-unit>
+      <trans-unit id="votingUpgradeCandidateSubtitle" datatype="html">
+        <source>Need &gt;10% votes to participate and &gt;75% of participating votes to support the candidate in order for it to be accepted.</source>
+        <target>候補が受け入れられるためには、全体の10％を超える参加と、参加票の75％を超えるサポートが必要です。</target>
+        <note priority="1" from="meaning">ng2.template</note>
+      </trans-unit>
+      <trans-unit id="votingQuorum" datatype="html">
+        <source>Quorum</source>
+        <target>Quorum</target>
+        <note priority="1" from="meaning">ng2.template</note>
+      </trans-unit>
+      <trans-unit id="votingSupport" datatype="html">
+        <source>Support</source>
+        <target>Support</target>
+        <note priority="1" from="meaning">ng2.template</note>
+      </trans-unit>
+      <trans-unit id="upgradeTo" datatype="html">
+        <source>Upgrade to</source>
+        <target>Upgrade to</target>
+        <note priority="1" from="meaning">ng2.template</note>
+      </trans-unit>
+      <trans-unit id="dontUpgradeTo" datatype="html">
+        <source>Don&apos;t upgrade to</source>
+        <target>Don&apos;t upgrade to</target>
+        <note priority="1" from="meaning">ng2.template</note>
+      </trans-unit>
+      <trans-unit id="upgrade" datatype="html">
+        <source>Upgrade</source>
+        <target>Upgrade</target>
+        <note priority="1" from="meaning">ng2.template</note>
+      </trans-unit>
+      <trans-unit id="acceptedNotFinalized" datatype="html">
+        <source>accepted but needs to be finalized.</source>
+        <target>受け入れられますが、確定する必要があります。</target>
+        <note priority="1" from="meaning">ng2.template</note>
+      </trans-unit>
+      <trans-unit id="finalize" datatype="html">
+        <source>Finalize</source>
+        <target>Finalize</target>
+        <note priority="1" from="meaning">ng2.template</note>
+      </trans-unit>
+      <trans-unit id="accepted" datatype="html">
+        <source>accepted</source>
+        <target>accepted</target>
+        <note priority="1" from="meaning">ng2.template</note>
+      </trans-unit>
+      <trans-unit id="allFailed" datatype="html">
+        <source>No upgrade candidate had enough vote to be accepted.</source>
+        <target>アップグレード候補は承認されるのに十分な票がありません。</target>
+        <note priority="1" from="meaning">ng2.template</note>
+      </trans-unit>
+      <trans-unit id="willUpgradeTo" datatype="html">
+        <source>Will upgrade to</source>
+        <target>Will upgrade to</target>
+        <note priority="1" from="meaning">ng2.template</note>
+      </trans-unit>
+      <trans-unit id="afterThisIntermissionPhase" datatype="html">
+        <source>after this Intermission phase</source>
+        <target>after this Intermission phase</target>
+        <note priority="1" from="meaning">ng2.template</note>
+      </trans-unit>
+      <trans-unit id="votingInactive" datatype="html">
+        <source>Voting is inactive</source>
+        <target>投票は無効です</target>
+        <note priority="1" from="meaning">ng2.template</note>
+      </trans-unit>
+      <trans-unit id="upgradeHistoryCardTitle" datatype="html">
+        <source>Upgrades history</source>
+        <target>アップグレード履歴</target>
+        <note priority="1" from="meaning">ng2.template</note>
+      </trans-unit>
+      <trans-unit id="currentSmartContract" datatype="html">
+        <source>(current smart contract)</source>
+        <target>(current smart contract)</target>
+        <note priority="1" from="meaning">ng2.template</note>
+      </trans-unit>
+      <trans-unit id="modalUpgradeVoteTitle" datatype="html">
+        <source>Vote</source>
+        <target>Vote</target>
+        <note priority="1" from="meaning">ng2.template</note>
+      </trans-unit>
+      <trans-unit id="modalUpgradeSubmitCandidateTitle" datatype="html">
+        <source>Submit upgrade candidate</source>
+        <target>アップグレード候補を提出する</target>
+        <note priority="1" from="meaning">ng2.template</note>
+      </trans-unit>
+      <trans-unit id="modalUpgradeFinalizeTitle" datatype="html">
+        <source>Finalize upgrade</source>
+        <target>アップグレードを完了する</target>
+        <note priority="1" from="meaning">ng2.template</note>
+      </trans-unit>
+      <trans-unit id="modalUpgradeBetokenSubtitle" datatype="html">
+        <source>Signal your support for a manager initiated upgrade.</source>
+        <target>マネージャーが開始したアップグレードをサポートする。</target>
+        <note priority="1" from="meaning">ng2.template</note>
+      </trans-unit>
+      <trans-unit id="learnMore" datatype="html">
+        <source>Learn more</source>
+        <target>Learn more</target>
+        <note priority="1" from="meaning">ng2.template</note>
+      </trans-unit>
+      <trans-unit id="dontUpgradeBetoken" datatype="html">
+        <source>Don&apos;t upgrade Betoken</source>
+        <target>Don&apos;t upgrade Betoken</target>
+        <note priority="1" from="meaning">ng2.template</note>
+      </trans-unit>
+      <trans-unit id="modalDontUpgradeBetokenSubtitle" datatype="html">
+        <source>Cancel your support for a manager initiated upgrade.</source>
+        <target>マネージャーが開始したアップグレードのサポートをキャンセルします。</target>
+        <note priority="1" from="meaning">ng2.template</note>
+      </trans-unit>
+      <trans-unit id="modalSubmitUpgradeCandidateSubtitle" datatype="html">
+        <source>Submit the candidate smart contract to vote on. During the next two days, managers other than you may vote on whether or not to accept this candidate as the upgrade target.</source>
+        <target>候補のスマートコントラクトを送信して投票します。次の2日間、この候補をアップグレードターゲットとして受け入れるかどうかについて、あなた以外のマネージャーが投票します。</target>
+        <note priority="1" from="meaning">ng2.template</note>
+      </trans-unit>
+      <trans-unit id="smartContractAddress" datatype="html">
+        <source>Smart contract address</source>
+        <target>Smart contract address</target>
+        <note priority="1" from="meaning">ng2.template</note>
+      </trans-unit>
+      <trans-unit id="modalUpgradeToSubtitle" datatype="html">
+        <source>Vote in support of upgrading to this smart contract.</source>
+        <target>このスマートコントラクトへのアップグレードに支持投票する。</target>
+        <note priority="1" from="meaning">ng2.template</note>
+      </trans-unit>
+      <trans-unit id="modalDontUpgradeToSubtitle" datatype="html">
+        <source>Vote against upgrading to this smart contract.</source>
+        <target>このスマートコントラクトへのアップグレードに反対投票する。</target>
+        <note priority="1" from="meaning">ng2.template</note>
+      </trans-unit>
+      <trans-unit id="finalizeUpgradeTo" datatype="html">
+        <source>Finalize the upgrade to</source>
+        <target>アップグレードを完了します</target>
+        <note priority="1" from="meaning">ng2.template</note>
+      </trans-unit>
+      <trans-unit id="finalizeUpgradeToSubtitle" datatype="html">
+        <source>Finalize the upgrade to this smart contract.</source>
+        <target>このスマートコントラクトへのアップグレードを完了します。</target>
+        <note priority="1" from="meaning">ng2.template</note>
+      </trans-unit>
+      <trans-unit id="modalUpgradeVotingWeight" datatype="html">
+        <source>Your voting weight</source>
+        <target>Your voting weight</target>
+        <note priority="1" from="meaning">ng2.template</note>
+      </trans-unit>
+      <trans-unit id="modalUpgradeVotingWeightSubtitle" datatype="html">
+        <source>Your voting weight is equal to your Kairo balance from 3 cycles ago.</source>
+        <target>投票の重みは、3サイクル前のKRO残高と同じです。</target>
+        <note priority="1" from="meaning">ng2.template</note>
+      </trans-unit>
+      <trans-unit id="modalBodyTextVoteConfirmed" datatype="html">
+        <source>You have successfully voted.</source>
+        <target>投票に成功しました。</target>
+        <note priority="1" from="meaning">ng2.template</note>
       </trans-unit>
     </body>
   </file>

@@ -33,6 +33,11 @@ export var countdownHour = 0;
 export var countdownMin = 0;
 export var countdownSec = 0;
 
+// governance info
+export var chunk = 0;
+export var subchunk = 0;
+export var totalVotingWeight = BigNumber(0);
+
 export var isLoadingPrices = true;
 
 // token data
@@ -231,6 +236,9 @@ export const loadFundData = async () => {
     return Promise.all([
         cycleNumber = +((await betoken.getPrimitiveVar("cycleNumber"))),
         cyclePhase = +((await betoken.getPrimitiveVar("cyclePhase"))),
+        chunk = +((await betoken.getPrimitiveVar("currentChunk"))),
+        subchunk = +((await betoken.getPrimitiveVar("currentSubchunk"))),
+        totalVotingWeight = BigNumber((await betoken.getPrimitiveVar("getTotalVotingWeight"))).div(PRECISION),
         startTimeOfCyclePhase = +((await betoken.getPrimitiveVar("startTimeOfCyclePhase"))),
     ]).then(() => {
         if (countdownDay == 0 && countdownHour == 0 && countdownMin == 0 && countdownSec == 0) {
@@ -242,8 +250,7 @@ export const loadFundData = async () => {
 export const loadUserData = async () => {
     if (betoken.hasWeb3) {
         // Get user address
-        await getDefaultAccount();
-        const userAddr = web3.eth.defaultAccount;
+        const userAddr = betoken.accountState.address;
         if (!isNullOrUndefined(userAddr)) {
             userAddress = userAddr;
         } else {

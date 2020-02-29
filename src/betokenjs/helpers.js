@@ -1,6 +1,6 @@
 // imports
 import BigNumber from "bignumber.js";
-import { Betoken } from "./betoken-obj";
+import { Betoken, PRECISION } from "./betoken-obj";
 import 'list.js';
 const Data = require("./data-controller");
 
@@ -124,6 +124,18 @@ export const tokens = {
     ptoken_address_to_info: (_addr) => Data.assetPTokenAddressToInfo(_addr),
     getAssetPriceAtTimestamp: (symbol, timestamp) => Data.getAssetPriceAtTimestamp(symbol, timestamp)
 };
+
+export const governance = {
+    chunk: () => Data.chunk,
+    subchunk: () => Data.subchunk,
+    totalVotingWeight: () => Data.totalVotingWeight,
+    getVotingWeight: async (addr) => new BigNumber(await betoken.getMappingOrArrayItem('getVotingWeight', addr)).div(PRECISION),
+    getUpgradeHistory: () => betoken.getUpgradeHistory(),
+    signalUpgrade: (_inSupport, _onTxHash, _onReceipt, _onError) => betoken.signalUpgrade(_inSupport, _onTxHash, _onReceipt, _onError),
+    proposeCandidate: (_chunkNumber, _candidate, _onTxHash, _onReceipt, _onError) => betoken.proposeCandidate(_chunkNumber, _candidate, _onTxHash, _onReceipt, _onError),
+    voteOnCandidate: (_chunkNumber, _inSupport, _onTxHash, _onReceipt, _onError) => betoken.voteOnCandidate(_chunkNumber, _inSupport, _onTxHash, _onReceipt, _onError),
+    finalizeSuccessfulVote: (_chunkNumber, _onTxHash, _onReceipt, _onError) => betoken.finalizeSuccessfulVote(_chunkNumber, _onTxHash, _onReceipt, _onError),
+}
 
 export const loading = {
     prices: () => Data.isLoadingPrices

@@ -194,31 +194,31 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">553</context>
+          <context context-type="linenumber">555</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">899</context>
+          <context context-type="linenumber">905</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">906</context>
+          <context context-type="linenumber">912</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">960</context>
+          <context context-type="linenumber">966</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">1290</context>
+          <context context-type="linenumber">1302</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">1333</context>
+          <context context-type="linenumber">1345</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">1497</context>
+          <context context-type="linenumber">1509</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/upgrade/upgrade.component.html</context>
@@ -795,7 +795,7 @@
             </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/dashboard/dashboard.component.html</context>
-          <context context-type="linenumber">296</context>
+          <context context-type="linenumber">312</context>
         </context-group>
       </trans-unit>
       <trans-unit id="standardDeviation" datatype="html">
@@ -804,7 +804,7 @@
             </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/dashboard/dashboard.component.html</context>
-          <context context-type="linenumber">324</context>
+          <context context-type="linenumber">334</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investor/investor.component.html</context>
@@ -815,7 +815,7 @@
         <source>Standard deviation represents the volatility of an asset. The number shown here is the sample standard deviation of Betoken Shares&apos; price since inception.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/dashboard/dashboard.component.html</context>
-          <context context-type="linenumber">318</context>
+          <context context-type="linenumber">328</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investor/investor.component.html</context>
@@ -828,25 +828,25 @@
             </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/dashboard/dashboard.component.html</context>
-          <context context-type="linenumber">351</context>
+          <context context-type="linenumber">355</context>
         </context-group>
       </trans-unit>
       <trans-unit id="dashboardTotalFundManagersAttrTitle" datatype="html">
         <source>Number of fund managers actively managing Betoken&apos;s assets.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/dashboard/dashboard.component.html</context>
-          <context context-type="linenumber">345</context>
+          <context context-type="linenumber">349</context>
         </context-group>
       </trans-unit>
       <trans-unit id="solidifiedAudit" datatype="html">
         <source>Betoken Smart Contracts are audited and secured by Solidified</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/dashboard/dashboard.component.html</context>
-          <context context-type="linenumber">380</context>
+          <context context-type="linenumber">378</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">502</context>
+          <context context-type="linenumber">504</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/upgrade/upgrade.component.html</context>
@@ -934,7 +934,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">435</context>
+          <context context-type="linenumber">436</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/commissions/commissions.component.html</context>
@@ -957,22 +957,7 @@
         <source>Long</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">327</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">462</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">935</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="orderOfTypeShort" datatype="html">
-        <source>Short</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">329</context>
+          <context context-type="linenumber">328</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
@@ -980,68 +965,83 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">936</context>
+          <context context-type="linenumber">941</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="orderSafetySafe" datatype="html">
-        <source>Safe</source>
+      <trans-unit id="orderOfTypeShort" datatype="html">
+        <source>Short</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
           <context context-type="linenumber">330</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">1057</context>
+          <context context-type="linenumber">466</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">1115</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">1142</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">1367</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">1394</context>
+          <context context-type="linenumber">942</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="orderSafetyInDanger" datatype="html">
-        <source>In Danger</source>
+      <trans-unit id="orderSafetySafe" datatype="html">
+        <source>Safe</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
           <context context-type="linenumber">331</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">1060</context>
+          <context context-type="linenumber">1064</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">1118</context>
+          <context context-type="linenumber">1122</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">1130</context>
+          <context context-type="linenumber">1149</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">1370</context>
+          <context context-type="linenumber">1379</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">1406</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="orderSafetyInDanger" datatype="html">
+        <source>In Danger</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">332</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">1067</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">1125</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">1137</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
           <context context-type="linenumber">1382</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">1394</context>
         </context-group>
       </trans-unit>
       <trans-unit id="investmentsNoActiveInvestments" datatype="html">
         <source>You have no active investments</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">415</context>
+          <context context-type="linenumber">416</context>
         </context-group>
       </trans-unit>
       <trans-unit id="investmentsPastInvestmentsTableTitle" datatype="html">
@@ -1050,7 +1050,7 @@
               </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">426</context>
+          <context context-type="linenumber">427</context>
         </context-group>
       </trans-unit>
       <trans-unit id="investmentsBuyModalTitleStep0" datatype="html">
@@ -1059,14 +1059,14 @@
         </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">521</context>
+          <context context-type="linenumber">523</context>
         </context-group>
       </trans-unit>
       <trans-unit id="investmentsBuyModalTitleStep1" datatype="html">
         <source>Buy</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">531</context>
+          <context context-type="linenumber">533</context>
         </context-group>
       </trans-unit>
       <trans-unit id="modalTitleConfirmTx" datatype="html">
@@ -1075,15 +1075,15 @@
         </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">536</context>
+          <context context-type="linenumber">538</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">943</context>
+          <context context-type="linenumber">949</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">1316</context>
+          <context context-type="linenumber">1328</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/upgrade/upgrade.component.html</context>
@@ -1116,15 +1116,15 @@
         </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">540</context>
+          <context context-type="linenumber">542</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">947</context>
+          <context context-type="linenumber">953</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">1320</context>
+          <context context-type="linenumber">1332</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/upgrade/upgrade.component.html</context>
@@ -1157,15 +1157,15 @@
         </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">544</context>
+          <context context-type="linenumber">546</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">951</context>
+          <context context-type="linenumber">957</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">1324</context>
+          <context context-type="linenumber">1336</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/upgrade/upgrade.component.html</context>
@@ -1198,15 +1198,15 @@
         </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">548</context>
+          <context context-type="linenumber">550</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">955</context>
+          <context context-type="linenumber">961</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">1328</context>
+          <context context-type="linenumber">1340</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/upgrade/upgrade.component.html</context>
@@ -1237,7 +1237,7 @@
         <source>Search</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">587</context>
+          <context context-type="linenumber">589</context>
         </context-group>
       </trans-unit>
       <trans-unit id="investmentsBuyModalAssetLabelMarginTrading" datatype="html">
@@ -1246,7 +1246,7 @@
                     </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">612</context>
+          <context context-type="linenumber">614</context>
         </context-group>
       </trans-unit>
       <trans-unit id="price" datatype="html">
@@ -1255,11 +1255,11 @@
               </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">643</context>
+          <context context-type="linenumber">645</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">997</context>
+          <context context-type="linenumber">1003</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investor/investor.component.html</context>
@@ -1288,7 +1288,7 @@
               </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">651</context>
+          <context context-type="linenumber">653</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/market/market.component.html</context>
@@ -1299,7 +1299,7 @@
         <source>I want to buy</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">664</context>
+          <context context-type="linenumber">666</context>
         </context-group>
       </trans-unit>
       <trans-unit id="investmentsBuyModalIWantToBuy2" datatype="html">
@@ -1307,22 +1307,22 @@
               staking</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">665</context>
+          <context context-type="linenumber">667</context>
         </context-group>
       </trans-unit>
       <trans-unit id="modalCtaMax" datatype="html">
         <source>Max</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">677</context>
+          <context context-type="linenumber">679</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">1094</context>
+          <context context-type="linenumber">1101</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">1419</context>
+          <context context-type="linenumber">1431</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investor/investor.component.html</context>
@@ -1345,7 +1345,7 @@
         <source>available</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">682</context>
+          <context context-type="linenumber">684</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investor/investor.component.html</context>
@@ -1368,14 +1368,25 @@
         <source>Minimum stake:</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">685</context>
+          <context context-type="linenumber">687</context>
         </context-group>
       </trans-unit>
       <trans-unit id="investmentsBuyModalOrderTypeSelect" datatype="html">
         <source>Order type</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">689</context>
+          <context context-type="linenumber">691</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="liquidityProvider" datatype="html">
+        <source>Liquidity Provider</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">697</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/investments/investments.component.html</context>
+          <context context-type="linenumber">1159</context>
         </context-group>
       </trans-unit>
       <trans-unit id="modalAdvancedOptionTitle" datatype="html">
@@ -1384,11 +1395,11 @@
                           </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">719</context>
+          <context context-type="linenumber">725</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">1171</context>
+          <context context-type="linenumber">1183</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/commissions/commissions.component.html</context>
@@ -1401,11 +1412,11 @@
                             </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">735</context>
+          <context context-type="linenumber">741</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">1187</context>
+          <context context-type="linenumber">1199</context>
         </context-group>
       </trans-unit>
       <trans-unit id="modalAdvancedOptionText" datatype="html">
@@ -1413,19 +1424,19 @@
                               more than:</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">738</context>
+          <context context-type="linenumber">744</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">746</context>
+          <context context-type="linenumber">752</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">1190</context>
+          <context context-type="linenumber">1202</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">1198</context>
+          <context context-type="linenumber">1210</context>
         </context-group>
       </trans-unit>
       <trans-unit id="investmentsModalSellAdvancedOptionSubtite" datatype="html">
@@ -1434,11 +1445,11 @@
                             </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">743</context>
+          <context context-type="linenumber">749</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">1195</context>
+          <context context-type="linenumber">1207</context>
         </context-group>
       </trans-unit>
       <trans-unit id="investmentsBuyModalMarginTradingPayoutTitle" datatype="html">
@@ -1447,7 +1458,7 @@
                 </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">777</context>
+          <context context-type="linenumber">783</context>
         </context-group>
       </trans-unit>
       <trans-unit id="investmentsBuyModalMarginTradingPayoutText1" datatype="html">
@@ -1455,7 +1466,7 @@
                     by</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">781</context>
+          <context context-type="linenumber">787</context>
         </context-group>
       </trans-unit>
       <trans-unit id="investmentsBuyModalMarginTradingPayoutText2a" datatype="html">
@@ -1463,42 +1474,42 @@
                     If</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">786</context>
+          <context context-type="linenumber">792</context>
         </context-group>
       </trans-unit>
       <trans-unit id="investmentsBuyModalMarginTradingPayoutText2b" datatype="html">
         <source>&apos;s price</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">788</context>
+          <context context-type="linenumber">794</context>
         </context-group>
       </trans-unit>
       <trans-unit id="investmentsBuyModalMarginTradingPayoutText2c" datatype="html">
         <source>you</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">790</context>
+          <context context-type="linenumber">796</context>
         </context-group>
       </trans-unit>
       <trans-unit id="investmentsBuyModalMarginTradingPayoutText2d" datatype="html">
         <source>gain</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">792</context>
+          <context context-type="linenumber">798</context>
         </context-group>
       </trans-unit>
       <trans-unit id="investmentsBuyModalMarginTradingPayoutText2e" datatype="html">
         <source>lose</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">795</context>
+          <context context-type="linenumber">801</context>
         </context-group>
       </trans-unit>
       <trans-unit id="investmentsBuyModalMarginTradingPayoutText3a" datatype="html">
         <source>If</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">800</context>
+          <context context-type="linenumber">806</context>
         </context-group>
       </trans-unit>
       <trans-unit id="investmentsBuyModalMarginTradingPayoutText3b" datatype="html">
@@ -1506,35 +1517,35 @@
                     price</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">801</context>
+          <context context-type="linenumber">807</context>
         </context-group>
       </trans-unit>
       <trans-unit id="investmentsBuyModalMarginTradingPayoutText3c" datatype="html">
         <source>you</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">803</context>
+          <context context-type="linenumber">809</context>
         </context-group>
       </trans-unit>
       <trans-unit id="investmentsBuyModalMarginTradingPayoutText3d" datatype="html">
         <source>lose</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">805</context>
+          <context context-type="linenumber">811</context>
         </context-group>
       </trans-unit>
       <trans-unit id="investmentsBuyModalMarginTradingPayoutText3e" datatype="html">
         <source>gain</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">808</context>
+          <context context-type="linenumber">814</context>
         </context-group>
       </trans-unit>
       <trans-unit id="investmentsBuyModalMarginTradingLiquidationTitle" datatype="html">
         <source>Liquidation</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">813</context>
+          <context context-type="linenumber">819</context>
         </context-group>
       </trans-unit>
       <trans-unit id="investmentsBuyModalMarginTradingLiquidationText1" datatype="html">
@@ -1543,14 +1554,14 @@
                     that happens, a large portion of your stake will be lost.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">815</context>
+          <context context-type="linenumber">821</context>
         </context-group>
       </trans-unit>
       <trans-unit id="investmentsBuyModalMarginTradingLiquidationText2" datatype="html">
         <source>Learn More</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">820</context>
+          <context context-type="linenumber">826</context>
         </context-group>
       </trans-unit>
       <trans-unit id="modalBodyTextStep1" datatype="html">
@@ -1560,15 +1571,15 @@
         </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">832</context>
+          <context context-type="linenumber">838</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">1229</context>
+          <context context-type="linenumber">1241</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">1436</context>
+          <context context-type="linenumber">1448</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/upgrade/upgrade.component.html</context>
@@ -1601,15 +1612,15 @@
         </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">840</context>
+          <context context-type="linenumber">846</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">1237</context>
+          <context context-type="linenumber">1249</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">1443</context>
+          <context context-type="linenumber">1455</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/upgrade/upgrade.component.html</context>
@@ -1640,29 +1651,29 @@
         <source>You staked</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">851</context>
+          <context context-type="linenumber">857</context>
         </context-group>
       </trans-unit>
       <trans-unit id="investmentsBuyModalTxConfirmed2" datatype="html">
         <source>KRO to invest in</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">853</context>
+          <context context-type="linenumber">859</context>
         </context-group>
       </trans-unit>
       <trans-unit id="modalBodyTxHash" datatype="html">
         <source>Transaction hash</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">863</context>
+          <context context-type="linenumber">869</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">1253</context>
+          <context context-type="linenumber">1265</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">1461</context>
+          <context context-type="linenumber">1473</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/upgrade/upgrade.component.html</context>
@@ -1715,15 +1726,15 @@
           </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">881</context>
+          <context context-type="linenumber">887</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">1271</context>
+          <context context-type="linenumber">1283</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">1479</context>
+          <context context-type="linenumber">1491</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/upgrade/upgrade.component.html</context>
@@ -1754,15 +1765,15 @@
         <source>Error message:</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">885</context>
+          <context context-type="linenumber">891</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">1275</context>
+          <context context-type="linenumber">1287</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">1483</context>
+          <context context-type="linenumber">1495</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/upgrade/upgrade.component.html</context>
@@ -1795,11 +1806,11 @@
         </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">892</context>
+          <context context-type="linenumber">898</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">1490</context>
+          <context context-type="linenumber">1502</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/upgrade/upgrade.component.html</context>
@@ -1832,19 +1843,19 @@
         </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">899</context>
+          <context context-type="linenumber">905</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">906</context>
+          <context context-type="linenumber">912</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">1290</context>
+          <context context-type="linenumber">1302</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">1497</context>
+          <context context-type="linenumber">1509</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/upgrade/upgrade.component.html</context>
@@ -1881,15 +1892,15 @@
         </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">913</context>
+          <context context-type="linenumber">919</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">1297</context>
+          <context context-type="linenumber">1309</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">1504</context>
+          <context context-type="linenumber">1516</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/upgrade/upgrade.component.html</context>
@@ -1920,14 +1931,14 @@
         <source>Leverage</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">937</context>
+          <context context-type="linenumber">943</context>
         </context-group>
       </trans-unit>
       <trans-unit id="investmentsModalSellOrderBuyTime" datatype="html">
         <source>OPENED</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">986</context>
+          <context context-type="linenumber">992</context>
         </context-group>
       </trans-unit>
       <trans-unit id="buyPrice" datatype="html">
@@ -1936,7 +1947,7 @@
               </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">1004</context>
+          <context context-type="linenumber">1011</context>
         </context-group>
       </trans-unit>
       <trans-unit id="investmentsModalSellStakedKro" datatype="html">
@@ -1945,7 +1956,7 @@
               </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">1017</context>
+          <context context-type="linenumber">1024</context>
         </context-group>
       </trans-unit>
       <trans-unit id="investmentsModalSellKroToRedeem" datatype="html">
@@ -1954,7 +1965,7 @@
               </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">1025</context>
+          <context context-type="linenumber">1032</context>
         </context-group>
       </trans-unit>
       <trans-unit id="investmentsModalSellFulcrumLiquidationPrice" datatype="html">
@@ -1963,7 +1974,7 @@
               </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">1051</context>
+          <context context-type="linenumber">1058</context>
         </context-group>
       </trans-unit>
       <trans-unit id="investmentsModalSellFulcrumLiquidationText" datatype="html">
@@ -1974,7 +1985,7 @@
               </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">1067</context>
+          <context context-type="linenumber">1074</context>
         </context-group>
       </trans-unit>
       <trans-unit id="investmentsModalSellProportionAssetsToSell" datatype="html">
@@ -1983,7 +1994,7 @@
               </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">1080</context>
+          <context context-type="linenumber">1087</context>
         </context-group>
       </trans-unit>
       <trans-unit id="modalCollateralStatusTitle" datatype="html">
@@ -1992,29 +2003,29 @@
                   </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">1104</context>
+          <context context-type="linenumber">1111</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">1360</context>
+          <context context-type="linenumber">1372</context>
         </context-group>
       </trans-unit>
       <trans-unit id="modalCtaTopUp" datatype="html">
         <source>Top up</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">1110</context>
+          <context context-type="linenumber">1117</context>
         </context-group>
       </trans-unit>
       <trans-unit id="modalMinCollRatio" datatype="html">
         <source>min. collateral ratio</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">1137</context>
+          <context context-type="linenumber">1144</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">1389</context>
+          <context context-type="linenumber">1401</context>
         </context-group>
       </trans-unit>
       <trans-unit id="modalTopUpCollateralLiquidationText" datatype="html">
@@ -2023,11 +2034,11 @@
                     liquidated, which will cause huge losses.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">1145</context>
+          <context context-type="linenumber">1152</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">1397</context>
+          <context context-type="linenumber">1409</context>
         </context-group>
       </trans-unit>
       <trans-unit id="investmentsModalSellTextStep3" datatype="html">
@@ -2036,7 +2047,7 @@
         </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">1247</context>
+          <context context-type="linenumber">1259</context>
         </context-group>
       </trans-unit>
       <trans-unit id="investmentsModalSellCtaContinue" datatype="html">
@@ -2045,7 +2056,7 @@
         </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">1283</context>
+          <context context-type="linenumber">1295</context>
         </context-group>
       </trans-unit>
       <trans-unit id="investmentsModalTopUpStep0" datatype="html">
@@ -2054,14 +2065,14 @@
         </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">1312</context>
+          <context context-type="linenumber">1324</context>
         </context-group>
       </trans-unit>
       <trans-unit id="investmentsModalTopUpCollateralTarget" datatype="html">
         <source>Collateralization target</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">1406</context>
+          <context context-type="linenumber">1418</context>
         </context-group>
       </trans-unit>
       <trans-unit id="investmentsModalTopUpMaxPossibleCollRatio" datatype="html">
@@ -2069,7 +2080,7 @@
                   </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">1424</context>
+          <context context-type="linenumber">1436</context>
         </context-group>
       </trans-unit>
       <trans-unit id="investmentsModalTopUpTextStep3" datatype="html">
@@ -2078,7 +2089,7 @@
           </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/investments/investments.component.html</context>
-          <context context-type="linenumber">1453</context>
+          <context context-type="linenumber">1465</context>
         </context-group>
       </trans-unit>
       <trans-unit id="upgradeHeaderTitle" datatype="html">

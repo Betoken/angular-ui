@@ -694,7 +694,7 @@
                   <option *ngFor="let orderType of orderTypes">{{orderType.text}}</option>
                 </select>
                 <ng-container *ngIf="selectedOrderType.type === 'basic'">
-                  <h6 class="header-pretitle mt-4">Liquidity Provider</h6>
+                  <h6 class="header-pretitle mt-4" i18n="@@liquidityProvider">Liquidity Provider</h6>
                   <div class="custom-control custom-radio custom-control-inline">
                     <input type="radio" id="dexag" name="dexag" class="custom-control-input" [checked]="!useKyber"
                       (input)="useKyber = false;">
@@ -1156,7 +1156,7 @@
               </div>
             </div>
             <ng-container *ngIf="isOrderOfType(sellData, 'BasicOrder')">
-              <h6 class="header-pretitle mt-4">Liquidity Provider</h6>
+              <h6 class="header-pretitle mt-4" i18n="@@liquidityProvider">Liquidity Provider</h6>
               <div class="custom-control custom-radio custom-control-inline">
                 <input type="radio" id="dexag" name="dexag" class="custom-control-input" [checked]="!useKyber"
                   (input)="useKyber = false;">

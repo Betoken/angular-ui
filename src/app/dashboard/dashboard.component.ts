@@ -150,6 +150,7 @@ export class DashboardComponent extends ApolloEnabled implements OnInit {
       this.apy = this.currMoROI.div(100).plus(1).pow(12).minus(1).times(100);
       if (fund.cyclePhase === 'INTERMISSION') {
         this.currMoROI = new BigNumber(0);
+        this.apy = new BigNumber(0);
       }
       this.portfolioValueInDAI = this.userValue.div(fund.kairoTotalSupply).times(fund.totalFundsInDAI);
 

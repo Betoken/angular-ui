@@ -95,7 +95,8 @@ export const user = {
     },
     commission_rate: () => Data.commissionRate,
     asset_fee_rate: () => Data.assetFeeRate,
-    commission_balance: () => Data.commissionBalance
+    commission_balance: () => Data.commissionBalance,
+    last_active_cycle: (manager) => betoken.getMappingOrArrayItem('lastActiveCycle', manager)
 };
 
 export const stats = {

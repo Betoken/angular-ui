@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { user, stats, sortTable } from '../../betokenjs/helpers';
+import { user, stats, timer, sortTable } from '../../betokenjs/helpers';
 
 import { ApolloEnabled } from '../apollo';
 import { Apollo } from 'apollo-angular';
@@ -64,7 +64,7 @@ export class RankingsComponent extends ApolloEnabled implements OnInit, OnDestro
         this.querySubscription = this.query.valueChanges.subscribe((result) => this.handleQuery(result));
     }
 
-    handleQuery({ data, loading }) {
+    async handleQuery({ data, loading }) {
         this.isLoading = loading || isUndefined(loading);
         if (!loading) {
             this.rankingArray = data['managers'];
@@ -78,6 +78,21 @@ export class RankingsComponent extends ApolloEnabled implements OnInit, OnDestro
                 this.userROI = this.userValue.div(userData.baseStake).minus(1).times(100);
                 this.userTotalCommission = new BigNumber(userData.totalCommissionReceived);
             }
+
+            console.log('Generating list of dead managers...');
+            const currentCycle = timer.cycle();
+            let deadManagers = [];
+            let deadKairo = 0;
+            for (const m of this.rankingArray) {
+                const lastActiveCycle = +(await user.last_active_cycle(m.id));
+                const balance = +m.kairoBalance;
+                if (lastActiveCycle <= currentCycle - 3 && balance > 0) {
+                    deadManagers.push(m.id);
+                    deadKairo += balance;
+                }
+            }
+            console.log(`Dead managers: ${JSON.stringify(deadManagers)}`);
+            console.log(`Dead Kairo: ${deadKairo}`);
         }
     }
 

@@ -70,7 +70,7 @@ export var Betoken = function () {
     self.portisAPIKey = "f5e7429c-2715-4a45-b032-c3d76688da8d";
     self.infuraKey = "3057a4979e92452bae6afaabed67a724";
     self.infuraEndpoint = "wss://mainnet.infura.io/ws/v3/" + self.infuraKey;
-    self.squarelinkKey = "2b586551124b5a78f599";
+    self.squarelinkKey = "1cb50ea235c2f18fc93e";
 
     self.sendTx = async (func, _onTxHash, _onReceipt, _onError) => {
         var gasLimit = await estimateGas(self.accountState.address, func, 0, _onError);

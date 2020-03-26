@@ -192,7 +192,7 @@ export const manager_actions = {
         return betoken.sellAsset(id, percentage, minPrice, maxPrice, pending, confirm, error);
     },
     sell_investment_v2: async function (id, percentage, minPrice, maxPrice, useKyber, pending, confirm, error) {
-        let investment = await betoken.getDoubleMapping("userInvestments", web3.eth.defaultAccount, id);
+        let investment = await betoken.getDoubleMapping("userInvestments", betoken.accountState.address, id);
         let sellTokenAddress = investment.tokenAddress;
         let sellTokenDecimals = +(await betoken.getTokenDecimals(sellTokenAddress));
         let sellTokenAmount = BigNumber(investment.tokenAmount).times(percentage).div(BigNumber(10).pow(sellTokenDecimals));

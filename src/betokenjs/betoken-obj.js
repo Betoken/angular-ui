@@ -16,10 +16,6 @@ export const PRECISION = 1e18;
 export const CHECK_RECEIPT_INTERVAL = 3e3; // in milliseconds
 
 // helpers
-export const getDefaultAccount = async () => {
-    web3.eth.defaultAccount = (await web3.eth.getAccounts())[0];
-};
-
 export const ERC20 = function (_tokenAddr) {
     // add new token contract
     var erc20ABI = require("./abi/ERC20.json");
@@ -743,11 +739,9 @@ export var Betoken = function () {
     * @return {Promise}               .then(()->)
     */
     self.sellAssetV2 = async function (_proposalId, _percentage, _minPrice, _maxPrice, _calldata, _useKyber, _onTxHash, _onReceipt, _onError) {
-
         var sellTokenAmount = BigNumber((await self.getDoubleMapping("userInvestments", self.accountState.address, _proposalId)).tokenAmount).times(_percentage).integerValue().toFixed();
         var minPrice = _minPrice.times(PRECISION).integerValue().toFixed();
         var maxPrice = _maxPrice.times(PRECISION).integerValue().toFixed();
-
         var func = self.contracts.BetokenFund.methods.sellInvestmentAssetV2(_proposalId, sellTokenAmount, minPrice, maxPrice, _calldata, _useKyber);
         return self.sendTx(func, _onTxHash, _onReceipt, _onError);
     };

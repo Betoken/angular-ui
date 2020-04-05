@@ -158,9 +158,9 @@ export var Betoken = function () {
     /*
     Object Initialization
     */
-    self.init = async () => {
+    self.init = async (startupMode) => {
         // initialize web3
-        await self.loadWeb3();
+        await self.loadWeb3(startupMode);
 
         // Initialize BetokenProxy contract
         var betokenProxyABI = require("./abi/BetokenProxy.json");
@@ -196,7 +196,7 @@ export var Betoken = function () {
         window.betoken = self;
     };
 
-    self.loadWeb3 = async () => {
+    self.loadWeb3 = async (startupMode) => {
         self.hasWeb3 = true;
         let darkMode = getComputedStyle(document.body).backgroundColor != 'rgb(249, 251, 253)';
 
@@ -246,6 +246,7 @@ export var Betoken = function () {
             const wallets = [
                 {
                     walletName: 'fortmatic',
+                    label: 'Login with email / phone',
                     preferred: true,
                     apiKey: self.fortmaticAPIKey
                 },
@@ -285,6 +286,8 @@ export var Betoken = function () {
                         if (wallet.provider) {
                             web3 = new Web3(wallet.provider);
                         }
+                        // store the selected wallet name to be retrieved next time the app loads
+                        window.localStorage.setItem('selectedWallet', wallet.name);
                     }
                 },
                 // default wallets that are included: MetaMask, Dapper, Coinbase, Trust, WalletConnect
@@ -296,7 +299,21 @@ export var Betoken = function () {
         }
 
         // Get user to select a wallet
-        let selectedWallet = await self.assistInstance.walletSelect();
+        let selectedWallet;
+        if (startupMode) {
+            // Startup mode: connect to previously used wallet if available, else do nothing
+            // get the selectedWallet value from local storage
+            const previouslySelectedWallet = window.localStorage.getItem('selectedWallet');
+            // call wallet select with that value if it exists
+            if (previouslySelectedWallet != null) {
+                selectedWallet = await self.assistInstance.walletSelect(previouslySelectedWallet);
+            } else {
+                selectedWallet = await self.assistInstance.walletSelect();
+            }
+        } else {
+            // Non startup mode: open wallet selection screen
+            selectedWallet = await self.assistInstance.walletSelect();
+        }
         let state = self.assistInstance.getState();
         self.accountState = state;
         if (
@@ -305,12 +322,14 @@ export var Betoken = function () {
         ) {
             // Get users' wallet ready to transact
             let ready = await self.assistInstance.walletCheck();
-
             if (!ready) {
                 // Selected an option but then dismissed it
                 // Treat as no wallet
                 window.web3 = new Web3(self.infuraEndpoint);
                 self.hasWeb3 = false;
+            } else {
+                state = self.assistInstance.getState();
+                self.accountState = state;
             }
         } else {
             // User refuses to connect to wallet

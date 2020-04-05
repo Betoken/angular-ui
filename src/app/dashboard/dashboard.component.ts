@@ -55,6 +55,7 @@ export class DashboardComponent extends ApolloEnabled implements OnInit {
     this.sortinoRatio = new BigNumber(0);
     this.standardDeviation = new BigNumber(0);
     this.portfolioValueInDAI = new BigNumber(0);
+    this.apy = new BigNumber(0);
 
     this.hasDrawnChart = false;
     this.chartTabId = 0;

@@ -15,7 +15,7 @@ export class AppComponent {
 
   constructor() {
     const betoken = new Betoken();
-    betoken.init().then(() => {
+    betoken.init(true).then(() => {
       this.load_progress = 50;
       return loadAllData(() => {
         this.load_progress += 10;

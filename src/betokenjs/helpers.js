@@ -146,7 +146,7 @@ export const refresh_actions = {
         return Data.loadTokenPrices();
     },
     reload_all: () => {
-        return betoken.init().then(Data.loadDynamicData);
+        return betoken.init(false).then(Data.loadDynamicData);
     }
 };
 

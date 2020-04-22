@@ -409,7 +409,7 @@ export class InvestmentsComponent extends ApolloEnabled implements OnInit {
             orderTypes.push(longOrder);
             orderTypes.push(shortOrder);
         }
-        if (tokens.is_fulcrum_token(symbol)) {
+        /*if (tokens.is_fulcrum_token(symbol)) {
             let pTokens = tokens.asset_symbol_to_ptokens(symbol);
             for (let pToken of pTokens) {
                 let option = {
@@ -420,7 +420,7 @@ export class InvestmentsComponent extends ApolloEnabled implements OnInit {
                 }
                 orderTypes.push(option);
             }
-        }
+        }*/
 
         this.orderTypes = orderTypes;
     }
@@ -653,7 +653,7 @@ export class InvestmentsComponent extends ApolloEnabled implements OnInit {
     }
 
     isMarginToken(token) {
-        return tokens.is_compound_token(token) || tokens.is_fulcrum_token(token);
+        return tokens.is_compound_token(token);// || tokens.is_fulcrum_token(token);
     }
 
     isOrderOfType(orderData, type) {

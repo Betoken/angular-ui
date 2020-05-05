@@ -64,7 +64,7 @@ export class RankingsComponent extends ApolloEnabled implements OnInit, OnDestro
         this.querySubscription = this.query.valueChanges.subscribe((result) => this.handleQuery(result));
     }
 
-    handleQuery({ data, loading }) {
+    async handleQuery({ data, loading }) {
         this.isLoading = loading || isUndefined(loading);
         if (!loading) {
             this.rankingArray = data['managers'];
@@ -78,6 +78,28 @@ export class RankingsComponent extends ApolloEnabled implements OnInit, OnDestro
                 this.userROI = this.userValue.div(userData.baseStake).minus(1).times(100);
                 this.userTotalCommission = new BigNumber(userData.totalCommissionReceived);
             }
+
+            let afterAUM = new BigNumber('6008.686061116096317715');
+            let cycleROI = new BigNumber('0.08508490787182957362721748443953303149695851452111654543409043472130220013624746576266635494538887180');
+            let beforeAUM = afterAUM.div(cycleROI.plus(1));
+            let profit = afterAUM.minus(beforeAUM);
+            let cycleStartBlock = '9773837';
+            let cycleEndBlock = '9969867';
+            const betoken = window['betoken'];
+            let commissions = [];
+            for (let m of this.rankingArray) {
+                let riskTaken = new BigNumber(await betoken.getDoubleMapping("riskTakenInCycle", m.id, 10));
+                let baseStake = new BigNumber(await betoken.contracts.Kairo.methods.balanceOfAt(m.id, cycleStartBlock).call());
+                let riskThreshold = baseStake.times(3 * 24 * 60 * 60);
+                let kroBalance = new BigNumber(await betoken.contracts.Kairo.methods.balanceOfAt(m.id, cycleEndBlock).call());
+                let kroTotalSupply = new BigNumber(await betoken.contracts.Kairo.methods.totalSupplyAt(cycleEndBlock).call());
+                let managerCommission = profit.times(0.2).times(kroBalance).div(kroTotalSupply).times(riskTaken).div(riskThreshold);
+                commissions.push({
+                    manager: m.id,
+                    commission: managerCommission.toString()
+                });
+            }
+            console.log(JSON.stringify(commissions));
         }
     }
 

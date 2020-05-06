@@ -83,21 +83,25 @@ export class RankingsComponent extends ApolloEnabled implements OnInit, OnDestro
             let cycleROI = new BigNumber('0.08508490787182957362721748443953303149695851452111654543409043472130220013624746576266635494538887180');
             let beforeAUM = afterAUM.div(cycleROI.plus(1));
             let profit = afterAUM.minus(beforeAUM);
-            let cycleStartBlock = '9773837';
-            let cycleEndBlock = '9969867';
+            let cycleStartBlock = '9773838';
+            let cycleEndBlock = '9969868';
             const betoken = window['betoken'];
             let commissions = [];
+            let kroTotalSupply = new BigNumber(await betoken.contracts.Kairo.methods.totalSupplyAt(cycleEndBlock).call());
             for (let m of this.rankingArray) {
                 let riskTaken = new BigNumber(await betoken.getDoubleMapping("riskTakenInCycle", m.id, 10));
                 let baseStake = new BigNumber(await betoken.contracts.Kairo.methods.balanceOfAt(m.id, cycleStartBlock).call());
                 let riskThreshold = baseStake.times(3 * 24 * 60 * 60);
+                let riskRatio = BigNumber.min(riskTaken.div(riskThreshold), 1);
                 let kroBalance = new BigNumber(await betoken.contracts.Kairo.methods.balanceOfAt(m.id, cycleEndBlock).call());
-                let kroTotalSupply = new BigNumber(await betoken.contracts.Kairo.methods.totalSupplyAt(cycleEndBlock).call());
-                let managerCommission = profit.times(0.2).times(kroBalance).div(kroTotalSupply).times(riskTaken).div(riskThreshold);
-                commissions.push({
-                    manager: m.id,
-                    commission: managerCommission.toString()
-                });
+                let managerCommission = profit.times(0.2).times(kroBalance).div(kroTotalSupply).times(riskRatio);
+                if (managerCommission.gt(0)) {
+                    commissions.push({
+                        manager: m.id,
+                        commission: managerCommission.toString()
+                    });
+                }
+
             }
             console.log(JSON.stringify(commissions));
         }

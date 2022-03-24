@@ -38,7 +38,7 @@
     "jquery": "^3.4.1",
     "kind-of": "^6.0.3",
     "list.js": "^1.5.0",
-    "minimist": "^1.2.5",
+    "minimist": "^1.2.6",
     "ngx-bootstrap": "^5.1.1",
     "node-fetch": "^2.6.0",
     "rxjs": "~6.5.4",
